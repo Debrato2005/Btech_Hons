@@ -110,14 +110,35 @@ def main():
   if row is None or review['sourceSha256']!=row['sourceSha256']:continue
   for key,value in review.items():
    if key not in ('slideId','sourceSha256'):row[key]=value
+ # Completed page inspections from authored batches are evidence, not question verification.
+ # Preserve each inspector's identity/notes; never convert extraction or a draft into a view.
+ for batch_path in sorted((ROOT/'data'/'inspection-batches').glob('*.json')):
+  batch=json.loads(batch_path.read_text())
+  for inspection in batch.get('slides',[]):
+   row=rows_by_id.get(inspection.get('id'))
+   visual=inspection.get('visualInspection',{})
+   bound_hash=inspection.get('sourceSha256',batch.get('sourceSha256'))
+   if row is None or bound_hash!=row['sourceSha256'] or visual.get('status')!='complete':continue
+   if not visual.get('inspectorId') or not visual.get('inspectedAt') or visual.get('method') not in ('rendered_page','pdf_viewer'):continue
+   history=row.setdefault('visualInspectionHistory',[])
+   if row['visualInspection']['status']=='complete' and row['visualInspection'] not in history:history.append(dict(row['visualInspection']))
+   history.append(dict(visual,evidenceFile=str(batch_path.relative_to(ROOT))))
+   row['visualInspection']=dict(visual)
+   for field in ('printedSlideNumber','printedSlideNumberStatus'):
+    if field in inspection:row[field]=inspection[field]
+   # Concepts/questions are merged by the builder; the inventory retains only evidence.
+   if inspection.get('disposition')=='excluded' and inspection.get('exclusionReason'):
+    row['disposition']='excluded';row['exclusionReason']=inspection['exclusionReason']
  # Independent audit observations are additive evidence, with their original identity.
- audit_path=ROOT/'audits'/'page_observations.jsonl'
- if audit_path.exists():
+ for audit_path in [ROOT/'audits'/'page_observations.jsonl', ROOT/'audits'/'learning-tools-page-observations.jsonl']:
+  if not audit_path.exists():continue
   for line in audit_path.read_text().splitlines():
    if not line.strip():continue
    observation=json.loads(line);page_id=f"{observation['source']}-p{observation['physicalPage']:04d}"
    row=rows_by_id.get(page_id)
    if row is None or row['sourceSha256']!=observation['sourceSha256']:continue
+   history=row.setdefault('visualInspectionHistory',[])
+   if row['visualInspection']['status']=='complete' and row['visualInspection'] not in history:history.append(dict(row['visualInspection']))
    row['visualInspection']=dict(status='complete',inspectorId=observation['inspectorId'],inspectedAt=observation['inspectedAt'],method=observation['method'],notes=observation.get('notes',''))
    row['printedSlideNumber']=observation['printedSlideNumber'];row['printedSlideNumberStatus']=observation['printedSlideNumberStatus']
    row['observedConceptDescriptions']=observation.get('observedConcepts',[])

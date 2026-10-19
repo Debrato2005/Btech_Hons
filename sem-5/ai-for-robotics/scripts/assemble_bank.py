@@ -45,6 +45,11 @@ def main():
   for sid in c['slideIds']:
    byslide[sid]['conceptIds'].append(c['id'])
    if byslide[sid]['disposition']=='unreviewed' and byslide[sid]['visualInspection']['status']=='complete':byslide[sid]['disposition']='examinable'
+ # Authors save visual inspection before complete concept records; snapshots must
+ # not imply finished examinable coverage merely because pixels were viewed.
+ for slide in slides:
+  if slide['disposition']=='examinable' and not slide['conceptIds']:
+   slide['disposition']='unreviewed';slide['conceptLedgerPending']=True
  from validate import question_hash
  qmap={q['id']:q for q in questions}
  for q in questions:

@@ -1,0 +1,2539 @@
+[
+  {
+    "id": "W02-L07-Q001",
+    "version": 1,
+    "stem": "Which pairing follows the introductory slide?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "Manipulator: rigid-link joint chain; differential drive: motion controlled by wheel velocities"
+      },
+      {
+        "id": "choice-2",
+        "text": "Manipulator: motion controlled only by wheel velocities; differential drive: rigid arm joints"
+      },
+      {
+        "id": "choice-3",
+        "text": "Manipulator: no relative link motion; differential drive: fixed wheel velocities only"
+      },
+      {
+        "id": "choice-4",
+        "text": "Both systems are defined solely by their end-effector orientation"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0246",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 246,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page246, printed slide4; relevant text, table or displayed equation/figure",
+        "evidenceText": "Introduction\n\n•  Robots are designed to perform tasks that require precise motion, positioning,\n   and manipulation.\n•  Robotic systems include manipulators (robot arms) and mobile robots used for\n   navigation and transportation tasks.\n•  Robotic manipulators consist of rigid links connected by joints, forming a\n   kinematic chain that enables controlled motion.\n•  Mobile robots, such as differential drive robots, use wheel velocities to control\n   their motion and navigation.\n\n\n\n\n\n                                                                                                           4",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q002",
+    "version": 1,
+    "stem": "What is tracked when a manipulator articulates in the frame-based kinematic description?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-2",
+        "text": "Only the actuator torques causing acceleration"
+      },
+      {
+        "id": "choice-3",
+        "text": "Only link masses, with joint angles held outside the model"
+      },
+      {
+        "id": "choice-4",
+        "text": "A single frame whose coordinates must be identical on every link"
+      },
+      {
+        "id": "choice-1",
+        "text": "The changing locations of coordinate frames assigned to its links"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0247",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 247,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page247, printed slide5; relevant text, table or displayed equation/figure",
+        "evidenceText": "Kinematics\n\n•   It is the study of motion that treats the motion without regard to the\n   forces that cause it.\n•   It studies the position, the velocity, the acceleration, and all higher-order\n   derivatives of the position variables w.r.t. time or other variables.\n•  Using kinematics, we will study the relationship between joint angles\n  and the position of the end-effector.\n•  To describe robot motion mathematically, coordinate\n   frames are assigned to each link of the robot.\n•  The study of manipulator kinematics involves,\n  among other things, how the locations of these\n   frames change as the mechanism articulates\n\n\n\n                                                                                                           5",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q003",
+    "version": 1,
+    "stem": "A demonstration is stored as joint trajectories, but an imitation-learning task needs Cartesian tool trajectories; which map is described?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "Inverse dynamics from desired motion to actuator torques"
+      },
+      {
+        "id": "choice-4",
+        "text": "A reward update from temporal-difference errors"
+      },
+      {
+        "id": "choice-1",
+        "text": "Forward kinematics from joint configurations to task-space poses"
+      },
+      {
+        "id": "choice-2",
+        "text": "Inverse kinematics from task-space poses to joint configurations"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0248",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 248,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page248, printed slide6; relevant text, table or displayed equation/figure",
+        "evidenceText": "Why FK Matters for AI in Robotics\n\n•  Reinforcement Learning agents use FK to translate policy outputs (joint\n   commands) into Cartesian observations.\n•  Imitation Learning datasets store demonstrations as joint trajectories; FK maps\n  them to the task space.\n•  Motion planning algorithms use FK at every node to check collision geometry.\n•   Differentiable FK enables gradient-based trajectory optimization and neural\n   motion planning.\n•  Physics simulators (MuJoCo, Bullet, Isaac) implement FK\n    internally for every rendering step.\n•  Understanding FK is prerequisite for sim-to-real transfer\n    in deep robot learning.\n\n\n\n\n                                                                                                           6",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q004",
+    "version": 1,
+    "stem": "What role does the slide assign FK when a reinforcement-learning policy emits joint commands?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "Remove the need to specify which robot geometry is used"
+      },
+      {
+        "id": "choice-1",
+        "text": "Translate the joint configuration into Cartesian observations"
+      },
+      {
+        "id": "choice-2",
+        "text": "Directly replace the learning reward with a torque model"
+      },
+      {
+        "id": "choice-3",
+        "text": "Guarantee that the policy is optimal in every environment"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0248",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 248,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page248, printed slide6; relevant text, table or displayed equation/figure",
+        "evidenceText": "Why FK Matters for AI in Robotics\n\n•  Reinforcement Learning agents use FK to translate policy outputs (joint\n   commands) into Cartesian observations.\n•  Imitation Learning datasets store demonstrations as joint trajectories; FK maps\n  them to the task space.\n•  Motion planning algorithms use FK at every node to check collision geometry.\n•   Differentiable FK enables gradient-based trajectory optimization and neural\n   motion planning.\n•  Physics simulators (MuJoCo, Bullet, Isaac) implement FK\n    internally for every rendering step.\n•  Understanding FK is prerequisite for sim-to-real transfer\n    in deep robot learning.\n\n\n\n\n                                                                                                           6",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q005",
+    "version": 1,
+    "stem": "Select all uses the slide associates with forward kinematics.",
+    "selectionMode": "multi",
+    "type": "statement",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "Computing collision geometry for manipulator planning configurations"
+      },
+      {
+        "id": "choice-2",
+        "text": "Supporting gradient-based trajectory optimization when FK is differentiable"
+      },
+      {
+        "id": "choice-3",
+        "text": "Computing link geometry in the named simulator examples"
+      },
+      {
+        "id": "choice-4",
+        "text": "Guaranteeing successful simulation-to-real transfer without model mismatch"
+      }
+    ],
+    "assumptions": [
+      "These are the slide’s examples and motivations, not an independently verified claim about every product version or every planner."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0248",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 248,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page248, printed slide6; relevant text, table or displayed equation/figure",
+        "evidenceText": "Why FK Matters for AI in Robotics\n\n•  Reinforcement Learning agents use FK to translate policy outputs (joint\n   commands) into Cartesian observations.\n•  Imitation Learning datasets store demonstrations as joint trajectories; FK maps\n  them to the task space.\n•  Motion planning algorithms use FK at every node to check collision geometry.\n•   Differentiable FK enables gradient-based trajectory optimization and neural\n   motion planning.\n•  Physics simulators (MuJoCo, Bullet, Isaac) implement FK\n    internally for every rendering step.\n•  Understanding FK is prerequisite for sim-to-real transfer\n    in deep robot learning.\n\n\n\n\n                                                                                                           6",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q006",
+    "version": 1,
+    "stem": "In the manipulator context, what does DOF count?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "choice-2",
+        "text": "Every number appearing in a homogeneous matrix"
+      },
+      {
+        "id": "choice-3",
+        "text": "Only the number of Cartesian position coordinates"
+      },
+      {
+        "id": "choice-4",
+        "text": "Only the number of link bodies including the fixed base"
+      },
+      {
+        "id": "choice-1",
+        "text": "Independent joint variables needed to describe configuration"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0249",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 249,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page249, printed slide7; relevant text, table or displayed equation/figure",
+        "evidenceText": "Degree of Freedom (DOF)\n\n•  The degree of freedom (DOF) of a robotic system is the number of independent\n   parameters required to completely describe the position and orientation of the\n   system in space.\n•   In the context of robotic manipulators, it represents the number of\n   independent joint variables that can be controlled to determine the\n   configuration of the robot.\n•  Degrees of Freedom of a Rigid Body in Space\n    –  3 Translational DOF: motion along the X, Y, and Z axes\n    –  3 Rotational DOF: rotation about the X, Y, and Z axes\n•  DOF in Robotic Manipulators\n    –  Each revolute joint contributes one rotational DOF.\n    –  Each prismatic joint contributes one translational DOF.\n•  DOF determines the maneuverability of the manipulator.\n\n\n                                                                                                           7",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q007",
+    "version": 1,
+    "stem": "Which decomposition describes an unconstrained rigid-body pose in three-dimensional space?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "Three translations and no independent orientation"
+      },
+      {
+        "id": "choice-4",
+        "text": "Six independent translations and three rotations"
+      },
+      {
+        "id": "choice-1",
+        "text": "Three translational and three rotational freedoms"
+      },
+      {
+        "id": "choice-2",
+        "text": "Two translational and one rotational freedom"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0249",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 249,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page249, printed slide7; relevant text, table or displayed equation/figure",
+        "evidenceText": "Degree of Freedom (DOF)\n\n•  The degree of freedom (DOF) of a robotic system is the number of independent\n   parameters required to completely describe the position and orientation of the\n   system in space.\n•   In the context of robotic manipulators, it represents the number of\n   independent joint variables that can be controlled to determine the\n   configuration of the robot.\n•  Degrees of Freedom of a Rigid Body in Space\n    –  3 Translational DOF: motion along the X, Y, and Z axes\n    –  3 Rotational DOF: rotation about the X, Y, and Z axes\n•  DOF in Robotic Manipulators\n    –  Each revolute joint contributes one rotational DOF.\n    –  Each prismatic joint contributes one translational DOF.\n•  DOF determines the maneuverability of the manipulator.\n\n\n                                                                                                           7",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q008",
+    "version": 1,
+    "stem": "Which pair correctly distinguishes the two common one-DOF joint types?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "Both: three independent orientation coordinates"
+      },
+      {
+        "id": "choice-1",
+        "text": "Revolute: rotation about a fixed axis; prismatic: translation along a fixed axis"
+      },
+      {
+        "id": "choice-2",
+        "text": "Revolute: translation along an axis; prismatic: rotation about it"
+      },
+      {
+        "id": "choice-3",
+        "text": "Both: two independent motions along and about one axis"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0249",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 249,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page249, printed slide7; relevant text, table or displayed equation/figure",
+        "evidenceText": "Degree of Freedom (DOF)\n\n•  The degree of freedom (DOF) of a robotic system is the number of independent\n   parameters required to completely describe the position and orientation of the\n   system in space.\n•   In the context of robotic manipulators, it represents the number of\n   independent joint variables that can be controlled to determine the\n   configuration of the robot.\n•  Degrees of Freedom of a Rigid Body in Space\n    –  3 Translational DOF: motion along the X, Y, and Z axes\n    –  3 Rotational DOF: rotation about the X, Y, and Z axes\n•  DOF in Robotic Manipulators\n    –  Each revolute joint contributes one rotational DOF.\n    –  Each prismatic joint contributes one translational DOF.\n•  DOF determines the maneuverability of the manipulator.\n\n\n                                                                                                           7",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0250",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 250,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page250, printed slide8; relevant text, table or displayed equation/figure",
+        "evidenceText": "Link Description\n\n•  A robotic manipulator can be modeled as a set of rigid bodies connected together in\n   a chain. These rigid bodies are called links.\n•   Joints form a connection between neighbouring pairs of links and constrain their\n    relative motion.\n•  The majority of industrial manipulators employ one of two basic joint types:\n      1.   Revolute joints, in which relative motion is rotational about a fixed axis\n      2.   Prismatic joints, in which relative motion is translational along a fixed axis\n•   Links are numbered starting from the fixed base of the\n   manipulator.\n    –  The immobile base is designated as link 0.\n    –  The first moving link is labelled link 1, and numbering continues\n         sequentially.\n    –  The last link in the chain, link n, is the free end of the arm and\n          typically carries the end-effector\n•  Most industrial manipulators therefore have five or six joints\n\n\n                                                                                                           8",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q009",
+    "version": 1,
+    "stem": "In the slide’s serial-chain numbering, which assignment is correct?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "Fixed base: link0; first moving link: link1; free end: linkn"
+      },
+      {
+        "id": "choice-2",
+        "text": "Fixed base: link1; first moving link: link0; free end: link2"
+      },
+      {
+        "id": "choice-3",
+        "text": "Every link is numbered from the end-effector back toward a floating base"
+      },
+      {
+        "id": "choice-4",
+        "text": "Only actuated links receive numbers; the fixed base has none"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0250",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 250,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page250, printed slide8; relevant text, table or displayed equation/figure",
+        "evidenceText": "Link Description\n\n•  A robotic manipulator can be modeled as a set of rigid bodies connected together in\n   a chain. These rigid bodies are called links.\n•   Joints form a connection between neighbouring pairs of links and constrain their\n    relative motion.\n•  The majority of industrial manipulators employ one of two basic joint types:\n      1.   Revolute joints, in which relative motion is rotational about a fixed axis\n      2.   Prismatic joints, in which relative motion is translational along a fixed axis\n•   Links are numbered starting from the fixed base of the\n   manipulator.\n    –  The immobile base is designated as link 0.\n    –  The first moving link is labelled link 1, and numbering continues\n         sequentially.\n    –  The last link in the chain, link n, is the free end of the arm and\n          typically carries the end-effector\n•  Most industrial manipulators therefore have five or six joints\n\n\n                                                                                                           8",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q010",
+    "version": 1,
+    "stem": "What role is assigned to joints connecting neighboring links?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-2",
+        "text": "They make the two links independent free bodies"
+      },
+      {
+        "id": "choice-3",
+        "text": "They eliminate all relative motion in every joint type"
+      },
+      {
+        "id": "choice-4",
+        "text": "They require every relative motion to be translational"
+      },
+      {
+        "id": "choice-1",
+        "text": "They permit specified relative motion while constraining other relative motions"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0250",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 250,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page250, printed slide8; relevant text, table or displayed equation/figure",
+        "evidenceText": "Link Description\n\n•  A robotic manipulator can be modeled as a set of rigid bodies connected together in\n   a chain. These rigid bodies are called links.\n•   Joints form a connection between neighbouring pairs of links and constrain their\n    relative motion.\n•  The majority of industrial manipulators employ one of two basic joint types:\n      1.   Revolute joints, in which relative motion is rotational about a fixed axis\n      2.   Prismatic joints, in which relative motion is translational along a fixed axis\n•   Links are numbered starting from the fixed base of the\n   manipulator.\n    –  The immobile base is designated as link 0.\n    –  The first moving link is labelled link 1, and numbering continues\n         sequentially.\n    –  The last link in the chain, link n, is the free end of the arm and\n          typically carries the end-effector\n•  Most industrial manipulators therefore have five or six joints\n\n\n                                                                                                           8",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q011",
+    "version": 1,
+    "stem": "What feature defines a lower pair in the supplied slide?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "No mechanical contact between the bodies"
+      },
+      {
+        "id": "choice-4",
+        "text": "Exactly three independent rotations in every lower pair"
+      },
+      {
+        "id": "choice-1",
+        "text": "Relative motion through direct surface contact between two bodies"
+      },
+      {
+        "id": "choice-2",
+        "text": "Motion occurring only through point contact at every configuration"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0251",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 251,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page251, printed slide9; relevant text, table or displayed equation/figure",
+        "evidenceText": "Joint Type\n\n•  The term lower pair is used to describe a joint in which relative\n  motion occurs through direct surface contact between two bodies.\n•  The 6 possible lower-pair\n     1.  Revolute (R, 1-DOF)\n     2.  Prismatic (P, 1-DOF)\n     3.  Screw (R, 1-DOF)\n     4.   Cylindrical (P+R, 2-DOF)\n     5.  Planar (P-P-R, 3-DOF)\n     6.   Spherical (R-R-R, 3-DOF)\n\n\n\n\n                                                                                                           9",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q012",
+    "version": 1,
+    "stem": "Which matching agrees with the six lower-pair examples?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "All three:6DOF"
+      },
+      {
+        "id": "choice-1",
+        "text": "Cylindrical:2DOF; planar:3DOF; spherical:3DOF"
+      },
+      {
+        "id": "choice-2",
+        "text": "Cylindrical:1DOF; planar:2DOF; spherical:1DOF"
+      },
+      {
+        "id": "choice-3",
+        "text": "Cylindrical:3DOF; planar:1DOF; spherical:2DOF"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0251",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 251,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page251, printed slide9; relevant text, table or displayed equation/figure",
+        "evidenceText": "Joint Type\n\n•  The term lower pair is used to describe a joint in which relative\n  motion occurs through direct surface contact between two bodies.\n•  The 6 possible lower-pair\n     1.  Revolute (R, 1-DOF)\n     2.  Prismatic (P, 1-DOF)\n     3.  Screw (R, 1-DOF)\n     4.   Cylindrical (P+R, 2-DOF)\n     5.  Planar (P-P-R, 3-DOF)\n     6.   Spherical (R-R-R, 3-DOF)\n\n\n\n\n                                                                                                           9",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q013",
+    "version": 1,
+    "stem": "Why must the screw joint’s displayed1DOF not be interpreted as two independent freedoms merely because a screw rotates and translates?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "Its ideal rotation and translation are coupled, unlike the independent P+R cylindrical motions"
+      },
+      {
+        "id": "choice-2",
+        "text": "Any screw joint has no translation"
+      },
+      {
+        "id": "choice-3",
+        "text": "The cylindrical joint also has only1DOF"
+      },
+      {
+        "id": "choice-4",
+        "text": "The screw diagram represents three independent rotations"
+      }
+    ],
+    "assumptions": [
+      "Ideal screw with fixed lead; its axial displacement is determined by rotation.",
+      "The slide’s Screw(R,1DOF) notation is shorthand, not a complete motion description."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0251",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 251,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page251, printed slide9; relevant text, table or displayed equation/figure",
+        "evidenceText": "Joint Type\n\n•  The term lower pair is used to describe a joint in which relative\n  motion occurs through direct surface contact between two bodies.\n•  The 6 possible lower-pair\n     1.  Revolute (R, 1-DOF)\n     2.  Prismatic (P, 1-DOF)\n     3.  Screw (R, 1-DOF)\n     4.   Cylindrical (P+R, 2-DOF)\n     5.  Planar (P-P-R, 3-DOF)\n     6.   Spherical (R-R-R, 3-DOF)\n\n\n\n\n                                                                                                           9",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q014",
+    "version": 1,
+    "stem": "Which two pictured mechanisms have three freedoms according to the slide?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-2",
+        "text": "The threaded screw and the keyed sliding shaft"
+      },
+      {
+        "id": "choice-3",
+        "text": "The pin hinge and the keyed sliding shaft"
+      },
+      {
+        "id": "choice-4",
+        "text": "The cylindrical sleeve and the threaded screw"
+      },
+      {
+        "id": "choice-1",
+        "text": "The block on a plane and the ball-and-socket mechanism"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0251",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 251,
+        "kind": "figure",
+        "locator": "Lecture7, physical PDF page251, printed slide9; relevant text, table or displayed equation/figure",
+        "evidenceText": "Figure labels: Revolute, Prismatic, Cylindrical, Planar, Screw, Spherical. Listed DOF: R1;P1;screw1;P+R2;P-P-R3;R-R-R3.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q015",
+    "version": 1,
+    "stem": "Which set contains the four DH parameters used on these slides?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "Joint speed, joint acceleration, torque and payload"
+      },
+      {
+        "id": "choice-4",
+        "text": "Roll, pitch, yaw and total kinetic energy"
+      },
+      {
+        "id": "choice-1",
+        "text": "Link lengtha, link twistα, link offsetd and joint angleθ"
+      },
+      {
+        "id": "choice-2",
+        "text": "Positionx, positiony, positionz and massm"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0252",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 252,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page252, printed slide10; relevant text, table or displayed equation/figure",
+        "evidenceText": "Denavit–Hartenberg Parameters\n\n•  The Denavit–Hartenberg method provides a systematic way to\n   assign coordinate frames and describe the geometry of serial\n   manipulators using a minimal set of parameters.\n•  Describing relative motion using only 4 parameters per joint\n   –  link length 𝑎, link twist 𝛼, link offset 𝑑, and joint angle, 𝜃\n•  They allow us to:\n   – Model position and orientation of each robot link\n   – Systematically derive kinematic equations\n   – Convert a complex 3D mechanical structure into\n       simple mathematical matrices\n\n\n                                                                                                          10",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q016",
+    "version": 1,
+    "stem": "What is the purpose of the DH method in this lecture?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "Guarantee a unique inverse-kinematics solution for every tool pose"
+      },
+      {
+        "id": "choice-1",
+        "text": "Systematically assign link frames and derive serial-manipulator kinematic transformations"
+      },
+      {
+        "id": "choice-2",
+        "text": "Infer payload mass solely from end-effector position"
+      },
+      {
+        "id": "choice-3",
+        "text": "Replace all frame definitions with only a torque vector"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0252",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 252,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page252, printed slide10; relevant text, table or displayed equation/figure",
+        "evidenceText": "Denavit–Hartenberg Parameters\n\n•  The Denavit–Hartenberg method provides a systematic way to\n   assign coordinate frames and describe the geometry of serial\n   manipulators using a minimal set of parameters.\n•  Describing relative motion using only 4 parameters per joint\n   –  link length 𝑎, link twist 𝛼, link offset 𝑑, and joint angle, 𝜃\n•  They allow us to:\n   – Model position and orientation of each robot link\n   – Systematically derive kinematic equations\n   – Convert a complex 3D mechanical structure into\n       simple mathematical matrices\n\n\n                                                                                                          10",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q017",
+    "version": 1,
+    "stem": "Which two parameters describe the fixed geometric relationship between the joint axes supported by one link?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "Link lengtha and link twistα"
+      },
+      {
+        "id": "choice-2",
+        "text": "Link offsetd and joint angleθ only"
+      },
+      {
+        "id": "choice-3",
+        "text": "Joint velocity and acceleration"
+      },
+      {
+        "id": "choice-4",
+        "text": "End-effector roll and payload mass"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0253",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 253,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page253, printed slide11; relevant text, table or displayed equation/figure",
+        "evidenceText": "Denavit–Hartenberg Parameters (Cont.)\n\n•  The kinematic function of a link is to maintain a fixed geometric\n   relationship between the two joint axes that it supports. This\n   relationship is completely described by two parameters: the link\n   length, 𝑎, and the link twist, 𝛼.\n\n\n\n\n\n                                                                                                          11",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q018",
+    "version": 1,
+    "stem": "In the link sketch, what does the segment labeled a_(i−1) represent?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-2",
+        "text": "The curved material-path length along the drawn link body"
+      },
+      {
+        "id": "choice-3",
+        "text": "An angle about the joint axis"
+      },
+      {
+        "id": "choice-4",
+        "text": "The distance from the base origin to the final tool tip"
+      },
+      {
+        "id": "choice-1",
+        "text": "The common-perpendicular distance between the two supported joint axes"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0253",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 253,
+        "kind": "figure",
+        "locator": "Lecture7, physical PDF page253, printed slide11; relevant text, table or displayed equation/figure",
+        "evidenceText": "Diagram: Axis i−1 and Axis i; Link i−1 curved body; common perpendicular a_(i−1) joins the axes with right-angle markers; α_(i−1) is the angular twist.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q019",
+    "version": 1,
+    "stem": "Which parameters describe the neighboring-link connection in the displayed explanation?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "Total arm reach and payload mass"
+      },
+      {
+        "id": "choice-4",
+        "text": "Wheel radius and wheel separation"
+      },
+      {
+        "id": "choice-1",
+        "text": "Link offsetd and joint angleθ"
+      },
+      {
+        "id": "choice-2",
+        "text": "Link lengtha and link twistα only"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0254",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 254,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page254, printed slide12; relevant text, table or displayed equation/figure",
+        "evidenceText": "Denavit–Hartenberg Parameters (Cont.)\n\n•  The link offset, 𝑑, and the joint angle, 𝜃, are two parameters used\n   to describe the nature of the connection between neighboring\n   links.\n\n\n\n\n\n                                                                                                          12",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q020",
+    "version": 1,
+    "stem": "Using the table’s indexing, along or about which axis are a_i andα_i measured?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "Both along X_i, because both are distances"
+      },
+      {
+        "id": "choice-1",
+        "text": "Along and about X_i, respectively"
+      },
+      {
+        "id": "choice-2",
+        "text": "Along and about Z_i, respectively"
+      },
+      {
+        "id": "choice-3",
+        "text": "Along Y_i and about Z_(i+1), respectively"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0255",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 255,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page255, printed slide13; relevant text, table or displayed equation/figure",
+        "evidenceText": "Denavit–Hartenberg Parameters (Cont.)\n\n•  Each link 𝑖 is described using four\n   parameters:\n\n  Parameter                  Description\n      𝑎𝑖       Link length (the distance from between መ𝑍𝑖 to\n                 መ𝑍𝑖+1 measured along ෠𝑋𝑖)\n      𝛼𝑖       Link twist (the angle from መ𝑍𝑖 to\n             መ𝑍𝑖+1measured about ෠𝑋𝑖)\n      𝑑𝑖       Link offset (the distance from between ෠𝑋𝑖−1\n              to ෠𝑋𝑖 measured along  መ𝑍𝑖​)\n      𝜃𝑖       Joint angle (the angle from ෠𝑋𝑖−1and\n                     ෠𝑋𝑖 measured about መ𝑍𝑖)\n\n\n\n                                                                                                          13",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q021",
+    "version": 1,
+    "stem": "Using the table, which description of d_i andθ_i is correct?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "d_i is distance between X_(i−1) andX_i alongZ_i;θ_i is their angle aboutZ_i"
+      },
+      {
+        "id": "choice-2",
+        "text": "d_i is an angle aboutX_i;θ_i is a distance alongX_i"
+      },
+      {
+        "id": "choice-3",
+        "text": "d_i is distance betweenZ_i andZ_(i+1) alongX_i;θ_i is their twist aboutX_i"
+      },
+      {
+        "id": "choice-4",
+        "text": "Both d_i andθ_i are translations alongZ_i"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0255",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 255,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page255, printed slide13; relevant text, table or displayed equation/figure",
+        "evidenceText": "Denavit–Hartenberg Parameters (Cont.)\n\n•  Each link 𝑖 is described using four\n   parameters:\n\n  Parameter                  Description\n      𝑎𝑖       Link length (the distance from between መ𝑍𝑖 to\n                 መ𝑍𝑖+1 measured along ෠𝑋𝑖)\n      𝛼𝑖       Link twist (the angle from መ𝑍𝑖 to\n             መ𝑍𝑖+1measured about ෠𝑋𝑖)\n      𝑑𝑖       Link offset (the distance from between ෠𝑋𝑖−1\n              to ෠𝑋𝑖 measured along  መ𝑍𝑖​)\n      𝜃𝑖       Joint angle (the angle from ෠𝑋𝑖−1and\n                     ෠𝑋𝑖 measured about መ𝑍𝑖)\n\n\n\n                                                                                                          13",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q022",
+    "version": 1,
+    "stem": "Why must the a_i,α_i definitions on the table be reconciled with a_(i−1),α_(i−1) in the transform from framei to framei−1?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-2",
+        "text": "The indices may be deleted because all link parameters are equal"
+      },
+      {
+        "id": "choice-3",
+        "text": "The table proves a_i is always zero"
+      },
+      {
+        "id": "choice-4",
+        "text": "The transform changes every angle from radians to degrees"
+      },
+      {
+        "id": "choice-1",
+        "text": "The transform uses the preceding link’s geometric parameters and the current connection’s d_i,θ_i"
+      }
+    ],
+    "assumptions": [
+      "Use the modified-DH-style ordering printed here, not an unstated standard-DH matrix from another source."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0253",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 253,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page253, printed slide11; relevant text, table or displayed equation/figure",
+        "evidenceText": "Denavit–Hartenberg Parameters (Cont.)\n\n•  The kinematic function of a link is to maintain a fixed geometric\n   relationship between the two joint axes that it supports. This\n   relationship is completely described by two parameters: the link\n   length, 𝑎, and the link twist, 𝛼.\n\n\n\n\n\n                                                                                                          11",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0255",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 255,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page255, printed slide13; relevant text, table or displayed equation/figure",
+        "evidenceText": "Denavit–Hartenberg Parameters (Cont.)\n\n•  Each link 𝑖 is described using four\n   parameters:\n\n  Parameter                  Description\n      𝑎𝑖       Link length (the distance from between መ𝑍𝑖 to\n                 መ𝑍𝑖+1 measured along ෠𝑋𝑖)\n      𝛼𝑖       Link twist (the angle from መ𝑍𝑖 to\n             መ𝑍𝑖+1measured about ෠𝑋𝑖)\n      𝑑𝑖       Link offset (the distance from between ෠𝑋𝑖−1\n              to ෠𝑋𝑖 measured along  መ𝑍𝑖​)\n      𝜃𝑖       Joint angle (the angle from ෠𝑋𝑖−1and\n                     ෠𝑋𝑖 measured about መ𝑍𝑖)\n\n\n\n                                                                                                          13",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0256",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 256,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page256, printed slide14; relevant text, table or displayed equation/figure",
+        "evidenceText": "DH Transformation Matrix\n\n•  The transformation from frame 𝑖−1 to frame 𝑖 is\n   given by:\n   – Rotation about​ X by α𝑖−1\n   – Translation along X by 𝑎𝑖−1\n   – Rotation about Z ​by θ𝑖\n   – Translation along ​Z by 𝑑𝑖\n\n•   𝐢−𝟏𝐓=𝐢   𝐑𝐱(𝛼𝑖−1) 𝐃𝐱(𝑎𝑖−1)𝐑𝐳(𝜃𝑖)𝐃𝐳(𝑑𝑖)\n𝐢−𝟏𝐓=𝐢\n     cos θ𝑖        −sin θ𝑖        0          𝑎𝑖−1\n  sin θ𝑖cos α𝑖−1  cos θ𝑖cos α𝑖−1  −sin α𝑖−1  −𝑑𝑖sin α𝑖−1\n  sin θ𝑖sin α𝑖−1       sin α𝑖       cos α𝑖−1    𝑑𝑖cos α𝑖−1\n      0            0          0         1\n\n\n\n                                                                                                          14",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q023",
+    "version": 1,
+    "stem": "Which ordered product is printed for the transform from frame i into frame i−1?",
+    "selectionMode": "single",
+    "type": "sequence",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "Rx(θ_i) Dx(d_i) Rz(α_(i−1)) Dz(a_(i−1))"
+      },
+      {
+        "id": "choice-4",
+        "text": "Dx(d_i) Rz(α_(i−1)) Rx(θ_i) Dz(a_(i−1))"
+      },
+      {
+        "id": "choice-1",
+        "text": "Rx(α_(i−1)) Dx(a_(i−1)) Rz(θ_i) Dz(d_i)"
+      },
+      {
+        "id": "choice-2",
+        "text": "Rz(θ_i) Dz(d_i) Rx(α_(i−1)) Dx(a_(i−1))"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0256",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 256,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page256, printed slide14; relevant text, table or displayed equation/figure",
+        "evidenceText": "DH Transformation Matrix\n\n•  The transformation from frame 𝑖−1 to frame 𝑖 is\n   given by:\n   – Rotation about​ X by α𝑖−1\n   – Translation along X by 𝑎𝑖−1\n   – Rotation about Z ​by θ𝑖\n   – Translation along ​Z by 𝑑𝑖\n\n•   𝐢−𝟏𝐓=𝐢   𝐑𝐱(𝛼𝑖−1) 𝐃𝐱(𝑎𝑖−1)𝐑𝐳(𝜃𝑖)𝐃𝐳(𝑑𝑖)\n𝐢−𝟏𝐓=𝐢\n     cos θ𝑖        −sin θ𝑖        0          𝑎𝑖−1\n  sin θ𝑖cos α𝑖−1  cos θ𝑖cos α𝑖−1  −sin α𝑖−1  −𝑑𝑖sin α𝑖−1\n  sin θ𝑖sin α𝑖−1       sin α𝑖       cos α𝑖−1    𝑑𝑖cos α𝑖−1\n      0            0          0         1\n\n\n\n                                                                                                          14",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q024",
+    "version": 1,
+    "stem": "In Rx(α) Dx(a) Rz(θ) Dz(d), what is the resulting translation column?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "(a cosα, a sinα, d)"
+      },
+      {
+        "id": "choice-1",
+        "text": "(a, −d sinα, d cosα)"
+      },
+      {
+        "id": "choice-2",
+        "text": "(a cosθ, a sinθ, d)"
+      },
+      {
+        "id": "choice-3",
+        "text": "(a, d sinα, d cosα)"
+      }
+    ],
+    "assumptions": [
+      "α=α_(i−1), a=a_(i−1), θ=θ_i and d=d_i are shortened notation."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0256",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 256,
+        "kind": "equation",
+        "locator": "Lecture7, physical PDF page256, printed slide14; relevant text, table or displayed equation/figure",
+        "evidenceText": "DH Transformation Matrix\n\n•  The transformation from frame 𝑖−1 to frame 𝑖 is\n   given by:\n   – Rotation about​ X by α𝑖−1\n   – Translation along X by 𝑎𝑖−1\n   – Rotation about Z ​by θ𝑖\n   – Translation along ​Z by 𝑑𝑖\n\n•   𝐢−𝟏𝐓=𝐢   𝐑𝐱(𝛼𝑖−1) 𝐃𝐱(𝑎𝑖−1)𝐑𝐳(𝜃𝑖)𝐃𝐳(𝑑𝑖)\n𝐢−𝟏𝐓=𝐢\n     cos θ𝑖        −sin θ𝑖        0          𝑎𝑖−1\n  sin θ𝑖cos α𝑖−1  cos θ𝑖cos α𝑖−1  −sin α𝑖−1  −𝑑𝑖sin α𝑖−1\n  sin θ𝑖sin α𝑖−1       sin α𝑖       cos α𝑖−1    𝑑𝑖cos α𝑖−1\n      0            0          0         1\n\n\n\n                                                                                                          14",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q025",
+    "version": 1,
+    "stem": "The expanded matrix prints sinα_i in row3,column2; deriving that entry from Rx(α_(i−1))Rz(θ_i), which expression is required?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "sinα_(i−1) cosθ_i"
+      },
+      {
+        "id": "choice-2",
+        "text": "sinα_i"
+      },
+      {
+        "id": "choice-3",
+        "text": "cosα_(i−1) sinθ_i"
+      },
+      {
+        "id": "choice-4",
+        "text": "−sinα_(i−1)"
+      }
+    ],
+    "assumptions": [
+      "Derive from the factorization instead of accepting the inconsistent expanded entry as a rule."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0256",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 256,
+        "kind": "equation",
+        "locator": "Lecture7, physical PDF page256, printed slide14; relevant text, table or displayed equation/figure",
+        "evidenceText": "Displayed factorization: Rx(α_(i−1)) Dx(a_(i−1)) Rz(θ_i) Dz(d_i). Expanded third row prints sinθ_i sinα_(i−1), sinα_i, cosα_(i−1), d_i cosα_(i−1). The second entry is inconsistent with the product.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q026",
+    "version": 1,
+    "stem": "Use α=90°, a=2 m, θ=0° and d=3 m in the printed factorization; what is the translation column?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-2",
+        "text": "(2,0,3) m"
+      },
+      {
+        "id": "choice-3",
+        "text": "(0,2,3) m"
+      },
+      {
+        "id": "choice-4",
+        "text": "(2,3,0) m"
+      },
+      {
+        "id": "choice-1",
+        "text": "(2,−3,0) m"
+      }
+    ],
+    "assumptions": [
+      "Use the displayed factorization, not the erroneous expanded row3,column2."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0256",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 256,
+        "kind": "equation",
+        "locator": "Lecture7, physical PDF page256, printed slide14; relevant text, table or displayed equation/figure",
+        "evidenceText": "DH Transformation Matrix\n\n•  The transformation from frame 𝑖−1 to frame 𝑖 is\n   given by:\n   – Rotation about​ X by α𝑖−1\n   – Translation along X by 𝑎𝑖−1\n   – Rotation about Z ​by θ𝑖\n   – Translation along ​Z by 𝑑𝑖\n\n•   𝐢−𝟏𝐓=𝐢   𝐑𝐱(𝛼𝑖−1) 𝐃𝐱(𝑎𝑖−1)𝐑𝐳(𝜃𝑖)𝐃𝐳(𝑑𝑖)\n𝐢−𝟏𝐓=𝐢\n     cos θ𝑖        −sin θ𝑖        0          𝑎𝑖−1\n  sin θ𝑖cos α𝑖−1  cos θ𝑖cos α𝑖−1  −sin α𝑖−1  −𝑑𝑖sin α𝑖−1\n  sin θ𝑖sin α𝑖−1       sin α𝑖       cos α𝑖−1    𝑑𝑖cos α𝑖−1\n      0            0          0         1\n\n\n\n                                                                                                          14",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q027",
+    "version": 1,
+    "stem": "According to the frame-assignment steps, which axis is placed along joint axis i?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "y_i"
+      },
+      {
+        "id": "choice-4",
+        "text": "The translation column of every preceding transform"
+      },
+      {
+        "id": "choice-1",
+        "text": "z_i"
+      },
+      {
+        "id": "choice-2",
+        "text": "x_i"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0257",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 257,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page257, printed slide15; relevant text, table or displayed equation/figure",
+        "evidenceText": "Frame Assignment Rules\n\n     1.   Identify the joint axes and imagine infinite lines along them from steps 2\n        through 5 below, consider two of these neighboring lines (at axes i and i+1).\n     2.   Identify the common perpendicular between them, or point of intersection. At\n        the point where the common perpendicular meets the i-axis, assign the link-\n        frame origin.\n     3.   Assign the 𝑧𝑖 axis pointing along the i-joint axis.\n     4.   Assign the 𝑥𝑖 axis pointing along the common perpendicular, or, if the axes\n          intersect, assign 𝑥𝑖 to be normal to the plane containing the two axes.\n     5.   Assign the 𝑦𝑖 axis to complete a right-hand coordinate\n         system.\n     6.   Assign {0} to match {1} when the first joint variable is\n          zero. For {N} choose an origin location and 𝑥𝑁 direction\n           freely, but generally so as to cause as many linkage\n        parameters as possible to become zero.\n\n\n\n                                                                                                          15",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q028",
+    "version": 1,
+    "stem": "For two nonintersecting joint axes, which construction follows the stated procedure?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "Set every frame origin equal to the base origin regardless of geometry"
+      },
+      {
+        "id": "choice-1",
+        "text": "Choose their common perpendicular and place the origin where it meets axis i"
+      },
+      {
+        "id": "choice-2",
+        "text": "Place the origin at the midpoint of the physical link regardless of its joint axes"
+      },
+      {
+        "id": "choice-3",
+        "text": "Set x_i along axis i and choose the origin at the tool tip"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0257",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 257,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page257, printed slide15; relevant text, table or displayed equation/figure",
+        "evidenceText": "Frame Assignment Rules\n\n     1.   Identify the joint axes and imagine infinite lines along them from steps 2\n        through 5 below, consider two of these neighboring lines (at axes i and i+1).\n     2.   Identify the common perpendicular between them, or point of intersection. At\n        the point where the common perpendicular meets the i-axis, assign the link-\n        frame origin.\n     3.   Assign the 𝑧𝑖 axis pointing along the i-joint axis.\n     4.   Assign the 𝑥𝑖 axis pointing along the common perpendicular, or, if the axes\n          intersect, assign 𝑥𝑖 to be normal to the plane containing the two axes.\n     5.   Assign the 𝑦𝑖 axis to complete a right-hand coordinate\n         system.\n     6.   Assign {0} to match {1} when the first joint variable is\n          zero. For {N} choose an origin location and 𝑥𝑁 direction\n           freely, but generally so as to cause as many linkage\n        parameters as possible to become zero.\n\n\n\n                                                                                                          15",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q029",
+    "version": 1,
+    "stem": "When adjacent axes intersect, which pair follows the slide’s remaining frame rules?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "Choose x_i normal to their plane and y_i to complete a right-handed frame"
+      },
+      {
+        "id": "choice-2",
+        "text": "Choose x_i along both distinct axes and y_i parallel to x_i"
+      },
+      {
+        "id": "choice-3",
+        "text": "Choose y_i first and omit x_i because the common-normal distance is zero"
+      },
+      {
+        "id": "choice-4",
+        "text": "Choose a left-handed frame to compensate for zero link length"
+      }
+    ],
+    "assumptions": [
+      "The intersecting axes are not collinear, so their plane is defined."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0257",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 257,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page257, printed slide15; relevant text, table or displayed equation/figure",
+        "evidenceText": "Frame Assignment Rules\n\n     1.   Identify the joint axes and imagine infinite lines along them from steps 2\n        through 5 below, consider two of these neighboring lines (at axes i and i+1).\n     2.   Identify the common perpendicular between them, or point of intersection. At\n        the point where the common perpendicular meets the i-axis, assign the link-\n        frame origin.\n     3.   Assign the 𝑧𝑖 axis pointing along the i-joint axis.\n     4.   Assign the 𝑥𝑖 axis pointing along the common perpendicular, or, if the axes\n          intersect, assign 𝑥𝑖 to be normal to the plane containing the two axes.\n     5.   Assign the 𝑦𝑖 axis to complete a right-hand coordinate\n         system.\n     6.   Assign {0} to match {1} when the first joint variable is\n          zero. For {N} choose an origin location and 𝑥𝑁 direction\n           freely, but generally so as to cause as many linkage\n        parameters as possible to become zero.\n\n\n\n                                                                                                          15",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q030",
+    "version": 1,
+    "stem": "Which boundary-frame choice is described in the procedure?",
+    "selectionMode": "single",
+    "type": "statement",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-2",
+        "text": "Make frame0 coincide with frame1 for every nonzero joint displacement"
+      },
+      {
+        "id": "choice-3",
+        "text": "Require the terminal origin to be the center of mass of the final link"
+      },
+      {
+        "id": "choice-4",
+        "text": "Require every terminal parameter to be nonzero"
+      },
+      {
+        "id": "choice-1",
+        "text": "Make frame0 coincide with frame1 when the first joint variable is zero; choose the terminal origin/x direction to simplify parameters"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0257",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 257,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page257, printed slide15; relevant text, table or displayed equation/figure",
+        "evidenceText": "Frame Assignment Rules\n\n     1.   Identify the joint axes and imagine infinite lines along them from steps 2\n        through 5 below, consider two of these neighboring lines (at axes i and i+1).\n     2.   Identify the common perpendicular between them, or point of intersection. At\n        the point where the common perpendicular meets the i-axis, assign the link-\n        frame origin.\n     3.   Assign the 𝑧𝑖 axis pointing along the i-joint axis.\n     4.   Assign the 𝑥𝑖 axis pointing along the common perpendicular, or, if the axes\n          intersect, assign 𝑥𝑖 to be normal to the plane containing the two axes.\n     5.   Assign the 𝑦𝑖 axis to complete a right-hand coordinate\n         system.\n     6.   Assign {0} to match {1} when the first joint variable is\n          zero. For {N} choose an origin location and 𝑥𝑁 direction\n           freely, but generally so as to cause as many linkage\n        parameters as possible to become zero.\n\n\n\n                                                                                                          15",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q031",
+    "version": 1,
+    "stem": "Which row is correct for joint2 in the displayed planar 3R table?",
+    "selectionMode": "single",
+    "type": "table",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "α1=0, a1=L2, d2=0, variable θ1"
+      },
+      {
+        "id": "choice-4",
+        "text": "α1=0, a1=0, variable d2, θ2=0"
+      },
+      {
+        "id": "choice-1",
+        "text": "α1=0, a1=L1, d2=0, variable θ2"
+      },
+      {
+        "id": "choice-2",
+        "text": "α1=90°, a1=L1, d2=L2, θ2=0"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0258",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 258,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page258, printed slide16; relevant text, table or displayed equation/figure",
+        "evidenceText": "3R DH table rows [i,α_(i−1),a_(i−1),d_i,θ_i]: [1,0,0,0,θ1]; [2,0,L1,0,θ2]; [3,0,L2,0,θ3]. Diagram shows parallel revolute axes perpendicular to the planar chain.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q032",
+    "version": 1,
+    "stem": "Why are all twists α and offsets d zero in the displayed planar 3R table?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "The link lengths L1 and L2 must vanish"
+      },
+      {
+        "id": "choice-1",
+        "text": "The chosen joint axes are parallel and the displayed frames require no out-of-plane offsets"
+      },
+      {
+        "id": "choice-2",
+        "text": "Every three-DOF robot must have zero twists and offsets"
+      },
+      {
+        "id": "choice-3",
+        "text": "All three joint angles must be zero throughout motion"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0258",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 258,
+        "kind": "figure",
+        "locator": "Lecture7, physical PDF page258, printed slide16; relevant text, table or displayed equation/figure",
+        "evidenceText": "All three α entries and all three d entries are0; a entries are0,L1,L2; θ1,θ2,θ3 are variable; depicted revolute joint axes are parallel.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q033",
+    "version": 1,
+    "stem": "Which pair describes the displayed transform’s position and orientation?",
+    "selectionMode": "single",
+    "type": "table",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "Position uses θ1 and θ1+θ2; orientation uses θ1+θ2+θ3"
+      },
+      {
+        "id": "choice-2",
+        "text": "Position and orientation depend on θ3 alone"
+      },
+      {
+        "id": "choice-3",
+        "text": "Position uses θ1+θ2+θ3 in both link terms; orientation uses θ1 alone"
+      },
+      {
+        "id": "choice-4",
+        "text": "Position is (L1+L2,0) for every configuration; orientation is always zero"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0259",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 259,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page259, printed slide17; relevant text, table or displayed equation/figure",
+        "evidenceText": "•  Using the link parameters for the robot, compute the individual\n                          0T =                                     10T21T32T   transformations for each link.3\n\n    cos θ1  −sin θ1  0  0       c θ2  −s θ2  0  𝐿1       c θ3  −s θ3  0  𝐿2\n     sin θ1   cos θ1   0  0       s θ2   c θ2   0  0        s θ3   c θ3   0  0𝟎𝐓=𝟏                                             ; 𝟏𝐓=𝟐                                ; 𝟐𝐓=𝟑\n      0      0    1  0       0     0    1  0       0     0    1  0\n      0      0    0  1       0     0    0  1       0     0    0  1\n\n      c θ123  −s θ123  0  𝐿1 c θ1 + 𝐿2 c θ12\n      s θ123   c θ123   0  𝐿1 𝑠θ1 + 𝐿2 𝑠θ12𝟎𝐓= 𝟑      0      0    1        0\n      0      0    0        1\n\n\n\n                                                                                                          17",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q034",
+    "version": 1,
+    "stem": "In the shown model, changing only θ3 while holding θ1 and θ2 fixed has which effect?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-2",
+        "text": "It rotates the frame3 origin around joint1 by θ3"
+      },
+      {
+        "id": "choice-3",
+        "text": "It changes L1 and L2 while leaving orientation fixed"
+      },
+      {
+        "id": "choice-4",
+        "text": "It must leave every point attached to link3 fixed"
+      },
+      {
+        "id": "choice-1",
+        "text": "It changes frame3 orientation but not the position of frame3 origin"
+      }
+    ],
+    "assumptions": [
+      "Discuss frame3 origin, not an unstated tool tip displaced from that origin."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0259",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 259,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page259, printed slide17; relevant text, table or displayed equation/figure",
+        "evidenceText": "•  Using the link parameters for the robot, compute the individual\n                          0T =                                     10T21T32T   transformations for each link.3\n\n    cos θ1  −sin θ1  0  0       c θ2  −s θ2  0  𝐿1       c θ3  −s θ3  0  𝐿2\n     sin θ1   cos θ1   0  0       s θ2   c θ2   0  0        s θ3   c θ3   0  0𝟎𝐓=𝟏                                             ; 𝟏𝐓=𝟐                                ; 𝟐𝐓=𝟑\n      0      0    1  0       0     0    1  0       0     0    1  0\n      0      0    0  1       0     0    0  1       0     0    0  1\n\n      c θ123  −s θ123  0  𝐿1 c θ1 + 𝐿2 c θ12\n      s θ123   c θ123   0  𝐿1 𝑠θ1 + 𝐿2 𝑠θ12𝟎𝐓= 𝟑      0      0    1        0\n      0      0    0        1\n\n\n\n                                                                                                          17",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q035",
+    "version": 1,
+    "stem": "For L1=2 m, L2=1 m, θ1=90°, θ2=−90°, θ3=30°, what are frame3 position and orientation?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "(1,2,0) m and0°"
+      },
+      {
+        "id": "choice-4",
+        "text": "(2,1,0) m and90°"
+      },
+      {
+        "id": "choice-1",
+        "text": "(1,2,0) m and30°"
+      },
+      {
+        "id": "choice-2",
+        "text": "(0,3,0) m and30°"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0259",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 259,
+        "kind": "equation",
+        "locator": "Lecture7, physical PDF page259, printed slide17; relevant text, table or displayed equation/figure",
+        "evidenceText": "•  Using the link parameters for the robot, compute the individual\n                          0T =                                     10T21T32T   transformations for each link.3\n\n    cos θ1  −sin θ1  0  0       c θ2  −s θ2  0  𝐿1       c θ3  −s θ3  0  𝐿2\n     sin θ1   cos θ1   0  0       s θ2   c θ2   0  0        s θ3   c θ3   0  0𝟎𝐓=𝟏                                             ; 𝟏𝐓=𝟐                                ; 𝟐𝐓=𝟑\n      0      0    1  0       0     0    1  0       0     0    1  0\n      0      0    0  1       0     0    0  1       0     0    0  1\n\n      c θ123  −s θ123  0  𝐿1 c θ1 + 𝐿2 c θ12\n      s θ123   c θ123   0  𝐿1 𝑠θ1 + 𝐿2 𝑠θ12𝟎𝐓= 𝟑      0      0    1        0\n      0      0    0        1\n\n\n\n                                                                                                          17",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q036",
+    "version": 1,
+    "stem": "The planar frame3 origin is (3,0) m and its orientation is90°; a tool lies1 m along its local+x3 axis; where is the tool?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "(1,3) m"
+      },
+      {
+        "id": "choice-1",
+        "text": "(3,1) m"
+      },
+      {
+        "id": "choice-2",
+        "text": "(4,0) m"
+      },
+      {
+        "id": "choice-3",
+        "text": "(3,−1) m"
+      }
+    ],
+    "assumptions": [
+      "The tool offset is newly specified in this question; it is not included in the slide’s frame3-origin formula."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0259",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 259,
+        "kind": "equation",
+        "locator": "Lecture7, physical PDF page259, printed slide17; relevant text, table or displayed equation/figure",
+        "evidenceText": "•  Using the link parameters for the robot, compute the individual\n                          0T =                                     10T21T32T   transformations for each link.3\n\n    cos θ1  −sin θ1  0  0       c θ2  −s θ2  0  𝐿1       c θ3  −s θ3  0  𝐿2\n     sin θ1   cos θ1   0  0       s θ2   c θ2   0  0        s θ3   c θ3   0  0𝟎𝐓=𝟏                                             ; 𝟏𝐓=𝟐                                ; 𝟐𝐓=𝟑\n      0      0    1  0       0     0    1  0       0     0    1  0\n      0      0    0  1       0     0    0  1       0     0    0  1\n\n      c θ123  −s θ123  0  𝐿1 c θ1 + 𝐿2 c θ12\n      s θ123   c θ123   0  𝐿1 𝑠θ1 + 𝐿2 𝑠θ12𝟎𝐓= 𝟑      0      0    1        0\n      0      0    0        1\n\n\n\n                                                                                                          17",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q037",
+    "version": 1,
+    "stem": "Which set gives the three independent joint variables of the shown RPR manipulator?",
+    "selectionMode": "single",
+    "type": "table",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "θ1, d2, θ3"
+      },
+      {
+        "id": "choice-2",
+        "text": "d1, θ2, d3"
+      },
+      {
+        "id": "choice-3",
+        "text": "θ1, θ2, θ3"
+      },
+      {
+        "id": "choice-4",
+        "text": "a0, α1, L2"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0260",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 260,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page260, printed slide18; relevant text, table or displayed equation/figure",
+        "evidenceText": "RPR DH table: joint1 [α0=0,a0=0,d1=0,θ1]; joint2 [α1=90°,a1=0,d2,θ2=0]; joint3 [α2=0,a2=0,d3=L2,θ3].",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q038",
+    "version": 1,
+    "stem": "Which constants appear in the displayed RPR table?",
+    "selectionMode": "single",
+    "type": "table",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-2",
+        "text": "α1=0, θ2=90°, d3=0"
+      },
+      {
+        "id": "choice-3",
+        "text": "α1=90°, θ2=θ3, d3=d2"
+      },
+      {
+        "id": "choice-4",
+        "text": "α1=θ1, θ2=0, d3=0"
+      },
+      {
+        "id": "choice-1",
+        "text": "α1=90°, θ2=0, d3=L2"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0260",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 260,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page260, printed slide18; relevant text, table or displayed equation/figure",
+        "evidenceText": "Rows [i,α_(i−1),a_(i−1),d_i,θ_i]: [1,0,0,0,θ1];[2,90°,0,d2,0];[3,0,0,L2,θ3].",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q039",
+    "version": 1,
+    "stem": "Which position column follows from the printed RPR factors?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "(L2sinθ3,−L2cosθ3,d2)"
+      },
+      {
+        "id": "choice-4",
+        "text": "(d2sinθ1,−d2cosθ1,L2)"
+      },
+      {
+        "id": "choice-1",
+        "text": "((L2+d2)sinθ1,−(L2+d2)cosθ1,0)"
+      },
+      {
+        "id": "choice-2",
+        "text": "((L2+d2)cosθ1,(L2+d2)sinθ1,0)"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0261",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 261,
+        "kind": "equation",
+        "locator": "Lecture7, physical PDF page261, printed slide19; relevant text, table or displayed equation/figure",
+        "evidenceText": "Example - RPR manipulator (Cont.)\n\n•  Using the link parameters for the robot, compute the individual\n                    =   transformations for each link. 0T                                3                                0T21 1T32T\n\n     c θ1  −s θ1  0  0      1  0  0    0        c θ3  −s θ3  0  0\n     s θ1   c θ1   0  0      0  0  −1  −𝑑2       s θ3   c θ3   0  0𝟎𝐓=𝟏                                ; 𝟏𝐓=𝟐                  𝟐𝐓=𝟑\n     0     0    1  0      0  1  0    0       0     0    1  𝐿2\n     0    0    0  1      0  0  0    1       0     0    0  1\n    𝟎𝐓=𝟑\n     c θ1 c θ3  −c θ1 s θ3   s θ1    (𝐿2 + 𝑑2) s θ1\n      s θ1 c θ3  −s θ1 s θ3  −c θ3  −(𝐿2 + 𝑑2) c θ1\n      𝑠θ3      𝑐θ3      0         0\n       0        0       0         1\n\n\n                                                                                                          19",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q040",
+    "version": 1,
+    "stem": "The expanded RPR matrix prints −cosθ3 in row2,column3; multiplying its displayed factors requires which expression?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "cosθ1 cosθ3"
+      },
+      {
+        "id": "choice-1",
+        "text": "−cosθ1"
+      },
+      {
+        "id": "choice-2",
+        "text": "−cosθ3"
+      },
+      {
+        "id": "choice-3",
+        "text": "sinθ1 sinθ3"
+      }
+    ],
+    "assumptions": [
+      "Derive from the consistent factor matrices; the expanded row2,column3 has a source typo."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0261",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 261,
+        "kind": "equation",
+        "locator": "Lecture7, physical PDF page261, printed slide19; relevant text, table or displayed equation/figure",
+        "evidenceText": "Factor product displays Rz(θ1), a second transform with Rx(90°) and translation(0,−d2,0), then Rz(θ3) with z offsetL2. Expanded row2,column3 prints−cθ3, whereas multiplying the factors gives−cθ1.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q041",
+    "version": 1,
+    "stem": "Set θ1=0° and θ3=90° in the source’s erroneous third column (sinθ1,−cosθ3,0); why can it not be a valid rotation column?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "It becomes the zero vector rather than a unit vector"
+      },
+      {
+        "id": "choice-2",
+        "text": "It becomes a unit vector with determinant1"
+      },
+      {
+        "id": "choice-3",
+        "text": "A rotation column is allowed to vanish when two joints are perpendicular"
+      },
+      {
+        "id": "choice-4",
+        "text": "The column must equal the translation vector"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0261",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 261,
+        "kind": "equation",
+        "locator": "Lecture7, physical PDF page261, printed slide19; relevant text, table or displayed equation/figure",
+        "evidenceText": "Example - RPR manipulator (Cont.)\n\n•  Using the link parameters for the robot, compute the individual\n                    =   transformations for each link. 0T                                3                                0T21 1T32T\n\n     c θ1  −s θ1  0  0      1  0  0    0        c θ3  −s θ3  0  0\n     s θ1   c θ1   0  0      0  0  −1  −𝑑2       s θ3   c θ3   0  0𝟎𝐓=𝟏                                ; 𝟏𝐓=𝟐                  𝟐𝐓=𝟑\n     0     0    1  0      0  1  0    0       0     0    1  𝐿2\n     0    0    0  1      0  0  0    1       0     0    0  1\n    𝟎𝐓=𝟑\n     c θ1 c θ3  −c θ1 s θ3   s θ1    (𝐿2 + 𝑑2) s θ1\n      s θ1 c θ3  −s θ1 s θ3  −c θ3  −(𝐿2 + 𝑑2) c θ1\n      𝑠θ3      𝑐θ3      0         0\n       0        0       0         1\n\n\n                                                                                                          19",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q042",
+    "version": 1,
+    "stem": "For θ1=90°, d2=0.4 m and L2=0.6 m, where is the displayed RPR frame3 origin?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-2",
+        "text": "(0,1,0) m"
+      },
+      {
+        "id": "choice-3",
+        "text": "(0,−1,0) m"
+      },
+      {
+        "id": "choice-4",
+        "text": "(0.4,0,0.6) m"
+      },
+      {
+        "id": "choice-1",
+        "text": "(1,0,0) m"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0261",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 261,
+        "kind": "equation",
+        "locator": "Lecture7, physical PDF page261, printed slide19; relevant text, table or displayed equation/figure",
+        "evidenceText": "Example - RPR manipulator (Cont.)\n\n•  Using the link parameters for the robot, compute the individual\n                    =   transformations for each link. 0T                                3                                0T21 1T32T\n\n     c θ1  −s θ1  0  0      1  0  0    0        c θ3  −s θ3  0  0\n     s θ1   c θ1   0  0      0  0  −1  −𝑑2       s θ3   c θ3   0  0𝟎𝐓=𝟏                                ; 𝟏𝐓=𝟐                  𝟐𝐓=𝟑\n     0     0    1  0      0  1  0    0       0     0    1  𝐿2\n     0    0    0  1      0  0  0    1       0     0    0  1\n    𝟎𝐓=𝟑\n     c θ1 c θ3  −c θ1 s θ3   s θ1    (𝐿2 + 𝑑2) s θ1\n      s θ1 c θ3  −s θ1 s θ3  −c θ3  −(𝐿2 + 𝑑2) c θ1\n      𝑠θ3      𝑐θ3      0         0\n       0        0       0         1\n\n\n                                                                                                          19",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q043",
+    "version": 1,
+    "stem": "In the differential-drive figure, which interpretation of r and2d is correct?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "r is turn radius;2d is wheel circumference"
+      },
+      {
+        "id": "choice-4",
+        "text": "r is axle length;2d is heading angle"
+      },
+      {
+        "id": "choice-1",
+        "text": "r is each wheel radius;2d is the separation between wheel centers"
+      },
+      {
+        "id": "choice-2",
+        "text": "r is wheel diameter;2d is distance from axle midpoint to one wheel"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0262",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 262,
+        "kind": "figure",
+        "locator": "Lecture7, physical PDF page262, printed slide20; relevant text, table or displayed equation/figure",
+        "evidenceText": "Differential-drive sketch: wheel radius r; axle center between left and right wheels; each center-to-wheel half-distance is d, giving total separation2d; headingφ is measured counterclockwise from+x.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q044",
+    "version": 1,
+    "stem": "Which relation converts the right wheel angular rate u_r into its linear rolling speed?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "v_r=r²u_r"
+      },
+      {
+        "id": "choice-1",
+        "text": "v_r=r u_r"
+      },
+      {
+        "id": "choice-2",
+        "text": "v_r=u_r/r"
+      },
+      {
+        "id": "choice-3",
+        "text": "v_r=2d u_r"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0262",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 262,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page262, printed slide20; relevant text, table or displayed equation/figure",
+        "evidenceText": "Differential Drive Robot\n\n•  A differential drive robot is a mobile robot\n   that uses two independently driven wheels\n   placed on either side of its body to move\n  and steer.\n•  A differential drive robot has:\n   – Two independently driven wheels\n   – Distance between wheels = 2d\n   – Wheel radius = r\n   – Robot heading angle = 𝜙\n   –  Left wheel linear velocity = 𝑣𝑙= 𝑟𝑢𝑙\n   –  Right wheel linear velocity = 𝑣𝑟= 𝑟𝑢𝑟\n   –  𝑢𝑙, 𝑢𝑟 are angular velocities of left and right\n      wheel respectively\n\n\n                                                                                                          20",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q045",
+    "version": 1,
+    "stem": "Under pure rolling, what follows when v_r=v_l?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "Zero yaw rate, with straight translation if the common speed is nonzero"
+      },
+      {
+        "id": "choice-2",
+        "text": "Positive yaw rate for every common speed"
+      },
+      {
+        "id": "choice-3",
+        "text": "Rotation in place for every common speed"
+      },
+      {
+        "id": "choice-4",
+        "text": "A yaw rate determined only by wheel radius, regardless of the common speeds"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0263",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 263,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page263, printed slide21; relevant text, table or displayed equation/figure",
+        "evidenceText": "Differential Drive Robot (Cont.)\n\n•  Diff-drive robot motion\n\n Condition              Motion\n\n      𝑣𝑟= 𝑣𝑙           Straight line\n      𝑣𝑟> 𝑣𝑙         Turn left\n      𝑣𝑟< 𝑣𝑙         Turn Right\n     𝑣𝑟= −𝑣𝑙         Rotate in place clockwise\n•  Application\n   – Service robots\n   – Autonomous navigation\n   – Warehouse automation\n\n\n                                                                                                          21",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q046",
+    "version": 1,
+    "stem": "With positive counterclockwise yaw and equal wheel radii, what does v_r>v_l imply?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-2",
+        "text": "Negative yaw rate"
+      },
+      {
+        "id": "choice-3",
+        "text": "Zero yaw rate"
+      },
+      {
+        "id": "choice-4",
+        "text": "Zero forward speed necessarily"
+      },
+      {
+        "id": "choice-1",
+        "text": "Positive yaw rate"
+      }
+    ],
+    "assumptions": [
+      "d>0; distinguish yaw direction from an informal left/right path description while reversing."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0263",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 263,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page263, printed slide21; relevant text, table or displayed equation/figure",
+        "evidenceText": "Differential Drive Robot (Cont.)\n\n•  Diff-drive robot motion\n\n Condition              Motion\n\n      𝑣𝑟= 𝑣𝑙           Straight line\n      𝑣𝑟> 𝑣𝑙         Turn left\n      𝑣𝑟< 𝑣𝑙         Turn Right\n     𝑣𝑟= −𝑣𝑙         Rotate in place clockwise\n•  Application\n   – Service robots\n   – Autonomous navigation\n   – Warehouse automation\n\n\n                                                                                                          21",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0265",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 265,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page265, printed slide23; relevant text, table or displayed equation/figure",
+        "evidenceText": "Kinematics of Differential Drive Robot (Cont.)\n\n•   Linear velocity of the robot center\n              𝑣𝑟+ 𝑣𝑙    𝑟𝑢𝑟 + 𝑟𝑢𝑙    –  𝑣 =    =\n                2         2\n•  Angular velocity\n              𝑣𝑟− 𝑣𝑙   𝑟𝑢𝑟 − 𝑟𝑢𝑙    – 𝜔 =    =\n               2𝑑       2𝑑\n•  The change in robot pose is\n    –  ሶ𝑥= v cos 𝜙\n    –  ሶ𝑦= v sin 𝜙\n    – ሶ𝜙= 𝜔\n•  Kinematic equations are\n              ሶ𝜙    −𝑟2𝑑Τ      𝑟2𝑑Τ                                              𝑢𝑙\n    ሶ𝑞=    ሶ𝑥 =  𝑟cos 𝜙 Τ 2  𝑟cos 𝜙 Τ 2                                        𝑢𝑟\n                 ሶ𝑦     𝑟sin 𝜙 Τ 2  𝑟sin 𝜙 Τ 2\n\n\n\n                                                                                                          23",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q047",
+    "version": 1,
+    "stem": "The table labels v_r=−v_l as clockwise; which qualification is necessary under the displayed equations?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "It always produces straight backward motion"
+      },
+      {
+        "id": "choice-4",
+        "text": "Its yaw rate is always zero because the average speed is zero"
+      },
+      {
+        "id": "choice-1",
+        "text": "It is clockwise only when v_r<0; opposite speeds alone specify in-place rotation, not its sign"
+      },
+      {
+        "id": "choice-2",
+        "text": "It is always clockwise, even when v_r>0"
+      }
+    ],
+    "assumptions": [
+      "The source’s unconditional clockwise label is incomplete; counterclockwise yaw is positive."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0263",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 263,
+        "kind": "equation",
+        "locator": "Lecture7, physical PDF page263, printed slide21; relevant text, table or displayed equation/figure",
+        "evidenceText": "Motion table: v_r=v_l straight; v_r>v_l left; v_r<v_l right; v_r=−v_l labeled clockwise. The last label omits the sign of v_r.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0265",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 265,
+        "kind": "equation",
+        "locator": "Lecture7, physical PDF page265, printed slide23; relevant text, table or displayed equation/figure",
+        "evidenceText": "Equations: v=(v_r+v_l)/2; ω=(v_r−v_l)/(2d), with heading rateφ_dot=ω.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q048",
+    "version": 1,
+    "stem": "Which variables describe the displayed planar robot pose?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "Only the distance traveled by the right wheel"
+      },
+      {
+        "id": "choice-1",
+        "text": "x, y and headingφ"
+      },
+      {
+        "id": "choice-2",
+        "text": "x, y, z and no orientation"
+      },
+      {
+        "id": "choice-3",
+        "text": "Only the two wheel angular rates"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0264",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 264,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page264, printed slide22; relevant text, table or displayed equation/figure",
+        "evidenceText": "Kinematics of Differential Drive Robot\n\n•  Unlike a manipulator arm, a differential drive robot move on a flat\n   plane(ground).\n•   Its forward kinematic maps wheel velocities -> robot body velocity ->\n   change in pose(x, y, 𝜙) where:\n   –  x, y = robot position in the plane\n   – 𝜙= robot heading angle\n•  Forward kinematics for a differential-drive robot tells you how the\n   robot’s position and orientation change when the left and right wheels\n   rotate.\n•  Two main advantages of a diff-drive robots are\n   –  Its simplicity due to motor directly attached to the axle of each wheel.\n   – High maneuverability, root can spin in place by rotating the wheel in opposite\n        directions.\n\n\n                                                                                                          22",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q049",
+    "version": 1,
+    "stem": "Which sequence represents the kinematic mapping described on the slide?",
+    "selectionMode": "single",
+    "type": "sequence",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "Wheel velocities → robot linear/angular velocity → pose rate"
+      },
+      {
+        "id": "choice-2",
+        "text": "Pose coordinates → wheel mass → actuator torque"
+      },
+      {
+        "id": "choice-3",
+        "text": "Wheel velocities → wheel radius change → link twist"
+      },
+      {
+        "id": "choice-4",
+        "text": "Robot acceleration → joint potential energy → pose coordinates"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0264",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 264,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page264, printed slide22; relevant text, table or displayed equation/figure",
+        "evidenceText": "Kinematics of Differential Drive Robot\n\n•  Unlike a manipulator arm, a differential drive robot move on a flat\n   plane(ground).\n•   Its forward kinematic maps wheel velocities -> robot body velocity ->\n   change in pose(x, y, 𝜙) where:\n   –  x, y = robot position in the plane\n   – 𝜙= robot heading angle\n•  Forward kinematics for a differential-drive robot tells you how the\n   robot’s position and orientation change when the left and right wheels\n   rotate.\n•  Two main advantages of a diff-drive robots are\n   –  Its simplicity due to motor directly attached to the axle of each wheel.\n   – High maneuverability, root can spin in place by rotating the wheel in opposite\n        directions.\n\n\n                                                                                                          22",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q050",
+    "version": 1,
+    "stem": "Which pair is correct for track width2d?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-2",
+        "text": "v=v_r+v_l;ω=(v_r−v_l)/d"
+      },
+      {
+        "id": "choice-3",
+        "text": "v=(v_r−v_l)/2;ω=(v_r+v_l)/(2d)"
+      },
+      {
+        "id": "choice-4",
+        "text": "v=(v_r+v_l)/(2d);ω=(v_r−v_l)/2"
+      },
+      {
+        "id": "choice-1",
+        "text": "v=(v_r+v_l)/2;ω=(v_r−v_l)/(2d)"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0265",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 265,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page265, printed slide23; relevant text, table or displayed equation/figure",
+        "evidenceText": "Kinematics of Differential Drive Robot (Cont.)\n\n•   Linear velocity of the robot center\n              𝑣𝑟+ 𝑣𝑙    𝑟𝑢𝑟 + 𝑟𝑢𝑙    –  𝑣 =    =\n                2         2\n•  Angular velocity\n              𝑣𝑟− 𝑣𝑙   𝑟𝑢𝑟 − 𝑟𝑢𝑙    – 𝜔 =    =\n               2𝑑       2𝑑\n•  The change in robot pose is\n    –  ሶ𝑥= v cos 𝜙\n    –  ሶ𝑦= v sin 𝜙\n    – ሶ𝜙= 𝜔\n•  Kinematic equations are\n              ሶ𝜙    −𝑟2𝑑Τ      𝑟2𝑑Τ                                              𝑢𝑙\n    ሶ𝑞=    ሶ𝑥 =  𝑟cos 𝜙 Τ 2  𝑟cos 𝜙 Τ 2                                        𝑢𝑟\n                 ሶ𝑦     𝑟sin 𝜙 Τ 2  𝑟sin 𝜙 Τ 2\n\n\n\n                                                                                                          23",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q051",
+    "version": 1,
+    "stem": "Let r=0.10 m,d=0.25 m,u_l=2 rad/s,u_r=4 rad/s; what are v andω?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "0.30 m/s and0.80 rad/s"
+      },
+      {
+        "id": "choice-4",
+        "text": "0.10 m/s and1.20 rad/s"
+      },
+      {
+        "id": "choice-1",
+        "text": "0.30 m/s and0.40 rad/s"
+      },
+      {
+        "id": "choice-2",
+        "text": "0.60 m/s and0.80 rad/s"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0265",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 265,
+        "kind": "equation",
+        "locator": "Lecture7, physical PDF page265, printed slide23; relevant text, table or displayed equation/figure",
+        "evidenceText": "Kinematics of Differential Drive Robot (Cont.)\n\n•   Linear velocity of the robot center\n              𝑣𝑟+ 𝑣𝑙    𝑟𝑢𝑟 + 𝑟𝑢𝑙    –  𝑣 =    =\n                2         2\n•  Angular velocity\n              𝑣𝑟− 𝑣𝑙   𝑟𝑢𝑟 − 𝑟𝑢𝑙    – 𝜔 =    =\n               2𝑑       2𝑑\n•  The change in robot pose is\n    –  ሶ𝑥= v cos 𝜙\n    –  ሶ𝑦= v sin 𝜙\n    – ሶ𝜙= 𝜔\n•  Kinematic equations are\n              ሶ𝜙    −𝑟2𝑑Τ      𝑟2𝑑Τ                                              𝑢𝑙\n    ሶ𝑞=    ሶ𝑥 =  𝑟cos 𝜙 Τ 2  𝑟cos 𝜙 Τ 2                                        𝑢𝑟\n                 ሶ𝑦     𝑟sin 𝜙 Τ 2  𝑟sin 𝜙 Τ 2\n\n\n\n                                                                                                          23",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q052",
+    "version": 1,
+    "stem": "For v=0.30 m/s,ω=0.40 rad/s andφ=90°, what is the ordered vector (x_dot,y_dot,φ_dot)?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "(0,0.30,0)"
+      },
+      {
+        "id": "choice-1",
+        "text": "(0,0.30,0.40)"
+      },
+      {
+        "id": "choice-2",
+        "text": "(0.30,0,0.40)"
+      },
+      {
+        "id": "choice-3",
+        "text": "(0,−0.30,0.40)"
+      }
+    ],
+    "assumptions": [
+      "First two entries are m/s; the third is rad/s."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0265",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 265,
+        "kind": "equation",
+        "locator": "Lecture7, physical PDF page265, printed slide23; relevant text, table or displayed equation/figure",
+        "evidenceText": "Kinematics of Differential Drive Robot (Cont.)\n\n•   Linear velocity of the robot center\n              𝑣𝑟+ 𝑣𝑙    𝑟𝑢𝑟 + 𝑟𝑢𝑙    –  𝑣 =    =\n                2         2\n•  Angular velocity\n              𝑣𝑟− 𝑣𝑙   𝑟𝑢𝑟 − 𝑟𝑢𝑙    – 𝜔 =    =\n               2𝑑       2𝑑\n•  The change in robot pose is\n    –  ሶ𝑥= v cos 𝜙\n    –  ሶ𝑦= v sin 𝜙\n    – ሶ𝜙= 𝜔\n•  Kinematic equations are\n              ሶ𝜙    −𝑟2𝑑Τ      𝑟2𝑑Τ                                              𝑢𝑙\n    ሶ𝑞=    ሶ𝑥 =  𝑟cos 𝜙 Τ 2  𝑟cos 𝜙 Τ 2                                        𝑢𝑟\n                 ሶ𝑦     𝑟sin 𝜙 Τ 2  𝑟sin 𝜙 Τ 2\n\n\n\n                                                                                                          23",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q053",
+    "version": 1,
+    "stem": "The displayed matrix multiplies (u_l,u_r); which order does it use for the resulting state-rate vector?",
+    "selectionMode": "single",
+    "type": "table",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "(φ_dot,x_dot,y_dot)"
+      },
+      {
+        "id": "choice-2",
+        "text": "(x_dot,y_dot,φ_dot)"
+      },
+      {
+        "id": "choice-3",
+        "text": "(y_dot,φ_dot,x_dot)"
+      },
+      {
+        "id": "choice-4",
+        "text": "(v_l,v_r,φ)"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0265",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 265,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page265, printed slide23; relevant text, table or displayed equation/figure",
+        "evidenceText": "Displayed vector is [φ_dot,x_dot,y_dot]^T; matrix rows are [−r/(2d),r/(2d)],[(r/2)cosφ,(r/2)cosφ],[(r/2)sinφ,(r/2)sinφ]; input is[u_l,u_r]^T.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q054",
+    "version": 1,
+    "stem": "Which yaw row is correct when the input order is (u_l,u_r)?",
+    "selectionMode": "single",
+    "type": "table",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-2",
+        "text": "[+r/(2d), −r/(2d)]"
+      },
+      {
+        "id": "choice-3",
+        "text": "[+r/2,+r/2]"
+      },
+      {
+        "id": "choice-4",
+        "text": "[−r/d,+r/d]"
+      },
+      {
+        "id": "choice-1",
+        "text": "[−r/(2d), +r/(2d)]"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0265",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 265,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page265, printed slide23; relevant text, table or displayed equation/figure",
+        "evidenceText": "Kinematics of Differential Drive Robot (Cont.)\n\n•   Linear velocity of the robot center\n              𝑣𝑟+ 𝑣𝑙    𝑟𝑢𝑟 + 𝑟𝑢𝑙    –  𝑣 =    =\n                2         2\n•  Angular velocity\n              𝑣𝑟− 𝑣𝑙   𝑟𝑢𝑟 − 𝑟𝑢𝑙    – 𝜔 =    =\n               2𝑑       2𝑑\n•  The change in robot pose is\n    –  ሶ𝑥= v cos 𝜙\n    –  ሶ𝑦= v sin 𝜙\n    – ሶ𝜙= 𝜔\n•  Kinematic equations are\n              ሶ𝜙    −𝑟2𝑑Τ      𝑟2𝑑Τ                                              𝑢𝑙\n    ሶ𝑞=    ሶ𝑥 =  𝑟cos 𝜙 Τ 2  𝑟cos 𝜙 Τ 2                                        𝑢𝑟\n                 ሶ𝑦     𝑟sin 𝜙 Τ 2  𝑟sin 𝜙 Τ 2\n\n\n\n                                                                                                          23",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q055",
+    "version": 1,
+    "stem": "Keep the wheel linear speeds fixed and double the separation2d; what happens to v andω?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "v is doubled;ω is unchanged"
+      },
+      {
+        "id": "choice-4",
+        "text": "Both v andω are doubled"
+      },
+      {
+        "id": "choice-1",
+        "text": "v is unchanged;ω is halved"
+      },
+      {
+        "id": "choice-2",
+        "text": "Both v andω are halved"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0265",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 265,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page265, printed slide23; relevant text, table or displayed equation/figure",
+        "evidenceText": "Kinematics of Differential Drive Robot (Cont.)\n\n•   Linear velocity of the robot center\n              𝑣𝑟+ 𝑣𝑙    𝑟𝑢𝑟 + 𝑟𝑢𝑙    –  𝑣 =    =\n                2         2\n•  Angular velocity\n              𝑣𝑟− 𝑣𝑙   𝑟𝑢𝑟 − 𝑟𝑢𝑙    – 𝜔 =    =\n               2𝑑       2𝑑\n•  The change in robot pose is\n    –  ሶ𝑥= v cos 𝜙\n    –  ሶ𝑦= v sin 𝜙\n    – ሶ𝜙= 𝜔\n•  Kinematic equations are\n              ሶ𝜙    −𝑟2𝑑Τ      𝑟2𝑑Τ                                              𝑢𝑙\n    ሶ𝑞=    ሶ𝑥 =  𝑟cos 𝜙 Τ 2  𝑟cos 𝜙 Τ 2                                        𝑢𝑟\n                 ሶ𝑦     𝑟sin 𝜙 Τ 2  𝑟sin 𝜙 Τ 2\n\n\n\n                                                                                                          23",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q056",
+    "version": 1,
+    "stem": "Keep both angular wheel rates and separation fixed, then double the common wheel radius; what happens?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "Both values are halved"
+      },
+      {
+        "id": "choice-1",
+        "text": "Both forward speed and yaw rate double"
+      },
+      {
+        "id": "choice-2",
+        "text": "Only forward speed doubles; yaw is unchanged"
+      },
+      {
+        "id": "choice-3",
+        "text": "Only yaw doubles; forward speed is unchanged"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0265",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 265,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page265, printed slide23; relevant text, table or displayed equation/figure",
+        "evidenceText": "Kinematics of Differential Drive Robot (Cont.)\n\n•   Linear velocity of the robot center\n              𝑣𝑟+ 𝑣𝑙    𝑟𝑢𝑟 + 𝑟𝑢𝑙    –  𝑣 =    =\n                2         2\n•  Angular velocity\n              𝑣𝑟− 𝑣𝑙   𝑟𝑢𝑟 − 𝑟𝑢𝑙    – 𝜔 =    =\n               2𝑑       2𝑑\n•  The change in robot pose is\n    –  ሶ𝑥= v cos 𝜙\n    –  ሶ𝑦= v sin 𝜙\n    – ሶ𝜙= 𝜔\n•  Kinematic equations are\n              ሶ𝜙    −𝑟2𝑑Τ      𝑟2𝑑Τ                                              𝑢𝑙\n    ሶ𝑞=    ሶ𝑥 =  𝑟cos 𝜙 Τ 2  𝑟cos 𝜙 Τ 2                                        𝑢𝑟\n                 ሶ𝑦     𝑟sin 𝜙 Τ 2  𝑟sin 𝜙 Τ 2\n\n\n\n                                                                                                          23",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q057",
+    "version": 1,
+    "stem": "Which wheel commands achieve the requested v andω in the stated model?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "u_l=(v−dω)/r;u_r=(v+dω)/r"
+      },
+      {
+        "id": "choice-2",
+        "text": "u_l=(v+dω)/r;u_r=(v−dω)/r"
+      },
+      {
+        "id": "choice-3",
+        "text": "u_l=(v−2dω)/r;u_r=(v+2dω)/r"
+      },
+      {
+        "id": "choice-4",
+        "text": "u_l=r(v−dω);u_r=r(v+dω)"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0265",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 265,
+        "kind": "equation",
+        "locator": "Lecture7, physical PDF page265, printed slide23; relevant text, table or displayed equation/figure",
+        "evidenceText": "Kinematics of Differential Drive Robot (Cont.)\n\n•   Linear velocity of the robot center\n              𝑣𝑟+ 𝑣𝑙    𝑟𝑢𝑟 + 𝑟𝑢𝑙    –  𝑣 =    =\n                2         2\n•  Angular velocity\n              𝑣𝑟− 𝑣𝑙   𝑟𝑢𝑟 − 𝑟𝑢𝑙    – 𝜔 =    =\n               2𝑑       2𝑑\n•  The change in robot pose is\n    –  ሶ𝑥= v cos 𝜙\n    –  ሶ𝑦= v sin 𝜙\n    – ሶ𝜙= 𝜔\n•  Kinematic equations are\n              ሶ𝜙    −𝑟2𝑑Τ      𝑟2𝑑Τ                                              𝑢𝑙\n    ሶ𝑞=    ሶ𝑥 =  𝑟cos 𝜙 Τ 2  𝑟cos 𝜙 Τ 2                                        𝑢𝑟\n                 ሶ𝑦     𝑟sin 𝜙 Τ 2  𝑟sin 𝜙 Τ 2\n\n\n\n                                                                                                          23",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q058",
+    "version": 1,
+    "stem": "For v=0.50 m/s,ω=1 rad/s,d=0.20 m andr=0.10 m, what are (u_l,u_r)?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-2",
+        "text": "(7,3) rad/s"
+      },
+      {
+        "id": "choice-3",
+        "text": "(1,9) rad/s"
+      },
+      {
+        "id": "choice-4",
+        "text": "(0.03,0.07) rad/s"
+      },
+      {
+        "id": "choice-1",
+        "text": "(3,7) rad/s"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0265",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 265,
+        "kind": "equation",
+        "locator": "Lecture7, physical PDF page265, printed slide23; relevant text, table or displayed equation/figure",
+        "evidenceText": "Kinematics of Differential Drive Robot (Cont.)\n\n•   Linear velocity of the robot center\n              𝑣𝑟+ 𝑣𝑙    𝑟𝑢𝑟 + 𝑟𝑢𝑙    –  𝑣 =    =\n                2         2\n•  Angular velocity\n              𝑣𝑟− 𝑣𝑙   𝑟𝑢𝑟 − 𝑟𝑢𝑙    – 𝜔 =    =\n               2𝑑       2𝑑\n•  The change in robot pose is\n    –  ሶ𝑥= v cos 𝜙\n    –  ሶ𝑦= v sin 𝜙\n    – ሶ𝜙= 𝜔\n•  Kinematic equations are\n              ሶ𝜙    −𝑟2𝑑Τ      𝑟2𝑑Τ                                              𝑢𝑙\n    ሶ𝑞=    ሶ𝑥 =  𝑟cos 𝜙 Τ 2  𝑟cos 𝜙 Τ 2                                        𝑢𝑟\n                 ሶ𝑦     𝑟sin 𝜙 Τ 2  𝑟sin 𝜙 Τ 2\n\n\n\n                                                                                                          23",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q059",
+    "version": 1,
+    "stem": "For r=0.10 m,d=0.25 m,u_l=−3 rad/s andu_r=3 rad/s, what motion follows?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "v=0.3 m/s andω=0"
+      },
+      {
+        "id": "choice-4",
+        "text": "v=0 andω=+0.6 rad/s"
+      },
+      {
+        "id": "choice-1",
+        "text": "v=0 andω=+1.2 rad/s, counterclockwise"
+      },
+      {
+        "id": "choice-2",
+        "text": "v=0 andω=−1.2 rad/s, clockwise"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0265",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 265,
+        "kind": "equation",
+        "locator": "Lecture7, physical PDF page265, printed slide23; relevant text, table or displayed equation/figure",
+        "evidenceText": "Kinematics of Differential Drive Robot (Cont.)\n\n•   Linear velocity of the robot center\n              𝑣𝑟+ 𝑣𝑙    𝑟𝑢𝑟 + 𝑟𝑢𝑙    –  𝑣 =    =\n                2         2\n•  Angular velocity\n              𝑣𝑟− 𝑣𝑙   𝑟𝑢𝑟 − 𝑟𝑢𝑙    – 𝜔 =    =\n               2𝑑       2𝑑\n•  The change in robot pose is\n    –  ሶ𝑥= v cos 𝜙\n    –  ሶ𝑦= v sin 𝜙\n    – ሶ𝜙= 𝜔\n•  Kinematic equations are\n              ሶ𝜙    −𝑟2𝑑Τ      𝑟2𝑑Τ                                              𝑢𝑙\n    ሶ𝑞=    ሶ𝑥 =  𝑟cos 𝜙 Τ 2  𝑟cos 𝜙 Τ 2                                        𝑢𝑟\n                 ሶ𝑦     𝑟sin 𝜙 Τ 2  𝑟sin 𝜙 Τ 2\n\n\n\n                                                                                                          23",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q060",
+    "version": 1,
+    "stem": "From x_dot=v cosφ andy_dot=v sinφ, which combination must vanish under the stated no-slip model?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "φ_dot for every unequal wheel-speed pair"
+      },
+      {
+        "id": "choice-1",
+        "text": "−x_dot sinφ+y_dot cosφ"
+      },
+      {
+        "id": "choice-2",
+        "text": "x_dot cosφ+y_dot sinφ"
+      },
+      {
+        "id": "choice-3",
+        "text": "x_dot+y_dot for every heading"
+      }
+    ],
+    "assumptions": [
+      "Pure rolling with no sideways slip; this is a consequence of the displayed model, not a claim about every real surface."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0265",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 265,
+        "kind": "equation",
+        "locator": "Lecture7, physical PDF page265, printed slide23; relevant text, table or displayed equation/figure",
+        "evidenceText": "Kinematics of Differential Drive Robot (Cont.)\n\n•   Linear velocity of the robot center\n              𝑣𝑟+ 𝑣𝑙    𝑟𝑢𝑟 + 𝑟𝑢𝑙    –  𝑣 =    =\n                2         2\n•  Angular velocity\n              𝑣𝑟− 𝑣𝑙   𝑟𝑢𝑟 − 𝑟𝑢𝑙    – 𝜔 =    =\n               2𝑑       2𝑑\n•  The change in robot pose is\n    –  ሶ𝑥= v cos 𝜙\n    –  ሶ𝑦= v sin 𝜙\n    – ሶ𝜙= 𝜔\n•  Kinematic equations are\n              ሶ𝜙    −𝑟2𝑑Τ      𝑟2𝑑Τ                                              𝑢𝑙\n    ሶ𝑞=    ሶ𝑥 =  𝑟cos 𝜙 Τ 2  𝑟cos 𝜙 Τ 2                                        𝑢𝑟\n                 ሶ𝑦     𝑟sin 𝜙 Τ 2  𝑟sin 𝜙 Τ 2\n\n\n\n                                                                                                          23",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L07-Q061",
+    "version": 1,
+    "stem": "How should the summary’s six-joint statement be interpreted without overclaiming?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "Six independent one-DOF joints can provide six local pose freedoms when the configuration is nonsingular; task and joint constraints still matter"
+      },
+      {
+        "id": "choice-2",
+        "text": "Any six joints guarantee every pose is reachable with a unique solution"
+      },
+      {
+        "id": "choice-3",
+        "text": "Any robot with fewer than six joints cannot perform any useful task"
+      },
+      {
+        "id": "choice-4",
+        "text": "Counting six matrix entries proves the robot has six independent freedoms"
+      }
+    ],
+    "assumptions": [
+      "The interpretation concerns general spatial pose control using one-DOF joints, not every possible task or multi-DOF joint design."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0249",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 249,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page249, printed slide7; relevant text, table or displayed equation/figure",
+        "evidenceText": "Degree of Freedom (DOF)\n\n•  The degree of freedom (DOF) of a robotic system is the number of independent\n   parameters required to completely describe the position and orientation of the\n   system in space.\n•   In the context of robotic manipulators, it represents the number of\n   independent joint variables that can be controlled to determine the\n   configuration of the robot.\n•  Degrees of Freedom of a Rigid Body in Space\n    –  3 Translational DOF: motion along the X, Y, and Z axes\n    –  3 Rotational DOF: rotation about the X, Y, and Z axes\n•  DOF in Robotic Manipulators\n    –  Each revolute joint contributes one rotational DOF.\n    –  Each prismatic joint contributes one translational DOF.\n•  DOF determines the maneuverability of the manipulator.\n\n\n                                                                                                           7",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0266",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 266,
+        "kind": "statement",
+        "locator": "Lecture7, physical PDF page266, printed slide24; relevant text, table or displayed equation/figure",
+        "evidenceText": "Summary\n\n•  The Denavit–Hartenberg convention provides a systematic\n  method for assigning frames\n• A minimum of six joints (DOF) is required to fully position and\n   orient an end-effector in 3D space.\n•  Forward kinematics determines the end-effector pose from joint\n   variables.\n•  Differential drive robots use an independent\n  wheel velocities for motion.\n•  Kinematic models enable analysis, simulation,\n  and control of robotic systems.\n\n\n\n                                                                                                          24",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  }
+]

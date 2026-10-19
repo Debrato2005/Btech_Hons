@@ -1,0 +1,7 @@
+NOTES.update({
+249:'Printed 7. Independent configuration variables define manipulator DOF. Rigid spatial body has three translations and three rotations. Revolute and prismatic each contribute one independent freedom in the stated serial-manipulator context.',
+250:'Printed 8. Neighboring rigid links are connected by constraining joints; revolute rotation and prismatic translation about/along fixed axes. Numbering starts at fixed link 0, first moving link 1, free end n. Five/six-joint prevalence is a broad source remark, not a new census.',
+251:'Printed 9. Six actual mechanism drawings: pin hinge, keyed prismatic shaft, cylindrical sleeve, planar block, threaded screw and ball-and-socket. Labels give R1, P1, screw1, cylindrical2, planar3, spherical3. Screw marked R is incomplete shorthand; fixed-lead coupling makes one independent variable.',
+252:'Printed 10. DH parameters a, alpha, d and theta; systematic frame assignment and geometry-to-matrix model. No uniqueness or universal reachability guarantee appears.',
+253:'Printed 11. Curved physical link between axes i−1 and i; a_(i−1) is the straight segment with right-angle marks at both axes, not material-path length. Alpha_(i−1) denotes twist between axes.',
+254:'Printed 12. The neighboring link sketch shows offset d_i along axis i and joint angle theta_i between the common-normal directions. The text identifies d and theta as connection parameters.'})

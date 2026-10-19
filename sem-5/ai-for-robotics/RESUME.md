@@ -15,7 +15,7 @@
 
 ## Next actions
 
-Sources are retrieved and hashed: 1,953 lecture pages plus 59 assignment pages. Read sources/README.md to re-download and regenerate source maps/text/previews if needed. Run python scripts/assemble_bank.py, python scripts/validate.py, and python scripts/build.py after source recovery. Integration-owned L01 has 66 draft questions; independent blind review is pending. L02, L03 and the search-algorithm sequence are assigned to distinct authors. App and learning-tools code are implemented but full offline QA remains pending. Read audits/assignment_disputes.json; source answer keys contain unresolved conflicts and must not be blindly promoted.
+Read docs/handoffs/integration.md and each worker handoff before assigning more work. Sources are retrieved and hashed: 1,953 lecture pages plus59 assignment pages. Read sources/README.md to recover sources and regenerate maps/text/previews. Run python3 scripts/assemble_bank.py, python3 scripts/validate.py, and python3 scripts/build.py after recovery. Question and inspection batches are the editable source of truth; generated bank.json is rebuilt. Review records bind exact question/source hashes and are never reusable after content revisions. Keep source disputes visible and unresolved items out of accepted study. App and learning engines are implemented, but full course content and actual downloaded-file offline QA remain unfinished.
 
 ## Verification of checkpoints
 

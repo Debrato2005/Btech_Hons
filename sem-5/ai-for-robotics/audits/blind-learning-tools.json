@@ -1,0 +1,687 @@
+[
+  {
+    "id": "algorithm.road-network.bfs",
+    "title": "BFS on the lecture road network",
+    "sourceRefs": [
+      {
+        "slideId": "lectures-p1107",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1107,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "1. Breadth-First Search (BFS)\n\n•  Breadth-First Search (BFS) is a systematic\n   graph search algorithm used in robot\n   navigation to find a path between two\n   points on a graph-based map.\n•  Data Structures: It uses a FIFO (First-In,\n   First-Out) queue to manage the\n   \"frontier\" (the open set of scheduled\n   vertices) and an \"explored\" set (the\n   closed set of visited vertices) to prevent\n   backtracking.\n•   It ignores the actual weight (distance) on\n   the edges, effectively treating all edge\n   costs as equal.\n\n\n\n                                                                                                          20",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1110",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1110,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "1. Breadth-First Search (BFS)\n\nStep-by-Step Execution\n•  Step 5: Expand E and F, eventually\n  popping G from the frontier queue.\n\n•  Final Path Found: A→B→D→G(3 hops)\n•  Total Cost: 5+6+6=17\n• Nodes Explored: 6 nodes (A,B,C,D,E,F)\n\n\n\n\n\n                                                                                                          23",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1116",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1116,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 5: Expand cheapest node, E(7).\n   – Evaluate neighbor D (cost 7+2=9). Since 9\n          is cheaper than the existing path to D\n       (which was 11), we select D to go through\n        E.\n   –  Frontier: [D(9), G(9)]\n   – Explored: [A, C, B, F, E]\n•  Step 6: Expand cheapest node, D(9).\n   –  Neighbor G via D has a cost of 9+6=15,\n      which is worse than the existing cost to G\n         (9), so we do not update.\n   –  Frontier: [G(9)]\n   – Explored: [A, C, B, F, E, D]\n\n                                                                                                          29",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "graph": {
+      "directed": false,
+      "nodes": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "edges": [
+        {
+          "to": "B",
+          "cost": 5,
+          "from": "A"
+        },
+        {
+          "to": "C",
+          "cost": 2,
+          "from": "A"
+        },
+        {
+          "to": "D",
+          "cost": 6,
+          "from": "B"
+        },
+        {
+          "to": "E",
+          "cost": 3,
+          "from": "B"
+        },
+        {
+          "to": "F",
+          "cost": 4,
+          "from": "C"
+        },
+        {
+          "to": "E",
+          "cost": 2,
+          "from": "D"
+        },
+        {
+          "to": "G",
+          "cost": 6,
+          "from": "D"
+        },
+        {
+          "to": "F",
+          "cost": 1,
+          "from": "E"
+        },
+        {
+          "to": "G",
+          "cost": 3,
+          "from": "F"
+        }
+      ]
+    },
+    "config": {
+      "algorithm": "bfs",
+      "start": "A",
+      "goal": "G",
+      "neighborOrder": "lexicographic",
+      "tieBreak": "lexicographic",
+      "heuristic": {
+        "A": 7,
+        "B": 6,
+        "C": 5,
+        "D": 4,
+        "E": 3,
+        "F": 2,
+        "G": 0
+      }
+    },
+    "assumptions": [
+      "Undirected graph as drawn, positive edge costs in kilometres.",
+      "Goal test on removal; do not count successful goal removal as successor expansion.",
+      "Alphabetical successor order. Weighted priority ties resolve alphabetically; p1116 shows D before G.",
+      "BFS/DFS mark discovered on insertion; UCS/A* allow strictly cheaper replacements and reopening."
+    ],
+    "reviewTask": "Inspect the cited slides. Independently compute every frontier/Q-table state, result, and expansion convention without viewing the author solution or engine output. Distinguish original data from stated generated assumptions. Persist your solve before comparing implementation."
+  },
+  {
+    "id": "algorithm.road-network.ucs",
+    "title": "UCS on the lecture road network",
+    "sourceRefs": [
+      {
+        "slideId": "lectures-p1112",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1112,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "2. Uniform-Cost Search (UCS)\n•  UCS is an optimal graph search algorithm.\n   Instead of expanding nodes level-by-level,\n    it prioritizes vertices based on the lowest\n   cumulative cost from the start vertex.\n\n                Cost: Distance (in km)\n•  Mathematical Notation: Minimizes f(v)=g(v),\n  where g(v) is the cumulative cost (distance) from the\n   start to the current vertex v.\n•  Data Structures: It uses a priority queue ordered\n   from smallest to largest value of g(v).\n\n\n\n                                                                                                            25",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1116",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1116,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 5: Expand cheapest node, E(7).\n   – Evaluate neighbor D (cost 7+2=9). Since 9\n          is cheaper than the existing path to D\n       (which was 11), we select D to go through\n        E.\n   –  Frontier: [D(9), G(9)]\n   – Explored: [A, C, B, F, E]\n•  Step 6: Expand cheapest node, D(9).\n   –  Neighbor G via D has a cost of 9+6=15,\n      which is worse than the existing cost to G\n         (9), so we do not update.\n   –  Frontier: [G(9)]\n   – Explored: [A, C, B, F, E, D]\n\n                                                                                                          29",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1117",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1117,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 7: Expand G(9). The goal is\n   reached.\n\n•  Final Path Found: A→C→F→G\n•  Total Cost: 2+4+3=9\n• Nodes Explored: 6 nodes\n   (A,C,B,F,E,D)\n\n\n\n\n\n                                                                                                          30",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "graph": {
+      "directed": false,
+      "nodes": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "edges": [
+        {
+          "to": "B",
+          "cost": 5,
+          "from": "A"
+        },
+        {
+          "to": "C",
+          "cost": 2,
+          "from": "A"
+        },
+        {
+          "to": "D",
+          "cost": 6,
+          "from": "B"
+        },
+        {
+          "to": "E",
+          "cost": 3,
+          "from": "B"
+        },
+        {
+          "to": "F",
+          "cost": 4,
+          "from": "C"
+        },
+        {
+          "to": "E",
+          "cost": 2,
+          "from": "D"
+        },
+        {
+          "to": "G",
+          "cost": 6,
+          "from": "D"
+        },
+        {
+          "to": "F",
+          "cost": 1,
+          "from": "E"
+        },
+        {
+          "to": "G",
+          "cost": 3,
+          "from": "F"
+        }
+      ]
+    },
+    "config": {
+      "algorithm": "ucs",
+      "start": "A",
+      "goal": "G",
+      "neighborOrder": "lexicographic",
+      "tieBreak": "lexicographic",
+      "heuristic": {
+        "A": 7,
+        "B": 6,
+        "C": 5,
+        "D": 4,
+        "E": 3,
+        "F": 2,
+        "G": 0
+      }
+    },
+    "assumptions": [
+      "Undirected graph as drawn, positive edge costs in kilometres.",
+      "Goal test on removal; do not count successful goal removal as successor expansion.",
+      "Alphabetical successor order. Weighted priority ties resolve alphabetically; p1116 shows D before G.",
+      "BFS/DFS mark discovered on insertion; UCS/A* allow strictly cheaper replacements and reopening."
+    ],
+    "reviewTask": "Inspect the cited slides. Independently compute every frontier/Q-table state, result, and expansion convention without viewing the author solution or engine output. Distinguish original data from stated generated assumptions. Persist your solve before comparing implementation."
+  },
+  {
+    "id": "algorithm.road-network.astar",
+    "title": "A* on the lecture road network",
+    "sourceRefs": [
+      {
+        "slideId": "lectures-p1119",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1119,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "3. A-Star\n•  The A* (A-star) search algorithm is a widely used\n   graph search technique in robot navigation that\n   finds the optimal path between two points by\n   using a heuristic to guide its search.\n\n•  Mathematical Notation: Minimizes f(v)=g(v)+h(v),\n   where:\n   – g(v) is the path cost from the start to vertex v\n      (cost-to-come).\n   – h(v) is a heuristic estimating the distance from v\n      to the goal (cost-to-go).\n\n\n\n                                                                                                            32",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1120",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1120,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "3. A-Star\n•  The performance and accuracy of A* depend critically on the choice of the heuristic\n   function:\n➢Admissibility: A* is guaranteed to find the lowest-cost path only if the heuristic is\n   \"admissible,\" meaning it never overestimates the actual cost of reaching the goal.\n  A non-admissible heuristic may lead to a non-optimal path.\n➢Common heuristic function Examples:\n   – Minimum-Distance: The Euclidean distance is a standard admissible heuristic\n      because it is the shortest possible path between two\n       points and cannot be an overestimate. (this example)\n   – Minimum-Time: The heuristic must represent the travel\n      time at the maximum possible speed in the\n      environment to remain admissible.\n\n\n                                                                                                            33",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1121",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1121,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "3. A-Star\n\nStep-by-Step Execution\n•  Initialize:\n   – Frontier: [A(0 + 7 = 7)]\n   – Explored: []\n•  Step 1: Expand A.\n   – Neighbor B: g(B)=5,h(B)=6→f(B)=11\n   – Neighbor C: g(C)=2,h(C)=5→f(C)=7\n   – Frontier: [C(7), B(11)]\n   – Explored: [A]\n\n\n\n\n                                                                                                          34",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1123",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1123,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "3. A-Star\n\nStep-by-Step Execution\n•  Step 4: Expand cheapest node, G(9).\n  Goal reached!\n\n•  Final Path Found: A→C→F→G\n•  Total Cost: 2+4+3=9\n• Nodes Explored: Only 3 nodes (A,C,F)\n\n\n\n\n\n                                                                                                          36",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "graph": {
+      "directed": false,
+      "nodes": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "edges": [
+        {
+          "to": "B",
+          "cost": 5,
+          "from": "A"
+        },
+        {
+          "to": "C",
+          "cost": 2,
+          "from": "A"
+        },
+        {
+          "to": "D",
+          "cost": 6,
+          "from": "B"
+        },
+        {
+          "to": "E",
+          "cost": 3,
+          "from": "B"
+        },
+        {
+          "to": "F",
+          "cost": 4,
+          "from": "C"
+        },
+        {
+          "to": "E",
+          "cost": 2,
+          "from": "D"
+        },
+        {
+          "to": "G",
+          "cost": 6,
+          "from": "D"
+        },
+        {
+          "to": "F",
+          "cost": 1,
+          "from": "E"
+        },
+        {
+          "to": "G",
+          "cost": 3,
+          "from": "F"
+        }
+      ]
+    },
+    "config": {
+      "algorithm": "astar",
+      "start": "A",
+      "goal": "G",
+      "neighborOrder": "lexicographic",
+      "tieBreak": "lexicographic",
+      "heuristic": {
+        "A": 7,
+        "B": 6,
+        "C": 5,
+        "D": 4,
+        "E": 3,
+        "F": 2,
+        "G": 0
+      }
+    },
+    "assumptions": [
+      "Undirected graph as drawn, positive edge costs in kilometres.",
+      "Goal test on removal; do not count successful goal removal as successor expansion.",
+      "Alphabetical successor order. Weighted priority ties resolve alphabetically; p1116 shows D before G.",
+      "BFS/DFS mark discovered on insertion; UCS/A* allow strictly cheaper replacements and reopening."
+    ],
+    "reviewTask": "Inspect the cited slides. Independently compute every frontier/Q-table state, result, and expansion convention without viewing the author solution or engine output. Distinguish original data from stated generated assumptions. Persist your solve before comparing implementation."
+  },
+  {
+    "id": "algorithm.road-network.dfs",
+    "title": "DFS on the lecture road network",
+    "sourceRefs": [
+      {
+        "slideId": "lectures-p0116",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 116,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "Graph Theory – Uninformed Search (Cont.)\n\n•  Depth-First Search (DFS)\n   – Explores a path as deeply as possible before\n       backtracking to unvisited children.\n             •  Implemented using a Stack (Last-In, First-Out or\n             LIFO) and is often more memory-efficient in deep\n            graphs but does not guarantee an optimal path.\n   – The highlighted DFS path is the first\n       solution found, not necessarily the optimal\n      one.\n•  DFS is fast for exploration, BFS is better\n  when the shortest path matters.\n\n\n\n                                                                                                          22",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1116",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1116,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 5: Expand cheapest node, E(7).\n   – Evaluate neighbor D (cost 7+2=9). Since 9\n          is cheaper than the existing path to D\n       (which was 11), we select D to go through\n        E.\n   –  Frontier: [D(9), G(9)]\n   – Explored: [A, C, B, F, E]\n•  Step 6: Expand cheapest node, D(9).\n   –  Neighbor G via D has a cost of 9+6=15,\n      which is worse than the existing cost to G\n         (9), so we do not update.\n   –  Frontier: [G(9)]\n   – Explored: [A, C, B, F, E, D]\n\n                                                                                                          29",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "graph": {
+      "directed": false,
+      "nodes": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "edges": [
+        {
+          "to": "B",
+          "cost": 5,
+          "from": "A"
+        },
+        {
+          "to": "C",
+          "cost": 2,
+          "from": "A"
+        },
+        {
+          "to": "D",
+          "cost": 6,
+          "from": "B"
+        },
+        {
+          "to": "E",
+          "cost": 3,
+          "from": "B"
+        },
+        {
+          "to": "F",
+          "cost": 4,
+          "from": "C"
+        },
+        {
+          "to": "E",
+          "cost": 2,
+          "from": "D"
+        },
+        {
+          "to": "G",
+          "cost": 6,
+          "from": "D"
+        },
+        {
+          "to": "F",
+          "cost": 1,
+          "from": "E"
+        },
+        {
+          "to": "G",
+          "cost": 3,
+          "from": "F"
+        }
+      ]
+    },
+    "config": {
+      "algorithm": "dfs",
+      "start": "A",
+      "goal": "G",
+      "neighborOrder": "lexicographic",
+      "tieBreak": "lexicographic",
+      "heuristic": {
+        "A": 7,
+        "B": 6,
+        "C": 5,
+        "D": 4,
+        "E": 3,
+        "F": 2,
+        "G": 0
+      }
+    },
+    "assumptions": [
+      "Undirected graph as drawn, positive edge costs in kilometres.",
+      "Goal test on removal; do not count successful goal removal as successor expansion.",
+      "Alphabetical successor order. Weighted priority ties resolve alphabetically; p1116 shows D before G.",
+      "BFS/DFS mark discovered on insertion; UCS/A* allow strictly cheaper replacements and reopening."
+    ],
+    "reviewTask": "Inspect the cited slides. Independently compute every frontier/Q-table state, result, and expansion convention without viewing the author solution or engine output. Distinguish original data from stated generated assumptions. Persist your solve before comparing implementation."
+  },
+  {
+    "id": "algorithm.q-learning.sequential",
+    "title": "Sequential Q-learning updates",
+    "sourceRefs": [
+      {
+        "slideId": "lectures-p0904",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 904,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "Q-learning\n•  Q-learning is a model-free temporal difference (TD) algorithm used in\n   reinforcement learning to find an optimal policy for an agent interacting with an\n   environment.                                                     (Old Estimation)\n•  Q-learning algorithm:               what actually happened  what we expected\n\n          ෠𝑄𝑠𝑡, 𝑎𝑡←෠𝑄𝑠𝑡, 𝑎𝑡+ 𝜂𝑟𝑡+1 + 𝛾𝑚𝑎𝑥 ෠𝑄 (𝑠𝑡+1, 𝑎𝑡+1) −𝑄𝑠𝑡, 𝑎𝑡\n                                                  𝑎𝑡+1\n\n      New Updated   Current   Learning     TD (Temporal Difference)\n           Estimate     Estimate    Rate\n• We would like ෠𝑄𝑠𝑡, 𝑎𝑡  to converge to its mean.\n• We gradually decrease the learning rate (Learning Rate Decay)\n   over time, for convergence.\n•   It has been proven that this algorithm converges to the optimal\n  Q* values (Watkins and Dayan 1992).\n\n\n                                                                                                            18",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0905",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 905,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "Q-learning\n\n•   It is useful in realistic scenarios where the agent does not have perfect knowledge\n   of the environment's rewards or state transition functions.\n•  The pseudocode of the Q learning algorithm:                                                                 For exploration vs.\n                                                                      exploitation use ε-greedy:\n                                                                                 •  0<ε<1\n                                                                                 •  1-ε probability exploits\n                                                                                 •  ε probability explore.\n\n\n\n\n\n                                                                                                           19",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "qLearningConfig": {
+      "alpha": 0.5,
+      "gamma": 0.9,
+      "initialQ": {
+        "S": {
+          "right": 2
+        },
+        "T": {
+          "left": 4,
+          "right": 7
+        },
+        "END": {
+          "stop": 0
+        }
+      },
+      "transitions": [
+        {
+          "state": "S",
+          "action": "right",
+          "reward": 3,
+          "nextState": "T",
+          "terminal": false,
+          "nextActions": [
+            "left",
+            "right"
+          ]
+        },
+        {
+          "state": "T",
+          "action": "right",
+          "reward": 5,
+          "nextState": "END",
+          "terminal": true,
+          "nextActions": [
+            "stop"
+          ]
+        },
+        {
+          "state": "S",
+          "action": "right",
+          "reward": 0,
+          "nextState": "T",
+          "terminal": false,
+          "nextActions": [
+            "left",
+            "right"
+          ]
+        }
+      ]
+    },
+    "assumptions": [
+      "The numerical values and observed transitions are a new illustration, not data printed on the slide.",
+      "Learning rate alpha is η on the source slide.",
+      "Sequential updates; bootstrap from the old table within each transition.",
+      "Terminal transitions have zero bootstrap by explicit example assumption.",
+      "The supplied transition list is not a generated epsilon-greedy policy."
+    ],
+    "reviewTask": "Inspect the cited slides. Independently compute every frontier/Q-table state, result, and expansion convention without viewing the author solution or engine output. Distinguish original data from stated generated assumptions. Persist your solve before comparing implementation."
+  },
+  {
+    "id": "numerical.q-learning-update",
+    "title": "Parameterized Q-learning update",
+    "sourceRefs": [
+      {
+        "slideId": "lectures-p0904",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 904,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "Q-learning\n•  Q-learning is a model-free temporal difference (TD) algorithm used in\n   reinforcement learning to find an optimal policy for an agent interacting with an\n   environment.                                                     (Old Estimation)\n•  Q-learning algorithm:               what actually happened  what we expected\n\n          ෠𝑄𝑠𝑡, 𝑎𝑡←෠𝑄𝑠𝑡, 𝑎𝑡+ 𝜂𝑟𝑡+1 + 𝛾𝑚𝑎𝑥 ෠𝑄 (𝑠𝑡+1, 𝑎𝑡+1) −𝑄𝑠𝑡, 𝑎𝑡\n                                                  𝑎𝑡+1\n\n      New Updated   Current   Learning     TD (Temporal Difference)\n           Estimate     Estimate    Rate\n• We would like ෠𝑄𝑠𝑡, 𝑎𝑡  to converge to its mean.\n• We gradually decrease the learning rate (Learning Rate Decay)\n   over time, for convergence.\n•   It has been proven that this algorithm converges to the optimal\n  Q* values (Watkins and Dayan 1992).\n\n\n                                                                                                            18",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0905",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 905,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "Q-learning\n\n•   It is useful in realistic scenarios where the agent does not have perfect knowledge\n   of the environment's rewards or state transition functions.\n•  The pseudocode of the Q learning algorithm:                                                                 For exploration vs.\n                                                                      exploitation use ε-greedy:\n                                                                                 •  0<ε<1\n                                                                                 •  1-ε probability exploits\n                                                                                 •  ε probability explore.\n\n\n\n\n\n                                                                                                           19",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "generatorKind": "q-learning-update",
+    "generatorVersion": "1.0.0",
+    "derivationAssumptions": [
+      "Finite reward/action values, 0≤η≤1, 0≤γ≤1.",
+      "Terminal transitions assume zero bootstrap explicitly.",
+      "Combinations yielding equivalent options are rejected rather than accepted as single-select MCQs."
+    ],
+    "parameterCases": [
+      {
+        "oldQ": 2,
+        "reward": 3,
+        "maxNextQ": 4,
+        "alpha": 0.5,
+        "gamma": 0.9,
+        "terminal": false
+      },
+      {
+        "oldQ": 2,
+        "reward": 3,
+        "maxNextQ": 4,
+        "alpha": 0.5,
+        "gamma": 0.9,
+        "terminal": true
+      },
+      {
+        "oldQ": 2,
+        "reward": 3,
+        "maxNextQ": 4,
+        "alpha": 0,
+        "gamma": 0.9,
+        "terminal": false
+      }
+    ],
+    "reviewTask": "Independently calculate mathematically meaningful cases and identify invalid/degenerate MCQ cases. Check exact source premises and formula interpretation before inspecting the implemented answer or options. Record which restrictions belong to the formula versus four-distinct-option MCQ generation."
+  },
+  {
+    "id": "numerical.bayes-two-hypotheses",
+    "title": "Parameterized two-hypothesis Bayes update",
+    "sourceRefs": [
+      {
+        "slideId": "lectures-p0106",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 106,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "Probability – Conditional Probability\n\n   – Conditional probability is the updated likelihood of an event 𝐴 given that\n      event 𝐵 has occurred. This is the foundation of Bayesian Statistics, which\n      measures “degrees of belief”.\n                                  𝑃(𝐵|𝐴)𝑃𝐴\n           𝑃𝐴𝐵=\n                          𝑃𝐵\n   – Prior probability represents belief before evidence; posterior probability\n       represents belief after updating with new evidence.\n   – Localization: Estimating robot state 𝑥 given a model\n      and noisy sensor measurements 𝑧. 𝑃(𝑥|𝑧)\n   – Decoding in Speech Recognition: Finding the word\n      sequence 𝑖, that best explains the observed audio\n                            𝑃(𝑜|𝑖)𝑃𝑖        signal 𝑜           𝑃𝑖𝑜=\n                   𝑃𝑜\n\n                                                                                                          12",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0109",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 109,
+        "kind": "statement",
+        "locator": "Main text and labeled figure on the inspected source page",
+        "evidenceText": "Probability and Statistics – Bayesian estimation\n\n   – Maximum Likelihood Estimation (MLE) finds the parameter values that\n       best explain the observed data only.\n   – Maximum A Posteriori (MAP) estimation improves MLE by incorporating\n       prior knowledge about the parameters.\n                      𝑃𝑠𝜇𝑚𝑃𝜇𝑚\n          MAP = arg max 𝑃𝜇𝑚𝑠=\n                                           𝑃(𝑠)\n      𝑃𝜇𝑚𝑠: The probability of model given the observed data/signal s\n      𝑃𝑠𝜇𝑚: likelihood of sensor measurements (The probability of\n          observing signal given that model 𝜇𝑚 is true\".\n      𝑃𝜇𝑚: prior belief about the parameter, probability of model 𝜇𝑚\n          before seeing the data s.\n      𝑃𝑠: The total probability of the data s across all possible models\n\n\n\n                                                                                                          15",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "generatorKind": "bayes-two-hypotheses",
+    "generatorVersion": "1.0.0",
+    "derivationAssumptions": [
+      "Exactly two exhaustive, mutually exclusive hypotheses H and not-H.",
+      "P(E) = P(E|H)P(H) + P(E|not-H)(1−P(H)); this denominator is the explicit two-model specialization of total evidence probability described on p109.",
+      "All supplied probabilities are valid and P(E)>0."
+    ],
+    "parameterCases": [
+      {
+        "prior": 0.2,
+        "likelihoodTrue": 0.8,
+        "likelihoodFalse": 0.3
+      },
+      {
+        "prior": 0.5,
+        "likelihoodTrue": 0.8,
+        "likelihoodFalse": 0.8
+      },
+      {
+        "prior": 0,
+        "likelihoodTrue": 0.8,
+        "likelihoodFalse": 0.3
+      }
+    ],
+    "reviewTask": "Independently calculate mathematically meaningful cases and identify invalid/degenerate MCQ cases. Check exact source premises and formula interpretation before inspecting the implemented answer or options. Record which restrictions belong to the formula versus four-distinct-option MCQ generation."
+  }
+]

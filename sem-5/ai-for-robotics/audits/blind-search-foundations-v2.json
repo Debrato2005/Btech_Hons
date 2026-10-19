@@ -1,0 +1,742 @@
+[
+  {
+    "id": "W08-L36-P1106-Q02",
+    "version": 2,
+    "stem": "Which metric does this slide explicitly request for comparing search-efficiency gains, distinct from the returned route’s quality?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Number of edges on the returned route"
+      },
+      {
+        "id": "o1",
+        "text": "Number of expanded zones"
+      },
+      {
+        "id": "o2",
+        "text": "Total kilometres on the returned route"
+      },
+      {
+        "id": "o3",
+        "text": "Maximum number of vertices held in the frontier"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1106",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1106,
+        "kind": "statement",
+        "locator": "Physical PDF page 1106, printed slide 19; main text and labeled diagram as applicable",
+        "evidenceText": "Example: Autonomous Vehicle Path Planning\n\nProblem Objectives: To analyze different algorithm for path planning.\n\n1.   Breadth-First Search (BFS): Identify the path using a purely\n     topological, hop-minimizing approach. Determine the total\n     travel distance of the resulting path.\n2.  Uniform-Cost Search (UCS): Find the mathematically\n     shortest path based on actual road distances. Track the\n     step-by-step state of the prioritized frontier and the final\n      list of explored zones.\n3.  A* Search: Incorporate the straight-line heuristic distance\n    to guide the search.\nCompare the number of expanded zones to the previous\nalgorithms to evaluate the search efficiency gains.\n\n\n\n                                                                                                          19",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L36-P1107-Q02",
+    "version": 2,
+    "stem": "Using the slide’s open/closed-set terminology, which statement distinguishes the frontier from the explored set?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Frontier contains already processed vertices; explored contains vertices still waiting for processing"
+      },
+      {
+        "id": "o3",
+        "text": "Frontier contains every vertex discovered so far, including those already processed; explored contains only processed vertices"
+      },
+      {
+        "id": "o4",
+        "text": "Frontier contains all as-yet-undiscovered vertices; explored contains every discovered vertex, including those still queued"
+      },
+      {
+        "id": "o1",
+        "text": "Frontier contains discovered vertices scheduled for processing; explored contains vertices already processed"
+      }
+    ],
+    "assumptions": [
+      "Interpret the slide’s closed-set “visited” terminology as processed/expanded; do not use a separate implementation convention that marks discovery as visited."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1107",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1107,
+        "kind": "statement",
+        "locator": "Physical PDF page 1107, printed slide 20; main text and labeled diagram as applicable",
+        "evidenceText": "1. Breadth-First Search (BFS)\n\n•  Breadth-First Search (BFS) is a systematic\n   graph search algorithm used in robot\n   navigation to find a path between two\n   points on a graph-based map.\n•  Data Structures: It uses a FIFO (First-In,\n   First-Out) queue to manage the\n   \"frontier\" (the open set of scheduled\n   vertices) and an \"explored\" set (the\n   closed set of visited vertices) to prevent\n   backtracking.\n•   It ignores the actual weight (distance) on\n   the edges, effectively treating all edge\n   costs as equal.\n\n\n\n                                                                                                          20",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L36-P1107-Q03",
+    "version": 2,
+    "stem": "The same finite graph keeps its topology but all positive road distances are changed. With identical start, goal, and neighbor ordering, which BFS property remains unchanged?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "The physical travel cost remains the same, but the selected route may change"
+      },
+      {
+        "id": "o4",
+        "text": "The minimum hop count remains the same, but BFS must reselect a route using the new road distances"
+      },
+      {
+        "id": "o1",
+        "text": "The selected hop-minimizing route remains the same; its physical travel cost may change"
+      },
+      {
+        "id": "o2",
+        "text": "Both the selected route and its physical travel cost must remain the same"
+      }
+    ],
+    "assumptions": [
+      "Only edge weights change; topology, start, goal, neighbor ordering, repeated-state handling and goal-test timing remain fixed.",
+      "All road distances remain positive and all vertices remain reachable exactly as before."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1107",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1107,
+        "kind": "statement",
+        "locator": "Physical PDF page 1107, printed slide 20; main text and labeled diagram as applicable",
+        "evidenceText": "1. Breadth-First Search (BFS)\n\n•  Breadth-First Search (BFS) is a systematic\n   graph search algorithm used in robot\n   navigation to find a path between two\n   points on a graph-based map.\n•  Data Structures: It uses a FIFO (First-In,\n   First-Out) queue to manage the\n   \"frontier\" (the open set of scheduled\n   vertices) and an \"explored\" set (the\n   closed set of visited vertices) to prevent\n   backtracking.\n•   It ignores the actual weight (distance) on\n   the edges, effectively treating all edge\n   costs as equal.\n\n\n\n                                                                                                          20",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L36-P1116-Q03",
+    "version": 2,
+    "stem": "Suppose the same UCS trace chooses G before D when both have g=9. What changes relative to the displayed D-before-G trace?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "The returned cost stays 9, but both tied nodes must still be expanded before termination"
+      },
+      {
+        "id": "o4",
+        "text": "The returned cost stays 9, but choosing the other tied node necessarily destroys UCS optimality"
+      },
+      {
+        "id": "o1",
+        "text": "The returned optimal cost stays 9, and D is not expanded before termination"
+      },
+      {
+        "id": "o2",
+        "text": "The returned cost becomes 15 because D’s alternative path replaces G’s cost"
+      }
+    ],
+    "assumptions": [
+      "Only the equal-cost tie rule changes; goal test remains on removal."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1116",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1116,
+        "kind": "statement",
+        "locator": "Physical PDF page 1116, printed slide 29; main text and labeled diagram as applicable",
+        "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 5: Expand cheapest node, E(7).\n   – Evaluate neighbor D (cost 7+2=9). Since 9\n          is cheaper than the existing path to D\n       (which was 11), we select D to go through\n        E.\n   –  Frontier: [D(9), G(9)]\n   – Explored: [A, C, B, F, E]\n•  Step 6: Expand cheapest node, D(9).\n   –  Neighbor G via D has a cost of 9+6=15,\n      which is worse than the existing cost to G\n         (9), so we do not update.\n   –  Frontier: [G(9)]\n   – Explored: [A, C, B, F, E, D]\n\n                                                                                                          29",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1117",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1117,
+        "kind": "statement",
+        "locator": "Physical PDF page 1117, printed slide 30; main text and labeled diagram as applicable",
+        "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 7: Expand G(9). The goal is\n   reached.\n\n•  Final Path Found: A→C→F→G\n•  Total Cost: 2+4+3=9\n• Nodes Explored: 6 nodes\n   (A,C,B,F,E,D)\n\n\n\n\n\n                                                                                                          30",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L36-P1120-Q03",
+    "version": 2,
+    "stem": "A heuristic overestimates some remaining path costs. Which conclusion is supported by the slide?",
+    "selectionMode": "single",
+    "type": "exception",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A* may return a non-optimal route; the stated optimality guarantee is lost"
+      },
+      {
+        "id": "o2",
+        "text": "A* must return a wrong route on every run"
+      },
+      {
+        "id": "o3",
+        "text": "A* can no longer compute f=g+h"
+      },
+      {
+        "id": "o4",
+        "text": "The heuristic is admissible if it is positive"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1120",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1120,
+        "kind": "statement",
+        "locator": "Physical PDF page 1120, printed slide 33; main text and labeled diagram as applicable",
+        "evidenceText": "3. A-Star\n•  The performance and accuracy of A* depend critically on the choice of the heuristic\n   function:\n➢Admissibility: A* is guaranteed to find the lowest-cost path only if the heuristic is\n   \"admissible,\" meaning it never overestimates the actual cost of reaching the goal.\n  A non-admissible heuristic may lead to a non-optimal path.\n➢Common heuristic function Examples:\n   – Minimum-Distance: The Euclidean distance is a standard admissible heuristic\n      because it is the shortest possible path between two\n       points and cannot be an overestimate. (this example)\n   – Minimum-Time: The heuristic must represent the travel\n      time at the maximum possible speed in the\n      environment to remain admissible.\n\n\n                                                                                                            33",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L36-P1124-Q03",
+    "version": 2,
+    "stem": "Which pair of environment representations is explicitly named in the lecture summary?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Grid maps and graph-based maps"
+      },
+      {
+        "id": "o2",
+        "text": "Grid maps and polygonal boundary maps"
+      },
+      {
+        "id": "o3",
+        "text": "Visibility graphs and Voronoi diagrams"
+      },
+      {
+        "id": "o4",
+        "text": "Landmark maps and potential fields"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1124",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1124,
+        "kind": "statement",
+        "locator": "Physical PDF page 1124, printed slide 37; main text and labeled diagram as applicable",
+        "evidenceText": "Summary\n\n•  Path planning = finding a safe, optimal route from start to goal.\n•  Planning architecture: perception + localization → planning → execution.\n•  Global planning (offline, full map) vs. local planning (real-time, reactive)\n•  Environments represented as grid maps or graph-based maps.\n•  BFS: fewest hops, but ignores cost — not always optimal.\n•  UCS: guarantees shortest path, but explores many nodes.\n•  A*: uses heuristic to reach optimal path faster than\n  UCS\n\n\n\n\n\n                                                                                                          37",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-P1128-Q01",
+    "version": 2,
+    "stem": "Which Vector Field Histogram processing outline is stated in the learning objectives?",
+    "selectionMode": "single",
+    "type": "sequence",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Steering → polar histogram → occupancy grid"
+      },
+      {
+        "id": "o3",
+        "text": "Polar histogram → occupancy grid → steering"
+      },
+      {
+        "id": "o4",
+        "text": "Occupancy grid → steering → polar histogram"
+      },
+      {
+        "id": "o1",
+        "text": "Occupancy grid → polar histogram → steering"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1128",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1128,
+        "kind": "statement",
+        "locator": "Physical PDF page 1128, printed slide 2; main text and labeled diagram as applicable",
+        "evidenceText": "Learning Objectives\n\n•  Convert grid worlds into graphs (vertices, edges, weights).\n•  Apply A* to find minimum-cost paths (g, h, f).\n•  Understand why local obstacle avoidance is needed.\n• Know key exteroceptive sensors (sonar, LiDAR, vision).\n•  Explain Bug algorithms (Bug0, Bug1, Bug2).\n•  Explain Vector Field Histogram (VFH): occupancy grid\n → polar histogram → steering.\n• Compare Bug vs. VFH.\n\n\n\n\n                                                                                                           2",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-P1132-Q04",
+    "version": 2,
+    "stem": "Which ordering matches the four numbered grid-to-graph conversion steps in the slides?",
+    "selectionMode": "single",
+    "type": "sequence",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Define coordinates → encode occupancy → create free-cell vertices → add legal weighted neighbor edges"
+      },
+      {
+        "id": "o2",
+        "text": "Define coordinates → create free-cell vertices → encode occupancy → add legal weighted neighbor edges"
+      },
+      {
+        "id": "o3",
+        "text": "Encode occupancy → define coordinates → add legal weighted neighbor edges → create free-cell vertices"
+      },
+      {
+        "id": "o4",
+        "text": "Define coordinates → encode occupancy → add legal weighted neighbor edges → create free-cell vertices"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1131",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1131,
+        "kind": "statement",
+        "locator": "Physical PDF page 1131, printed slide 5; main text and labeled diagram as applicable",
+        "evidenceText": "A* Algorithm: Example\n\n                       Grid-to-Graph Conversion for Path Planning\n                          (G=(V,E))\n(0,0)   (0,1)   (0,2)   (0,3)   (0,4)    ➢Step 1: Define the Coordinate System\n                          – Index the grid rows and columns to establish a\n(1,0)   (1,1)   (1,2)   (1,3)   (1,4)\n                           2D coordinate system.\n(2,0)   (2,1)   (2,2)   (2,3)   (2,4)     – For a grid of size 𝑀× 𝑁, each cell is uniquely\n                                        identified by its coordinates (𝑥, 𝑦), where\n(3,0)   (3,1)   (3,2)   (3,3)   (3,4)                            0 ≤𝑥< 𝑀 and\n                            0 ≤𝑦< 𝑁.(4,0)   (4,1)   (4,2)   (4,3)   (4,4)\n\n\n\n\n\n                                                                                                           5",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1132",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1132,
+        "kind": "statement",
+        "locator": "Physical PDF page 1132, printed slide 6; main text and labeled diagram as applicable",
+        "evidenceText": "A* Algorithm: Example\n➢Step 2: Construct the Binary Occupancy Grid\n    – Assign a binary state to each cell Grid (𝑥, 𝑦) ∈ {0,1}, where 0 = traversable\n        (free) and 1 = non-traversable (wall).\n➢Step 3: Populate the Vertex Set (V)\n    – For every cell (Grid (𝑥, 𝑦) ==0, i.e., every vacant cell), create a vertex v and add\n           it to the vertex set V.\n➢Step 4: Generate the Edge Set (E) and Edge Weights\n    – Based on the connectivity model (4-way or 8-way connected, i.e., octile way),\n        assign an edge weight (cost) between traversable\n       neighbouring cells.\n           • Cardinal (up/down/left/right) edges: cost = 1.0\n           • Diagonal edges: cost = 2 ≈1.4\n\n\n\n                                                                                                             6",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-P1135-Q02",
+    "version": 2,
+    "stem": "For the 5×5 source grid, which proposed start-to-goal route is legal under the no-corner-cutting rule and has the correctly stated cost? Use (row,column), start (4,4), goal (2,0), cardinal cost 1 and diagonal cost 1.4.",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o2",
+        "text": "(4, 4)→(4, 3)→(4, 2)→(3, 1)→(2, 0), cost 4.8"
+      },
+      {
+        "id": "o3",
+        "text": "(4, 4)→(3, 3)→(2, 2)→(2, 1)→(2, 0), cost 4.8"
+      },
+      {
+        "id": "o4",
+        "text": "(4, 4)→(4, 3)→(4, 2)→(4, 1)→(3, 1)→(2, 0), cost 6.4"
+      },
+      {
+        "id": "o1",
+        "text": "(4, 4)→(4, 3)→(4, 2)→(4, 1)→(3, 1)→(2, 0), cost 5.4"
+      }
+    ],
+    "assumptions": [
+      "Rows and columns run from 0 to 4. Blocked cells are (0,0),(0,1),(0,2),(1,2),(2,2),(3,2); all other cells are traversable.",
+      "Start accumulated cost is zero as defined on physical page 1133.",
+      "Use exactly 1.4 for each allowed diagonal. A diagonal requires both side-adjacent cardinal cells to be traversable."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1131",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1131,
+        "kind": "figure",
+        "locator": "Physical page 1131, printed slide 5: left 5×5 row/column-labelled occupancy grid",
+        "evidenceText": "Grid indices are (row,column), 0 through 4. Black cells: (0,0),(0,1),(0,2),(1,2),(2,2),(3,2). Green start: (4,4). Red goal: (2,0). Other cells are white/free.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1132",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1132,
+        "kind": "equation",
+        "locator": "Physical page 1132, printed slide 6: Steps 2–4 and cardinal/diagonal edge costs",
+        "evidenceText": "Occupancy 0 is traversable and 1 is wall. Create a vertex for each free cell and edges for traversable neighbors under the connectivity model. Cardinal edges cost 1.0; diagonal edges cost √2 ≈ 1.4.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1133",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1133,
+        "kind": "figure",
+        "locator": "Physical page 1133, printed slide 7: green start g=0.0 and blue corner-warning rectangle",
+        "evidenceText": "g(n) is accumulated move cost from Start. The green start has g=0.0. The warning forbids diagonal steps at corners to avoid wall collision; its marked corner is beside blocked cell (3,2). The goal label is 5.4.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1134",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1134,
+        "kind": "equation",
+        "locator": "Physical PDF page 1134, printed slide 8; main text and labeled diagram as applicable",
+        "evidenceText": "A* Algorithm: Example\n\n                       Define h(n)\n                   ➢h(n) = octile-distance heuristic to Goal\n                     3.8    4.8     (admissible, matches 1 or 1.4 cost\n                         scheme). 1.0    1.4          3.4    4.4\n             ➢We will not consider walls and will\n 0.0    1.0          3.0    4.0\n                           instead find the shortest distance\n 1.0    1.4          3.4    4.4                       between grid cells.\n 2.0    2.4    2.8    3.8    4.8\n\n\n\n\n\n                                                                                                           8",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-P1135-Q04",
+    "version": 2,
+    "stem": "A diagram labels g and h for every free cell. Why is selecting the globally smallest labeled f over all cells NOT a valid replacement for an A* trace?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o4",
+        "text": "The next expansion may be chosen from the explored set whenever one of its recorded f values is below all frontier values"
+      },
+      {
+        "id": "o1",
+        "text": "A* selects among current discovered frontier entries; a final cost map does not show which cells are available at the current step"
+      },
+      {
+        "id": "o2",
+        "text": "Every free cell with a printed heuristic is automatically a frontier entry, even before a route to it is generated"
+      },
+      {
+        "id": "o3",
+        "text": "Once a cell receives any g label, that label is its final search cost and never needs a lower-cost update"
+      }
+    ],
+    "assumptions": [
+      "Use the graph-search frontier convention demonstrated on physical pages 1121–1122.",
+      "The question concerns candidate eligibility, not the correctness of each numerical label on physical page 1135. Its inconsistent start g=1.0 label is not adopted as a rule."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1121",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1121,
+        "kind": "statement",
+        "locator": "Physical PDF page 1121, printed slide 34; main text and labeled diagram as applicable",
+        "evidenceText": "3. A-Star\n\nStep-by-Step Execution\n•  Initialize:\n   – Frontier: [A(0 + 7 = 7)]\n   – Explored: []\n•  Step 1: Expand A.\n   – Neighbor B: g(B)=5,h(B)=6→f(B)=11\n   – Neighbor C: g(C)=2,h(C)=5→f(C)=7\n   – Frontier: [C(7), B(11)]\n   – Explored: [A]\n\n\n\n\n                                                                                                          34",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1122",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1122,
+        "kind": "statement",
+        "locator": "Physical PDF page 1122, printed slide 35; main text and labeled diagram as applicable",
+        "evidenceText": "3. A-Star\n\nStep-by-Step Execution\n•  Step 2: Expand cheapest node, C(7).\n   – Neighbor F: g(F)=2+4=6,h(F)=2→f(F)=8\n   – Frontier: [F(8), B(11)]\n   – Explored: [A, C]\n•  Step 3: Expand cheapest node, F(8).\n   – Neighbor G:\n      g(G)=6+3=9,h(G)=0→f(G)=9\n   – Neighbor E:g(E)=6+1=7,h(E)=3→f(E)=10\n   – Frontier: [G(9), E(10), B(11)]\n   – Explored: [A, C, F]\n\n\n                                                                                                          35",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1135",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1135,
+        "kind": "statement",
+        "locator": "Physical PDF page 1135, printed slide 9; main text and labeled diagram as applicable",
+        "evidenceText": "A* Algorithm: Example\n\n Apply A* Algorithm\n\n                                  g=4.4      g=4\n                                  h=3.8     h=4.8\n                                             Expands node with minimum\n   g=6.4      g=6.0                g=3.4      g=3.0\n                                                     f(n)=g(n)+h(n)   h=1.0     h=1.4                h=3.4     h=4.4\n\n   g=5.4      g=5.0                g=2.4      g=2.0\n   h=0.0     h=1.0                h=3.0     h=4.0\n\n   g=4.4      g=4.0                g=1.4      g=1.0\n   h=1.0     h=1.4                h=3.4     h=4.4\n\n   g=4.0      g=3.0     g=2.0      g=1.0      g=1.0\n   h=2.0     h=2.4     h=2.8     h=3.8     h=4.8\n\n\n\n\n\n                                                                                                           9",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-P1136-Q02",
+    "version": 2,
+    "stem": "What limitation of the previous global plan motivates the obstacle-response slide?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "The route remains safe whenever the start and goal stay fixed, even if intermediate cells become occupied"
+      },
+      {
+        "id": "o3",
+        "text": "Changing only the tie-breaking rule on the unchanged old map incorporates newly sensed obstacles"
+      },
+      {
+        "id": "o4",
+        "text": "A shortest route on the original map must remain collision-free after the environment changes"
+      },
+      {
+        "id": "o1",
+        "text": "The route was planned using a known static map, but a later obstacle can invalidate a previously free segment"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1136",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1136,
+        "kind": "statement",
+        "locator": "Physical PDF page 1136, printed slide 10; main text and labeled diagram as applicable",
+        "evidenceText": "Obstacle\n➢What If a New Obstacle Detected!\n     •  The robot needs an algorithm that can react to sensor-detected obstacles or\n      changes in its environment representation that were not known during global\n       planning.\n     • A* assumed a fully known static map. Real environments have unforeseen\n       obstacles (people, other robots, moving furniture).\n\n\n\n\n\n                                                                                                            10",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1137",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1137,
+        "kind": "statement",
+        "locator": "Physical PDF page 1137, printed slide 11; main text and labeled diagram as applicable",
+        "evidenceText": "Obstacle Avoidance: Introduction\n•  Every robot — manipulator arm, mobile robot, or\n    aerial robot — must perform obstacle avoidance,\n   since unforeseen obstacles can appear\n   anywhere along the path from start to goal.\n•  To detect such obstacles, the robot needs\n   exteroceptive sensors:\n   – Sensors measuring properties of the outside\n      environment,\n   – Most commonly used\n       sonar/ultrasonic,\n      LiDAR (e.g., RPLiDAR),\n       infrared and\n       vision/camera sensors.\n\n\n\n                                                                                                            11",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-P1137-Q03",
+    "version": 2,
+    "stem": "According only to the small LiDAR illustration on this slide, which scan/range pair is printed?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "360° rotating scan;0.15–12 m range"
+      },
+      {
+        "id": "o2",
+        "text": "180° scan;15–120 m range"
+      },
+      {
+        "id": "o3",
+        "text": "90° scan;0–1.2 m range"
+      },
+      {
+        "id": "o4",
+        "text": "No rotation; range specified only in pixels"
+      }
+    ],
+    "assumptions": [
+      "Answer what the source figure prints, not current external product specifications."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1137",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1137,
+        "kind": "figure",
+        "locator": "Upper-right LiDAR illustration and its scan/range caption",
+        "evidenceText": "LiDAR (RPLiDAR); RPLIDAR A1; 2D Point Cloud Map; Type: Pulsed Laser (C1); Scan: 360° Rotating; Range: 0.15m–12m.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-P1137-Q04",
+    "version": 2,
+    "stem": "Which description matches the camera-processing illustration on the source slide?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "The camera is labeled a pulsed laser scanner with only distance rings"
+      },
+      {
+        "id": "o3",
+        "text": "The camera output is shown as joint-torque commands only"
+      },
+      {
+        "id": "o4",
+        "text": "The processed image contains no object labels"
+      },
+      {
+        "id": "o1",
+        "text": "A CMOS imager supplies visual data; the processed scene labels objects including Tool, Mug and Person"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1137",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1137,
+        "kind": "figure",
+        "locator": "Lower-center camera/computer-vision illustration and its object labels/captions",
+        "evidenceText": "Vision/Camera; Pi Camera V2; Computer Vision Processing; Tool; Mug; Person; Imager: CMOS Sensor; Output: Visual Data; Processed Output.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L36-P1120-Q04",
+    "version": 2,
+    "stem": "If A* uses h (v)=0 for every vertex and otherwise uses the same tie and repeated-state rules as UCS, what priority does it use?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "The greedy best-first priority h(v) alone, so all vertices receive the same primary priority"
+      },
+      {
+        "id": "o1",
+        "text": "The UCS priority g(v), the accumulated path cost"
+      },
+      {
+        "id": "o2",
+        "text": "The BFS depth priority, the number of edges from the start regardless of weight"
+      },
+      {
+        "id": "o3",
+        "text": "The cost of the single most recent edge into v, ignoring earlier edges"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1112",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1112,
+        "kind": "statement",
+        "locator": "Physical PDF page 1112, printed slide 25; main text and labeled diagram as applicable",
+        "evidenceText": "2. Uniform-Cost Search (UCS)\n•  UCS is an optimal graph search algorithm.\n   Instead of expanding nodes level-by-level,\n    it prioritizes vertices based on the lowest\n   cumulative cost from the start vertex.\n\n                Cost: Distance (in km)\n•  Mathematical Notation: Minimizes f(v)=g(v),\n  where g(v) is the cumulative cost (distance) from the\n   start to the current vertex v.\n•  Data Structures: It uses a priority queue ordered\n   from smallest to largest value of g(v).\n\n\n\n                                                                                                            25",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1119",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1119,
+        "kind": "statement",
+        "locator": "Physical PDF page 1119, printed slide 32; main text and labeled diagram as applicable",
+        "evidenceText": "3. A-Star\n•  The A* (A-star) search algorithm is a widely used\n   graph search technique in robot navigation that\n   finds the optimal path between two points by\n   using a heuristic to guide its search.\n\n•  Mathematical Notation: Minimizes f(v)=g(v)+h(v),\n   where:\n   – g(v) is the path cost from the start to vertex v\n      (cost-to-come).\n   – h(v) is a heuristic estimating the distance from v\n      to the goal (cost-to-go).\n\n\n\n                                                                                                            32",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-P1132-Q05",
+    "version": 2,
+    "stem": "For a fixed legal path containing diagonal moves, which consequence follows if its diagonal costs use exact √2 instead of the printed table’s 1.4, before rounding final totals?",
+    "selectionMode": "single",
+    "type": "exception",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The exact total is slightly larger under √2; the numerical convention must be stated"
+      },
+      {
+        "id": "o2",
+        "text": "The exact totals are identical because √2 and 1.4 are the same number"
+      },
+      {
+        "id": "o3",
+        "text": "The exact √2 total is slightly smaller because 1.4 rounds √2 upward"
+      },
+      {
+        "id": "o4",
+        "text": "The difference is always √2−1.4, regardless of how many diagonal moves the path contains"
+      }
+    ],
+    "assumptions": [
+      "The path and legal-move rules stay fixed; at least one diagonal is used. Cardinal costs remain exactly 1.",
+      "Compare unrounded totals; this does not assert that two separately optimized path choices are identical."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1132",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1132,
+        "kind": "equation",
+        "locator": "Physical PDF page 1132, printed slide 6; main text and labeled diagram as applicable",
+        "evidenceText": "Step 2 encodes free cells as 0 and walls as 1. Step 3 creates vertices for free cells. Step 4 creates permitted neighboring edges. Cardinal edge cost=1.0. Diagonal edge cost=√2≈1.4 (square-root sign visually confirmed).",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1133",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1133,
+        "kind": "statement",
+        "locator": "Physical PDF page 1133, printed slide 7; main text and labeled diagram as applicable",
+        "evidenceText": "A* Algorithm: Example\n\n                       Define g(n)\n\n                     4.4    4.0  ➢g(n) = actual accumulated cost from Start\n                           to nth cell (sum of move costs along the 6.4    6.0    4     3.4    3.0\n                         path so far).\n 5.4    5.0          2.4    2.0\n                    ➢Note:- Robot is not allowed diagonal steps\n 4.4    4.0          1.4    1.0                             at corners to avoid\n                               collision with wall. 4.0    3.0    2.0    1.0    0.0\n\n\n\n\n\n                                                                                                           7",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1134",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1134,
+        "kind": "statement",
+        "locator": "Physical PDF page 1134, printed slide 8; main text and labeled diagram as applicable",
+        "evidenceText": "A* Algorithm: Example\n\n                       Define h(n)\n                   ➢h(n) = octile-distance heuristic to Goal\n                     3.8    4.8     (admissible, matches 1 or 1.4 cost\n                         scheme). 1.0    1.4          3.4    4.4\n             ➢We will not consider walls and will\n 0.0    1.0          3.0    4.0\n                           instead find the shortest distance\n 1.0    1.4          3.4    4.4                       between grid cells.\n 2.0    2.4    2.8    3.8    4.8\n\n\n\n\n\n                                                                                                           8",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  }
+]

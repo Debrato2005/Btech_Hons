@@ -1,0 +1,249 @@
+[
+  {
+    "id": "runtime-numpy",
+    "version": "2.3.5",
+    "passed": true,
+    "verificationKind": "runtime_metadata"
+  },
+  {
+    "id": "runtime-pandas",
+    "version": "2.2.3",
+    "passed": true,
+    "verificationKind": "runtime_metadata"
+  },
+  {
+    "id": "runtime-scipy",
+    "version": "1.17.0",
+    "passed": true,
+    "verificationKind": "runtime_metadata"
+  },
+  {
+    "id": "p157-as-printed-block-depth",
+    "code": "import numpy as np\nq = np.array([0.1, -0.5, 1.2, 0.8])\nR = np.eye(3)\nT = np.block([[R, np.zeros((3,1))],\n              [np.zeros((1,3)), [[1]]]])\nq_offset = q + np.array([0.05]*4)\nnorm = np.linalg.norm(q)",
+    "prefix": "",
+    "expectedError": "ValueError",
+    "actualError": "ValueError: List depths are mismatched. First element was at depth 2, but there is an element at depth 4 (arrays[1][1][0][0])",
+    "stdout": "",
+    "passed": true,
+    "verificationKind": "author_executable_check_not_independent_review",
+    "pythonVersion": "3.12.14"
+  },
+  {
+    "id": "p157-explicit-repair",
+    "code": "import numpy as np\nq = np.array([0.1, -0.5, 1.2, 0.8])\nR = np.eye(3)\nT = np.block([[R, np.zeros((3,1))],\n              [np.zeros((1,3)), np.array([[1]])]])\nq_offset = q + np.array([0.05]*4)\nnorm = np.linalg.norm(q)",
+    "prefix": "",
+    "expectedError": null,
+    "actualError": null,
+    "stdout": "",
+    "passed": true,
+    "verificationKind": "author_executable_check_not_independent_review",
+    "pythonVersion": "3.12.14",
+    "results": {
+      "T": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "q_offset": [
+        0.15000000000000002,
+        -0.45,
+        1.25,
+        0.8500000000000001
+      ],
+      "norm": 1.5297058540778354
+    }
+  },
+  {
+    "id": "p160-literal-line-break",
+    "code": "import pandas as pd\nimport numpy as np\ndf = pd.read_csv('joint_states.csv')\ndf['time'] = pd.to_datetime(df['timestamp'], unit='s')\ndf = df.set_index('time')\ndf['vel_j1'] = df['pos_j1'].diff() /\ndf.index.to_series().diff().dt.total_seconds()\ndf['vel_j1_filt'] = df['vel_j1'].rolling('50ms').mean()\nsummary = df[['pos_j1','pos_j2']].describe()\nprint(summary)\ndf.to_csv('cleaned_joints.csv')",
+    "prefix": "",
+    "expectedError": "SyntaxError",
+    "actualError": "SyntaxError: invalid syntax (<string>, line 6)",
+    "stdout": "",
+    "passed": true,
+    "verificationKind": "author_executable_check_not_independent_review",
+    "pythonVersion": "3.12.14"
+  },
+  {
+    "id": "p160-api-label-check",
+    "passed": true,
+    "results": {
+      "read_hdf5": false,
+      "read_hdf": true
+    },
+    "verificationKind": "author_runtime_api_check"
+  },
+  {
+    "id": "p161-literal-mismatched-name",
+    "code": "robot_name = \"mobile robot\"\nmax_speed = 1.5\ntime = 4\nsensor_data = [1.2, 1.5, 0.9, 2.0]\nrobot_pose = (2.3, 1.2, 0.5)\nobjects = {\"chair\", \"table\", \"wall\", \"chair\"}\ndef compute_distance(speed, time):\n    distance = speed * time\n    return distance\n\nd = compute_travel_distance(10, 5)",
+    "prefix": "",
+    "expectedError": "NameError",
+    "actualError": "NameError: name 'compute_travel_distance' is not defined",
+    "stdout": "",
+    "passed": true,
+    "verificationKind": "author_executable_check_not_independent_review",
+    "pythonVersion": "3.12.14"
+  },
+  {
+    "id": "p161-explicit-call-name-repair",
+    "code": "robot_name = \"mobile robot\"\nmax_speed = 1.5\ntime = 4\nsensor_data = [1.2, 1.5, 0.9, 2.0]\nrobot_pose = (2.3, 1.2, 0.5)\nobjects = {\"chair\", \"table\", \"wall\", \"chair\"}\ndef compute_distance(speed, time):\n    distance = speed * time\n    return distance\n\nd = compute_distance(10, 5)",
+    "prefix": "",
+    "expectedError": null,
+    "actualError": null,
+    "stdout": "",
+    "passed": true,
+    "verificationKind": "author_executable_check_not_independent_review",
+    "pythonVersion": "3.12.14"
+  },
+  {
+    "id": "p162-as-printed-valid-syntax-and-trace",
+    "code": "sensor_data = [2.0, 1.5, 0.8, 0.4, 0.2]\nfor reading in sensor_data:\n    if reading < 0.5:\n        action = \"STOP\"\n        break\n    if reading < 1.0:\n        action = \"Reduce speed\"\n        print(\"Distance:\", reading, \"Robot action:\", action)\n        continue\n    else:\n        action = \"MOVE_FORWARD\"\n    print(\"Distance:\", reading, \"Robot action:\", action)\nprint(\"Distance:\", reading, \"Final Robot action:\", action)",
+    "prefix": "",
+    "expectedError": null,
+    "actualError": null,
+    "stdout": "Distance: 2.0 Robot action: MOVE_FORWARD\nDistance: 1.5 Robot action: MOVE_FORWARD\nDistance: 0.8 Robot action: Reduce speed\nDistance: 0.4 Final Robot action: STOP\n",
+    "passed": true,
+    "verificationKind": "author_executable_check_not_independent_review",
+    "pythonVersion": "3.12.14"
+  },
+  {
+    "id": "p163-object-trace",
+    "code": "class Robot:\n    def __init__(self, name, speed):\n        self.name = name\n        self.speed = speed\n    def move(self, time, action=\"moved\"):\n        distance = self.speed * time\n        print(self.name, action, distance, \"meters\")\n    def status(self):\n        print(\"Robot:\", self.name)\n        print(\"Speed:\", self.speed)\nrobot1 = Robot(\"rover_1\", 1.5)\nrobot1.status()\nrobot1.move(4)",
+    "prefix": "",
+    "expectedError": null,
+    "actualError": null,
+    "stdout": "Robot: rover_1\nSpeed: 1.5\nrover_1 moved 6.0 meters\n",
+    "passed": true,
+    "verificationKind": "author_executable_check_not_independent_review",
+    "pythonVersion": "3.12.14"
+  },
+  {
+    "id": "p164-inherited-and-overridden-trace",
+    "code": "class MobileRobot(Robot):\n    def move(self, time):\n        distance = self.speed * time\n        print(self.name, \"drives\", distance, \"m\")\nclass Drone(Robot):\n    def move(self, time):\n        super().move(time, \"flies\")\nr1 = MobileRobot(\"rover\", 1.5)\nr2 = Drone(\"quadrotor\", 3.5)\nr1.move(3)\nr2.move(3)",
+    "prefix": "class Robot:\n    def __init__(self, name, speed):\n        self.name = name\n        self.speed = speed\n    def move(self, time, action=\"moved\"):\n        distance = self.speed * time\n        print(self.name, action, distance, \"meters\")\n    def status(self):\n        print(\"Robot:\", self.name)\n        print(\"Speed:\", self.speed)\n",
+    "expectedError": null,
+    "actualError": null,
+    "stdout": "rover drives 4.5 m\nquadrotor flies 10.5 meters\n",
+    "passed": true,
+    "verificationKind": "author_executable_check_not_independent_review",
+    "pythonVersion": "3.12.14"
+  },
+  {
+    "id": "p165-p166-numerical-path",
+    "code": "import numpy as np\nfrom scipy.spatial.distance import euclidean\npose = np.array([0,0])\ngoal = np.array([5, 4])\nmotions = np.array([[1,1],[1,0.5],[1,0.5],[1,1]])\npath = [pose]\nfor m in motions:\n    pose = pose + m\n    path.append(pose)\npath = np.array(path)\ndist = euclidean(path[-1], goal)\n",
+    "prefix": "",
+    "expectedError": null,
+    "actualError": null,
+    "stdout": "",
+    "passed": true,
+    "verificationKind": "author_executable_check_not_independent_review",
+    "pythonVersion": "3.12.14",
+    "results": {
+      "path": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          2.0,
+          1.5
+        ],
+        [
+          3.0,
+          2.0
+        ],
+        [
+          4.0,
+          3.0
+        ]
+      ],
+      "distance": 1.4142135623730951,
+      "pathLength": 5.06449510224598
+    }
+  },
+  {
+    "id": "p160-explicit-repair-on-stated-test-data",
+    "code": "import pandas as pd\ndf = pd.DataFrame({'timestamp':[0,.02,.04,.06], 'pos_j1':[0,.02,.06,.12]})\ndf['time'] = pd.to_datetime(df['timestamp'],unit='s')\ndf=df.set_index('time')\ndf['vel_j1']=(df['pos_j1'].diff()/df.index.to_series().diff().dt.total_seconds())\ndf['vel_j1_filt']=df['vel_j1'].rolling('50ms').mean()\n",
+    "prefix": "",
+    "expectedError": null,
+    "actualError": null,
+    "stdout": "",
+    "passed": true,
+    "verificationKind": "author_executable_check_not_independent_review",
+    "pythonVersion": "3.12.14",
+    "results": {
+      "velocities": [
+        null,
+        1.0,
+        1.9999999999999996,
+        3.0
+      ],
+      "rolling": [
+        null,
+        1.0,
+        1.4999999999999998,
+        2.0
+      ]
+    }
+  },
+  {
+    "id": "p166-inplace-explicit-variant",
+    "code": "import numpy as np\npose=np.array([0,0])\nmotions=np.array([[1,1],[1,.5],[1,.5],[1,1]])\npose += motions[0]",
+    "prefix": "",
+    "expectedError": "UFuncTypeError",
+    "actualError": "UFuncTypeError: Cannot cast ufunc 'add' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'",
+    "stdout": "",
+    "passed": true,
+    "verificationKind": "author_executable_check_not_independent_review",
+    "pythonVersion": "3.12.14"
+  },
+  {
+    "id": "p162-threshold-variants",
+    "code": "sensor_data = [0.5, 1.0]\nfor reading in sensor_data:\n    if reading < 0.5:\n        action = \"STOP\"\n        break\n    if reading < 1.0:\n        action = \"Reduce speed\"\n        print(\"Distance:\", reading, \"Robot action:\", action)\n        continue\n    else:\n        action = \"MOVE_FORWARD\"\n    print(\"Distance:\", reading, \"Robot action:\", action)\nprint(\"Distance:\", reading, \"Final Robot action:\", action)",
+    "prefix": "",
+    "expectedError": null,
+    "actualError": null,
+    "stdout": "Distance: 0.5 Robot action: Reduce speed\nDistance: 1.0 Robot action: MOVE_FORWARD\nDistance: 1.0 Final Robot action: MOVE_FORWARD\n",
+    "passed": true,
+    "verificationKind": "author_executable_check_not_independent_review",
+    "pythonVersion": "3.12.14"
+  },
+  {
+    "id": "p166-polyline-length-rounding",
+    "passed": true,
+    "exactExpression": "2*sqrt(2)+sqrt(5)",
+    "value": 5.06449510224598,
+    "verificationKind": "author_arithmetic_check"
+  },
+  {
+    "id": "p162-square-root",
+    "passed": true,
+    "value": 21.0,
+    "verificationKind": "author_arithmetic_check"
+  }
+]

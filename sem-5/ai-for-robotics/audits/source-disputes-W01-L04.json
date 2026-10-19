@@ -1,0 +1,146 @@
+[
+  {
+    "id": "L04-ISSUE-138-continuous_example",
+    "physicalPage": 138,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The continuous-simulation example says every millisecond, which describes a numerical sampling cadence rather than the definition of continuous time.",
+    "handling": "Questions distinguish the continuous model from discrete evaluation.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L04-ISSUE-139-sensitivity",
+    "physicalPage": 139,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The statement that simulation results are highly sensitive to initial conditions is unqualified; not every model has chaotic or strong sensitivity.",
+    "handling": "Test that initial state can affect behavior, not universal chaotic sensitivity.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L04-ISSUE-142-exact_reality",
+    "physicalPage": 142,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "High fidelity is illustrated as exactly matching reality, although the concept is degree of agreement and all models have scope limitations.",
+    "handling": "Do not assert perfect universal fidelity; use intended-use agreement and stated simplifications.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L04-ISSUE-153-setup_scope",
+    "physicalPage": 153,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The slide names JetPack6.2.2, misspells Orin as Orion once, and gives apt install code_<version_name>_arm64.deb without explicitly marking a local path.",
+    "handling": "Version questions are source-attributed. No installation is executed or treated as up-to-date operational guidance; use explicit ./ path if demonstrating a repaired local-file command.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L04-ISSUE-154-commands",
+    "physicalPage": 154,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "mkdir first_project is followed by cd my_project; sudo apt python3.10-venv omits install; python3 –m uses a typographic en dash. The claim that venv installs setuptools is Python-version-dependent.",
+    "handling": "Questions explicitly flag/repair only named defects. Avoid claiming setuptools is installed by every Python version. No apt or pip actions run.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L04-ISSUE-155-file_format",
+    "physicalPage": 155,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The slide groups .py and .ipynb as scripts and lists an IDE as a need. A notebook is a structured container, not an ordinary .py script; execution need not require a graphical IDE.",
+    "handling": "Distinguish notebook versus source file explicitly; do not require an IDE to execute every program.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L04-ISSUE-156-ecosystem_grouping",
+    "physicalPage": 156,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "Gazebo/rclpy share a Robotics Sim box, but rclpy is a ROS2 client library rather than a physics engine; category membership is not exclusive.",
+    "handling": "Frame category questions as the lecture diagram’s grouping; later bridge question distinguishes rclpy role.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L04-ISSUE-157-block_depth",
+    "physicalPage": 157,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "np.block uses a raw [[1]] leaf beside arrays, producing inconsistent list depths and ValueError. Comment Matrix multiply mislabels block assembly.",
+    "handling": "Preserve exact-code failure. Separately label the repair np.array([[1]]) and explain assembled identity4. Later offset/norm evaluation is explicitly isolated or after repair.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L04-ISSUE-157-performance_broadcast",
+    "physicalPage": 157,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "100× faster and contiguous memory are unqualified claims: array views need not be contiguous and speedups depend on workload. Different shapes still require broadcasting compatibility; shown offset arrays have equal shapes.",
+    "handling": "Do not accept universal performance/contiguity claims. Test array roles, valid arithmetic, and the compatibility qualification without claiming arbitrary shapes work.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L04-ISSUE-158-solver_scope",
+    "physicalPage": 158,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The integrate box labels solve_ivp/odeint as ODE/PDE solvers and the signal box mentions Kalman filters. These labels do not establish a direct generic PDE interface or a scipy.signal.Kalman API.",
+    "handling": "Questions test named module roles and ODE use; do not invent a Kalman API. Broader API claims remain excluded pending specialist adjudication.",
+    "status": "needs_independent_adjudication"
+  },
+  {
+    "id": "L04-ISSUE-159-fps",
+    "physicalPage": 159,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The animation box promises30+fps without specifying hardware, workload or backend.",
+    "handling": "Test FuncAnimation/blitting role, not a guaranteed frame rate.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L04-ISSUE-160-syntax",
+    "physicalPage": 160,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "Velocity expression breaks after / without explicit continuation; parsing the literal displayed text raises SyntaxError.",
+    "handling": "Explicitly repair with parentheses before evaluating finite differences. Example values are supplied in the question, not invented as unseen CSV contents.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L04-ISSUE-160-hdf_api",
+    "physicalPage": 160,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "Table labels the HDF reader read_hdf5; tested pandas has read_hdf, not read_hdf5.",
+    "handling": "Preserve source typo; no question presents read_hdf5 as a working API. Runtime attribute check retained.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L04-ISSUE-161-function_name",
+    "physicalPage": 161,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "Defines compute_distance but calls compute_travel_distance.",
+    "handling": "Exact snippet raises NameError in a fresh namespace. Repair is stated before the returned distance is asked.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L04-ISSUE-162-prior_comma_allegation",
+    "physicalPage": 162,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "Prior handoff alleged missing print-call commas. Direct inspection of all three print lines shows commas present; exact transcription compiles and produces the expected four lines.",
+    "handling": "Do not label this source erroneous. Preserve the rejected allegation and executable trace for independent review.",
+    "status": "not_a_source_defect_visual_allegation_rejected"
+  },
+  {
+    "id": "L04-ISSUE-168-quantified_overclaims",
+    "physicalPage": 168,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "90% task coverage,5–10 lines, any dynamical system, industry-standard wording and same-code sim/hardware assertions lack bounded evidence and assumptions.",
+    "handling": "Test toolkit roles, acceleration mappings and sim-to-real practices. Exclude percentages, universal solver coverage and unconditional portability as general facts.",
+    "status": "bounded_by_explicit_question_scope"
+  }
+]

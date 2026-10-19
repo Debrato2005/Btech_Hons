@@ -13,6 +13,6 @@ The final goal is one self-contained offline HTML study app with independently v
 - Generate concept-level question coverage and independently solve every accepted question.
 - Build and test offline practice, timed exams, revision, evidence previews and exports.
 
-No course question is verified yet. The expected 1,953 pages and 12 weeks are unverified until source inventory finishes.
+Inventory is reconciled: 1,953 lecture pages plus 59 assignment pages, spanning 12 weeks and 60 lectures. Source-based question review is in progress; current measured counts and limitations are in project-state.json. Extraction and rendered images do not count as visual inspection. The single-file app builder is implemented, but complete content and actual downloaded-file offline browser QA remain unfinished.
 
 See [RESUME.md](RESUME.md) to continue safely after an interruption.

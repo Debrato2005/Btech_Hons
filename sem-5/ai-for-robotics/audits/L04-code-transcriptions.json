@@ -1,0 +1,66 @@
+{
+  "157": {
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 157,
+    "printedSlideNumber": "33",
+    "code": "import numpy as np\nq = np.array([0.1, -0.5, 1.2, 0.8])\nR = np.eye(3)\nT = np.block([[R, np.zeros((3,1))],\n              [np.zeros((1,3)), [[1]]]])\nq_offset = q + np.array([0.05]*4)\nnorm = np.linalg.norm(q)",
+    "normalization": "Comments omitted; indentation and executable tokens visually transcribed. No bug corrections applied."
+  },
+  "160": {
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 160,
+    "printedSlideNumber": "36",
+    "code": "import pandas as pd\nimport numpy as np\ndf = pd.read_csv('joint_states.csv')\ndf['time'] = pd.to_datetime(df['timestamp'], unit='s')\ndf = df.set_index('time')\ndf['vel_j1'] = df['pos_j1'].diff() /\ndf.index.to_series().diff().dt.total_seconds()\ndf['vel_j1_filt'] = df['vel_j1'].rolling('50ms').mean()\nsummary = df[['pos_j1','pos_j2']].describe()\nprint(summary)\ndf.to_csv('cleaned_joints.csv')",
+    "normalization": "Comments omitted; indentation and executable tokens visually transcribed. No bug corrections applied."
+  },
+  "161": {
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 161,
+    "printedSlideNumber": "37",
+    "code": "robot_name = \"mobile robot\"\nmax_speed = 1.5\ntime = 4\nsensor_data = [1.2, 1.5, 0.9, 2.0]\nrobot_pose = (2.3, 1.2, 0.5)\nobjects = {\"chair\", \"table\", \"wall\", \"chair\"}\ndef compute_distance(speed, time):\n    distance = speed * time\n    return distance\n\nd = compute_travel_distance(10, 5)",
+    "normalization": "Comments omitted; indentation and executable tokens visually transcribed. No bug corrections applied."
+  },
+  "162": {
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 162,
+    "printedSlideNumber": "38",
+    "code": "sensor_data = [2.0, 1.5, 0.8, 0.4, 0.2]\nfor reading in sensor_data:\n    if reading < 0.5:\n        action = \"STOP\"\n        break\n    if reading < 1.0:\n        action = \"Reduce speed\"\n        print(\"Distance:\", reading, \"Robot action:\", action)\n        continue\n    else:\n        action = \"MOVE_FORWARD\"\n    print(\"Distance:\", reading, \"Robot action:\", action)\nprint(\"Distance:\", reading, \"Final Robot action:\", action)",
+    "normalization": "Comments omitted; indentation and executable tokens visually transcribed. No bug corrections applied."
+  },
+  "163": {
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 163,
+    "printedSlideNumber": "39",
+    "code": "class Robot:\n    def __init__(self, name, speed):\n        self.name = name\n        self.speed = speed\n    def move(self, time, action=\"moved\"):\n        distance = self.speed * time\n        print(self.name, action, distance, \"meters\")\n    def status(self):\n        print(\"Robot:\", self.name)\n        print(\"Speed:\", self.speed)\nrobot1 = Robot(\"rover_1\", 1.5)\nrobot1.status()\nrobot1.move(4)",
+    "normalization": "Comments omitted; indentation and executable tokens visually transcribed. No bug corrections applied."
+  },
+  "164": {
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 164,
+    "printedSlideNumber": "40",
+    "code": "class MobileRobot(Robot):\n    def move(self, time):\n        distance = self.speed * time\n        print(self.name, \"drives\", distance, \"m\")\nclass Drone(Robot):\n    def move(self, time):\n        super().move(time, \"flies\")\nr1 = MobileRobot(\"rover\", 1.5)\nr2 = Drone(\"quadrotor\", 3.5)\nr1.move(3)\nr2.move(3)",
+    "normalization": "Comments omitted; indentation and executable tokens visually transcribed. No bug corrections applied."
+  },
+  "165": {
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 165,
+    "printedSlideNumber": "41",
+    "code": "import numpy as np\nfrom scipy.spatial.distance import euclidean\nimport matplotlib.pyplot as plt\npose = np.array([0,0])\ngoal = np.array([5, 4])\nmotions = np.array([[1,1],[1,0.5],[1,0.5],[1,1]])\npath = [pose]",
+    "normalization": "Comments omitted; indentation and executable tokens visually transcribed. No bug corrections applied."
+  },
+  "166": {
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 166,
+    "printedSlideNumber": "42",
+    "code": "for m in motions:\n    pose = pose + m\n    path.append(pose)\npath = np.array(path)\ndist = euclidean(path[-1], goal)\nplt.plot(path[:,0], path[:,1], 'o-', label=\"Robot Path\")\nplt.scatter(goal[0], goal[1], color='red', label=\"Goal\")\nplt.title(\"Robot Movement\")\nplt.xlabel(\"X position\")\nplt.ylabel(\"Y position\")\nplt.grid(True)\nplt.legend()\nplt.show()",
+    "normalization": "Comments omitted; indentation and executable tokens visually transcribed. No bug corrections applied."
+  }
+}
