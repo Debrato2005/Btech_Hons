@@ -15,7 +15,7 @@
 
 ## Next actions
 
-Finish source retrieval and page inventory, then inspect the earliest lecture pages and author source-grounded question batches while the application and integrity tools are built in parallel.
+Sources are retrieved and hashed: 1,953 lecture pages plus 59 assignment pages. Read sources/README.md to re-download and regenerate source maps/text/previews if needed. Run python scripts/assemble_bank.py, python scripts/validate.py, and python scripts/build.py after source recovery. Integration-owned L01 has 66 draft questions; independent blind review is pending. L02, L03 and the search-algorithm sequence are assigned to distinct authors. App and learning-tools code are implemented but full offline QA remains pending. Read audits/assignment_disputes.json; source answer keys contain unresolved conflicts and must not be blindly promoted.
 
 ## Verification of checkpoints
 
