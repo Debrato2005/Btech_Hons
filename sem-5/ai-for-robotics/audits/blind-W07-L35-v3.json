@@ -1,0 +1,371 @@
+[
+  {
+    "id": "W07-L35-Q079",
+    "version": 3,
+    "stem": "For an ordinary Python call, what does model.predict(source=image_source, save=True, conf=0.25) perform?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Run inference and return the saved image path instead of structured prediction results."
+      },
+      {
+        "id": "o1",
+        "text": "Run inference, return structured prediction results, and save annotated outputs without training-weight updates."
+      },
+      {
+        "id": "o2",
+        "text": "Run inference and save a newly trained checkpoint containing pseudo-label updates."
+      },
+      {
+        "id": "o3",
+        "text": "Run inference and save annotated outputs, but suppress the returned Results objects."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1083",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1083,
+        "kind": "code",
+        "locator": "Lecture 35, physical page 1083, printed slide 24: Prediction call, line 10",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q088",
+    "version": 3,
+    "stem": "The displayed stop-sign score is approximately 0.255 and the prediction threshold is 0.25. Considering only the confidence-filter stage in Ultralytics 8.4.182, what is justified?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "It passes and therefore establishes a calibrated 25.5% correctness probability for that individual box."
+      },
+      {
+        "id": "o2",
+        "text": "It fails the threshold because 0.255 rounds to 0.25 at two decimal places."
+      },
+      {
+        "id": "o4",
+        "text": "It passes and contributes 0.255 of a true positive to the measured precision count."
+      },
+      {
+        "id": "o1",
+        "text": "It passes the stated threshold; this is not independent evidence of correct recognition."
+      }
+    ],
+    "assumptions": [
+      "Compare the supplied score without display rounding. In the installed ordinary detection path, passing the confidence stage requires a score strictly greater than the threshold; later NMS is a separate stage.",
+      "The figure shows a reported detection, not independently labeled ground truth."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1084",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1084,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1084, printed slide 25: Right output report, final STOP SIGN confidence",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1083",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1083,
+        "kind": "code",
+        "locator": "Lecture 35, physical page 1083, printed slide 24: Prediction confidence cutoff, line 10",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q089",
+    "version": 3,
+    "stem": "The source figure contains a custom per-detection text report, while the preceding slide only loads, predicts and reads save_dir. How does the actual linked notebook produce that report?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Displaying the unmodified Results list produces the same custom per-box report without extra formatting."
+      },
+      {
+        "id": "o4",
+        "text": "Calling Results.plot() produces the per-box text report while also drawing the annotated image."
+      },
+      {
+        "id": "o1",
+        "text": "A separate per-box loop performs the class-name lookup and report formatting beyond the printed key lines."
+      },
+      {
+        "id": "o2",
+        "text": "The default verbose prediction logger produces the same per-box class, percentage and coordinate report."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1083",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1083,
+        "kind": "code",
+        "locator": "Lecture 35, physical page 1083, printed slide 24: Key lines 1–13: imports, load, input URL, prediction and directory assignment",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1084",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1084,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1084, printed slide 25: Right printed per-detection output report",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q098",
+    "version": 3,
+    "stem": "In the original YOLO diagram, what is the role of the number 4,096 near the output?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "It is the channel count of the final convolutional feature tensor before flattening."
+      },
+      {
+        "id": "o4",
+        "text": "It is the length of the final detection vector before reshaping into the output tensor."
+      },
+      {
+        "id": "o1",
+        "text": "It is the width of a fully connected hidden representation before the final detection output."
+      },
+      {
+        "id": "o3",
+        "text": "It is the flattened width of the final convolutional tensor before any dense transformation."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1078",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1078,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1078, printed slide 19: bottom architecture, final convolution tensor → Conn. Layer 4096 → final Conn. Layer and 7×7×30 tensor",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q099",
+    "version": 1,
+    "stem": "Adapt the lecture CNN to a 32×32×3 input. Apply Conv1 with 16 filters of size 5×5, stride 1 and padding 0; a 2×2 max pool with stride 2; Conv2 with 32 filters of size 5×5, stride 1 and padding 0; another identical max pool; flatten; dense 128; dense 10. Each convolutional output channel and dense unit has one bias. With ordinary ungrouped convolutions, dilation 1, no pool padding or ceil mode, and no other trainable layers, what are the flatten width and total trainable parameter count?",
+    "selectionMode": "single",
+    "type": "synthesis",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Flatten width 512; total 81,002 parameters."
+      },
+      {
+        "id": "o1",
+        "text": "Flatten width 800; total 117,866 parameters."
+      },
+      {
+        "id": "o3",
+        "text": "Flatten width 800; total 117,680 parameters."
+      },
+      {
+        "id": "o2",
+        "text": "Flatten width 800; total 117,066 parameters."
+      }
+    ],
+    "assumptions": [
+      "All architecture values in the stem are supplied; the original lecture input is 28×28×1, not this variant.",
+      "Spatial shapes are height×width×channels. Filter weights are shared across spatial positions and each filter spans all input channels.",
+      "ReLU/flatten/pooling have no trainable parameters; no batch normalization, dropout parameters, groups or additional layers are included."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1068",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1068,
+        "kind": "equation",
+        "locator": "Lecture 35, physical page 1068, printed slide 9: Output-size equation and convolution diagram",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1069",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1069,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1069, printed slide 10: Pooling example and stride/padding settings",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1070",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1070,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1070, printed slide 11: Tensor-to-vector flattening illustration",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1071",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1071,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1071, printed slide 12: Two fully connected layers in worked pipeline",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q100",
+    "version": 1,
+    "stem": "Use the original-YOLO coordinate convention with a supplied 4×4 grid on a 400×400 pixel image. Cells are zero-indexed as (column,row). A and B lie in cell (1,1), whose conditional person probability is 0.8: A=(x=0.8,y=0.5,w=0.5,h=0.5,box confidence=0.9); B=(0.9,0.5,0.5,0.5,0.8). C lies in cell (2,1), whose conditional person probability is 0.5: C=(0.4,0.5,0.25,0.25,0.7). Centers are cell-relative; widths/heights are whole-image fractions. Test only the person class. Keep class-specific scores strictly above 0.4, then apply descending-score greedy NMS, suppressing a lower-ranked box if its IoU with a kept box is greater than 0.5. Which tuple gives A’s pixel corners (left,top,right,bottom), A’s person score, and the final survivors?",
+    "selectionMode": "single",
+    "type": "synthesis",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o4",
+        "text": "A corners (80,50,280,250); A score 0.72; survivors {A,B}."
+      },
+      {
+        "id": "o1",
+        "text": "A corners (80,50,280,250); A score 0.72; survivors {A}."
+      },
+      {
+        "id": "o3",
+        "text": "A corners (80,50,280,250); A score 0.90; survivors {A,C}."
+      },
+      {
+        "id": "o2",
+        "text": "A corners (155,125,205,175); A score 0.72; survivors {A}."
+      }
+    ],
+    "assumptions": [
+      "All numeric candidates, grid size, thresholds and person-only policy are supplied illustrative values; this is an original-YOLO convention example, not a YOLOv8 raw-output decoder.",
+      "The given box confidence already includes the original model’s objectness/estimated-localization confidence; do not multiply it by objectness again.",
+      "No other candidates or classes are considered. The origin is top-left; x increases rightward and y downward; axis-aligned continuous-coordinate boxes use width right−left, with no +1 pixel correction or clipping.",
+      "Class-specific score equals the cell’s conditional person probability times the candidate’s box confidence. This is a modeled score, not an independently calibrated correctness probability."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1075",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1075,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1075, printed slide 16: Bounding-box coordinate and confidence definitions",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1075",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1075,
+        "kind": "equation",
+        "locator": "Lecture 35, physical page 1075, printed slide 16: Intersection-over-union definition",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1076",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1076,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1076, printed slide 17: Class-probability and NMS steps",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q101",
+    "version": 1,
+    "stem": "In the actual linked Lecture 35 notebook, consider a BUS detection with confidence 0.8734. With a fresh Ultralytics 8.4.182 model in an ordinary Python session and no command-line or persistent save override, which combined trace matches code cells 7, 11 and 12: the class/score report, Matplotlib color handling, and automatic annotated-file saving?",
+    "selectionMode": "single",
+    "type": "synthesis",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Look up the class name and print BUS at 87.3%; pass the plotted BGR array directly to imshow as RGB; the prediction call does not request annotated-file saving."
+      },
+      {
+        "id": "o3",
+        "text": "Look up the class name and print BUS at 87.3%; reverse the plotted image’s BGR channels to RGB; the notebook prediction automatically saves an annotated file just as the slide does."
+      },
+      {
+        "id": "o4",
+        "text": "Look up the class name and print BUS at 0.9%; reverse the plotted image’s BGR channels to RGB; the prediction call does not request annotated-file saving."
+      },
+      {
+        "id": "o1",
+        "text": "Look up the class name and print BUS at 87.3%; reverse the plotted image’s BGR channels to RGB; the prediction call does not request annotated-file saving."
+      }
+    ],
+    "assumptions": [
+      "Use the exact source notebook identified in supplemental provenance. Its code cell 7 calls model.predict(source=image_source, conf=0.25); it is a different source variant from the printed slide with save=True.",
+      "Results.plot() uses its default NumPy output in BGR channel order; Matplotlib imshow expects RGB. No PIL mode, CLI invocation or prior predictor settings override these defaults.",
+      "The question concerns requested annotated-image output, not library caches, model downloads or files written separately by a test harness."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1083",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1083,
+        "kind": "code",
+        "locator": "Lecture 35, physical page 1083, printed slide 24: Prediction call line 10 and link to fuller notebook",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1084",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1084,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1084, printed slide 25: BUS report and annotated-output image",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  }
+]

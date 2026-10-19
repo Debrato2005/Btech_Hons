@@ -1,0 +1,808 @@
+[
+  {
+    "id": "W03-L12-Q004",
+    "version": 2,
+    "stem": "If each link requires a fixed-size calculation in one outward and one inward pass, how does runtime scale with n links?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "O(2ⁿ), because the two directions create a binary branch at every link"
+      },
+      {
+        "id": "o1",
+        "text": "O(n), since two linear passes remain linear"
+      },
+      {
+        "id": "o2",
+        "text": "O(n²), because multiplying the two pass counts gives n²"
+      },
+      {
+        "id": "o3",
+        "text": "O(1), because the recursion uses the same equations at every link"
+      }
+    ],
+    "assumptions": [
+      "A serial kinematic chain with fixed-size spatial vector/matrix operations per link."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0385",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 385,
+        "kind": "equation",
+        "locator": "Lecture 12, physical PDF page 385, printed slide 7: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W03-L12-Q005",
+    "version": 2,
+    "stem": "Select all effects explicitly listed for the Newton–Euler rigid-body model.",
+    "selectionMode": "multi",
+    "type": "statement",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Inertial effects"
+      },
+      {
+        "id": "o2",
+        "text": "Coriolis and centrifugal effects"
+      },
+      {
+        "id": "o3",
+        "text": "Gravitational effects"
+      },
+      {
+        "id": "o4",
+        "text": "Flexible-link bending vibration"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0385",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 385,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 385, printed slide 7: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W03-L12-Q007",
+    "version": 2,
+    "stem": "In the Newton-law sketch, the force and acceleration arrows are attached to the marked center of mass; which interpretation is correct?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "v̇_C is the velocity of the endpoint rather than a time derivative"
+      },
+      {
+        "id": "o4",
+        "text": "The marker shows the proximal joint axis rather than the center of mass"
+      },
+      {
+        "id": "o1",
+        "text": "F is the net force and v̇_C is the acceleration of that center of mass"
+      },
+      {
+        "id": "o2",
+        "text": "F is only the force from the proximal joint, regardless of other forces on the link"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0386",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 386,
+        "kind": "figure",
+        "locator": "Lecture 12, physical PDF page 386, printed slide 8: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W03-L12-Q008",
+    "version": 2,
+    "stem": "Which pair correctly identifies angular momentum about the mass center and the required moment?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "H_C=ω×I_Cω; N_C=H_C×α"
+      },
+      {
+        "id": "o1",
+        "text": "H_C=I_Cω; N_C=I_Cα+ω×H_C"
+      },
+      {
+        "id": "o2",
+        "text": "H_C=I_Cα; N_C=I_Cω+ω×H_C"
+      },
+      {
+        "id": "o3",
+        "text": "H_C=m v_C; N_C=I_Cα only for every rotation"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0387",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 387,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 387, printed slide 9: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W03-L12-Q012",
+    "version": 2,
+    "stem": "Which sequence follows the recursive inverse-dynamics algorithm?",
+    "selectionMode": "single",
+    "type": "sequence",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Alternate outward force and inward velocity passes without respecting their boundary data"
+      },
+      {
+        "id": "o1",
+        "text": "Propagate motion from base to tip, compute each inertial resultant, then propagate loads from tip to base"
+      },
+      {
+        "id": "o2",
+        "text": "Propagate joint torques outward before any link acceleration is known"
+      },
+      {
+        "id": "o3",
+        "text": "Compute only end-link acceleration and apply the same inertial force to every link"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0389",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 389,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 389, printed slide 11: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0396",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 396,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 396, printed slide 18: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0397",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 397,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 397, printed slide 19: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W03-L12-Q021",
+    "version": 2,
+    "stem": "In the link diagram, what distinguishes F_i,N_i from f_i,n_i?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "F_i,N_i are net inertial resultants at/about the mass center; f_i,n_i are the proximal loads exerted by link i−1 on link i"
+      },
+      {
+        "id": "o2",
+        "text": "Both pairs are identical joint-axis scalar efforts"
+      },
+      {
+        "id": "o3",
+        "text": "F_i,N_i are the distal loads on the link, while f_i,n_i are the net center-of-mass resultants"
+      },
+      {
+        "id": "o4",
+        "text": "The pairs represent the same resultant, distinguished only by using base versus link coordinates"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0389",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 389,
+        "kind": "figure",
+        "locator": "Lecture 12, physical PDF page 389, printed slide 11: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0392",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 392,
+        "kind": "figure",
+        "locator": "Lecture 12, physical PDF page 392, printed slide 14: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0393",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 393,
+        "kind": "figure",
+        "locator": "Lecture 12, physical PDF page 393, printed slide 15: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W03-L12-Q025",
+    "version": 2,
+    "stem": "After inserting f_i=F_i+R f_next into the mass-center moment balance, which pair cancels?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "−r_C×(R f_next) and +r_C×(R f_next)"
+      },
+      {
+        "id": "o2",
+        "text": "−r_C×F_i and +r_C×(R f_next) for every link"
+      },
+      {
+        "id": "o3",
+        "text": "N_i and R n_next for every motion"
+      },
+      {
+        "id": "o4",
+        "text": "p×(R f_next) and r_C×F_i for every mass distribution"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0394",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 394,
+        "kind": "equation",
+        "locator": "Lecture 12, physical PDF page 394, printed slide 16: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W03-L12-Q026",
+    "version": 2,
+    "stem": "All vectors are in frame i and R=I: F_i=(0,2,0) N, N_i=(0,0,1) N·m, f_next=(0,3,0) N, n_next=(0,0,2) N·m, r_C=(0.5,0,0) m and p=(1,0,0) m; what are (f_i,n_i)?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "((0,5,0) N, (0,0,3) N·m)"
+      },
+      {
+        "id": "o3",
+        "text": "((0,-1,0) N, (0,0,-1) N·m)"
+      },
+      {
+        "id": "o4",
+        "text": "((0,5,0) N, (0,0,6) N·m)"
+      },
+      {
+        "id": "o1",
+        "text": "((0,5,0) N, (0,0,7) N·m)"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0394",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 394,
+        "kind": "equation",
+        "locator": "Lecture 12, physical PDF page 394, printed slide 16: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W03-L12-Q035",
+    "version": 2,
+    "stem": "A stationary 2 kg link has center-of-mass offset r_C=(0.5,0,0) m from a z-axis revolute joint; physical gravity is (0,-9.81,0) m/s² in the same basis; what holding torque does the gravity-initialized recursion give?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "+19.62 N·m about z"
+      },
+      {
+        "id": "o4",
+        "text": "0 N·m because angular acceleration is zero"
+      },
+      {
+        "id": "o1",
+        "text": "+9.81 N·m about z"
+      },
+      {
+        "id": "o2",
+        "text": "-9.81 N·m about z"
+      }
+    ],
+    "assumptions": [
+      "No terminal wrench; no other loads; positive joint direction is +z."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0398",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 398,
+        "kind": "equation",
+        "locator": "Lecture 12, physical PDF page 398, printed slide 20: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0386",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 386,
+        "kind": "equation",
+        "locator": "Lecture12, physical PDF page386, printed slide8: force law, moment-arm recursion or joint-axis projection premise",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0394",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 394,
+        "kind": "equation",
+        "locator": "Lecture12, physical PDF page394, printed slide16: force law, moment-arm recursion or joint-axis projection premise",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0395",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 395,
+        "kind": "equation",
+        "locator": "Lecture12, physical PDF page395, printed slide17: force law, moment-arm recursion or joint-axis projection premise",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W03-L12-Q036",
+    "version": 2,
+    "stem": "Which pairing matches the slide’s AI integration ideas?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Embedding mechanics proves every learned controller is safe without testing"
+      },
+      {
+        "id": "o1",
+        "text": "A physics-informed model incorporates Newton–Euler structure; residual learning models what the nominal dynamics misses"
+      },
+      {
+        "id": "o2",
+        "text": "A physics prior means ignoring mechanics until all data are collected"
+      },
+      {
+        "id": "o3",
+        "text": "Residual learning requires discarding the nominal model and learning every force from scratch"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0399",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 399,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 399, printed slide 21: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W03-L12-Q038",
+    "version": 2,
+    "stem": "In τ=W(q,qdot,qddot)φ, which quantity is learned in the slide’s parameter-identification description?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "The joint coordinate q, while τ and W are discarded"
+      },
+      {
+        "id": "o3",
+        "text": "Only the sign of gravity, with all mass and inertia already known"
+      },
+      {
+        "id": "o4",
+        "text": "A new Jacobian J that replaces the torque measurements"
+      },
+      {
+        "id": "o1",
+        "text": "The inertial parameter vector φ, using the known regressor W built from measured motion"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0399",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 399,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 399, printed slide 21: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W03-L12-Q039",
+    "version": 2,
+    "stem": "For τ=g(q)+Jᵀ[K_s(x_d−x)+B_s(v_d−v)], what roles do K_s and B_s play?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "A rotation matrix and a translation vector"
+      },
+      {
+        "id": "o4",
+        "text": "Two identical gains that both multiply acceleration error"
+      },
+      {
+        "id": "o1",
+        "text": "Stiffness-like gain on position error and damping-like gain on velocity error"
+      },
+      {
+        "id": "o2",
+        "text": "Mass gain on position error and inertia tensor on velocity error"
+      }
+    ],
+    "assumptions": [
+      "Use consistent task-coordinate units and the slide’s idealized control expression; the label “Safe HRI” alone is not a safety guarantee."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0399",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 399,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 399, printed slide 21: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W03-L12-Q041",
+    "version": 2,
+    "stem": "Which statement matches the source’s sim-to-real training and learned inverse-dynamics ideas, respectively?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Randomize mass/inertia for sim-to-real training; train an inverse model to map (q,qdot,qddot) to τ"
+      },
+      {
+        "id": "o2",
+        "text": "Keep every simulated mass fixed to prevent model variation; train the inverse model to map τ to qddot"
+      },
+      {
+        "id": "o3",
+        "text": "Randomize only the target labels without changing the simulated dynamics; train the inverse model using q alone"
+      },
+      {
+        "id": "o4",
+        "text": "Remove inertial variation from simulation; train the inverse model to predict only gravity for all motions"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0399",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 399,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 399, printed slide 21: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W03-L12-Q042",
+    "version": 2,
+    "stem": "According to the source table, which descriptions belong to Peter Corke Robotics Toolbox and ROS2 + MoveIt, respectively?",
+    "selectionMode": "single",
+    "type": "table",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "KDL recursive Newton–Euler for real robots; MATLAB/Python with DH-oriented educational simulation"
+      },
+      {
+        "id": "o3",
+        "text": "Python/JAX differentiable dynamics; physics simulators for reinforcement-learning environments"
+      },
+      {
+        "id": "o4",
+        "text": "A C++/Python library listing ABA and CRBA; multibody dynamics with model-predictive control"
+      },
+      {
+        "id": "o1",
+        "text": "MATLAB/Python with DH-oriented educational simulation; KDL recursive Newton–Euler for real robots"
+      }
+    ],
+    "assumptions": [
+      "Answer the source table’s associations; no claim of current version support or comparative superiority is made."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0400",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 400,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 400, printed slide 22: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W03-L12-Q043",
+    "version": 2,
+    "stem": "According to the source table, which descriptions belong to Pinocchio and JAX Robotics(Brax), respectively?",
+    "selectionMode": "single",
+    "type": "table",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "KDL recursive Newton–Euler in ROS2; a C++/Python library listing Newton–Euler, ABA and CRBA"
+      },
+      {
+        "id": "o4",
+        "text": "A C++/Python library listing Newton–Euler, ABA and CRBA; MATLAB/Python DH-oriented educational simulation"
+      },
+      {
+        "id": "o1",
+        "text": "A C++/Python rigid-body library listing Newton–Euler, ABA and CRBA; Python/JAX differentiable dynamics for gradient-based optimization"
+      },
+      {
+        "id": "o2",
+        "text": "MATLAB/Python DH-oriented educational simulation; Python/JAX differentiable dynamics for gradient-based optimization"
+      }
+    ],
+    "assumptions": [
+      "These are slide-attributed descriptions, not independently checked current implementation claims."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0400",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 400,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 400, printed slide 22: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W03-L12-Q044",
+    "version": 2,
+    "stem": "Which descriptions does the source associate with PyBullet/MuJoCo and Drake, respectively?",
+    "selectionMode": "single",
+    "type": "table",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Multibody dynamics with model-predictive control; physics simulators for reinforcement-learning environments"
+      },
+      {
+        "id": "o1",
+        "text": "Physics simulators for RL environments; multibody dynamics and model-predictive control"
+      },
+      {
+        "id": "o2",
+        "text": "A Python/JAX differentiable dynamics library; a MATLAB/Python DH-oriented teaching toolbox"
+      },
+      {
+        "id": "o3",
+        "text": "KDL recursive Newton–Euler in ROS2; a C++/Python library listing ABA and CRBA"
+      }
+    ],
+    "assumptions": [
+      "Source-table association only; broad internal-algorithm and superiority claims are not treated as externally verified."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0400",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 400,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 400, printed slide 22: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W03-L12-Q045",
+    "version": 2,
+    "stem": "For τ=M(q)qddot+C(q,qdot)qdot+g(q), which interpretation is correct?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "M multiplies acceleration, Cqdot collects velocity-dependent effects, and g gives gravity loading"
+      },
+      {
+        "id": "o2",
+        "text": "M multiplies position directly, while g is the geometric Jacobian"
+      },
+      {
+        "id": "o3",
+        "text": "Cqdot is the joint-position vector and contains no velocity effect"
+      },
+      {
+        "id": "o4",
+        "text": "The equation omits gravity because recursive methods cannot include it"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0401",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 401,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 401, printed slide 23: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W03-L12-Q047",
+    "version": 2,
+    "stem": "A nominal Newton–Euler model predicts τ_NE=(4,6) N·m, but measured torque is(5,4) N·m at the same(q,qdot,qddot); to retain known mechanics and learn an additive residual, which training target and reconstruction are correct?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Target(5,4) N·m; reconstruct τ=τ_NE+predicted residual"
+      },
+      {
+        "id": "o4",
+        "text": "Target(1,−2) N·m; reconstruct τ=predicted residual only"
+      },
+      {
+        "id": "o1",
+        "text": "Target(1,−2) N·m; reconstruct τ=τ_NE+predicted residual"
+      },
+      {
+        "id": "o2",
+        "text": "Target(−1,2) N·m; reconstruct τ=τ_NE+predicted residual"
+      }
+    ],
+    "assumptions": [
+      "Known mechanics is retained; the residual model learns additive effort mismatch from matched samples."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0385",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 385,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 385, printed slide 7: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0399",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 399,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 399, printed slide 21: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0401",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 401,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 401, printed slide 23: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  }
+]

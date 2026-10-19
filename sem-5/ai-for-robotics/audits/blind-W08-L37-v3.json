@@ -1,0 +1,546 @@
+[
+  {
+    "id": "W08-L37-Q011",
+    "version": 3,
+    "stem": "A reachable goal lies outside a concave obstacle, but Bug0 repeats the same leave-and-hit cycle indefinitely. What does this show?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Bug0 can cycle even when a collision-free path exists."
+      },
+      {
+        "id": "o4",
+        "text": "The repeated boundary cycle is only a finite detour, so eventual goal arrival follows without changing the rule."
+      },
+      {
+        "id": "o2",
+        "text": "Every path to the goal is blocked because this controller repeats a boundary cycle."
+      },
+      {
+        "id": "o3",
+        "text": "Bug0 is complete but not shortest-path optimal in this scene."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1142",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1142,
+        "kind": "statement",
+        "locator": "Lecture 37, physical page 1142, printed slide 16: prose under the displayed section heading; application assumptions are stated in the question.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-Q016",
+    "version": 3,
+    "stem": "A point robot starts at (0,0) m with goal (12,0) m. The sole polygonal obstacle has vertices (2,−2), (6,−2), (6,1), (10,1), (10,4), (2,4), joined in that order. Both algorithms first hit H=(2,0), then follow the boundary toward (2,−2), continuing in the listed order. Compare Bug1 and Bug2 from that hit until their first boundary departure: where do they leave, and how much boundary distance has each travelled?",
+    "selectionMode": "single",
+    "type": "synthesis",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Bug1 leaves at (10,1) after 41 m of boundary travel; Bug2 leaves at (6,0) after 36 m."
+      },
+      {
+        "id": "o2",
+        "text": "Bug1 leaves at (6,0) after 36 m of boundary travel; Bug2 leaves at (6,0) after 8 m."
+      },
+      {
+        "id": "o3",
+        "text": "Bug1 leaves at (10,1) after 13 m of boundary travel; Bug2 leaves at (6,0) after 8 m."
+      },
+      {
+        "id": "o1",
+        "text": "Bug1 leaves at (10,1) after 41 m of boundary travel; Bug2 leaves at (6,0) after 8 m."
+      }
+    ],
+    "assumptions": [
+      "All coordinates are supplied in metres, not measurements of the source figure. The closed polygon interior is forbidden; ideal boundary following is permitted for a point robot.",
+      "The environment is static and otherwise empty. Exact localization and boundary sensing are assumed. Straight outgoing motion at the eligible leave points is locally free.",
+      "Bug1 completes one full survey, chooses the globally closest boundary point to the goal, and may reverse direction to use the shorter boundary return. Bug2 retains the original y=0 goal line and the specified boundary-following direction.",
+      "Count only distance along this obstacle from the first hit until departure, excluding the start-to-hit and leave-to-goal straight segments."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1143",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1143,
+        "kind": "statement",
+        "locator": "Lecture 37, physical page 1143, printed slide 17: Bug1 full survey, minimum goal distance, shortest boundary return",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1145",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1145,
+        "kind": "statement",
+        "locator": "Lecture 37, physical page 1145, printed slide 19: Bug2 original-line leave condition",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1146",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1146,
+        "kind": "statement",
+        "locator": "Lecture 37, physical page 1146, printed slide 20: Qualified efficiency comparison",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-Q021",
+    "version": 3,
+    "stem": "Bug2 hit an obstacle 8 m from the goal. It later crosses the original start–goal line at 5 m from the goal, with forward motion along the line locally free. What should it do?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Replace the original goal line with the segment from the hit point to this crossing."
+      },
+      {
+        "id": "o1",
+        "text": "Leave the boundary and resume motion along the original goal line."
+      },
+      {
+        "id": "o4",
+        "text": "Continue to another crossing so both eligible crossings can be compared before departure."
+      },
+      {
+        "id": "o2",
+        "text": "Continue until a full obstacle survey is complete before selecting any leave point."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1145",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1145,
+        "kind": "statement",
+        "locator": "Lecture 37, physical page 1145, printed slide 19: prose under the displayed section heading; application assumptions are stated in the question.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-Q027",
+    "version": 3,
+    "stem": "A noisy range reading repeatedly switches a controller between “obstacle” and “clear.” What practical failure can this create?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Rapid mode switching and oscillatory local commands near the boundary."
+      },
+      {
+        "id": "o4",
+        "text": "A hysteresis band that retains the previous mode between two separate thresholds."
+      },
+      {
+        "id": "o2",
+        "text": "A smoothed range estimate that attenuates the alternation before mode selection."
+      },
+      {
+        "id": "o3",
+        "text": "A fixed response delay while the selected avoidance mode remains unchanged."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1146",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1146,
+        "kind": "statement",
+        "locator": "Lecture 37, physical page 1146, printed slide 20: prose under the displayed section heading; application assumptions are stated in the question.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-Q038",
+    "version": 3,
+    "stem": "The VFH slide describes densities above the threshold as blocked and below it as free. A supplied implementation sets blocked = (H >= 5). For H=[4.9, 5.0, 5.1], which classification and source attribution are correct?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Free, free, blocked; equality is free because >= behaves like a strict > comparison."
+      },
+      {
+        "id": "o3",
+        "text": "Free, blocked, blocked; equality is blocked because the slide explicitly mandates the >= comparison."
+      },
+      {
+        "id": "o1",
+        "text": "Free, blocked, blocked; equality is blocked by the supplied implementation choice."
+      }
+    ],
+    "assumptions": [
+      "This single-threshold Boolean code is explicitly supplied; there is no hidden hysteresis or earlier-state dependence."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1150",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1150,
+        "kind": "statement",
+        "locator": "Physical page 1150: The histogram threshold bullet specifies above/below but omits equality; the tie-handling recommendation is derived.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-Q043",
+    "version": 3,
+    "stem": "Two openings each subtend 20° at a point sensor. Their two limiting edge points are symmetrically placed at equal range R from the sensor: R=2 m for one opening and R=4 m for the other. Model the transverse opening width as the straight chord between its edge points. A circular robot has diameter 0.6 m and needs a 0.1 m margin on each side. Which widths and clearance conclusion follow?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Widths about 0.347 m and 0.695 m; neither opening meets the required clearance."
+      },
+      {
+        "id": "o3",
+        "text": "Widths about 1.368 m and 2.736 m; both openings meet the required clearance."
+      },
+      {
+        "id": "o4",
+        "text": "Widths about 0.695 m and 1.389 m; both openings meet the required clearance."
+      },
+      {
+        "id": "o1",
+        "text": "Widths about 0.695 m and 1.389 m; only the farther opening meets the required clearance."
+      }
+    ],
+    "assumptions": [
+      "The symmetric chord model and all numbers are supplied, not inferred from the slide’s histogram.",
+      "The opening plane is perpendicular to its angular bisector, the traversed region is otherwise clear, and only the stated transverse clearance is tested.",
+      "Use exact trigonometric values for the comparison, then round reported widths to three decimals. Angular width alone does not establish full trajectory feasibility."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1151",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1151,
+        "kind": "statement",
+        "locator": "Lecture 37, physical page 1151, printed slide 25: wide/narrow valley discussion and robot-width requirement; chord geometry is a supplied derivation",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-Q047",
+    "version": 3,
+    "stem": "A supplied VFH-style exercise has sector centers [0,30,60,90,120,150,180,210,240,270,300,330] degrees and corresponding densities [1,1,5,1,2,1,2,7,6,5,2,1]. Mark density >=5 blocked, and also block the 90° sector with a feasibility mask. A valley is a maximal circular run of remaining free sectors; use only runs of at least three sectors. Generate one candidate at each eligible run’s angular midpoint, unwrapping across 360° when needed. For each candidate θ, minimize G=5Δ(θ,20°)+2Δ(θ,150°)+2Δ(θ,150°), where Δ is the smaller absolute circular difference. The references are respectively goal, current heading and previous command. Which valleys and selected heading/cost result?",
+    "selectionMode": "single",
+    "type": "synthesis",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Valleys {300,330,0,30} and {120,150,180}; select 345° with cost 175."
+      },
+      {
+        "id": "o4",
+        "text": "Valleys {270,300,330,0,30,60} and {120,150,180}; select 150° with cost 650."
+      },
+      {
+        "id": "o3",
+        "text": "Valleys {300,330,0,30} and {90,120,150,180}; select 135° with cost 635."
+      },
+      {
+        "id": "o1",
+        "text": "Valleys {300,330,0,30} and {120,150,180}; select 150° with cost 650."
+      }
+    ],
+    "assumptions": [
+      "The density vector, mask, equality convention, three-sector minimum and midpoint-only candidate policy are supplied deterministic exercise rules, not a claim to reproduce every VFH/VFH+ implementation detail.",
+      "Adjacent sectors include 330° and 0°. All values use the same fixed angular reference frame; the current heading and previous command both equal 150°.",
+      "The supplied mask and minimum run length are treated as the complete feasibility test for this toy decision. No unprinted certainty-grid weighting formula is inferred.",
+      "Choose the smallest numeric normalized heading if complete costs tie; no tie occurs here. The final selection is local, not a global route or real-robot safety guarantee."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1148",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1148,
+        "kind": "statement",
+        "locator": "Lecture 37, physical page 1148, printed slide 22: Three-stage occupancy/polar/steering reduction",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1150",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1150,
+        "kind": "statement",
+        "locator": "Lecture 37, physical page 1150, printed slide 24: Thresholded obstacle-density sectors",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1151",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1151,
+        "kind": "statement",
+        "locator": "Lecture 37, physical page 1151, printed slide 25: Contiguous valleys and steering candidates",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1152",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1152,
+        "kind": "equation",
+        "locator": "Lecture 37, physical page 1152, printed slide 26: Weighted target/current/previous direction cost",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1153",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1153,
+        "kind": "statement",
+        "locator": "Lecture 37, physical page 1153, printed slide 27: Reachability masking",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-Q062",
+    "version": 3,
+    "stem": "A six-joint arm moves in ordinary three-dimensional space. Which statement is correct if all six joint coordinates are independent?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Its configuration space is six-dimensional even though the physical workspace is three-dimensional."
+      },
+      {
+        "id": "o3",
+        "text": "Its configuration space becomes three-dimensional whenever the task ignores end-effector orientation."
+      },
+      {
+        "id": "o2",
+        "text": "Its configuration space must be three-dimensional because the mechanism occupies physical 3D space."
+      },
+      {
+        "id": "o4",
+        "text": "Its configuration space is twelve-dimensional because six joint velocities must be added to the six joint angles."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1156",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1156,
+        "kind": "statement",
+        "locator": "Lecture 37, physical page 1156, printed slide 30: prose under the displayed section heading; application assumptions are stated in the question.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-Q063",
+    "version": 3,
+    "stem": "In the source’s (θ1, θ2) configuration-space diagram, the red Current Configuration point lies outside the shaded C-obstacle. Which interpretation is supported?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It is one joint-angle pair outside the shown forbidden set; this does not establish a complete collision-free route."
+      },
+      {
+        "id": "o2",
+        "text": "Being outside the region certifies only the tool point; the arm’s other links are not represented by a C-obstacle."
+      },
+      {
+        "id": "o4",
+        "text": "Any goal point outside the same shaded region can safely be joined to the red point by straight joint interpolation."
+      },
+      {
+        "id": "o3",
+        "text": "The plotted gap from the red point to the shaded region is directly the arm’s Cartesian clearance in metres."
+      }
+    ],
+    "assumptions": [
+      "Interpret the drawn C-obstacle as the modeled colliding-configuration set; do not infer exact metric clearance from the stylized, nonuniform angle ticks."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1156",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1156,
+        "kind": "figure",
+        "locator": "Lecture 37, physical page 1156, printed slide 30: Configuration-space panel: θ1 horizontal/θ2 vertical axes, shaded C-obstacle and red Current Configuration point outside the shaded set; no exact angle coordinates are inferred.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-Q077",
+    "version": 3,
+    "stem": "A gradient-following arm stalls at a differentiable, collision-free local minimum of its potential U, away from the goal. What is the central failure?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The local descent rule has no downhill direction there, even though a valid route may exist elsewhere."
+      },
+      {
+        "id": "o4",
+        "text": "Every local minimum must have zero potential value, so changing the potential’s constant offset removes the stall."
+      },
+      {
+        "id": "o2",
+        "text": "The arm has proved that no collision-free route exists in the complete configuration space."
+      },
+      {
+        "id": "o3",
+        "text": "Taking a smaller positive step along the same negative-gradient direction necessarily restarts motion."
+      }
+    ],
+    "assumptions": [
+      "The controller uses only the negative potential gradient, with a positive scalar step factor and no noise, escape strategy or higher-level replanning."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1159",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1159,
+        "kind": "statement",
+        "locator": "Lecture 37, physical page 1159, printed slide 33: prose under the displayed section heading; application assumptions are stated in the question.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-Q079",
+    "version": 3,
+    "stem": "Which role for a CNN matches the source’s supervised-learning example?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Regress a metric depth value at every image pixel as the specific supervised task described."
+      },
+      {
+        "id": "o1",
+        "text": "Classify or segment obstacles in camera images, supplying perception for an avoidance system."
+      },
+      {
+        "id": "o2",
+        "text": "Map camera images directly to the next steering command as the specific supervised task described."
+      },
+      {
+        "id": "o4",
+        "text": "Reconstruct a persistent 3D occupancy map from multiple camera views as the specific supervised task described."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1160",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1160,
+        "kind": "statement",
+        "locator": "Lecture 37, physical page 1160, printed slide 34: prose under the displayed section heading; application assumptions are stated in the question.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L37-Q083",
+    "version": 3,
+    "stem": "An implementation outputs one steering/velocity command pair for a mobile base and a vector of six joint torques for an arm. What does the source’s RL action-space comparison require?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The reward-based framework can be shared, while policy outputs and any learned control mapping must match each mechanism’s action definition."
+      },
+      {
+        "id": "o3",
+        "text": "Normalizing every action component to the same numeric interval makes the learned commands mechanically interchangeable."
+      },
+      {
+        "id": "o4",
+        "text": "Different action spaces prevent the two systems from sharing an RL algorithm or analogous reward components."
+      },
+      {
+        "id": "o2",
+        "text": "Matching the numeric reward values guarantees optimal policy transfer after resizing the output layer."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1161",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1161,
+        "kind": "statement",
+        "locator": "Lecture 37, physical page 1161, printed slide 35: prose under the displayed section heading; application assumptions are stated in the question.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  }
+]

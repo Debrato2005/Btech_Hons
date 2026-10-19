@@ -1,0 +1,109 @@
+{
+  "sourceId": "lectures",
+  "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+  "issues": [
+    {
+      "physicalPage": 827,
+      "description": "Imports are labeled installation and Colab package absence is asserted.",
+      "qualification": "The shown statements import already available packages; availability and installation are separate runtime questions.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 828,
+      "description": "Free GPU/TPU access is presented without availability limits.",
+      "qualification": "Treat as a hosted-notebook capability subject to service/runtime availability, not a guaranteed allocation.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 830,
+      "description": "All ML data must be explicitly converted to a NumPy array; elements all same type.",
+      "qualification": "An ndarray has one dtype, including possible object/structured dtypes; accepted inputs depend on the estimator and can include sparse, list-like or DataFrame inputs.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 833,
+      "description": "arange is described as float-safe and prose informally calls results lists.",
+      "qualification": "It returns an ndarray; noninteger steps can have precision/length pitfalls. The half-unit example itself is exact.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 837,
+      "description": "CSR stores only nonzero entries and is unconditionally memory-saving/fast.",
+      "qualification": "CSR includes indices and row pointers, can store explicit zero values and has operation/density-dependent costs.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 838,
+      "description": "Displayed COO print output omits braces present in the literal comma-argument print.",
+      "qualification": "Literal Python prints the braces; adding .format or an f-string would be an explicit correction, not the original code.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 842,
+      "description": "linspace(-10,10,100) is described as 100 steps; notebook magic appears in code.",
+      "qualification": "There are 100 sample values and 99 adjacent intervals. The magic requires an IPython notebook environment, unlike ordinary Python source.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 845,
+      "description": "NumPy and pandas dtype/workflow contrast can be read as exclusive.",
+      "qualification": "One dtype is not one Python object class for object arrays, and numerical/wrangling workflow roles overlap.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 847,
+      "description": "display and info are said to return the shown table/summary; object=string; Data_pandas capitalization.",
+      "qualification": "Ordinary display and info return None, object can contain non-string Python objects, and the printed uppercase identifier is undefined in the shown lowercase context.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 848,
+      "description": "Every estimator replacement requires exactly one changed line.",
+      "qualification": "Common methods simplify compatible replacements; preprocessing, capabilities and input requirements still need checking.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 850,
+      "description": "Prediction shapes and all listed methods appear universal.",
+      "qualification": "Use the single-output classification context and supported estimator methods; score metric is estimator-specific.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 851,
+      "description": "StandardScaler average 0/spread 1 statement omits scope.",
+      "qualification": "Training nonconstant features have the fitted moments; transformed test data need not, and constant features cannot be made unit variance.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 852,
+      "description": "An unseeded split displays one precise accuracy; scaling is called cleaning.",
+      "qualification": "No unique score follows from code without a fixed split; standardization does not imply imputation, outlier removal or universal cleaning.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 853,
+      "description": "Universal array and exactly-one-line claims repeat.",
+      "qualification": "Preserve the earlier input/API qualifications instead of treating summary repetition as new evidence.",
+      "status": "preserved with explicit scope; not globally resolved"
+    }
+  ],
+  "officialDocumentationChecked": [
+    {
+      "url": "https://numpy.org/doc/stable/reference/generated/numpy.arange.html",
+      "purpose": "Floating-step precision warning."
+    },
+    {
+      "url": "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html",
+      "purpose": "Printed summary versus returned None."
+    },
+    {
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html",
+      "purpose": "Fitted training mean/variance and zero-variance behavior."
+    },
+    {
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html",
+      "purpose": "CSR representation and explicit-zero qualification."
+    }
+  ],
+  "documentationNote": "Documentation checked on 2026-10-19. Executed versions are separately recorded; online stable versions may differ. External documentation clarifies software behavior, not course coverage."
+}

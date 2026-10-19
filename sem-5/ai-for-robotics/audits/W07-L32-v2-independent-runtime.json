@@ -1,0 +1,51 @@
+{
+  "reviewerId": "build_offline_study_interface:L32-independent-reviewer",
+  "checkedAt": "2026-10-19T20:44:38.486332+00:00",
+  "sourceBasis": "Actual p974 re-viewed; the corrected worked Gaussian formula is supplied by the revised question. Actual p969 normhist call re-viewed.",
+  "Q081": {
+    "continuousCenter": 0.22028365825867868,
+    "finiteSampleSum": 0.8821096750246818,
+    "normalizedCenter": 0.24972366191598006,
+    "independentAnswerOptionIds": [
+      "o1"
+    ]
+  },
+  "Q088": {
+    "toyInput": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "toolboxNormhist": [
+      [
+        0,
+        170
+      ],
+      [
+        170,
+        255
+      ]
+    ],
+    "rawInclusiveCDFRounded": [
+      [
+        64,
+        191
+      ],
+      [
+        191,
+        255
+      ]
+    ],
+    "implementation": "    def normhist(self) -> \"Image\":\n        \"\"\"\n        Histogram normalisaton\n\n        :return: normalised image\n        :rtype: :class:`Image` instance\n\n        Return a histogram normalized version of the image which highlights\n        image detail in low-contrast areas of an image.\n\n        Example:\n\n        .. runblock:: pycon\n\n            >>> from machinevisiontoolbox import Image\n            >>> img = Image([[10, 20, 30], [40, 41, 42], [70, 80, 90]])\n            >>> img.normhist().A\n\n        .. note::\n            - The histogram of the normalized image is approximately uniform,\n              that is, all grey levels ae equally likely to occur.\n            - Color images automatically converted to greyscale\n\n        :references:\n            - |RVC3|, Section 11.3.\n\n        .. important:: Uses OpenCV function ``cv2.equalizeHist`` which accepts single-channel, CV_8U images.\n\n        :seealso: `cv2.equalizeHist <https://docs.opencv.org/4.x/d6/dc7/group__imgproc__hist.html#ga7e54091f0c937d49bf84152a16f76d6e>`_\n        \"\"\"\n        self._opencv_type_check(self._A, \"single-channel\", \"CV_8U\")\n        out = cv2.equalizeHist(src=self.array_as(\"uint8\"))\n        return self.__class__(self.like(out))\n",
+    "implementationSha256": "12ef078561e0277de49c09176a522a46288ace0b50e23c2654471452b1687854",
+    "independentAnswerOptionIds": [
+      "o1"
+    ]
+  },
+  "priorExposure": "Revision reviewer already saw v1 author keys; not a fresh blind review. New Q081/Q088 calculations completed before opening the v2 keyed batch."
+}

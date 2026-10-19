@@ -1,0 +1,250 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "W01-L03-GAP",
+  "authorId": "robotics-integration-author-L03-gap",
+  "questions": [
+    {
+      "id": "W01-L03-GAP-Q001",
+      "version": 1,
+      "status": "draft",
+      "authorId": "robotics-integration-author-L03-gap",
+      "stem": "R=[[0,-1,0],[1,0,0],[0,0,1]] maps body components to fixed-frame A components, and ω_A=(2,0,0) rad/s; which Rdot is correct?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "medium",
+      "cognitiveSkill": "numerical",
+      "week": 1,
+      "lectureId": "L03",
+      "topic": "Rotation-matrix time derivatives",
+      "subtopic": "Derivative at a nonidentity orientation",
+      "tags": [
+        "nonidentity-rotation-derivative"
+      ],
+      "conceptIds": [
+        "W01-L03-GAP-C-nonidentity-rotation-derivative"
+      ],
+      "assumptions": [
+        "Right-hand cross-product convention; R maps body coordinates into the fixed frame."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "[[0,0,0],[0,0,-2],[2,0,0]] s⁻¹"
+        },
+        {
+          "id": "o2",
+          "text": "[[0,0,2],[0,0,0],[0,2,0]] s⁻¹"
+        },
+        {
+          "id": "o3",
+          "text": "[[0,0,0],[0,0,-2],[0,2,0]] s⁻¹"
+        },
+        {
+          "id": "o4",
+          "text": "[[0,0,0],[0,0,2],[-2,0,0]] s⁻¹"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0104",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 104,
+          "kind": "equation",
+          "locator": "Lecture 3, physical PDF page 104, printed slide 10: relevant text, equations and associated figures",
+          "evidenceText": "Calculus – Time derivatives\n\n•  Time Derivatives of Vectors and Matrices\n   – The derivative of a time-varying matrix 𝐀(𝐭) or vector 𝒙(𝑡) is defined as the\n       matrix or vector composed of the derivatives of its individual elements.\n\n                              𝑑         𝑑\n               ሶ𝐀𝐭=                  𝑑𝑡𝐀𝐭= 𝑑𝑡𝑎𝑖𝑗𝑡\n   – This is essential for expressing the dynamics of a rigid body where position\n      and orientation are functions of time.\n   – For a rotation matrix 𝐑(𝐭), the derivative is\n     ሶ𝐑= 𝐒(𝝎)𝐑, where 𝐒(𝝎) is a skew-symmetric\n       matrix representing angular velocity 𝝎.\n\n\n\n\n\n                                                                                                          10",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "For fixed-frame angular-velocity components, multiply on the left: S(ω_A)R. The result is not generally skew-symmetric, even though S(ω_A)=Rdot Rᵀ is.",
+        "optionExplanations": {
+          "o1": "This is S(ω_A)R.",
+          "o2": "This is RS(ω_A), which uses the wrong side for fixed-frame ω_A.",
+          "o3": "This is S(ω_A) alone, omitting the nonidentity R.",
+          "o4": "This reverses the cross-product sign."
+        },
+        "steps": [
+          "Construct S(ω_A)=[[0,0,0],[0,0,-2],[0,2,0]].",
+          "Multiply this matrix by R on the right.",
+          "The second row becomes (0,0,-2) and the third becomes (2,0,0)."
+        ],
+        "formulas": [
+          {
+            "expression": "Rdot=S(ω_A)R; S(ω_A)=Rdot Rᵀ",
+            "variables": {
+              "R": "rotation mapping body-frame vector components to fixed-frame A components",
+              "ω_A": "body angular velocity expressed in fixed frame A",
+              "S(ω_A)": "cross-product matrix satisfying S(ω_A)v=ω_A×v",
+              "Rdot": "time derivative of R"
+            },
+            "units": {
+              "R": "dimensionless",
+              "ω_A": "rad/s",
+              "S(ω_A),Rdot": "1/s"
+            },
+            "assumptions": [
+              "R is a differentiable proper rotation matrix."
+            ]
+          }
+        ],
+        "simpleExplanation": "For fixed-frame angular-velocity components, multiply on the left: S(ω_A)R. The result is not generally skew-symmetric, even though S(ω_A)=Rdot Rᵀ is.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This is RS(ω_A), which uses the wrong side for fixed-frame ω_A.",
+          "This is S(ω_A) alone, omitting the nonidentity R.",
+          "This reverses the cross-product sign."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": []
+    },
+    {
+      "id": "W01-L03-GAP-Q002",
+      "version": 1,
+      "status": "draft",
+      "authorId": "robotics-integration-author-L03-gap",
+      "stem": "For a differentiable proper rotation R from body frame B to fixed frame A, select all correct statements.",
+      "selectionMode": "multi",
+      "type": "derivation",
+      "difficulty": "medium",
+      "cognitiveSkill": "synthesis",
+      "week": 1,
+      "lectureId": "L03",
+      "topic": "Rotation-matrix time derivatives",
+      "subtopic": "Which matrix must be skew-symmetric",
+      "tags": [
+        "rotation-derivative-frame"
+      ],
+      "conceptIds": [
+        "W01-L03-GAP-C-rotation-derivative-frame"
+      ],
+      "assumptions": [
+        "The same physical angular velocity is expressed in A and B; R is a proper rotation."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "Rᵀ Rdot=S(ω_B) is skew-symmetric"
+        },
+        {
+          "id": "o3",
+          "text": "Rdot itself is skew-symmetric for every orientation"
+        },
+        {
+          "id": "o4",
+          "text": "Rdot=S(ω_A)R=R S(ω_B), with ω_B=Rᵀω_A"
+        },
+        {
+          "id": "o1",
+          "text": "Rdot Rᵀ=S(ω_A) is skew-symmetric"
+        }
+      ],
+      "correctOptionIds": [
+        "o1",
+        "o2",
+        "o4"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0104",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 104,
+          "kind": "equation",
+          "locator": "Lecture 3, physical PDF page 104, printed slide 10: relevant text, equations and associated figures",
+          "evidenceText": "Calculus – Time derivatives\n\n•  Time Derivatives of Vectors and Matrices\n   – The derivative of a time-varying matrix 𝐀(𝐭) or vector 𝒙(𝑡) is defined as the\n       matrix or vector composed of the derivatives of its individual elements.\n\n                              𝑑         𝑑\n               ሶ𝐀𝐭=                  𝑑𝑡𝐀𝐭= 𝑑𝑡𝑎𝑖𝑗𝑡\n   – This is essential for expressing the dynamics of a rigid body where position\n      and orientation are functions of time.\n   – For a rotation matrix 𝐑(𝐭), the derivative is\n     ሶ𝐑= 𝐒(𝝎)𝐑, where 𝐒(𝝎) is a skew-symmetric\n       matrix representing angular velocity 𝝎.\n\n\n\n\n\n                                                                                                          10",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Differentiating RRᵀ=I and RᵀR=I gives the two skew matrices; their angular velocities are expressed in different frames. Rdot alone need not be skew.",
+        "optionExplanations": {
+          "o1": "Differentiating RRᵀ=I establishes the fixed-frame skew matrix.",
+          "o2": "Differentiating RᵀR=I establishes the body-frame skew matrix.",
+          "o3": "Only the products with R or Rᵀ are guaranteed skew; a nonidentity rotation supplies counterexamples.",
+          "o4": "Changing angular-velocity coordinates changes which side the skew matrix multiplies."
+        },
+        "steps": [
+          "Differentiate RRᵀ=I to obtain Rdot Rᵀ+R Rdotᵀ=0.",
+          "Differentiate RᵀR=I to obtain RdotᵀR+RᵀRdot=0.",
+          "Use ω_B=Rᵀω_A and S(Rω_B)=R S(ω_B)Rᵀ."
+        ],
+        "formulas": [
+          {
+            "expression": "Rdot=S(ω_A)R; S(ω_A)=Rdot Rᵀ",
+            "variables": {
+              "R": "rotation mapping body-frame vector components to fixed-frame A components",
+              "ω_A": "body angular velocity expressed in fixed frame A",
+              "S(ω_A)": "cross-product matrix satisfying S(ω_A)v=ω_A×v",
+              "Rdot": "time derivative of R"
+            },
+            "units": {
+              "R": "dimensionless",
+              "ω_A": "rad/s",
+              "S(ω_A),Rdot": "1/s"
+            },
+            "assumptions": [
+              "R is a differentiable proper rotation matrix."
+            ]
+          }
+        ],
+        "simpleExplanation": "Differentiating RRᵀ=I and RᵀR=I gives the two skew matrices; their angular velocities are expressed in different frames. Rdot alone need not be skew.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Only the products with R or Rᵀ are guaranteed skew; a nonidentity rotation supplies counterexamples."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": []
+    }
+  ],
+  "concepts": [
+    {
+      "id": "W01-L03-GAP-C-nonidentity-rotation-derivative",
+      "title": "Derivative at a nonidentity orientation",
+      "description": "For fixed-frame angular-velocity components, multiply on the left: S(ω_A)R. The result is not generally skew-symmetric, even though S(ω_A)=Rdot Rᵀ is.",
+      "slideIds": [
+        "lectures-p0104"
+      ],
+      "questionIds": [
+        "W01-L03-GAP-Q001"
+      ],
+      "status": "drafted",
+      "topic": "Rotation-matrix time derivatives",
+      "subtopic": "Derivative at a nonidentity orientation",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "numerical"
+      ]
+    },
+    {
+      "id": "W01-L03-GAP-C-rotation-derivative-frame",
+      "title": "Which matrix must be skew-symmetric",
+      "description": "Differentiating RRᵀ=I and RᵀR=I gives the two skew matrices; their angular velocities are expressed in different frames. Rdot alone need not be skew.",
+      "slideIds": [
+        "lectures-p0104"
+      ],
+      "questionIds": [
+        "W01-L03-GAP-Q002"
+      ],
+      "status": "drafted",
+      "topic": "Rotation-matrix time derivatives",
+      "subtopic": "Which matrix must be skew-symmetric",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "derivation"
+      ]
+    }
+  ],
+  "coverageNote": "Hand-authored drafts after actual source-page inspection; independent answer review and complete-coverage challenge remain required."
+}

@@ -1,0 +1,859 @@
+[
+  {
+    "id": "W03-L13-Q014",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L13-author",
+    "stem": "For q1dot=3, q2dot=−1 rad/s and q1ddot=−2, q2ddot=5 rad/s², which pair is (omega2,z, alpha2,z)?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "cognitiveSkill": "numerical",
+    "week": 3,
+    "lectureId": "L13",
+    "topic": "Newton–Euler inverse dynamics",
+    "subtopic": "Inherited and relative angular motion",
+    "tags": [
+      "angular-link2",
+      "point-mass-2R"
+    ],
+    "conceptIds": [
+      "W03-L13-C-angular-link2"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o3",
+        "text": "(2 rad/s,3 rad/s²)"
+      },
+      {
+        "id": "o1",
+        "text": "(−1 rad/s,5 rad/s²)"
+      },
+      {
+        "id": "o2",
+        "text": "(3 rad/s,−2 rad/s²)"
+      },
+      {
+        "id": "o4",
+        "text": "(4 rad/s,−7 rad/s²)"
+      }
+    ],
+    "correctOptionIds": [
+      "o3"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0413",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 413,
+        "kind": "equation",
+        "locator": "Lecture13, physical PDF page 413, printed slide 10: Inherited and relative angular motion",
+        "evidenceText": "•   Outward iterations for link 2 (put 𝑖= 1)\n   ➢𝑖+1𝜔𝑖+1 = 𝑖+1𝑅⋅𝑖   𝑖𝜔𝑖+ ሶ𝜃i+1 𝑖+1መ𝑍𝑖+1\n              + ሶ𝜃2 2መ𝑍2  ➢ 2𝜔2 = 2𝑅⋅1𝜔11\n                 𝑐𝑖+1   𝑠𝑖+1  0            𝑐2   𝑠2  0\n  ➢ 𝑖+1𝑅=                      2𝑅=                𝑖     −𝑠𝑖+1  𝑐𝑖+1  0  so,                                     1    −𝑠2  𝑐2  0 ;\n              0     0   1          0   0  1\n                𝑐2   𝑠2  0  0    0\n                        0 +  0  ➢ 2𝜔2 = −𝑠2  𝑐2  0\n             0   0  1   ሶ𝜃1       ሶ𝜃2\n              0\n              0  ➢ 2𝜔2 =\n                      ሶ𝜃1 + ሶ𝜃2\n\n\n\n                                                                                                          10",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0414",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 414,
+        "kind": "equation",
+        "locator": "Lecture13, physical PDF page 414, printed slide 11: Inherited and relative angular motion",
+        "evidenceText": "➢  𝑖+1 ሶ𝜔𝑖+1 = 𝑖+1𝑅𝑖ሶ𝜔𝑖+𝑖      𝑖+1𝑅𝑖𝜔𝑖×𝑖          ሶ𝜃𝑖+1 𝑖+1 መ𝑍𝑖+1+ሷ𝜃𝑖+1 𝑖+1 መ𝑍𝑖+1\n➢  2 ሶ𝜔2 = 2𝑅11    ሶ𝜔1 + 2𝑅1𝜔11    × ሶ𝜃2 2መ𝑍2+ሷ𝜃2 2መ𝑍2\n       𝑐2   𝑠2  0  0      𝑐2   𝑠2  0  0   −ሶ𝜃1  0  0    0\n➢= −𝑠2  𝑐2  0  0 + −𝑠2  𝑐2  0   ሶ𝜃1   0   0  0 +  0 ;\n      0   0  1   ሷ𝜃1     0   0  1  0   0   0   ሶ𝜃2       ሷ𝜃2\n\n      0    0\n➢=  0 +  0\n         ሷ𝜃1       ሷ𝜃2\n\n           0\n➢  2 ሶ𝜔2 =    0\n                ሷ𝜃1 + ሷ𝜃2\n\n\n\n\n\n                                                                                                    11",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Both parallel revolute joints contribute to the second link’s absolute angular motion.",
+      "optionExplanations": {
+        "o3": "Add inherited and relative quantities separately.",
+        "o4": "This subtracts the second-joint quantities.",
+        "o1": "This retains only relative joint2 motion.",
+        "o2": "This retains only inherited joint1 motion."
+      },
+      "steps": [
+        "omega2,z=3+(−1)=2 rad/s.",
+        "alpha2,z=−2+5=3 rad/s².",
+        "The angular transport cross term is zero because the axes are parallel."
+      ],
+      "formulas": [
+        {
+          "expression": "omega1=[0,0,q1dot]; alpha1=[0,0,q1ddot]; omega2=[0,0,q1dot+q2dot]; alpha2=[0,0,q1ddot+q2ddot]",
+          "variables": {
+            "omega1,omega2": "angular velocities in their respective link frames",
+            "alpha1,alpha2": "angular accelerations in their respective link frames",
+            "q1dot,q2dot": "joint angular rates",
+            "q1ddot,q2ddot": "joint angular accelerations"
+          },
+          "units": {
+            "omega1,omega2,q1dot,q2dot": "rad/s",
+            "alpha1,alpha2,q1ddot,q2ddot": "rad/s²"
+          },
+          "assumptions": [
+            "Fixed nonrotating base; parallel +z revolute axes."
+          ]
+        }
+      ],
+      "simpleExplanation": "Both parallel revolute joints contribute to the second link’s absolute angular motion.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This subtracts the second-joint quantities.",
+        "This retains only relative joint2 motion.",
+        "This retains only inherited joint1 motion."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L13-Q016",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L13-author",
+    "stem": "In the final expression for a2², what does g s12 represent?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "application",
+    "week": 3,
+    "lectureId": "L13",
+    "topic": "Newton–Euler inverse dynamics",
+    "subtopic": "Gravity projection and angle-sum shorthand",
+    "tags": [
+      "angle-sum",
+      "point-mass-2R"
+    ],
+    "conceptIds": [
+      "W03-L13-C-angle-sum"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o1",
+        "text": "g sin(theta1+theta2)"
+      },
+      {
+        "id": "o4",
+        "text": "g[sin(theta1)+sin(theta2)]"
+      },
+      {
+        "id": "o3",
+        "text": "g sin(theta1−theta2)"
+      },
+      {
+        "id": "o2",
+        "text": "g sin(theta1) sin(theta2)"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0415",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 415,
+        "kind": "equation",
+        "locator": "Lecture13, physical PDF page 415, printed slide 12: Gravity projection and angle-sum shorthand",
+        "evidenceText": "➢𝑖+1                  + 𝑖𝜔𝑖×  𝑖𝜔𝑖×  𝑖𝑃𝑖+1 +  𝑖ሶ𝑣𝑖)       ሶ𝑣𝑖+1 = 𝑖+1𝑅(𝑖   𝑖ሶ𝜔𝑖×  𝑖𝑃𝑖+1\n➢  2           × 1𝑃2 + 1𝜔1 ×  1𝜔1 × 1𝑃2 + 1 ሶ𝑣1)      ሶ𝑣2 = 2𝑅(1   1ሶ𝜔1\n➢   = 2𝑅1                        =          1    ሶ𝑣𝑐1 (Due to point mass 1𝑃2                                           1𝑃𝐶1)\n\n                              2                   2                             + 𝑔𝑐2𝑠1 + 𝑙1𝑠2 ሷ𝜃1 + 𝑔𝑠2𝑐1            𝑐2   𝑠2  0  −𝑙1 ሶ𝜃1                  + 𝑔𝑠1     −𝑙1𝑐2 ሶ𝜃1\n   2                                                 2➢   ሶ𝑣2 = −𝑠2  𝑐2  0                                  + 𝑙1𝑐2 ሷ𝜃1 + 𝑔𝑐2𝑐1                               𝑙1 ሷ𝜃1 + 𝑔𝑐1  =   𝑙1𝑠2 ሶ𝜃1 −𝑔𝑠2𝑠1\n         0   0  1                        0                     0\n\n                         2\n               + 𝑔𝑠12           𝑙1𝑠2 ሷ𝜃1 −𝑙1𝑐2 ሶ𝜃1\n   2                         2➢   ሶ𝑣2 =               + 𝑔𝑐12           𝑙1𝑐2 ሷ𝜃1 + 𝑙1𝑠2 ሶ𝜃1\n                 0\n\n\n\n\n                                                                                                    12",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The expanded gravity terms are g cos(theta2) sin(theta1)+g sin(theta2) cos(theta1), equal to g sin(theta1+theta2).",
+      "optionExplanations": {
+        "o1": "s12 abbreviates the sine of the combined link orientation.",
+        "o2": "This is a product, not the angle-sum identity.",
+        "o3": "The forward frame orientations add in this convention.",
+        "o4": "The sine of a sum is not generally a sum of sines."
+      },
+      "steps": [
+        "Collect the two gravity terms in a2,x.",
+        "Apply sin(A+B)=sin A cos B+cos A sin B.",
+        "Obtain g sin(theta1+theta2)."
+      ],
+      "formulas": [
+        {
+          "expression": "a2²=[l1 sin(theta2) q1ddot−l1 cos(theta2) q1dot²+g sin(theta1+theta2),l1 cos(theta2) q1ddot+l1 sin(theta2) q1dot²+g cos(theta1+theta2),0]; aC2²=a2²+[−l2(q1dot+q2dot)²,l2(q1ddot+q2ddot),0]",
+          "variables": {
+            "a2²": "gravity-augmented elbow-origin acceleration in frame2",
+            "aC2²": "gravity-augmented second mass acceleration in frame2",
+            "l1,l2": "link lengths",
+            "theta1,theta2": "first and relative second joint angles",
+            "q1dot,q2dot": "joint angular rates",
+            "q1ddot,q2ddot": "joint angular accelerations",
+            "g": "gravitational magnitude"
+          },
+          "units": {
+            "a2²,aC2²,g": "m/s²",
+            "l1,l2": "m",
+            "theta1,theta2": "rad",
+            "q1dot,q2dot": "rad/s",
+            "q1ddot,q2ddot": "rad/s²"
+          },
+          "assumptions": [
+            "Use the lecture’s vertical-plane two-revolute model: massless links of positive lengths l1,l2, endpoint point masses m1,m2, theta1 measured counterclockwise from +X0, theta2 relative to link1, +Y0 upward, physical gravity −g Y0 with g≥0. Positive joint torques increase their joint angles. No terminal wrench, friction or motor inertia unless explicitly changed."
+          ]
+        }
+      ],
+      "simpleExplanation": "The expanded gravity terms are g cos(theta2) sin(theta1)+g sin(theta2) cos(theta1), equal to g sin(theta1+theta2).",
+      "memoryAid": null,
+      "misconceptions": [
+        "This is a product, not the angle-sum identity.",
+        "The forward frame orientations add in this convention.",
+        "The sine of a sum is not generally a sum of sines."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L13-Q021",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L13-author",
+    "stem": "Let g=0, l1=1 m, theta2=90°, qdot=(2,−2) rad/s and qddot=(0,0). Which statement is correct at that instant?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "hard",
+    "cognitiveSkill": "synthesis",
+    "week": 3,
+    "lectureId": "L13",
+    "topic": "Newton–Euler inverse dynamics",
+    "subtopic": "Zero link2 spin does not mean zero COM acceleration",
+    "tags": [
+      "zero-spin-nonzero-translation",
+      "point-mass-2R"
+    ],
+    "conceptIds": [
+      "W03-L13-C-zero-spin-nonzero-translation"
+    ],
+    "assumptions": [
+      "Use the lecture’s vertical-plane two-revolute model: massless links of positive lengths l1,l2, endpoint point masses m1,m2, theta1 measured counterclockwise from +X0, theta2 relative to link1, +Y0 upward, physical gravity −g Y0 with g≥0. Positive joint torques increase their joint angles. No terminal wrench, friction or motor inertia unless explicitly changed."
+    ],
+    "options": [
+      {
+        "id": "o1",
+        "text": "omega2,z=4 rad/s and aC2² has a −16 l2 x2 term"
+      },
+      {
+        "id": "o3",
+        "text": "omega2=0 and aC2²=0 because the second link has no absolute spin"
+      },
+      {
+        "id": "o4",
+        "text": "omega2,z=−2 rad/s and aC2² has a −4 l2 x2 term"
+      },
+      {
+        "id": "o2",
+        "text": "omega2=0 but aC2²=(0,4,0) m/s² because the elbow accelerates"
+      }
+    ],
+    "correctOptionIds": [
+      "o2"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0413",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 413,
+        "kind": "equation",
+        "locator": "Lecture13, physical PDF page 413, printed slide 10: Zero link2 spin does not mean zero COM acceleration",
+        "evidenceText": "•   Outward iterations for link 2 (put 𝑖= 1)\n   ➢𝑖+1𝜔𝑖+1 = 𝑖+1𝑅⋅𝑖   𝑖𝜔𝑖+ ሶ𝜃i+1 𝑖+1መ𝑍𝑖+1\n              + ሶ𝜃2 2መ𝑍2  ➢ 2𝜔2 = 2𝑅⋅1𝜔11\n                 𝑐𝑖+1   𝑠𝑖+1  0            𝑐2   𝑠2  0\n  ➢ 𝑖+1𝑅=                      2𝑅=                𝑖     −𝑠𝑖+1  𝑐𝑖+1  0  so,                                     1    −𝑠2  𝑐2  0 ;\n              0     0   1          0   0  1\n                𝑐2   𝑠2  0  0    0\n                        0 +  0  ➢ 2𝜔2 = −𝑠2  𝑐2  0\n             0   0  1   ሶ𝜃1       ሶ𝜃2\n              0\n              0  ➢ 2𝜔2 =\n                      ሶ𝜃1 + ሶ𝜃2\n\n\n\n                                                                                                          10",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0415",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 415,
+        "kind": "equation",
+        "locator": "Lecture13, physical PDF page 415, printed slide 12: Zero link2 spin does not mean zero COM acceleration",
+        "evidenceText": "➢𝑖+1                  + 𝑖𝜔𝑖×  𝑖𝜔𝑖×  𝑖𝑃𝑖+1 +  𝑖ሶ𝑣𝑖)       ሶ𝑣𝑖+1 = 𝑖+1𝑅(𝑖   𝑖ሶ𝜔𝑖×  𝑖𝑃𝑖+1\n➢  2           × 1𝑃2 + 1𝜔1 ×  1𝜔1 × 1𝑃2 + 1 ሶ𝑣1)      ሶ𝑣2 = 2𝑅(1   1ሶ𝜔1\n➢   = 2𝑅1                        =          1    ሶ𝑣𝑐1 (Due to point mass 1𝑃2                                           1𝑃𝐶1)\n\n                              2                   2                             + 𝑔𝑐2𝑠1 + 𝑙1𝑠2 ሷ𝜃1 + 𝑔𝑠2𝑐1            𝑐2   𝑠2  0  −𝑙1 ሶ𝜃1                  + 𝑔𝑠1     −𝑙1𝑐2 ሶ𝜃1\n   2                                                 2➢   ሶ𝑣2 = −𝑠2  𝑐2  0                                  + 𝑙1𝑐2 ሷ𝜃1 + 𝑔𝑐2𝑐1                               𝑙1 ሷ𝜃1 + 𝑔𝑐1  =   𝑙1𝑠2 ሶ𝜃1 −𝑔𝑠2𝑠1\n         0   0  1                        0                     0\n\n                         2\n               + 𝑔𝑠12           𝑙1𝑠2 ሷ𝜃1 −𝑙1𝑐2 ሶ𝜃1\n   2                         2➢   ሶ𝑣2 =               + 𝑔𝑐12           𝑙1𝑐2 ሷ𝜃1 + 𝑙1𝑠2 ሶ𝜃1\n                 0\n\n\n\n\n                                                                                                    12",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0416",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 416,
+        "kind": "equation",
+        "locator": "Lecture13, physical PDF page 416, printed slide 13: Zero link2 spin does not mean zero COM acceleration",
+        "evidenceText": "𝑖+1➢  𝑖+1         ሶ𝑣𝐶𝑖+1 =                    ሶ𝜔𝑖+1 × 𝑖+1𝑃𝐶𝑖+1                   + 𝑖+1𝜔𝑖+1 × (𝑖+1𝜔𝑖+1 × 𝑖+1𝑃𝐶𝑖+1) +𝑖+1 ሶ𝑣𝑖+1\n             2                                                   2➢   2                            +                                                                     ሶ𝑣2        ሶ𝑣𝐶2 =               ሶ𝜔2 × 2𝑃𝐶2              + 2𝜔2 × ( 2𝜔2 × 2𝑃𝐶2)\n         0    − ሷ𝜃1 + ሷ𝜃2   0   𝑙2\n➢ =    ሷ𝜃1 + ሷ𝜃2       0      0  0 +\n                            0         0         0      0\n       0    −  ሶ𝜃1 + ሶ𝜃2   0     0    − ሶ𝜃1 + ሶ𝜃2   0   𝑙2\n        ሶ𝜃1 + ሶ𝜃2       0      0     ሶ𝜃1 + ሶ𝜃2       0      0  0 +\n                                                 0       0         0      0     0         0      0\n     𝑙1𝑠2 ሷ𝜃1 −𝑙1𝑐2 ሶ𝜃12 + 𝑔𝑠12\n     𝑙1𝑐2 ሷ𝜃1 + 𝑙1𝑠2 ሶ𝜃12 + 𝑔𝑐12\n            0\n                                           2              0                                                   𝑙1𝑠2 ሷ𝜃1 −𝑙1𝑐2 ሶ𝜃12 + 𝑔𝑠12                         −𝑙2  ሶ𝜃1 + ሶ𝜃2\n➢   2                                                               2 + 𝑔𝑐12        ሶ𝑣𝐶2 =  𝑙2  ሷ𝜃1 + ሷ𝜃2  +      0     +  𝑙1𝑐2 ሷ𝜃1 + 𝑙1𝑠2 ሶ𝜃1\n              0             0                 0\n                                                  2\n              𝑙1𝑠2 ሷ𝜃1 −𝑙1𝑐2 ሶ𝜃12 + 𝑔𝑠12 −𝑙2  ሶ𝜃1 + ሶ𝜃2\n➢   2        ሶ𝑣𝐶2 =              𝑙1𝑐2 ሷ𝜃1 + 𝑙1𝑠2 ሶ𝜃12 + 𝑔𝑐12 + 𝑙2  ሷ𝜃1 + ሷ𝜃2\n                        0\n\n\n                                                                                                    13",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Equal and opposite joint rates can cancel the second link’s absolute rotation while leaving translational motion inherited from the elbow.",
+      "optionExplanations": {
+        "o2": "The second-link offset has zero local angular contribution, but its moving origin does not.",
+        "o3": "Zero spin does not remove the origin’s translation.",
+        "o4": "This uses only the second relative rate, not the absolute sum.",
+        "o1": "This takes absolute values rather than signed joint rates."
+      },
+      "steps": [
+        "omega2,z=2−2=0 and alpha2,z=0.",
+        "The frame2 origin acceleration is(−l1 cos90×4,l1 sin90×4,0)=(0,4,0).",
+        "Both local COM-offset terms vanish, so aC2²=a2²."
+      ],
+      "formulas": [
+        {
+          "expression": "omega1=[0,0,q1dot]; alpha1=[0,0,q1ddot]; omega2=[0,0,q1dot+q2dot]; alpha2=[0,0,q1ddot+q2ddot]",
+          "variables": {
+            "omega1,omega2": "angular velocities in their respective link frames",
+            "alpha1,alpha2": "angular accelerations in their respective link frames",
+            "q1dot,q2dot": "joint angular rates",
+            "q1ddot,q2ddot": "joint angular accelerations"
+          },
+          "units": {
+            "omega1,omega2,q1dot,q2dot": "rad/s",
+            "alpha1,alpha2,q1ddot,q2ddot": "rad/s²"
+          },
+          "assumptions": [
+            "Fixed nonrotating base; parallel +z revolute axes."
+          ]
+        },
+        {
+          "expression": "a2²=[l1 sin(theta2) q1ddot−l1 cos(theta2) q1dot²+g sin(theta1+theta2),l1 cos(theta2) q1ddot+l1 sin(theta2) q1dot²+g cos(theta1+theta2),0]; aC2²=a2²+[−l2(q1dot+q2dot)²,l2(q1ddot+q2ddot),0]",
+          "variables": {
+            "a2²": "gravity-augmented elbow-origin acceleration in frame2",
+            "aC2²": "gravity-augmented second mass acceleration in frame2",
+            "l1,l2": "link lengths",
+            "theta1,theta2": "first and relative second joint angles",
+            "q1dot,q2dot": "joint angular rates",
+            "q1ddot,q2ddot": "joint angular accelerations",
+            "g": "gravitational magnitude"
+          },
+          "units": {
+            "a2²,aC2²,g": "m/s²",
+            "l1,l2": "m",
+            "theta1,theta2": "rad",
+            "q1dot,q2dot": "rad/s",
+            "q1ddot,q2ddot": "rad/s²"
+          },
+          "assumptions": [
+            "Use the lecture’s vertical-plane two-revolute model: massless links of positive lengths l1,l2, endpoint point masses m1,m2, theta1 measured counterclockwise from +X0, theta2 relative to link1, +Y0 upward, physical gravity −g Y0 with g≥0. Positive joint torques increase their joint angles. No terminal wrench, friction or motor inertia unless explicitly changed."
+          ]
+        }
+      ],
+      "simpleExplanation": "Equal and opposite joint rates can cancel the second link’s absolute rotation while leaving translational motion inherited from the elbow.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Zero spin does not remove the origin’s translation.",
+        "This uses only the second relative rate, not the absolute sum.",
+        "This takes absolute values rather than signed joint rates."
+      ],
+      "examTraps": [
+        "Zero angular velocity is not zero rigid-body motion."
+      ],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L13-Q022",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L13-author",
+    "stem": "If m2=2 kg and the gravity-augmented aC2²=(12.5,6,0) m/s², which pair is (F2,N2) for the point-mass model?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "cognitiveSkill": "numerical",
+    "week": 3,
+    "lectureId": "L13",
+    "topic": "Newton–Euler inverse dynamics",
+    "subtopic": "Second-link force and COM spin moment",
+    "tags": [
+      "second-force",
+      "point-mass-2R"
+    ],
+    "conceptIds": [
+      "W03-L13-C-second-force"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o4",
+        "text": "((12.5,6,0) N,(0,0,0) N·m)"
+      },
+      {
+        "id": "o1",
+        "text": "((0,0,0) N,(0,0,0) N·m)"
+      },
+      {
+        "id": "o3",
+        "text": "((25,12,0) N,(0,0,0) N·m)"
+      },
+      {
+        "id": "o2",
+        "text": "((25,12,0) N,(0,0,12) N·m)"
+      }
+    ],
+    "correctOptionIds": [
+      "o3"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0417",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 417,
+        "kind": "equation",
+        "locator": "Lecture13, physical PDF page 417, printed slide 14: Second-link force and COM spin moment",
+        "evidenceText": "➢  𝑖+1𝐹𝑖+1 = 𝑚𝑖+1 𝑖+1 ሶ𝑣𝐶𝑖+1\n➢  2𝐹2 = 𝑚2 2 ሶ𝑣𝐶2\n                                                    2\n                𝑙1𝑠2 ሷ𝜃1 −𝑙1𝑐2 ሶ𝜃12 + 𝑔𝑠12 −𝑙2  ሶ𝜃1 + ሶ𝜃2\n➢  2𝐹2 = 𝑚2                𝑙1𝑐2 ሷ𝜃1 + 𝑙1𝑠2 ሶ𝜃12 + 𝑔𝑐12 + 𝑙2  ሷ𝜃1 + ሷ𝜃2\n                         0\n                                                              2\n          𝑚2𝑙1𝑠2 ሷ𝜃1 −𝑚2𝑙1𝑐2 ሶ𝜃12 + 𝑚2𝑔𝑠12 −𝑚2𝑙2  ሶ𝜃1 + ሶ𝜃2\n➢  2𝐹2 =                        2          𝑚2𝑙1𝑐2 ሷ𝜃1 + 𝑚2𝑙1𝑠2 ሶ𝜃1 + 𝑚2𝑔𝑐12 + 𝑚2𝑙2  ሷ𝜃1 + ሷ𝜃2\n                            0\n➢ 𝑖+1𝑁𝑖+1 = 𝐶𝑖+1𝐼𝑖+1 𝑖+1 ሶ𝜔𝑖+1 + 𝑖+1𝜔𝑖+1 × 𝐶𝑖+1𝐼𝑖+1 𝑖+1𝜔𝑖+1\n➢  2𝑁2 = 𝐶2𝐼2 2ሶ𝜔2 + 2𝜔2 × 𝐶2𝐼2 2𝜔2\n         0\n➢  2𝑁2 = 0\n         0\n\n\n\n                                                                                                    14",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Newton’s force equation retains the finite point mass, while Euler’s local spin moment is zero at that point.",
+      "optionExplanations": {
+        "o3": "Force is m2 aC2; COM spin inertia is zero.",
+        "o4": "This omits the mass multiplier.",
+        "o1": "Zero COM inertia does not imply zero force.",
+        "o2": "A nonzero joint-offset moment is not the COM spin moment N2."
+      },
+      "steps": [
+        "F2=m2 aC2=2(12.5,6,0)=(25,12,0) N.",
+        "I_C2=0 under the point-mass assumption.",
+        "Therefore N2=I_C2 alpha2+omega2×(I_C2 omega2)=0."
+      ],
+      "formulas": [
+        {
+          "expression": "F2=m2 aC2²; N2=I_C2 alpha2+omega2×(I_C2 omega2)",
+          "variables": {
+            "F2": "second mass force in frame2",
+            "m2": "second point mass",
+            "aC2²": "augmented COM acceleration in frame2",
+            "N2": "moment about second COM in frame2",
+            "I_C2": "COM inertia tensor",
+            "alpha2": "angular acceleration",
+            "omega2": "angular velocity"
+          },
+          "units": {
+            "F2": "N",
+            "m2": "kg",
+            "aC2²": "m/s²",
+            "N2": "N·m",
+            "I_C2": "kg·m²",
+            "alpha2": "rad/s²",
+            "omega2": "rad/s"
+          },
+          "assumptions": [
+            "I_C2=0 for the point mass."
+          ]
+        }
+      ],
+      "simpleExplanation": "Newton’s force equation retains the finite point mass, while Euler’s local spin moment is zero at that point.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This omits the mass multiplier.",
+        "Zero COM inertia does not imply zero force.",
+        "A nonzero joint-offset moment is not the COM spin moment N2."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L13-Q023",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L13-author",
+    "stem": "Why does f2=F2 hold in this example, rather than as a universal identity?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L13",
+    "topic": "Newton–Euler inverse dynamics",
+    "subtopic": "Why terminal link force equals its mass force",
+    "tags": [
+      "inward-force",
+      "point-mass-2R"
+    ],
+    "conceptIds": [
+      "W03-L13-C-inward-force"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o1",
+        "text": "The zero COM inertia tensor makes every downstream force vanish"
+      },
+      {
+        "id": "o3",
+        "text": "Internal and external forces are always represented by the same symbol"
+      },
+      {
+        "id": "o2",
+        "text": "Force rotation is unnecessary in every planar manipulator"
+      },
+      {
+        "id": "o4",
+        "text": "The downstream terminal force f3 is zero"
+      }
+    ],
+    "correctOptionIds": [
+      "o4"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0418",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 418,
+        "kind": "equation",
+        "locator": "Lecture13, physical PDF page 418, printed slide 15: Why terminal link force equals its mass force",
+        "evidenceText": "Inward iterations for link 2\n              +  𝑖𝐹𝑖  ➢ 𝑖𝑓𝑖= 𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1\n            + 2𝐹2  ➢ 2𝑓2 = 2𝑅3𝑓33\n  ➢ 2𝑓2 = 2𝐹2 (Since 3𝑓3 = 0)\n  ➢ 2𝑓2 =\n                                                          2                             2                  + 𝑚2𝑔𝑠12 −𝑚2𝑙2  ሶ𝜃1 + ሶ𝜃2       𝑚2𝑙1𝑠2 ሷ𝜃1 −𝑚2𝑙1𝑐2 ሶ𝜃1\n                              2                  + 𝑚2𝑔𝑐12 + 𝑚2𝑙2  ሷ𝜃1 + ሷ𝜃2       𝑚2𝑙1𝑐2 ሷ𝜃1           + 𝑚2𝑙1𝑠2 ሶ𝜃1\n                         0\n\n\n\n\n\n                                                                                                          15",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The terminal boundary removes the rotated downstream-force term only for this particular example.",
+      "optionExplanations": {
+        "o4": "The general recursion is f2=R23 f3+F2.",
+        "o1": "COM inertia does not determine the boundary contact force.",
+        "o2": "Nonzero downstream forces still need consistent coordinates.",
+        "o3": "The two quantities have different definitions; equality here follows from the boundary condition."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "f_i=R_i,i+1 f_(i+1)+F_i; n_i=N_i+R_i,i+1 n_(i+1)+rCi×F_i+p_i,i+1×(R_i,i+1 f_(i+1)); tau_i=n_i·z_i",
+          "variables": {
+            "f_i,f_(i+1)": "transmitted forces expressed in their own link frames",
+            "F_i": "own mass force in frame i",
+            "n_i,n_(i+1)": "transmitted moments about respective frame origins",
+            "N_i": "own COM spin moment in frame i",
+            "R_i,i+1": "rotation from downstream frame to frame i",
+            "rCi": "origin i to COM i, in frame i",
+            "p_i,i+1": "origin i to next origin, in frame i",
+            "tau_i": "revolute actuator torque",
+            "z_i": "positive unit joint axis in frame i"
+          },
+          "units": {
+            "f_i,f_(i+1),F_i": "N",
+            "n_i,n_(i+1),N_i,tau_i": "N·m",
+            "rCi,p_i,i+1": "m",
+            "R_i,i+1,z_i": "dimensionless"
+          },
+          "assumptions": [
+            "Use the lecture’s vertical-plane two-revolute model: massless links of positive lengths l1,l2, endpoint point masses m1,m2, theta1 measured counterclockwise from +X0, theta2 relative to link1, +Y0 upward, physical gravity −g Y0 with g≥0. Positive joint torques increase their joint angles. No terminal wrench, friction or motor inertia unless explicitly changed."
+          ]
+        }
+      ],
+      "simpleExplanation": "The terminal boundary removes the rotated downstream-force term only for this particular example.",
+      "memoryAid": null,
+      "misconceptions": [
+        "COM inertia does not determine the boundary contact force.",
+        "Nonzero downstream forces still need consistent coordinates.",
+        "The two quantities have different definitions; equality here follows from the boundary condition."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L13-Q028",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L13-author",
+    "stem": "An expanded term on printed slide18 places a transpose mark after a displayed3×1 n2 column. Which reading is consistent with R12 being3×3 and with the next slide?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "application",
+    "week": 3,
+    "lectureId": "L13",
+    "topic": "Newton–Euler inverse dynamics",
+    "subtopic": "Checking the printed vector transpose",
+    "tags": [
+      "source-transpose",
+      "point-mass-2R"
+    ],
+    "conceptIds": [
+      "W03-L13-C-source-transpose"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o2",
+        "text": "Use R12 n2ᵀ literally, producing a3×1 result"
+      },
+      {
+        "id": "o3",
+        "text": "Transpose the whole product to obtain a scalar joint torque immediately"
+      },
+      {
+        "id": "o1",
+        "text": "Use R12 n2 with n2 as a3×1 column; treat the extra transpose mark as inconsistent typography"
+      },
+      {
+        "id": "o4",
+        "text": "Replace the product by the elementwise product of R12 and n2"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0421",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 421,
+        "kind": "statement",
+        "locator": "Lecture13, physical PDF page 421, printed slide 18: Checking the printed vector transpose",
+        "evidenceText": "+                               ×➢  𝑖𝑛𝑖= 𝑖𝑁𝑖+ 𝑖+1𝑖𝑅𝑖+1𝑛𝑖+1                                                        𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1                            𝑖𝑃𝐶𝑖× 𝑖𝐹𝑖+  𝑖𝑃𝑖+1\n                   × 1𝐹1 + 1𝑃2 × 1𝑅2𝑓22➢  1𝑛1 = 1𝑁1 + 1𝑅2𝑛22    + 1𝑃𝐶1\n                                        0           𝑐2  −𝑠2  0\n                                              +➢  1𝑛1 =  𝑠2   𝑐2   0                      0\n         0   0   1  𝑚2𝑙1𝑙2𝑐2 ሷ𝜃1 + 𝑚2𝑙1𝑙2𝑠2 ሶ𝜃12 + 𝑚2𝑙2𝑔𝑐12 + 𝑚2𝑙22  ሷ𝜃1 + ሷ𝜃2\n      0  0   0   −𝑚1𝑙1 ሶ𝜃12 + 𝑚1𝑔𝑠1\n      0  0  −𝑙1             +                   𝑚1𝑙1 ሷ𝜃1 + 𝑚1𝑔𝑐1\n      0   𝑙1   0                       0\n\n                                                                                      2\n      0  0   0    𝑐2  −𝑠2  0  𝑚2𝑙1𝑠2 ሷ𝜃1 −𝑚2𝑙1𝑐2 ሶ𝜃12 + 𝑚2𝑔𝑠12 −𝑚2𝑙2  ሶ𝜃1 + ሶ𝜃2\n      0  0  −𝑙1  𝑠2   𝑐2   0                               𝑚2𝑙1𝑐2 ሷ𝜃1 + 𝑚2𝑙1𝑠2 ሶ𝜃12 + 𝑚2𝑔𝑐12 + 𝑚2𝑙2  ሷ𝜃1 + ሷ𝜃2\n      0   𝑙1   0   0   0   1                                              0\n\n\n\n\n\n                                                                                                    18",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0422",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 422,
+        "kind": "statement",
+        "locator": "Lecture13, physical PDF page 422, printed slide 19: Checking the printed vector transpose",
+        "evidenceText": "0                               0\n➢  1𝑛1 =                      0                +        0      +\n          𝑚2𝑙1𝑙2𝑐2 ሷ𝜃1 + 𝑚2𝑙1𝑙2𝑠2 ሶ𝜃12 + 𝑚2𝑙2𝑔𝑐12 + 𝑚2𝑙22  ሷ𝜃1 + ሷ𝜃2     𝑚1𝑙12 ሷ𝜃1 + 𝑚1𝑙1𝑔𝑐1\n\n\n                                                                            2\n      0    0    0   𝑚2𝑙1𝑠2 ሷ𝜃1 −𝑚2𝑙1𝑐2 ሶ𝜃12 + 𝑚2𝑔𝑠12 −𝑚2𝑙2  ሶ𝜃1 + ሶ𝜃2\n      0    0   −𝑙1                        2                       𝑚2𝑙1𝑐2 ሷ𝜃1 + 𝑚2𝑙1𝑠2 ሶ𝜃1 + 𝑚2𝑔𝑐12 + 𝑚2𝑙2  ሷ𝜃1 + ሷ𝜃2\n       𝑙1𝑠2   𝑙1𝑐2   0                                       0\n\n                              0                               0\n➢  1𝑛1 =                      0                +        0      +\n          𝑚2𝑙1𝑙2𝑐2 ሷ𝜃1 + 𝑚2𝑙1𝑙2𝑠2 ሶ𝜃12 + 𝑚2𝑙2𝑔𝑐12 + 𝑚2𝑙22  ሷ𝜃1 + ሷ𝜃2     𝑚1𝑙12 ሷ𝜃1 + 𝑚1𝑙1𝑔𝑐1\n                                  0\n                                  0\n                                  2\n    𝑚2𝑙12 ሷ𝜃1 −𝑚2𝑙1𝑙2𝑠2  ሶ𝜃1 + ሶ𝜃2  + 𝑚2𝑙1𝑔𝑠2𝑠12 + 𝑚2𝑙1𝑙2𝑐2  ሷ𝜃1 + ሷ𝜃2 + 𝑚2𝑙1𝑔𝑐2𝑐12\n\n\n                                                                                                    19",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The dimensionally consistent general recursion and the following expansion both use a column moment vector. The visible extra transpose is preserved as a source caveat, not silently adopted.",
+      "optionExplanations": {
+        "o1": "Then the product is3×1 and can be added to the other moment vectors.",
+        "o2": "A3×3 matrix cannot multiply a1×3 row on the right.",
+        "o3": "A transpose alone does not project a vector onto the joint axis.",
+        "o4": "The recursion requires coordinate rotation, not elementwise multiplication."
+      },
+      "steps": [
+        "R12 has shape3×3.",
+        "A moment vector n2 has shape3×1.",
+        "R12 n2 has shape3×1; R12 n2ᵀ is not a conformable matrix product."
+      ],
+      "formulas": [],
+      "simpleExplanation": "The dimensionally consistent general recursion and the following expansion both use a column moment vector. The visible extra transpose is preserved as a source caveat, not silently adopted.",
+      "memoryAid": null,
+      "misconceptions": [
+        "A3×3 matrix cannot multiply a1×3 row on the right.",
+        "A transpose alone does not project a vector onto the joint axis.",
+        "The recursion requires coordinate rotation, not elementwise multiplication."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L13-Q032",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L13-author",
+    "stem": "Why are the z components of n1 and n2 selected as actuator torques here?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L13",
+    "topic": "Newton–Euler inverse dynamics",
+    "subtopic": "Extracting the signed actuator torque",
+    "tags": [
+      "torque-projection",
+      "point-mass-2R"
+    ],
+    "conceptIds": [
+      "W03-L13-C-torque-projection"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o1",
+        "text": "Each revolute joint’s allowed rotation is about its positive z axis"
+      },
+      {
+        "id": "o2",
+        "text": "The norm of n_i is always the signed actuator torque"
+      },
+      {
+        "id": "o3",
+        "text": "The x axes follow the links, so the x moment components should be selected"
+      },
+      {
+        "id": "o4",
+        "text": "Every component of a moment vector can independently be commanded by one revolute joint"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0423",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 423,
+        "kind": "equation",
+        "locator": "Lecture13, physical PDF page 423, printed slide 20: Extracting the signed actuator torque",
+        "evidenceText": "0                               0\n➢    1𝑛1 =                      0                +        0        +\n             𝑚2𝑙1𝑙2𝑐2 ሷ𝜃1 + 𝑚2𝑙1𝑙2𝑠2 ሶ𝜃12 + 𝑚2𝑙2𝑔𝑐12 + 𝑚2𝑙22  ሷ𝜃1 + ሷ𝜃2     𝑚1𝑙12 ሷ𝜃1 + 𝑚1𝑙1𝑔𝑐1\n\n                             0\n                             0\n                                     2\n      𝑚2𝑙12 ሷ𝜃1 −𝑚2𝑙1𝑙2𝑠2  ሶ𝜃1 + ሶ𝜃2  + 𝑚2𝑙1𝑙2𝑐2  ሷ𝜃1 + ሷ𝜃2 + 𝑚2𝑙1𝑔𝑐1\n\n                                0\n➢    2𝑛2 =                      0\n             𝑚2𝑙1𝑙2𝑐2 ሷ𝜃1 + 𝑚2𝑙1𝑙2𝑠2 ሶ𝜃12 + 𝑚2𝑙2𝑔𝑐12 + 𝑚2𝑙22  ሷ𝜃1 + ሷ𝜃2\n\nExtracting the መ𝑍 components of the 1𝑛1 and 2𝑛2 joint torques can be given as:\n   ➢𝜏1 = 𝑚2𝑙22  ሷ𝜃1 + ሷ𝜃2 + 𝑚2𝑙1𝑙2𝑐2 2ሷ𝜃1 + ሷ𝜃2 + 𝑚1 + 𝑚2 𝑙12 ሷ𝜃1\n       −𝑚2𝑙1 𝑙2𝑠2 ሶ𝜃22 −2𝑚2𝑙1𝑙2𝑠2 ሶ𝜃1 ሶ𝜃2 + 𝑚2𝑙2𝑔𝑐12 + 𝑚1 + 𝑚2 𝑙1𝑔𝑐1\n   ➢𝜏2 = 𝑚2𝑙1𝑙2𝑐2 ሷ𝜃1 + 𝑚2𝑙1𝑙2𝑠2 ሶ𝜃12 + 𝑚2𝑙2𝑔𝑐12 + 𝑚2𝑙22  ሷ𝜃1 + ሷ𝜃2\n\n\n\n                                                                                                          20",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Joint torque is the signed moment component along the permitted rotation axis, not a generic moment magnitude.",
+      "optionExplanations": {
+        "o1": "The scalar effort is n_i dot z_i.",
+        "o2": "Norm discards sign and is not generally the joint-axis projection.",
+        "o3": "The revolute axes are z, not the link directions.",
+        "o4": "A one-DOF revolute actuator supplies one scalar generalized effort."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "f_i=R_i,i+1 f_(i+1)+F_i; n_i=N_i+R_i,i+1 n_(i+1)+rCi×F_i+p_i,i+1×(R_i,i+1 f_(i+1)); tau_i=n_i·z_i",
+          "variables": {
+            "f_i,f_(i+1)": "transmitted forces expressed in their own link frames",
+            "F_i": "own mass force in frame i",
+            "n_i,n_(i+1)": "transmitted moments about respective frame origins",
+            "N_i": "own COM spin moment in frame i",
+            "R_i,i+1": "rotation from downstream frame to frame i",
+            "rCi": "origin i to COM i, in frame i",
+            "p_i,i+1": "origin i to next origin, in frame i",
+            "tau_i": "revolute actuator torque",
+            "z_i": "positive unit joint axis in frame i"
+          },
+          "units": {
+            "f_i,f_(i+1),F_i": "N",
+            "n_i,n_(i+1),N_i,tau_i": "N·m",
+            "rCi,p_i,i+1": "m",
+            "R_i,i+1,z_i": "dimensionless"
+          },
+          "assumptions": [
+            "Use the lecture’s vertical-plane two-revolute model: massless links of positive lengths l1,l2, endpoint point masses m1,m2, theta1 measured counterclockwise from +X0, theta2 relative to link1, +Y0 upward, physical gravity −g Y0 with g≥0. Positive joint torques increase their joint angles. No terminal wrench, friction or motor inertia unless explicitly changed."
+          ]
+        }
+      ],
+      "simpleExplanation": "Joint torque is the signed moment component along the permitted rotation axis, not a generic moment magnitude.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Norm discards sign and is not generally the joint-axis projection.",
+        "The revolute axes are z, not the link directions.",
+        "A one-DOF revolute actuator supplies one scalar generalized effort."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L13-Q042",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L13-author",
+    "stem": "Which sequence respects the dependencies of the recursive inverse-dynamics algorithm?",
+    "selectionMode": "single",
+    "type": "sequence",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L13",
+    "topic": "Newton–Euler inverse dynamics",
+    "subtopic": "Outward then inward Newton–Euler passes",
+    "tags": [
+      "two-pass-order",
+      "point-mass-2R"
+    ],
+    "conceptIds": [
+      "W03-L13-C-two-pass-order"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o4",
+        "text": "Inward actuator torques first, then compute the COM accelerations needed to obtain those torques"
+      },
+      {
+        "id": "o1",
+        "text": "Outward force recursion from the base load, then inward joint velocities from the terminal load"
+      },
+      {
+        "id": "o2",
+        "text": "Perform only the outward pass because the local COM moment already equals joint torque"
+      },
+      {
+        "id": "o3",
+        "text": "Outward kinematics and link inertia forces/moments, then inward transmitted loads and actuator efforts"
+      }
+    ],
+    "correctOptionIds": [
+      "o3"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0425",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 425,
+        "kind": "statement",
+        "locator": "Lecture13, physical PDF page 425, printed slide 22: Outward then inward Newton–Euler passes",
+        "evidenceText": "Summary\n\n•  The complete algorithm for computing joint\n   torques from the motion of the joints is\n  composed of two parts.\n•  First, link velocities and accelerations are\n   iteratively computed from link 1 out to link 𝑛\n  and the Newton—Euler equations are applied\n   to each link.\n•  Second, for given forces and torques of\n   interaction at EE, joint actuator torques are\n  computed recursively from link 𝑛 back to link 1.\n\n\n\n\n                                                                                                          22",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Motion propagates outward from the base; required loads propagate inward from the prescribed terminal boundary.",
+      "optionExplanations": {
+        "o3": "The inward pass uses quantities computed in the outward pass.",
+        "o4": "This reverses the dependency.",
+        "o1": "This swaps the data and propagation directions.",
+        "o2": "The inward lever-arm and downstream-load accumulation is still required."
+      },
+      "steps": [
+        "Initialize the fixed-base/gravity data and prescribed joint motion.",
+        "Compute link velocities, accelerations, F_i and N_i outward.",
+        "Initialize the terminal wrench and propagate f_i,n_i inward.",
+        "Project each joint moment onto its positive joint axis."
+      ],
+      "formulas": [],
+      "simpleExplanation": "Motion propagates outward from the base; required loads propagate inward from the prescribed terminal boundary.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This reverses the dependency.",
+        "This swaps the data and propagation directions.",
+        "The inward lever-arm and downstream-load accumulation is still required."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  }
+]

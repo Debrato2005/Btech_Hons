@@ -1,0 +1,583 @@
+{
+  "reviewerId": "independent-reviewer-robotics-batches-v2",
+  "completedAt": "2026-10-19T18:31:56.491667+00:00",
+  "method": "Source-pixel formulas independently implemented. Mass matrix reconstructed from COM and angular kinetic-energy Jacobians, and velocity terms cross-checked via finite-difference Christoffel symbols. No author data, script or keyed answers read.",
+  "checks": [
+    {
+      "name": "worked FK x to .1mm",
+      "actual": 228.5,
+      "expected": 228.5,
+      "passed": true
+    },
+    {
+      "name": "worked FK y to .1mm",
+      "actual": 370.0,
+      "expected": 370.0,
+      "passed": true
+    },
+    {
+      "name": "worked FK z/yaw",
+      "actual": [
+        320.0,
+        89.99999999999999
+      ],
+      "expected": [
+        320,
+        90
+      ],
+      "passed": true
+    },
+    {
+      "name": "printed y369.7 is not valid .1 rounding",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "hypothetical matrix",
+      "actual": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.25
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.2
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.32
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "expected": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.25
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.2
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.32
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "IK cosine D",
+      "actual": -0.17500000000000016,
+      "expected": -0.175,
+      "passed": true
+    },
+    {
+      "name": "IK branch 1 forward recovery",
+      "actual": [
+        0.24999999999999997,
+        0.14999999999999997,
+        0.32,
+        1.5707963267948966
+      ],
+      "expected": [
+        0.25,
+        0.15,
+        0.32,
+        1.5707963267948966
+      ],
+      "passed": true
+    },
+    {
+      "name": "IK branch -1 forward recovery",
+      "actual": [
+        0.24999999999999994,
+        0.14999999999999997,
+        0.32,
+        1.5707963267948966
+      ],
+      "expected": [
+        0.25,
+        0.15,
+        0.32,
+        1.5707963267948966
+      ],
+      "passed": true
+    },
+    {
+      "name": "IK positive rounded",
+      "actual": [
+        -11.5,
+        100.1,
+        80.0,
+        1.4
+      ],
+      "expected": [
+        -11.5,
+        100.1,
+        80.0,
+        1.4
+      ],
+      "passed": true
+    },
+    {
+      "name": "IK negative rounded",
+      "actual": [
+        73.4,
+        -100.1,
+        80.0,
+        116.6
+      ],
+      "expected": [
+        73.4,
+        -100.1,
+        80.0,
+        116.6
+      ],
+      "passed": true
+    },
+    {
+      "name": "radial ideal bounds",
+      "actual": [
+        0.04999999999999999,
+        0.45
+      ],
+      "expected": [
+        0.05,
+        0.45
+      ],
+      "passed": true
+    },
+    {
+      "name": "annular prism volume",
+      "actual": 0.12566370614359174,
+      "expected": 0.12566370614359174,
+      "passed": true
+    },
+    {
+      "name": "145degree elbow min radius mm",
+      "actual": 143.5,
+      "expected": 143.5,
+      "passed": true
+    },
+    {
+      "name": "Jacobian full determinant",
+      "actual": -0.02499999999999999,
+      "expected": -0.024999999999999998,
+      "passed": true
+    },
+    {
+      "name": "task rate vector",
+      "actual": [
+        -0.6000000000000001,
+        0.25,
+        -0.03,
+        0.0
+      ],
+      "expected": [
+        -0.6,
+        0.25,
+        -0.03,
+        0.0
+      ],
+      "passed": true
+    },
+    {
+      "name": "straight arm x row",
+      "actual": [
+        -0.0,
+        -0.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "name": "M11 independently assembled COM energy",
+      "actual": 0.2034,
+      "expected": 0.2034,
+      "passed": true
+    },
+    {
+      "name": "M12 and M22 independently assembled",
+      "actual": [
+        0.06340000000000001,
+        0.06340000000000001
+      ],
+      "expected": [
+        0.0634,
+        0.0634
+      ],
+      "passed": true
+    },
+    {
+      "name": "M33",
+      "actual": 1.0,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "wrist coupled effort",
+      "actual": 0.030000000000000002,
+      "expected": 0.03,
+      "passed": true
+    },
+    {
+      "name": "velocity terms given h",
+      "actual": [
+        -0.512,
+        0.064
+      ],
+      "expected": [
+        -0.512,
+        0.064
+      ],
+      "passed": true
+    },
+    {
+      "name": "velocity omega2 zero",
+      "actual": [
+        -0.0,
+        0.064
+      ],
+      "expected": [
+        0.0,
+        0.064
+      ],
+      "passed": true
+    },
+    {
+      "name": "hold actuator force downward coordinate",
+      "actual": -11.772,
+      "expected": -11.772,
+      "passed": true
+    },
+    {
+      "name": "500 finite-difference Jacobians maximum error",
+      "actual": 1.0279563866788521e-09,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "500 matrix products maximum translation error",
+      "actual": 1.1102230246251565e-16,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "150 energy-derived Christoffel vectors maximum error",
+      "actual": 1.3393762401253673e-10,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "150 generalized mass matrices positive definite",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "accel-limited distance .38s",
+      "actual": 10.83,
+      "expected": 10.83,
+      "passed": true
+    },
+    {
+      "name": "minimum triangular time",
+      "actual": 1.0954451150103321,
+      "expected": 1.0954451150103321,
+      "passed": true
+    },
+    {
+      "name": "triangular peak below cap",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "repaired trapezoid acceleration",
+      "actual": 2580.6451612903224,
+      "expected": 2580.6451612903224,
+      "passed": true
+    },
+    {
+      "name": "repaired trapezoid positive cruise",
+      "actual": 0.07,
+      "expected": 0.07,
+      "passed": true
+    },
+    {
+      "name": "ideal stiffness ratio",
+      "actual": 12.5,
+      "expected": 12.5,
+      "passed": true
+    },
+    {
+      "name": "gear speed and torque",
+      "actual": [
+        30.0,
+        50.0
+      ],
+      "expected": [
+        30,
+        50
+      ],
+      "passed": true
+    },
+    {
+      "name": "screw stroke revolutions",
+      "actual": 13.0,
+      "expected": 13,
+      "passed": true
+    },
+    {
+      "name": "forward screw torque",
+      "actual": 0.16753151904410035,
+      "expected": 0.16753151904410038,
+      "passed": true
+    },
+    {
+      "name": "stiffness deflection upper limit microns",
+      "actual": 0.5,
+      "expected": 0.5,
+      "passed": true
+    },
+    {
+      "name": "wrist power at simultaneous point",
+      "actual": 628.3185307179587,
+      "expected": 628.3185307179587,
+      "passed": true
+    },
+    {
+      "name": "literal grams moving mass",
+      "actual": 0.8005,
+      "expected": 0.8005,
+      "passed": true
+    },
+    {
+      "name": "table capacity ratio",
+      "actual": 2.3076923076923075,
+      "expected": 2.3076923076923075,
+      "passed": true
+    },
+    {
+      "name": "stroke percent margin",
+      "actual": 38.46153846153846,
+      "expected": 38.46153846153846,
+      "passed": true
+    },
+    {
+      "name": "encoder codes and angle",
+      "actual": [
+        1048576.0,
+        0.00034332275390625
+      ],
+      "expected": [
+        1048576.0,
+        0.00034332275390625
+      ],
+      "passed": true
+    },
+    {
+      "name": "chosen link radii",
+      "actual": [
+        360,
+        40
+      ],
+      "expected": [
+        360,
+        40
+      ],
+      "passed": true
+    },
+    {
+      "name": "hollow rectangular area",
+      "actual": 384,
+      "expected": 384,
+      "passed": true
+    },
+    {
+      "name": "300 degrees acceleration conversion",
+      "actual": 5.235987755982989,
+      "expected": 5.235987755982989,
+      "passed": true
+    },
+    {
+      "name": "J1 load only motor torque",
+      "actual": 0.022008,
+      "expected": 0.022008,
+      "passed": true
+    },
+    {
+      "name": "J2 load only motor torque",
+      "actual": 0.011789999999999998,
+      "expected": 0.01179,
+      "passed": true
+    },
+    {
+      "name": "upward payload force",
+      "actual": 64.753,
+      "expected": 64.753,
+      "passed": true
+    },
+    {
+      "name": "wrist load torque",
+      "actual": 0.16,
+      "expected": 0.16,
+      "passed": true
+    },
+    {
+      "name": "reducer forward efficiency",
+      "actual": 0.125,
+      "expected": 0.125,
+      "passed": true
+    },
+    {
+      "name": "unwrapped wrist yaw",
+      "actual": -105,
+      "expected": -105,
+      "passed": true
+    },
+    {
+      "name": "servo drives extended",
+      "actual": 880,
+      "expected": 880,
+      "passed": true
+    },
+    {
+      "name": "controller subtotal",
+      "actual": 2680,
+      "expected": 2680,
+      "passed": true
+    },
+    {
+      "name": "transmission subtotal",
+      "actual": 2370,
+      "expected": 2370,
+      "passed": true
+    },
+    {
+      "name": "actuation subtotal",
+      "actual": 1600,
+      "expected": 1600,
+      "passed": true
+    },
+    {
+      "name": "first BOM",
+      "actual": 7900,
+      "expected": 7900,
+      "passed": true
+    },
+    {
+      "name": "sensing subtotal",
+      "actual": 1130,
+      "expected": 1130,
+      "passed": true
+    },
+    {
+      "name": "literal two-page BOM",
+      "actual": 9630,
+      "expected": 9630,
+      "passed": true
+    },
+    {
+      "name": "one-system BOM",
+      "actual": 9210,
+      "expected": 9210,
+      "passed": true
+    },
+    {
+      "name": "one-system over target",
+      "actual": 710,
+      "expected": 710,
+      "passed": true
+    },
+    {
+      "name": "production target reduction",
+      "actual": 50.588235294117645,
+      "expected": 50.588235294117645,
+      "passed": true
+    },
+    {
+      "name": "reported shares normalize",
+      "actual": 100,
+      "expected": 100,
+      "passed": true
+    },
+    {
+      "name": "reported actuation share is not exact one-system share",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "largest category order",
+      "actual": [
+        "controller",
+        "transmission"
+      ],
+      "expected": [
+        "controller",
+        "transmission"
+      ],
+      "passed": true
+    }
+  ],
+  "passed": 64,
+  "failed": 0,
+  "randomCases": {
+    "fkAndJacobian": 500,
+    "massAndChristoffel": 150
+  },
+  "workedValues": {
+    "FKmmDegrees": [
+      228.54050431714109,
+      369.96186055445054,
+      320.0,
+      89.99999999999999
+    ],
+    "IKBranchesDegreesMm": [
+      [
+        -11.522114228882062,
+        100.07865810778769,
+        80,
+        1.4434561210943788
+      ],
+      [
+        73.44962729302911,
+        -100.07865810778769,
+        80,
+        116.62903081475858
+      ]
+    ]
+  }
+}

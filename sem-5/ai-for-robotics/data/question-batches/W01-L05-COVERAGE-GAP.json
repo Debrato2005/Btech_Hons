@@ -1,0 +1,304 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "W01-L05-COVERAGE-GAP",
+  "authorId": "robotics-integration-L05-coverage-gap-author",
+  "questions": [
+    {
+      "id": "W01-L05-COVERAGE-GAP-Q001",
+      "version": 1,
+      "status": "draft",
+      "authorId": "robotics-integration-L05-coverage-gap-author",
+      "stem": "Which set matches all four direct connections in the five-node drawing?",
+      "selectionMode": "single",
+      "type": "diagram",
+      "difficulty": "easy",
+      "cognitiveSkill": "application",
+      "week": 1,
+      "lectureId": "L05",
+      "topic": "Robot Operating System",
+      "subtopic": "Read the five-node connectivity drawing",
+      "tags": [
+        "unarrowed-adjacency"
+      ],
+      "conceptIds": [
+        "W01-L05-COVERAGE-GAP-C-unarrowed-adjacency"
+      ],
+      "assumptions": [
+        "Read connectivity only; the figure gives no publication direction, topic name or message type."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Camera–Lidar; Lidar–Control; Camera–SLAM; Lidar–Nav"
+        },
+        {
+          "id": "o2",
+          "text": "Camera–Lidar; Lidar–Control; Camera–Nav; Lidar–SLAM"
+        },
+        {
+          "id": "o3",
+          "text": "Camera–Control; Lidar–Control; Camera–SLAM; Lidar–Nav"
+        },
+        {
+          "id": "o4",
+          "text": "Camera–Lidar; Lidar–Control; SLAM–Nav; Camera–Control"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0183",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 183,
+          "kind": "figure",
+          "locator": "Lecture 5, physical PDF page 183, printed slide 13: relevant text, equations and associated figures",
+          "evidenceText": "ROS Node: The Atomic Unit of Computation\n\n•  A Node is a single-purpose programming module or a\n   process that performs computation.                       Came\n                                                                                                                            Lidar             Control\n                                                                                                     ra•   In a ROS-based robot, you do not write one massive                   Node           Node                                                                            Node\n   program; instead, you write many small programs\n   (python scripts) called nodes.\n                                                                              SLAM            Nav•  These Multiple small programs (nodes) work together\n                                                                                   Node            Node\n   using ROS functionalities.\n•  The core idea behind nodes is “divide and simplify”.\n•  Features of Node:\n    –  Single Responsibility: Each node should do one thing well.\n       For example, one node might read images from a camera,\n       while another node performs AI object detection, and a\n        third node sends commands to the motor controller.\n\n\n                                                                                                          13",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The visible lines connect Camera to Lidar and SLAM, and Lidar to Control and Nav; there are no arrowheads or topic labels.",
+        "optionExplanations": {
+          "o1": "This matches the four visible line segments.",
+          "o2": "This swaps the lower branches: Camera connects to SLAM, and Lidar connects to Nav.",
+          "o3": "The upper-left segment joins Camera to Lidar, not directly to Control.",
+          "o4": "Neither SLAM–Nav nor Camera–Control is drawn as a direct connection."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The visible lines connect Camera to Lidar and SLAM, and Lidar to Control and Nav; there are no arrowheads or topic labels.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This swaps the lower branches: Camera connects to SLAM, and Lidar connects to Nav.",
+          "The upper-left segment joins Camera to Lidar, not directly to Control.",
+          "Neither SLAM–Nav nor Camera–Control is drawn as a direct connection."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": []
+    },
+    {
+      "id": "W01-L05-COVERAGE-GAP-Q002",
+      "version": 1,
+      "status": "draft",
+      "authorId": "robotics-integration-L05-coverage-gap-author",
+      "stem": "Large video frames are moving from a hardware driver to an AI node. Which measurement most directly assesses the slide’s aim of reducing the cost of that data movement?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 1,
+      "lectureId": "L05",
+      "topic": "Robot Operating System",
+      "subtopic": "Explain the high-bandwidth message motivation",
+      "tags": [
+        "message-transfer-overhead"
+      ],
+      "conceptIds": [
+        "W01-L05-COVERAGE-GAP-C-message-transfer-overhead"
+      ],
+      "assumptions": [
+        "Assess the source’s motivation, not an exact bandwidth measurement or a guarantee that every deployment uses zero-copy transfer."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "Time spent on CNN inference after the frame is already available to the AI node"
+        },
+        {
+          "id": "o3",
+          "text": "Time spent on camera exposure before the frame data is available to the driver"
+        },
+        {
+          "id": "o4",
+          "text": "Time spent applying a motor command after navigation has selected it"
+        },
+        {
+          "id": "o1",
+          "text": "Time and processing overhead for transferring each frame between those components"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0190",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 190,
+          "kind": "statement",
+          "locator": "Lecture 5, physical PDF page 190, printed slide 20: relevant text, equations and associated figures",
+          "evidenceText": "ROS Messages: Standardizing the Language\n\n• Nodes must speak the same language to communicate. In ROS,\n   this \"language\" is the Message.\n   – Message Types (Interfaces): A message is a strictly defined data structure\n         (e.g., an integer, a string, or a complex array of pixels).\n   – Common AI Messages:\n             • sensor_msgs/Image: Used for raw camera data.\n             • geometry_msgs/Twist: Used for movement commands (Linear and Angular velocity).\n   – Jetson handles high-bandwidth messages, like 4K\n       video streams, using optimized ROS message\n       structures that minimize the \"cost\" of moving data\n      between AI nodes and hardware drivers.\n\n\n\n                                                                                                          20",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The stated optimization targets the overhead of moving high-bandwidth data between components, so measure that transfer rather than a different stage.",
+        "optionExplanations": {
+          "o1": "This directly measures the data-transfer stage named by the source.",
+          "o2": "Inference is a different computation after the transfer has supplied the frame.",
+          "o3": "Exposure occurs before the data-transfer stage being assessed.",
+          "o4": "Motor actuation occurs in a different downstream stage."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "Measure the transfer stage itself, not acquisition, inference or actuation.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Inference is a different computation after the transfer has supplied the frame.",
+          "Exposure occurs before the data-transfer stage being assessed.",
+          "Motor actuation occurs in a different downstream stage."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": []
+    },
+    {
+      "id": "W01-L05-COVERAGE-GAP-Q003",
+      "version": 1,
+      "status": "draft",
+      "authorId": "robotics-integration-L05-coverage-gap-author",
+      "stem": "Which interpretation of the shown server/client construction and handler return is correct?",
+      "selectionMode": "single",
+      "type": "code_output",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 1,
+      "lectureId": "L05",
+      "topic": "Robot Operating System",
+      "subtopic": "Match the server and client interface in the code",
+      "tags": [
+        "service-endpoint-construction"
+      ],
+      "conceptIds": [
+        "W01-L05-COVERAGE-GAP-C-service-endpoint-construction"
+      ],
+      "assumptions": [
+        "This concerns the printed constructors and handler, not whether an executor has completed or consumed the asynchronous result."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "create_service uses AddTwoInts and add with handle_service; create_client uses AddTwoInts and speed; the handler returns response"
+        },
+        {
+          "id": "o4",
+          "text": "create_service uses AddTwoInts and add with handle_service; create_client uses AddTwoInts and add; the handler returns request"
+        },
+        {
+          "id": "o1",
+          "text": "create_service uses AddTwoInts and add with handle_service; create_client uses AddTwoInts and add; the handler returns response"
+        },
+        {
+          "id": "o2",
+          "text": "create_service uses AddTwoInts and add with handle_service; create_client uses String and add; the handler returns response"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0199",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 199,
+          "kind": "code",
+          "locator": "Lecture 5, physical PDF page 199, printed slide 29: relevant text, equations and associated figures",
+          "evidenceText": "Conceptual Python Workflow (Cont.)\n                                                    •   Service\n                                               –  Define name + interface →\n                                                  create_service(AddTwoInts, 'add', ...)\n                                               –   Client waits → wait_for_service()\n                                               –  Request–Response → call_async(req)\n                                                    •  Parameter\n                                               –  Declare → declare_parameter('speed', 1.0)\n                                               –  Use anytime → get_parameter('speed').value\n\n\n\n                                    Basic template for server and\n                                        client\n\n\n\n\n\n                                                                                                          29",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Both endpoints use the same AddTwoInts service interface and add name; the server binds handle_service, which fills and returns the response object.",
+        "optionExplanations": {
+          "o1": "This matches both endpoint constructors and the final return line.",
+          "o2": "The displayed client uses AddTwoInts, not String.",
+          "o3": "The displayed client uses add; speed is the separately declared parameter name.",
+          "o4": "The handler returns response after setting response.sum, not the request."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "Both endpoints use the same AddTwoInts service interface and add name; the server binds handle_service, which fills and returns the response object.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The displayed client uses AddTwoInts, not String.",
+          "The displayed client uses add; speed is the separately declared parameter name.",
+          "The handler returns response after setting response.sum, not the request."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": []
+    }
+  ],
+  "concepts": [
+    {
+      "id": "W01-L05-COVERAGE-GAP-C-unarrowed-adjacency",
+      "title": "Read the five-node connectivity drawing",
+      "description": "The visible lines connect Camera to Lidar and SLAM, and Lidar to Control and Nav; there are no arrowheads or topic labels.",
+      "slideIds": [
+        "lectures-p0183"
+      ],
+      "questionIds": [
+        "W01-L05-COVERAGE-GAP-Q001"
+      ],
+      "status": "drafted",
+      "topic": "Robot Operating System",
+      "subtopic": "Read the five-node connectivity drawing",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "diagram"
+      ]
+    },
+    {
+      "id": "W01-L05-COVERAGE-GAP-C-message-transfer-overhead",
+      "title": "Explain the high-bandwidth message motivation",
+      "description": "The stated optimization targets the overhead of moving high-bandwidth data between components, so measure that transfer rather than a different stage.",
+      "slideIds": [
+        "lectures-p0190"
+      ],
+      "questionIds": [
+        "W01-L05-COVERAGE-GAP-Q002"
+      ],
+      "status": "drafted",
+      "topic": "Robot Operating System",
+      "subtopic": "Explain the high-bandwidth message motivation",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "conceptual"
+      ]
+    },
+    {
+      "id": "W01-L05-COVERAGE-GAP-C-service-endpoint-construction",
+      "title": "Match the server and client interface in the code",
+      "description": "Both endpoints use the same AddTwoInts service interface and add name; the server binds handle_service, which fills and returns the response object.",
+      "slideIds": [
+        "lectures-p0199"
+      ],
+      "questionIds": [
+        "W01-L05-COVERAGE-GAP-Q003"
+      ],
+      "status": "drafted",
+      "topic": "Robot Operating System",
+      "subtopic": "Match the server and client interface in the code",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "code_output"
+      ]
+    }
+  ],
+  "coverageNote": "Hand-authored drafts after actual source-page inspection; independent answer review and complete-coverage challenge remain required."
+}

@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-10-19T22:48:10.549235+00:00",
+  "scope": "Primary supplementary qualifications only; no product purchase recommendation or hardware benchmark.",
+  "evidence": {
+    "sensorless": {
+      "url": "https://www.ti.com/lit/an/slvaes1/slvaes1.pdf",
+      "locator": "Brushless-DC Motor Driver Considerations and Selection Guide, sensorless-control discussion",
+      "finding": "Rotor position can be estimated from back EMF rather than requiring a Hall sensor in every brushless motor."
+    },
+    "acservo": {
+      "url": "https://www.yaskawa.com/delegate/getAttachment?cmd=documents&documentId=SIEPS80000094&documentName=SIEPS80000094K_10_0.pdf",
+      "locator": "AC Servo Drives Sigma-V-SD Series, product manual title and rotational-motor control scope",
+      "finding": "A current manufacturer manual documents precision AC servo drives; the lecture historical limitation must not be treated as a universal modern prohibition."
+    },
+    "stepper": {
+      "url": "https://www.orientalmotor.com.sg/sg/products/stepping-motors/spec-guide",
+      "locator": "How to Read Rotation Speed-Torque Characteristics; maximum holding and pullout torque",
+      "finding": "Holding torque is a stationary rating; running torque depends on speed and driver. A blanket low-torque statement is inadequate."
+    },
+    "pwm": {
+      "url": "https://www.maxongroup.com/medias/sys_master/root/8839867203614/IDX-56-User-Manual-En.pdf",
+      "locator": "Electrical Installation, required voltage under load; motor speed/torque gradient and PWM duty",
+      "finding": "Supply voltage, load torque, controller drops and duty affect achievable speed; a duty percentage alone is not a universal speed percentage."
+    },
+    "can": {
+      "url": "https://www.bosch-semiconductors.com/products/ip-modules/can-protocols/can-fd/",
+      "locator": "CAN FD introduction and flexible data-rate description",
+      "finding": "Classical CAN and CAN FD have different rate/data-length capabilities; 1 Mbps is not a limit for every CAN variant."
+    },
+    "i2c": {
+      "url": "https://www.nxp.com/docs/en/user-guide/UM10204.pdf",
+      "locator": "I2C-bus specification, Introduction and transfer modes",
+      "finding": "The standard includes Standard, Fast, Fast-mode Plus and High-speed modes; the lecture 100 kbps\u20131 Mbps range is not exhaustive."
+    },
+    "ros": {
+      "url": "https://docs.ros.org/en/ros2_documentation/kilted/Concepts/Intermediate/About-Different-Middleware-Vendors.html",
+      "locator": "Official indexed page introduction, DDS middleware and supported RMW implementations",
+      "finding": "ROS 2 supports middleware implementations providing discovery, serialization and transport. DDS/RTPS is a middleware basis rather than a Wi-Fi-only physical link. Direct page later returned a challenge, so this finding uses the official indexed page text."
+    },
+    "ethercat": {
+      "url": "https://www.ethercat.org/en/technology.html",
+      "locator": "Functional Principle and Features of EtherCAT",
+      "finding": "EtherCAT uses on-the-fly frame processing for deterministic communication; whole-system control deadlines still require computation and device scheduling."
+    },
+    "orin": {
+      "url": "https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/",
+      "locator": "AGX Orin series and technical comparison, including sparse INT8 TOPS",
+      "finding": "AGX Orin is a family with different memory/performance/power variants; headline TOPS has precision/sparsity qualifications and is not arbitrary-model latency."
+    }
+  }
+}

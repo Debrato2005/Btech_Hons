@@ -1,0 +1,196 @@
+{
+  "startedAt": "2026-10-19T20:56:29.508245+00:00",
+  "phase": "Current answers, solutions and author v2 checks unopened; prior v1 exposure disclosed",
+  "versions": {
+    "machinevision-toolbox-python": "2.4.1",
+    "opencv-python": "5.0.0.93",
+    "numpy": "2.3.5"
+  },
+  "checks": [
+    "Q034 all six raw moments",
+    "Q034 centroid",
+    "Q034 full scatter",
+    "Q034 eigenvalues",
+    "Q034 semiaxes",
+    "Q034 major angle",
+    "Q078 total variance split0",
+    "Q078 total variance split1",
+    "Q078 total variance split2",
+    "Q078 exact between class values",
+    "Q078 maximizing split",
+    "Q079 coupled solve",
+    "Q079 normalization",
+    "Q079 multiplication distractor",
+    "Q081 exact oblique support",
+    "Q081 signed normal",
+    "Q081 strict boundary",
+    "Q082 full weighted products",
+    "Q082 correct strength",
+    "Q082 product of means wrong option",
+    "Q082 omitted cross terms wrong option",
+    "Q082 trace not squared wrong option",
+    "Q072 inclusive two-stage filter",
+    "Q083 inspected Harris cap documentation",
+    "Q083 feature cap actual image",
+    "Q083 sparse corners return fewer",
+    "Q075 strict threshold fresh control",
+    "Q028 exact connectivity"
+  ],
+  "observed": {
+    "Q034": {
+      "rawMoments00_10_01_20_11_02": [
+        4.0,
+        6.0,
+        2.0,
+        14.0,
+        5.0,
+        2.0
+      ],
+      "centroid": [
+        1.5,
+        0.5
+      ],
+      "scatter": [
+        [
+          5.0,
+          2.0
+        ],
+        [
+          2.0,
+          1.0
+        ]
+      ],
+      "eigenvalues": [
+        0.17157287525380993,
+        5.82842712474619
+      ],
+      "semiaxesSmallLarge": [
+        0.4142135623730951,
+        2.414213562373095
+      ],
+      "angleDegreesModulo180": 22.5
+    },
+    "Q078": {
+      "between": [
+        "289/448",
+        "169/192",
+        "49/64"
+      ],
+      "within": [
+        "13/28",
+        "11/48",
+        "11/32"
+      ],
+      "totalVariance": "71/64",
+      "optimalThreshold": 1
+    },
+    "Q079": {
+      "coefficients": [
+        2.0,
+        3.0,
+        1.0
+      ],
+      "chromaticity": [
+        0.3333333333333333,
+        0.5,
+        0.16666666666666666
+      ],
+      "wrongForwardProduct": [
+        18.0,
+        7.0,
+        10.0
+      ]
+    },
+    "Q081": {
+      "normal": [
+        -0.7071067811865475,
+        0.7071067811865475
+      ],
+      "rho": -1.4142135623730951,
+      "pointDots": [
+        -1.414213562373095,
+        -1.414213562373095,
+        -1.414213562373095,
+        3.5355339059327373
+      ],
+      "votes": 3
+    },
+    "Q082": {
+      "matrix": [
+        [
+          1.5,
+          0.5
+        ],
+        [
+          0.5,
+          1.5
+        ]
+      ],
+      "score": 1.6399999999999997,
+      "meanGradientOuter": [
+        [
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0
+        ]
+      ]
+    },
+    "Q083": {
+      "assetPath": "/tmp/robotics-l33-venv/lib/python3.12/site-packages/mvtbdata/images/building2-1.png",
+      "assetSha256": "5f301b7940c8ab132b59bcfc716a6d39bdc9fd9b3bb796141dafa57154270bb0",
+      "cap7Count": 7,
+      "cap500Count": 500,
+      "sparseSquareCount": 4,
+      "blankImageObservation": {
+        "exception": "IndexError",
+        "message": "too many indices for array: array is 1-dimensional, but 2 were indexed",
+        "qualification": "This installed empty-descriptor edge case is not a guarantee that every blank input returns an empty feature object."
+      }
+    }
+  },
+  "installedSourceEvidence": [
+    {
+      "symbol": "ImagePointFeaturesMixin.Harris",
+      "filePath": "/tmp/robotics-l33-venv/lib/python3.12/site-packages/machinevisiontoolbox/ImagePointFeatures.py",
+      "fileSha256": "99fd46377ed93af6513215f6e5600ff53c2bca6824f329f57bb5d71e4a2ae7e9",
+      "firstLine": 2255,
+      "symbolSha256": "eb7620f7815e5aa962bb0167d7081f194e00a51a249aab28c4414869b2404dff"
+    },
+    {
+      "symbol": "ImageProcessingMixin.threshold_adaptive",
+      "filePath": "/tmp/robotics-l33-venv/lib/python3.12/site-packages/machinevisiontoolbox/ImageProcessing.py",
+      "fileSha256": "1c147a71b4e581f01d3a2a9753c0cf48529941759304856e7c2c916a27e4cbb8",
+      "firstLine": 763,
+      "symbolSha256": "164fc9975bd9ad046bee9c1e8e5652ec93279af367fbf3c163493fbe5b0d9a1e"
+    },
+    {
+      "symbol": "ImageSpatialMixin.labels_binary",
+      "filePath": "/tmp/robotics-l33-venv/lib/python3.12/site-packages/machinevisiontoolbox/ImageSpatial.py",
+      "fileSha256": "9f3812703a6bbfb5105e129c3a9b3cd202a3c7855eeb2e3df250919b6d6c12dc",
+      "firstLine": 1052,
+      "symbolSha256": "65175c7b137ec793d7d9c60b08f422e1ba2ad410fef1ca6ea8675f7f1e5dc411"
+    },
+    {
+      "symbol": "BaseFeature2D.filter",
+      "filePath": "/tmp/robotics-l33-venv/lib/python3.12/site-packages/machinevisiontoolbox/ImagePointFeatures.py",
+      "fileSha256": "99fd46377ed93af6513215f6e5600ff53c2bca6824f329f57bb5d71e4a2ae7e9",
+      "firstLine": 930,
+      "symbolSha256": "1d9e4037479ced17bab765a5c0573471e9d46bdfe8d74a9b846af0cb1eb3fd13"
+    },
+    {
+      "symbol": "Blobs.polarmatch",
+      "filePath": "/tmp/robotics-l33-venv/lib/python3.12/site-packages/machinevisiontoolbox/ImageBlobs.py",
+      "fileSha256": "4ec5da269a943755ab3e0d331d198b42f3f7c140717071d406df6a0e08235671",
+      "firstLine": 1757,
+      "symbolSha256": "85a45d34a2e51304b951dd9c37c98205e1ed43c10337d2721468af1822e47df1"
+    }
+  ],
+  "variedCases": 1000,
+  "checksPerVariedCase": 3,
+  "assertionCount": 28,
+  "completedAt": "2026-10-19T20:56:30.210012+00:00",
+  "scriptSha256": "dd70bfced8cb46528e631ae076ebfd3d3998703474442709fe186d9742025262"
+}

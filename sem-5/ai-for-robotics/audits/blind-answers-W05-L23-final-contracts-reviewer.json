@@ -1,0 +1,87 @@
+{
+  "reviewerId": "define_robotics_data_contracts:L23-independent-reviewer",
+  "blindPacketPath": "audits/blind-W05-L23-final-distractors.json",
+  "blindPacketSha256": "c9cfc0c8d01f1a6e9b0f17864d3c126b214948cbc654faaffdedc5ef568c9154",
+  "sourceVersions": {
+    "lectures": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c"
+  },
+  "priorVersionExposure": true,
+  "blindnessDisclosure": "Previously reviewed both original and repaired items; current responses saved before current keyed repair access, but not claimed to be first-exposure blind.",
+  "sourceObservations": [
+    {
+      "physicalPage": 699,
+      "slideId": "lectures-p0699",
+      "previewPath": "sources/previews/lectures/page-0699.webp",
+      "previewSha256": "9105f28d7d6f0c2f6df416557638e19646a867a701f43d8679d9b540873dd78b",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "inspectedAt": "2026-10-19T19:23:16.331724+00:00",
+      "method": "actual_pixels_view_image",
+      "observations": "Actual source bullets distinguish payload-dependent inertia, mechanical wear changing friction/backlash/stiffness and making calibration outdated, thermal winding resistance effects, and external contact forces. Same configuration/payload does not prevent mechanical drift."
+    },
+    {
+      "physicalPage": 716,
+      "slideId": "lectures-p0716",
+      "previewPath": "sources/previews/lectures/page-0716.webp",
+      "previewSha256": "5e6d9d513e83e334d4f00ebfa831f931372c754d65c62a0be58cfe6da6a0c58b",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "inspectedAt": "2026-10-19T19:23:16.331819+00:00",
+      "method": "actual_pixels_view_image",
+      "observations": "Source code explicitly converts desired 90.0 degrees using np.deg2rad; desired velocity and acceleration are zero. Parameters m=l=1, I=m*l**2, v=.6,c=.4,g=9.81,kp=16,kv=8."
+    },
+    {
+      "physicalPage": 717,
+      "slideId": "lectures-p0717",
+      "previewPath": "sources/previews/lectures/page-0717.webp",
+      "previewSha256": "1fbb67eb99776f341a2800ddf454c7d9096af9a6d4239879e304a440143ab37c",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "inspectedAt": "2026-10-19T19:23:16.331902+00:00",
+      "method": "actual_pixels_view_image",
+      "observations": "Actual controller code uses theta from x, constructs desired-minus-actual errors, then f_prime=theta_d_ddot+kv*e_dot+kp*e and torque I*f_prime+v*theta_dot+c*np.sign(theta_dot)+m*g*l*np.cos(theta). The cosine takes the angular argument, not a converted cosine result."
+    }
+  ],
+  "independentAnswers": [
+    {
+      "questionId": "W05-L23-Q041",
+      "questionVersion": 3,
+      "questionSha256": "459c8e470d38de58f8617554a4a27ab1274a1e602c58d1bd5a26e430c426e836",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Source page 716 converts 90 degrees to pi/2 before cosine is evaluated in page 717. cos(pi/2) is zero within floating-point precision. cos(90), cos(90*180/pi), and deg2rad(cos(90)) are different erroneous operations; the new o4 is a coherent wrong-order unit-conversion mistake.",
+      "solvedBeforeAnswerSeen": false,
+      "priorVersionExposure": true
+    },
+    {
+      "questionId": "W05-L23-Q063",
+      "questionVersion": 2,
+      "questionSha256": "b01d32e10153d9624864c6426f57cf135b2df681ea6d4bd0193497fc65d3e6c3",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "With payload and configuration fixed, the explicitly described long-term friction/backlash/stiffness changes match mechanical wear and outdated calibration. Changed payload, a newly applied contact force and motor electrical resistance are separate source mechanisms, not the stated mechanical drift.",
+      "solvedBeforeAnswerSeen": false,
+      "priorVersionExposure": true
+    }
+  ],
+  "independentComputations": {
+    "assertions": 5,
+    "cosineValues": {
+      "correctCos": 6.123233995736766e-17,
+      "raw90Cos": -0.4480736161291701,
+      "wrongScaleCos": -0.2995153947555356,
+      "outputConvertedInstead": -0.00782035989277119
+    },
+    "status": "passed"
+  },
+  "frozenAt": "2026-10-19T19:23:16.332119+00:00",
+  "status": "frozen_before_current_author_reveal"
+}

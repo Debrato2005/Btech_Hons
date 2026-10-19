@@ -1,0 +1,1681 @@
+[
+  {
+    "id": "W03-L15-Q004",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L15",
+    "stem": "The slide says each mass-matrix entry depends on all joint positions, but its 2R example has M22=m2 l2²; what follows?",
+    "selectionMode": "single",
+    "type": "source-reconciliation",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L15",
+    "topic": "Joint and Cartesian manipulator dynamics",
+    "subtopic": "Configuration dependence is not universal entrywise",
+    "tags": [
+      "inertia-dependence"
+    ],
+    "conceptIds": [
+      "W03-L15-C-inertia-dependence"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o4",
+        "text": "M cannot be symmetric if one entry is constant"
+      },
+      {
+        "id": "o1",
+        "text": "M can depend on configuration overall while particular entries are constant or depend on fewer coordinates"
+      },
+      {
+        "id": "o2",
+        "text": "The constant M22 makes the entire mass matrix invalid"
+      },
+      {
+        "id": "o3",
+        "text": "Every entry must be multiplied by θ1θ2 to restore correctness"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0453",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 453,
+        "kind": "statement",
+        "locator": "Lecture 15, physical PDF page 453, printed slide 4: relevant text, equations and associated figures",
+        "evidenceText": "The Structure of a Manipulator's Dynamic Equations\n\nThe state-space equation\n              𝜏= 𝑀Θ ሷΘ + 𝑉Θ, ሶΘ + 𝐺Θ\n    Where,\n  𝑀Θ  is the 𝑛× 𝑛 mass matrix of the manipulator\n   𝑉Θ, ሶΘ  is an 𝑛× 1 vector of centrifugal and Coriolis terms\n  𝐺Θ  is an 𝑛 × 1 vector of gravity terms\n•  Each element of 𝑀Θ and 𝐺Θ  is a complex\n   function that depends on Θ, the position of all\n   the joints of the manipulator.\n•  Each element of 𝑉Θ, ሶΘ is a complex function of\n   both Θ and ሶΘ.\n\n\n\n                                                                                                           4",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0455",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 455,
+        "kind": "statement",
+        "locator": "Lecture 15, physical PDF page 455, printed slide 6: relevant text, equations and associated figures",
+        "evidenceText": "•  The manipulator mass matrix, 𝑀Θ  is composed of\n    all those terms which multiply ሷΘ and is a function of\n  Θ\n  𝑀Θ =\n         2                            2      2\n    𝑚2𝑙2 + 2𝑚2𝑙1𝑙2𝑐2 + 𝑚1 + 𝑚2 𝑙1  𝑚2𝑙2 + 𝑚2𝑙1𝑙2𝑐2\n                  2                                2\n           𝑚2𝑙2 + 𝑚2𝑙1𝑙2𝑐2              𝑚2𝑙2\n•  Any manipulator mass matrix is symmetric and\n   positive definite, and is, therefore, always invertible.\n\n\n\n\n\n                                                                                                           6",
+        "role": "conflict",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The example directly shows that configuration dependence is a property of the matrix function, not a requirement that every entry vary with every coordinate.",
+      "optionExplanations": {
+        "o1": "This preserves the equation and qualifies the overbroad prose.",
+        "o2": "Constant inertia entries can be physically correct.",
+        "o3": "Adding arbitrary coordinate factors changes the dynamics.",
+        "o4": "Symmetry constrains corresponding off-diagonal entries, not whether entries vary."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The example directly shows that configuration dependence is a property of the matrix function, not a requirement that every entry vary with every coordinate.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Constant inertia entries can be physically correct.",
+        "Adding arbitrary coordinate factors changes the dynamics.",
+        "Symmetry constrains corresponding off-diagonal entries, not whether entries vary."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": [],
+    "conflictResolution": {
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "Physical page453 says each element depends on all joint positions; page455 displays a constant M22 and no θ1 dependence.",
+      "basis": "The example directly shows that configuration dependence is a property of the matrix function, not a requirement that every entry vary with every coordinate.",
+      "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction."
+    }
+  },
+  {
+    "id": "W03-L15-Q005",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L15",
+    "stem": "Where are the point masses located in the two-link example?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "cognitiveSkill": "application",
+    "week": 3,
+    "lectureId": "L15",
+    "topic": "Joint and Cartesian manipulator dynamics",
+    "subtopic": "Reading the two-link mass model",
+    "tags": [
+      "point-mass-model"
+    ],
+    "conceptIds": [
+      "W03-L15-C-point-mass-model"
+    ],
+    "assumptions": [
+      "Two planar revolute joints; massless links with point masses m1 at the first link tip and m2 at the second link tip; θ1 measured from horizontal and θ2 relative."
+    ],
+    "options": [
+      {
+        "id": "o1",
+        "text": "m1 at the elbow and m2 at the end of link2"
+      },
+      {
+        "id": "o2",
+        "text": "Both at the base joint"
+      },
+      {
+        "id": "o3",
+        "text": "m1 and m2 at the centers of uniform massive links"
+      },
+      {
+        "id": "o4",
+        "text": "Both at the end of link2"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0454",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 454,
+        "kind": "figure",
+        "locator": "Lecture 15, physical PDF page 454, printed slide 5: relevant text, equations and associated figures",
+        "evidenceText": "Example:- Give 𝑀Θ  , 𝑉Θ, ሶΘ  , and 𝐺Θ  for the Two-link planar\nmanipulator with point masses at distal ends of links.\n                                      −  ➢𝜏1 = 𝑚2𝑙22  ሷ𝜃1                                           2           + ሷ𝜃2 + 𝑚2𝑙1𝑙2𝑐2 2ሷ𝜃1 + ሷ𝜃2 + 𝑚1 + 𝑚2 𝑙1 ሷ𝜃1\n                 2\n                     + 𝑚2𝑙2𝑔𝑐12 + 𝑚1 + 𝑚2 𝑙1𝑔𝑐1     𝑚2𝑙1 𝑙2𝑠2 ሶ𝜃2 −2𝑚2𝑙1𝑙2𝑠2 ሶ𝜃1 ሶ𝜃2\n                                  + ሷ𝜃2  ➢𝜏2 = 𝑚2𝑙1𝑙2𝑐2 ሷ𝜃1 + 𝑚2𝑙1𝑙2𝑠2 ሶ𝜃12                   2                     + 𝑚2𝑙2𝑔𝑐12 + 𝑚2𝑙2  ሷ𝜃1\n𝜏1    𝑚2𝑙22                            2      2       + 2𝑚2𝑙1𝑙2𝑐2 + 𝑚1 + 𝑚2 𝑙1  𝑚2𝑙2 + 𝑚2𝑙1𝑙2𝑐2   ሷ𝜃1  =                                  +                   2𝜏2             𝑚2𝑙2            + 𝑚2𝑙1𝑙2𝑐2              𝑚2𝑙2                                                     2           ሷ𝜃2\n             2−𝑚2𝑙1 𝑙2𝑠2 ሶ𝜃2 −2𝑚2𝑙1𝑙2𝑠2 ሶ𝜃1 ሶ𝜃2    𝑚2𝑙2𝑔𝑐12 + 𝑚1 + 𝑚2 𝑙1𝑔𝑐1                   +\n         𝑚2𝑙1𝑙2𝑠2 ሶ𝜃12                     𝑚2𝑙2𝑔𝑐12\n\n\n\n\n\n                                                                                                           5",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The diagram places m1 at the first link’s distal end and m2 at the second link’s distal end.",
+      "optionExplanations": {
+        "o1": "This matches the marked circles and the point-mass model.",
+        "o2": "The masses are drawn away from the base.",
+        "o3": "Center-of-link masses would give different inertia coefficients.",
+        "o4": "The first mass is at the elbow, not the tool tip."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The diagram places m1 at the first link’s distal end and m2 at the second link’s distal end.",
+      "memoryAid": null,
+      "misconceptions": [
+        "The masses are drawn away from the base.",
+        "Center-of-link masses would give different inertia coefficients.",
+        "The first mass is at the elbow, not the tool tip."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L15-Q006",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L15",
+    "stem": "For the displayed 2R model, let m1=2 kg, m2=3 kg, l1=1 m, l2=2 m and θ2=90°; what is M in kg·m²?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "cognitiveSkill": "numerical",
+    "week": 3,
+    "lectureId": "L15",
+    "topic": "Joint and Cartesian manipulator dynamics",
+    "subtopic": "Evaluate the point-mass inertia",
+    "tags": [
+      "inertia-numerical"
+    ],
+    "conceptIds": [
+      "W03-L15-C-inertia-numerical"
+    ],
+    "assumptions": [
+      "Two planar revolute joints; massless links with point masses m1 at the first link tip and m2 at the second link tip; θ1 measured from horizontal and θ2 relative."
+    ],
+    "options": [
+      {
+        "id": "o2",
+        "text": "[[29,18],[18,12]]"
+      },
+      {
+        "id": "o3",
+        "text": "[[17,0],[0,12]]"
+      },
+      {
+        "id": "o4",
+        "text": "[[5,3],[3,3]]"
+      },
+      {
+        "id": "o1",
+        "text": "[[17,12],[12,12]]"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0454",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 454,
+        "kind": "equation",
+        "locator": "Lecture 15, physical PDF page 454, printed slide 5: relevant text, equations and associated figures",
+        "evidenceText": "Example:- Give 𝑀Θ  , 𝑉Θ, ሶΘ  , and 𝐺Θ  for the Two-link planar\nmanipulator with point masses at distal ends of links.\n                                      −  ➢𝜏1 = 𝑚2𝑙22  ሷ𝜃1                                           2           + ሷ𝜃2 + 𝑚2𝑙1𝑙2𝑐2 2ሷ𝜃1 + ሷ𝜃2 + 𝑚1 + 𝑚2 𝑙1 ሷ𝜃1\n                 2\n                     + 𝑚2𝑙2𝑔𝑐12 + 𝑚1 + 𝑚2 𝑙1𝑔𝑐1     𝑚2𝑙1 𝑙2𝑠2 ሶ𝜃2 −2𝑚2𝑙1𝑙2𝑠2 ሶ𝜃1 ሶ𝜃2\n                                  + ሷ𝜃2  ➢𝜏2 = 𝑚2𝑙1𝑙2𝑐2 ሷ𝜃1 + 𝑚2𝑙1𝑙2𝑠2 ሶ𝜃12                   2                     + 𝑚2𝑙2𝑔𝑐12 + 𝑚2𝑙2  ሷ𝜃1\n𝜏1    𝑚2𝑙22                            2      2       + 2𝑚2𝑙1𝑙2𝑐2 + 𝑚1 + 𝑚2 𝑙1  𝑚2𝑙2 + 𝑚2𝑙1𝑙2𝑐2   ሷ𝜃1  =                                  +                   2𝜏2             𝑚2𝑙2            + 𝑚2𝑙1𝑙2𝑐2              𝑚2𝑙2                                                     2           ሷ𝜃2\n             2−𝑚2𝑙1 𝑙2𝑠2 ሶ𝜃2 −2𝑚2𝑙1𝑙2𝑠2 ሶ𝜃1 ሶ𝜃2    𝑚2𝑙2𝑔𝑐12 + 𝑚1 + 𝑚2 𝑙1𝑔𝑐1                   +\n         𝑚2𝑙1𝑙2𝑠2 ሶ𝜃12                     𝑚2𝑙2𝑔𝑐12\n\n\n\n\n\n                                                                                                           5",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0455",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 455,
+        "kind": "equation",
+        "locator": "Lecture 15, physical PDF page 455, printed slide 6: relevant text, equations and associated figures",
+        "evidenceText": "•  The manipulator mass matrix, 𝑀Θ  is composed of\n    all those terms which multiply ሷΘ and is a function of\n  Θ\n  𝑀Θ =\n         2                            2      2\n    𝑚2𝑙2 + 2𝑚2𝑙1𝑙2𝑐2 + 𝑚1 + 𝑚2 𝑙1  𝑚2𝑙2 + 𝑚2𝑙1𝑙2𝑐2\n                  2                                2\n           𝑚2𝑙2 + 𝑚2𝑙1𝑙2𝑐2              𝑚2𝑙2\n•  Any manipulator mass matrix is symmetric and\n   positive definite, and is, therefore, always invertible.\n\n\n\n\n\n                                                                                                           6",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "cosθ2=0, so M11=3·4+(2+3)·1=17 and M12=M21=M22=3·4=12.",
+      "optionExplanations": {
+        "o1": "All four entries follow the displayed coefficients.",
+        "o2": "This retains the cosθ2=1 coupling terms.",
+        "o3": "The off-diagonal m2l2² term survives at90°.",
+        "o4": "This treats l2 as1 rather than2."
+      },
+      "steps": [
+        "Set cos90°=0.",
+        "Compute m2l2²=12 and (m1+m2)l1²=5.",
+        "Assemble M=[[17,12],[12,12]]."
+      ],
+      "formulas": [
+        {
+          "expression": "M11=m2l2²+2m2l1l2cosθ2+(m1+m2)l1²; M12=M21=m2l2²+m2l1l2cosθ2; M22=m2l2²",
+          "variables": {
+            "m1,m2": "point masses",
+            "l1,l2": "link lengths",
+            "θ2": "relative joint angle",
+            "Mij": "inertia entries"
+          },
+          "units": {
+            "m1,m2": "kg",
+            "l1,l2": "m",
+            "θ2": "rad",
+            "Mij": "kg·m²"
+          },
+          "assumptions": [
+            "Two planar revolute joints; massless links with point masses m1 at the first link tip and m2 at the second link tip; θ1 measured from horizontal and θ2 relative."
+          ]
+        }
+      ],
+      "simpleExplanation": "cosθ2=0, so M11=3·4+(2+3)·1=17 and M12=M21=M22=3·4=12.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This retains the cosθ2=1 coupling terms.",
+        "The off-diagonal m2l2² term survives at90°.",
+        "This treats l2 as1 rather than2."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L15-Q017",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L15",
+    "stem": "In the Cartesian dynamics equation, what must the task effort F be paired with?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L15",
+    "topic": "Joint and Cartesian manipulator dynamics",
+    "subtopic": "Task-space effort and acceleration",
+    "tags": [
+      "cartesian-roles"
+    ],
+    "conceptIds": [
+      "W03-L15-C-cartesian-roles"
+    ],
+    "assumptions": [
+      "Use a consistent definition of Cartesian/task velocity and its conjugate effort."
+    ],
+    "options": [
+      {
+        "id": "o1",
+        "text": "The task velocity whose power is Fᵀ times that velocity"
+      },
+      {
+        "id": "o2",
+        "text": "Any orientation-parameter derivative, regardless of the effort definition"
+      },
+      {
+        "id": "o3",
+        "text": "Joint acceleration, so that Fᵀqddot is mechanical power"
+      },
+      {
+        "id": "o4",
+        "text": "Joint position, so that Fᵀq is mechanical power"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0459",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 459,
+        "kind": "statement",
+        "locator": "Lecture 15, physical PDF page 459, printed slide 10: relevant text, equations and associated figures",
+        "evidenceText": "Formulating Manipulator Dynamics in Cartesian Space\n\n•  Dynamic equations in joint space\n              𝜏= 𝑀Θ ሷΘ + 𝑉Θ, ሶΘ + 𝐺Θ\n•  The Cartesian state-space equation\n           𝐹= 𝑀𝑥(Θ)ሷ𝜒+ 𝑉𝑥Θ, ሶΘ + 𝐺𝑥Θ\n    Where,\n  ➢𝐹 is force-torque vector acting on the end-effector\n  ➢𝜒 is Cartesian vector representing position and orientation of the end-effector\n   ➢𝑀𝑥(Θ) is Cartesian mass matrix,\n   ➢𝑉𝑥Θ, ሶΘ  is a vector of velocity terms in Cartesian space\n  ➢𝐺𝑥Θ  is a vector of gravity terms in Cartesian space\n\n\n\n\n\n                                                                                                          10",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The generalized force or wrench must be power-conjugate to the selected task velocity; a geometric angular velocity and an arbitrary orientation-parameter derivative are not interchangeable.",
+      "optionExplanations": {
+        "o1": "This keeps the coordinate and effort definitions consistent.",
+        "o2": "Orientation coordinates can require an additional mapping and conjugate effort.",
+        "o3": "Force times acceleration is not mechanical power.",
+        "o4": "Force times position is not a power rate."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The generalized force or wrench must be power-conjugate to the selected task velocity; a geometric angular velocity and an arbitrary orientation-parameter derivative are not interchangeable.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Orientation coordinates can require an additional mapping and conjugate effort.",
+        "Force times acceleration is not mechanical power.",
+        "Force times position is not a power rate."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L15-Q023",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L15",
+    "stem": "Which expression is the slide’s task-space inertia for a square nonsingular J?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "synthesis",
+    "week": 3,
+    "lectureId": "L15",
+    "topic": "Joint and Cartesian manipulator dynamics",
+    "subtopic": "Transformed inertia order",
+    "tags": [
+      "cartesian-inertia"
+    ],
+    "conceptIds": [
+      "W03-L15-C-cartesian-inertia"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o3",
+        "text": "Mx=J⁻¹MJ⁻ᵀ"
+      },
+      {
+        "id": "o4",
+        "text": "Mx=MJ⁻¹J⁻ᵀ without changing the order"
+      },
+      {
+        "id": "o1",
+        "text": "Mx=J⁻ᵀMJ⁻¹"
+      },
+      {
+        "id": "o2",
+        "text": "Mx=JMJᵀ"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0462",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 462,
+        "kind": "equation",
+        "locator": "Lecture 15, physical PDF page 462, printed slide 13: relevant text, equations and associated figures",
+        "evidenceText": "•   Substituting, ሷΘ in 𝐹 = 𝐽−𝑇𝑀Θ ሷΘ + 𝐽−𝑇𝑉Θ, ሶΘ + 𝐽−𝑇𝐺Θ\n•  𝐹 = 𝐽−𝑇𝑀Θ 𝐽−1 ሷ𝜒−𝐽−𝑇𝑀Θ 𝐽−1 ሶ𝐽ሶΘ + 𝐽−𝑇𝑉Θ, ሶΘ + 𝐽−𝑇𝐺Θ\n• 𝐹= 𝑀𝑥Θ ሷ𝜒+ 𝑉𝑥Θ, ሶΘ + 𝐺𝑥Θ\n•  So,\n  𝑀𝑥Θ = 𝐽−𝑇Θ 𝑀Θ 𝐽−1 Θ\n   𝑉𝑥Θ, ሷΘ = 𝐽−𝑇Θ 𝑉Θ, ሶΘ −𝑀Θ 𝐽−1 Θ ሶ𝐽Θ ሶΘ\n   𝐺𝑥Θ = 𝐽−𝑇Θ 𝐺Θ\n•  Here the Jacobian appearing in equations is written\n    in the same frames as 𝐹 and 𝜒 , the choice of this\n   frame is arbitrary.\n•  When the manipulator approaches a singularity, certain\n   quantities in the Cartesian dynamics become infinite.\n\n\n\n                                                                                                          13",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Substitute qddot=J⁻¹(xddot−Jdot qdot) into F=J⁻ᵀτ; the xddot coefficient is J⁻ᵀMJ⁻¹.",
+      "optionExplanations": {
+        "o1": "This is the coefficient in the substituted equation.",
+        "o2": "This uses J instead of its inverse.",
+        "o3": "The left and right factors are reversed.",
+        "o4": "Matrices cannot generally be reordered."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "Mx=J⁻ᵀMJ⁻¹; Vx=J⁻ᵀ(V−MJ⁻¹Jdot qdot); Gx=J⁻ᵀG",
+          "variables": {
+            "J": "square nonsingular Jacobian mapping qdot to the chosen task-velocity components",
+            "Mx": "task-space inertia",
+            "Vx": "task-space velocity term",
+            "Gx": "task-space gravity term",
+            "M,V,G": "joint-space dynamics terms",
+            "Jdot": "time derivative of the same Jacobian components"
+          },
+          "units": {
+            "Mx": "inertia units appropriate to task coordinates",
+            "Vx,Gx": "force or power-conjugate generalized task-effort units",
+            "J": "task velocity per joint velocity"
+          },
+          "assumptions": [
+            "Use one consistent frame and a power-conjugate task velocity/effort pair; in moving axes, distinguish derivative of components from inertial acceleration."
+          ]
+        }
+      ],
+      "simpleExplanation": "Substitute qddot=J⁻¹(xddot−Jdot qdot) into F=J⁻ᵀτ; the xddot coefficient is J⁻ᵀMJ⁻¹.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This uses J instead of its inverse.",
+        "The left and right factors are reversed.",
+        "Matrices cannot generally be reordered."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L15-Q024",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L15",
+    "stem": "Which correction appears in Vx in addition to J⁻ᵀV?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "synthesis",
+    "week": 3,
+    "lectureId": "L15",
+    "topic": "Joint and Cartesian manipulator dynamics",
+    "subtopic": "Transformed velocity term",
+    "tags": [
+      "cartesian-velocity"
+    ],
+    "conceptIds": [
+      "W03-L15-C-cartesian-velocity"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o4",
+        "text": "No correction is ever required"
+      },
+      {
+        "id": "o1",
+        "text": "−J⁻ᵀMJ⁻¹Jdot qdot"
+      },
+      {
+        "id": "o2",
+        "text": "+J⁻ᵀMJ⁻¹Jdot qdot"
+      },
+      {
+        "id": "o3",
+        "text": "−J⁻ᵀM qdot with no Jdot"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0462",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 462,
+        "kind": "equation",
+        "locator": "Lecture 15, physical PDF page 462, printed slide 13: relevant text, equations and associated figures",
+        "evidenceText": "•   Substituting, ሷΘ in 𝐹 = 𝐽−𝑇𝑀Θ ሷΘ + 𝐽−𝑇𝑉Θ, ሶΘ + 𝐽−𝑇𝐺Θ\n•  𝐹 = 𝐽−𝑇𝑀Θ 𝐽−1 ሷ𝜒−𝐽−𝑇𝑀Θ 𝐽−1 ሶ𝐽ሶΘ + 𝐽−𝑇𝑉Θ, ሶΘ + 𝐽−𝑇𝐺Θ\n• 𝐹= 𝑀𝑥Θ ሷ𝜒+ 𝑉𝑥Θ, ሶΘ + 𝐺𝑥Θ\n•  So,\n  𝑀𝑥Θ = 𝐽−𝑇Θ 𝑀Θ 𝐽−1 Θ\n   𝑉𝑥Θ, ሷΘ = 𝐽−𝑇Θ 𝑉Θ, ሶΘ −𝑀Θ 𝐽−1 Θ ሶ𝐽Θ ሶΘ\n   𝐺𝑥Θ = 𝐽−𝑇Θ 𝐺Θ\n•  Here the Jacobian appearing in equations is written\n    in the same frames as 𝐹 and 𝜒 , the choice of this\n   frame is arbitrary.\n•  When the manipulator approaches a singularity, certain\n   quantities in the Cartesian dynamics become infinite.\n\n\n\n                                                                                                          13",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Solving the acceleration mapping subtracts J⁻¹Jdot qdot before multiplication by M and J⁻ᵀ.",
+      "optionExplanations": {
+        "o1": "This is the product-rule correction with the correct sign and order.",
+        "o2": "The sign is opposite to the acceleration substitution.",
+        "o3": "This drops the derivative and changes the physical units.",
+        "o4": "The Jacobian generally changes during motion."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "Mx=J⁻ᵀMJ⁻¹; Vx=J⁻ᵀ(V−MJ⁻¹Jdot qdot); Gx=J⁻ᵀG",
+          "variables": {
+            "J": "square nonsingular Jacobian mapping qdot to the chosen task-velocity components",
+            "Mx": "task-space inertia",
+            "Vx": "task-space velocity term",
+            "Gx": "task-space gravity term",
+            "M,V,G": "joint-space dynamics terms",
+            "Jdot": "time derivative of the same Jacobian components"
+          },
+          "units": {
+            "Mx": "inertia units appropriate to task coordinates",
+            "Vx,Gx": "force or power-conjugate generalized task-effort units",
+            "J": "task velocity per joint velocity"
+          },
+          "assumptions": [
+            "Use one consistent frame and a power-conjugate task velocity/effort pair; in moving axes, distinguish derivative of components from inertial acceleration."
+          ]
+        }
+      ],
+      "simpleExplanation": "Solving the acceleration mapping subtracts J⁻¹Jdot qdot before multiplication by M and J⁻ᵀ.",
+      "memoryAid": null,
+      "misconceptions": [
+        "The sign is opposite to the acceleration substitution.",
+        "This drops the derivative and changes the physical units.",
+        "The Jacobian generally changes during motion."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L15-Q025",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L15",
+    "stem": "If M is symmetric positive definite and J is invertible, why is Mx=J⁻ᵀMJ⁻¹ positive definite?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "synthesis",
+    "week": 3,
+    "lectureId": "L15",
+    "topic": "Joint and Cartesian manipulator dynamics",
+    "subtopic": "Positive inertia under coordinate change",
+    "tags": [
+      "cartesian-spd"
+    ],
+    "conceptIds": [
+      "W03-L15-C-cartesian-spd"
+    ],
+    "assumptions": [
+      "M symmetric positive definite; square nonsingular J."
+    ],
+    "options": [
+      {
+        "id": "o1",
+        "text": "For nonzero y, yᵀMx y=(J⁻¹y)ᵀM(J⁻¹y)>0"
+      },
+      {
+        "id": "o2",
+        "text": "Because every entry of J⁻¹ must be positive"
+      },
+      {
+        "id": "o3",
+        "text": "Because Mx necessarily equals M"
+      },
+      {
+        "id": "o4",
+        "text": "Because J⁻ᵀMJ⁻¹ is a similarity transform with exactly the same eigenvalues"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0462",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 462,
+        "kind": "equation",
+        "locator": "Lecture 15, physical PDF page 462, printed slide 13: relevant text, equations and associated figures",
+        "evidenceText": "•   Substituting, ሷΘ in 𝐹 = 𝐽−𝑇𝑀Θ ሷΘ + 𝐽−𝑇𝑉Θ, ሶΘ + 𝐽−𝑇𝐺Θ\n•  𝐹 = 𝐽−𝑇𝑀Θ 𝐽−1 ሷ𝜒−𝐽−𝑇𝑀Θ 𝐽−1 ሶ𝐽ሶΘ + 𝐽−𝑇𝑉Θ, ሶΘ + 𝐽−𝑇𝐺Θ\n• 𝐹= 𝑀𝑥Θ ሷ𝜒+ 𝑉𝑥Θ, ሶΘ + 𝐺𝑥Θ\n•  So,\n  𝑀𝑥Θ = 𝐽−𝑇Θ 𝑀Θ 𝐽−1 Θ\n   𝑉𝑥Θ, ሷΘ = 𝐽−𝑇Θ 𝑉Θ, ሶΘ −𝑀Θ 𝐽−1 Θ ሶ𝐽Θ ሶΘ\n   𝐺𝑥Θ = 𝐽−𝑇Θ 𝐺Θ\n•  Here the Jacobian appearing in equations is written\n    in the same frames as 𝐹 and 𝜒 , the choice of this\n   frame is arbitrary.\n•  When the manipulator approaches a singularity, certain\n   quantities in the Cartesian dynamics become infinite.\n\n\n\n                                                                                                          13",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The congruence transformation preserves the positive quadratic form; J⁻¹y is nonzero for nonzero y.",
+      "optionExplanations": {
+        "o1": "This proves positivity directly.",
+        "o2": "Inverse-matrix entries can have either sign.",
+        "o3": "Different task coordinates generally change the matrix.",
+        "o4": "This is a congruence, not generally an eigenvalue-preserving similarity."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "Mx=J⁻ᵀMJ⁻¹; Vx=J⁻ᵀ(V−MJ⁻¹Jdot qdot); Gx=J⁻ᵀG",
+          "variables": {
+            "J": "square nonsingular Jacobian mapping qdot to the chosen task-velocity components",
+            "Mx": "task-space inertia",
+            "Vx": "task-space velocity term",
+            "Gx": "task-space gravity term",
+            "M,V,G": "joint-space dynamics terms",
+            "Jdot": "time derivative of the same Jacobian components"
+          },
+          "units": {
+            "Mx": "inertia units appropriate to task coordinates",
+            "Vx,Gx": "force or power-conjugate generalized task-effort units",
+            "J": "task velocity per joint velocity"
+          },
+          "assumptions": [
+            "Use one consistent frame and a power-conjugate task velocity/effort pair; in moving axes, distinguish derivative of components from inertial acceleration."
+          ]
+        }
+      ],
+      "simpleExplanation": "The congruence transformation preserves the positive quadratic form; J⁻¹y is nonzero for nonzero y.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Inverse-matrix entries can have either sign.",
+        "Different task coordinates generally change the matrix.",
+        "This is a congruence, not generally an eigenvalue-preserving similarity."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L15-Q028",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L15",
+    "stem": "For l1=1 m, l2=2 m and θ2=90°, J=[[1,0],[2,2]]; what is J⁻¹?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "cognitiveSkill": "numerical",
+    "week": 3,
+    "lectureId": "L15",
+    "topic": "Joint and Cartesian manipulator dynamics",
+    "subtopic": "Evaluate the displayed inverse",
+    "tags": [
+      "tool-jacobian-inverse"
+    ],
+    "conceptIds": [
+      "W03-L15-C-tool-jacobian-inverse"
+    ],
+    "assumptions": [
+      "Two planar revolute joints; massless links with point masses m1 at the first link tip and m2 at the second link tip; θ1 measured from horizontal and θ2 relative."
+    ],
+    "options": [
+      {
+        "id": "o4",
+        "text": "[[1,0],[−2,2]]"
+      },
+      {
+        "id": "o1",
+        "text": "[[1,0],[−1,1/2]]"
+      },
+      {
+        "id": "o2",
+        "text": "[[1,0],[1,1/2]]"
+      },
+      {
+        "id": "o3",
+        "text": "[[1,−1],[0,1/2]]"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0463",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 463,
+        "kind": "equation",
+        "locator": "Lecture 15, physical PDF page 463, printed slide 14: relevant text, equations and associated figures",
+        "evidenceText": "Example:- Derive the Cartesian-space form of the\ndynamics for the Two-link planar manipulator with\npoint masses at distal ends of links.\n•  Jacobian,\n                             𝑙1𝑠2    0\n          𝐽Θ =\n                           𝑙1𝑐2 + 𝑙2   𝑙2\n•  The inverse Jacobian:\n                 1         𝑙2      0          𝐽−1 Θ =\n                      𝑙1𝑙2𝑠2 −𝑙1𝑐2 −𝑙2   𝑙1𝑠2\n•  Time derivative of the Jacobian:\n                          0                          𝑙1𝑐2 ሶ𝜃2             ሶ𝐽Θ =\n                          0                     −𝑙1𝑠2 ሶ𝜃2\n\n\n                                                                                                          14",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The lower-triangular inverse has first row(1,0); solving2qdot1+2qdot2=v2 gives the second row(−1,1/2).",
+      "optionExplanations": {
+        "o1": "Multiplication by J gives the identity.",
+        "o2": "The lower-left sign must cancel the coupling.",
+        "o3": "This incorrectly transposes the coupling location.",
+        "o4": "The second row is not normalized by the diagonal2."
+      },
+      "steps": [
+        "Invert the first equation v1=qdot1.",
+        "Solve qdot2=v2/2−v1.",
+        "Read off the two inverse rows."
+      ],
+      "formulas": [
+        {
+          "expression": "J⁻¹=[ [l2,0], [−l1cosθ2−l2,l1sinθ2] ]/(l1l2sinθ2)",
+          "variables": {
+            "J": "displayed tool-axis translational Jacobian",
+            "l1,l2": "lengths",
+            "θ2": "relative angle"
+          },
+          "units": {
+            "J": "m/rad",
+            "J⁻¹": "rad/m",
+            "l1,l2": "m",
+            "θ2": "rad"
+          },
+          "assumptions": [
+            "sinθ2 is nonzero."
+          ]
+        }
+      ],
+      "simpleExplanation": "The lower-triangular inverse has first row(1,0); solving2qdot1+2qdot2=v2 gives the second row(−1,1/2).",
+      "memoryAid": null,
+      "misconceptions": [
+        "The lower-left sign must cancel the coupling.",
+        "This incorrectly transposes the coupling location.",
+        "The second row is not normalized by the diagonal2."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L15-Q030",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L15",
+    "stem": "Let v_T be endpoint velocity components in rotating tool axes; how does their derivative relate to inertial acceleration expressed in those axes?",
+    "selectionMode": "single",
+    "type": "source-reconciliation",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L15",
+    "topic": "Joint and Cartesian manipulator dynamics",
+    "subtopic": "Component derivative is not inertial acceleration",
+    "tags": [
+      "moving-frame-derivative"
+    ],
+    "conceptIds": [
+      "W03-L15-C-moving-frame-derivative"
+    ],
+    "assumptions": [
+      "v_T is an ordinary vector’s components in axes rotating at ω_T relative to the inertial frame."
+    ],
+    "options": [
+      {
+        "id": "o2",
+        "text": "a_T=dv_T/dt for every rotating frame"
+      },
+      {
+        "id": "o3",
+        "text": "a_T=dv_T/dt−ω_T×v_T"
+      },
+      {
+        "id": "o4",
+        "text": "a_T=ω_T×v_T with no component derivative"
+      },
+      {
+        "id": "o1",
+        "text": "a_T=dv_T/dt+ω_T×v_T"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0461",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 461,
+        "kind": "statement",
+        "locator": "Lecture 15, physical PDF page 461, printed slide 12: relevant text, equations and associated figures",
+        "evidenceText": "•  Relationship between joint space and Cartesian acceleration\n•  Jacobian is defined as\n   ሶ𝜒= 𝐽ሶΘ\n   ሷ𝜒= ሶ𝐽ሶΘ + 𝐽ሷΘ\n     𝐽ሷΘ = ሷ𝜒−ሶ𝐽ሶΘ\n     ሷΘ = 𝐽−1 ሷ𝜒−𝐽−1 ሶ𝐽ሶΘ\n➢𝐹 = 𝐽−𝑇𝑀Θ ሷΘ + 𝐽−𝑇𝑉Θ, ሶΘ + 𝐽−𝑇𝐺Θ\n\n\n\n\n\n                                                                                                          12",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0463",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 463,
+        "kind": "statement",
+        "locator": "Lecture 15, physical PDF page 463, printed slide 14: relevant text, equations and associated figures",
+        "evidenceText": "Example:- Derive the Cartesian-space form of the\ndynamics for the Two-link planar manipulator with\npoint masses at distal ends of links.\n•  Jacobian,\n                             𝑙1𝑠2    0\n          𝐽Θ =\n                           𝑙1𝑐2 + 𝑙2   𝑙2\n•  The inverse Jacobian:\n                 1         𝑙2      0          𝐽−1 Θ =\n                      𝑙1𝑙2𝑠2 −𝑙1𝑐2 −𝑙2   𝑙1𝑠2\n•  Time derivative of the Jacobian:\n                          0                          𝑙1𝑐2 ሶ𝜃2             ሶ𝐽Θ =\n                          0                     −𝑙1𝑠2 ሶ𝜃2\n\n\n                                                                                                          14",
+        "role": "conflict",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The transport theorem adds the basis-rotation term; the slide’s derivative of J_T qdot is a derivative of components unless that term is separately included.",
+      "optionExplanations": {
+        "o1": "This includes both the component change and basis rotation.",
+        "o2": "A rotating basis adds a transport term.",
+        "o3": "The inertial derivative has the positive transport term under this convention.",
+        "o4": "The components themselves may also change."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "a_T=dot(v_T)+ω_T×v_T",
+          "variables": {
+            "a_T": "inertial derivative of velocity expressed in T",
+            "dot(v_T)": "ordinary time derivative of velocity components in T",
+            "ω_T": "angular velocity of frame T relative to inertial axes, expressed in T",
+            "v_T": "velocity components in T"
+          },
+          "units": {
+            "a_T,dot(v_T)": "m/s²",
+            "ω_T": "rad/s",
+            "v_T": "m/s"
+          },
+          "assumptions": []
+        }
+      ],
+      "simpleExplanation": "The transport theorem adds the basis-rotation term; the slide’s derivative of J_T qdot is a derivative of components unless that term is separately included.",
+      "memoryAid": null,
+      "misconceptions": [
+        "A rotating basis adds a transport term.",
+        "The inertial derivative has the positive transport term under this convention.",
+        "The components themselves may also change."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": [],
+    "conflictResolution": {
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "Pages461–463 differentiate task-velocity components while allowing a tool frame; the notation χddot must not be silently identified with inertial acceleration components in rotating axes.",
+      "basis": "The transport theorem adds the basis-rotation term; the slide’s derivative of J_T qdot is a derivative of components unless that term is separately included.",
+      "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction."
+    }
+  },
+  {
+    "id": "W03-L15-Q032",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L15",
+    "stem": "For m1=2, m2=3 kg, l1=1, l2=2 m, θ2=90°, qdot1=1 and qdot2=2 rad/s, the slide gives Mx=diag(5,3); what is its expanded Vx?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "cognitiveSkill": "numerical",
+    "week": 3,
+    "lectureId": "L15",
+    "topic": "Joint and Cartesian manipulator dynamics",
+    "subtopic": "Evaluate transformed velocity force",
+    "tags": [
+      "cartesian-velocity-numeric"
+    ],
+    "conceptIds": [
+      "W03-L15-C-cartesian-velocity-numeric"
+    ],
+    "assumptions": [
+      "Two planar revolute joints; massless links with point masses m1 at the first link tip and m2 at the second link tip; θ1 measured from horizontal and θ2 relative.",
+      "Use the slide’s derivative of tool-velocity components, not inertial acceleration components."
+    ],
+    "options": [
+      {
+        "id": "o4",
+        "text": "(54,−9) N"
+      },
+      {
+        "id": "o1",
+        "text": "(−54,9) N"
+      },
+      {
+        "id": "o2",
+        "text": "(−48,6) N"
+      },
+      {
+        "id": "o3",
+        "text": "(−24,3) N"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0465",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 465,
+        "kind": "equation",
+        "locator": "Lecture 15, physical PDF page 465, printed slide 16: relevant text, equations and associated figures",
+        "evidenceText": "•  𝑉𝑥Θ, ሶΘ =\n                        2         2                                  𝑐2                          + 𝑚2𝑙1𝑐2 + 𝑚1𝑙1     ሶ𝜃1 ሶ𝜃2   −𝑚2𝑙1𝑐2 + 𝑚2𝑙2 ሶ𝜃1 −𝑚2𝑙2 ሶ𝜃2 −2𝑚2𝑙2                                                                                                             𝑠22\n                                  2                    + 𝑙1𝑚2𝑠2 ሶ𝜃1 ሶ𝜃2                      𝑚2𝑙1𝑠2 ሶ𝜃1\n\n                      𝑐1\n         𝑚1𝑔  + 𝑚2𝑔𝑠12                      𝑠2• 𝐺𝑥Θ =\n              𝑚2𝑔𝑐12\n\n\n\n\n\n                                                                                                          16",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "At cosθ2=0 and sinθ2=1, Vx1=−6·1²−6·2²−12·1·2=−54 and Vx2=3·1²+3·1·2=9.",
+      "optionExplanations": {
+        "o1": "This evaluates the displayed transformed expression.",
+        "o2": "These are the joint-space V components, not task forces.",
+        "o3": "This is J⁻ᵀV without the Jacobian-derivative correction.",
+        "o4": "Both signs have been reversed."
+      },
+      "steps": [
+        "Set sine to1 and cosine to0.",
+        "Compute the first component−6−24−24=−54.",
+        "Compute the second component3+6=9."
+      ],
+      "formulas": [
+        {
+          "expression": "Mx=J⁻ᵀMJ⁻¹; Vx=J⁻ᵀ(V−MJ⁻¹Jdot qdot); Gx=J⁻ᵀG",
+          "variables": {
+            "J": "square nonsingular Jacobian mapping qdot to the chosen task-velocity components",
+            "Mx": "task-space inertia",
+            "Vx": "task-space velocity term",
+            "Gx": "task-space gravity term",
+            "M,V,G": "joint-space dynamics terms",
+            "Jdot": "time derivative of the same Jacobian components"
+          },
+          "units": {
+            "Mx": "inertia units appropriate to task coordinates",
+            "Vx,Gx": "force or power-conjugate generalized task-effort units",
+            "J": "task velocity per joint velocity"
+          },
+          "assumptions": [
+            "Use one consistent frame and a power-conjugate task velocity/effort pair; in moving axes, distinguish derivative of components from inertial acceleration."
+          ]
+        }
+      ],
+      "simpleExplanation": "At cosθ2=0 and sinθ2=1, Vx1=−6·1²−6·2²−12·1·2=−54 and Vx2=3·1²+3·1·2=9.",
+      "memoryAid": null,
+      "misconceptions": [
+        "These are the joint-space V components, not task forces.",
+        "This is J⁻ᵀV without the Jacobian-derivative correction.",
+        "Both signs have been reversed."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L15-Q033",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L15",
+    "stem": "For m1=2, m2=3 kg, g=10 m/s², θ1=0 and θ2=90°, what is Gx=[m1gcosθ1/sinθ2+m2gsin(θ1+θ2),m2gcos(θ1+θ2)]ᵀ?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "cognitiveSkill": "numerical",
+    "week": 3,
+    "lectureId": "L15",
+    "topic": "Joint and Cartesian manipulator dynamics",
+    "subtopic": "Evaluate transformed gravity force",
+    "tags": [
+      "cartesian-gravity-numeric"
+    ],
+    "conceptIds": [
+      "W03-L15-C-cartesian-gravity-numeric"
+    ],
+    "assumptions": [
+      "Two planar revolute joints; massless links with point masses m1 at the first link tip and m2 at the second link tip; θ1 measured from horizontal and θ2 relative."
+    ],
+    "options": [
+      {
+        "id": "o1",
+        "text": "(50,0) N"
+      },
+      {
+        "id": "o2",
+        "text": "(20,0) N"
+      },
+      {
+        "id": "o3",
+        "text": "(0,50) N"
+      },
+      {
+        "id": "o4",
+        "text": "(50,30) N"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0465",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 465,
+        "kind": "equation",
+        "locator": "Lecture 15, physical PDF page 465, printed slide 16: relevant text, equations and associated figures",
+        "evidenceText": "•  𝑉𝑥Θ, ሶΘ =\n                        2         2                                  𝑐2                          + 𝑚2𝑙1𝑐2 + 𝑚1𝑙1     ሶ𝜃1 ሶ𝜃2   −𝑚2𝑙1𝑐2 + 𝑚2𝑙2 ሶ𝜃1 −𝑚2𝑙2 ሶ𝜃2 −2𝑚2𝑙2                                                                                                             𝑠22\n                                  2                    + 𝑙1𝑚2𝑠2 ሶ𝜃1 ሶ𝜃2                      𝑚2𝑙1𝑠2 ሶ𝜃1\n\n                      𝑐1\n         𝑚1𝑔  + 𝑚2𝑔𝑠12                      𝑠2• 𝐺𝑥Θ =\n              𝑚2𝑔𝑐12\n\n\n\n\n\n                                                                                                          16",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The first component is20+30=50 and cos90° makes the second component zero.",
+      "optionExplanations": {
+        "o1": "Both first-component contributions are present.",
+        "o2": "This omits the distal mass contribution.",
+        "o3": "The task-axis components have been exchanged.",
+        "o4": "The second component incorrectly uses cos90°=1."
+      },
+      "steps": [
+        "Evaluate cos0=1, sin90°=1 and cos90°=0.",
+        "Compute2·10+3·10=50.",
+        "Compute3·10·0=0."
+      ],
+      "formulas": [
+        {
+          "expression": "Mx=J⁻ᵀMJ⁻¹; Vx=J⁻ᵀ(V−MJ⁻¹Jdot qdot); Gx=J⁻ᵀG",
+          "variables": {
+            "J": "square nonsingular Jacobian mapping qdot to the chosen task-velocity components",
+            "Mx": "task-space inertia",
+            "Vx": "task-space velocity term",
+            "Gx": "task-space gravity term",
+            "M,V,G": "joint-space dynamics terms",
+            "Jdot": "time derivative of the same Jacobian components"
+          },
+          "units": {
+            "Mx": "inertia units appropriate to task coordinates",
+            "Vx,Gx": "force or power-conjugate generalized task-effort units",
+            "J": "task velocity per joint velocity"
+          },
+          "assumptions": [
+            "Use one consistent frame and a power-conjugate task velocity/effort pair; in moving axes, distinguish derivative of components from inertial acceleration."
+          ]
+        }
+      ],
+      "simpleExplanation": "The first component is20+30=50 and cos90° makes the second component zero.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This omits the distal mass contribution.",
+        "The task-axis components have been exchanged.",
+        "The second component incorrectly uses cos90°=1."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L15-Q034",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L15",
+    "stem": "Which identity resolves the slide’s prose saying Gx is the same as joint-space gravity?",
+    "selectionMode": "single",
+    "type": "source-reconciliation",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L15",
+    "topic": "Joint and Cartesian manipulator dynamics",
+    "subtopic": "Gravity force versus joint gravity torque",
+    "tags": [
+      "gravity-back-transform"
+    ],
+    "conceptIds": [
+      "W03-L15-C-gravity-back-transform"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o2",
+        "text": "Gx=G numerically for every J"
+      },
+      {
+        "id": "o3",
+        "text": "J⁻¹Gx=G for every J"
+      },
+      {
+        "id": "o4",
+        "text": "Gx must be zero whenever G is nonzero"
+      },
+      {
+        "id": "o1",
+        "text": "JᵀGx=G; Gx itself is generally not equal to G"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0466",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 466,
+        "kind": "statement",
+        "locator": "Lecture 15, physical PDF page 466, printed slide 17: relevant text, equations and associated figures",
+        "evidenceText": "The Cartesian configuration space torque equation\n\n•  Joint torques with the dynamics expressed in Cartesian space:\n           𝜏= 𝐽𝑇Θ 𝑀𝑥Θ ሷ𝜒+ 𝑉𝑥Θ, ሶΘ + 𝐺𝑥Θ\n       𝜏= 𝐽𝑇Θ 𝑀𝑥Θ ሷ𝜒+ 𝐵𝑥Θ  ሶΘሶΘ + 𝐶𝑥Θ  ሶΘ2 + 𝐺Θ\n   ➢Where 𝐵𝑥Θ  is a matrix of dimension 𝑛× 𝑛𝑛−1 /2 of Coriolis coefficients,\n  ➢  ሶΘሶΘ  is an 𝑛𝑛−1 /2 × 1 vector of joint velocity product given by\n                                                     𝑇\n                              ሶΘሶΘ =  ሶ𝜃1 ሶ𝜃2 𝜃2 ሶ𝜃3 … … … . ሶ𝜃𝑛−1 ሶ𝜃𝑛\n   ➢𝐶𝑥𝜃is an 𝑛 × 𝑛 matrix of centrifugal coefficients, and\n                                              𝑇\n                       … … ሶ𝜃𝑛2      ሶΘ2  is an 𝑛× 1 vector given by  ሶ𝜃12 ሶ𝜃22\n• 𝐺𝑥Θ is the same as in the joint-space equation,\n   but in general, 𝐵𝑥Θ ≠𝐵Θ and 𝐶𝑥Θ ≠𝐶Θ\n\n\n                                                                                                          17",
+        "role": "conflict",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Because Gx=J⁻ᵀG, transforming it back gives JᵀGx=G; the force-space vector and joint-effort vector are different objects.",
+      "optionExplanations": {
+        "o1": "This matches the two displayed equations and their units.",
+        "o2": "Different coordinates and effort units generally change the vector.",
+        "o3": "The effort back-transformation uses Jᵀ.",
+        "o4": "The invertible map does not turn a nonzero vector into zero."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "Mx=J⁻ᵀMJ⁻¹; Vx=J⁻ᵀ(V−MJ⁻¹Jdot qdot); Gx=J⁻ᵀG",
+          "variables": {
+            "J": "square nonsingular Jacobian mapping qdot to the chosen task-velocity components",
+            "Mx": "task-space inertia",
+            "Vx": "task-space velocity term",
+            "Gx": "task-space gravity term",
+            "M,V,G": "joint-space dynamics terms",
+            "Jdot": "time derivative of the same Jacobian components"
+          },
+          "units": {
+            "Mx": "inertia units appropriate to task coordinates",
+            "Vx,Gx": "force or power-conjugate generalized task-effort units",
+            "J": "task velocity per joint velocity"
+          },
+          "assumptions": [
+            "Use one consistent frame and a power-conjugate task velocity/effort pair; in moving axes, distinguish derivative of components from inertial acceleration."
+          ]
+        }
+      ],
+      "simpleExplanation": "Because Gx=J⁻ᵀG, transforming it back gives JᵀGx=G; the force-space vector and joint-effort vector are different objects.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Different coordinates and effort units generally change the vector.",
+        "The effort back-transformation uses Jᵀ.",
+        "The invertible map does not turn a nonzero vector into zero."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": [],
+    "conflictResolution": {
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "Page466 prose names Gx as the same as joint-space gravity, while its joint-torque equation correctly uses G and prior pages define Gx=J⁻ᵀG.",
+      "basis": "Because Gx=J⁻ᵀG, transforming it back gives JᵀGx=G; the force-space vector and joint-effort vector are different objects.",
+      "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction."
+    }
+  },
+  {
+    "id": "W03-L15-Q035",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L15",
+    "stem": "Why can Bx and Cx in the Cartesian-acceleration torque equation differ from the original joint-space B and C?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "synthesis",
+    "week": 3,
+    "lectureId": "L15",
+    "topic": "Joint and Cartesian manipulator dynamics",
+    "subtopic": "Why the velocity coefficients change",
+    "tags": [
+      "cartesian-torque-velocity"
+    ],
+    "conceptIds": [
+      "W03-L15-C-cartesian-torque-velocity"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o3",
+        "text": "The gravity term is multiplied by joint velocity"
+      },
+      {
+        "id": "o4",
+        "text": "The point masses automatically become configuration-dependent masses"
+      },
+      {
+        "id": "o1",
+        "text": "Replacing qddot introduces a Jdot qdot correction that combines with the old velocity terms"
+      },
+      {
+        "id": "o2",
+        "text": "Changing coordinates removes every velocity-dependent term"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0466",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 466,
+        "kind": "equation",
+        "locator": "Lecture 15, physical PDF page 466, printed slide 17: relevant text, equations and associated figures",
+        "evidenceText": "The Cartesian configuration space torque equation\n\n•  Joint torques with the dynamics expressed in Cartesian space:\n           𝜏= 𝐽𝑇Θ 𝑀𝑥Θ ሷ𝜒+ 𝑉𝑥Θ, ሶΘ + 𝐺𝑥Θ\n       𝜏= 𝐽𝑇Θ 𝑀𝑥Θ ሷ𝜒+ 𝐵𝑥Θ  ሶΘሶΘ + 𝐶𝑥Θ  ሶΘ2 + 𝐺Θ\n   ➢Where 𝐵𝑥Θ  is a matrix of dimension 𝑛× 𝑛𝑛−1 /2 of Coriolis coefficients,\n  ➢  ሶΘሶΘ  is an 𝑛𝑛−1 /2 × 1 vector of joint velocity product given by\n                                                     𝑇\n                              ሶΘሶΘ =  ሶ𝜃1 ሶ𝜃2 𝜃2 ሶ𝜃3 … … … . ሶ𝜃𝑛−1 ሶ𝜃𝑛\n   ➢𝐶𝑥𝜃is an 𝑛 × 𝑛 matrix of centrifugal coefficients, and\n                                              𝑇\n                       … … ሶ𝜃𝑛2      ሶΘ2  is an 𝑛× 1 vector given by  ሶ𝜃12 ሶ𝜃22\n• 𝐺𝑥Θ is the same as in the joint-space equation,\n   but in general, 𝐵𝑥Θ ≠𝐵Θ and 𝐶𝑥Θ ≠𝐶Θ\n\n\n                                                                                                          17",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The substitution qddot=J⁻¹(xddot−Jdot qdot) moves a velocity-dependent contribution into the grouped quadratic terms.",
+      "optionExplanations": {
+        "o1": "This explains the new coefficients without changing the physical model.",
+        "o2": "The product-rule correction generally remains.",
+        "o3": "Gravity does not acquire a velocity factor from this substitution.",
+        "o4": "The same masses are expressed through a different dynamics mapping."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "Mx=J⁻ᵀMJ⁻¹; Vx=J⁻ᵀ(V−MJ⁻¹Jdot qdot); Gx=J⁻ᵀG",
+          "variables": {
+            "J": "square nonsingular Jacobian mapping qdot to the chosen task-velocity components",
+            "Mx": "task-space inertia",
+            "Vx": "task-space velocity term",
+            "Gx": "task-space gravity term",
+            "M,V,G": "joint-space dynamics terms",
+            "Jdot": "time derivative of the same Jacobian components"
+          },
+          "units": {
+            "Mx": "inertia units appropriate to task coordinates",
+            "Vx,Gx": "force or power-conjugate generalized task-effort units",
+            "J": "task velocity per joint velocity"
+          },
+          "assumptions": [
+            "Use one consistent frame and a power-conjugate task velocity/effort pair; in moving axes, distinguish derivative of components from inertial acceleration."
+          ]
+        }
+      ],
+      "simpleExplanation": "The substitution qddot=J⁻¹(xddot−Jdot qdot) moves a velocity-dependent contribution into the grouped quadratic terms.",
+      "memoryAid": null,
+      "misconceptions": [
+        "The product-rule correction generally remains.",
+        "Gravity does not acquire a velocity factor from this substitution.",
+        "The same masses are expressed through a different dynamics mapping."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L15-Q037",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L15",
+    "stem": "Which comparison matches the simple sliding-friction models?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "cognitiveSkill": "recall",
+    "week": 3,
+    "lectureId": "L15",
+    "topic": "Joint and Cartesian manipulator dynamics",
+    "subtopic": "Viscous and Coulomb friction",
+    "tags": [
+      "friction-model-types"
+    ],
+    "conceptIds": [
+      "W03-L15-C-friction-model-types"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o1",
+        "text": "Viscous magnitude scales with speed; Coulomb magnitude is constant and its sign follows motion direction"
+      },
+      {
+        "id": "o2",
+        "text": "Viscous magnitude is constant; Coulomb magnitude scales linearly with speed"
+      },
+      {
+        "id": "o3",
+        "text": "Both magnitudes depend only on joint position"
+      },
+      {
+        "id": "o4",
+        "text": "Both torques keep the same sign when velocity reverses"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0467",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 467,
+        "kind": "statement",
+        "locator": "Lecture 15, physical PDF page 467, printed slide 18: relevant text, equations and associated figures",
+        "evidenceText": "Inclusion of nonrigid body effects\n\n•  Friction is responsible for 25% of the torque required to move the\n  manipulator in typical situations.\n•  Viscous friction (simple model)\n                              𝜏𝑓𝑟𝑖𝑐𝑡𝑖𝑜𝑛= 𝜈ሶ𝜃\n   where 𝑣 is a viscous-friction constant\n •  Another possible simple model for friction,\n • Coulomb friction (constant except for a sign dependence on the\n    joint velocity)\n                           𝜏𝑓𝑟𝑖𝑐𝑡𝑖𝑜𝑛= 𝑐𝑠𝑔𝑛  ሶ𝜃\n    where 𝑐 is a Coulomb-friction constant\n\n\n\n                                                                                                          18",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The viscous term is v qdot and the Coulomb term is c sgn(qdot), under the compensating-effort convention.",
+      "optionExplanations": {
+        "o1": "This follows from the two formulas.",
+        "o2": "This exchanges the models.",
+        "o3": "The displayed simple models depend on velocity, not position.",
+        "o4": "Both displayed terms reverse sign when nonzero velocity reverses."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "τ_comp=c sgn(qdot)+v qdot; τ_resist=−τ_comp",
+          "variables": {
+            "τ_comp": "actuator effort needed to compensate sliding friction",
+            "τ_resist": "actual resisting joint torque",
+            "c": "Coulomb coefficient",
+            "v": "viscous coefficient",
+            "qdot": "joint angular velocity"
+          },
+          "units": {
+            "τ_comp,τ_resist,c": "N·m",
+            "v": "N·m·s/rad",
+            "qdot": "rad/s"
+          },
+          "assumptions": [
+            "Positive c,v and nonzero sliding velocity; static friction needs a separate treatment."
+          ]
+        }
+      ],
+      "simpleExplanation": "The viscous term is v qdot and the Coulomb term is c sgn(qdot), under the compensating-effort convention.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This exchanges the models.",
+        "The displayed simple models depend on velocity, not position.",
+        "Both displayed terms reverse sign when nonzero velocity reverses."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L15-Q043",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L15",
+    "stem": "What does the simulation step compute from current q,qdot and applied τ?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "cognitiveSkill": "recall",
+    "week": 3,
+    "lectureId": "L15",
+    "topic": "Joint and Cartesian manipulator dynamics",
+    "subtopic": "Forward versus inverse dynamics",
+    "tags": [
+      "forward-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L15-C-forward-dynamics"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o3",
+        "text": "q directly without velocity or initial conditions"
+      },
+      {
+        "id": "o4",
+        "text": "The Jacobian inverse instead of the inertia solve"
+      },
+      {
+        "id": "o1",
+        "text": "qddot by solving Mqddot=τ−V−G−F"
+      },
+      {
+        "id": "o2",
+        "text": "τ from a prescribed qddot only"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0469",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 469,
+        "kind": "statement",
+        "locator": "Lecture 15, physical PDF page 469, printed slide 20: relevant text, equations and associated figures",
+        "evidenceText": "Dynamic Simulation\n\n•  Simulation requires solving the dynamic equation for acceleration:\n  ➢𝜏= 𝑀Θ ሷΘ + 𝑉Θ, ሶΘ + 𝐺Θ + 𝐹Θ, ሶΘ\n  ➢𝑀Θ ሷΘ = 𝜏− 𝑉Θ, ሶΘ − 𝐺Θ −𝐹Θ, ሶΘ\n   ➢  ሷΘ = 𝑀−1 Θ 𝜏− 𝑉Θ, ሶΘ − 𝐺Θ −𝐹Θ, ሶΘ\n•  Using numerical integration techniques to find the value of velocities and\n   position.\n•   Initial condition (𝑎𝑡 𝑡= 0) may given as\n                         Θ 0 = Θ0\n                                                    ሶΘ 0 = 0\n•  Euler integration:\n                                        ሶΘ 𝑡+ ∆𝑡= ሶΘ 𝑡+ ሷΘ 𝑡∆𝑡\n                                          1\n                Θ 𝑡+ ∆𝑡= Θ 𝑡+ ሶΘ 𝑡∆𝑡+   ሷΘ 𝑡∆𝑡2\n                                          2\n\n\n\n                                                                                                          20",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Forward dynamics determines acceleration from applied effort and the current state; integrating then advances velocity and position.",
+      "optionExplanations": {
+        "o1": "This is the rearranged dynamics equation.",
+        "o2": "That is the inverse-dynamics direction.",
+        "o3": "A second-order trajectory requires state and integration.",
+        "o4": "The acceleration solve uses the inertia matrix."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "τ=M(q)qddot+V(q,qdot)+G(q)",
+          "variables": {
+            "τ": "joint effort vector",
+            "M": "joint inertia matrix",
+            "q,qdot,qddot": "joint positions, rates and accelerations",
+            "V": "velocity-dependent joint effort",
+            "G": "gravity joint effort"
+          },
+          "units": {
+            "τ,V,G": "N·m for revolute coordinates; N for prismatic coordinates",
+            "M": "joint-coordinate-dependent inertia units",
+            "q,qdot,qddot": "joint-type-specific position/rate/acceleration units"
+          },
+          "assumptions": [
+            "Ideal rigid links; friction and extra loads omitted unless explicitly added."
+          ]
+        }
+      ],
+      "simpleExplanation": "Forward dynamics determines acceleration from applied effort and the current state; integrating then advances velocity and position.",
+      "memoryAid": null,
+      "misconceptions": [
+        "That is the inverse-dynamics direction.",
+        "A second-order trajectory requires state and integration.",
+        "The acceleration solve uses the inertia matrix."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L15-Q045",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L15",
+    "stem": "With x=[q;v] and v=qdot, which state derivative matches the friction-inclusive equation?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "synthesis",
+    "week": 3,
+    "lectureId": "L15",
+    "topic": "Joint and Cartesian manipulator dynamics",
+    "subtopic": "Complete first-order dynamics",
+    "tags": [
+      "first-order-equations"
+    ],
+    "conceptIds": [
+      "W03-L15-C-first-order-equations"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o1",
+        "text": "xdot=[v; M(q)⁻¹(τ−V(q,v)−G(q)−F(q,v))]"
+      },
+      {
+        "id": "o2",
+        "text": "xdot=[q; M(q)τ]"
+      },
+      {
+        "id": "o3",
+        "text": "xdot=[v; M(q)⁻¹(τ+V+G+F)]"
+      },
+      {
+        "id": "o4",
+        "text": "xdot=[qddot;v]"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0469",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 469,
+        "kind": "equation",
+        "locator": "Lecture 15, physical PDF page 469, printed slide 20: relevant text, equations and associated figures",
+        "evidenceText": "Dynamic Simulation\n\n•  Simulation requires solving the dynamic equation for acceleration:\n  ➢𝜏= 𝑀Θ ሷΘ + 𝑉Θ, ሶΘ + 𝐺Θ + 𝐹Θ, ሶΘ\n  ➢𝑀Θ ሷΘ = 𝜏− 𝑉Θ, ሶΘ − 𝐺Θ −𝐹Θ, ሶΘ\n   ➢  ሷΘ = 𝑀−1 Θ 𝜏− 𝑉Θ, ሶΘ − 𝐺Θ −𝐹Θ, ሶΘ\n•  Using numerical integration techniques to find the value of velocities and\n   position.\n•   Initial condition (𝑎𝑡 𝑡= 0) may given as\n                         Θ 0 = Θ0\n                                                    ሶΘ 0 = 0\n•  Euler integration:\n                                        ሶΘ 𝑡+ ∆𝑡= ሶΘ 𝑡+ ሷΘ 𝑡∆𝑡\n                                          1\n                Θ 𝑡+ ∆𝑡= Θ 𝑡+ ሶΘ 𝑡∆𝑡+   ሷΘ 𝑡∆𝑡2\n                                          2\n\n\n\n                                                                                                          20",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The position derivative is velocity, and the velocity derivative is the forward-dynamics acceleration.",
+      "optionExplanations": {
+        "o1": "This gives both derivative blocks in the correct order.",
+        "o2": "The first block is not the position derivative and the second omits loads/inversion.",
+        "o3": "The known load terms must be subtracted.",
+        "o4": "The derivative blocks have been assigned to the wrong state components."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "τ=M(q)qddot+V(q,qdot)+G(q)",
+          "variables": {
+            "τ": "joint effort vector",
+            "M": "joint inertia matrix",
+            "q,qdot,qddot": "joint positions, rates and accelerations",
+            "V": "velocity-dependent joint effort",
+            "G": "gravity joint effort"
+          },
+          "units": {
+            "τ,V,G": "N·m for revolute coordinates; N for prismatic coordinates",
+            "M": "joint-coordinate-dependent inertia units",
+            "q,qdot,qddot": "joint-type-specific position/rate/acceleration units"
+          },
+          "assumptions": [
+            "Ideal rigid links; friction and extra loads omitted unless explicitly added."
+          ]
+        }
+      ],
+      "simpleExplanation": "The position derivative is velocity, and the velocity derivative is the forward-dynamics acceleration.",
+      "memoryAid": null,
+      "misconceptions": [
+        "The first block is not the position derivative and the second omits loads/inversion.",
+        "The known load terms must be subtracted.",
+        "The derivative blocks have been assigned to the wrong state components."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L15-Q049",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L15",
+    "stem": "Why should M,V,G and friction normally be evaluated again as the simulated state changes?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "cognitiveSkill": "application",
+    "week": 3,
+    "lectureId": "L15",
+    "topic": "Joint and Cartesian manipulator dynamics",
+    "subtopic": "Reevaluate the model during simulation",
+    "tags": [
+      "simulation-feedback"
+    ],
+    "conceptIds": [
+      "W03-L15-C-simulation-feedback"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o1",
+        "text": "Their arguments can change with q and qdot, changing the computed acceleration"
+      },
+      {
+        "id": "o2",
+        "text": "They must remain frozen at the initial values for every nonlinear model"
+      },
+      {
+        "id": "o3",
+        "text": "Only the number of links changes during a time step"
+      },
+      {
+        "id": "o4",
+        "text": "Reevaluation automatically makes any integration step exact"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0469",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 469,
+        "kind": "statement",
+        "locator": "Lecture 15, physical PDF page 469, printed slide 20: relevant text, equations and associated figures",
+        "evidenceText": "Dynamic Simulation\n\n•  Simulation requires solving the dynamic equation for acceleration:\n  ➢𝜏= 𝑀Θ ሷΘ + 𝑉Θ, ሶΘ + 𝐺Θ + 𝐹Θ, ሶΘ\n  ➢𝑀Θ ሷΘ = 𝜏− 𝑉Θ, ሶΘ − 𝐺Θ −𝐹Θ, ሶΘ\n   ➢  ሷΘ = 𝑀−1 Θ 𝜏− 𝑉Θ, ሶΘ − 𝐺Θ −𝐹Θ, ሶΘ\n•  Using numerical integration techniques to find the value of velocities and\n   position.\n•   Initial condition (𝑎𝑡 𝑡= 0) may given as\n                         Θ 0 = Θ0\n                                                    ሶΘ 0 = 0\n•  Euler integration:\n                                        ሶΘ 𝑡+ ∆𝑡= ሶΘ 𝑡+ ሷΘ 𝑡∆𝑡\n                                          1\n                Θ 𝑡+ ∆𝑡= Θ 𝑡+ ሶΘ 𝑡∆𝑡+   ሷΘ 𝑡∆𝑡2\n                                          2\n\n\n\n                                                                                                          20",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The dynamics is state-dependent; retaining the initial coefficients without justification replaces it with a different approximation.",
+      "optionExplanations": {
+        "o1": "This preserves the nonlinear state dependence.",
+        "o2": "Freezing coefficients is an additional approximation, not a universal rule.",
+        "o3": "The robot structure does not normally change merely because time advances.",
+        "o4": "Numerical integration error can remain after reevaluation."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "τ=M(q)qddot+V(q,qdot)+G(q)",
+          "variables": {
+            "τ": "joint effort vector",
+            "M": "joint inertia matrix",
+            "q,qdot,qddot": "joint positions, rates and accelerations",
+            "V": "velocity-dependent joint effort",
+            "G": "gravity joint effort"
+          },
+          "units": {
+            "τ,V,G": "N·m for revolute coordinates; N for prismatic coordinates",
+            "M": "joint-coordinate-dependent inertia units",
+            "q,qdot,qddot": "joint-type-specific position/rate/acceleration units"
+          },
+          "assumptions": [
+            "Ideal rigid links; friction and extra loads omitted unless explicitly added."
+          ]
+        }
+      ],
+      "simpleExplanation": "The dynamics is state-dependent; retaining the initial coefficients without justification replaces it with a different approximation.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Freezing coefficients is an additional approximation, not a universal rule.",
+        "The robot structure does not normally change merely because time advances.",
+        "Numerical integration error can remain after reevaluation."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  }
+]

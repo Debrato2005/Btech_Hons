@@ -1,0 +1,605 @@
+{
+  "completedAt": "2026-10-19T20:00:28.305852+00:00",
+  "reviewerId": "define_robotics_data_contracts:L30-independent-reviewer",
+  "reviewed": 74,
+  "verified": 47,
+  "flagged": 27,
+  "keyDisagreements": 0,
+  "actualPagesInspected": 34,
+  "originalSubstantivePages": 28,
+  "repeatedSummaryPages": 1,
+  "substantivePagesWithCitations": 29,
+  "priorVersionExposure": false,
+  "independentAssertions": 32,
+  "randomTrials": 1000,
+  "checksPerTrial": 3,
+  "independentExperiment": {
+    "episodes": 5000,
+    "steps": 250000,
+    "numpySeed": 3030,
+    "initialResetSeed": 3030,
+    "laterResets": "None, advance seeded environment RNG",
+    "terminationCount": 0,
+    "truncationCount": 5000,
+    "successfulSteps": 64192,
+    "checkpoints": [
+      {
+        "episode": 500,
+        "meanLast100": -7.74318023132583,
+        "epsilon": 0.18375562742857943
+      },
+      {
+        "episode": 1000,
+        "meanLast100": -7.114701452731365,
+        "epsilon": 0.06753226122334167
+      },
+      {
+        "episode": 1500,
+        "meanLast100": -6.783986999119799,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 2000,
+        "meanLast100": -6.759830251673325,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 2500,
+        "meanLast100": -6.623773956591469,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 3000,
+        "meanLast100": -5.656325236179464,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 3500,
+        "meanLast100": -5.066357115141174,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 4000,
+        "meanLast100": -4.611936239493946,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 4500,
+        "meanLast100": -4.066289941146549,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 5000,
+        "meanLast100": -3.2210742108730144,
+        "epsilon": 0.05
+      }
+    ],
+    "finalQDataSha256": "024b5703169e797cee804745cd97d9ac59a9b0406045cf722617c1c478c5050e",
+    "episodeTotalsSha256": "d738c270e857d21c4ebb2783da72282f667700280b520fd01f561ca60318db5b",
+    "interpretation": "An independently seeded reproduction of the shown algorithm, not reproduction of the unseeded slide checkpoints, not an independent greedy evaluation, and not proof of convergence, grasping or safety."
+  },
+  "reviewFile": "data/reviews/W06-L30-v1-independent-contracts.json",
+  "reviewSha256": "10485103671eeeb349111f48968007c553db3242673e2b924848f2e2e3299c54",
+  "blindAnswersSha256": "5e3f99f0f6361cc4848ae774b7d30f1ce6722a7d67a71b2e2c8f53dcbe8a00aa",
+  "validation": {
+    "valid": true,
+    "release": false,
+    "errors": [],
+    "warnings": [],
+    "counts": {
+      "sources": 2,
+      "sourcesReady": 2,
+      "pagesExpected": 2012,
+      "pagesInventoried": 2012,
+      "pagesVisuallyInspected": 364,
+      "pagesExcluded": 140,
+      "pagesRepeated": 0,
+      "concepts": 74,
+      "conceptsWithDraftQuestions": 74,
+      "conceptsWithVerifiedQuestions": 47,
+      "questions": 74,
+      "questionsByStatus": {
+        "verified": 47,
+        "flagged": 27
+      },
+      "currentlyVerifiedQuestions": 47,
+      "staleReviews": 0,
+      "numericalFamilies": 0,
+      "verifiedByWeek": {
+        "6": 47
+      },
+      "verifiedByDifficulty": {
+        "easy": 29,
+        "medium": 18
+      },
+      "verifiedByType": {
+        "scenario": 5,
+        "conceptual": 19,
+        "match": 2,
+        "numerical": 16,
+        "diagram": 2,
+        "algorithm-trace": 2,
+        "derivation": 1
+      }
+    }
+  },
+  "flaggedQuestionIds": [
+    "W06-L30-Q008",
+    "W06-L30-Q010",
+    "W06-L30-Q012",
+    "W06-L30-Q017",
+    "W06-L30-Q023",
+    "W06-L30-Q025",
+    "W06-L30-Q026",
+    "W06-L30-Q028",
+    "W06-L30-Q031",
+    "W06-L30-Q034",
+    "W06-L30-Q037",
+    "W06-L30-Q040",
+    "W06-L30-Q042",
+    "W06-L30-Q044",
+    "W06-L30-Q047",
+    "W06-L30-Q052",
+    "W06-L30-Q053",
+    "W06-L30-Q055",
+    "W06-L30-Q057",
+    "W06-L30-Q062",
+    "W06-L30-Q065",
+    "W06-L30-Q068",
+    "W06-L30-Q069",
+    "W06-L30-Q070",
+    "W06-L30-Q071",
+    "W06-L30-Q073",
+    "W06-L30-Q074"
+  ],
+  "findings": [
+    {
+      "questionId": "W06-L30-Q008",
+      "criteria": [
+        "distractors",
+        "sourceSupport"
+      ],
+      "findings": [
+        "All wrong choices assert zero reward, automatic goal achievement or impossible resets. Replace with credible distinctions between a natural terminal condition, an externally truncated continuing trajectory and a finite task horizon.",
+        "The general conclusion follows from the explicit continuing-task premise, but the solution additionally asserts actual FetchReach continuing-task semantics contrary to the cited slide. Bind this added API fact to dated, version-specific primary documentation or the installed-source audit, and visibly distinguish it from source text. A batch-global audit without an item-level evidence reference is insufficient exact provenance."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q010",
+      "criteria": [
+        "difficulty",
+        "sourceSupport"
+      ],
+      "findings": [
+        "This directly asks the classification printed on page 897. Relabel easy, or replace with a genuine behavior-versus-target trace that justifies medium and can close the bootstrap-target coverage gap.",
+        "The explanation specifically relies on the maximum in the Q-learning bootstrap, but the only citation is page 897. Add the actual update equation/pseudocode on page 904 or 905 to support that additional premise."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q012",
+      "criteria": [
+        "explanation"
+      ],
+      "findings": [
+        "The explanation for o3=7 says this drops the negative reward. Omitting -1 gives 2+4=6, not 7. Seven instead results from changing -1 to +1. Correct the option rationale without changing the valid key 5."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q017",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Only the pathwise-guarantee option directly competes with expected optimality. Nonexistence of optimal policies under any stochasticity and equality of all Q values from one poor episode are implausible alternatives. Use credible finite-sample evidence, expected-value and risk-criterion confusions."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q023",
+      "criteria": [
+        "distractors",
+        "sourceSupport"
+      ],
+      "findings": [
+        "Unequal Q values requiring random selection and unspecified negative outcomes invalidating Q are weak alternatives to the intended immediate-versus-cumulative comparison. Supply realistic competing action criteria or a short immediate/continuation calculation.",
+        "Page 902 contains the erroneous immediate-reward wording. Add page 899 or 901 for the cumulative-Q definition used to qualify it; preserve the conflict rather than making the author inspection note the sole support for the correction."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q025",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "This is direct recall of the known-model versus sampled-value algorithm pairing on page 903. Relabel easy or add an actual model-access/planning decision that requires application."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q026",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "As written this asks only to identify the directly displayed TD-error expression. Relabel easy or require a meaningful distinction between observed reward, estimated bootstrap and sampled next action."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q028",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Every wrong answer is a sweeping removal of theorem hypotheses or an unconditional convergence guarantee. Compare plausible combinations of coverage, state sufficiency and step-size conditions instead of making the only qualified option the answer."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q031",
+      "criteria": [
+        "distractors",
+        "sourceSupport"
+      ],
+      "findings": [
+        "Treating a location as a scalar reward and allowing Q-learning to ignore joint limits are weak rivals to reach-versus-grasp distinctions. Use feasible reach, grasp closure, contact stability and task-objective alternatives.",
+        "The solution specifically refers to the later FetchReach task, but the cited pages are the abstract reach/grasp diagram and repeated summary. Add page 909 for the task being compared, and keep physical grasp qualifications explicit."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q034",
+      "criteria": [
+        "sourceSupport"
+      ],
+      "findings": [
+        "The tested task-space-versus-joint-dimension relationship is supported, but the solution adds that FetchReach blocks its gripper channel. That fact is not on the cited slide and is not qualified in this item. Remove the unnecessary extra claim or attach explicit tested-version API evidence, keeping it distinct from the lecture statement."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q037",
+      "criteria": [
+        "sourceSupport"
+      ],
+      "findings": [
+        "The solution correctly names Gymnasium 1.4.0 and the no-op helper, but gives no item-level link/path to the inspected implementation or dated primary API reference. Attach exact external evidence to the qualification; the cited slide itself says something different."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q040",
+      "criteria": [
+        "sourceSupport"
+      ],
+      "findings": [
+        "The solution relies on BIN_SIZE appearing only in get_state and on relative-error encoding. Add page 912, where that function is actually shown, rather than citing only the action map on page 911."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q042",
+      "criteria": [
+        "sourceSupport"
+      ],
+      "findings": [
+        "The arithmetic is correct under the explicitly supplied float64 assumption, but the explanation additionally contrasts ACTION_MAP's float32 dtype. Add page 911 for that exact code premise, or omit the unnecessary contrast."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q044",
+      "criteria": [
+        "explanation"
+      ],
+      "findings": [
+        "The o4=(5,4,5) rationale says it rounds the scaled values without naming the rule. NumPy nearest-even rounding of ideal (5.25,3.75,4.5) gives (5,4,4), not that option. Explicitly describe half-up rounding as the intended misconception, or use the actual NumPy-rounded alternative. The correct truncation tuple remains (5,3,4)."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q047",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "All wrong alternatives claim universal removal of omitted dynamics by Q-learning, discretization or averaging. Replace with realistic conditions under which the compressed observation might or might not be sufficient, so the qualified answer is not a giveaway."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q052",
+      "criteria": [
+        "sourceSupport"
+      ],
+      "findings": [
+        "The correct FetchReach termination/truncation claim contradicts the lecture wording and relies on actual installed code plus an author run. This item needs a stated tested-version/API scope and a direct primary-document or saved implementation/run reference, not only page 913 and an unlinked assertion that 5000 segments were executed. My independent run confirms the fact but does not turn it into printed slide evidence."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q053",
+      "criteria": [
+        "sourceSupport"
+      ],
+      "findings": [
+        "The stem attributes alpha=0.1 and gamma=0.95 to the source, but page 914 shows only symbols. Add page 912, which supplies those numerical hyperparameters."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q055",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Updating all rows equally and treating s_next as a reward are implausible alternatives to a state-bookkeeping question. Use plausible saved-old-state, same-state transition and update-order mistakes, ideally with a small table trace."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q057",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "The question directly reads total += r and rewards.append(total), with no return comparison or calculation. Relabel easy or introduce a short discounted-versus-logged numerical comparison to justify medium."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q062",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The distractors attribute reproducibility to loop length/shape alone or make epsilon random because rewards vary. Compare realistic controls such as NumPy-only seeding, environment-only seeding, both generators and version pinning."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q065",
+      "criteria": [
+        "distractors",
+        "sourceSupport"
+      ],
+      "findings": [
+        "The alternatives include a title proving zero reward, exact optimality of every table entry and guaranteed physical grasping. Use plausible but overstrong conclusions about final distance, rolling-average alignment, greedy evaluation or seed variability.",
+        "The explanation calls the plotted policy still exploratory, but page 916 only plots the results. Add page 915 or 913 for the persistent epsilon floor/action rule supporting that premise."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q068",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Changing only dtype and mechanically doubling workspace are not credible consequences of changing BIN_SIZE. Replace with realistic range/offset/saturation confusions or calculate actual boundary bins."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q069",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Universal convergence and removal of independent evaluation are weak distractors. Compare credible trade-offs in table size, approximation bias, sample demand and optimization stability."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q070",
+      "criteria": [
+        "distractors",
+        "sourceSupport"
+      ],
+      "findings": [
+        "Automatically changing the environment ID and unblocking a gripper by shrinking state bins are implausible. Use realistic distinctions between actuator availability, task object/reward, action-map size and successful contact.",
+        "The key depends on FetchReach ignoring the fourth channel, which the slides instead describe as effective gripper control. State the tested-version qualification and bind the item to the official Reach action-space documentation or exact installed implementation evidence. Preserve the original source discrepancy."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q071",
+      "criteria": [
+        "assumptions",
+        "explanation"
+      ],
+      "findings": [
+        "The supplied successor goal error (-0.03,0,0) has Euclidean distance 0.03, so FetchReachDense must return -0.03, not -0.1. The current assumption only disclaims fixed motion from +x; it does not disclaim the deterministic reward rule. Either make reward/error consistent or explicitly state a deliberately nonphysical mocked environment overriding dense reward.",
+        "The arithmetic reaches the intended o3 for the supplied numbers, but the solution treats them as a coherent source-task transition without acknowledging the dense-reward contradiction. Repair the example and every dependent option/working, or explain the explicit mock override."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q073",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Reversed argmax, Q as successor probabilities, and every estimated action worse than every random action are weak rivals. Use plausible distinctions between greediness, sufficient coverage, finite estimates and independent policy evaluation."
+      ]
+    },
+    {
+      "questionId": "W06-L30-Q074",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Certain goal achievement from zero initialization, reversed maxima and impossibility of negative updates are largely obvious errors. Use plausible optimistic-initialization, action coverage and value-update interpretations."
+      ]
+    }
+  ],
+  "coverageGaps": [
+    {
+      "id": "L30-GAP-907-api-lifecycle",
+      "pages": [
+        907,
+        910,
+        912,
+        913,
+        916
+      ],
+      "finding": "The source explicitly lists make, reset, step and render. Existing questions cover the first three but never distinguish rendering from stepping or from plotting a reward history. Add one coherent API lifecycle/observation trace, not separate trivial import questions."
+    },
+    {
+      "id": "L30-GAP-917-training-budget",
+      "pages": [
+        913,
+        915,
+        917
+      ],
+      "finding": "The proposed extension to 20000+ episodes has no meaningful question. Combine the additional step budget, the nonzero exploration floor and expected non-greedy decisions with the fact that more samples do not by themselves establish convergence. State the continuing 50-step task and unique-greedy-action assumptions."
+    },
+    {
+      "id": "L30-GAP-912-917-physical-grid",
+      "pages": [
+        912,
+        917
+      ],
+      "finding": "Current items cover one interior encoding, zero and qualitative resizing but not the actual physical intervals/saturation or a coherent 12-bin range-preserving encoder. Add an ideal-arithmetic boundary/range calculation with offset, width and clipping bounds stated; avoid floating boundary ambiguity."
+    },
+    {
+      "id": "L30-GAP-897-904-bootstrap-target",
+      "pages": [
+        897,
+        904,
+        905,
+        913,
+        914
+      ],
+      "finding": "Current questions identify off-policy labels and a maximum symbol but do not trace the distinction between the actually sampled reward, an estimated greedy bootstrap and an exploratory next action. Add a short nonzero-Q transition comparing these targets. Do not call the complete bootstrapped target an observed return."
+    }
+  ],
+  "coverageChallengePath": "audits/W06-L30-contracts-coverage-challenge.json",
+  "sourceQualifications": {
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "issues": [
+      {
+        "physicalPage": 890,
+        "description": "RL is called the third branch.",
+        "qualification": "A pedagogical comparison, not a universal exhaustive taxonomy.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 891,
+        "description": "Critic feedback is described as scarce and delayed.",
+        "qualification": "This is common, not necessary; the lecture later uses dense per-step rewards.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 897,
+        "description": "Off-policy learning works regardless of exploration strategy.",
+        "qualification": "Its target can differ from the behavior policy, but learning guarantees still need adequate state-action coverage and other assumptions.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 898,
+        "description": "Discounting is motivated by a hard time limit.",
+        "qualification": "Discounted infinite-horizon return is well defined for bounded rewards and 0≤gamma<1; a hard cutoff is not required.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 899,
+        "description": "Optimal wording may suggest guaranteed return.",
+        "qualification": "Values optimize expected cumulative return; individual stochastic outcomes can differ and actions can tie.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 902,
+        "description": "Exploitation chooses highest immediate reward.",
+        "qualification": "Q-based exploitation chooses greatest estimated cumulative return, which need not maximize immediate reward.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 903,
+        "description": "Model-based learning requires perfect prior knowledge and no exploration.",
+        "qualification": "The slide contrasts known-model planning with model-free learning; model-based methods can instead learn models and need exploration.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 904,
+        "description": "Target is labeled actually happened and convergence is attributed only to decaying learning rate.",
+        "qualification": "The reward and transition are sampled but next Q is estimated. Classical guarantees require finite/tabular assumptions, sufficient visits and suitable step sizes; fixed alpha in the example does not establish that theorem.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 905,
+        "description": "Terminal update convention is unstated.",
+        "qualification": "A genuine terminal successor has no continuing return; an external time-limit truncation of a continuing task is different.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 906,
+        "description": "Any arbitrary target and subsequent grasping are suggested.",
+        "qualification": "Targets must be reachable under task constraints. FetchReach trains reaching, not object grasping.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 909,
+        "description": "Dense reward is called always negative and fourth action is described as gripper control.",
+        "qualification": "Negative distance is zero at exact coincidence. FetchReach blocks the fourth gripper command; its inclusion in the API does not make it effective.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 910,
+        "description": "register_envs is described as loading all robot models.",
+        "qualification": "In tested Gymnasium 1.4.0 it is a compatibility no-op; importing gymnasium_robotics registers environments, and make constructs the selected environment.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 911,
+        "description": "The action example implies a unit command is a physical displacement.",
+        "qualification": "Actions are normalized controls; achieved movement is governed by the simulator and is not guaranteed one metre or one discretization bin.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 912,
+        "description": "State is described as current position.",
+        "qualification": "The code bins desired minus achieved goal, clips tails and omits other observation components; this compressed relative state can alias different physical conditions.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 913,
+        "description": "terminated means won.",
+        "qualification": "Termination indicates a task-defined terminal state, not necessarily success. FetchReach is continuing and its default time limit truncates after 50 steps.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 914,
+        "description": "Unconditional bootstrap precedes both termination and truncation.",
+        "qualification": "Appropriate for continuing FetchReach truncation; not a generic true-terminal update with a nonzero next-state estimate.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 915,
+        "description": "One printed stochastic training trace may look guaranteed or monotonic.",
+        "qualification": "No seed is supplied, and even the displayed checkpoints worsen between episodes 1000 and 1500.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 916,
+        "description": "Plot caption/prose implies convergence near zero.",
+        "qualification": "The displayed curve fluctuates around negative totals and does not prove convergence, zero error or optimality.",
+        "status": "preserved with explicit scope; not globally resolved"
+      },
+      {
+        "physicalPage": 917,
+        "description": "Larger grid, deep RL and gripper extension are suggested as simple changes.",
+        "qualification": "Update hard-coded bounds/offsets together with shape, account for sample/storage costs, and use an actual grasp-capable task rather than changing an ignored FetchReach channel.",
+        "status": "preserved with explicit scope; not globally resolved"
+      }
+    ],
+    "officialDocumentationChecked": [
+      {
+        "url": "https://robotics.farama.org/envs/fetch/reach/",
+        "purpose": "Negative distance reward, continuing task, ignored gripper and default 50-step truncation."
+      },
+      {
+        "url": "https://gymnasium.farama.org/tutorials/gymnasium_basics/handling_time_limits/",
+        "purpose": "True termination versus time-limit truncation and bootstrapping."
+      },
+      {
+        "url": "https://gymnasium.farama.org/api/registry/",
+        "purpose": "Registration and environment construction."
+      },
+      {
+        "url": "https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf",
+        "purpose": "Classical tabular Q-learning convergence assumptions."
+      }
+    ],
+    "documentationNote": "Primary documentation checked on 2026-10-19. External clarification is not lecture coverage. Actual installed source and runtime tests are separately captured.",
+    "runtimeQualification": "The literal unpinned installation initially selected MuJoCo 3.16.0 and environment construction failed. An explicitly added MuJoCo 3.3.7 pin in an isolated temporary environment made the source loop executable; see initial-runtime-attempt and author-simulation artifacts."
+  },
+  "postRevealCheckPath": "audits/W06-L30-post-reveal-checks.json",
+  "authorExperimentComparison": {
+    "authorEpisodes": 5000,
+    "authorSeed": "Unseeded, as reported and now inspected after independent freeze",
+    "authorFinal100Mean": -3.8834849973585275,
+    "independentFinal100Mean": -3.2210742108730144,
+    "interpretation": "Both runs support executable training-loop behavior and task flag semantics, not identical unseeded scores, optimality or physical-robot validation."
+  },
+  "mutations": "Reviewer evidence, independent check/finalizer scripts, snapshot, reviews and handoff only. No author questions, canonical bank, source files or Git edits."
+}

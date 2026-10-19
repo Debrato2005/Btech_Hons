@@ -35,6 +35,7 @@ def save(final=False):
  batch['revisionNote']='48 flagged v1 objects repaired as v2; 54 accepted v1 objects preserved exactly. New gap drafts require independent review.' if final else 'Incremental v2 author repair; independent review not yet requested.'
  (ROOT/'data/question-batches/W02-L09.json').write_text(json.dumps(batch,ensure_ascii=False,indent=2)+'\n')
  report={'batchId':BATCH,'final':final,'revisedIds':sorted(modified),'preservedAcceptedHashes':accepted,'newQuestionIds':[x['id'] for x in new],'checks':author_checks,'independentReviewPending':True}
+ report['revisionBindings']=[{'questionId':k,'previousVersion':1,'previousQuestionSha256':digest(oldQ[k]),'currentVersion':2,'currentQuestionSha256':digest(Q[k]),'reviewerFindingsAddressedByAuthor':summary['actionableFlags'][k],'requiresNewIndependentReview':True} for k in sorted(modified)]
  (ROOT/'audits/W02-L09-v2-author-repair.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
  if final:
   assert modified==flags
@@ -348,3 +349,113 @@ for item in batch['sourceIssues']:
 (ROOT/'audits/source-disputes-W02-L09.json').write_text(json.dumps(batch['sourceIssues'],ensure_ascii=False,indent=2)+'\n')
 assert modified==flags
 save(False)
+# Three new IDs close the independently identified source gaps without changing
+# the content of any of the 54 accepted questions.
+SHA=original['questions'][0]['citations'][0]['sourceSha256']
+def add_gap(page,num,stem,options,why,*,kind='conceptual',difficulty='medium',assumptions=None,locator='',region=None):
+ cid=f'W02-L09-P{page:04}-C01';qid=f'W02-L09-P{page:04}-Q{num:02}';assert qid not in Q
+ c=next(v for v in batch['concepts'] if v['id']==cid)
+ oo=[{'id':f'o{i+1}','text':v} for i,v in enumerate(options)];shift=int(hashlib.sha256(qid.encode()).hexdigest()[:4],16)%len(oo);oo=oo[shift:]+oo[:shift]
+ x=dict(id=qid,version=1,status='draft',authorId=AUTHOR,stem=stem,selectionMode='single',type=kind,difficulty=difficulty,cognitiveSkill='application' if kind=='diagram' else 'recall' if difficulty=='easy' else 'conceptual',week=2,lectureId='L09',topic=original['questions'][0]['topic'],subtopic=c['title'],tags=['jacobian-velocity','robotics','independent-coverage-gap-repair'],conceptIds=[cid],assumptions=assumptions or [],options=oo,correctOptionIds=['o1'],citations=[dict(slideId=f'lectures-p{page:04}',sourceId='lectures',sourceSha256=SHA,physicalPage=page,kind='figure' if kind=='diagram' else 'table' if page==322 else 'statement',locator=locator,evidenceText=(ROOT/f'sources/text/lectures/page-{page:04}.txt').read_text().strip(),role='explicit',region=region)],solution=dict(justification=why[0],optionExplanations={f'o{i+1}':('Correct. ' if i==0 else 'Incorrect. ')+v for i,v in enumerate(why)},steps=[],formulas=[],simpleExplanation=why[0],memoryAid=None,misconceptions=why[1:],examTraps=[],prerequisiteConceptIds=[]),origin='generated',reviewIds=[])
+ batch['questions'].append(x);Q[qid]=x;new.append(x);c['questionIds'].append(qid);c['examinationAngles'].append(stem);return x
+x=add_gap(309,8,'In the rotational-motion figure with axis origin O, circle center A, old point B and new point C, which mapping of line segments is correct?',[
+ 'OA: axial projection; AB and AC: circular radii; OB and OC: full old/new point vectors; BC: finite tip chord',
+ 'OA: circular radius; AB and AC: axial projections; OB and OC: full old/new point vectors; BC: finite tip chord',
+ 'OA: axial projection; AB and AC: full point-vector lengths; OB and OC: circular radii; BC: finite tip chord',
+ 'OA: axial projection; AB and AC: circular radii; OB and OC: full old/new point vectors; BC: circular arc'],[
+ 'A is the projection of the point onto the rotation axis. AB and AC measure perpendicular distance to that axis; OB and OC are the full position vectors. The straight segment BC is the finite displacement chord.',
+ 'The axial projection lies along OA, whereas AB and AC extend from the axis to the circle.',
+ 'This swaps the full vectors from O with the perpendicular circular radii from A.',
+ 'BC is the straight chord joining the two point positions, not the curved arc. Chord and arc agree only to first order for a small rotation.'],kind='diagram',assumptions=['Interpret the labeled source figure geometrically in one fixed frame. The point is fixed in the rotating body.','The instantaneous derivation uses the small-angle limit; no finite-angle chord/arc equality is assumed.'],locator='Printed slide 14: upper-right O/A/B/C circular-motion figure, old Q(t), new Q(t+Δt), and ΔQ chord',region={'x':0.66,'y':0.04,'width':0.34,'height':0.56})
+x['solution']['formulas']=[fm('radius=|Q| sin(theta); |BC|=2 radius sin(delta/2)',{'radius':'perpendicular distance AB=AC from the point to the rotation axis','|Q|':'full point-vector length OB=OC','theta':'angle between O-to-point vector and the rotation axis','delta':'finite rotation angle between AB and AC','|BC|':'straight displacement-chord length'},{'radius':'m','|Q|':'m','theta':'rad','delta':'rad','|BC|':'m'},['Fixed point undergoing pure rotation about the illustrated axis.','The finite chord formula is a geometric derivation; |BC|≈radius·delta only for small delta.'])]
+x=add_gap(321,9,'Which application pair is explicitly associated with RMRC in the lecture’s “simple, efficient” usefulness bullet?',[
+ 'Industrial robot teleoperation and AI manipulation',
+ 'Offline DH-parameter calibration and static workspace reconstruction',
+ 'Actuator inertia identification and inverse-dynamics torque fitting',
+ 'One-shot pose-level IK and global collision-free path search'],[
+ 'The slide explicitly names industrial robot teleoperation and AI manipulation as RMRC applications. Its online velocity-level update fits these contexts; the wording is not a universal performance guarantee.',
+ 'These are plausible robotics modeling tasks, but they are not the application pair named in that bullet.',
+ 'These concern dynamic parameter/torque modeling rather than the named RMRC application pair.',
+ 'These are position/planning-level tasks, not the two application contexts identified in the usefulness bullet.'],difficulty='easy',assumptions=['Source-specific application recall. “Simple, efficient” is the lecture’s characterization, not a guarantee for every robot or control objective.'],locator='Printed slide 26: third bullet naming industrial robot teleoperation and AI manipulation')
+x=add_gap(322,14,'What does the traditional-control table mean by Jacobian-based singularity avoidance?',[
+ 'Use the task Jacobian to identify problematic configurations and steer the control or trajectory away from them when feasible',
+ 'Rotate only the Cartesian coordinate basis until a rank-deficient configuration becomes full rank',
+ 'Add joint-limit inequalities to an unchanged Jacobian and assume its rank automatically increases',
+ 'Replace an analytic controller with a learned policy and omit singularity analysis for the same mechanism'],[
+ 'The named use is avoidance of problematic configurations, not a claim that evaluating J changes the mechanism. Avoidance may require feasible alternative configurations or trajectories.',
+ 'An invertible coordinate rotation preserves rank; it cannot remove a physical task-rank loss.',
+ 'Joint-limit constraints affect feasibility but do not automatically add independent columns or increase the local task-map rank.',
+ 'A learned controller does not remove a mechanism’s kinematic singularities merely by replacing an analytic control law.'],assumptions=['A specified task Jacobian and its appropriate regular-rank criterion. Avoidance is considered only when the robot and task permit a feasible alternative.'],locator='Printed slide 27: traditional-control column, Jacobian-based singularity avoidance bullet')
+# Add mathematical/source premises used by the avoidance distinctions.
+for page,loc in [(318,'Printed slide 23: invertible block-diagonal Jacobian basis-change equation'),(319,'Printed slide 24: using the Jacobian to predict singularities')]:
+ x['citations'].append(dict(slideId=f'lectures-p{page:04}',sourceId='lectures',sourceSha256=SHA,physicalPage=page,kind='equation' if page==318 else 'statement',locator=loc,evidenceText=(ROOT/f'sources/text/lectures/page-{page:04}.txt').read_text().strip(),role='premise',region=None))
+# Tighten all revised citations to readable, actual source text; leave every accepted
+# object and its citation bytes unchanged. Focused dimension citations remain focused.
+for key in modified:
+ x=Q[key]
+ for cite in x['citations']:
+  if not (key in ('W02-L09-P0316-Q03','W02-L09-P0316-Q04') and cite['physicalPage']==323):
+   cite['evidenceText']=(ROOT/f'sources/text/lectures/page-{cite["physicalPage"]:04}.txt').read_text().strip()
+# Scoped exact readability substitutions only in the already-versioned objects.
+replacements={'Uis':'U is','Uthe':'U the','Cthe':'C the','Ais':'A is','whenn':'when n','ofJ':'of J','UseJ=':'Use J=','Rotateq_B':'Rotate q_B','suppliedRx':'supplied Rx','UseRx':'Use Rx','child−y':'child −y','local+zrate':'local +z rate','addv_parent':'add v_parent','90°rotation':'90° rotation','A6×6':'A 6×6','qdot 2':'q_dot,2','qdot 1':'q_dot,1'}
+def polish(v):
+ if isinstance(v,str):
+  for a,b in replacements.items():v=v.replace(a,b)
+  return v
+ if isinstance(v,list):return [polish(i) for i in v]
+ if isinstance(v,dict):return {k:polish(z) for k,z in v.items()}
+ return v
+for key in modified:
+ x=Q[key]
+ for field in ('stem','assumptions','solution'):x[field]=polish(x[field])
+ for option in x['options']:option['text']=polish(option['text'])
+# Keep concept examination-angle text synchronized with revised stems; no accepted
+# question content is edited, and no author claims independent coverage completion.
+for c in batch['concepts']:
+ c['examinationAngles']=[Q[k]['stem'] for k in c['questionIds']]
+# Existing inspection attribution and actual visual evidence remain untouched.
+ins=json.loads((ROOT/'data/inspection-batches/W02-L09.json').read_text())
+ins['sourceIssues']=copy.deepcopy(batch['sourceIssues']);ins['summary']['questions']=len(batch['questions']);ins['summary']['authorComplete']=True
+(ROOT/'data/inspection-batches/W02-L09.json').write_text(json.dumps(ins,ensure_ascii=False,indent=2)+'\n')
+save(False)
+# Re-run the changed numerical workings and the new geometric premise exactly.
+import numpy as np
+import sympy as sp
+def check(key,passed,detail,ids=None):
+ author_checks.append({'id':key,'passed':bool(passed),'kind':'author_check_not_independent_review','detail':detail,'questionIds':ids or []})
+ if not passed:raise AssertionError(key)
+def ids(*s):return [BATCH+'-'+v for v in s]
+Rz=sp.Matrix([[0,-1,0],[1,0,0],[0,0,1]]);Rm=Rz.T;Rx=sp.Matrix([[1,0,0],[0,0,-1],[0,1,0]])
+check('speed-components',sp.sqrt(3**2+4**2+0**2)==5,'Nonnegative norm is5 m/s.',ids('P0299-Q02'))
+check('translation-only-velocity',sp.Matrix([1,0,0])+Rz*sp.Matrix([2,0,0])==sp.Matrix([1,2,0]),'Constant R gives omega=0; rotate relative velocity then add origin velocity.',ids('P0306-Q02'))
+transport=sp.Matrix([1,0,0])+Rz*sp.Matrix([1,0,0])+sp.Matrix([0,0,2]).cross(Rz*sp.Matrix([2,0,0]))
+check('full-velocity-transport',transport==sp.Matrix([-3,1,0]),str(transport),ids('P0310-Q02'))
+check('revolute-angular-rotation',Rx*sp.Matrix([0,0,2])+sp.Matrix([0,0,3])==sp.Matrix([0,-2,3]),'Parent-to-child rotation precedes child-local rate addition.',ids('P0312-Q05'))
+vparent=sp.Matrix([1,2,0]);omega=sp.Matrix([0,0,2]);P=sp.Matrix([3,0,0]);inherit=vparent+omega.cross(P)
+check('revolute-linear-parent',inherit==sp.Matrix([1,8,0]),str(inherit),ids('P0313-Q03'))
+check('revolute-linear-child',Rm*inherit==sp.Matrix([8,-1,0]),str(Rm*inherit),ids('P0313-Q04'))
+check('prismatic-child-rate',Rm*inherit+sp.Matrix([0,0,4])==sp.Matrix([8,-1,4]),'d_dot is the first derivative with units m/s.',ids('P0314-Q03'))
+check('mixed-chain-instant',sp.eye(3)*omega==sp.Matrix([0,0,2]) and sp.zeros(3,1)+omega.cross(sp.zeros(3,1))+sp.Matrix([0,0,3])==sp.Matrix([0,0,3]),'R=I,P=0,v_parent=0; inherit angular velocity and add linear extension.',ids('P0314-Q04'))
+a,b=sp.symbols('a b',real=True);F=sp.Matrix([a*a+b,a*b]);J=F.jacobian([a,b]).subs({a:2,b:3});vel=J*sp.Matrix([sp.Rational(1,2),-1])
+check('explicit-map-rate',J==sp.Matrix([[4,1],[3,2]]) and vel==sp.Matrix([1,sp.Rational(-1,2)]),str(vel),ids('P0315-Q04'))
+check('twist-block-rotation',Rz*sp.Matrix([1,0,0])==sp.Matrix([0,1,0]) and Rz*sp.Matrix([0,1,0])==sp.Matrix([-1,0,0]),'Same rotation applied to both blocks, preserving point and reference observer.',ids('P0318-Q03'))
+rate=sp.diag(2,1).inv()*sp.Matrix([sp.Rational(2,5),-sp.Rational(1,5)]);nxt=sp.Matrix([1,2])+sp.Rational(1,10)*rate
+check('Euler-update',nxt==sp.Matrix([sp.Rational(51,50),sp.Rational(99,50)]),'Rate=(.2,−.2)/s; next=(1.02,1.98).',ids('P0321-Q03'))
+Jsing=sp.diag(1,0)
+check('singular-target-compatibility',Jsing*sp.Matrix([2,0])==sp.Matrix([2,0]) and Jsing.row_join(sp.Matrix([0,1])).rank()>Jsing.rank(),'Finite compatible target; inconsistent incompatible target.',ids('P0319-Q06'))
+eps=sp.symbols('eps',positive=True)
+check('near-singular-directional-limit',sp.diag(1,eps).inv()*sp.Matrix([2,0])==sp.Matrix([2,0]) and sp.limit(1/eps,eps,0,dir='+')==sp.oo,'Only the selected weak-direction rate diverges; an orthogonal target remains bounded.',ids('P0319-Q06'))
+check('redundant-nullspace-rate',sp.Matrix([[1,1]])*sp.Matrix([1,-1])==sp.zeros(1,1),'A null-space joint RATE gives zero instantaneous task velocity, not a finite pose guarantee.',ids('P0322-Q05'))
+r,theta,delta=sp.symbols('r theta delta',positive=True)
+O=sp.zeros(3,1);A=sp.Matrix([0,0,r*sp.cos(theta)]);B=sp.Matrix([r*sp.sin(theta),0,r*sp.cos(theta)]);C=sp.Matrix([r*sp.sin(theta)*sp.cos(delta),r*sp.sin(theta)*sp.sin(delta),r*sp.cos(theta)])
+check('figure-label-geometry',sp.trigsimp((B-A).dot(B-A)-(r*sp.sin(theta))**2)==0 and sp.trigsimp((C-A).dot(C-A)-(r*sp.sin(theta))**2)==0 and sp.trigsimp(B.dot(B)-r*r)==0 and sp.trigsimp(C.dot(C)-r*r)==0,'OA is axial projection; AB=AC are radius; OB=OC are full length.',ids('P0309-Q08'))
+check('finite-chord-small-angle',sp.trigsimp((C-B).dot(C-B)-4*r*r*sp.sin(theta)**2*sp.sin(delta/2)**2)==0 and sp.limit(2*sp.sin(delta/2)/delta,delta,0)==1,'BC is a chord; its ratio to the arc tends to1 for small angle.',ids('P0309-Q08'))
+check('accepted-objects-unchanged',all(Q[k]==oldQ[k] and digest(Q[k])==h for k,h in accepted.items()),'All54 accepted objects remain exactly equal to the archived v1 objects and their independent review hashes.')
+check('flagged-only-old-object-repairs',modified==flags and all(Q[k]['version']==2 for k in flags),'Exactly the48 flagged original IDs are revised; no other original question is edited.')
+check('keys-preserved',all(Q[k]['correctOptionIds']==oldQ[k]['correctOptionIds'] for k in oldQ),'All102 original answer sets are preserved; quality repairs do not assert a new independent answer review.')
+check('conflicts-version-bound',all(x.get('conflictResolution',{}).get('questionVersion')==2 for x in batch['questions'] if x['id'] in flags and any(c['role']=='conflict' for c in x['citations'])),'Every revised conflicting citation has a question-version2 resolution proposal.')
+# Every review finding is explicitly tracked by the revised object and its new hash.
+for key in flags:
+ Q[key]['revisionAuthors']=list(dict.fromkeys(Q[key].get('revisionAuthors',[])+[AUTHOR]))
+batch['authorChecksV2']=author_checks
+if __name__=='__main__':save(True)

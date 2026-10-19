@@ -1,0 +1,194 @@
+{
+  "reviewerId": "independent-reviewer-robotics-batches-v2",
+  "executedAt": "2026-10-19T21:17:49.202012+00:00",
+  "officialNotebookSha256": "77577033081f535374682f37df140f08c3f86cb60ba26ae18df75e6e614ab852",
+  "exactCellSha256": "1f2616781403268c8d556a85334a1c98e5dec22b0dc4c5ec40d7d3f766c4d20f",
+  "originalCellExecutedUnchanged": true,
+  "officialCellStdout": "Step 1 - Destination Selection: 'Airport' -> node N4\n\nStep 2 - GNSS Localization: fix=(313.1, 91.5)  lat=28.62641  lon=77.20978\n\nStep 3 - Map Matching: nearest road node = N2\n\nStep 4 - Road Network Graph: 12 nodes, 19 edges\n\nStep 5 - Path Planning (A*): searching N2 -> N4\n  expand N2   g= 0.00  h= 4.10  f= 4.10\n  expand N3   g= 2.00  h= 2.11  f= 4.11\n  expand N4   g= 4.11  h= 0.00  f= 4.11\n  shortest path: N2 -> N3 -> N4\n\nStep 6 - Waypoint Generation:\n  WP1: N2  -- 0.0 km\n  WP2: N3  -- 2.0 km\n  WP3: N4 (Airport)  -- 4.11 km\n\nStep 7 - Waypoint Tracking: after 2.47 km travelled, current target is WP3 (N4)\n\n============================================================\nThree more random fixes -> three different starting nodes:\n============================================================\n  run 1: fix=(144.3, 218.4)  -> matched node N5\n  run 2: fix=(437.5, 57.3)  -> matched node N3\n  run 3: fix=(111.0, 136.6)  -> matched node N1\n",
+  "independentChecks": [
+    {
+      "name": "Complete original official code cell executed unchanged, including main pipeline and three random fixes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "twelve nodes nineteen undirected edges thirty-eight adjacency entries",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "every rounded edge reciprocal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "N2 N7 length",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "bounds",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "cosmetic tuple exact source input400,200",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nearest node independent distances",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "strict less-than tie keeps first",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "highlighted source route reproduced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "graph versus raw cumulative distinction",
+      "passed": true,
+      "detail": {
+        "graph": 9.07,
+        "raw": 9.083078911771729,
+        "waypoints": [
+          {
+            "index": 1,
+            "node_id": "N9",
+            "label": "Hospital",
+            "cumulative_km": 0.0
+          },
+          {
+            "index": 2,
+            "node_id": "N10",
+            "label": null,
+            "cumulative_km": 1.9
+          },
+          {
+            "index": 3,
+            "node_id": "N11",
+            "label": null,
+            "cumulative_km": 3.91
+          },
+          {
+            "index": 4,
+            "node_id": "N12",
+            "label": "Mall",
+            "cumulative_km": 5.73
+          },
+          {
+            "index": 5,
+            "node_id": "N8",
+            "label": "Stadium",
+            "cumulative_km": 7.33
+          },
+          {
+            "index": 6,
+            "node_id": "N4",
+            "label": "Airport",
+            "cumulative_km": 9.08
+          }
+        ]
+      }
+    },
+    {
+      "name": "waypoint displayed values",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "sixty percent target",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "equality tolerance retains reached threshold",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "beyond end returns last",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "zero length singleton route",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all144orderedpairs match independent Dijkstra on this fixed graph",
+      "passed": true,
+      "detail": {
+        "cases": 144,
+        "scope": "Finite graph only, not a proof of heuristic admissibility."
+      }
+    },
+    {
+      "name": "rounded graph heuristic counterexample",
+      "passed": true,
+      "detail": {
+        "heuristic": 2.0024984394500787,
+        "directEdge": 2.0
+      }
+    },
+    {
+      "name": "time distance units",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "circle equations exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "projection distance and bounds",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "A-star f ordering",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "travel time conversion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "PDOP stated simplified model",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1000 each bounds triangle-inequality PDOP nonnegative arithmetic and threshold scans",
+      "passed": true,
+      "detail": {
+        "trials": 4000
+      }
+    }
+  ],
+  "groups": 24,
+  "variedTrials": 4000,
+  "orderedGraphComparisons": 144,
+  "sourceQualifications": [
+    "Original localization section comment says fixed-centre noise but actual function uniform-samples the whole rectangle.",
+    "Original current_waypoint docstring says not-yet-reached but equality comparison returns the reached threshold.",
+    "Random extra fixes are not guaranteed to have three different matched nodes.",
+    "Original function expects a nonempty waypoint list; empty input raises IndexError."
+  ],
+  "notClaimed": [
+    "No physical GNSS sensor was read.",
+    "No graphical HTML simulator/browser controller was executed.",
+    "No real closed-loop controller or actual geodetic conversion exists in this notebook.",
+    "Finite A-star matching does not prove universal admissibility."
+  ]
+}

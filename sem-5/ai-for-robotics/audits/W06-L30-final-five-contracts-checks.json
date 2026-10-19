@@ -1,0 +1,120 @@
+{
+  "startedAt": "2026-10-19T20:30:13.392781+00:00",
+  "purpose": "Independent source-first checks; synthetic two-policy/value fixtures are not source data or course questions.",
+  "versions": {
+    "gymnasium": "1.4.0",
+    "gymnasium-robotics": "1.4.2",
+    "mujoco": "3.3.7",
+    "numpy": "2.3.5"
+  },
+  "assertions": [
+    {
+      "name": "Higher expected return can have one inferior realization",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Higher mean need not minimize variance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Untried zero beats learned negative value",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "A later estimate can reverse prior ranking",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Reset returns observation and info",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Default wrapper limit is 50",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Opposite fourth-channel commands yield identical trajectories",
+      "passed": true,
+      "detail": {
+        "steps": 50,
+        "seed": 3075
+      }
+    },
+    {
+      "name": "All true termination flags remain false",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Only step 50 truncates",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Task configuration blocks gripper and contains no grasped object",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "RGB rendering returns a three-channel frame",
+      "passed": true,
+      "detail": [
+        480,
+        480,
+        3
+      ]
+    },
+    {
+      "name": "Rendering does not advance physics time",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Rendering does not alter joint positions",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "render": {
+    "shape": [
+      480,
+      480,
+      3
+    ],
+    "dtype": "uint8",
+    "sha256": "6ad1165794a98e4cc13fa61605a7feae6af2d00438b2c64e4c8d6f049989f699",
+    "simulationTimeBeforeAndAfter": 2.3999999999999573
+  },
+  "methods": [
+    {
+      "method": "compute_terminated",
+      "path": "/tmp/robotics-l30-venv/lib/python3.12/site-packages/gymnasium_robotics/envs/robot_env.py",
+      "sha256": "bbe6e2de4b325f6c0c090869526c7809bf8c43bc323a79f7f732ceb88d3eaaad",
+      "firstLine": 106,
+      "source": "    def compute_terminated(self, achieved_goal, desired_goal, info):\n        \"\"\"All the available environments are currently continuing tasks and non-time dependent. The objective is to reach the goal for an indefinite period of time.\"\"\"\n        return False\n"
+    },
+    {
+      "method": "_set_action",
+      "path": "/tmp/robotics-l30-venv/lib/python3.12/site-packages/gymnasium_robotics/envs/fetch/fetch_env.py",
+      "sha256": "de1f51690d0aa754ab99412ba3e23cebdc96351746b4d141e46260bbd21d1844",
+      "firstLine": 305,
+      "source": "    def _set_action(self, action):\n        action = super()._set_action(action)\n\n        # Apply action to simulation.\n        self._utils.ctrl_set_action(self.model, self.data, action)\n        self._utils.mocap_set_action(self.model, self.data, action)\n"
+    },
+    {
+      "method": "render",
+      "path": "/tmp/robotics-l30-venv/lib/python3.12/site-packages/gymnasium_robotics/envs/robot_env.py",
+      "sha256": "bbe6e2de4b325f6c0c090869526c7809bf8c43bc323a79f7f732ceb88d3eaaad",
+      "firstLine": 318,
+      "source": "    def render(self):\n        \"\"\"Render a frame of the MuJoCo simulation.\n\n        Returns:\n            rgb image (np.ndarray): if render_mode is \"rgb_array\", return a 3D image array.\n        \"\"\"\n        self._render_callback()\n        return self.mujoco_renderer.render(self.render_mode)\n"
+    }
+  ],
+  "completedAt": "2026-10-19T20:30:14.140015+00:00",
+  "assertionCount": 13,
+  "scriptSha256": "75b6cfa50bdeb251388fe38473ac9d7e0f4b55801ecba867c6728e13e1429fb4"
+}

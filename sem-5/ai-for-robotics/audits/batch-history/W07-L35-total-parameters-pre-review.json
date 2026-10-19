@@ -1,0 +1,84 @@
+{
+  "id": "W07-L35-Q033",
+  "version": 1,
+  "status": "draft",
+  "authorId": "robotics-integration-author-L35",
+  "stem": "Using Conv1=416, Conv2=12,832, dense hidden=65,664 and dense output=1,290, what is the total trainable parameter count?",
+  "selectionMode": "single",
+  "type": "numerical",
+  "difficulty": "medium",
+  "cognitiveSkill": "numerical",
+  "week": 7,
+  "lectureId": "L35",
+  "topic": "Object Detection Using YOLOv8",
+  "subtopic": "Total parameters in the worked CNN",
+  "tags": [
+    "network-total"
+  ],
+  "conceptIds": [
+    "W07-L35-C-network-total"
+  ],
+  "assumptions": [
+    "Use only the four parameterized layers stated; no batch-normalization or extra layers are included."
+  ],
+  "options": [
+    {
+      "id": "o1",
+      "text": "80,202"
+    },
+    {
+      "id": "o2",
+      "text": "80,018"
+    },
+    {
+      "id": "o3",
+      "text": "79,690"
+    },
+    {
+      "id": "o4",
+      "text": "89,418"
+    }
+  ],
+  "correctOptionIds": [
+    "o1"
+  ],
+  "citations": [
+    {
+      "slideId": "lectures-p1071",
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 1071,
+      "kind": "figure",
+      "locator": "Lecture 35, physical PDF page 1071, printed slide 12: Total parameters in the worked CNN; explicit question assumptions and calculations are derived from the source premise, not quoted as printed outputs.",
+      "evidenceText": "Actual diagram uses flattened 512 inputs, dense 128 units and ten outputs. Parameter counts in the questions are explicit derivations, not printed totals.\nComponents of a CNN\n\n                                                                     To visualise\n                                                      how a Tiny\n                                                    VGG\n                                                                        processes\n                                                               an input\n                                                                      image, visit\n                                                                     LINK\n\n•   Note: These final 3 layers are the same old Artificial Neural\n   Network we had discussed in the previous lecture.\n•  By passing the input image through various convolutions, we\n    extract essential features while preserving their relative spatial\n    relationships, converting the data into a format ANN can process.\n\n\n                                                                                                          12",
+      "role": "premise",
+      "region": null
+    }
+  ],
+  "solution": {
+    "justification": "Add the four layer counts; pooling, ReLU and flatten introduce no extra learned parameters here.",
+    "optionExplanations": {
+      "o1": "Add the four layer counts; pooling, ReLU and flatten introduce no extra learned parameters here.",
+      "o2": "This removes all 184 stated biases.",
+      "o3": "This subtracts the 512 flattened activations as if they were parameters.",
+      "o4": "This adds the 9,216 first-convolution activations as learned parameters."
+    },
+    "steps": [
+      "Add 416+12,832=13,248.",
+      "Add 65,664+1,290=66,954.",
+      "Combine to obtain 80,202."
+    ],
+    "formulas": [],
+    "simpleExplanation": "Add the four layer counts; pooling, ReLU and flatten introduce no extra learned parameters here.",
+    "memoryAid": null,
+    "misconceptions": [
+      "This removes all 184 stated biases.",
+      "This subtracts the 512 flattened activations as if they were parameters.",
+      "This adds the 9,216 first-convolution activations as learned parameters."
+    ],
+    "examTraps": [],
+    "prerequisiteConceptIds": []
+  },
+  "origin": "generated",
+  "reviewIds": []
+}

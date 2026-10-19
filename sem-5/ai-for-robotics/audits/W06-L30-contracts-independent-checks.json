@@ -1,0 +1,130 @@
+{
+  "reviewer": "define_robotics_data_contracts:L30-independent-reviewer",
+  "executedAt": "2026-10-19T19:51:27.524252+00:00",
+  "assertions": [
+    "Undiscounted return",
+    "Discounted return",
+    "Infinite geometric return",
+    "Weighted Bellman backup",
+    "Expectation of state-conditioned maxima",
+    "Q update positive case",
+    "Exploration can choose greedy action",
+    "Dense Euclidean reward",
+    "Zero-distance reward",
+    "State/action count",
+    "Raw table storage",
+    "Three-component encoding",
+    "Zero error encoding",
+    "Clipped aliasing",
+    "First argmax on tie",
+    "Negative argmax",
+    "First negative update",
+    "Second negative update",
+    "True-terminal masking",
+    "One epsilon decay",
+    "First epsilon floor crossing",
+    "Last-100 logging interval",
+    "Valid convolution count",
+    "First valid window",
+    "Grid expansion",
+    "Hard clip bound independent of Q shape",
+    "Narrower bins change zero-error saturation",
+    "Supplied transition arithmetic",
+    "Supplied transition reward is not FetchReach dense reward",
+    "Non-greedy probability at floor",
+    "Optimistic zero values exceed negatives",
+    "Blocked gripper channel has no effect"
+  ],
+  "randomizedCases": 1000,
+  "assertionsPerRandomizedCase": 3,
+  "numpyVersion": "2.3.5",
+  "priorL30KeyExposure": false,
+  "apiInspection": {
+    "versions": {
+      "gymnasium": "1.4.0",
+      "gymnasium_robotics": "1.4.2",
+      "mujoco": "3.3.7"
+    },
+    "maxEpisodeSteps": 50,
+    "blockGripper": true,
+    "hasObject": false,
+    "methods": {
+      "gymnasium_robotics.envs.fetch.fetch_env.MujocoFetchEnv._set_action": "    def _set_action(self, action):\n        action = super()._set_action(action)\n\n        # Apply action to simulation.\n        self._utils.ctrl_set_action(self.model, self.data, action)\n        self._utils.mocap_set_action(self.model, self.data, action)\n",
+      "gymnasium_robotics.envs.fetch.fetch_env.BaseFetchEnv.compute_reward": "        def compute_reward(self, achieved_goal, goal, info):\n            # Compute distance between goal and the achieved goal.\n            d = goal_distance(achieved_goal, goal)\n            if self.reward_type == \"sparse\":\n                return -(d > self.distance_threshold).astype(np.float32)\n            else:\n                return -d\n",
+      "gymnasium_robotics.envs.fetch.fetch_env.BaseFetchEnv._set_action": "        def _set_action(self, action):\n            assert action.shape == (4,)\n            action = (\n                action.copy()\n            )  # ensure that we don't change the action outside of this scope\n            pos_ctrl, gripper_ctrl = action[:3], action[3]\n\n            pos_ctrl *= 0.05  # limit maximum change in position\n            rot_ctrl = [\n                1.0,\n                0.0,\n                1.0,\n                0.0,\n            ]  # fixed rotation of the end effector, expressed as a quaternion\n            gripper_ctrl = np.array([gripper_ctrl, gripper_ctrl])\n            assert gripper_ctrl.shape == (2,)\n            if self.block_gripper:\n                gripper_ctrl = np.zeros_like(gripper_ctrl)\n            action = np.concatenate([pos_ctrl, rot_ctrl, gripper_ctrl])\n\n            return action\n",
+      "gymnasium_robotics.envs.robot_env.BaseRobotEnv.compute_terminated": "    def compute_terminated(self, achieved_goal, desired_goal, info):\n        \"\"\"All the available environments are currently continuing tasks and non-time dependent. The objective is to reach the goal for an indefinite period of time.\"\"\"\n        return False\n",
+      "gymnasium_robotics.envs.robot_env.BaseRobotEnv.compute_truncated": "    def compute_truncated(self, achievec_goal, desired_goal, info):\n        \"\"\"The environments will be truncated only if setting a time limit with max_steps which will automatically wrap the environment in a gymnasium TimeLimit wrapper.\"\"\"\n        return False\n",
+      "gymnasium_robotics.envs.robot_env.BaseRobotEnv._set_action": "    def _set_action(self, action):\n        \"\"\"Applies the given action to the simulation.\"\"\"\n        raise NotImplementedError()\n",
+      "gymnasium_robotics.core.GoalEnv.compute_reward": "    @abstractmethod\n    def compute_reward(self, achieved_goal, desired_goal, info):\n        \"\"\"Compute the step reward. This externalizes the reward function and makes it dependent on a desired goal and the one that was achieved.\n\n        If you wish to include additional rewards that are independent of the goal, you can include the necessary values\n        to derive it in 'info' and compute it accordingly.\n\n        Args:\n            achieved_goal (object): the goal that was achieved during execution\n            desired_goal (object): the desired goal that we asked the agent to attempt to achieve\n            info (dict): an info dictionary with additional information\n\n        Returns:\n            float: The reward that corresponds to the provided achieved goal w.r.t. to the desired\n            goal. Note that the following should always hold true:\n\n                ob, reward, terminated, truncated, info = env.step()\n                assert reward == env.compute_reward(ob['achieved_goal'], ob['desired_goal'], info)\n        \"\"\"\n        raise NotImplementedError\n",
+      "gymnasium_robotics.core.GoalEnv.compute_terminated": "    @abstractmethod\n    def compute_terminated(self, achieved_goal, desired_goal, info):\n        \"\"\"Compute the step termination. Allows to customize the termination states depending on the desired and the achieved goal.\n\n        If you wish to determine termination states independent of the goal, you can include necessary values to derive it in 'info'\n        and compute it accordingly. The envirtonment reaches a termination state when this state leads to an episode ending in an episodic\n        task thus breaking .\n\n        More information can be found in: https://farama.org/New-Step-API#theory\n\n        Termination states are\n\n        Args:\n            achieved_goal (object): the goal that was achieved during execution\n            desired_goal (object): the desired goal that we asked the agent to attempt to achieve\n            info (dict): an info dictionary with additional information\n\n        Returns:\n            bool: The termination state that corresponds to the provided achieved goal w.r.t. to the desired\n            goal. Note that the following should always hold true:\n\n                ob, reward, terminated, truncated, info = env.step()\n                assert terminated == env.compute_terminated(ob['achieved_goal'], ob['desired_goal'], info)\n        \"\"\"\n        raise NotImplementedError\n",
+      "gymnasium_robotics.core.GoalEnv.compute_truncated": "    @abstractmethod\n    def compute_truncated(self, achieved_goal, desired_goal, info):\n        \"\"\"Compute the step truncation. Allows to customize the truncated states depending on the desired and the achieved goal.\n\n        If you wish to determine truncated states independent of the goal, you can include necessary values to derive it in 'info'\n        and compute it accordingly. Truncated states are those that are out of the scope of the Markov Decision Process (MDP) such\n        as time constraints in a continuing task.\n\n        More information can be found in: https://farama.org/New-Step-API#theory\n\n        Args:\n            achieved_goal (object): the goal that was achieved during execution\n            desired_goal (object): the desired goal that we asked the agent to attempt to achieve\n            info (dict): an info dictionary with additional information\n\n        Returns:\n            bool: The truncated state that corresponds to the provided achieved goal w.r.t. to the desired\n            goal. Note that the following should always hold true:\n\n                ob, reward, terminated, truncated, info = env.step()\n                assert truncated == env.compute_truncated(ob['achieved_goal'], ob['desired_goal'], info)\n        \"\"\"\n        raise NotImplementedError\n",
+      "register_envs": "def register_envs(env_module: ModuleType) -> None:\n    \"\"\"A No-op function such that it can appear to IDEs that a module is used.\"\"\"\n    pass\n"
+    }
+  },
+  "experiment": {
+    "episodes": 5000,
+    "steps": 250000,
+    "numpySeed": 3030,
+    "initialResetSeed": 3030,
+    "laterResets": "None, advance seeded environment RNG",
+    "terminationCount": 0,
+    "truncationCount": 5000,
+    "successfulSteps": 64192,
+    "checkpoints": [
+      {
+        "episode": 500,
+        "meanLast100": -7.74318023132583,
+        "epsilon": 0.18375562742857943
+      },
+      {
+        "episode": 1000,
+        "meanLast100": -7.114701452731365,
+        "epsilon": 0.06753226122334167
+      },
+      {
+        "episode": 1500,
+        "meanLast100": -6.783986999119799,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 2000,
+        "meanLast100": -6.759830251673325,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 2500,
+        "meanLast100": -6.623773956591469,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 3000,
+        "meanLast100": -5.656325236179464,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 3500,
+        "meanLast100": -5.066357115141174,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 4000,
+        "meanLast100": -4.611936239493946,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 4500,
+        "meanLast100": -4.066289941146549,
+        "epsilon": 0.05
+      },
+      {
+        "episode": 5000,
+        "meanLast100": -3.2210742108730144,
+        "epsilon": 0.05
+      }
+    ],
+    "finalQDataSha256": "024b5703169e797cee804745cd97d9ac59a9b0406045cf722617c1c478c5050e",
+    "episodeTotalsSha256": "d738c270e857d21c4ebb2783da72282f667700280b520fd01f561ca60318db5b",
+    "interpretation": "An independently seeded reproduction of the shown algorithm, not reproduction of the unseeded slide checkpoints, not an independent greedy evaluation, and not proof of convergence, grasping or safety."
+  },
+  "scriptSha256": "0afc3d6275b9d5907af21a2aaf9a93d068efcfa4ba5746c1676ae8c772355805"
+}

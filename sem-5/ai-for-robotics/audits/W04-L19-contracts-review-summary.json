@@ -1,0 +1,416 @@
+{
+  "reviewerId": "define_robotics_data_contracts:L19-independent-reviewer",
+  "completedAt": "2026-10-19T18:21:13.787353+00:00",
+  "questionsReviewed": 99,
+  "verified": 71,
+  "flagged": 28,
+  "criterionFindings": 40,
+  "keyDisagreements": 0,
+  "actualPagesInspected": 28,
+  "reviewFile": "data/reviews/W04-L19-v1-independent-contracts.json",
+  "reviewSha256": "f81b3a50c06530ddb81c0d474f8b6924d514f7ef96d217502cb18848932f0e43",
+  "blindAnswersSha256": "de2c6c23e9b391cfbc5ebc61b62469cc9db8798410e7995a47d06de0a0fdc178",
+  "independentChecks": "audits/W04-L19-independent-checks.json",
+  "flaggedQuestionIds": [
+    "W04-L19-P0580-Q02",
+    "W04-L19-P0580-Q04",
+    "W04-L19-P0581-Q01",
+    "W04-L19-P0581-Q02",
+    "W04-L19-P0582-Q04",
+    "W04-L19-P0582-Q05",
+    "W04-L19-P0586-Q02",
+    "W04-L19-P0586-Q05",
+    "W04-L19-P0587-Q01",
+    "W04-L19-P0587-Q02",
+    "W04-L19-P0587-Q03",
+    "W04-L19-P0588-Q03",
+    "W04-L19-P0589-Q01",
+    "W04-L19-P0589-Q02",
+    "W04-L19-P0592-Q01",
+    "W04-L19-P0592-Q03",
+    "W04-L19-P0592-Q04",
+    "W04-L19-P0594-Q04",
+    "W04-L19-P0596-Q01",
+    "W04-L19-P0596-Q02",
+    "W04-L19-P0596-Q03",
+    "W04-L19-P0596-Q04",
+    "W04-L19-P0598-Q04",
+    "W04-L19-P0599-Q02",
+    "W04-L19-P0599-Q03",
+    "W04-L19-P0602-Q02",
+    "W04-L19-P0602-Q03",
+    "W04-L19-P0603-Q02"
+  ],
+  "findings": [
+    {
+      "questionId": "W04-L19-P0580-Q02",
+      "criteria": [
+        "assumptions",
+        "distractors"
+      ],
+      "findings": [
+        "Four joints do not necessarily provide four independent configuration coordinates: a closed chain, coupling, or multi-DOF joint changes that inference. Put four independent one-DOF joint coordinates and a rank-three task in the pre-answer stem/assumptions, rather than introducing independence only in the solution.",
+        "The statements that every mechanism below six joints is rigid and that four is less than three are not credible task-redundancy alternatives. Keep the full-spatial-pose threshold misconception, and use plausible task-rank or joint-coordinate-count confusions for the other alternatives."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0580-Q04",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Obstacles disappearing and every redundant joint being locked are implausible explanations of collision avoidance. Use realistic alternatives such as changing the commanded tool pose, checking only tool-point clearance, or treating local self-motion as a global collision-free guarantee; keep each alternative distinctly false."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0581-Q01",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The all-prismatic and equal-link-length alternatives confuse unrelated properties with topology, and the immobile-tool claim is overly categorical. Replace at least two with credible topology distinctions, such as multiple unconnected serial arms or a feedback-control loop without a mechanical kinematic circuit."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0581-Q02",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Zero actuator load/zero constraints and unbounded or universally larger workspace are not plausible competing stiffness-workspace tradeoffs. Use finite, physically plausible combinations of stiffness and workspace changes without the unsupported universal clauses."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0582-Q04",
+      "criteria": [
+        "assumptions"
+      ],
+      "findings": [
+        "The pre-answer packet gives R, p, a and b without saying which attachment belongs to which frame or which direction R maps. Only the solution defines p as the platform origin in base coordinates, R as platform-to-base, b as the platform attachment and a as the base attachment. State these definitions before answering. The reviewer reasonably used the opposite a/b naming convention and obtained the same number only because a=b and R=I; that numerical coincidence hides the ambiguity."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0582-Q05",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Motor-current heating and density-to-mass calculations are unrelated alternatives to a kinematics input/output distinction. Replace them with plausible forward/inverse closure mistakes, such as solving only translation with an unjustified fixed orientation or claiming a unique pose without a branch check."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0586-Q02",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "A zero reduction ratio and teeth becoming frictionless bearings are not credible effects of tighter meshing. Replace these with realistic backlash/friction/contact-load tradeoffs, retaining only one zero-friction misconception if desired."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0586-Q05",
+      "criteria": [
+        "difficulty",
+        "distractors"
+      ],
+      "findings": [
+        "This directly recognizes that an exact lossless torque relation needs an idealization caveat. Mark easy, or require a power/efficiency computation or a concrete competing model if retaining medium.",
+        "Friction creating power, output always exceeding the ideal value, and efficiency greater than one are all extreme physical impossibilities rather than competing interpretations. Use plausible ratio-versus-efficiency or finite-loss misconceptions; the following numerical efficiency item already provides a good basis."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0587-Q01",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "No pulley contact and inability to transmit any power are unrelated to the tension-only constraint, while unlimited compression is an exaggerated opposite. Use realistic slack, bidirectional-force and preload/traction misconceptions instead."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0587-Q02",
+      "criteria": [
+        "difficulty",
+        "distractors",
+        "explanation"
+      ],
+      "findings": [
+        "The page explicitly states proportional flexibility, and the stem fixes material and section. Recognizing increased compliance with length is easy; add a quantitative or competing-area change for medium.",
+        "A zero elastic modulus and compulsory doubling of pulley radius do not follow from changing belt length and are weak alternatives. Use finite compliance-versus-stiffness inversions, unchanged-compliance assumptions, or a mistaken length exponent.",
+        "The solution introduces k=AE/l and 1/k=l/(AE), but its formula metadata is empty. Define stiffness k, compliance, area A, Young modulus E and effective length l with units and the linear-tension assumptions, rather than leaving these new symbols implicit."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0587-Q03",
+      "criteria": [
+        "difficulty",
+        "distractors",
+        "explanation"
+      ],
+      "findings": [
+        "This asks for the ratio printed directly beneath the labelled pulleys. Mark easy, or use an actual reverse-design/no-slip calculation for medium.",
+        "Radius sum and radius difference both have length units and are readily eliminated without using the intended speed-ratio convention. Replace them with distinct dimensionless ratio mistakes, such as squared radius ratio or diameter/radius confusion, and give accurate rationales.",
+        "Record the displayed ratio and no-slip equation with variable definitions and units: input/output angular speeds, input/output radii and dimensionless eta. The current solution introduces omega1 and omega2 but has no formula record."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0588-Q03",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "No axial-load capability and no rolling elements are implausible characterizations of the named ball screw. Replace them with genuine lead-screw/ball-screw tradeoff confusions. A paired comparison can also assess the source's otherwise untested lead-screw high-stiffness/high-load/high-friction claim."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0589-Q01",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Forward kinematics never using joint positions and gravity having no effect on sensed robots are implausible alternatives. Keep the encoder-observes-all-deformation misconception, and add plausible rigid-model calibration or measured-versus-unmeasured-compliance alternatives."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0589-Q02",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Eliminating all vibration, infinite stiffness at every frequency and cancelling every external load are all categorical impossibilities. Use plausible resonance/bandwidth misconceptions, such as treating accurate static positioning as sufficient for unlimited closed-loop bandwidth or mistaking compliance for damping."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0592-Q01",
+      "criteria": [
+        "explanation"
+      ],
+      "findings": [
+        "The eta-squared derivation is correct, but the solution introduces k_i, k_o, tau_i, tau_o and delta-theta_i/o without a formula record. Add their input/output meaning, torque/angular-displacement and stiffness units, and the ideal fixed-ratio small-deflection assumptions. Preserve the correct torque-over-angle derivation."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0592-Q03",
+      "criteria": [
+        "explanation"
+      ],
+      "findings": [
+        "The stem contains both k_o=eta² k_i and k=AE/l, but the solution lacks formula definitions for eta, A, E, l and the two coordinate-specific stiffnesses. Add complete formula metadata, especially rotational versus axial units, so this unit-distinction item is self-contained after reveal."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0592-Q04",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "Taking the displayed fourth-power difference to zero when the inner and outer diameters coincide is a direct limiting-value recognition. Mark easy, or require an actual finite-wall stiffness comparison to retain medium."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0594-Q04",
+      "criteria": [
+        "duplication",
+        "distractors"
+      ],
+      "findings": [
+        "This repeats P0589-Q01: accurate actuator/joint sensing does not observe downstream compliance, so loaded tool pose can be wrong. Naming co-location does not add a new reasoning operation. Replace it with a distinct two-sensor comparison, an explicitly modelled actuator-versus-output angle calculation, or another genuine co-location angle.",
+        "Co-location making the downstream material rigid and co-located feedback being universally unusable are implausible alternatives. The replacement item should compare realistic measured coordinates or compliance models rather than impossible physical effects."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0596-Q01",
+      "criteria": [
+        "difficulty",
+        "distractors",
+        "explanation"
+      ],
+      "findings": [
+        "The answer is direct recognition of reciprocal stiffness from F=k delta. Mark easy, or introduce a genuine sensitivity/noise/stiffness design comparison with explicit givens for medium.",
+        "Force independent of all deformation and a readout automatically changing to torque units are not credible consequences of higher flexure stiffness. Use finite sensitivity/gain or stiffness/compliance inversions instead.",
+        "The solution introduces F, k and delta in F=k delta but leaves formula metadata empty. Define force, translational stiffness, displacement and displacement sensitivity, with N, N/m, m and m/N units and the stated fixed-gain linear model."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0596-Q02",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Infinite sensitivity, removing calibration and unlimited deformation are all implausible explanations of an overload stop. Use realistic distinctions among limiting travel, changing elastic stiffness, clipping electrical output and recalibrating the load signal."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0596-Q03",
+      "criteria": [
+        "difficulty",
+        "distractors"
+      ],
+      "findings": [
+        "This only distinguishes reducing one cause from eliminating every cause of hysteresis. Mark easy, or provide two mechanical designs and require a supported comparison for medium.",
+        "Maximizing all interfaces and necessarily removing the strain response are not plausible interpretations of minimizing welded/bolted joints. Use credible hysteresis-versus-sensitivity or interface-versus-material effects."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0596-Q04",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "The complete two-channel model and requested half-difference are supplied. Cancelling two identical bias terms is easy algebra; use mismatched gains/biases or a required correction calculation to retain medium."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0598-Q04",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Making every wheel arrangement holonomic, guaranteeing stability for any load, and eliminating ground forces are implausible COM-shift consequences. Use realistic distinctions between moving the support contacts, shifting the load projection, changing wheel size and changing drive kinematics."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0599-Q02",
+      "criteria": [
+        "distractors",
+        "explanation"
+      ],
+      "findings": [
+        "Motor-current count and planar-pose dimension are weak distractors for a static support test. Use credible contact geometry and load-placement alternatives, such as collinear contacts, chassis-centre versus combined COM, or COM height alone.",
+        "The COM/support-polygon condition is a valid qualification, but the source does not print that criterion and the solution only restates it. Add the short statics reason: nonnegative vertical contact reactions summing to weight place the COM projection in the convex hull of the contacts; a point outside would require an impossible tensile ground reaction under the stated assumptions. This makes the correction source-grounded through an explicit derivation rather than an unexplained extra fact."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0599-Q03",
+      "criteria": [
+        "difficulty",
+        "distractors"
+      ],
+      "findings": [
+        "The support-polygon criterion is given explicitly before the answer, so placing the COM outside it is a direct one-step application. Mark easy, or use actual contact coordinates and combined-payload COM calculation to retain medium.",
+        "Losing the orientation coordinate and wheel radius alone deciding stability are implausible outcomes. Replace them with realistic mistaken COM or support-region interpretations, retaining the wheel-count misconception as one alternative."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0602-Q02",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "A wrist sensor performing all gross and fine motion and the arm eliminating every need for base relocation are not plausible divisions of motion. Use credible alternatives involving fine base adjustment, arm gross reach and coordinated movement, while clearly asking for the source's emphasized division."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0602-Q03",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "Rejecting the assertion that a mobile base removes every physical workspace restriction is direct conceptual recall. Mark easy, or supply a concrete base/arm reachable-set or obstacle configuration for medium."
+      ]
+    },
+    {
+      "questionId": "W04-L19-P0603-Q02",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "An arm having no geometry when the base moves and combined configuration being unrelated to stability are implausible claims. Replace them with realistic insufficient checks, such as chassis-footprint clearance alone or arm collision checking without payload-induced stability analysis."
+      ]
+    }
+  ],
+  "coverageChallenge": [
+    {
+      "id": "L19-COVERAGE-01",
+      "status": "open",
+      "sourcePages": [
+        592
+      ],
+      "finding": "The round and square cantilever formulas are represented by section recognition, limits, shared length scaling and a round hollow/solid ratio. No question evaluates the full transverse stiffness/deflection for either section with explicit numerical material, dimensions, length and tip load. One well-designed paired round/square calculation can test the different 3*pi/64 and 1/4 coefficients, units, boundary conditions and force-to-deflection step without adding several template variants."
+    },
+    {
+      "id": "L19-COVERAGE-02",
+      "status": "repair_linked",
+      "sourcePages": [
+        588
+      ],
+      "finding": "The source explicitly describes lead screws as very stiff, able to support large loads and high-friction; it also describes compact, large-reduction rotary-to-linear conversion. Current items assess motion conversion, thread/ball contact and ball backdriving, but not this full comparative design tradeoff. Repair flagged P0588-Q03 as a meaningful lead-versus-ball selection/comparison item rather than adding a near-duplicate definition."
+    },
+    {
+      "id": "L19-COVERAGE-03",
+      "status": "bounded_accounting_note",
+      "sourcePages": [
+        578,
+        579,
+        580,
+        581,
+        582,
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591,
+        592,
+        593,
+        594,
+        595,
+        596,
+        597,
+        598,
+        599,
+        600,
+        601,
+        602,
+        603,
+        604,
+        605
+      ],
+      "finding": "All 28 actual pages were inspected. The four non-substantive pages are 578 title, 579 outcomes, 604 references and 605 closing. All 24 substantive/summary pages 580–603 have draft citations. The 23 concept objects are broad page/topic clusters, not an atomic completeness proof. Preserve the seven author source qualifications and independent caveats for generic mobility, task-relative redundancy, ideal power, common-coordinate compliance, co-location, hysteresis and static support. No complete-course claim follows from this slice."
+    }
+  ],
+  "validation": {
+    "valid": true,
+    "release": false,
+    "errors": [],
+    "warnings": [],
+    "counts": {
+      "sources": 2,
+      "sourcesReady": 2,
+      "pagesExpected": 2012,
+      "pagesInventoried": 2012,
+      "pagesVisuallyInspected": 361,
+      "pagesExcluded": 139,
+      "pagesRepeated": 0,
+      "concepts": 23,
+      "conceptsWithDraftQuestions": 23,
+      "conceptsWithVerifiedQuestions": 22,
+      "questions": 99,
+      "questionsByStatus": {
+        "verified": 71,
+        "flagged": 28
+      },
+      "currentlyVerifiedQuestions": 71,
+      "staleReviews": 0,
+      "numericalFamilies": 0,
+      "verifiedByWeek": {
+        "4": 71
+      },
+      "verifiedByDifficulty": {
+        "medium": 14,
+        "easy": 57
+      },
+      "verifiedByType": {
+        "conceptual": 48,
+        "diagram": 6,
+        "numerical": 16,
+        "scenario": 1
+      }
+    }
+  },
+  "sourceQualifications": "Preserve all seven sourceIssues and independent source observations. No source uncertainty was silently resolved globally.",
+  "mutations": "Only reviewer audit, check-script, review and handoff files. No question, canonical bank, source or Git edits."
+}

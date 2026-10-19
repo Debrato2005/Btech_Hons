@@ -1,0 +1,35 @@
+"""Freeze two L28 v3 reviews, preserving another reviewer's 67 approvals."""
+from pathlib import Path
+import json,hashlib,datetime,sys,copy
+ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'scripts'))
+from validate import question_hash,schema_errors,validate_bank
+read=lambda p:json.loads((ROOT/p).read_text());sha=lambda p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest()
+def write(p,v):(ROOT/p).write_text(json.dumps(v,ensure_ascii=False,indent=2)+'\n')
+now=datetime.datetime.now(datetime.timezone.utc).isoformat();ap='audits/blind-answers-W06-L28-residual-contracts-reviewer.json';e=read(ap);assert sha(ap)=='018387359d7c76530c7dfca4d839b02a56713820b8ecb24ee52b921d820c66e1'
+r=read('audits/W06-L28-residual-contracts-keyed-reveal.json');b=read(r['snapshotPath']);qs={q['id']:q for q in b['questions']};m=read('audits/W06-L28-residual-repairs-manifest.json');hm={a['questionId']:a for a in m['questions']}
+assert e['frozenAt']<r['revealedAt'];assert sha(e['blindPacketPath'])==e['blindPacketSha256']==m['blindPacketSha256'];assert sha('data/question-batches/W06-L28.json')==r['snapshotSha256'];assert len(m['preservedQuestionHashes'])==67
+assert all(question_hash(qs[k])==v for k,v in m['preservedQuestionHashes'].items());obs={x['physicalPage']:x for x in e['sourceObservations']}
+for x in obs.values():assert sha(x['previewPath'])==x['previewSha256']
+closures={'W06-L28-Q003':'The numerical-array, plotting and notebook roles are correctly matched. The three wrong options are coherent permutations of those same roles, and each option rationale accurately identifies the swapped responsibilities. Easy recall is appropriate.','W06-L28-Q046':'The source locator now correctly describes the printed generic iloc[n,m] row and labels substitution (1,2) as a derived application, not a verbatim call. The source uppercase identifier is explicitly contrasted with the lowercase definition. The key, neighboring-cell distractors, scalar selection and NameError rationale are correct.'}
+reviews=[]
+for a in e['independentAnswers']:
+ q=qs[a['questionId']];assert q['version']==3;assert question_hash(q)==a['questionSha256']==hm[q['id']]['questionSha256'];assert a['independentAnswerOptionIds']==q['correctOptionIds'];assert e['reviewerId'] not in {q['authorId'],*q.get('revisionAuthors',[])};pages=sorted({c['physicalPage'] for c in q['citations']})
+ rv=dict(id=q['id']+'-v3-contracts-independent-residual-quality',questionId=q['id'],questionVersion=3,questionSha256=question_hash(q),reviewerId=e['reviewerId'],decision='verified',reviewedAt=now,sourceVersions=e['sourceVersions'],reviewedSlideIds=[f'lectures-p{p:04}' for p in pages],independentAnswerOptionIds=a['independentAnswerOptionIds'],solvedBeforeAnswerSeen=True,checks={k:True for k in ['sourceSupport','assumptions','answerSet','distractors','calculations','figureFidelity','explanation','difficulty','duplication']},reasoning=a['reasoning']+' '+closures[q['id']]+' Three actual pages and extracted text were inspected. Four independent pandas assertions and both responses were frozen before any L28 keyed access. All nine item criteria pass. The full historical lecture review and its original attribution remain separate; this reviewer personally completed only these two current repairs.',findings=[],blindAnswersPath=ap,blindAnswersSha256=sha(ap),independentSolvedAt=e['frozenAt'],priorAuthorExposure=False,sourceAnswerExposure=e['exposureDisclosure'],computationsPath=e['independentCheckPath'],sourceInspectionEvidence=[dict(inspectorId=e['reviewerId'],**{k:obs[p][k] for k in ['physicalPage','previewPath','previewSha256','dimensions','inspectedAt']}) for p in pages])
+ assert not schema_errors(rv,read('data/schema.review.json'));reviews.append(rv)
+out='data/reviews/W06-L28-residual-independent-contracts.json';write(out,reviews)
+old=[]
+for p in ['data/reviews/W06-L28-v1-independent.json','data/reviews/W06-L28-v2-independent.json']:
+ arr=read(p);arr=arr.get('reviews',[]) if isinstance(arr,dict) else arr
+ old.extend(rv for rv in arr if rv['decision']=='verified' and rv['questionId'] in m['preservedQuestionHashes'] and rv['questionSha256']==question_hash(qs[rv['questionId']]))
+assert len(old)==67;allr=old+reviews;rb={x['questionId']:x for x in allr};assert len(rb)==69;qq=copy.deepcopy(b['questions']);cs=copy.deepcopy(b['concepts'])
+for q in qq:q['status']='verified';q['reviewIds']=[rb[q['id']]['id']]
+for c in cs:c['status']='verified'
+sm=read('sources/manifest.json');slides=[json.loads(l) for sid in ['lectures','assignments'] for l in (ROOT/f'sources/page_maps/{sid}.jsonl').read_text().splitlines()];updates={v['id']:v for v in read('data/inspection-batches/W06-L28.json')['slides']};slides=[copy.deepcopy(updates.get(v['id'],v)) for v in slides]
+for sl in slides:
+ if sl['id'] in updates:sl['conceptIds']=[c['id'] for c in cs if sl['id'] in c['slideIds']]
+tmp={'schemaVersion':'1.0.0','bankVersion':'L28-residual-contracts-isolated','title':'L28 residual independent closure','complete':False,'sources':sm['sources'],'assets':sm['assets'],'slides':slides,'questions':qq,'concepts':cs,'reviews':allr,'learningTools':{k:[] for k in ['formulaSheet','confusionPairs','traps','algorithmVisualizations','numericalFamilies']}}
+v=validate_bank(tmp,ROOT,check_files=True);assert v['valid'],v
+su=dict(completedAt=now,reviewerId=e['reviewerId'],reviewed=2,verified=2,flagged=0,keyDisagreements=0,preservedAcceptedHashes=67,totalCurrentVerified=69,totalCurrentQuestions=69,actualPagesReinspected=3,independentAssertions=4,priorVersionExposure=False,reviewFile=out,reviewSha256=sha(out),blindAnswersSha256=sha(ap),closures=closures,validation=v,coverageScope='Only two residual current-version findings were personally reviewed here. The original reviewer’s full 34-page challenge and v2 gap closure remain separately attributed in audits/W06-L28-v2-coverage-closure-independent.json. No complete-course certification.',mutations='Reviewer evidence, check/finalizer scripts, snapshot, review, summary and handoff only; no author, bank, source or Git edits.')
+write('audits/W06-L28-residual-contracts-review-summary.json',su)
+(ROOT/'docs/handoffs/L28-residual-contracts-review.md').write_text(f'# L28 residual review closed\n\nBoth v3 repairs pass all nine criteria. All 67 previously accepted hashes remain unchanged, giving 69/69 current accepted questions. Three actual pages were personally inspected; two responses and four independent pandas assertions were frozen before keyed access. This reviewer had no prior L28 key exposure. Original full-lecture review attribution remains unchanged.\n\nReview: {out}\nSHA256: {sha(out)}\nEvidence SHA256: {sha(ap)}\nSummary: audits/W06-L28-residual-contracts-review-summary.json\n\nNo author, bank, source or Git edits. Do not rerun over changed objects. Next queue: L29 Q059 citation-only repair, then fresh L33 source-first review.\n')
+print(json.dumps({'verified':2,'currentVerified':69,'reviewSha256':sha(out),'validationErrors':v['errors'],'warningCount':len(v['warnings'])},indent=2))

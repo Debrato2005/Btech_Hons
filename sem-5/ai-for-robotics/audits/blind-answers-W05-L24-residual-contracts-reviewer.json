@@ -1,0 +1,138 @@
+{
+  "batchId": "W05-L24",
+  "reviewerId": "define_robotics_data_contracts:L24-independent-reviewer",
+  "blindPacketPath": "audits/blind-W05-L24-residual-repairs.json",
+  "blindPacketSha256": "542640792a3ea40c1f72003228669decda2bb657fc47d6664b648311f56d74aa",
+  "sourceVersions": {
+    "lectures": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c"
+  },
+  "priorVersionExposure": true,
+  "exposureDisclosure": "This reviewer previously reviewed the v2 versions, saw their keys and wrote the three residual findings. Current v3 answers are source-first but are not claimed as fully blind. No current v3 solutions seen before this freeze.",
+  "authorKeysSeen": false,
+  "sourceObservations": [
+    {
+      "physicalPage": 730,
+      "slideId": "lectures-p0730",
+      "previewPath": "sources/previews/lectures/page-0730.webp",
+      "previewSha256": "fc274d3068475bb14863ec97d9d86c3194f5a064ac2a3532f7dc35addda82875",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "inspectedAt": "2026-10-19T19:43:38.972969+00:00",
+      "method": "actual_pixels_view_image_and_extracted_text",
+      "observations": "Actual pixels show plant tau=M(q)qdd+V+G+F, matched alpha=M(q), beta=V+G+F."
+    },
+    {
+      "physicalPage": 731,
+      "slideId": "lectures-p0731",
+      "previewPath": "sources/previews/lectures/page-0731.webp",
+      "previewSha256": "61e85977fc35b75dd3096c978c0d985b0bc291bc52d69addbf4e19ca30bc5f32",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "inspectedAt": "2026-10-19T19:43:38.973090+00:00",
+      "method": "actual_pixels_view_image_and_extracted_text",
+      "observations": "Servo uses E=q_d-q and positive K_v Edot,K_p E before M(q); nominal error has zero right side."
+    },
+    {
+      "physicalPage": 733,
+      "slideId": "lectures-p0733",
+      "previewPath": "sources/previews/lectures/page-0733.webp",
+      "previewSha256": "7c576acf9927cf2b7a65b50da1a3de36579dd925e84378ad34ecca2d25bcb733",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "inspectedAt": "2026-10-19T19:43:38.973193+00:00",
+      "method": "actual_pixels_view_image_and_extracted_text",
+      "observations": "Sensors and commands update at discrete instants; sampling adds delay/approximation and faster sampling makes continuous-time assumption more reasonable. No rule equates repeating a stored value with a new measurement."
+    },
+    {
+      "physicalPage": 734,
+      "slideId": "lectures-p0734",
+      "previewPath": "sources/previews/lectures/page-0734.webp",
+      "previewSha256": "7ed2b716b4004c7d04d9fe3014dca06a43df54316b8458875e8ed7fb3b534714",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "inspectedAt": "2026-10-19T19:43:38.973275+00:00",
+      "method": "actual_pixels_view_image_and_extracted_text",
+      "observations": "Feedforward block uses desired trajectory, feedback adds torque gains outside dynamic model; tau=tau_ff+K_p E+K_v Edot."
+    },
+    {
+      "physicalPage": 735,
+      "slideId": "lectures-p0735",
+      "previewPath": "sources/previews/lectures/page-0735.webp",
+      "previewSha256": "bd224790fa54e63dbdf8f0f3a3e2e4a128468f044fe98281312358ec1170386a",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "inspectedAt": "2026-10-19T19:43:38.973360+00:00",
+      "method": "actual_pixels_view_image_and_extracted_text",
+      "observations": "Printed homogeneous equation has left products M^-1 K_v and M^-1 K_p. Inertia depends on actual configuration; no full forcing residual printed here."
+    },
+    {
+      "physicalPage": 738,
+      "slideId": "lectures-p0738",
+      "previewPath": "sources/previews/lectures/page-0738.webp",
+      "previewSha256": "2ddcf535b077a05c7d0280ea59412bba31417d38fc256c45ba210aee7591d389",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "inspectedAt": "2026-10-19T19:43:38.973445+00:00",
+      "method": "actual_pixels_view_image_and_extracted_text",
+      "observations": "Disturbance arrow subtracts tau_d at arm input. E=q_d-q reverses actual-acceleration perturbation, giving positive M^-1 tau_d in error. The steady-state formula evaluates M at equilibrium; transient uses current q."
+    }
+  ],
+  "independentAnswers": [
+    {
+      "questionId": "W05-L24-P0733-Q02",
+      "questionVersion": 3,
+      "questionSha256": "1664a95a1d9d70b2a8203e67b38b121d6cfacbf73d8079944b8fea00b3b5aad1",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Shorter update intervals may reduce sampling approximation but do not identify mass parameters or remove discrete stability/delay checks. Reusing a stored reading supplies no new physical measurement, regardless of faster controller cycles. The prior oversampling counterexample no longer applies to this changed alternative.",
+      "answeredAt": "2026-10-19T19:43:38.974074+00:00"
+    },
+    {
+      "questionId": "W05-L24-P0735-Q02",
+      "questionVersion": 3,
+      "questionSha256": "e8c3559887345534a0c87b6d8dae5f4020d81d59d6118dd84ae9663cfe969249",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For diagonal D, (M^-1 D)_ij=(M^-1)_ij D_jj. Nonzero off-diagonals of the inverse generally remain, and factors do not generally commute. The stated homogeneous approximation supplies the exact scope; no nonzero forcing residual is needed for this key.",
+      "answeredAt": "2026-10-19T19:43:38.974083+00:00"
+    },
+    {
+      "questionId": "W05-L24-P0738-Q01",
+      "questionVersion": 3,
+      "questionSha256": "573f131227bf1cecbeea6fb078157509f620d5dc789fbb7b318cdb0a220fd8d6",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The disturbance reduces actual acceleration by M(q(t))^-1 tau_d. Because Edd=qdd_d-qdd, its contribution to Edd is positive. Only a steady-equilibrium specialization freezes M at q_e; the transient equation uses the current configuration.",
+      "answeredAt": "2026-10-19T19:43:38.974087+00:00"
+    }
+  ],
+  "independentChecks": {
+    "status": "passed",
+    "assertions": [
+      "left gain product retains off diagonals",
+      "right multiplication differs",
+      "negative actual perturbation",
+      "positive error perturbation",
+      "current versus other pose"
+    ],
+    "count": 5,
+    "method": "Independent NumPy matrix examples executed before current keyed access; not author checks."
+  },
+  "status": "current_responses_frozen_before_keyed_access",
+  "frozenAt": "2026-10-19T19:43:38.974090+00:00"
+}

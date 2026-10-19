@@ -41,3 +41,9 @@ test('algorithm selector is fail-closed on provenance and draft-gated',()=>{
   assert.deepEqual(C.selectAlgorithmRecords([conflict],{bank}),[]);
   assert.equal(C.selectAlgorithmRecords([{...conflict,conflictResolution:{basis:'Documented resolution'}}],{bank}).length,1);
 });
+
+test('base presentation removes cyclic author positions without consulting answers',()=>{
+ const counts=[0,0,0,0], positions=[];
+ for(let i=0;i<128;i++){const rotated=base.options.slice(i%4).concat(base.options.slice(0,i%4));const q=C.normalizeQuestion({...base,id:`pattern-probe-${i}`,options:rotated,correctOptionIds:['o1']});const before=JSON.stringify(q);const order=C.baseOptionOrder(q);assert.deepEqual(order,C.baseOptionOrder({...q,correct_option_ids:['o4']}));assert.deepEqual(order.slice().sort(),['o1','o2','o3','o4']);assert.equal(JSON.stringify(q),before);counts[order.indexOf('o1')]++;positions.push(order.indexOf('o1'));}
+ assert.ok(counts.every(n=>n>15&&n<50));assert.ok(positions.some((n,i)=>i>=4&&n!==positions[i-4]));assert.equal(C.freshProgress('v').settings.shuffle_options,true);
+});

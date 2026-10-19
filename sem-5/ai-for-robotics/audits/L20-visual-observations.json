@@ -1,0 +1,219 @@
+{
+  "606": {
+    "title": "Manipulator Design Example",
+    "printed": "1",
+    "excluded": "Title and attribution page, no independent technical teaching.",
+    "notes": "Lecture 20 title; Pushparaj Mani Pathak, IIT Roorkee.",
+    "inspectedAt": "2026-10-19T17:58:00Z"
+  },
+  "607": {
+    "title": "Learning Outcomes",
+    "printed": "2",
+    "excluded": "Learning outcomes only; technical content is covered on subsequent slides.",
+    "notes": "Seven outcomes cover SCARA structure; link/actuator/transmission selection; DH forward/inverse kinematics; workspace/Jacobian/dynamics; trajectory/sensing; industrial controllers; complete sizing/component/cost calculations.",
+    "inspectedAt": "2026-10-19T17:58:00Z"
+  },
+  "608": {
+    "title": "Contents",
+    "printed": "3",
+    "excluded": "Agenda only; subsequent substantive slides cover listed concepts.",
+    "notes": "Five agenda items: SCARA fundamentals, mechanical design, kinematics and DH, dynamics, industrial case studies.",
+    "inspectedAt": "2026-10-19T17:58:00Z"
+  },
+  "609": {
+    "title": "SCARA: Structure and Applications",
+    "printed": "4",
+    "excluded": null,
+    "notes": "SCARA expands Selective Compliance Assembly Robot Arm; relatively rigid Z and compliant XY for insertion. Four DOF: two vertical-axis planar revolutes, vertical prismatic joint, wrist revolute. Slide claims cycles below 0.4 s and repeatability ±0.01 mm as examples, not universal specifications. Lists vision, force-torque sensing and neural IK as AI-readiness features, not mandatory components. Applications PCB assembly, drug dispensing, solar-cell handling, bottle capping, screwdriving. Diagram shows base/frame0, d1 upward height, links l1/l2, vertical z0/z1/z2/z3 arrows up, d3 dimension arrow down from arm to wrist, coincident O3/O4 wrist frames, θ1/θ2/θ4. Potential d3-axis convention must be reconciled with later DH table rather than silently changed.",
+    "inspectedAt": "2026-10-19T17:58:00Z"
+  },
+  "610": {
+    "title": "SCARA Joint Structure & Degrees of Freedom",
+    "printed": null,
+    "excluded": null,
+    "notes": "Four columns: J1 R vertical Z shoulder link1 XY ±170°; J2 R vertical Z elbow link2 XY ±145°; J3 P vertical Z insertion 0–200 mm; J4 R vertical Z end-effector orientation ±360°. R+R+P+R=4 DOF, three position coordinates plus one yaw. Same d1/l1/l2/d3/θ1/θ2/θ4 schematic as609; frame z3 up while d3 spans downward wrist offset. No printed footer number is visible; relative page5 is not claimed printed.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "611": {
+    "title": "Mechanical Design: Links & Geometry",
+    "printed": "6",
+    "excluded": null,
+    "notes": "Typical source ranges: payload1–20 kg, reach200–1000 mm, cycle0.38–0.6 s, repeatability±0.01–0.05 mm. Table l1 200–400 mm; l2 150–300 mm usually l2≤l1; ratio1.3–1.5 claimed dexterous-workspace optimum without optimization constraints; Zstroke100–300 mm PCB~50 mm; box/Ibeam stiffness-to-weight;6061-T6 aluminium or steel for heavy loads. Kz/Kxy>10:1. Inner reach depends on both lengths |l1−l2|, not l1 alone. Same labeled schematic. Ranges/optimal ratio treated as source design examples, not universal guarantees.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "612": {
+    "title": "Actuation Systems & Power Transmission",
+    "printed": "7",
+    "excluded": null,
+    "notes": "J1 AC servo plus harmonic strain-wave100:1 drive; source says zero backlash, essential smooth accurate shoulder,20–80 N m, resolution<1 arcsec. J2 AC servo plus harmonic or lower-cost spur, elbow should be lighter than shoulder,10–40 N m and inertia match1:4 without specifying numerator/reference shaft. Same schematic. Absolute zero-backlash/essential claims need qualified interpretation; inertia ratio cannot support a numerical derivation until definitions are supplied.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "613": {
+    "title": "Actuation Systems & Power Transmission (Continued)",
+    "printed": "8",
+    "excluded": null,
+    "notes": "J3 AC servo or stepper, ball screw+linear guide, rotary-linear conversion95% efficiency, preloaded nut source says eliminates axial backlash, pitch5–20 mm, stiffness>200 N/μm. J4 servo direct drive or belt pulley, direct drive highest accuracy claim, remote belt drive lowers wrist inertia, torque1–5 N m and speed up to2000 rpm. Same labeled schematic. Treat efficiency and limits as supplied design values; lead equals pitch only for single-start screw. Preload does not guarantee zero compliance.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "614": {
+    "title": "Denavit-Hartenberg (DH) Parameters for SCARA",
+    "printed": "9",
+    "excluded": null,
+    "notes": "Table columns i,α(i−1),a(i−1),di,θi: rows(1,0,0,d1,θ1),(2,0,l1,0,θ2),(3,0,l2,d3,0),(4,0,0,0,θ4). This is modified-index geometry, but subsequent615 uses standard-form link matrices with link translations in first/second transforms and −d3. Do not claim the printed table directly generates those matrices under one unspecified convention. All αzero and upwardz axes conflict with positive tabled3 if downward extension is positive. l1/l2 horizontal, d1fixedbaseheight, d3verticalvariable;θ1/θ2/θ4 verticalrevolutes.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "615": {
+    "title": "Forward Kinematics: Transformation Matrices",
+    "printed": "10",
+    "excluded": null,
+    "notes": "Actually read all matrices: A1=Rzθ1 withtranslation(l1cosθ1,l1sinθ1,d1); A2=Rzθ2 withtranslation(l2cosθ2,l2sinθ2,0); A3=I withztranslation−d3; A4=Rzθ4 no translation. Product hasRz(θ1+θ2+θ4) andtranslation(l1c1+l2c12,l1s1+l2s12,d1−d3). These individual matrices multiply consistently, but frame allocation and prismatic sign differ from614 table. State chosen downwardd3 convention explicitly. Diagram repeats previousframe labels.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "616": {
+    "title": "Forward Kinematics: Numerical Example",
+    "printed": "11",
+    "excluded": null,
+    "notes": "Equations x=l1cosθ1+l2cos(θ1+θ2), y=l1sinθ1+l2sin(θ1+θ2), z=d1−d3,φ=θ1+θ2+θ4. Givenl1=250 mm,l2=200 mm,θ1=45°,θ2=30°,d1=400 mm,d3=80 mm,θ4=15°. Printedresultx228.6 mm,y369.7 mm,z320 mm,φ90°. Needexactcheck: likelyroundingofx/y, preserveprintedversuscomputed.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "617": {
+    "title": "Inverse Kinematics",
+    "printed": "12",
+    "excluded": null,
+    "notes": "Target(250,150,320 mm,90°);r=sqrt(x²+y²)=291.5 mm;θ2=±acos[(x²+y²−l1²−l2²)/(2l1l2)]=±100.1°;θ1=atan2(y,x)−atan2(k2,k1)printed−11.5° wherek1=l1+l2cosθ2,k2=l2sinθ2;d3=d1−z=80 mm;θ4=φ−θ1−θ2 printed1.4°. Two configurations claim must be restricted to regular reachable planar targets, excluding jointlimits/collision and branchcoalescence. Exactroundtripneeded.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "618": {
+    "title": "Workspace",
+    "printed": "13",
+    "excluded": null,
+    "notes": "Ideal annulus diagram Rmin=|l1−l2| redinnercircle, Rmax=l1+l2 greenoutercircle, turquoise reachable ring. Values250+200=450 mm and|250−200|=50 mm; volumeπ(Rmax²−Rmin²)zstroke. Source says all locations up to450 mm and requirement satisfied; this overstates reachability inside50 mm and ignores610jointlimits±170°/±145° andcollision. Full annulus assumes adequateangulartravel.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "619": {
+    "title": "Jacobian",
+    "printed": "14",
+    "excluded": null,
+    "notes": "Taskvelocity order(xdot,ydot,zdot,φdot), jointorder(θ1dot,θ2dot,d3dot,θ4dot). J rows[−l1s1−l2s12,−l2s12,0,0];[l1c1+l2c12,l2c12,0,0];[0,0,−1,0];[1,1,0,1]. Uses velocity propagation, manipulability, singularities,dynamiccontrol. Printed detJ=+l1l2sinθ2 but full4x4det is negative under statedorders becauseJ33=−1. Singularset unchangedθ2=0 or180°mod360;180 outside610±145° range.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "620": {
+    "title": "Dynamics",
+    "printed": "15",
+    "excluded": null,
+    "notes": "τ=M(Θ)Θddot+V(Θ,Θdot)+G(Θ), generalized effort vector(τ1,τ2,F3,τ4); mixed torques andforce. V meansvelocity-dependent Coriolis/centrifugalvector, not merelyV(Θ) timesΘdot. Gravity primarilyprismaticforhorizontalrevoluteaxes. Idealfrictionlessmodel doesnotimplyzeroJ1/J2accelerationtorque. SameSCARAdiagram.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "621": {
+    "title": "SCARA Inertia Matrix",
+    "printed": "16",
+    "excluded": null,
+    "notes": "Matrix symmetric rows[M11,M12,0,M14],[M12,M22,0,M24],[0,0,M33,0],[M14,M24,0,M44]. M11=I1z+I2z+I4z+m1(l1/2)²+m2[l1²+(l2/2)²+l1l2cosθ2]+(m3+m4)[l1²+l2²+2l1l2cosθ2]. M12=I2z+I4z+m2[(l2/2)²+(l1l2/2)cosθ2]+(m3+m4)[l2²+l1l2cosθ2]. M22=I2z+I4z+m2(l2/2)²+(m3+m4)l2². M33=m3+m4;M44=M14=M41=M24=M42=I4z. Definitionsm1..4linkmasses,l1/l2horizontal lengths,Izverticalmoments,COMmidlink,θ2elbow. Implicitmodel placesm3+m4atdistalXYpoint and neglectsotherinertias; shouldstatecentroidalI1/I2 and wristrotation beforederiving.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "622": {
+    "title": "Coriolis, Centrifugal and Gravity Terms",
+    "printed": "17",
+    "excluded": null,
+    "notes": "V=[V1,V2,0,0] whereh=l1sinθ2(m2l2/2+m3l2+m4l2), V1=−h(2θ1dotθ2dot+θ2dot²),V2=hθ1dot². G=[0,0,−(m3+m4)g,0]. Negativegravitygeneralizedeffort agrees withdownwardpositived3 andpotentialU=(m3+m4)g(d1−d3). ShouldderiveCoriolistermsfrom621M.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "623": {
+    "title": "Trajectory Planning",
+    "printed": "18",
+    "excluded": null,
+    "notes": "Trapezoidalvelocity phasesconstantacceleration,constantvelocity,constantdeceleration. Equationsθ=θ0+0.5θddot t² (zeroinitialvelocity);θ=θa+ωmax(t−ta);θ=θf−0.5α(tf−t)² (zerofinalvelocity,αpositivemagnitude). Table0→90°,vmax400°/s,amax300°/s²,move0.38 s,profiletrapezoidal. Table infeasiblefromresttorest: aT²/4=10.83° maximum travel; minimumtime2sqrt(90/300)≈1.09545 s withtriangularpeak164.317°/s<400. Acceleration isboundedbut discontinuous atswitches.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "624": {
+    "title": "Case Study: FANUC SR-6iA SCARA Robot",
+    "printed": "19",
+    "excluded": null,
+    "notes": "PhotoactualyellowFANUC SCARA withbase,twohorizontalarmsections,verticaltoolshaft,cableloop,reference[2]. Sourcecase-table6 kgpayload,650 mmreach,210 mmZstroke,±0.01 mmrepeatability,0.37 scycle,21 kgrobotmass. Applicationsassembly,packaging,handling,inspection; reliabilitycontinuousoperation. Treat aslecture-statedvaluesnotcurrentproductverification; repeatabilitynotabsoluteaccuracy andcycledependsload/path.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "625": {
+    "title": "Vision Integration and Condition Monitoring",
+    "printed": "20",
+    "excluded": null,
+    "notes": "Vision2D/3D:partlocalization,barcodeidentification,defectinspection,coordinate transformation,flexiblefeederguidance. TransformvisioncoordinatesintorobotcoordinatesbeforeIKmotiongeneration. Conditionmonitoringcurrents,jointpositions,jointvelocities,temperature,vibration forfaultdiagnosis,maintenancescheduling,gearbox/bearinghealth andavailability. Textonlytechnicalpage.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "626": {
+    "title": "Servo Tuning and Motion Control",
+    "printed": "21",
+    "excluded": null,
+    "notes": "Lecture names R-30iB controller and automaticKP/KI/KDservo tuningforvaryingpayload,tracking,disturbancerejection,reducedoscillationandsettling. No controlblockdiagram/code. Industrialapplicationsautomotiveassembly,electronicshandling,packaging,inspection,pharma; highvolumecontinuousreliability. Controlleridentity/capabilities are source-attributed,not independentlyverifiedcurrentproductspecs.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "627": {
+    "title": "Complete SCARA Design: Target Specifications",
+    "printed": "22",
+    "excluded": null,
+    "notes": "FourDOFprecisionpickandplace electronicassembly; satisfyworkspace,payload,repeatability,cycletime. Literallyprints0.5 gsmartphoneglasscover152×72 mm, tray→visualinspection→fixtureplacement±0.1 mm. Nextpage628prints0.5 kgpart: factor1000masscontradiction; retainbothandstatescenarioinquestions,neverquietlynormalize.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "628": {
+    "title": "Design Parameters: Requirements and Choices",
+    "printed": "23",
+    "excluded": null,
+    "notes": "Fulltable:payload0.5 kgpart+0.8 kggripper=1.3 kg→3 kgdesign,approxSF2 (actualcapacity/load30/13). Reachpick320 mm,place280 mm→l1=200,l2=160,Rmax360 mm. Z50+80=130 mm→180 mm labeled~20%margin, actualrelative-to-requiredmargin50/130=38.46%,relative-to-design27.78%;20%notderived. Repeatability±0.1required→±0.02target20-bitabsoluteencoders; resolutionalonecannotguaranteerepeatability/accuracy. Cycle<0.5target→0.38 s400°/strapezoidneedacc/path. Wristcomponent±45°→θ4±180°directservo. Vision12MPoverheadcameraYOLOdetection/PnPpose. SafetyrowISO10218-1compliant→safety-ratedencoder/speedmonitoring;componentlistisnotproofcertification.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "629": {
+    "title": "Link Design and Material Selection",
+    "printed": "24",
+    "excluded": null,
+    "notes": "Chosenl1=200 mm,l2=160 mm,total360 mm≥320required;Rmin40 mm. Hollowbox6061-T6aluminium,width40 mm,height30 mm,wall3 mm forstiffness-to-weight. TopRmaxlineoverlappedbytable but360visibleextract andpriorpage; do notinventextradimensions. Impliedinnerrectangle34×24 mm forlaterarea/inertiacheck.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "630": {
+    "title": "Motor & Gearbox Sizing",
+    "printed": "25",
+    "excluded": null,
+    "notes": "Formula motor torque equals generalized load effort divided by ideal gear ratio N=output torque/motor torque. Table J1 inertia0.042 kg m², acceleration52.4 rad/s² parenthetical300°/s² (wrong conversion:300°/s²=5.23599 rad/s²),100:1 harmonic, motor peak2.4 N m,750 W ACservo. J2 inertia0.018,52.4,80:1,1.1 N m,400 W. J3 row0.005 under kg m² inertia header but linear acceleration40 m/s²,10 mm/rev screw,18 N linearforce,200 W; cannot multiply rotaryinertia by linearacceleration to obtainforce. J4 inertia0.0008,200 rad/s²,direct,0.32 N m,100 W BLDC; Iα=0.16 N m before any statedmargin. J1/J2 listedpeakmotorvalues not derived by given simpleIα/N; unspecified margins/friction/rotorinertia/duty mean motorchoices notvalidated. Photos: cutaway strain-wave reducer and recirculating ball screw schematic reference[1].",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "631": {
+    "title": "Detailed Bill of Materials",
+    "printed": "26",
+    "excluded": null,
+    "notes": "Actually read every row: quantity1 costsUSD620 J1servo,420 J2servo,380 J3servo+screw,180 wristservo (actuation);1200 CSG25,850 CSG17,320 guide+ballnut(transmission);420 safetyPLC/E-stop;350 basecasting(structure);1800 EtherCATcontroller plus4servodrives at220each(controller);480 12MPcamera+lens(vision). Prices are lecture budget inputs, not current quotes. Safety PLC repeats632; need explicit one-system versus two-line-item totals.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "632": {
+    "title": "Detailed Bill of Materials: Continuation and Cost Split",
+    "printed": "27",
+    "excluded": null,
+    "notes": "Rows6axisF/Tsensor1×USD650; four20-bitabsoluteencoders at120each; cablemanagement1set180; safetyPLC/E-stop1×420 repeats631. Source split controller32%,transmission28%,actuation24%,sensing10%,safety/misc6%=100%, omitsstructure/vision categories from631 and differs fromline-item sums. Prototype≈8500 USD andproduction≈4200 USD aretargets, not provedtotals. Claimscontroller/transmissionlargestshares; embedded/customdriveelectronicscosttradeoff. Preserve duplicateambiguity andcalculateboth totals.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "633": {
+    "title": "Design Summary",
+    "printed": "28",
+    "excluded": null,
+    "notes": "Final table repeatsRRPR,200/160 mm links,360 mmreach,180 mmstroke,3 kgpayload; addsparallelgripper, J1 750 W100:1harmonic,J2 400 W80:1harmonic,J3 200 Wservo+screw,J4 100 Wdirectservo,20bitencoders,12MPcamera. Uniquecontrolstrategy PID+computedtorque+impedancecontrol; no detailedcontrol equations/code given. Do not exclude summary becauseparallelgripper/control strategyareunique.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "634": {
+    "title": "Summary",
+    "printed": "29",
+    "excluded": "Recap of previously covered material; its unsupported Epson case-study mention is recorded as a source issue, not invented content.",
+    "notes": "Recaps architecture, mechanical design, kinematics, workspace, Jacobian, dynamics, trajectory, feedback, component design and costing. Mentions an Epson T6 case study, but no Epson case-study details occur on pages606–633; only FANUC is actually supplied. Preserve this bounded source discrepancy and do not invent Epson questions.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "635": {
+    "title": "References",
+    "printed": "30",
+    "excluded": "Bibliography only; citations preserved without treating uninspected external sources as teaching content.",
+    "notes": "References Craig third edition; FANUC SR-6iA URL with June2026 access date; Sinico/Neto/Boschetti2025 control-strategy paper. No independent examinable technical content.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  },
+  "636": {
+    "title": "Thank You",
+    "printed": "31",
+    "excluded": "Closing page with no examinable content.",
+    "notes": "Closing page contains only Thank You and institutional branding.",
+    "inspectedAt": "2026-10-19T17:59:30Z"
+  }
+}

@@ -2581,14 +2581,14 @@
     },
     {
       "id": "W08-L36-P1120-Q02",
-      "version": 1,
+      "version": 3,
       "status": "draft",
       "authorId": "robotics-learning-tools-author",
       "stem": "A route planner minimizes travel time. A remaining straight-line distance d is known, and speed can never exceed vmax>0. Which heuristic follows the slide’s minimum-time principle?",
       "selectionMode": "single",
-      "type": "numerical",
-      "difficulty": "hard",
-      "cognitiveSkill": "numerical",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
       "week": 8,
       "lectureId": "L36",
       "topic": "Path planning and obstacle avoidance",
@@ -2634,7 +2634,7 @@
           "kind": "equation",
           "locator": "Physical PDF page 1120, printed slide 33; main text and labeled diagram as applicable",
           "evidenceText": "3. A-Star\n•  The performance and accuracy of A* depend critically on the choice of the heuristic\n   function:\n➢Admissibility: A* is guaranteed to find the lowest-cost path only if the heuristic is\n   \"admissible,\" meaning it never overestimates the actual cost of reaching the goal.\n  A non-admissible heuristic may lead to a non-optimal path.\n➢Common heuristic function Examples:\n   – Minimum-Distance: The Euclidean distance is a standard admissible heuristic\n      because it is the shortest possible path between two\n       points and cannot be an overestimate. (this example)\n   – Minimum-Time: The heuristic must represent the travel\n      time at the maximum possible speed in the\n      environment to remain admissible.\n\n\n                                                                                                            33",
-          "role": "explicit",
+          "role": "premise",
           "region": null
         }
       ],
@@ -2656,7 +2656,8 @@
             "expression": "h_time=d/vmax",
             "variables": {
               "d": "straight-line remaining distance",
-              "vmax": "maximum possible speed"
+              "vmax": "maximum possible speed",
+              "h_time": "Optimistic remaining-travel-time heuristic, measured in seconds"
             },
             "units": {
               "d": "m",
@@ -2681,7 +2682,12 @@
         ]
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L36-legacy-v2",
+        "build_robotics_study_app:residual-2217"
+      ],
+      "difficultyRationale": "Single symbolic lower-bound relation with compatible units, not a hard multistep numerical calculation."
     },
     {
       "id": "W08-L36-P1120-Q03",
@@ -3375,13 +3381,13 @@
     },
     {
       "id": "W08-L36-P1124-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "robotics-learning-tools-author",
       "stem": "Which pairing matches the course summary’s global/local planning distinction?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "conceptual",
       "week": 8,
       "lectureId": "L36",
@@ -3398,19 +3404,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "Local planning makes any global route permanently safe"
+          "text": "Both terms describe nearby reactive planning, differing only in whether the objective is time or distance."
         },
         {
           "id": "o1",
-          "text": "Global: full known map/offline; local: real-time/reactive"
+          "text": "Global planning uses the known full map; local planning reacts to recent nearby observations."
         },
         {
           "id": "o2",
-          "text": "Global: only immediate sensor reactions; local: the complete known map"
+          "text": "Global planning reacts to nearby observations; local planning first computes the whole-map route."
         },
         {
           "id": "o3",
-          "text": "Both mean ignoring all sensor input"
+          "text": "Both terms describe whole-map planning, differing only in whether the path is a grid or a graph."
         }
       ],
       "correctOptionIds": [
@@ -3443,25 +3449,29 @@
       "solution": {
         "justification": "The summary contrasts whole-map global planning with real-time local response. The later obstacle example shows why both matter.",
         "optionExplanations": {
-          "o1": "This is the summary distinction in its stated context.",
-          "o2": "It reverses the roles.",
-          "o3": "Local reactions are relevant precisely when new sensor information appears.",
-          "o4": "Changing obstacles can still require further responses."
+          "o1": "This matches the summary and the later response to a newly detected obstacle.",
+          "o2": "This reverses the course roles of global and local planning.",
+          "o3": "Grid versus graph is a representation choice, not the global versus local distinction.",
+          "o4": "Time versus distance is an objective choice, not the global versus local distinction."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The summary contrasts whole-map global planning with real-time local response. The later obstacle example shows why both matter.",
         "memoryAid": null,
         "misconceptions": [
-          "It reverses the roles.",
-          "Local reactions are relevant precisely when new sensor information appears.",
-          "Changing obstacles can still require further responses."
+          "Time versus distance is an objective choice, not the global versus local distinction.",
+          "This reverses the course roles of global and local planning.",
+          "Grid versus graph is a representation choice, not the global versus local distinction."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L36-legacy-v2"
+      ],
+      "difficultyRationale": "Direct comparison of the course planning roles."
     },
     {
       "id": "W08-L36-P1124-Q03",
@@ -5226,14 +5236,14 @@
     },
     {
       "id": "W08-L37-P1135-Q03",
-      "version": 1,
-      "status": "flagged",
+      "version": 2,
+      "status": "draft",
       "authorId": "robotics-learning-tools-author",
-      "stem": "Which source inconsistency must be resolved before accepting a verbatim start-cost question from physical page 1135?",
+      "stem": "Before the first move, a path has no initial entry cost and g is the sum of costs of moves already taken. With h(start)=4.8, what are g(start) and f(start)=g+h?",
       "selectionMode": "single",
-      "type": "statement",
-      "difficulty": "extremely_tricky",
-      "cognitiveSkill": "conceptual",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
       "week": 8,
       "lectureId": "L37",
       "topic": "Path planning and obstacle avoidance",
@@ -5245,23 +5255,26 @@
       "conceptIds": [
         "search.grid-g"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "No move has yet occurred and there is no separate start-entry charge.",
+        "Use the explicitly stated accumulated-move-cost definition, not the contradictory g=1.0 label on page 1135."
+      ],
       "options": [
         {
           "id": "o3",
-          "text": "p 1133 assigns diagonal moves cost 0"
+          "text": "g=4.8 and f=9.6"
         },
         {
           "id": "o4",
-          "text": "p 1134 sets h (goal)=5.4"
+          "text": "g=0 and f=0"
         },
         {
           "id": "o1",
-          "text": "p 1135 labels start g=1.0, whereas p 1133 shows g=0.0 and defines g as accumulated move cost"
+          "text": "g=0 and f=4.8"
         },
         {
           "id": "o2",
-          "text": "p 1135 changes the goal from (2, 0) to (4, 4)"
+          "text": "g=1 and f=5.8"
         }
       ],
       "correctOptionIds": [
@@ -5274,7 +5287,7 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1133,
           "kind": "statement",
-          "locator": "Physical PDF page 1133, printed slide 7; main text and labeled diagram as applicable",
+          "locator": "Physical PDF page 1133, printed footer 7: Accumulated-move-cost definition and green start cell labeled 0.0.",
           "evidenceText": "A* Algorithm: Example\n\n                       Define g(n)\n\n                     4.4    4.0  ➢g(n) = actual accumulated cost from Start\n                           to nth cell (sum of move costs along the 6.4    6.0    4     3.4    3.0\n                         path so far).\n 5.4    5.0          2.4    2.0\n                    ➢Note:- Robot is not allowed diagonal steps\n 4.4    4.0          1.4    1.0                             at corners to avoid\n                               collision with wall. 4.0    3.0    2.0    1.0    0.0\n\n\n\n\n\n                                                                                                           7",
           "role": "conflict",
           "region": null
@@ -5285,28 +5298,48 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1135,
           "kind": "statement",
-          "locator": "Physical PDF page 1135, printed slide 9; main text and labeled diagram as applicable",
+          "locator": "Physical PDF page 1135, printed footer 9: Green start cell labeled g=1.0, h=4.8, and f=g+h equation; conflicting g label retained as source evidence.",
           "evidenceText": "A* Algorithm: Example\n\n Apply A* Algorithm\n\n                                  g=4.4      g=4\n                                  h=3.8     h=4.8\n                                             Expands node with minimum\n   g=6.4      g=6.0                g=3.4      g=3.0\n                                                     f(n)=g(n)+h(n)   h=1.0     h=1.4                h=3.4     h=4.4\n\n   g=5.4      g=5.0                g=2.4      g=2.0\n   h=0.0     h=1.0                h=3.0     h=4.0\n\n   g=4.4      g=4.0                g=1.4      g=1.0\n   h=1.0     h=1.4                h=3.4     h=4.4\n\n   g=4.0      g=3.0     g=2.0      g=1.0      g=1.0\n   h=2.0     h=2.4     h=2.8     h=3.8     h=4.8\n\n\n\n\n\n                                                                                                           9",
           "role": "conflict",
           "region": null
         }
       ],
       "solution": {
-        "justification": "The start label is an apparent slide error: zero moves imply g=0, and p 1133 uses 0.0, but p 1135 prints 1.0. It must not be silently presented as a general mathematical fact.",
+        "justification": "The empty path has g=0; therefore f=0+4.8=4.8 under the stated convention.",
         "optionExplanations": {
-          "o1": "The two visible start labels disagree for the same initial cell.",
-          "o2": "The endpoints remain the same; the start cost is the inconsistent label.",
-          "o3": "It does not; the preceding slide states√2≈1.4.",
-          "o4": "The goal heuristic is 0.0;5.4 is cost-to-come."
+          "o1": "Zero moves contribute zero accumulated cost; add the given heuristic 4.8.",
+          "o2": "This copies the conflicting start label despite the stated zero-entry-cost convention.",
+          "o3": "This mistakes the remaining-cost estimate h for accumulated cost g.",
+          "o4": "This omits the nonzero heuristic from f."
         },
-        "steps": [],
-        "formulas": [],
-        "simpleExplanation": "The start label is an apparent slide error: zero moves imply g=0, and p 1133 uses 0.0, but p 1135 prints 1.0. It must not be silently presented as a general mathematical fact.",
+        "steps": [
+          "The sum of costs of zero moves is 0.",
+          "Add the given remaining-cost estimate h=4.8.",
+          "Obtain f=4.8."
+        ],
+        "formulas": [
+          {
+            "expression": "f=g+h",
+            "variables": {
+              "f": "A* priority score",
+              "g": "Accumulated cost of moves taken",
+              "h": "Estimated remaining path cost"
+            },
+            "units": {
+              "f,g,h": "The same path-cost units"
+            },
+            "assumptions": [
+              "No move has yet occurred and there is no separate start-entry charge.",
+              "Use the explicitly stated accumulated-move-cost definition, not the contradictory g=1.0 label on page 1135."
+            ]
+          }
+        ],
+        "simpleExplanation": "The empty path has g=0; therefore f=0+4.8=4.8 under the stated convention.",
         "memoryAid": null,
         "misconceptions": [
-          "The endpoints remain the same; the start cost is the inconsistent label.",
-          "It does not; the preceding slide states√2≈1.4.",
-          "The goal heuristic is 0.0;5.4 is cost-to-come."
+          "This mistakes the remaining-cost estimate h for accumulated cost g.",
+          "This omits the nonzero heuristic from f.",
+          "This copies the conflicting start label despite the stated zero-entry-cost convention."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": [
@@ -5315,7 +5348,16 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "notes": "Unresolved source contradiction. Excluded from verified examination pool until independently adjudicated."
+      "notes": "The printed start-cost contradiction is disclosed; this version tests a stated convention and requires a matching independent review.",
+      "revisionAuthors": [
+        "build_robotics_study_app:residual-2217"
+      ],
+      "conflictResolution": {
+        "status": "explicit-qualification-awaiting-independent-review",
+        "sourceClaim": "Page 1133 labels the start g=0.0, while page 1135 labels it g=1.0.",
+        "basis": "The question explicitly uses zero entry cost and the accumulated-move-cost definition, which gives zero before any move.",
+        "method": "Preserve both printed labels and evaluate the declared mathematical convention."
+      }
     },
     {
       "id": "W08-L37-P1135-Q04",

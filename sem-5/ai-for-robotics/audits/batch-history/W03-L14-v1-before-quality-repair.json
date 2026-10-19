@@ -1,0 +1,1927 @@
+[
+  {
+    "id": "W03-L14-Q002",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L14-author",
+    "stem": "Which pairing is explicitly emphasized in the comparison slide?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L14",
+    "topic": "Lagrangian manipulator dynamics",
+    "subtopic": "Choosing a formulation for the stated purpose",
+    "tags": [
+      "method-use",
+      "lagrangian-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L14-C-method-use"
+    ],
+    "assumptions": [
+      "This asks for the slide’s stated emphasis, not a hardware-independent runtime ranking."
+    ],
+    "options": [
+      {
+        "id": "o4",
+        "text": "Lagrangian models only for static robots; Newton–Euler only for moving robots"
+      },
+      {
+        "id": "o2",
+        "text": "Newton–Euler for energy-datum selection; Lagrange only for contact-reaction recovery"
+      },
+      {
+        "id": "o1",
+        "text": "Newton–Euler only for one DOF; Lagrange only for six DOFs"
+      },
+      {
+        "id": "o3",
+        "text": "Recursive Newton–Euler for real-time computation; Lagrangian formulation for systematic analytical models"
+      }
+    ],
+    "correctOptionIds": [
+      "o3"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0431",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 431,
+        "kind": "statement",
+        "locator": "Lecture 14, physical PDF page 431, printed slide 4: Choosing a formulation for the stated purpose",
+        "evidenceText": "Introduction\n                                  •  Newton-Euler: Force/torque balance•  Newtonian mechanics requires free-\n                                              at each link   body diagrams for every link —\n   complex for multi-DOF robots       • → Recursive computation, good for\n•  Lagrangian mechanics uses scalar         real-time\n   energy functions — much simpler to                                  •  Lagrangian: Energy balance over the\n    derive                                       system\n•  Automatically handles constraint\n                                  • → Systematic derivation, good for    forces (joint constraints, etc.)\n                                    model formulation•  Equations are expressed in\n    generalized coordinates (joint       •  Both yield same\n    angles, displacements)                  equations of motion!\n•  Scales elegantly from 1-DOF to n-                                  •  Lagrangian preferred\n   DOF manipulators                                               for analytical insight &\n•  Foundation for model-based control                                             AI integration\n   and AI-driven dynamics learning\n\n                                                                                                           4",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The lecture motivates Lagrangian analytical insight and model-based/AI dynamics learning while acknowledging recursive Newton–Euler computation.",
+      "optionExplanations": {
+        "o3": "This is the stated qualitative preference, not a universal speed guarantee.",
+        "o4": "Both approaches derive dynamics.",
+        "o1": "The methods are not restricted to these counts.",
+        "o2": "Those are not the roles contrasted on the page."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The lecture motivates Lagrangian analytical insight and model-based/AI dynamics learning while acknowledging recursive Newton–Euler computation.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Both approaches derive dynamics.",
+        "The methods are not restricted to these counts.",
+        "Those are not the roles contrasted on the page."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L14-Q011",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L14-author",
+    "stem": "Which named addition does printed slide 7 mention when dissipative forces are present?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "cognitiveSkill": "recall",
+    "week": 3,
+    "lectureId": "L14",
+    "topic": "Lagrangian manipulator dynamics",
+    "subtopic": "The named dissipative extension",
+    "tags": [
+      "dissipation-caveat",
+      "lagrangian-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L14-C-dissipation-caveat"
+    ],
+    "assumptions": [
+      "Source-attributed terminology only; no universal claim about arbitrary dissipative force laws."
+    ],
+    "options": [
+      {
+        "id": "o2",
+        "text": "Replacing K−U by K+U for every system"
+      },
+      {
+        "id": "o1",
+        "text": "A constant change of gravitational datum alone"
+      },
+      {
+        "id": "o4",
+        "text": "A Rayleigh potential function"
+      },
+      {
+        "id": "o3",
+        "text": "Deleting generalized forces from the right-hand side"
+      }
+    ],
+    "correctOptionIds": [
+      "o4"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0434",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 434,
+        "kind": "statement",
+        "locator": "Lecture 14, physical PDF page 434, printed slide 7: The named dissipative extension",
+        "evidenceText": "•  The Lagrangian is defined by 𝐿𝑞𝑛, ሶ𝑞𝑛= 𝐾−𝑈\n   – Here 𝐾 is kinetic energy of the whole system,\n   – 𝑈 is potential energy of the whole system,\n   – 𝑞𝑛 is generalised coordinate and\n   –  ሶ𝑞𝑛 is the derivative of the generalized coordinate.\n•  The equations of motion based on the Lagrange approach is given as,\n        𝑑   𝜕𝐿     𝑑𝐿\n                         𝐹𝑛          𝑑𝑡 𝜕ሶ𝑞𝑛− 𝜕𝑞𝑛=\n•  where 𝐹𝑛 are the generalized forces or torques.\n•  Above Eq. has limitations such as when dissipative forces are\n   present we need to introduce Rayleigh potential function.\n•  We cannot handle gyroscopic forces/moments and we cannot\n   handle non-potential forces such as circulatory forces.\n\n\n\n                                                                                                           7",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "This item reports the specific source statement. It does not claim that all damping laws admit a single Rayleigh function.",
+      "optionExplanations": {
+        "o4": "This is the slide’s terminology for the dissipative extension.",
+        "o1": "A constant potential offset has no damping force gradient.",
+        "o2": "That changes the definition rather than introducing dissipation.",
+        "o3": "Omitting loads does not model their effects."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "This item reports the specific source statement. It does not claim that all damping laws admit a single Rayleigh function.",
+      "memoryAid": null,
+      "misconceptions": [
+        "A constant potential offset has no damping force gradient.",
+        "That changes the definition rather than introducing dissipation.",
+        "Omitting loads does not model their effects."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L14-Q012",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L14-author",
+    "stem": "Which statement is explicitly printed as a limitation on slide 7, rather than established there as a theorem about every possible Lagrangian extension?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L14",
+    "topic": "Lagrangian manipulator dynamics",
+    "subtopic": "Reading a source limitation without overgeneralizing",
+    "tags": [
+      "limitation-attribution",
+      "lagrangian-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L14-C-limitation-attribution"
+    ],
+    "assumptions": [
+      "Answer only what the identified slide states. Its blanket scope is recorded as a source issue."
+    ],
+    "options": [
+      {
+        "id": "o2",
+        "text": "Lagrangian equations cannot contain any actuator torque"
+      },
+      {
+        "id": "o3",
+        "text": "Lagrangian mechanics cannot use more than one generalized coordinate"
+      },
+      {
+        "id": "o4",
+        "text": "Potential energy must always be zero"
+      },
+      {
+        "id": "o1",
+        "text": "The shown approach cannot handle gyroscopic forces/moments or non-potential circulatory forces"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0434",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 434,
+        "kind": "statement",
+        "locator": "Lecture 14, physical PDF page 434, printed slide 7: Reading a source limitation without overgeneralizing",
+        "evidenceText": "•  The Lagrangian is defined by 𝐿𝑞𝑛, ሶ𝑞𝑛= 𝐾−𝑈\n   – Here 𝐾 is kinetic energy of the whole system,\n   – 𝑈 is potential energy of the whole system,\n   – 𝑞𝑛 is generalised coordinate and\n   –  ሶ𝑞𝑛 is the derivative of the generalized coordinate.\n•  The equations of motion based on the Lagrange approach is given as,\n        𝑑   𝜕𝐿     𝑑𝐿\n                         𝐹𝑛          𝑑𝑡 𝜕ሶ𝑞𝑛− 𝜕𝑞𝑛=\n•  where 𝐹𝑛 are the generalized forces or torques.\n•  Above Eq. has limitations such as when dissipative forces are\n   present we need to introduce Rayleigh potential function.\n•  We cannot handle gyroscopic forces/moments and we cannot\n   handle non-potential forces such as circulatory forces.\n\n\n\n                                                                                                           7",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Preserve attribution: this is a statement made by the limited presentation, not a universal impossibility result. Questions about a specific extended formulation would need its assumptions and equations.",
+      "optionExplanations": {
+        "o1": "That is the literal limitation claimed; its generality is not established by the slide.",
+        "o2": "The slide explicitly includes generalized forces or torques.",
+        "o3": "The lecture proceeds to a two-DOF example.",
+        "o4": "The defining expression explicitly includes U."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "Preserve attribution: this is a statement made by the limited presentation, not a universal impossibility result. Questions about a specific extended formulation would need its assumptions and equations.",
+      "memoryAid": null,
+      "misconceptions": [
+        "The slide explicitly includes generalized forces or torques.",
+        "The lecture proceeds to a two-DOF example.",
+        "The defining expression explicitly includes U."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L14-Q015",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L14-author",
+    "stem": "For q=(theta1,d2,theta3)ᵀ with two revolute joints and one prismatic joint, which units belong to the corresponding effort vector?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "medium",
+    "cognitiveSkill": "recall",
+    "week": 3,
+    "lectureId": "L14",
+    "topic": "Lagrangian manipulator dynamics",
+    "subtopic": "Mixed coordinates and effort units",
+    "tags": [
+      "generalized-coordinates",
+      "lagrangian-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L14-C-generalized-coordinates"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o3",
+        "text": "(rad, m, rad)"
+      },
+      {
+        "id": "o1",
+        "text": "(N·m, N·m, N·m)"
+      },
+      {
+        "id": "o2",
+        "text": "(N, N, N)"
+      },
+      {
+        "id": "o4",
+        "text": "(N·m, N, N·m)"
+      }
+    ],
+    "correctOptionIds": [
+      "o4"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0437",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 437,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 437, printed slide 10: Mixed coordinates and effort units",
+        "evidenceText": "•  The Lagrangian of a manipulator is\n   𝐿Θ, ሶΘ = 𝑘Θ, ሶΘ −𝑢Θ   , scalar form\n•  The equations of motion for the manipulator is given by\n\n     d  𝜕L    𝜕L\n       −  = 𝜏\n     d𝑡  𝜕ሶΘ   𝜕Θ\n   Where 𝜏 is the 𝑛× 1 vector of actuator torques\n•   In case of a manipulator,\n\n     d  𝜕k    𝜕k   𝜕u\n       −  +  = 𝜏\n     d𝑡  𝜕ሶΘ   𝜕Θ  𝜕Θ\n\n\n\n\n\n                                                                                                          10",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0438",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 438,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 438, printed slide 11: Mixed coordinates and effort units",
+        "evidenceText": "Generalized Coordinates in Robotics\n\n     Revolute Joints            Prismatic Joints           Mixed Joints\n\n\n q = [θ₁, θ₂, ..., θn]ᵀ    q = [d₁, d₂, ..., dn]ᵀ    q = [θ₁, d₂, θ₃, ...]ᵀ\n\n                                     Joint displacements in       Combination of angles &\n    Joint angles in radians\n                                     meters                       distances\n\n  Key Properties of Generalized Coordinates\n  •  Minimum set of coordinates needed to describe configuration (no\n     redundancy)\n  •  Problem dimension: 6-DOF robot → 6 generalized\n     coordinates\n  •  Velocity q̇ = dq/dt gives generalized velocities used in\n      kinetic energy formula\n\n                                                                                                          11",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Each coordinate’s effort is chosen so effort times its differential contributes work.",
+      "optionExplanations": {
+        "o4": "Rotational coordinates pair with torques; the displacement coordinate pairs with force.",
+        "o1": "The prismatic effort is a force, despite the generic tau symbol.",
+        "o2": "This treats rotational generalized efforts as translational forces.",
+        "o3": "These are coordinate units rather than effort units."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "L(q,qdot)=K(q,qdot)−U(q); Q_i=d/dt(partial L/partial qdot_i)−partial L/partial q_i",
+          "variables": {
+            "L": "scalar Lagrangian",
+            "K": "total kinetic energy",
+            "U": "potential energy",
+            "q_i": "independent generalized coordinate",
+            "qdot_i": "its time derivative",
+            "Q_i": "applied generalized actuator effort"
+          },
+          "units": {
+            "L,K,U": "J",
+            "q_i": "rad for revolute, m for prismatic",
+            "qdot_i": "rad/s or m/s",
+            "Q_i": "N·m for revolute, N for prismatic"
+          },
+          "assumptions": [
+            "Ideal constraints, chosen independent coordinates, conservative loads represented by U; other applied generalized efforts stated separately."
+          ]
+        }
+      ],
+      "simpleExplanation": "Each coordinate’s effort is chosen so effort times its differential contributes work.",
+      "memoryAid": null,
+      "misconceptions": [
+        "The prismatic effort is a force, despite the generic tau symbol.",
+        "This treats rotational generalized efforts as translational forces.",
+        "These are coordinate units rather than effort units."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L14-Q016",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L14-author",
+    "stem": "For a robot with six independent DOFs using the lecture’s minimal-coordinate convention, which statements are correct? Select all that apply.",
+    "selectionMode": "multi",
+    "type": "multiple_select",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L14",
+    "topic": "Lagrangian manipulator dynamics",
+    "subtopic": "Independent coordinates and generalized velocity",
+    "tags": [
+      "coordinate-minimality",
+      "lagrangian-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L14-C-coordinate-minimality"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o2",
+        "text": "qdot consists of the time derivatives of those coordinates"
+      },
+      {
+        "id": "o1",
+        "text": "Six independent generalized coordinates describe its configuration"
+      },
+      {
+        "id": "o4",
+        "text": "The robot needs six Cartesian coordinates for every link as independent generalized coordinates"
+      },
+      {
+        "id": "o3",
+        "text": "Every component of qdot must have units of m/s"
+      }
+    ],
+    "correctOptionIds": [
+      "o1",
+      "o2"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0438",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 438,
+        "kind": "statement",
+        "locator": "Lecture 14, physical PDF page 438, printed slide 11: Independent coordinates and generalized velocity",
+        "evidenceText": "Generalized Coordinates in Robotics\n\n     Revolute Joints            Prismatic Joints           Mixed Joints\n\n\n q = [θ₁, θ₂, ..., θn]ᵀ    q = [d₁, d₂, ..., dn]ᵀ    q = [θ₁, d₂, θ₃, ...]ᵀ\n\n                                     Joint displacements in       Combination of angles &\n    Joint angles in radians\n                                     meters                       distances\n\n  Key Properties of Generalized Coordinates\n  •  Minimum set of coordinates needed to describe configuration (no\n     redundancy)\n  •  Problem dimension: 6-DOF robot → 6 generalized\n     coordinates\n  •  Velocity q̇ = dq/dt gives generalized velocities used in\n      kinetic energy formula\n\n                                                                                                          11",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Minimal joint coordinates remove redundant configuration variables; their time derivatives need not be Cartesian end-effector velocity.",
+      "optionExplanations": {
+        "o1": "The minimum-coordinate count equals the DOF count.",
+        "o2": "It gives angular rates or displacement rates as appropriate.",
+        "o3": "Revolute coordinates produce angular rates.",
+        "o4": "That would introduce redundant constrained coordinates rather than the stated minimal set."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "Minimal joint coordinates remove redundant configuration variables; their time derivatives need not be Cartesian end-effector velocity.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Revolute coordinates produce angular rates.",
+        "That would introduce redundant constrained coordinates rather than the stated minimal set."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L14-Q025",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L14-author",
+    "stem": "With theta in radians, which gravitational-moment expression matches the source’s sin(90−theta) geometric construction?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L14",
+    "topic": "Lagrangian manipulator dynamics",
+    "subtopic": "Matching the Newton moment equation",
+    "tags": [
+      "newton-check",
+      "lagrangian-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L14-C-newton-check"
+    ],
+    "assumptions": [
+      "Use the single-joint point-mass model: massless arm of length l>0, tip mass m>0, X right, Y downward, theta positive from +X toward +Y, physical gravity +g Y with g≥0, and a torsional spring undeflected at theta=0. theta in the spring law is in radians. Positive applied torque tau increases theta; no damping unless explicitly added."
+    ],
+    "options": [
+      {
+        "id": "o2",
+        "text": "mgl sin(pi/2−theta)=mgl cos(theta)"
+      },
+      {
+        "id": "o1",
+        "text": "−mgl cos(theta) as the physical gravity torque in the positive downward direction"
+      },
+      {
+        "id": "o3",
+        "text": "mgl sin(90−theta) with the number 90 interpreted as radians"
+      },
+      {
+        "id": "o4",
+        "text": "mgl sin(theta)"
+      }
+    ],
+    "correctOptionIds": [
+      "o2"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0441",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 441,
+        "kind": "figure",
+        "locator": "Lecture 14, physical PDF page 441, printed slide 14: Matching the Newton moment equation",
+        "evidenceText": "𝑘𝑡                                                      𝑋\n•  Restoring torque = 𝑚𝑔𝑙sin 90 −𝜃− 𝑘𝑡𝜃                                                                                                             𝑙                                                          𝜃\n                                                             𝑔\n• From Newton's second law                       𝑌      𝑚\n                                                            𝜃\n                                               𝑚𝑔\n         𝑚𝑙2 ሷ𝜃= 𝑚𝑔𝑙sin 90 −𝜃− 𝑘𝑡𝜃\n•  or\n         𝑚𝑙2 ሷ𝜃+ 𝑘𝑡𝜃 −𝑚𝑔𝑙cos 𝜃= 0\n\n\n\n\n\n                                                                                                          14",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The Newton derivation and the Lagrangian derivation agree only when the coordinate direction and angular units are kept consistent.",
+      "optionExplanations": {
+        "o2": "The right-angle complement must use the same angular units.",
+        "o3": "That mixes a degree complement with a radian coordinate.",
+        "o4": "That measures the complementary lever-arm angle incorrectly.",
+        "o1": "Physical gravity assists positive theta near horizontal; the negative term occurs after rearranging the actuator equation."
+      },
+      "steps": [
+        "A right angle is pi/2 radians.",
+        "sin(pi/2−theta)=cos(theta).",
+        "Physical net torque is mgl cos(theta)−kt theta."
+      ],
+      "formulas": [
+        {
+          "expression": "m l² thetaddot+kt theta−m g l cos(theta)=tau",
+          "variables": {
+            "m": "tip mass",
+            "l": "pivot-to-mass length",
+            "thetaddot": "joint angular acceleration",
+            "kt": "torsional spring stiffness",
+            "theta": "downward-positive angle from horizontal",
+            "g": "gravity magnitude",
+            "tau": "externally applied actuator torque"
+          },
+          "units": {
+            "m": "kg",
+            "l": "m",
+            "thetaddot": "rad/s²",
+            "kt": "N·m/rad",
+            "theta": "rad",
+            "g": "m/s²",
+            "tau": "N·m"
+          },
+          "assumptions": [
+            "Use the single-joint point-mass model: massless arm of length l>0, tip mass m>0, X right, Y downward, theta positive from +X toward +Y, physical gravity +g Y with g≥0, and a torsional spring undeflected at theta=0. theta in the spring law is in radians. Positive applied torque tau increases theta; no damping unless explicitly added.",
+            "The source’s final equality to zero is the special case tau=0."
+          ]
+        }
+      ],
+      "simpleExplanation": "The Newton derivation and the Lagrangian derivation agree only when the coordinate direction and angular units are kept consistent.",
+      "memoryAid": null,
+      "misconceptions": [
+        "That mixes a degree complement with a radian coordinate.",
+        "That measures the complementary lever-arm angle incorrectly.",
+        "Physical gravity assists positive theta near horizontal; the negative term occurs after rearranging the actuator equation."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L14-Q029",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L14-author",
+    "stem": "In the RP figure, what is d2 as used in the kinetic and potential energies?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L14",
+    "topic": "Lagrangian manipulator dynamics",
+    "subtopic": "What the RP distance d2 measures",
+    "tags": [
+      "rp-geometry",
+      "lagrangian-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L14-C-rp-geometry"
+    ],
+    "assumptions": [
+      "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+    ],
+    "options": [
+      {
+        "id": "o3",
+        "text": "Only the exposed slider length beyond the end of link1"
+      },
+      {
+        "id": "o1",
+        "text": "Distance from the second COM to the tool tip"
+      },
+      {
+        "id": "o2",
+        "text": "Distance from the first joint axis to the center of mass of link2"
+      },
+      {
+        "id": "o4",
+        "text": "Distance between the two link centers of mass"
+      }
+    ],
+    "correctOptionIds": [
+      "o2"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0442",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 442,
+        "kind": "figure",
+        "locator": "Lecture 14, physical PDF page 442, printed slide 15: What the RP distance d2 measures",
+        "evidenceText": "Example:- Find the equation of motion of RP manipulator\n•   Inertia tensors\n               𝐼𝑥𝑥1   0    0\n           0    𝐼𝑦𝑦1   0       𝐶1𝐼1 =\n           0    0    𝐼𝑧𝑧1\n               𝐼𝑥𝑥2   0    0\n            0    𝐼𝑦𝑦2   0       𝐶2𝐼2 =\n            0    0    𝐼𝑧𝑧2\n•   Total mass 𝑚1and 𝑚2\n•  The center of mass of link 1 is located at a distance 𝑙1\n   from the joint-1 axis\n•  The center of mass of link 2 is located at a distance\n   𝑑2from the joint-1 axis\n\n\n\n\n                                                                                                          15",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The correct radius is needed in both rotational speed d2 thetadot1 and gravity height d2 sin(theta1).",
+      "optionExplanations": {
+        "o2": "The diagram and accompanying text specify the full COM radius.",
+        "o3": "That length need not equal the base-to-COM distance.",
+        "o4": "The lower dimension line begins at the first joint axis.",
+        "o1": "That is not the marked dimension."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The correct radius is needed in both rotational speed d2 thetadot1 and gravity height d2 sin(theta1).",
+      "memoryAid": null,
+      "misconceptions": [
+        "That length need not equal the base-to-COM distance.",
+        "The lower dimension line begins at the first joint axis.",
+        "That is not the marked dimension."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L14-Q030",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L14-author",
+    "stem": "The given COM inertia tensors are diagonal and motion rotates about the out-of-plane z axis. Which COM rotational-inertia terms enter K?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "application",
+    "week": 3,
+    "lectureId": "L14",
+    "topic": "Lagrangian manipulator dynamics",
+    "subtopic": "Why only Izz appears",
+    "tags": [
+      "rp-inertia-component",
+      "lagrangian-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L14-C-rp-inertia-component"
+    ],
+    "assumptions": [
+      "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+    ],
+    "options": [
+      {
+        "id": "o1",
+        "text": "The sums Ixx+Iyy+Izz for both links"
+      },
+      {
+        "id": "o3",
+        "text": "Izz1 and Izz2"
+      },
+      {
+        "id": "o2",
+        "text": "No COM inertia because the second joint is prismatic"
+      },
+      {
+        "id": "o4",
+        "text": "Ixx1 and Ixx2 only"
+      }
+    ],
+    "correctOptionIds": [
+      "o3"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0442",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 442,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 442, printed slide 15: Why only Izz appears",
+        "evidenceText": "Example:- Find the equation of motion of RP manipulator\n•   Inertia tensors\n               𝐼𝑥𝑥1   0    0\n           0    𝐼𝑦𝑦1   0       𝐶1𝐼1 =\n           0    0    𝐼𝑧𝑧1\n               𝐼𝑥𝑥2   0    0\n            0    𝐼𝑦𝑦2   0       𝐶2𝐼2 =\n            0    0    𝐼𝑧𝑧2\n•   Total mass 𝑚1and 𝑚2\n•  The center of mass of link 1 is located at a distance 𝑙1\n   from the joint-1 axis\n•  The center of mass of link 2 is located at a distance\n   𝑑2from the joint-1 axis\n\n\n\n\n                                                                                                          15",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0443",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 443,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 443, printed slide 16: Why only Izz appears",
+        "evidenceText": "•  The kinetic energy of link 1\n\n          1           1               2  2         2    𝑘1 =  𝑚1𝑙1 ሶ𝜃1           +  𝐼𝑧𝑧1 ሶ𝜃1          2           2\n•  The kinetic energy of link 2\n\n          1                   1                 2  2    2           2            +    𝑘2 = 𝑚2 𝑑2 ሶ𝜃1                              ሶ𝑑2                +  𝐼𝑧𝑧2 ሶ𝜃1          2                   2\n•  So, the total kinetic energy is\n           1                          1                     2                    2   2         2   𝑘𝜃, ሶ𝜃=               𝑚1𝑙1 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑2  ሶ𝜃1                           +  𝑚2 ሶ𝑑2\n           2                          2\n•  The potential energy of link 1\n    𝑢1 = 𝑚1𝑙1𝑔sin 𝜃1 + 𝑚1𝑙1𝑔\n\n\n                                                                                                          16",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "A prismatic relative motion does not prevent inherited rigid-body angular motion.",
+      "optionExplanations": {
+        "o3": "omega=(0,0,thetadot1), so the quadratic form selects the z entries.",
+        "o4": "Those would describe spin about the x axes.",
+        "o1": "The trace is not the inertia about the specified single rotation axis.",
+        "o2": "The second link still rotates with the first joint."
+      },
+      "steps": [
+        "For each link use omega=(0,0,thetadot1).",
+        "omegaᵀ I_C omega=Izz thetadot1².",
+        "Add both links’ spin energies."
+      ],
+      "formulas": [
+        {
+          "expression": "K=1/2 m vCᵀvC+1/2 omegaᵀ I_C omega; K_total=sum_i K_i",
+          "variables": {
+            "K,K_total": "link and system kinetic energy",
+            "m": "link mass",
+            "vC": "COM velocity in an inertial reference",
+            "omega": "link angular velocity",
+            "I_C": "inertia tensor about COM, in the same component basis as omega"
+          },
+          "units": {
+            "K,K_total": "J",
+            "m": "kg",
+            "vC": "m/s",
+            "omega": "rad/s",
+            "I_C": "kg·m²"
+          },
+          "assumptions": [
+            "Rigid links; pair omega and I_C in one basis."
+          ]
+        },
+        {
+          "expression": "A(d2)=m1 l1²+Izz1+Izz2+m2 d2²; K=1/2 A(d2) thetadot1²+1/2 m2 d2dot²; U=g(m1 l1+m2 d2)sin(theta1)+m1 l1 g+m2 g d2max",
+          "variables": {
+            "A": "rotational kinetic coefficient about joint1",
+            "K": "total kinetic energy",
+            "U": "total potential energy",
+            "m1,m2": "link masses",
+            "l1": "joint1-axis to link1-COM distance",
+            "d2": "joint1-axis to link2-COM distance",
+            "Izz1,Izz2": "link COM inertias about parallel out-of-plane axes",
+            "theta1": "upward-positive revolute angle",
+            "thetadot1": "angular rate",
+            "d2dot": "radial COM rate",
+            "d2max": "fixed maximum radial extension",
+            "g": "gravity magnitude"
+          },
+          "units": {
+            "A,Izz1,Izz2": "kg·m²",
+            "K,U": "J",
+            "m1,m2": "kg",
+            "l1,d2,d2max": "m",
+            "theta1": "rad",
+            "thetadot1": "rad/s",
+            "d2dot": "m/s",
+            "g": "m/s²"
+          },
+          "assumptions": [
+            "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+          ]
+        }
+      ],
+      "simpleExplanation": "A prismatic relative motion does not prevent inherited rigid-body angular motion.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Those would describe spin about the x axes.",
+        "The trace is not the inertia about the specified single rotation axis.",
+        "The second link still rotates with the first joint."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L14-Q034",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L14-author",
+    "stem": "In U2=m2 g d2 sin(theta1)+m2 g d2max, what is partial U2/partial d2 when d2max is a fixed design limit?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "application",
+    "week": 3,
+    "lectureId": "L14",
+    "topic": "Lagrangian manipulator dynamics",
+    "subtopic": "Maximum extension is a constant energy datum",
+    "tags": [
+      "rp-reference",
+      "lagrangian-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L14-C-rp-reference"
+    ],
+    "assumptions": [
+      "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+    ],
+    "options": [
+      {
+        "id": "o3",
+        "text": "m2 g sin(theta1)"
+      },
+      {
+        "id": "o2",
+        "text": "m2 g cos(theta1)"
+      },
+      {
+        "id": "o1",
+        "text": "Zero"
+      },
+      {
+        "id": "o4",
+        "text": "m2 g[sin(theta1)+1]"
+      }
+    ],
+    "correctOptionIds": [
+      "o3"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0444",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 444,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 444, printed slide 17: Maximum extension is a constant energy datum",
+        "evidenceText": "•  The potential energy of link 2\n     𝑢2 = 𝑚2𝑑2𝑔sin 𝜃1 + 𝑚2𝑑2𝑚𝑎𝑥𝑔\n    Where 𝑑2𝑚𝑎𝑥 is the maximum extension of joint 2\n•  The total potential energy is\n  𝑢𝜃= 𝑔𝑚1𝑙1 + 𝑚2𝑑2 sin 𝜃1 + 𝑚1𝑙1𝑔+ 𝑚2𝑔𝑑2𝑚𝑎𝑥\n•  Take partial derivatives                                                        1                          1\n                                            𝑘𝜃, ሶ𝜃=   𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22 ሶ𝜃12 + 𝑚2 ሶ𝑑22\n        𝜕𝑘    𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22 ሶ𝜃1              2                          2\n   ➢  𝜕ሶ𝜃=                  𝑚2 ሶ𝑑2\n        𝜕𝑘      0\n   ➢ 𝜕𝜃=           𝑚2𝑑2 ሶ𝜃12\n        𝜕𝑢   𝑔𝑚1𝑙1 + 𝑚2𝑑2 cos 𝜃1\n   ➢ 𝜕𝜃=              𝑔𝑚2 sin 𝜃1\n\n\n\n                                                                                                          17",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The maximum-extension parameter sets the zero reference and is not a moving generalized coordinate.",
+      "optionExplanations": {
+        "o3": "The reference term is constant with respect to the instantaneous coordinate.",
+        "o4": "This incorrectly differentiates d2max as though it were d2.",
+        "o1": "The first term depends on the instantaneous radius d2.",
+        "o2": "That differentiates the angle dependence instead of the radius."
+      },
+      "steps": [
+        "Hold theta1 and fixed d2max constant in the partial derivative.",
+        "Differentiate m2 g d2 sin(theta1).",
+        "The derivative of m2 g d2max is zero."
+      ],
+      "formulas": [
+        {
+          "expression": "A(d2)=m1 l1²+Izz1+Izz2+m2 d2²; K=1/2 A(d2) thetadot1²+1/2 m2 d2dot²; U=g(m1 l1+m2 d2)sin(theta1)+m1 l1 g+m2 g d2max",
+          "variables": {
+            "A": "rotational kinetic coefficient about joint1",
+            "K": "total kinetic energy",
+            "U": "total potential energy",
+            "m1,m2": "link masses",
+            "l1": "joint1-axis to link1-COM distance",
+            "d2": "joint1-axis to link2-COM distance",
+            "Izz1,Izz2": "link COM inertias about parallel out-of-plane axes",
+            "theta1": "upward-positive revolute angle",
+            "thetadot1": "angular rate",
+            "d2dot": "radial COM rate",
+            "d2max": "fixed maximum radial extension",
+            "g": "gravity magnitude"
+          },
+          "units": {
+            "A,Izz1,Izz2": "kg·m²",
+            "K,U": "J",
+            "m1,m2": "kg",
+            "l1,d2,d2max": "m",
+            "theta1": "rad",
+            "thetadot1": "rad/s",
+            "d2dot": "m/s",
+            "g": "m/s²"
+          },
+          "assumptions": [
+            "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+          ]
+        }
+      ],
+      "simpleExplanation": "The maximum-extension parameter sets the zero reference and is not a moving generalized coordinate.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This incorrectly differentiates d2max as though it were d2.",
+        "The first term depends on the instantaneous radius d2.",
+        "That differentiates the angle dependence instead of the radius."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L14-Q036",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L14-author",
+    "stem": "For q=(theta1,d2), which pair gives partial K/partial q and partial U/partial q?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "application",
+    "week": 3,
+    "lectureId": "L14",
+    "topic": "Lagrangian manipulator dynamics",
+    "subtopic": "Three derivative vectors in coordinate order",
+    "tags": [
+      "rp-derivative-vectors",
+      "lagrangian-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L14-C-rp-derivative-vectors"
+    ],
+    "assumptions": [
+      "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+    ],
+    "options": [
+      {
+        "id": "o4",
+        "text": "(0,m2 d2 thetadot1²)ᵀ and (−g(m1 l1+m2 d2)cos(theta1),m2 g cos(theta1))ᵀ"
+      },
+      {
+        "id": "o3",
+        "text": "(0,2m2 d2 thetadot1²)ᵀ and the same stated U vector"
+      },
+      {
+        "id": "o1",
+        "text": "(0,m2 d2 thetadot1²)ᵀ and (g(m1 l1+m2 d2)cos(theta1),m2 g sin(theta1))ᵀ"
+      },
+      {
+        "id": "o2",
+        "text": "(m2 d2 thetadot1²,0)ᵀ and the same stated U vector"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0444",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 444,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 444, printed slide 17: Three derivative vectors in coordinate order",
+        "evidenceText": "•  The potential energy of link 2\n     𝑢2 = 𝑚2𝑑2𝑔sin 𝜃1 + 𝑚2𝑑2𝑚𝑎𝑥𝑔\n    Where 𝑑2𝑚𝑎𝑥 is the maximum extension of joint 2\n•  The total potential energy is\n  𝑢𝜃= 𝑔𝑚1𝑙1 + 𝑚2𝑑2 sin 𝜃1 + 𝑚1𝑙1𝑔+ 𝑚2𝑔𝑑2𝑚𝑎𝑥\n•  Take partial derivatives                                                        1                          1\n                                            𝑘𝜃, ሶ𝜃=   𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22 ሶ𝜃12 + 𝑚2 ሶ𝑑22\n        𝜕𝑘    𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22 ሶ𝜃1              2                          2\n   ➢  𝜕ሶ𝜃=                  𝑚2 ሶ𝑑2\n        𝜕𝑘      0\n   ➢ 𝜕𝜃=           𝑚2𝑑2 ሶ𝜃12\n        𝜕𝑢   𝑔𝑚1𝑙1 + 𝑚2𝑑2 cos 𝜃1\n   ➢ 𝜕𝜃=              𝑔𝑚2 sin 𝜃1\n\n\n\n                                                                                                          17",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Differentiate with respect to the coordinates while holding generalized velocities independent.",
+      "optionExplanations": {
+        "o1": "K has only d2 coordinate dependence; U differentiates in both coordinates.",
+        "o2": "This swaps the coordinate order in K_q.",
+        "o3": "The one-half in K cancels the derivative factor two.",
+        "o4": "Both gravity derivatives are incorrect for the stated U."
+      },
+      "steps": [
+        "K_theta1=0.",
+        "K_d2=0.5×2m2 d2 thetadot1²=m2 d2 thetadot1².",
+        "U_theta1=g(m1 l1+m2 d2)cos(theta1).",
+        "U_d2=m2 g sin(theta1)."
+      ],
+      "formulas": [
+        {
+          "expression": "A(d2)=m1 l1²+Izz1+Izz2+m2 d2²; K=1/2 A(d2) thetadot1²+1/2 m2 d2dot²; U=g(m1 l1+m2 d2)sin(theta1)+m1 l1 g+m2 g d2max",
+          "variables": {
+            "A": "rotational kinetic coefficient about joint1",
+            "K": "total kinetic energy",
+            "U": "total potential energy",
+            "m1,m2": "link masses",
+            "l1": "joint1-axis to link1-COM distance",
+            "d2": "joint1-axis to link2-COM distance",
+            "Izz1,Izz2": "link COM inertias about parallel out-of-plane axes",
+            "theta1": "upward-positive revolute angle",
+            "thetadot1": "angular rate",
+            "d2dot": "radial COM rate",
+            "d2max": "fixed maximum radial extension",
+            "g": "gravity magnitude"
+          },
+          "units": {
+            "A,Izz1,Izz2": "kg·m²",
+            "K,U": "J",
+            "m1,m2": "kg",
+            "l1,d2,d2max": "m",
+            "theta1": "rad",
+            "thetadot1": "rad/s",
+            "d2dot": "m/s",
+            "g": "m/s²"
+          },
+          "assumptions": [
+            "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+          ]
+        }
+      ],
+      "simpleExplanation": "Differentiate with respect to the coordinates while holding generalized velocities independent.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This swaps the coordinate order in K_q.",
+        "The one-half in K cancels the derivative factor two.",
+        "Both gravity derivatives are incorrect for the stated U."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": [
+        "W03-L14-C-rp-kinetic-coefficient",
+        "W03-L14-C-rp-reference"
+      ]
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L14-Q037",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L14-author",
+    "stem": "Which vector is partial K/partial qdot for qdot=(thetadot1,d2dot)?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "application",
+    "week": 3,
+    "lectureId": "L14",
+    "topic": "Lagrangian manipulator dynamics",
+    "subtopic": "Velocity derivatives of the RP kinetic energy",
+    "tags": [
+      "rp-generalized-momenta",
+      "lagrangian-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L14-C-rp-generalized-momenta"
+    ],
+    "assumptions": [
+      "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+    ],
+    "options": [
+      {
+        "id": "o2",
+        "text": "(A thetadot1,m2 d2dot)ᵀ"
+      },
+      {
+        "id": "o1",
+        "text": "(A/2 thetadot1,m2/2 d2dot)ᵀ"
+      },
+      {
+        "id": "o3",
+        "text": "(A thetaddot1,m2 d2ddot)ᵀ"
+      },
+      {
+        "id": "o4",
+        "text": "(A thetadot1²,m2 d2dot²)ᵀ"
+      }
+    ],
+    "correctOptionIds": [
+      "o2"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0444",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 444,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 444, printed slide 17: Velocity derivatives of the RP kinetic energy",
+        "evidenceText": "•  The potential energy of link 2\n     𝑢2 = 𝑚2𝑑2𝑔sin 𝜃1 + 𝑚2𝑑2𝑚𝑎𝑥𝑔\n    Where 𝑑2𝑚𝑎𝑥 is the maximum extension of joint 2\n•  The total potential energy is\n  𝑢𝜃= 𝑔𝑚1𝑙1 + 𝑚2𝑑2 sin 𝜃1 + 𝑚1𝑙1𝑔+ 𝑚2𝑔𝑑2𝑚𝑎𝑥\n•  Take partial derivatives                                                        1                          1\n                                            𝑘𝜃, ሶ𝜃=   𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22 ሶ𝜃12 + 𝑚2 ሶ𝑑22\n        𝜕𝑘    𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22 ሶ𝜃1              2                          2\n   ➢  𝜕ሶ𝜃=                  𝑚2 ሶ𝑑2\n        𝜕𝑘      0\n   ➢ 𝜕𝜃=           𝑚2𝑑2 ሶ𝜃12\n        𝜕𝑢   𝑔𝑚1𝑙1 + 𝑚2𝑑2 cos 𝜃1\n   ➢ 𝜕𝜃=              𝑔𝑚2 sin 𝜃1\n\n\n\n                                                                                                          17",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The velocity derivative gives generalized momentum; its subsequent time derivative produces inertial effort.",
+      "optionExplanations": {
+        "o2": "Differentiate each quadratic velocity term.",
+        "o3": "Those are parts of its later time derivative, not the velocity derivative itself.",
+        "o4": "Differentiating a quadratic lowers the power by one.",
+        "o1": "The derivative factor two cancels the one-half."
+      },
+      "steps": [
+        "partial(0.5 A thetadot1²)/partial thetadot1=A thetadot1.",
+        "partial(0.5 m2 d2dot²)/partial d2dot=m2 d2dot."
+      ],
+      "formulas": [
+        {
+          "expression": "A(d2)=m1 l1²+Izz1+Izz2+m2 d2²; K=1/2 A(d2) thetadot1²+1/2 m2 d2dot²; U=g(m1 l1+m2 d2)sin(theta1)+m1 l1 g+m2 g d2max",
+          "variables": {
+            "A": "rotational kinetic coefficient about joint1",
+            "K": "total kinetic energy",
+            "U": "total potential energy",
+            "m1,m2": "link masses",
+            "l1": "joint1-axis to link1-COM distance",
+            "d2": "joint1-axis to link2-COM distance",
+            "Izz1,Izz2": "link COM inertias about parallel out-of-plane axes",
+            "theta1": "upward-positive revolute angle",
+            "thetadot1": "angular rate",
+            "d2dot": "radial COM rate",
+            "d2max": "fixed maximum radial extension",
+            "g": "gravity magnitude"
+          },
+          "units": {
+            "A,Izz1,Izz2": "kg·m²",
+            "K,U": "J",
+            "m1,m2": "kg",
+            "l1,d2,d2max": "m",
+            "theta1": "rad",
+            "thetadot1": "rad/s",
+            "d2dot": "m/s",
+            "g": "m/s²"
+          },
+          "assumptions": [
+            "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+          ]
+        }
+      ],
+      "simpleExplanation": "The velocity derivative gives generalized momentum; its subsequent time derivative produces inertial effort.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Those are parts of its later time derivative, not the velocity derivative itself.",
+        "Differentiating a quadratic lowers the power by one.",
+        "The derivative factor two cancels the one-half."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L14-Q040",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L14-author",
+    "stem": "The lower standalone M display has an unclear underscore-like symbol before m2 d2². Which M11 follows consistently from K and the clear upper torque equation?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "application",
+    "week": 3,
+    "lectureId": "L14",
+    "topic": "Lagrangian manipulator dynamics",
+    "subtopic": "Reconciling the unclear lower mass-matrix print",
+    "tags": [
+      "rp-mass-typo",
+      "lagrangian-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L14-C-rp-mass-typo"
+    ],
+    "assumptions": [
+      "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+    ],
+    "options": [
+      {
+        "id": "o2",
+        "text": "m1 l1²+Izz1+Izz2−m2 d2²"
+      },
+      {
+        "id": "o1",
+        "text": "m1 l1²+Izz1+Izz2+m2 d2²"
+      },
+      {
+        "id": "o4",
+        "text": "m2 d2² only"
+      },
+      {
+        "id": "o3",
+        "text": "m1 l1²+Izz1+Izz2"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0443",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 443,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 443, printed slide 16: Reconciling the unclear lower mass-matrix print",
+        "evidenceText": "•  The kinetic energy of link 1\n\n          1           1               2  2         2    𝑘1 =  𝑚1𝑙1 ሶ𝜃1           +  𝐼𝑧𝑧1 ሶ𝜃1          2           2\n•  The kinetic energy of link 2\n\n          1                   1                 2  2    2           2            +    𝑘2 = 𝑚2 𝑑2 ሶ𝜃1                              ሶ𝑑2                +  𝐼𝑧𝑧2 ሶ𝜃1          2                   2\n•  So, the total kinetic energy is\n           1                          1                     2                    2   2         2   𝑘𝜃, ሶ𝜃=               𝑚1𝑙1 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑2  ሶ𝜃1                           +  𝑚2 ሶ𝑑2\n           2                          2\n•  The potential energy of link 1\n    𝑢1 = 𝑚1𝑙1𝑔sin 𝜃1 + 𝑚1𝑙1𝑔\n\n\n                                                                                                          16",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0446",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 446,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 446, printed slide 19: Reconciling the unclear lower mass-matrix print",
+        "evidenceText": "Final values of torque/force\n➢𝜏1 =  𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22  ሷ𝜃1 + 2𝑚2𝑑2 ሶ𝜃1 ሶ𝑑2 + 𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1\n➢𝜏2 = 𝑚2 ሷ𝑑2 −𝑚2𝑑2 ሶ𝜃12 + 𝑚2𝑔sin 𝜃1\n    𝜏1     𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22   0    ሷ𝜃1    2𝑚2𝑑2 ሶ𝜃1 ሶ𝑑2➢    =                       +        +\n    𝜏2              0           𝑚2   ሷ𝑑2    −𝑚2𝑑2 ሶ𝜃12\n     𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1\n        𝑚2𝑔sin 𝜃1\n➢𝜏= 𝑀Θ ሷΘ + 𝑉Θ, ሶΘ + 𝐺(Θ)\n                   2                   2       Mass matrix of the\n             𝑚1𝑙1 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2_𝑚2𝑑2   0➢𝑀𝑥𝜃=                                       manipulator                    0          𝑚2\n           2𝑚2𝑑2 ሶ𝜃1 ሶ𝑑2   Vector of centrifugal➢𝑉𝑥𝜃, ሶ𝜃=           2           −𝑚2𝑑2 ሶ𝜃1    and Coriolis terms\n            𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1\n➢𝐺𝑥𝜃=                                   Vector of gravity terms               𝑚2𝑔sin 𝜃1\n\n\n                                                                                                     19",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Use mutually consistent source premises and retain the printing issue rather than treating the unclear symbol as a new physical model.",
+      "optionExplanations": {
+        "o1": "It is the positive coefficient of thetadot1² in 2K.",
+        "o2": "That contradicts the positive second-COM kinetic contribution and the upper equation.",
+        "o3": "This discards the configuration-dependent second-COM translation.",
+        "o4": "This discards the first link and both COM spin energies."
+      },
+      "steps": [
+        "Read K=0.5 A thetadot1²+0.5m2 d2dot² on page443.",
+        "Differentiate twice with respect to thetadot1 to obtain M11=A.",
+        "Check the same plus sign in the upper scalar torque equation on page446."
+      ],
+      "formulas": [
+        {
+          "expression": "A(d2)=m1 l1²+Izz1+Izz2+m2 d2²; K=1/2 A(d2) thetadot1²+1/2 m2 d2dot²; U=g(m1 l1+m2 d2)sin(theta1)+m1 l1 g+m2 g d2max",
+          "variables": {
+            "A": "rotational kinetic coefficient about joint1",
+            "K": "total kinetic energy",
+            "U": "total potential energy",
+            "m1,m2": "link masses",
+            "l1": "joint1-axis to link1-COM distance",
+            "d2": "joint1-axis to link2-COM distance",
+            "Izz1,Izz2": "link COM inertias about parallel out-of-plane axes",
+            "theta1": "upward-positive revolute angle",
+            "thetadot1": "angular rate",
+            "d2dot": "radial COM rate",
+            "d2max": "fixed maximum radial extension",
+            "g": "gravity magnitude"
+          },
+          "units": {
+            "A,Izz1,Izz2": "kg·m²",
+            "K,U": "J",
+            "m1,m2": "kg",
+            "l1,d2,d2max": "m",
+            "theta1": "rad",
+            "thetadot1": "rad/s",
+            "d2dot": "m/s",
+            "g": "m/s²"
+          },
+          "assumptions": [
+            "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+          ]
+        },
+        {
+          "expression": "Q=M(q) qddot+V(q,qdot)+G(q); M=diag(A,m2); V=[2m2 d2 thetadot1 d2dot,−m2 d2 thetadot1²]ᵀ; G=[g(m1 l1+m2 d2)cos(theta1),m2 g sin(theta1)]ᵀ",
+          "variables": {
+            "Q": "[tau1,F2]ᵀ applied mixed generalized efforts",
+            "q": "[theta1,d2]ᵀ",
+            "qdot,qddot": "coordinate rates and accelerations",
+            "M": "mixed-coordinate mass matrix",
+            "A": "m1 l1²+Izz1+Izz2+m2 d2²",
+            "V": "velocity-product effort vector, not potential energy",
+            "G": "gravity-gradient effort vector",
+            "m1,m2": "link masses",
+            "l1,d2": "COM radii",
+            "theta1": "revolute angle",
+            "thetadot1": "angular rate",
+            "d2dot": "radial speed",
+            "g": "gravity magnitude"
+          },
+          "units": {
+            "Q,V,G component1": "N·m",
+            "Q,V,G component2": "N",
+            "M11,A": "kg·m²",
+            "M22,m1,m2": "kg",
+            "l1,d2": "m",
+            "theta1": "rad",
+            "thetadot1": "rad/s",
+            "d2dot": "m/s",
+            "g": "m/s²"
+          },
+          "assumptions": [
+            "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+          ]
+        }
+      ],
+      "simpleExplanation": "Use mutually consistent source premises and retain the printing issue rather than treating the unclear symbol as a new physical model.",
+      "memoryAid": null,
+      "misconceptions": [
+        "That contradicts the positive second-COM kinetic contribution and the upper equation.",
+        "This discards the configuration-dependent second-COM translation.",
+        "This discards the first link and both COM spin energies."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L14-Q047",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L14-author",
+    "stem": "Set g=0 and tau1=0, but permit the prismatic actuator to change d2. Which quantity is conserved by the first equation?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "application",
+    "week": 3,
+    "lectureId": "L14",
+    "topic": "Lagrangian manipulator dynamics",
+    "subtopic": "Angular momentum with zero gravity and input torque",
+    "tags": [
+      "rp-cyclic-momentum",
+      "lagrangian-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L14-C-rp-cyclic-momentum"
+    ],
+    "assumptions": [
+      "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t).",
+      "g=0 and no applied revolute torque; the prismatic actuator may do work."
+    ],
+    "options": [
+      {
+        "id": "o3",
+        "text": "d2 thetadot1"
+      },
+      {
+        "id": "o2",
+        "text": "A(d2) thetadot1²"
+      },
+      {
+        "id": "o4",
+        "text": "A(d2) thetadot1"
+      },
+      {
+        "id": "o1",
+        "text": "thetadot1 itself for every changing d2"
+      }
+    ],
+    "correctOptionIds": [
+      "o4"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0443",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 443,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 443, printed slide 16: Angular momentum with zero gravity and input torque",
+        "evidenceText": "•  The kinetic energy of link 1\n\n          1           1               2  2         2    𝑘1 =  𝑚1𝑙1 ሶ𝜃1           +  𝐼𝑧𝑧1 ሶ𝜃1          2           2\n•  The kinetic energy of link 2\n\n          1                   1                 2  2    2           2            +    𝑘2 = 𝑚2 𝑑2 ሶ𝜃1                              ሶ𝑑2                +  𝐼𝑧𝑧2 ሶ𝜃1          2                   2\n•  So, the total kinetic energy is\n           1                          1                     2                    2   2         2   𝑘𝜃, ሶ𝜃=               𝑚1𝑙1 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑2  ሶ𝜃1                           +  𝑚2 ሶ𝑑2\n           2                          2\n•  The potential energy of link 1\n    𝑢1 = 𝑚1𝑙1𝑔sin 𝜃1 + 𝑚1𝑙1𝑔\n\n\n                                                                                                          16",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0445",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 445,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 445, printed slide 18: Angular momentum with zero gravity and input torque",
+        "evidenceText": "Substituting values in\n\n        d  𝜕k    𝜕k   𝜕u\n  ➢                    𝜏         d𝑡 𝜕ሶ𝜃− 𝜕𝜃+ 𝜕𝜃=\n        d  𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22 ሶ𝜃1      0  ➢                     −        2 +         d𝑡                           𝑚2𝑑2 ሶ𝜃1                𝑚2 ሶ𝑑2\n        𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1      𝜏1\n                    =\n           𝑚2𝑔sin 𝜃1            𝜏2\n\n        𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22 ሷ𝜃1 + 2𝑚2𝑑2 ሶ𝜃1 ሶ𝑑2  ➢                            −\n                   𝑚2 ሷ𝑑2\n         0        𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1      𝜏1\n                2 +                =       𝑚2𝑑2 ሶ𝜃1        𝑚2𝑔sin 𝜃1            𝜏2\n\n\n\n\n                                                                                                          18",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0446",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 446,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 446, printed slide 19: Angular momentum with zero gravity and input torque",
+        "evidenceText": "Final values of torque/force\n➢𝜏1 =  𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22  ሷ𝜃1 + 2𝑚2𝑑2 ሶ𝜃1 ሶ𝑑2 + 𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1\n➢𝜏2 = 𝑚2 ሷ𝑑2 −𝑚2𝑑2 ሶ𝜃12 + 𝑚2𝑔sin 𝜃1\n    𝜏1     𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22   0    ሷ𝜃1    2𝑚2𝑑2 ሶ𝜃1 ሶ𝑑2➢    =                       +        +\n    𝜏2              0           𝑚2   ሷ𝑑2    −𝑚2𝑑2 ሶ𝜃12\n     𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1\n        𝑚2𝑔sin 𝜃1\n➢𝜏= 𝑀Θ ሷΘ + 𝑉Θ, ሶΘ + 𝐺(Θ)\n                   2                   2       Mass matrix of the\n             𝑚1𝑙1 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2_𝑚2𝑑2   0➢𝑀𝑥𝜃=                                       manipulator                    0          𝑚2\n           2𝑚2𝑑2 ሶ𝜃1 ሶ𝑑2   Vector of centrifugal➢𝑉𝑥𝜃, ሶ𝜃=           2           −𝑚2𝑑2 ሶ𝜃1    and Coriolis terms\n            𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1\n➢𝐺𝑥𝜃=                                   Vector of gravity terms               𝑚2𝑔sin 𝜃1\n\n\n                                                                                                     19",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "No applied torque about theta1 conserves its generalized momentum, even while a radial actuator changes the rotational inertia.",
+      "optionExplanations": {
+        "o4": "Its total time derivative is exactly the first unforced equation.",
+        "o1": "A changes with extension, so the rate generally changes.",
+        "o2": "That resembles twice the rotational kinetic energy, not generalized momentum.",
+        "o3": "That omits the squared radius and the constant inertia contributions."
+      },
+      "steps": [
+        "With g=tau1=0, A thetaddot1+2m2 d2 d2dot thetadot1=0.",
+        "Recognize dA/dt=2m2 d2 d2dot.",
+        "Thus d(A thetadot1)/dt=0."
+      ],
+      "formulas": [
+        {
+          "expression": "A(d2)=m1 l1²+Izz1+Izz2+m2 d2²; K=1/2 A(d2) thetadot1²+1/2 m2 d2dot²; U=g(m1 l1+m2 d2)sin(theta1)+m1 l1 g+m2 g d2max",
+          "variables": {
+            "A": "rotational kinetic coefficient about joint1",
+            "K": "total kinetic energy",
+            "U": "total potential energy",
+            "m1,m2": "link masses",
+            "l1": "joint1-axis to link1-COM distance",
+            "d2": "joint1-axis to link2-COM distance",
+            "Izz1,Izz2": "link COM inertias about parallel out-of-plane axes",
+            "theta1": "upward-positive revolute angle",
+            "thetadot1": "angular rate",
+            "d2dot": "radial COM rate",
+            "d2max": "fixed maximum radial extension",
+            "g": "gravity magnitude"
+          },
+          "units": {
+            "A,Izz1,Izz2": "kg·m²",
+            "K,U": "J",
+            "m1,m2": "kg",
+            "l1,d2,d2max": "m",
+            "theta1": "rad",
+            "thetadot1": "rad/s",
+            "d2dot": "m/s",
+            "g": "m/s²"
+          },
+          "assumptions": [
+            "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+          ]
+        },
+        {
+          "expression": "tau1=A(d2) thetaddot1+2m2 d2 thetadot1 d2dot+g(m1 l1+m2 d2)cos(theta1); F2=m2 d2ddot−m2 d2 thetadot1²+m2 g sin(theta1)",
+          "variables": {
+            "tau1": "applied revolute actuator torque",
+            "F2": "applied outward prismatic force (source symbol tau2)",
+            "A": "m1 l1²+Izz1+Izz2+m2 d2²",
+            "m1,m2": "link masses",
+            "l1": "first COM radius",
+            "d2": "second COM radius",
+            "theta1": "upward-positive revolute angle",
+            "thetadot1,thetaddot1": "angular rate and acceleration",
+            "d2dot,d2ddot": "radial speed and acceleration",
+            "g": "gravity magnitude"
+          },
+          "units": {
+            "tau1": "N·m",
+            "F2": "N",
+            "A": "kg·m²",
+            "m1,m2": "kg",
+            "l1,d2": "m",
+            "theta1": "rad",
+            "thetadot1": "rad/s",
+            "thetaddot1": "rad/s²",
+            "d2dot": "m/s",
+            "d2ddot": "m/s²",
+            "g": "m/s²"
+          },
+          "assumptions": [
+            "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+          ]
+        }
+      ],
+      "simpleExplanation": "No applied torque about theta1 conserves its generalized momentum, even while a radial actuator changes the rotational inertia.",
+      "memoryAid": null,
+      "misconceptions": [
+        "A changes with extension, so the rate generally changes.",
+        "That resembles twice the rotational kinetic energy, not generalized momentum.",
+        "That omits the squared radius and the constant inertia contributions."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": [
+        "W03-L14-C-rp-product-rule"
+      ]
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L14-Q048",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L14-author",
+    "stem": "Let m1=1 kg, l1=1 m, Izz1=Izz2=0.5 kg·m² and m2=2 kg. With g=tau1=0, a radial actuator changes d2 from 0.5 m to 1 m. If the initial angular rate is 4 rad/s, what is the final angular rate?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "hard",
+    "cognitiveSkill": "numerical",
+    "week": 3,
+    "lectureId": "L14",
+    "topic": "Lagrangian manipulator dynamics",
+    "subtopic": "Angular momentum with zero gravity and input torque",
+    "tags": [
+      "rp-cyclic-momentum",
+      "lagrangian-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L14-C-rp-cyclic-momentum"
+    ],
+    "assumptions": [
+      "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t).",
+      "g=0 and no revolute actuator torque throughout; radial actuator work is allowed."
+    ],
+    "options": [
+      {
+        "id": "o2",
+        "text": "4 rad/s"
+      },
+      {
+        "id": "o3",
+        "text": "6.4 rad/s"
+      },
+      {
+        "id": "o4",
+        "text": "1 rad/s"
+      },
+      {
+        "id": "o1",
+        "text": "2.5 rad/s"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0443",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 443,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 443, printed slide 16: Angular momentum with zero gravity and input torque",
+        "evidenceText": "•  The kinetic energy of link 1\n\n          1           1               2  2         2    𝑘1 =  𝑚1𝑙1 ሶ𝜃1           +  𝐼𝑧𝑧1 ሶ𝜃1          2           2\n•  The kinetic energy of link 2\n\n          1                   1                 2  2    2           2            +    𝑘2 = 𝑚2 𝑑2 ሶ𝜃1                              ሶ𝑑2                +  𝐼𝑧𝑧2 ሶ𝜃1          2                   2\n•  So, the total kinetic energy is\n           1                          1                     2                    2   2         2   𝑘𝜃, ሶ𝜃=               𝑚1𝑙1 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑2  ሶ𝜃1                           +  𝑚2 ሶ𝑑2\n           2                          2\n•  The potential energy of link 1\n    𝑢1 = 𝑚1𝑙1𝑔sin 𝜃1 + 𝑚1𝑙1𝑔\n\n\n                                                                                                          16",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0445",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 445,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 445, printed slide 18: Angular momentum with zero gravity and input torque",
+        "evidenceText": "Substituting values in\n\n        d  𝜕k    𝜕k   𝜕u\n  ➢                    𝜏         d𝑡 𝜕ሶ𝜃− 𝜕𝜃+ 𝜕𝜃=\n        d  𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22 ሶ𝜃1      0  ➢                     −        2 +         d𝑡                           𝑚2𝑑2 ሶ𝜃1                𝑚2 ሶ𝑑2\n        𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1      𝜏1\n                    =\n           𝑚2𝑔sin 𝜃1            𝜏2\n\n        𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22 ሷ𝜃1 + 2𝑚2𝑑2 ሶ𝜃1 ሶ𝑑2  ➢                            −\n                   𝑚2 ሷ𝑑2\n         0        𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1      𝜏1\n                2 +                =       𝑚2𝑑2 ሶ𝜃1        𝑚2𝑔sin 𝜃1            𝜏2\n\n\n\n\n                                                                                                          18",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0446",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 446,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 446, printed slide 19: Angular momentum with zero gravity and input torque",
+        "evidenceText": "Final values of torque/force\n➢𝜏1 =  𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22  ሷ𝜃1 + 2𝑚2𝑑2 ሶ𝜃1 ሶ𝑑2 + 𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1\n➢𝜏2 = 𝑚2 ሷ𝑑2 −𝑚2𝑑2 ሶ𝜃12 + 𝑚2𝑔sin 𝜃1\n    𝜏1     𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22   0    ሷ𝜃1    2𝑚2𝑑2 ሶ𝜃1 ሶ𝑑2➢    =                       +        +\n    𝜏2              0           𝑚2   ሷ𝑑2    −𝑚2𝑑2 ሶ𝜃12\n     𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1\n        𝑚2𝑔sin 𝜃1\n➢𝜏= 𝑀Θ ሷΘ + 𝑉Θ, ሶΘ + 𝐺(Θ)\n                   2                   2       Mass matrix of the\n             𝑚1𝑙1 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2_𝑚2𝑑2   0➢𝑀𝑥𝜃=                                       manipulator                    0          𝑚2\n           2𝑚2𝑑2 ሶ𝜃1 ሶ𝑑2   Vector of centrifugal➢𝑉𝑥𝜃, ሶ𝜃=           2           −𝑚2𝑑2 ሶ𝜃1    and Coriolis terms\n            𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1\n➢𝐺𝑥𝜃=                                   Vector of gravity terms               𝑚2𝑔sin 𝜃1\n\n\n                                                                                                     19",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The radial actuator may change total energy, but in this zero-gravity, zero-revolute-torque model it does not change the theta1 generalized momentum.",
+      "optionExplanations": {
+        "o1": "A changes from 2.5 to 4, so conserved A thetadot1=10 gives 10/4.",
+        "o2": "This assumes a constant angular rate despite changing inertia.",
+        "o3": "This multiplies the rate by A_final/A_initial rather than its reciprocal.",
+        "o4": "This applies only a squared-radius scaling and omits the constant inertia 2 kg·m²."
+      },
+      "steps": [
+        "The constant inertia contribution is 1×1²+0.5+0.5=2 kg·m².",
+        "A_initial=2+2×0.5²=2.5 kg·m² and A_final=2+2×1²=4 kg·m².",
+        "Conserve A thetadot1: p=2.5×4=10 kg·m²/s.",
+        "Final angular rate=10/4=2.5 rad/s."
+      ],
+      "formulas": [
+        {
+          "expression": "A(d2)=m1 l1²+Izz1+Izz2+m2 d2²; K=1/2 A(d2) thetadot1²+1/2 m2 d2dot²; U=g(m1 l1+m2 d2)sin(theta1)+m1 l1 g+m2 g d2max",
+          "variables": {
+            "A": "rotational kinetic coefficient about joint1",
+            "K": "total kinetic energy",
+            "U": "total potential energy",
+            "m1,m2": "link masses",
+            "l1": "joint1-axis to link1-COM distance",
+            "d2": "joint1-axis to link2-COM distance",
+            "Izz1,Izz2": "link COM inertias about parallel out-of-plane axes",
+            "theta1": "upward-positive revolute angle",
+            "thetadot1": "angular rate",
+            "d2dot": "radial COM rate",
+            "d2max": "fixed maximum radial extension",
+            "g": "gravity magnitude"
+          },
+          "units": {
+            "A,Izz1,Izz2": "kg·m²",
+            "K,U": "J",
+            "m1,m2": "kg",
+            "l1,d2,d2max": "m",
+            "theta1": "rad",
+            "thetadot1": "rad/s",
+            "d2dot": "m/s",
+            "g": "m/s²"
+          },
+          "assumptions": [
+            "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+          ]
+        },
+        {
+          "expression": "tau1=A(d2) thetaddot1+2m2 d2 thetadot1 d2dot+g(m1 l1+m2 d2)cos(theta1); F2=m2 d2ddot−m2 d2 thetadot1²+m2 g sin(theta1)",
+          "variables": {
+            "tau1": "applied revolute actuator torque",
+            "F2": "applied outward prismatic force (source symbol tau2)",
+            "A": "m1 l1²+Izz1+Izz2+m2 d2²",
+            "m1,m2": "link masses",
+            "l1": "first COM radius",
+            "d2": "second COM radius",
+            "theta1": "upward-positive revolute angle",
+            "thetadot1,thetaddot1": "angular rate and acceleration",
+            "d2dot,d2ddot": "radial speed and acceleration",
+            "g": "gravity magnitude"
+          },
+          "units": {
+            "tau1": "N·m",
+            "F2": "N",
+            "A": "kg·m²",
+            "m1,m2": "kg",
+            "l1,d2": "m",
+            "theta1": "rad",
+            "thetadot1": "rad/s",
+            "thetaddot1": "rad/s²",
+            "d2dot": "m/s",
+            "d2ddot": "m/s²",
+            "g": "m/s²"
+          },
+          "assumptions": [
+            "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+          ]
+        }
+      ],
+      "simpleExplanation": "The radial actuator may change total energy, but in this zero-gravity, zero-revolute-torque model it does not change the theta1 generalized momentum.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This assumes a constant angular rate despite changing inertia.",
+        "This multiplies the rate by A_final/A_initial rather than its reciprocal.",
+        "This applies only a squared-radius scaling and omits the constant inertia 2 kg·m²."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": [
+        "W03-L14-C-rp-product-rule"
+      ]
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L14-Q049",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L14-author",
+    "stem": "For qdot=(w,v)=(thetadot1,d2dot), the source gives V=(2m2 d2 wv,−m2 d2 w²). Which identity is consistent with K=1/2 qdotᵀM qdot?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "hard",
+    "cognitiveSkill": "synthesis",
+    "week": 3,
+    "lectureId": "L14",
+    "topic": "Lagrangian manipulator dynamics",
+    "subtopic": "A consistency check on velocity-product efforts",
+    "tags": [
+      "rp-energy-identity",
+      "lagrangian-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L14-C-rp-energy-identity"
+    ],
+    "assumptions": [
+      "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+    ],
+    "options": [
+      {
+        "id": "o1",
+        "text": "qdotᵀV=−m2 d2 w²v"
+      },
+      {
+        "id": "o2",
+        "text": "qdotᵀV=m2 d2 w²v=1/2 qdotᵀMdot qdot"
+      },
+      {
+        "id": "o4",
+        "text": "qdotᵀV=2m2 d2 w²v"
+      },
+      {
+        "id": "o3",
+        "text": "qdotᵀV=0 for all w,v because inertial forces never contribute this term"
+      }
+    ],
+    "correctOptionIds": [
+      "o2"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0443",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 443,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 443, printed slide 16: A consistency check on velocity-product efforts",
+        "evidenceText": "•  The kinetic energy of link 1\n\n          1           1               2  2         2    𝑘1 =  𝑚1𝑙1 ሶ𝜃1           +  𝐼𝑧𝑧1 ሶ𝜃1          2           2\n•  The kinetic energy of link 2\n\n          1                   1                 2  2    2           2            +    𝑘2 = 𝑚2 𝑑2 ሶ𝜃1                              ሶ𝑑2                +  𝐼𝑧𝑧2 ሶ𝜃1          2                   2\n•  So, the total kinetic energy is\n           1                          1                     2                    2   2         2   𝑘𝜃, ሶ𝜃=               𝑚1𝑙1 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑2  ሶ𝜃1                           +  𝑚2 ሶ𝑑2\n           2                          2\n•  The potential energy of link 1\n    𝑢1 = 𝑚1𝑙1𝑔sin 𝜃1 + 𝑚1𝑙1𝑔\n\n\n                                                                                                          16",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0446",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 446,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 446, printed slide 19: A consistency check on velocity-product efforts",
+        "evidenceText": "Final values of torque/force\n➢𝜏1 =  𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22  ሷ𝜃1 + 2𝑚2𝑑2 ሶ𝜃1 ሶ𝑑2 + 𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1\n➢𝜏2 = 𝑚2 ሷ𝑑2 −𝑚2𝑑2 ሶ𝜃12 + 𝑚2𝑔sin 𝜃1\n    𝜏1     𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22   0    ሷ𝜃1    2𝑚2𝑑2 ሶ𝜃1 ሶ𝑑2➢    =                       +        +\n    𝜏2              0           𝑚2   ሷ𝑑2    −𝑚2𝑑2 ሶ𝜃12\n     𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1\n        𝑚2𝑔sin 𝜃1\n➢𝜏= 𝑀Θ ሷΘ + 𝑉Θ, ሶΘ + 𝐺(Θ)\n                   2                   2       Mass matrix of the\n             𝑚1𝑙1 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2_𝑚2𝑑2   0➢𝑀𝑥𝜃=                                       manipulator                    0          𝑚2\n           2𝑚2𝑑2 ሶ𝜃1 ሶ𝑑2   Vector of centrifugal➢𝑉𝑥𝜃, ሶ𝜃=           2           −𝑚2𝑑2 ሶ𝜃1    and Coriolis terms\n            𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1\n➢𝐺𝑥𝜃=                                   Vector of gravity terms               𝑚2𝑔sin 𝜃1\n\n\n                                                                                                     19",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The velocity-product vector supplies exactly the kinetic-energy change caused by the changing mass matrix. This is a check on both the factor two and the radial minus sign.",
+      "optionExplanations": {
+        "o2": "The two mixed-effort power terms partly cancel, leaving the configuration-rate energy term.",
+        "o3": "M varies with d2, so the kinetic-energy derivative contains Mdot.",
+        "o4": "This omits the negative radial-effort contribution.",
+        "o1": "This omits the positive revolute-effort contribution."
+      },
+      "steps": [
+        "qdotᵀV=w(2m2 d2 wv)+v(−m2 d2 w²)=m2 d2 w²v.",
+        "Only M11 changes: Mdot11=2m2 d2 v.",
+        "1/2 qdotᵀMdot qdot=1/2 w²(2m2 d2 v)=m2 d2 w²v."
+      ],
+      "formulas": [
+        {
+          "expression": "Q=M(q) qddot+V(q,qdot)+G(q); M=diag(A,m2); V=[2m2 d2 thetadot1 d2dot,−m2 d2 thetadot1²]ᵀ; G=[g(m1 l1+m2 d2)cos(theta1),m2 g sin(theta1)]ᵀ",
+          "variables": {
+            "Q": "[tau1,F2]ᵀ applied mixed generalized efforts",
+            "q": "[theta1,d2]ᵀ",
+            "qdot,qddot": "coordinate rates and accelerations",
+            "M": "mixed-coordinate mass matrix",
+            "A": "m1 l1²+Izz1+Izz2+m2 d2²",
+            "V": "velocity-product effort vector, not potential energy",
+            "G": "gravity-gradient effort vector",
+            "m1,m2": "link masses",
+            "l1,d2": "COM radii",
+            "theta1": "revolute angle",
+            "thetadot1": "angular rate",
+            "d2dot": "radial speed",
+            "g": "gravity magnitude"
+          },
+          "units": {
+            "Q,V,G component1": "N·m",
+            "Q,V,G component2": "N",
+            "M11,A": "kg·m²",
+            "M22,m1,m2": "kg",
+            "l1,d2": "m",
+            "theta1": "rad",
+            "thetadot1": "rad/s",
+            "d2dot": "m/s",
+            "g": "m/s²"
+          },
+          "assumptions": [
+            "Use the lecture’s rigid planar RP model, q=(theta1,d2): theta1 measured counterclockwise from horizontal toward upward height; d2 is the base-axis-to-link2-COM distance, positive outward. Gravity is downward with magnitude g. Masses m1,m2, first COM radius l1 and COM inertias Izz1,Izz2 are constant; m1,m2,l1>0. Positive effort Q=(tau1,F2) increases theta1 and d2. No friction, applied terminal load or extra spring. d2max is a fixed maximum extension, not d2(t)."
+          ]
+        },
+        {
+          "expression": "qdotᵀV=1/2 qdotᵀMdot qdot",
+          "variables": {
+            "qdot": "[thetadot1,d2dot]ᵀ",
+            "V": "velocity-product generalized efforts",
+            "Mdot": "total time derivative of M(q)"
+          },
+          "units": {
+            "qdot components": "rad/s, m/s",
+            "V components": "N·m, N",
+            "both scalar sides": "W"
+          },
+          "assumptions": [
+            "Identity derived for the stated RP model."
+          ]
+        }
+      ],
+      "simpleExplanation": "The velocity-product vector supplies exactly the kinetic-energy change caused by the changing mass matrix. This is a check on both the factor two and the radial minus sign.",
+      "memoryAid": null,
+      "misconceptions": [
+        "M varies with d2, so the kinetic-energy derivative contains Mdot.",
+        "This omits the negative radial-effort contribution.",
+        "This omits the positive revolute-effort contribution."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": [
+        "W03-L14-C-rp-product-rule",
+        "W03-L14-C-rp-radial-effort"
+      ]
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L14-Q053",
+    "version": 1,
+    "status": "draft",
+    "authorId": "define_robotics_data_contracts:L14-author",
+    "stem": "Which workflow respects the dependencies of the energy derivation?",
+    "selectionMode": "single",
+    "type": "sequence",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L14",
+    "topic": "Lagrangian manipulator dynamics",
+    "subtopic": "A source-consistent derivation workflow",
+    "tags": [
+      "formulation-sequence",
+      "lagrangian-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L14-C-formulation-sequence"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o3",
+        "text": "Choose M by its desired diagonal appearance → infer K afterward → discard unmatched velocity terms"
+      },
+      {
+        "id": "o4",
+        "text": "Differentiate only U → declare all inertial efforts zero → recover K from gravity"
+      },
+      {
+        "id": "o1",
+        "text": "Set every generalized velocity to zero before differentiation → use the result for arbitrary motion"
+      },
+      {
+        "id": "o2",
+        "text": "Choose independent coordinates and conventions → form total K and U → compute partial and total time derivatives → collect actuator equations"
+      }
+    ],
+    "correctOptionIds": [
+      "o2"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0435",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 435,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 435, printed slide 8: A source-consistent derivation workflow",
+        "evidenceText": "Dynamic equation of a manipulator\n\n•  The kinetic energy of the 𝑖𝑡ℎ link is:\n\n          1            1\n   𝑘𝑖=                         𝑖𝜔𝑖𝑇𝐶𝑖𝐼𝑖  𝑖𝜔𝑖           𝑇𝑣𝐶𝑖+          2 𝑚𝑖𝑣𝐶𝑖                       2\n\n\n        KE due to linear\n                              KE due to angular\n          velocity of links\n                                      velocity of links\n      CM\n•  The total kinetic energy of a manipulator =\n  Sum of KE of the individual links\n          𝑛\n   𝑘= σ𝑖=1 𝑘𝑖\n\n\n\n\n                                                                                                           8",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0436",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 436,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 436, printed slide 9: A source-consistent derivation workflow",
+        "evidenceText": "•  Potential energy of 𝑖𝑡ℎ link is:\n   𝑢𝑖= −𝑚𝑖 0gT ⋅0𝑃𝐶𝑖+ 𝑢𝑟𝑒𝑓𝑖\n  ➢ 0𝑔 is a 3 × 1 gravity vector,\n\n            the vector locating the center of mass of the 𝑖𝑡ℎ link and  ➢  0𝑃𝑐𝑖is\n   ➢𝑢𝑟𝑒𝑓𝑖 is a constant chosen so that the minimum value of 𝑢𝑖 is zero.\n•  The total potential energy stored in manipulators is:\n          𝑛\n    u = σ𝑖=1 𝑢𝑖\n           is function of Θ, PE of manipulator can be•   0𝑃𝐶𝑖\n   described by a function of joint position, 𝑢(Θ)\n\n\n\n\n                                                                                                           9",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0437",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 437,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 437, printed slide 10: A source-consistent derivation workflow",
+        "evidenceText": "•  The Lagrangian of a manipulator is\n   𝐿Θ, ሶΘ = 𝑘Θ, ሶΘ −𝑢Θ   , scalar form\n•  The equations of motion for the manipulator is given by\n\n     d  𝜕L    𝜕L\n       −  = 𝜏\n     d𝑡  𝜕ሶΘ   𝜕Θ\n   Where 𝜏 is the 𝑛× 1 vector of actuator torques\n•   In case of a manipulator,\n\n     d  𝜕k    𝜕k   𝜕u\n       −  +  = 𝜏\n     d𝑡  𝜕ሶΘ   𝜕Θ  𝜕Θ\n\n\n\n\n\n                                                                                                          10",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0444",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 444,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 444, printed slide 17: A source-consistent derivation workflow",
+        "evidenceText": "•  The potential energy of link 2\n     𝑢2 = 𝑚2𝑑2𝑔sin 𝜃1 + 𝑚2𝑑2𝑚𝑎𝑥𝑔\n    Where 𝑑2𝑚𝑎𝑥 is the maximum extension of joint 2\n•  The total potential energy is\n  𝑢𝜃= 𝑔𝑚1𝑙1 + 𝑚2𝑑2 sin 𝜃1 + 𝑚1𝑙1𝑔+ 𝑚2𝑔𝑑2𝑚𝑎𝑥\n•  Take partial derivatives                                                        1                          1\n                                            𝑘𝜃, ሶ𝜃=   𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22 ሶ𝜃12 + 𝑚2 ሶ𝑑22\n        𝜕𝑘    𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22 ሶ𝜃1              2                          2\n   ➢  𝜕ሶ𝜃=                  𝑚2 ሶ𝑑2\n        𝜕𝑘      0\n   ➢ 𝜕𝜃=           𝑚2𝑑2 ሶ𝜃12\n        𝜕𝑢   𝑔𝑚1𝑙1 + 𝑚2𝑑2 cos 𝜃1\n   ➢ 𝜕𝜃=              𝑔𝑚2 sin 𝜃1\n\n\n\n                                                                                                          17",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0445",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 445,
+        "kind": "equation",
+        "locator": "Lecture 14, physical PDF page 445, printed slide 18: A source-consistent derivation workflow",
+        "evidenceText": "Substituting values in\n\n        d  𝜕k    𝜕k   𝜕u\n  ➢                    𝜏         d𝑡 𝜕ሶ𝜃− 𝜕𝜃+ 𝜕𝜃=\n        d  𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22 ሶ𝜃1      0  ➢                     −        2 +         d𝑡                           𝑚2𝑑2 ሶ𝜃1                𝑚2 ሶ𝑑2\n        𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1      𝜏1\n                    =\n           𝑚2𝑔sin 𝜃1            𝜏2\n\n        𝑚1𝑙12 + 𝐼𝑧𝑧1 + 𝐼𝑧𝑧2 + 𝑚2𝑑22 ሷ𝜃1 + 2𝑚2𝑑2 ሶ𝜃1 ሶ𝑑2  ➢                            −\n                   𝑚2 ሷ𝑑2\n         0        𝑚1𝑙1 + 𝑚2𝑑2 𝑔cos 𝜃1      𝜏1\n                2 +                =       𝑚2𝑑2 ሶ𝜃1        𝑚2𝑔sin 𝜃1            𝜏2\n\n\n\n\n                                                                                                          18",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Partial derivatives treat coordinates and velocities as independent arguments; the later total time derivative follows the actual motion.",
+      "optionExplanations": {
+        "o2": "The energies and their dependence must be known before differentiating.",
+        "o3": "The matrix and velocity terms must follow from the same energies, not an aesthetic choice.",
+        "o4": "K contributes inertial and velocity-product efforts independently of U.",
+        "o1": "This deletes terms needed in the general dynamic equations."
+      },
+      "steps": [
+        "Identify q and the physical coordinate/effort conventions.",
+        "Compute each link’s translation/spin energy and potential, then sum.",
+        "Evaluate K_qdot, K_q and U_q.",
+        "Take d(K_qdot)/dt with the full product/chain rule.",
+        "Assemble and simplify Q=d(K_qdot)/dt−K_q+U_q."
+      ],
+      "formulas": [
+        {
+          "expression": "L(q,qdot)=K(q,qdot)−U(q); Q_i=d/dt(partial L/partial qdot_i)−partial L/partial q_i",
+          "variables": {
+            "L": "scalar Lagrangian",
+            "K": "total kinetic energy",
+            "U": "potential energy",
+            "q_i": "independent generalized coordinate",
+            "qdot_i": "its time derivative",
+            "Q_i": "applied generalized actuator effort"
+          },
+          "units": {
+            "L,K,U": "J",
+            "q_i": "rad for revolute, m for prismatic",
+            "qdot_i": "rad/s or m/s",
+            "Q_i": "N·m for revolute, N for prismatic"
+          },
+          "assumptions": [
+            "Ideal constraints, chosen independent coordinates, conservative loads represented by U; other applied generalized efforts stated separately."
+          ]
+        }
+      ],
+      "simpleExplanation": "Partial derivatives treat coordinates and velocities as independent arguments; the later total time derivative follows the actual motion.",
+      "memoryAid": null,
+      "misconceptions": [
+        "The matrix and velocity terms must follow from the same energies, not an aesthetic choice.",
+        "K contributes inertial and velocity-product efforts independently of U.",
+        "This deletes terms needed in the general dynamic equations."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  }
+]

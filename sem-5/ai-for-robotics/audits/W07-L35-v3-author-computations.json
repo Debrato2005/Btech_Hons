@@ -1,0 +1,207 @@
+{
+  "authorId": "L35-repair-author-20261019",
+  "independentVerification": false,
+  "passed": true,
+  "checks": [
+    "CNN spatial chain and flatten width",
+    "CNN four parameter counts and sum",
+    "CNN credible distractor totals",
+    "CNN actual torch parameter count",
+    "CNN actual torch output shape",
+    "YOLO all decoded corners",
+    "YOLO all class scores",
+    "YOLO pair overlaps",
+    "YOLO confidence filter then NMS",
+    "YOLO cell-normalized size distractor",
+    "YOLO box-confidence-only distractor",
+    "YOLO no-intersection-subtraction distractor",
+    "500 exact transformed YOLO cases, 1000 assertions",
+    "Installed NMS threshold equality excluded",
+    "Unmodified official notebook hash",
+    "Actual notebook returns six structured detections",
+    "Actual notebook save default is false",
+    "Actual notebook class and confidence formatting",
+    "Actual notebook xywh rounding",
+    "Actual notebook display reverses BGR to RGB"
+  ],
+  "checkGroups": 20,
+  "variedCases": 500,
+  "variedAssertions": 1000,
+  "cnn": {
+    "shapes": [
+      [
+        28,
+        28,
+        16
+      ],
+      [
+        14,
+        14,
+        16
+      ],
+      [
+        10,
+        10,
+        32
+      ],
+      [
+        5,
+        5,
+        32
+      ]
+    ],
+    "parameters": [
+      1216,
+      12832,
+      102528,
+      1290
+    ],
+    "total": 117866
+  },
+  "yolo": {
+    "decoded": {
+      "A": [
+        "80",
+        "50",
+        "280",
+        "250"
+      ],
+      "B": [
+        "90",
+        "50",
+        "290",
+        "250"
+      ],
+      "C": [
+        "190",
+        "100",
+        "290",
+        "200"
+      ]
+    },
+    "scores": {
+      "A": "18/25",
+      "B": "16/25",
+      "C": "7/20"
+    },
+    "AB_IoU": "19/21",
+    "AC_IoU": "9/41",
+    "survivors": [
+      "A"
+    ]
+  },
+  "runtime": {
+    "python": "/tmp/robotics-l35-venv/bin/python",
+    "ultralytics": "8.4.182",
+    "torch": "2.14.1+cpu",
+    "numpy": "2.5.2",
+    "primaryCode": [
+      {
+        "symbol": "non_max_suppression",
+        "path": "/tmp/robotics-l35-venv/lib/python3.12/site-packages/ultralytics/utils/nms.py",
+        "sha256": "386cd0e3e38fddef5d434fbcfd58264bedfa37295534e9a2b7174a3436d4db62",
+        "startLine": 13,
+        "endLine": 169,
+        "extract": [
+          {
+            "line": 74,
+            "text": "            mask = pred[:, 4] > conf_thres"
+          },
+          {
+            "line": 86,
+            "text": "    xc = prediction[:, 4:mi].amax(1) > conf_thres  # candidates"
+          },
+          {
+            "line": 118,
+            "text": "            i, j = torch.where(cls > conf_thres)"
+          },
+          {
+            "line": 124,
+            "text": "            filt = conf.view(-1) > conf_thres"
+          }
+        ]
+      },
+      {
+        "symbol": "Results.plot",
+        "path": "/tmp/robotics-l35-venv/lib/python3.12/site-packages/ultralytics/engine/results.py",
+        "sha256": "72456e4911b4ec25e80d1ff33c42a51843f332891a8d33fa9aa0cf203ac78293",
+        "startLine": 487,
+        "endLine": 631,
+        "extract": [
+          {
+            "line": 502,
+            "text": "        save: bool = False,"
+          },
+          {
+            "line": 507,
+            "text": "        \"\"\"Plot detection results on an input BGR image."
+          },
+          {
+            "line": 515,
+            "text": "            img (np.ndarray | torch.Tensor | None): Image to plot on. Tensor images must be contiguous HWC BGR uint8. If"
+          },
+          {
+            "line": 527,
+            "text": "            txt_color (tuple[int, int, int]): Text color in BGR format for classification output."
+          },
+          {
+            "line": 530,
+            "text": "            (np.ndarray | PIL.Image.Image): Annotated image as a NumPy array (BGR) or PIL image (RGB) if `pil=True`."
+          }
+        ]
+      },
+      {
+        "symbol": "Model.predict",
+        "path": "/tmp/robotics-l35-venv/lib/python3.12/site-packages/ultralytics/engine/model.py",
+        "sha256": "baff966d3f3340917e4dc5e434a8211f8532bec50d4e878b65679e8c733eb5b0",
+        "startLine": 491,
+        "endLine": 568,
+        "extract": [
+          {
+            "line": 540,
+            "text": "        custom = {\"conf\": 0.25, \"batch\": 1, \"save\": is_cli, \"mode\": \"predict\", \"rect\": True, \"embed\": None}"
+          }
+        ]
+      }
+    ],
+    "confidenceProbeRetained": [
+      [
+        29.0,
+        9.0,
+        31.0,
+        11.0,
+        0.2500999867916107,
+        0.0
+      ]
+    ],
+    "notebookPath": "audits/review-snapshots/W07-L35-official-notebook-contracts.ipynb",
+    "notebookSha256": "5f2680c5d1089be24f5b5cc17e1429761777af79e47b31ab62f381150485881c",
+    "codeCellsExecuted": [
+      5,
+      7,
+      9,
+      11,
+      12
+    ],
+    "unchangedCodeCellsExecuted": [
+      7,
+      9,
+      11,
+      12
+    ],
+    "cell5Adaptations": [
+      "Local verified model path",
+      "Local verified image path",
+      "Omit unavailable IPython import and input display only"
+    ],
+    "optionalSetupCellNotExecuted": 2,
+    "noInstallation": true,
+    "sourceSaveFlag": false,
+    "authorHarnessSavedDisplay": "audits/W07-L35-v3-notebook-display.png",
+    "authorHarnessSaveIsNotNotebookBehavior": true,
+    "displaySha256": "9cbe16ef1d46c3c6be2681ca8e9276bdf599fb82a9d757cca0f04059bc22377b",
+    "detections": 6
+  },
+  "displayVisuallyInspected": true,
+  "displayInspectionNotes": "Actual rendered figure viewed: bus photograph, four person boxes, bus and stop-sign labels; normal colors after channel reversal. Source output rendered successfully despite Fontconfig cache warnings."
+}

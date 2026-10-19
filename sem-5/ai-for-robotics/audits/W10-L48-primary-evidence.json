@@ -1,0 +1,57 @@
+{
+  "checkedAt": "2026-10-19T22:36:26.368384+00:00",
+  "scope": "Primary supplementary qualifications, not new lecture coverage or pretrained runtime verification.",
+  "evidence": {
+    "hamming": {
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.windows.hamming.html",
+      "locator": "Parameters sym and Notes definition",
+      "finding": "The symmetric denominator is M−1; sym=False requests the periodic convention. Hamming has nonzero endpoints."
+    },
+    "mfcc": {
+      "url": "https://librosa.org/doc/0.11.0/generated/librosa.feature.mfcc.html",
+      "locator": "Parameters dct_type and S, Returns",
+      "finding": "MFCCs can be computed from a log-power Mel spectrogram using a DCT; temporal delta features are a separate operation."
+    },
+    "delta": {
+      "url": "https://librosa.org/doc/0.11.0/generated/librosa.feature.delta.html",
+      "locator": "Definition and Parameters order",
+      "finding": "Delta features estimate derivatives along a feature sequence; they are not automatically present in a static MFCC vector."
+    },
+    "conv": {
+      "url": "https://docs.pytorch.org/docs/2.14/generated/torch.nn.Conv1d.html",
+      "locator": "Definition, cross-correlation operator, Shape output-length equation",
+      "finding": "Conv1d uses cross-correlation, channel-specific kernels and an explicit stride/padding/dilation output-length rule."
+    },
+    "small": {
+      "url": "https://huggingface.co/openai/whisper-small/raw/main/config.json",
+      "locator": "num_mel_bins field",
+      "finding": "The checked whisper-small configuration specifies 80 Mel bins."
+    },
+    "large": {
+      "url": "https://huggingface.co/openai/whisper-large-v3/raw/main/config.json",
+      "locator": "num_mel_bins field",
+      "finding": "The checked whisper-large-v3 configuration specifies 128 Mel bins."
+    },
+    "model": {
+      "url": "https://raw.githubusercontent.com/openai/whisper/main/whisper/model.py",
+      "locator": "AudioEncoder.__init__/forward and TextDecoder.__init__",
+      "finding": "Audio positions are registered sinusoids; text positions are learned parameters. The two audio Conv1d strides are 1 and 2, each followed by GELU.",
+      "savedPath": "sources/supplemental/L48-official-whisper-model.py",
+      "savedSha256": "687d9bc01bf4bd289f6e694ec8afe9962f1efd83db2ad14bf48841adc114eedc"
+    },
+    "audio": {
+      "url": "https://raw.githubusercontent.com/openai/whisper/main/whisper/audio.py",
+      "locator": "Constants and log_mel_spectrogram",
+      "finding": "This checked implementation uses 16 kHz, 400-point Hann windows and a 160-sample hop; log-Mel values are clamped, dynamically limited and rescaled. This is not the generic lecture Hamming pipeline.",
+      "savedPath": "sources/supplemental/L48-official-whisper-audio.py",
+      "savedSha256": "6244c8e7c6ead10d6fbf471d6e83a51e76f8ad62a55bbc023fab614a38f29500"
+    },
+    "notebook": {
+      "url": "https://raw.githubusercontent.com/robotics-lab-iitr/nptel-ai-robotics/main/week10/week10_lecture48.ipynb",
+      "locator": "Code cells loading sample.flac, preprocessing and printing transcription",
+      "finding": "The linked notebook retrieves a public FLAC and adds a labeled print statement. Its saved output is reported evidence, not reproduced inference.",
+      "savedPath": "sources/supplemental/L48-official-week10_lecture48.ipynb",
+      "savedSha256": "9ef4b5d1683dc9eefc4364d1df98cbcd2ec87eae9febe721e2ba6514442d9f35"
+    }
+  }
+}

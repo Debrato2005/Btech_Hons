@@ -1,0 +1,536 @@
+{
+  "authorId": "build_offline_study_interface:L44-author",
+  "checkedAt": "2026-10-19T22:20:28.504666+00:00",
+  "independentReview": false,
+  "literalSourcePages": [
+    1397,
+    1400
+  ],
+  "literalErrors": {
+    "1397": {
+      "type": "NameError",
+      "message": "name 'V' is not defined"
+    }
+  },
+  "literalResults": {
+    "1400": {
+      "completed": true,
+      "steps": 200,
+      "warnings": [
+        "animate is deprecated, use plot instead"
+      ]
+    }
+  },
+  "declaredRepairs": [
+    "Provide numpy and Robotics Toolbox imports.",
+    "p1397 use Vt consistently, supplying it to EKF instead of undefined V.",
+    "p1400 literal animate=True is supported but deprecated in RTB 1.4.4; use plot=False only for the separate headless numerical reconstruction.",
+    "Disable robot/EKF animation and omit the HTML display sequence; run numerical simulation and save static plots.",
+    "Do not reproduce a historical random trajectory as exact notebook output; pin RTB 1.4.4 default seed behavior."
+  ],
+  "versions": {
+    "roboticstoolbox-python": "1.4.4",
+    "spatialmath-python": "1.1.18",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.2"
+  },
+  "snapshots": {
+    "Unicycle": {
+      "path": "sources/supplemental/L44-rtb-Vehicle.py",
+      "sha256": "8a60389890a8598d3b81507cc60edf94381838930301673b49d2a722e17ef247"
+    },
+    "RangeBearingSensor": {
+      "path": "sources/supplemental/L44-rtb-sensors.py",
+      "sha256": "3309900d54b65a8d494cb229720a08010a21b4a5a819a03d647d662517b7501e"
+    },
+    "EKF": {
+      "path": "sources/supplemental/L44-rtb-EKF.py",
+      "sha256": "e1926f9d23542d440d7faeeca495494e6cec7bd3480b569e01bb33fa47de9091"
+    },
+    "LandmarkMap": {
+      "path": "sources/supplemental/L44-rtb-landmarkmap.py",
+      "sha256": "be9bfd54882c1ace0bc30a41cccf26e2f53ad25c8f38392599a3b1d1e4b3f11c"
+    }
+  },
+  "checks": [
+    {
+      "name": "Literal p1397 undefined V",
+      "passed": true,
+      "result": {
+        "type": "NameError",
+        "message": "name 'V' is not defined"
+      }
+    },
+    {
+      "name": "Literal p1400 runs with deprecated animate alias",
+      "passed": true,
+      "result": {
+        "completed": true,
+        "steps": 200,
+        "warnings": [
+          "animate is deprecated, use plot instead"
+        ]
+      }
+    },
+    {
+      "name": "Angular standard deviations converted then squared",
+      "passed": true,
+      "result": {
+        "V": [
+          [
+            0.0004,
+            0.0
+          ],
+          [
+            0.0,
+            7.615435494667714e-05
+          ]
+        ],
+        "P0": [
+          [
+            0.0025000000000000005,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0025000000000000005,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            7.615435494667714e-05
+          ]
+        ],
+        "W": [
+          [
+            0.010000000000000002,
+            0.0
+          ],
+          [
+            0.0,
+            0.00030461741978670857
+          ]
+        ]
+      }
+    },
+    {
+      "name": "Scalar workspace bounds",
+      "passed": true,
+      "result": [
+        -10.0,
+        10.0,
+        -10.0,
+        10.0
+      ]
+    },
+    {
+      "name": "Repaired odometry run",
+      "passed": true,
+      "result": {
+        "steps": 200,
+        "trueFinal": [
+          -0.47093217810911453,
+          -3.4117420057743506,
+          -2.87255685410408
+        ],
+        "estimatedFinal": [
+          -0.0970065457519446,
+          -3.1881178025782426,
+          -2.829366516231273
+        ],
+        "PFinal": [
+          [
+            0.4775700777961358,
+            -0.23181340953290525,
+            0.07155176023007229
+          ],
+          [
+            -0.23181340953290522,
+            0.2403271538391247,
+            -0.04750792854410123
+          ],
+          [
+            0.07155176023007229,
+            -0.04750792854410123,
+            0.015307025344282037
+          ]
+        ]
+      }
+    },
+    {
+      "name": "Repaired known-landmark run",
+      "passed": true,
+      "result": {
+        "steps": 200,
+        "trueFinal": [
+          6.903772526652847,
+          0.34259600971573256,
+          -2.4400543335840768
+        ],
+        "estimatedFinal": [
+          6.887015031802531,
+          0.3228972275659443,
+          -2.4421706067849693
+        ],
+        "PFinal": [
+          [
+            0.00037370992742729984,
+            0.0003446307312601051,
+            -0.0001402697836324355
+          ],
+          [
+            0.00034463073126010516,
+            0.0005174366332121926,
+            -0.00021490953958523687
+          ],
+          [
+            -0.0001402697836324355,
+            -0.00021490953958523684,
+            0.00022426788584245142
+          ]
+        ]
+      }
+    },
+    {
+      "name": "q is a property",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Ellipse default confidence",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Unicycle wheel-speed difference convention",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "LiDAR time of flight",
+      "passed": true,
+      "result": 6
+    },
+    {
+      "name": "Illustrative scan rate",
+      "passed": true,
+      "result": {
+        "samplesPerSecond": 1980,
+        "secondsPerScan": 0.18181818181818182
+      }
+    },
+    {
+      "name": "Encoder travel",
+      "passed": true,
+      "result": 0.19477874452256716
+    },
+    {
+      "name": "Gyro integration",
+      "passed": true,
+      "result": 60
+    },
+    {
+      "name": "Ten wall measurements",
+      "passed": true,
+      "result": {
+        "mean": 2.001,
+        "populationVariance": 0.000608999999999999,
+        "populationStd": 0.02467792535850611,
+        "sampleStd": 0.026012817353502204
+      }
+    },
+    {
+      "name": "Discrete Bayes prediction and correction",
+      "passed": true,
+      "result": {
+        "prediction": [
+          0.6,
+          0.39999999999999997
+        ],
+        "unnormalized": [
+          0.15,
+          0.3
+        ],
+        "normalizer": 2.2222222222222223,
+        "posterior": [
+          0.33333333333333337,
+          0.6666666666666667
+        ]
+      }
+    },
+    {
+      "name": "Gaussian center density",
+      "passed": true,
+      "result": 0.026525823848649224
+    },
+    {
+      "name": "Covariance positive semidefinite counterexample",
+      "passed": true,
+      "result": [
+        -1.0,
+        3.0
+      ]
+    },
+    {
+      "name": "Scalar Kalman source example",
+      "passed": true,
+      "result": {
+        "gain": 0.7142857142857143,
+        "mean": 4.714285714285714,
+        "variance": 0.21428571428571427
+      }
+    },
+    {
+      "name": "Translate then rotate",
+      "passed": true,
+      "result": [
+        1.0000000000000002,
+        4.0,
+        3.141592653589793
+      ]
+    },
+    {
+      "name": "Odometry covariance example",
+      "passed": true,
+      "result": [
+        [
+          0.37,
+          -2.189056153475894e-17,
+          -0.18
+        ],
+        [
+          -2.189056153475894e-17,
+          0.0425,
+          1.1021821192326179e-17
+        ],
+        [
+          -0.18,
+          1.1021821192326179e-17,
+          0.0904
+        ]
+      ]
+    },
+    {
+      "name": "Range bearing model",
+      "passed": true,
+      "result": [
+        5.0,
+        -0.6435011087932843
+      ]
+    },
+    {
+      "name": "Corrected measurement Jacobian",
+      "passed": true,
+      "result": [
+        [
+          -0.6,
+          -0.8,
+          0.0
+        ],
+        [
+          0.16,
+          -0.12,
+          -1.0
+        ]
+      ]
+    },
+    {
+      "name": "Quadrant-safe bearing",
+      "passed": true,
+      "result": 2.356194490192345
+    },
+    {
+      "name": "Wrapped angular residual",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Integrated landmark correction",
+      "passed": true,
+      "result": {
+        "H": [
+          [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.5,
+            -1.0
+          ]
+        ],
+        "S": [
+          [
+            0.14,
+            0.0
+          ],
+          [
+            0.0,
+            0.045000000000000005
+          ]
+        ],
+        "K": [
+          [
+            -0.7142857142857143,
+            0.0
+          ],
+          [
+            0.0,
+            -1.111111111111111
+          ],
+          [
+            0.0,
+            -0.22222222222222218
+          ]
+        ],
+        "mean": [
+          -0.14285714285714288,
+          -0.1111111111111111,
+          -0.02222222222222222
+        ],
+        "covariance": [
+          [
+            0.02857142857142857,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.04444444444444445,
+            -0.01111111111111111
+          ],
+          [
+            0.0,
+            -0.01111111111111111,
+            0.007777777777777778
+          ]
+        ]
+      }
+    },
+    {
+      "name": "95 percent positional ellipse radius",
+      "passed": true,
+      "result": 2.447746830680816
+    },
+    {
+      "name": "Scalar conditional transition",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Scalar conditional observation",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Scalar covariance scaling",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Nonlinear EKF versus exact second moment",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Differential drive rates",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Pure opposite-wheel turn",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "World velocity projection",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Source strict segmentation threshold",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Added sensor visibility example",
+      "passed": true,
+      "result": null
+    },
+    {
+      "name": "Varied checks",
+      "passed": true,
+      "result": {
+        "trials": 1000,
+        "comparisons": 5000
+      }
+    }
+  ],
+  "namedChecks": 36,
+  "variedComparisons": 5000,
+  "odometryRun": {
+    "steps": 200,
+    "trueFinal": [
+      -0.47093217810911453,
+      -3.4117420057743506,
+      -2.87255685410408
+    ],
+    "estimatedFinal": [
+      -0.0970065457519446,
+      -3.1881178025782426,
+      -2.829366516231273
+    ],
+    "PFinal": [
+      [
+        0.4775700777961358,
+        -0.23181340953290525,
+        0.07155176023007229
+      ],
+      [
+        -0.23181340953290522,
+        0.2403271538391247,
+        -0.04750792854410123
+      ],
+      [
+        0.07155176023007229,
+        -0.04750792854410123,
+        0.015307025344282037
+      ]
+    ]
+  },
+  "landmarkRun": {
+    "steps": 200,
+    "trueFinal": [
+      6.903772526652847,
+      0.34259600971573256,
+      -2.4400543335840768
+    ],
+    "estimatedFinal": [
+      6.887015031802531,
+      0.3228972275659443,
+      -2.4421706067849693
+    ],
+    "PFinal": [
+      [
+        0.00037370992742729984,
+        0.0003446307312601051,
+        -0.0001402697836324355
+      ],
+      [
+        0.00034463073126010516,
+        0.0005174366332121926,
+        -0.00021490953958523687
+      ],
+      [
+        -0.0001402697836324355,
+        -0.00021490953958523684,
+        0.00022426788584245142
+      ]
+    ]
+  },
+  "allPass": true
+}

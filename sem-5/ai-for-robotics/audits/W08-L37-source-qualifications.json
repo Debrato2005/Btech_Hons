@@ -1,0 +1,241 @@
+{
+  "primaryReferences": {
+    "bug": {
+      "title": "Lumelsky and Stepanov, Path-planning strategies for a point mobile automaton (1987)",
+      "url": "https://robotics.caltech.edu/~jwb/courses/ME132/handouts/LumelskyBug.pdf",
+      "locator": "Section 2 model; Sections 4 and 5, Bug1/Bug2 procedures and assumptions."
+    },
+    "vfh": {
+      "title": "Borenstein and Koren, The Vector Field Histogram (1991)",
+      "url": "https://www.valentiniweb.com/piermo/robotica/doc/Borenstein/paper16.pdf",
+      "locator": "Sections 3.1 and 4: accumulated certainty counts, histogram reduction and steering."
+    },
+    "plus": {
+      "title": "Ulrich and Borenstein, VFH+: Reliable Obstacle Avoidance (1998)",
+      "url": "https://www.cs.cmu.edu/~iwan/papers/vfh%2B.pdf",
+      "locator": "Sections 2.1–2.4: width enlargement, hysteresis, trajectory masking and angular cost; conclusion identifies remaining local limitation."
+    },
+    "star": {
+      "title": "Ulrich and Borenstein, VFH*: Local Obstacle Avoidance with Look-Ahead Verification (2000)",
+      "url": "https://www.cs.cmu.edu/~iwan/papers/vfhstar.pdf",
+      "locator": "Sections 2–4: VFH+ versus multi-step projection using A*; Section 6 contrasts drive configurations."
+    },
+    "cspace": {
+      "title": "Lynch and Park, Modern Robotics 10.2.1: C-Space Obstacles",
+      "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/10-2-c-space-obstacles/",
+      "locator": "Author transcript: forbidden configurations, whole-geometry collision detection and connected free space."
+    },
+    "potential": {
+      "title": "Lynch and Park, Modern Robotics 10.6: Virtual Potential Fields",
+      "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/10-6-virtual-potential-fields/",
+      "locator": "Author transcript: negative gradient, quadratic attraction, force summation, saddle points and local minima."
+    },
+    "fk": {
+      "title": "Lynch and Park, Modern Robotics Chapter 4: Forward Kinematics",
+      "url": "https://modernrobotics.northwestern.edu/chapters/chapter4/",
+      "locator": "Forward kinematics of an open chain from its joint coordinates."
+    }
+  },
+  "qualifications": [
+    {
+      "questionId": "W08-L37-Q003",
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "The slide’s optimality wording is a desired property, not an unconditional guarantee.",
+      "basis": "An optimization guarantee needs a defined objective, model and algorithm assumptions.",
+      "method": "Compare the exact supplied prose or visual label with the item’s explicit mathematical reasoning and, where listed, the primary reference; retain the original source without silently changing it."
+    },
+    {
+      "questionId": "W08-L37-Q018",
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "The printed unconditional phrase “will always find a path” must retain the model assumptions.",
+      "basis": "Real robot size, sensing errors and dynamics require extra treatment. Primary cross-check: https://robotics.caltech.edu/~jwb/courses/ME132/handouts/LumelskyBug.pdf (Section 2 model; Sections 4 and 5, Bug1/Bug2 procedures and assumptions.)",
+      "method": "Compare the exact supplied prose or visual label with the item’s explicit mathematical reasoning and, where listed, the primary reference; retain the original source without silently changing it."
+    },
+    {
+      "questionId": "W08-L37-Q024",
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "The sensor comparison must not erase Bug1/Bug2’s algorithmic memory.",
+      "basis": "Instantaneous sensing and algorithmic memory are different issues. Primary cross-check: https://robotics.caltech.edu/~jwb/courses/ME132/handouts/LumelskyBug.pdf (Section 2 model; Sections 4 and 5, Bug1/Bug2 procedures and assumptions.)",
+      "method": "Compare the exact supplied prose or visual label with the item’s explicit mathematical reasoning and, where listed, the primary reference; retain the original source without silently changing it."
+    },
+    {
+      "questionId": "W08-L37-Q026",
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "Momentum is placed under kinematics in the source; it is a dynamical quantity.",
+      "basis": "Dynamics considers forces, mass and momentum rather than only geometric motion relationships.",
+      "method": "Compare the exact supplied prose or visual label with the item’s explicit mathematical reasoning and, where listed, the primary reference; retain the original source without silently changing it."
+    },
+    {
+      "questionId": "W08-L37-Q029",
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "“Statistically, not reactively” is a false dichotomy; VFH remains a local obstacle-avoidance method.",
+      "basis": "The representation can aggregate uncertainty while candidate selection is deterministic. Primary cross-check: https://www.valentiniweb.com/piermo/robotica/doc/Borenstein/paper16.pdf (Sections 3.1 and 4: accumulated certainty counts, histogram reduction and steering.)",
+      "method": "Compare the exact supplied prose or visual label with the item’s explicit mathematical reasoning and, where listed, the primary reference; retain the original source without silently changing it."
+    },
+    {
+      "questionId": "W08-L37-Q032",
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "The source calls certainty-grid values obstacle probabilities; a generic incremented certainty value need not be a calibrated probability.",
+      "basis": "The original histogram update can use accumulated integer evidence. Primary cross-check: https://www.valentiniweb.com/piermo/robotica/doc/Borenstein/paper16.pdf (Sections 3.1 and 4: accumulated certainty counts, histogram reduction and steering.)",
+      "method": "Compare the exact supplied prose or visual label with the item’s explicit mathematical reasoning and, where listed, the primary reference; retain the original source without silently changing it."
+    },
+    {
+      "questionId": "W08-L37-Q051",
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "The source figure labels the lower-right diagonal 45° despite the surrounding standard axis convention; use 315° or −45° under the stated convention.",
+      "basis": "The lower-right direction is 45° clockwise from the positive horizontal axis.",
+      "method": "Compare the exact supplied prose or visual label with the item’s explicit mathematical reasoning and, where listed, the primary reference; retain the original source without silently changing it."
+    },
+    {
+      "questionId": "W08-L37-Q053",
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "The slide’s point-robot description oversimplifies the original VFH width treatment; the 1998 VFH+ paper explicitly contrasts empirical smoothing with geometric enlargement.",
+      "basis": "The original treatment was less explicit, not wholly absent. Primary cross-check: https://www.cs.cmu.edu/~iwan/papers/vfh%2B.pdf (Sections 2.1–2.4: width enlargement, hysteresis, trajectory masking and angular cost; conclusion identifies remaining local limitation.)",
+      "method": "Compare the exact supplied prose or visual label with the item’s explicit mathematical reasoning and, where listed, the primary reference; retain the original source without silently changing it."
+    },
+    {
+      "questionId": "W08-L37-Q054",
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "The source’s look-ahead attribution blends VFH+ with VFH*; preserve that distinction rather than silently treating the names as synonyms.",
+      "basis": "The 2000 VFH* paper addresses the remaining local-choice limitation of VFH+. Primary cross-check: https://www.cs.cmu.edu/~iwan/papers/vfh%2B.pdf (Sections 2.1–2.4: width enlargement, hysteresis, trajectory masking and angular cost; conclusion identifies remaining local limitation.); https://www.cs.cmu.edu/~iwan/papers/vfhstar.pdf (Sections 2–4: VFH+ versus multi-step projection using A*; Section 6 contrasts drive configurations.)",
+      "method": "Compare the exact supplied prose or visual label with the item’s explicit mathematical reasoning and, where listed, the primary reference; retain the original source without silently changing it."
+    },
+    {
+      "questionId": "W08-L37-Q061",
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "The slide lists only joint angles, which is suitable for revolute joints; prismatic joints require displacement coordinates.",
+      "basis": "Each independent joint coordinate describes one degree of freedom.",
+      "method": "Compare the exact supplied prose or visual label with the item’s explicit mathematical reasoning and, where listed, the primary reference; retain the original source without silently changing it."
+    },
+    {
+      "questionId": "W08-L37-Q064",
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "The figure’s arrow is drawn workspace-to-C-space while labeled forward kinematics; the correct mapping is configuration-to-workspace geometry.",
+      "basis": "Forward kinematics evaluates geometry from joint coordinates. Primary cross-check: https://modernrobotics.northwestern.edu/chapters/chapter4/ (Forward kinematics of an open chain from its joint coordinates.)",
+      "method": "Compare the exact supplied prose or visual label with the item’s explicit mathematical reasoning and, where listed, the primary reference; retain the original source without silently changing it."
+    },
+    {
+      "questionId": "W08-L37-Q069",
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "A pull that grows with distance describes this quadratic model; it is not universal for every attractive-potential design.",
+      "basis": "Differentiating the quadratic gives k(q−qgoal), then negating points toward the goal. Primary cross-check: https://modernrobotics.northwestern.edu/nu-gm-book-resource/10-6-virtual-potential-fields/ (Author transcript: negative gradient, quadratic attraction, force summation, saddle points and local minima.)",
+      "method": "Compare the exact supplied prose or visual label with the item’s explicit mathematical reasoning and, where listed, the primary reference; retain the original source without silently changing it."
+    },
+    {
+      "questionId": "W08-L37-Q076",
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "The source calls force cancellation a local minimum; cancellation establishes stationarity, while the type of stationary point requires more information.",
+      "basis": "Zero gradient can occur at a minimum, maximum or saddle. Primary cross-check: https://modernrobotics.northwestern.edu/nu-gm-book-resource/10-6-virtual-potential-fields/ (Author transcript: negative gradient, quadratic attraction, force summation, saddle points and local minima.)",
+      "method": "Compare the exact supplied prose or visual label with the item’s explicit mathematical reasoning and, where listed, the primary reference; retain the original source without silently changing it."
+    },
+    {
+      "questionId": "W08-L37-Q081",
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "The later slide calls a,b,c potential-field weights, but their earlier explicit definition is the VFH-style angular selection cost.",
+      "basis": "Both can be tunable parameters, but their mathematical roles are not interchangeable.",
+      "method": "Compare the exact supplied prose or visual label with the item’s explicit mathematical reasoning and, where listed, the primary reference; retain the original source without silently changing it."
+    },
+    {
+      "questionId": "W08-L37-Q085",
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "The source’s broad claims of better handling and escaping minima describe possible benefits, not unconditional guarantees for trained policies.",
+      "basis": "A successful example does not establish universal superiority or completeness.",
+      "method": "Compare the exact supplied prose or visual label with the item’s explicit mathematical reasoning and, where listed, the primary reference; retain the original source without silently changing it."
+    },
+    {
+      "questionId": "W08-L37-Q086",
+      "status": "explicit-qualification-awaiting-independent-review",
+      "sourceClaim": "The summary’s “A* needs known static map” is shorthand for planning on the supplied current graph; A* can be rerun after a map update and has conditional optimality.",
+      "basis": "The layers can cooperate without treating a static route as a complete real-time safety controller.",
+      "method": "Compare the exact supplied prose or visual label with the item’s explicit mathematical reasoning and, where listed, the primary reference; retain the original source without silently changing it."
+    }
+  ],
+  "preReviewChangedIds": [
+    "W08-L37-Q001",
+    "W08-L37-Q002",
+    "W08-L37-Q003",
+    "W08-L37-Q004",
+    "W08-L37-Q005",
+    "W08-L37-Q006",
+    "W08-L37-Q007",
+    "W08-L37-Q008",
+    "W08-L37-Q009",
+    "W08-L37-Q010",
+    "W08-L37-Q011",
+    "W08-L37-Q012",
+    "W08-L37-Q013",
+    "W08-L37-Q014",
+    "W08-L37-Q015",
+    "W08-L37-Q016",
+    "W08-L37-Q017",
+    "W08-L37-Q018",
+    "W08-L37-Q019",
+    "W08-L37-Q020",
+    "W08-L37-Q021",
+    "W08-L37-Q022",
+    "W08-L37-Q023",
+    "W08-L37-Q024",
+    "W08-L37-Q025",
+    "W08-L37-Q026",
+    "W08-L37-Q027",
+    "W08-L37-Q028",
+    "W08-L37-Q029",
+    "W08-L37-Q030",
+    "W08-L37-Q031",
+    "W08-L37-Q032",
+    "W08-L37-Q033",
+    "W08-L37-Q034",
+    "W08-L37-Q035",
+    "W08-L37-Q036",
+    "W08-L37-Q037",
+    "W08-L37-Q038",
+    "W08-L37-Q039",
+    "W08-L37-Q040",
+    "W08-L37-Q041",
+    "W08-L37-Q042",
+    "W08-L37-Q043",
+    "W08-L37-Q044",
+    "W08-L37-Q045",
+    "W08-L37-Q046",
+    "W08-L37-Q047",
+    "W08-L37-Q048",
+    "W08-L37-Q049",
+    "W08-L37-Q050",
+    "W08-L37-Q051",
+    "W08-L37-Q052",
+    "W08-L37-Q053",
+    "W08-L37-Q054",
+    "W08-L37-Q055",
+    "W08-L37-Q056",
+    "W08-L37-Q057",
+    "W08-L37-Q058",
+    "W08-L37-Q059",
+    "W08-L37-Q060",
+    "W08-L37-Q061",
+    "W08-L37-Q062",
+    "W08-L37-Q063",
+    "W08-L37-Q064",
+    "W08-L37-Q065",
+    "W08-L37-Q066",
+    "W08-L37-Q067",
+    "W08-L37-Q068",
+    "W08-L37-Q069",
+    "W08-L37-Q070",
+    "W08-L37-Q071",
+    "W08-L37-Q072",
+    "W08-L37-Q073",
+    "W08-L37-Q074",
+    "W08-L37-Q075",
+    "W08-L37-Q076",
+    "W08-L37-Q077",
+    "W08-L37-Q078",
+    "W08-L37-Q079",
+    "W08-L37-Q080",
+    "W08-L37-Q081",
+    "W08-L37-Q082",
+    "W08-L37-Q083",
+    "W08-L37-Q084",
+    "W08-L37-Q085",
+    "W08-L37-Q086"
+  ]
+}

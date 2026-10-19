@@ -1,0 +1,14 @@
+{
+  "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+  "transcriptionMethod": "Manual reading of actual source pixels; whitespace normalized only, no semantic repair.",
+  "codeByPhysicalPage": {
+    "1449": "import nltk\nimport string\nfrom nltk.tokenize import word_tokenize\nfrom nltk.corpus import stopwords\nfrom nltk.stem import WordNetLemmatizer\ntext = \"Pick up the red ball near the chair!\"\n# Step 1: Convert to lowercase\ntext = text.lower()\n# Step 2: Remove punctuation\ntext = text.translate(str.maketrans('', '', string.punctuation))\n# Step 3: Tokenization\ntokens = word_tokenize(text)\n# Step 4: Remove stopwords\nstop_words = set(stopwords.words('english'))\nfiltered_tokens = [\n    word for word in tokens\n    if word not in stop_words]\n# Step 5: Lemmatization\nlemmatizer = WordNetLemmatizer()\nlemmatized_tokens = [\n    lemmatizer.lemmatize(word)\n    for word in filtered_tokens]\n",
+    "1450": "from nltk.stem import PorterStemmer, WordNetLemmatizer\nnltk.download('wordnet') # wordnet is a corpus\n\nstemmer = PorterStemmer()\nlemmatizer = WordNetLemmatizer()\nword = \"studies\"\nprint(f\"Stemmed: {stemmer.stem(word)}\")\nprint(f\"Lemmatized: {lemmatizer.lemmatize(word)}\")\n",
+    "1453": "from sklearn.preprocessing import OneHotEncoder\n# Vocabulary words\nwords = [['pick'], ['red'], ['ball'], ['near'], ['chair']]\n# Create encoder\nencoder = OneHotEncoder(sparse_output=False)\n# Transform words into vectors\nencoded = encoder.fit_transform(words)\n",
+    "1454": "from sklearn.feature_extraction.text import CountVectorizer\ncommands = [\n    \"pick red ball near chair\",\n    \"pick blue box\",\n    \"grab red box\" ]\n# Create BoW vectorizer\nvectorizer = CountVectorizer()\n# Convert commands into BoW vectors\nX = vectorizer.fit_transform(commands)\n",
+    "1457": "from sklearn.feature_extraction.text import TfidfVectorizer\ncommands = [\n    \"pick red ball near chair\",\n    \"pick blue box\",\n    \"grab red box\"]\n# Create TF-IDF vectorizer\nvectorizer = TfidfVectorizer()\n# Convert commands into TF-IDF vectors\nX = vectorizer.fit_transform(commands)\n",
+    "1460": "nltk.download('averaged_perceptron_tagger_eng')\ncommand = \"Pick up the red ball near the chair\"\n# Lowercasing + Tokenization\ntokens = word_tokenize(command.lower())\n# POS Tagging\npos_tags = nltk.pos_tag(tokens)\n",
+    "1461": "nltk.download('averaged_perceptron_tagger_eng')\ncommand2 = \"Pick up the light box\"\ntokens2 = word_tokenize(command2)\npos_tags2 = nltk.pos_tag(tokens2)\n",
+    "1462": "from nltk import word_tokenize, pos_tag, ne_chunk\ntext = \"Go to Lab3 and meet Mary.\"\ntokens = word_tokenize(text)\ntags = pos_tag(tokens)\n# ne_chunk creates a tree of entities\nentities = ne_chunk(tags)\n"
+  }
+}

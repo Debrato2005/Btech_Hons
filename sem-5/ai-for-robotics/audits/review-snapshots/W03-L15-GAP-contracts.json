@@ -1,0 +1,236 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "W03-L15-GAP",
+  "authorId": "robotics-integration-author-L15-gap",
+  "questions": [
+    {
+      "id": "W03-L15-GAP-Q001",
+      "version": 1,
+      "status": "draft",
+      "authorId": "robotics-integration-author-L15-gap",
+      "stem": "Use m1=2 kg, m2=3 kg, l1=1 m, l2=2 m, θ1=30°, θ2=60°, g=10 m/s², qdot=(1,2) rad/s and qddot=(1/2,−1/4) rad/s². The tool-axis J=[[√3/2,0],[5/2,2]] and Jdot=[[1,0],[−√3,0]]. Using the source’s complete transformed dynamics, which Vx, task force F and back-transformed joint torque τ agree, rounded to0.001?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "hard",
+      "cognitiveSkill": "numerical",
+      "week": 3,
+      "lectureId": "L15",
+      "topic": "Joint and Cartesian manipulator dynamics",
+      "subtopic": "Assemble nonspecial-angle task dynamics and recover joint effort",
+      "tags": [
+        "full-task-assembly"
+      ],
+      "conceptIds": [
+        "W03-L15-GAP-C-full-task-assembly"
+      ],
+      "assumptions": [
+        "Planar2R model with massless links, point mass m1 at the elbow and m2 at the second tip; θ1 measured upward from horizontal, θ2 relative, gravity downward. No friction or extra loads. All task vectors use the displayed rotating tool axes; a_c=d(v_T)/dt is the derivative of velocity components, not inertial acceleration components.",
+        "Use sin60°=√3/2, cos60°=1/2 and θ1+θ2=90°; retain full precision until final rounding."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Vx=(−61.167,7.794) N; F=(−3.046,4.848) N; τ=(9.482,9.696) N·m"
+        },
+        {
+          "id": "o2",
+          "text": "Vx=(−55.500,2.598) N; F=(2.620,−0.348) N; τ=(1.399,−0.696) N·m"
+        },
+        {
+          "id": "o3",
+          "text": "Vx=(−54.000,7.794) N; F=(4.120,4.848) N; τ=(15.689,9.696) N·m"
+        },
+        {
+          "id": "o4",
+          "text": "Vx=(−61.167,7.794) N; F=(−3.046,4.848) N; τ=(−2.638,2.080) N·m"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0454",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 454,
+          "kind": "equation",
+          "locator": "Lecture 15, physical PDF page 454, printed slide 5: relevant text, equations and associated figures",
+          "evidenceText": "Example:- Give 𝑀Θ  , 𝑉Θ, ሶΘ  , and 𝐺Θ  for the Two-link planar\nmanipulator with point masses at distal ends of links.\n                                      −  ➢𝜏1 = 𝑚2𝑙22  ሷ𝜃1                                           2           + ሷ𝜃2 + 𝑚2𝑙1𝑙2𝑐2 2ሷ𝜃1 + ሷ𝜃2 + 𝑚1 + 𝑚2 𝑙1 ሷ𝜃1\n                 2\n                     + 𝑚2𝑙2𝑔𝑐12 + 𝑚1 + 𝑚2 𝑙1𝑔𝑐1     𝑚2𝑙1 𝑙2𝑠2 ሶ𝜃2 −2𝑚2𝑙1𝑙2𝑠2 ሶ𝜃1 ሶ𝜃2\n                                  + ሷ𝜃2  ➢𝜏2 = 𝑚2𝑙1𝑙2𝑐2 ሷ𝜃1 + 𝑚2𝑙1𝑙2𝑠2 ሶ𝜃12                   2                     + 𝑚2𝑙2𝑔𝑐12 + 𝑚2𝑙2  ሷ𝜃1\n𝜏1    𝑚2𝑙22                            2      2       + 2𝑚2𝑙1𝑙2𝑐2 + 𝑚1 + 𝑚2 𝑙1  𝑚2𝑙2 + 𝑚2𝑙1𝑙2𝑐2   ሷ𝜃1  =                                  +                   2𝜏2             𝑚2𝑙2            + 𝑚2𝑙1𝑙2𝑐2              𝑚2𝑙2                                                     2           ሷ𝜃2\n             2−𝑚2𝑙1 𝑙2𝑠2 ሶ𝜃2 −2𝑚2𝑙1𝑙2𝑠2 ሶ𝜃1 ሶ𝜃2    𝑚2𝑙2𝑔𝑐12 + 𝑚1 + 𝑚2 𝑙1𝑔𝑐1                   +\n         𝑚2𝑙1𝑙2𝑠2 ሶ𝜃12                     𝑚2𝑙2𝑔𝑐12\n\n\n\n\n\n                                                                                                           5",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p0455",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 455,
+          "kind": "equation",
+          "locator": "Lecture 15, physical PDF page 455, printed slide 6: relevant text, equations and associated figures",
+          "evidenceText": "•  The manipulator mass matrix, 𝑀Θ  is composed of\n    all those terms which multiply ሷΘ and is a function of\n  Θ\n  𝑀Θ =\n         2                            2      2\n    𝑚2𝑙2 + 2𝑚2𝑙1𝑙2𝑐2 + 𝑚1 + 𝑚2 𝑙1  𝑚2𝑙2 + 𝑚2𝑙1𝑙2𝑐2\n                  2                                2\n           𝑚2𝑙2 + 𝑚2𝑙1𝑙2𝑐2              𝑚2𝑙2\n•  Any manipulator mass matrix is symmetric and\n   positive definite, and is, therefore, always invertible.\n\n\n\n\n\n                                                                                                           6",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p0456",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 456,
+          "kind": "equation",
+          "locator": "Lecture 15, physical PDF page 456, printed slide 7: relevant text, equations and associated figures",
+          "evidenceText": "Product of two•  The velocity term, 𝑉Θ, ሶΘ  contains all those terms that\n                                                                     different joint\n   have any dependence on joint velocity\n                            2                                    velocities            −𝑚2𝑙1 𝑙2𝑠2 ሶ𝜃2 −2𝑚2𝑙1𝑙2𝑠2 ሶ𝜃1 ሶ𝜃2   𝑉Θ, ሶΘ =                                    2                        𝑚2𝑙1𝑙2𝑠2 ሶ𝜃1\n   ➢−𝑚2𝑙1 𝑙2𝑠2 ሶ𝜃22 is caused by a centrifugal force         Square of a joint\n   ➢−2𝑚2𝑙1𝑙2𝑠2 ሶ𝜃1 ሶ𝜃2 is caused by a Coriolis force           velocity\n\n•  The gravity term, 𝐺𝜃, contains all those terms in which\n   the gravitational constant, g, appears\n           𝑚2𝑙2𝑔𝑐12 + 𝑚1 + 𝑚2 𝑙1𝑔𝑐1  𝐺Θ =\n                   𝑚2𝑙2𝑔𝑐12\n    ➢Gravity term depends only on Θ and not on its\n        derivatives.\n\n\n                                                                                                           7",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p0462",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 462,
+          "kind": "equation",
+          "locator": "Lecture 15, physical PDF page 462, printed slide 13: relevant text, equations and associated figures",
+          "evidenceText": "•   Substituting, ሷΘ in 𝐹 = 𝐽−𝑇𝑀Θ ሷΘ + 𝐽−𝑇𝑉Θ, ሶΘ + 𝐽−𝑇𝐺Θ\n•  𝐹 = 𝐽−𝑇𝑀Θ 𝐽−1 ሷ𝜒−𝐽−𝑇𝑀Θ 𝐽−1 ሶ𝐽ሶΘ + 𝐽−𝑇𝑉Θ, ሶΘ + 𝐽−𝑇𝐺Θ\n• 𝐹= 𝑀𝑥Θ ሷ𝜒+ 𝑉𝑥Θ, ሶΘ + 𝐺𝑥Θ\n•  So,\n  𝑀𝑥Θ = 𝐽−𝑇Θ 𝑀Θ 𝐽−1 Θ\n   𝑉𝑥Θ, ሷΘ = 𝐽−𝑇Θ 𝑉Θ, ሶΘ −𝑀Θ 𝐽−1 Θ ሶ𝐽Θ ሶΘ\n   𝐺𝑥Θ = 𝐽−𝑇Θ 𝐺Θ\n•  Here the Jacobian appearing in equations is written\n    in the same frames as 𝐹 and 𝜒 , the choice of this\n   frame is arbitrary.\n•  When the manipulator approaches a singularity, certain\n   quantities in the Cartesian dynamics become infinite.\n\n\n\n                                                                                                          13",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p0463",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 463,
+          "kind": "equation",
+          "locator": "Lecture 15, physical PDF page 463, printed slide 14: relevant text, equations and associated figures",
+          "evidenceText": "Example:- Derive the Cartesian-space form of the\ndynamics for the Two-link planar manipulator with\npoint masses at distal ends of links.\n•  Jacobian,\n                             𝑙1𝑠2    0\n          𝐽Θ =\n                           𝑙1𝑐2 + 𝑙2   𝑙2\n•  The inverse Jacobian:\n                 1         𝑙2      0          𝐽−1 Θ =\n                      𝑙1𝑙2𝑠2 −𝑙1𝑐2 −𝑙2   𝑙1𝑠2\n•  Time derivative of the Jacobian:\n                          0                          𝑙1𝑐2 ሶ𝜃2             ሶ𝐽Θ =\n                          0                     −𝑙1𝑠2 ሶ𝜃2\n\n\n                                                                                                          14",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p0464",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 464,
+          "kind": "equation",
+          "locator": "Lecture 15, physical PDF page 464, printed slide 15: relevant text, equations and associated figures",
+          "evidenceText": "𝑀𝑥Θ = 𝐽−𝑇Θ 𝑀Θ 𝐽−1 Θ\n    𝑉𝑥Θ, ሶΘ = 𝐽−𝑇Θ 𝑉Θ, ሶΘ −𝑀Θ 𝐽−1 Θ ሶ𝐽Θ ሶΘ\n   𝐺𝑥Θ = 𝐽−𝑇Θ 𝐺Θ\n     𝜏1    𝑚2𝑙22 + 2𝑚2𝑙1𝑙2𝑐2 + 𝑚1 + 𝑚2 𝑙12  𝑚2𝑙22 + 𝑚2𝑙1𝑙2𝑐2   ሷ𝜃1•    =                                  +\n     𝜏2                 𝑚2𝑙22 + 𝑚2𝑙1𝑙2𝑐2              𝑚2𝑙22           ሷ𝜃2\n    −𝑚2𝑙1 𝑙2𝑠2 ሶ𝜃22 −2𝑚2𝑙1𝑙2𝑠2 ሶ𝜃1 ሶ𝜃2    𝑚2𝑙2𝑔𝑐12 + 𝑚1 + 𝑚2 𝑙1𝑔𝑐1                     +\n              𝑚2𝑙1𝑙2𝑠2 ሶ𝜃12                     𝑚2𝑙2𝑔𝑐12\n\n                 𝑚1\n          𝑚2 +     0\n•  𝑀𝑥Θ =              𝑠22\n              0    𝑚2\n\n\n\n\n\n                                                                                                          15",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p0465",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 465,
+          "kind": "equation",
+          "locator": "Lecture 15, physical PDF page 465, printed slide 16: relevant text, equations and associated figures",
+          "evidenceText": "•  𝑉𝑥Θ, ሶΘ =\n                        2         2                                  𝑐2                          + 𝑚2𝑙1𝑐2 + 𝑚1𝑙1     ሶ𝜃1 ሶ𝜃2   −𝑚2𝑙1𝑐2 + 𝑚2𝑙2 ሶ𝜃1 −𝑚2𝑙2 ሶ𝜃2 −2𝑚2𝑙2                                                                                                             𝑠22\n                                  2                    + 𝑙1𝑚2𝑠2 ሶ𝜃1 ሶ𝜃2                      𝑚2𝑙1𝑠2 ሶ𝜃1\n\n                      𝑐1\n         𝑚1𝑔  + 𝑚2𝑔𝑠12                      𝑠2• 𝐺𝑥Θ =\n              𝑚2𝑔𝑐12\n\n\n\n\n\n                                                                                                          16",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p0466",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 466,
+          "kind": "equation",
+          "locator": "Lecture 15, physical PDF page 466, printed slide 17: relevant text, equations and associated figures",
+          "evidenceText": "The Cartesian configuration space torque equation\n\n•  Joint torques with the dynamics expressed in Cartesian space:\n           𝜏= 𝐽𝑇Θ 𝑀𝑥Θ ሷ𝜒+ 𝑉𝑥Θ, ሶΘ + 𝐺𝑥Θ\n       𝜏= 𝐽𝑇Θ 𝑀𝑥Θ ሷ𝜒+ 𝐵𝑥Θ  ሶΘሶΘ + 𝐶𝑥Θ  ሶΘ2 + 𝐺Θ\n   ➢Where 𝐵𝑥Θ  is a matrix of dimension 𝑛× 𝑛𝑛−1 /2 of Coriolis coefficients,\n  ➢  ሶΘሶΘ  is an 𝑛𝑛−1 /2 × 1 vector of joint velocity product given by\n                                                     𝑇\n                              ሶΘሶΘ =  ሶ𝜃1 ሶ𝜃2 𝜃2 ሶ𝜃3 … … … . ሶ𝜃𝑛−1 ሶ𝜃𝑛\n   ➢𝐶𝑥𝜃is an 𝑛 × 𝑛 matrix of centrifugal coefficients, and\n                                              𝑇\n                       … … ሶ𝜃𝑛2      ሶΘ2  is an 𝑛× 1 vector given by  ሶ𝜃12 ሶ𝜃22\n• 𝐺𝑥Θ is the same as in the joint-space equation,\n   but in general, 𝐵𝑥Θ ≠𝐵Θ and 𝐶𝑥Θ ≠𝐶Θ\n\n\n                                                                                                          17",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The nonzero cosine retains every expanded Vx coefficient. The task force uses the derivative of rotating velocity components, and Jᵀ maps that force back to the same joint effort as Mqddot+V+G.",
+        "optionExplanations": {
+          "o1": "All transformed terms, the component-derivative correction and the transpose effort map are included.",
+          "o2": "This uses J⁻ᵀV without subtracting Mx Jdot qdot; both its velocity force and recovered efforts are wrong.",
+          "o3": "This drops the cosθ2-dependent contributions from Vx1: the missing terms total43/6 N at these parameters.",
+          "o4": "The task dynamics is correct, but the final effort uses JF instead of JᵀF."
+        },
+        "steps": [
+          "Joint terms: M=[[23,15],[15,12]] kg·m², V=(−24√3,3√3) N·m and G=(25√3,0) N·m.",
+          "a_c=Jqddot+Jdot qdot=(1+√3/4,3/4−√3) m/s².",
+          "Mx=diag(17/3,3) kg; Gx=(50,0) N.",
+          "The complete expanded Vx1 is −(3/2+6)−6·4−(12+3/2+4/3)·2=−367/6 N; Vx2=(3√3/2)(1+2)=9√3/2 N.",
+          "F=(−11/2+17√3/12,9/4+3√3/2) N≈(−3.046,4.848) N.",
+          "τ=JᵀF=(31/4+√3,9/2+3√3) N·m≈(9.482,9.696) N·m.",
+          "Check directly: Mqddot+V+G gives the same τ."
+        ],
+        "formulas": [
+          {
+            "expression": "a_c=J qddot+Jdot qdot; Mx=J⁻ᵀMJ⁻¹; Vx=J⁻ᵀ(V−MJ⁻¹Jdot qdot); Gx=J⁻ᵀG; F=Mx a_c+Vx+Gx; τ=JᵀF",
+            "variables": {
+              "a_c": "time derivative of tool-frame velocity components",
+              "J": "displayed square tool-axis translational Jacobian",
+              "Jdot": "time derivative of the same Jacobian components",
+              "qdot,qddot": "joint rates and accelerations",
+              "M": "joint inertia",
+              "V,G": "joint velocity and gravity torques",
+              "Mx": "task inertia",
+              "Vx,Gx": "task velocity and gravity forces",
+              "F": "task force",
+              "τ": "joint torques"
+            },
+            "units": {
+              "a_c": "m/s²",
+              "J": "m/rad",
+              "Jdot": "m/(rad·s)",
+              "qdot": "rad/s",
+              "qddot": "rad/s²",
+              "M": "kg·m²",
+              "V,G,τ": "N·m",
+              "Mx": "kg",
+              "Vx,Gx,F": "N"
+            },
+            "assumptions": [
+              "Planar2R model with massless links, point mass m1 at the elbow and m2 at the second tip; θ1 measured upward from horizontal, θ2 relative, gravity downward. No friction or extra loads. All task vectors use the displayed rotating tool axes; a_c=d(v_T)/dt is the derivative of velocity components, not inertial acceleration components.",
+              "J is nonsingular; radians are dimensionless in the mechanics identities."
+            ]
+          }
+        ],
+        "simpleExplanation": "The nonzero cosine retains every expanded Vx coefficient. The task force uses the derivative of rotating velocity components, and Jᵀ maps that force back to the same joint effort as Mqddot+V+G.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This uses J⁻ᵀV without subtracting Mx Jdot qdot; both its velocity force and recovered efforts are wrong.",
+          "This drops the cosθ2-dependent contributions from Vx1: the missing terms total43/6 N at these parameters.",
+          "The task dynamics is correct, but the final effort uses JF instead of JᵀF."
+        ],
+        "examTraps": [
+          "Do not discard the cosine-dependent Vx coefficients just because an earlier worked state used θ2=90°.",
+          "Do not equate a_c with inertial acceleration in rotating axes.",
+          "Transform task effort with Jᵀ, not J."
+        ],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": []
+    }
+  ],
+  "concepts": [
+    {
+      "id": "W03-L15-GAP-C-full-task-assembly",
+      "title": "Assemble nonspecial-angle task dynamics and recover joint effort",
+      "description": "The nonzero cosine retains every expanded Vx coefficient. The task force uses the derivative of rotating velocity components, and Jᵀ maps that force back to the same joint effort as Mqddot+V+G.",
+      "slideIds": [
+        "lectures-p0454",
+        "lectures-p0455",
+        "lectures-p0456",
+        "lectures-p0462",
+        "lectures-p0463",
+        "lectures-p0464",
+        "lectures-p0465",
+        "lectures-p0466"
+      ],
+      "questionIds": [
+        "W03-L15-GAP-Q001"
+      ],
+      "status": "drafted",
+      "topic": "Joint and Cartesian manipulator dynamics",
+      "subtopic": "Assemble nonspecial-angle task dynamics and recover joint effort",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "numerical"
+      ]
+    }
+  ],
+  "coverageNote": "Hand-authored drafts after actual source-page inspection; independent answer review and complete-coverage challenge remain required."
+}

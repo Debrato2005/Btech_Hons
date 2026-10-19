@@ -1,0 +1,698 @@
+{
+  "batchId": "W07-L34",
+  "completedAt": "2026-10-19T20:50:22.294162+00:00",
+  "reviewerId": "robotics-contracts-independent-reviewer",
+  "reviewed": 134,
+  "verified": 89,
+  "flagged": 45,
+  "intendedKeyDisagreements": 0,
+  "substantiveAnswerBoundaryDefects": 1,
+  "actualPagesInspected": 39,
+  "sourceBounds": [
+    1021,
+    1059
+  ],
+  "independentAssertions": 41,
+  "variedCases": 1000,
+  "runtimeVersions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.8"
+  },
+  "reviewFile": "data/reviews/W07-L34-v1-independent-contracts.json",
+  "reviewSha256": "d6974aedcd74fdf0720108ce6b15dab72f3be130a39303514473fbbd18409e79",
+  "blindAnswersPath": "audits/blind-answers-W07-L34-v1-contracts-reviewer.json",
+  "blindAnswersSha256": "5cecaf39e1fa7e310d1f3cc6e8ae32d2b771459ed696e19a21f6e445cec44021",
+  "snapshotPath": "audits/review-snapshots/W07-L34-contracts.json",
+  "snapshotSha256": "d294391473cf4f0d80b1367213c06650e0de977d02f58660ef52dc9222c028fa",
+  "validation": {
+    "valid": true,
+    "release": false,
+    "errors": [],
+    "warnings": [],
+    "counts": {
+      "sources": 2,
+      "sourcesReady": 2,
+      "pagesExpected": 2012,
+      "pagesInventoried": 2012,
+      "pagesVisuallyInspected": 372,
+      "pagesExcluded": 140,
+      "pagesRepeated": 0,
+      "concepts": 34,
+      "conceptsWithDraftQuestions": 34,
+      "conceptsWithVerifiedQuestions": 33,
+      "questions": 134,
+      "questionsByStatus": {
+        "verified": 89,
+        "flagged": 45
+      },
+      "currentlyVerifiedQuestions": 89,
+      "staleReviews": 0,
+      "numericalFamilies": 0,
+      "verifiedByWeek": {
+        "7": 89
+      },
+      "verifiedByDifficulty": {
+        "easy": 87,
+        "medium": 2
+      },
+      "verifiedByType": {
+        "scenario": 6,
+        "diagram": 8,
+        "conceptual": 38,
+        "synthesis": 2,
+        "algorithm_trace": 2,
+        "numerical": 23,
+        "sequence": 1,
+        "match": 6,
+        "code": 2,
+        "exception": 1
+      }
+    }
+  },
+  "flaggedQuestionIds": [
+    "W07-L34-P1024-Q01",
+    "W07-L34-P1025-Q01",
+    "W07-L34-P1028-Q01",
+    "W07-L34-P1030-Q03",
+    "W07-L34-P1032-Q03",
+    "W07-L34-P1033-Q05",
+    "W07-L34-P1033-Q06",
+    "W07-L34-P1034-Q01",
+    "W07-L34-P1034-Q04",
+    "W07-L34-P1035-Q05",
+    "W07-L34-P1036-Q02",
+    "W07-L34-P1036-Q03",
+    "W07-L34-P1036-Q04",
+    "W07-L34-P1037-Q06",
+    "W07-L34-P1041-Q02",
+    "W07-L34-P1041-Q03",
+    "W07-L34-P1042-Q03",
+    "W07-L34-P1043-Q02",
+    "W07-L34-P1045-Q01",
+    "W07-L34-P1045-Q02",
+    "W07-L34-P1046-Q02",
+    "W07-L34-P1046-Q03",
+    "W07-L34-P1046-Q04",
+    "W07-L34-P1049-Q02",
+    "W07-L34-P1050-Q01",
+    "W07-L34-P1050-Q02",
+    "W07-L34-P1051-Q01",
+    "W07-L34-P1052-Q02",
+    "W07-L34-P1052-Q03",
+    "W07-L34-P1052-Q04",
+    "W07-L34-P1053-Q02",
+    "W07-L34-P1053-Q06",
+    "W07-L34-P1054-Q01",
+    "W07-L34-P1054-Q03",
+    "W07-L34-P1055-Q02",
+    "W07-L34-P1055-Q03",
+    "W07-L34-P1055-Q04",
+    "W07-L34-P1055-Q05",
+    "W07-L34-P1056-Q03",
+    "W07-L34-P1056-Q04",
+    "W07-L34-P1052-Q05",
+    "W07-L34-P1052-Q08",
+    "W07-L34-P1052-Q09",
+    "W07-L34-P1052-Q10",
+    "W07-L34-P1052-Q11"
+  ],
+  "findings": [
+    {
+      "questionId": "W07-L34-P1024-Q01",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The wrong sequences contain weights before sensing, action before computation, or bias-only output. Replace them with parallel credible processing-order or bias/activation-placement mistakes; the current alternatives make the diagram task largely answer-by-elimination."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1025-Q01",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Optimizer momentum and post-measurement input observations are not credible alternatives to the MP gate parameters. Use parallel choices about fixed/learned thresholds and equal/unequal coefficients, without inventing a training rule."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1028-Q01",
+      "criteria": [
+        "sourceSupport",
+        "distractors"
+      ],
+      "findings": [
+        "The single affine-hyperplane premise is on1029/1030, not established by the erroneous input-type statement on1028 alone. Add the defining affine-model citation to support the XOR qualification.",
+        "The claims that real inputs force zero weights or remove bias are disconnected from the actual representational misconception. Use credible alternatives concerning feature transformations, threshold movement and training versus separability."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1030-Q03",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Epoch count as boundary distance is unrelated to the tested geometry. Use competing formulas/scaling cases for signed offset, absolute distance and joint versus weight-only rescaling."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1032-Q03",
+      "criteria": [
+        "assumptions",
+        "distractors"
+      ],
+      "findings": [
+        "The displayed assumptions supply finite data, positive fixed update and fair revisiting, essentially providing the intended convergence condition before selection. Recast as a concrete separability/visiting scenario or remove answer-revealing assumptions while keeping the theorem scope unambiguous.",
+        "The alternatives about sigmoid output and unbounded rate are not close alternatives to the actual finite-convergence hypotheses. Use realistic necessary-versus-sufficient or separability/finite-sample confusions."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1033-Q05",
+      "criteria": [
+        "answerSet"
+      ],
+      "findings": [
+        "A negative dot product does not always mean an obtuse angle: nonzero antiparallel vectors have angle180 degrees, a straight angle. Replace obtuse by greater than90 degrees and at most180 degrees, or explicitly exclude antiparallel vectors. The source says alpha>90 degrees, not obtuse. My initial blind response missed this endpoint; the later mathematical challenge catches it without rewriting the frozen response."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1033-Q06",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Weights being scalar despite vector input and changes to angle without coordinate changes are implausible alternatives. Use componentwise versus norm/score changes with an explicit mixed-sign input."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1034-Q01",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The wrong options say a step is linear, shares the sigmoid derivative everywhere or cannot produce binary outputs. Use credible distinctions among nonlinearity, continuity, almost-everywhere derivative and surrogate-gradient assumptions."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1034-Q04",
+      "criteria": [
+        "assumptions",
+        "distractors"
+      ],
+      "findings": [
+        "Only hidden activations are set to identity in the stem. State that the composed map excludes any nonlinear output activation, or set the output activation to identity too; otherwise a sigmoid output makes the overall predictor non-affine.",
+        "A constant regardless of weights and spontaneous softmax normalization are not credible alternatives. Prefer parallel expressions for the composed weight and bias or distinguish affine logits from nonlinear outputs."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1035-Q05",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "One unencoded scalar and a threshold on the sum of labels are weak rivals to three independent output probabilities. Use plausible sigmoid/softmax normalization or target-encoding alternatives with matched detail."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1036-Q02",
+      "criteria": [
+        "explanation"
+      ],
+      "findings": [
+        "The o4 rationale says adds/inverts factors for value4. Adding four factors1/4 gives1 and multiplying their reciprocals gives256, not4. Explain a precise error that actually yields4, such as taking the reciprocal of one factor, or replace the distractor consistently."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1036-Q03",
+      "criteria": [
+        "sourceSupport",
+        "distractors"
+      ],
+      "findings": [
+        "The explanation invokes weight Jacobians and path sums; add the actual multilayer affine equations1038/1039 and chain-rule premise1046, or an explicit derived chain, instead of citing only the prose activation-product slide.",
+        "Weights never used, every weight constrained to1 and every gradient exactly zero are too remote. Contrast activation-only, matrix-norm and path-sum statements under explicit assumptions."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1036-Q04",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Erased labels and undefined forward predictions are not plausible consequences of small gradients. Use credible slow-update, saturation, exploding-gradient or learning-rate confusions."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1037-Q06",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "A constant -0.17 for every negative input and minimum -1 merely because input can equal -1 are implausible. Use close rounded-versus-exact minimum, asymptotic zero and ReLU/leaky-range alternatives."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1041-Q02",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Choosing rate from the label and ignoring inputs to compute only the target are weak alternatives. Contrast fixed-parameter prediction with gradient calculation, optimizer application and running-state updates under the stated model."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1041-Q03",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "A learning-rate gradient, only bias regardless of input and a substituted target are unbalanced alternatives to the fully written affine score. Use comparable preactivation/activation/loss expressions."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1042-Q03",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Proof of generalization and a guaranteed-zero target loss are not plausible inference stages. Use realistic distinctions among prediction, confidence, supervised loss with missing labels and gradient availability."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1043-Q02",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The objective changing a class label automatically and always equaling zero are implausible. Compare monotonicity/optimization directions for a known positive label with parallel alternatives."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1045-Q01",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "All wrong choices mix inputs, labels and probabilities into nonsensical parameter categories. Use plausible weight/bias versus optimizer-setting distinctions while retaining the lecture-specific learning rule."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1045-Q02",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "An exponent becoming a denominator and n=1 turning squared error into absolute error are weak alternatives. Contrast averaging, explicit half scaling and derivative convenience without a free mathematical clue."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1046-Q02",
+      "criteria": [
+        "assumptions"
+      ],
+      "findings": [
+        "The stem gives x and residual but never defines L. Half-squared error gives(-6,3), while ordinary squared error gives the offered(-12,6). Put the exact half-squared objective and affine prediction in the pre-answer stem/assumptions, not only in the solution formula."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1046-Q03",
+      "criteria": [
+        "assumptions"
+      ],
+      "findings": [
+        "Specify the unregularized scalar affine model and chosen differentiable residual loss before selection. Linear-model gradients are not a unique objective definition; regularization could give a nonzero weight gradient at x=0."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1046-Q04",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The class count and w+b are weak rivals for an activation derivative. Use realistic chain-rule factors such as omitted sigmoid derivative, swapped sign or log-loss cancellation, with parallel formulas."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1049-Q02",
+      "criteria": [
+        "assumptions",
+        "sourceSupport"
+      ],
+      "findings": [
+        "The same residual depends on a preceding item that may not be shown in randomized practice. Supply prediction7 and target10 or residual-3 in this item.",
+        "Add the ordinary MSE definition on1043/1045. Page1049 alone prints the half-squared objective under an MSE label; the comparison needs both exact premises."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1050-Q01",
+      "criteria": [
+        "assumptions"
+      ],
+      "findings": [
+        "At the starting state is not self-contained in randomized practice. Supply x2,y10,w3,b1 and the half-squared affine objective before asking for the gradients."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1050-Q02",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The wrong sequential choice explicitly says it is claiming the same simultaneous result, and the remaining choices use uniquely known target parameters or an arbitrary historical epoch. Replace with parallel old/new/mixed state choices without editorial hints."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1051-Q01",
+      "criteria": [
+        "assumptions"
+      ],
+      "findings": [
+        "Old w and b are missing from the stem/assumptions. Gradients and rate alone determine the displacement, not the new parameters. State initial(3,1) in this standalone item."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1052-Q02",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Temperature, identical torque/speed dimensions and only radians are implausible comparisons. Use parallel, physically meaningful PDF-versus-notebook output and unit pairings."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1052-Q03",
+      "criteria": [
+        "assumptions"
+      ],
+      "findings": [
+        "This repeated single-example linear update should explicitly define yhat=wx+b, half-squared loss and simultaneous updates of both w and b in pre-answer material. A weight-only update would have a different contraction factor."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1052-Q04",
+      "criteria": [
+        "assumptions"
+      ],
+      "findings": [
+        "The same model depends on another item, and the inherited assumptions fix eta0.1 even while asking for a varying-rate interval. State the half-squared affine objective and simultaneous w/b rule explicitly, allowing eta to vary over positive values."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1053-Q02",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The correct sequence has seven stages while all wrong sequences have five and several place output before further processing. Use the same stage multiset and length with realistic ordering mistakes."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1053-Q06",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Ten pixels, every robotic CNN having ten outputs and first-layer channel count are not comparable interpretations of the dense stage. Use plausible hidden width versus class-score/output-size interpretations, retaining the figure-specific qualification."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1054-Q01",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Learning rate and convolution kernel width are unrelated to the recurrent incoming arrows. Use parallel pairs of current/previous input, hidden state and output variables."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1054-Q03",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Waiting for an infinite sequence to end is not a credible memory interpretation. Use realistic exact-copy, fixed-window, compressed-state and output-only memory alternatives."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1055-Q02",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Direct pixel-to-motor voltage without embeddings is unrelated to causal masking. Use competing masking directions and shifted-input/target dependencies."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1055-Q03",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "A decoder reading only a bias constant and a final probability vector becoming encoder positional input are implausible. Use real attention paths and distinguish source of queries from source of keys/values, with any extra definitions explicitly supplied."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1055-Q04",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Pooling/threshold and RNN/convolution pairs are remote from the actual decoder top. Use plausible ordering and output activation/affine-stage confusions."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1055-Q05",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Pooling dimensions and output-class counts are poor rivals to the block labels; use parallel interpretations of residual addition, normalization, heads and repeated layers."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1056-Q03",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "A repeated term having no meaning and universal impossibility/perfect reliability are implausible absolute alternatives. Contrast overlapping research/application categories with narrower claims the graphic cannot establish."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1056-Q04",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Declaring surgery impossible or two labels identical completed technologies is unbalanced against the careful correct statement. Use source-attributed membership pairs with comparable wording and no unsupported capability claims."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1052-Q05",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Target labels and animation frames do not plausibly determine explicit initializer assignments. Use realistic seeding versus random-draw ordering and literal-assignment alternatives."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1052-Q08",
+      "criteria": [
+        "explanation",
+        "difficulty",
+        "assumptions"
+      ],
+      "findings": [
+        "The steps say sum parameter increments without showing that sum or the five iterates. Include the actual finite geometric sums or update table for both w and b so final4.1625/1.58125 is reconstructible, not just stated.",
+        "Five repeated coupled updates or a finite geometric-sum derivation plus pre/post-history discrimination is medium, not easy, unless the needed final state is supplied as a direct code-output reading.",
+        "The linked notebook target is motor speed, but the inherited normalization declares y=tau/(1 Nm). Use purely dimensionless numeric coordinates for this shared arithmetic, or define the notebook speed normalization separately; do not silently assign torque units to its speed target."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1052-Q09",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Plot slices updating weights a second time is unrelated. Use close off-by-one, mismatched-prefix and current-versus-final-frame interpretations with exact lengths."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1052-Q10",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Learning-rate schedules, bias gradients and training-sample counts do not plausibly change when a text artist is initialized. Contrast callback binding, scope, call timing and artist reuse errors."
+      ]
+    },
+    {
+      "questionId": "W07-L34-P1052-Q11",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "GPU-required scalar assignments, Python loops being notebook-only and Matplotlib being Colab-only are implausible. Use specific ordinary-Python versus IPython syntax/dependency/backend distinctions."
+      ]
+    }
+  ],
+  "acceptedQuestionHashes": {
+    "W07-L34-P1023-Q01": "c6ab793247b6c33036b3161f82958856b4e426e9c8804ee70b5a62cd8eb620fb",
+    "W07-L34-P1023-Q02": "2a7b7b29e01bed84b288c63d4080b395b6dc4391792bdaa205ffa396da03326b",
+    "W07-L34-P1023-Q03": "4e0e276bfbb5013c6a21ae3208f387f682bc44a9efa2c3cb0d48ebfa86bea71b",
+    "W07-L34-P1024-Q02": "86150ce9b77d678c10dc638ef4453d6dab16832225c9b0c1ace36b4d4303c94b",
+    "W07-L34-P1024-Q03": "0caa834bed27465779ee813eb607201a28b3db0bcdbce48bf3d6e1a7e16e4651",
+    "W07-L34-P1024-Q04": "ce3aaa0d532fee19a772befbe408b4165ab9cdb8a30f44ded85102a6966725e9",
+    "W07-L34-P1025-Q02": "86670f0b2181a2d1c97bfbb3285689b536a23af3977b6234a5e0e1d801047398",
+    "W07-L34-P1025-Q03": "fe1b541861f9716868a0e88f8e2e6a792d36943826da64a187b6dbd8c22623a1",
+    "W07-L34-P1025-Q04": "fd9ec5e545f1c6c1f4fe3fcb9fb0982880b18f5597af4a88c57e0a669caa42b8",
+    "W07-L34-P1026-Q01": "f1551b7d225fde1ea31f08a18d9f530328ba710d5d08af7927c1a95db847bf3c",
+    "W07-L34-P1026-Q02": "5b88ed151b9e5abd0f427fa314c068f9bd18e476d4c05aac7938a66d1dc0619f",
+    "W07-L34-P1027-Q01": "ae05edcb74aae9cb14b6d3836e75cc8792d4580a20eec628c65b6c4386ebf2d7",
+    "W07-L34-P1027-Q02": "15a542581ac67b30e44d7d74dfde528fd75dcdb0c974603ff285a45fb5378e40",
+    "W07-L34-P1027-Q03": "1558095639e0674397b3f590813e52c815f1e23a8ee253991e6232ecc07b25f6",
+    "W07-L34-P1028-Q02": "b1345ebbdb8335e880f09bf4a156b0bfd58c0e40ea8db9d9d4e55aa41749824b",
+    "W07-L34-P1028-Q03": "d7be428d417c8325bda7095f65db7df6d21f0171c2e95157cd8cdd0392f78080",
+    "W07-L34-P1028-Q04": "18d813dd3b99d92f1d5df856e5a0ae828d00241c3b7c50b58bb36330efd1c8c5",
+    "W07-L34-P1029-Q01": "e22af2876e36198c51a63198e7faeee458c7240dcfee43b641e0838e2262c096",
+    "W07-L34-P1029-Q02": "95860189f6678157ff4822a3d21829a7ced42d960536e70480c43be6c9d36082",
+    "W07-L34-P1029-Q03": "d750210abe2a08b5537e42d2371fdbfcdc45e6f32933025260fea2ca0b4ba7a6",
+    "W07-L34-P1030-Q01": "eab9b27c4f56262ad49a3100f84bf02a4b0ab421155c0c94ed88b7431a8be7f8",
+    "W07-L34-P1030-Q02": "57cb950843ed561817ec1224804d48b65811bfdb3ade8e6fab3d6a091ebd2c95",
+    "W07-L34-P1031-Q01": "cf83176bfaa235d3baf24eac15da17bfd7f29c5c35640a0f742193e6b45dd3fa",
+    "W07-L34-P1031-Q02": "dc8842af4e44573eb6a571ee7a57f357e4071591138084db75d31e19df895e0a",
+    "W07-L34-P1032-Q01": "d008505431201d2c010c6e8d957d2e0d1dd4508c95a199dc4c206a6ec452af3a",
+    "W07-L34-P1032-Q02": "d9e95b91d33f8ee57e38089e893c75ec44581fc92ba5d5600121055ab1148037",
+    "W07-L34-P1033-Q01": "da7dc1195df0d718d3f9870de75bf2cec0676554170547544cf17d1b09a51034",
+    "W07-L34-P1033-Q02": "20c3877c8836ba4e0a612c8370d4e931019e8d147904a2fb2f22b26e7d51db53",
+    "W07-L34-P1033-Q03": "2ce6170ae81438ba8057fec177d3e21042f8873ad620af1ab76e22a217930765",
+    "W07-L34-P1033-Q04": "232286adee981f4ce312b42e8bf59f49430e9238583459cf3751cd208b16cf7d",
+    "W07-L34-P1034-Q02": "ce8e6561022b0ff0ddbefedc3e6fe004a9a48062a55c67895ad8510401214439",
+    "W07-L34-P1034-Q03": "91a6334dc4b1756e36d6612c69aaaf268d1654e49f4577ed9eedd1713c16f098",
+    "W07-L34-P1035-Q01": "32da420d9f9887c8beac171616c5a9bced6a8b5cb098033b9dbd2ff35e2f5695",
+    "W07-L34-P1035-Q02": "143690f5c013404c027c565b34f41758208aedd715318079530c6dfc21030308",
+    "W07-L34-P1035-Q03": "2e4e1b92bb3c7deb10dc9ca3791d3153170226a788f8dc1dd20d62bb50ab96f0",
+    "W07-L34-P1035-Q04": "bb4eb7adc7e09ae521e803d46e3496f470bbb0d2095a8620c092c5a516e59163",
+    "W07-L34-P1035-Q06": "6de02c2d342da0199aa6c8c077135efb46057be9f21254cdee44a3f27a4a4d11",
+    "W07-L34-P1036-Q01": "3887392ca4490db1a64bbd7a4858159d3aec7ad34f0742a46394775200d6b385",
+    "W07-L34-P1037-Q01": "35ed9dc121f6a07fe5850b4f9695c02ff212bea07eb8ed29b693fda631123be7",
+    "W07-L34-P1037-Q02": "89a550ed58b0bfa526fa0d59b15ef91c36dcc4132db1a082e22512037bfcce4a",
+    "W07-L34-P1037-Q03": "c6841fa6d5a3a4a79a9dff195e6eab7b5fad975ade3b7a4f2c206872c4c696dc",
+    "W07-L34-P1037-Q04": "fccee6604f09bdea4eac62192b7f955e2ff3086e8bb54e63dbb33502ff561df8",
+    "W07-L34-P1037-Q05": "d7a499031b5815f2136a2566568eeccd59ef9230ae05aeebfd6b3d693ccaed9a",
+    "W07-L34-P1037-Q07": "da3e2ebde7d14986863b895c2c6e07e200d786e1a1eb9ceec4395b17d685faab",
+    "W07-L34-P1038-Q01": "44bd6e4e16fe9c10765c8d8d44b9262ed8733fb39af14252cbc7b853e42a648f",
+    "W07-L34-P1038-Q02": "bf16e104788dcbe04cd2daa4bc3561cfedf3249447c3059b456141826fd25bc6",
+    "W07-L34-P1038-Q03": "aa36a99c5375e185eb70b16140c62854ee0624f5722f1123ecfb77baa4c55235",
+    "W07-L34-P1038-Q04": "ed31d6a716131ddf6ba82f775e8bf47957735c0d10214d926cab5dbb8c9f5f1d",
+    "W07-L34-P1039-Q01": "2c0bdf07f5cc59e791ad275d637f91f2352205379852cb446df1e74059047ad4",
+    "W07-L34-P1039-Q02": "fa00939f5c70e6d41b658a221b5f573f24dd802ed61afe1bdfbd800a02ea6126",
+    "W07-L34-P1039-Q03": "35058a27e695626429d0c7b3b6533bbc28a82e148b3aa7a0e6ad7a3729fc6500",
+    "W07-L34-P1039-Q04": "fde26008cc6f7ddf7772ff4dcd973fd965ac869a8becdb9f6bbec0fc3ad546c2",
+    "W07-L34-P1040-Q01": "4dfb57674ad02674e2ff6b52ed3e8f7cee03517948919ab219dfb56e2db66a5e",
+    "W07-L34-P1040-Q02": "9f8b8934d3e308ebcf74d52dcfe15fdbf18cdd5653e44bbce6b07f97ca723f89",
+    "W07-L34-P1041-Q01": "8890031089277d6daa455e667a42df5c68bd3e8b0bd0fa0b8b8640fbf2a22799",
+    "W07-L34-P1042-Q01": "184a4de2c359da1d867823dea08b4021947f167d1970e053c80beef44d4e093e",
+    "W07-L34-P1042-Q02": "16d83360a48c6bd29e54201b458dea39d00182bfb5a3a083418982f712d8b040",
+    "W07-L34-P1043-Q01": "453682786e68ac5e2f7c33a628185b53265ce245e0c0b2eab1797d4642f89ccf",
+    "W07-L34-P1043-Q03": "7ceb34ccb650ee2abab536291e694a19e8c5e4f158c11ded76fc5e2c17823216",
+    "W07-L34-P1043-Q04": "ac5fe35e91f3323efbecca6802f21f26b1052865a8372dd45ca0fc8c4c23653c",
+    "W07-L34-P1043-Q05": "6a3ec3f3994fe474d1ecaceb394b5f99fa2a8b8948928a34189e3f56a8f096a4",
+    "W07-L34-P1043-Q06": "d85e6f39efcbe989de12752dbf471db0d35fe32ef7b3ce0e421fa1d83a0dd1e8",
+    "W07-L34-P1044-Q01": "161f07b5c8fde6bd8fdce56cfd2ad7bd166c59529b132a6a59cffcb085740a83",
+    "W07-L34-P1044-Q02": "66a8b04cc192f4a3e79b32886e909b67812e42cab4a7420f41329a228f3c7145",
+    "W07-L34-P1045-Q03": "36dc0ef929bb4085be54b7096c3e7821660e23db25db9823b31191d556563aad",
+    "W07-L34-P1046-Q01": "37c5e659d66d276ac63097c3555455388913deb6faa0931512a1e660cfd92ac6",
+    "W07-L34-P1047-Q01": "1b6155d70dbfff520476d3e75e726bc35fc2469fcdb76038f10fd2458d272f22",
+    "W07-L34-P1047-Q02": "25b497e5c086bbf54396ae37dfd87031ecc8071aba02ab093d9e1398c0f98997",
+    "W07-L34-P1047-Q03": "2f7b63144b117fd65cdbf6a554cebc62e1508b6ca2d3cae9d42f0b73ff3c34a2",
+    "W07-L34-P1048-Q01": "67f6939475b1686c014b02b7214425e9b09700c4fce4be26d7a8e3fe9ed0f6a8",
+    "W07-L34-P1048-Q02": "c819804b67029ef01213474da56bc3671f4bf0fc0e6d70bb8019de63f405bf04",
+    "W07-L34-P1048-Q03": "7861c98b2fba4cab1b46793547b24fd9f873b9cf54906e4a1590d449b3232125",
+    "W07-L34-P1048-Q04": "3ab5ef74c71b8b37a237c71c945aeabc77f55061b2b2dfbb810234abcef226ea",
+    "W07-L34-P1049-Q01": "89118564c609036671bf50040e4265703c55a9a219d345e5da470de8a2b30876",
+    "W07-L34-P1051-Q02": "0f1363a1285c42eca556e71fa605e79330090b27e411fd1653730fae5f482e19",
+    "W07-L34-P1051-Q03": "138783b4f626e97f918969ca710f8fd49a61d5dc566b4580b2369f37bc9fd36e",
+    "W07-L34-P1052-Q01": "8624121722dc5e9effe3ce5a012fbd4721123d414d7f3e4a19bed3caf1968a1c",
+    "W07-L34-P1052-Q06": "784b0f829b06a77b99b3082e99e59a4ef69a18ca48c0b658cb9edfce696c5f90",
+    "W07-L34-P1052-Q07": "69cc49344bbbfb0c8dcc38893f40bb0bdb91299067c4118748fd6620965e15f7",
+    "W07-L34-P1052-Q12": "75d502e3e0da325e228c5763b2176b73ce3206a342bd5334f90fd5a8c8ed10e1",
+    "W07-L34-P1053-Q01": "b0cb52dbbea287c3b0a3720013a8959d53e941ce25a6740433828f229f863948",
+    "W07-L34-P1053-Q03": "ba44b1acb9671c3e0e4881cf1ff4a96b4ad5d422494ed3f39eb4141b046de0a6",
+    "W07-L34-P1053-Q04": "be0d378ae8286da5aa7f4604051089598474c41ba5084ea6a6f8a61e577df10d",
+    "W07-L34-P1053-Q05": "b5ec9483a8611003c7e2ee8575e9c3cf518d7a0820bf3300e557b78241d1e7b7",
+    "W07-L34-P1054-Q02": "df5bc2d42ab0b5c82837cba4484b7130e2b807d6700a2eb2b60ad390e17455b1",
+    "W07-L34-P1055-Q01": "9ae4cd5b61d688e921c94be9d8c44cf6e523c3e9a64d46f7d5b3e183daca25f8",
+    "W07-L34-P1055-Q06": "cca9fa352e63cf95ef409bee933b7d9806cb7922de1160ae25d41558f8e90b42",
+    "W07-L34-P1056-Q01": "1d258e25523ea262a287af13243d2dbc061e1340dc6e055fe367d9b64f7c8636",
+    "W07-L34-P1056-Q02": "f538dbbdb35c32ead0a101964fd125de74a1a941e322294ce63f86c43d14ceaf"
+  },
+  "coverageGaps": [
+    {
+      "id": "L34-G01",
+      "physicalPages": [
+        1038,
+        1039,
+        1043,
+        1044,
+        1046,
+        1047
+      ],
+      "angle": "Full multilayer forward/loss/backward/update synthesis",
+      "finding": "The134 items separately test a hidden forward map, output sigmoid, scalar linear gradient and nonlinear derivative factor, but never perform one complete multilayer gradient/update chain. The actual training-stage diagram and chain-rule content support a meaningful hard synthesis.",
+      "boundedRemedy": "Provide a small nondegenerate two-layer network, explicit column shapes, biases, one target, loss and rate. Compute hidden/output values, loss, output and hidden gradients, and simultaneous parameter updates. Keep ReLU inputs away from zero or declare its convention. Cite all affine, activation, loss and chain-rule premises; independently execute finite-difference checks."
+    },
+    {
+      "id": "L34-G02",
+      "physicalPages": [
+        1032,
+        1033
+      ],
+      "angle": "Multi-example perceptron trace with both mistake branches",
+      "finding": "Current trace questions cover one positive update and negative equality, not a sequence that distinguishes update timing, bias changes, correct-example no-ops and revisiting.",
+      "boundedRemedy": "Supply a finite separable set, explicit augmented coordinates, initial weights and deterministic presentation order as a variation of the random-choice source. Trace both positive and negative mistakes plus at least one correct example, and check all-example termination. Do not infer a single-pass convergence guarantee."
+    },
+    {
+      "id": "L34-G03",
+      "physicalPages": [
+        1043
+      ],
+      "angle": "Negative-label and batch binary cross-entropy",
+      "finding": "The only numerical binary loss item uses y1,p0.5. It does not test the(1-y)log(1-p) branch or averaging over mixed labels, despite those being explicit terms in the source formula.",
+      "boundedRemedy": "Supply at least one positive and one negative target with predicted class1 probabilities, use the explicitly repaired negative mean log-likelihood, and calculate both per-example terms and their average. Compare sign, class-probability and sum-versus-mean mistakes with natural-log and exact/rounded conventions."
+    },
+    {
+      "id": "L34-G04",
+      "physicalPages": [
+        1025,
+        1028
+      ],
+      "angle": "Named MP versus trainable-perceptron historical attribution",
+      "finding": "The source explicitly attributes the1943 artificial-neuron model to McCulloch/Pitts, including their complementary disciplines, and the1958 classical perceptron to Rosenblatt. Existing questions address Minsky/Papert misattribution and broad timeline associations, but not this direct model/person distinction.",
+      "boundedRemedy": "Add one narrow source-attributed matching/statement item connecting the two named models, contributors and fixed-logic versus learnable-parameter distinction. Avoid repeating unreliable robotics dates or adding an unsupported invention claim."
+    }
+  ],
+  "ledgerFindings": [
+    {
+      "id": "L34-LEDGER-1057",
+      "physicalPages": [
+        1057
+      ],
+      "finding": "The summary exclusion says it is mapped to existing concepts, but repeatsSlideIds and conceptIds are empty and no question cites1057. Thus the claimed repetition mapping is not actually encoded.",
+      "boundedRemedy": "Record the specific earlier slide/concept/question links for every summary bullet and mark incremental changes checked. No duplicate summary questions are needed. Preserve the architecture metaphors as analogies, not universal capability claims."
+    }
+  ],
+  "coverageChallengePath": "audits/W07-L34-contracts-coverage-challenge.json",
+  "sourceQualificationsPath": "audits/W07-L34-contracts-source-qualifications.json",
+  "postFreezeCounterexamplesPath": "audits/W07-L34-contracts-post-freeze-checks.json",
+  "authorComparisonAfterBlindFreeze": {
+    "author43ChecksReadAfterBlindFreeze": true,
+    "finalWeights": true,
+    "sameNotebookHash": true,
+    "geluMinimumAgreement": true
+  },
+  "mutations": "Reviewer artifacts/check/finalizer scripts only. No author objects, canonical bank, sources or Git edits.",
+  "nextQueue": "Fresh source-first L33 v2 repairs/gaps with prior v1 exposure disclosure."
+}

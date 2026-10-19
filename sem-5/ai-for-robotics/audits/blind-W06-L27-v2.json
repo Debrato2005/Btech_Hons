@@ -1,0 +1,1368 @@
+[
+  {
+    "id": "W06-L27-P0802-Q02",
+    "version": 2,
+    "stem": "Why is the torque output a regression target rather than the zone-clustering output used later?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Torque is a classification output because the training set contains only four distinct measured target values"
+      },
+      {
+        "id": "o4",
+        "text": "Zone identification is continuous estimation because temperature and Wi-Fi inputs are continuous"
+      },
+      {
+        "id": "o1",
+        "text": "Torque is a continuous numerical target; a zone identifier denotes group membership rather than a measured magnitude"
+      },
+      {
+        "id": "o2",
+        "text": "Both are regression outputs because torque values and zone identifiers can both be stored as numbers"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0802",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 802,
+        "kind": "statement",
+        "locator": "Printed slide 4: Example of Linear Regression (Supervised Learning); equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0803-Q04",
+    "version": 2,
+    "stem": "If only the rows of X_lifting are shuffled while y_torque stays fixed, what training-data problem is introduced?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "All original feature-target pairs are preserved because the two arrays retain the same number of rows"
+      },
+      {
+        "id": "o3",
+        "text": "The operation is equivalent to applying the same permutation to both X_lifting and y_torque"
+      },
+      {
+        "id": "o4",
+        "text": "The fit can recover the original pairs from row order because it automatically sorts both arrays by torque"
+      },
+      {
+        "id": "o1",
+        "text": "Some feature rows may be paired with torque labels measured for different rows"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0803",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 803,
+        "kind": "statement",
+        "locator": "Printed slide 5: Lifting Torque Calculation: Robot Arm (Code); equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0803-Q05",
+    "version": 2,
+    "stem": "Under the explicitly supplied static point-load model τ=mgr with g=9.8 m/s² and a perpendicular arm, what torque corresponds to the source’s 5 kg, 1 m training row?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "4.9 N·m"
+      },
+      {
+        "id": "o3",
+        "text": "9.8 N·m"
+      },
+      {
+        "id": "o4",
+        "text": "24.5 N·m"
+      },
+      {
+        "id": "o1",
+        "text": "49 N·m"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0803",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 803,
+        "kind": "derivation",
+        "locator": "Printed slide 5: Lifting Torque Calculation: Robot Arm (Code); equations, labels and associated explanatory bullets",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0804-Q01",
+    "version": 2,
+    "stem": "Which sequence matches the lifting code?",
+    "selectionMode": "single",
+    "type": "sequence",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Construct LinearRegression → fit(X_lifting, y_torque) → predict(X_lifting) and report the first training prediction for new_box"
+      },
+      {
+        "id": "o4",
+        "text": "Construct LinearRegression → fit(X_lifting[:, ::-1], y_torque) → predict(new_box) without reversing the new row"
+      },
+      {
+        "id": "o1",
+        "text": "Construct LinearRegression → fit(X_lifting, y_torque) → predict(new_box)"
+      },
+      {
+        "id": "o2",
+        "text": "Construct LinearRegression → predict(new_box) → fit(X_lifting, y_torque)"
+      }
+    ],
+    "assumptions": [
+      "A fresh unfitted estimator is used; X_lifting and new_box use the printed feature order mass then extension."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0804",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 804,
+        "kind": "code",
+        "locator": "Printed slide 6: LinearRegression construction, fit(X_lifting, y_torque), and predict(new_box)[0] calls",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0804-Q02",
+    "version": 2,
+    "stem": "For two scalar input features and a scalar output, what geometric object does ordinary affine linear regression fit in the joint input-output space?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "One plane giving a scalar height above each two-feature input location"
+      },
+      {
+        "id": "o2",
+        "text": "One straight line containing all input-output triples in three dimensions"
+      },
+      {
+        "id": "o3",
+        "text": "Two separate straight-line predictions, with no single output defined for a pair of inputs"
+      },
+      {
+        "id": "o4",
+        "text": "A generally curved surface whose slope in one input automatically varies with the other"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0804",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 804,
+        "kind": "derivation",
+        "locator": "Printed slide 6: Lifting Torque Calculation: Robot Arm (Code); equations, labels and associated explanatory bullets",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0804-Q04",
+    "version": 2,
+    "stem": "Suppose the fitted model has b₀=−14.7 N·m, b₁=9.511764705882353 N·m/kg and b₂=15.56470588235294 N. What torque does it predict at m=3.5 kg and r=0.8 m, rounded to two decimals?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "27.44 N·m"
+      },
+      {
+        "id": "o3",
+        "text": "45.74 N·m"
+      },
+      {
+        "id": "o4",
+        "text": "47.39 N·m"
+      },
+      {
+        "id": "o1",
+        "text": "31.04 N·m"
+      }
+    ],
+    "assumptions": [
+      "Coefficients are supplied from an ordinary least-squares fit with intercept to the four printed examples; input order remains mass then extension."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0803",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 803,
+        "kind": "derivation",
+        "locator": "Printed slide 5: Lifting Torque Calculation: Robot Arm (Code); equations, labels and associated explanatory bullets",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0804",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 804,
+        "kind": "derivation",
+        "locator": "Printed slide 6: Lifting Torque Calculation: Robot Arm (Code); equations, labels and associated explanatory bullets",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0805",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 805,
+        "kind": "derivation",
+        "locator": "Printed slide 7: Lifting Torque Calculation: Robot Arm (Code); equations, labels and associated explanatory bullets",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0804-Q05",
+    "version": 2,
+    "stem": "The source’s four labels follow the supplied physical product τ=9.8mr. Why need an affine fit in raw features (m,r) differ from that product at a new point?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The product contains a mass-distance interaction absent from b₀+b₁m+b₂r"
+      },
+      {
+        "id": "o2",
+        "text": "The free intercept supplies the interaction because it shifts the plane for each input pair"
+      },
+      {
+        "id": "o3",
+        "text": "The slope b₁ in a raw-feature affine fit is recomputed as 9.8r at every prediction point"
+      },
+      {
+        "id": "o4",
+        "text": "The separate terms b₁m and b₂r are multiplied together when the fitted model predicts"
+      }
+    ],
+    "assumptions": [
+      "Compare the printed raw-feature affine model with the explicitly supplied static point-load product, not a claim that all robot torque obeys that simple product."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0803",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 803,
+        "kind": "derivation",
+        "locator": "Printed slide 5: Lifting Torque Calculation: Robot Arm (Code); equations, labels and associated explanatory bullets",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0804",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 804,
+        "kind": "derivation",
+        "locator": "Printed slide 6: Lifting Torque Calculation: Robot Arm (Code); equations, labels and associated explanatory bullets",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0805",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 805,
+        "kind": "derivation",
+        "locator": "Printed slide 7: Lifting Torque Calculation: Robot Arm (Code); equations, labels and associated explanatory bullets",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0805-Q02",
+    "version": 2,
+    "stem": "Which legend interpretation matches the 3D regression figure?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Red circles: training examples; yellow star: largest training residual; translucent sheet: boundary of a prediction interval"
+      },
+      {
+        "id": "o1",
+        "text": "Red circles: training examples; yellow star: new test prediction; translucent sheet: fitted plane"
+      },
+      {
+        "id": "o2",
+        "text": "Red circles: fitted predictions for training rows; yellow star: a measured training target; translucent sheet: residual magnitudes"
+      },
+      {
+        "id": "o3",
+        "text": "Red circles: held-out test examples; yellow star: training-data centroid; translucent sheet: fitted plane"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0805",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 805,
+        "kind": "figure",
+        "locator": "Printed slide 7: Lifting Torque Calculation: Robot Arm (Code); equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0806-Q01",
+    "version": 2,
+    "stem": "Which result best supports the lecture’s intended generalization goal?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Low error on held-out rows that duplicate measurements already present in the fitting set"
+      },
+      {
+        "id": "o1",
+        "text": "Low error on genuinely unseen examples representative of the deployment task"
+      },
+      {
+        "id": "o2",
+        "text": "Low error on the same examples used repeatedly to fit and select the final model"
+      },
+      {
+        "id": "o3",
+        "text": "Low error on an unseen test set collected only in an easier operating regime than deployment"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0806",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 806,
+        "kind": "statement",
+        "locator": "Printed slide 8: Supervised Learning: Generalization; equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0806-Q02",
+    "version": 2,
+    "stem": "Why does “new data with similar characteristics” matter when interpreting a test result?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Matching the number of test rows to the number of training rows makes any operating regime representative"
+      },
+      {
+        "id": "o3",
+        "text": "Matching the measurement units is sufficient even if sensor calibration or operating conditions change"
+      },
+      {
+        "id": "o4",
+        "text": "Matching each feature’s mean is sufficient even if its range and relationship to the target change"
+      },
+      {
+        "id": "o1",
+        "text": "Different operating conditions can change the input-target relationship, making an unseen test set unrepresentative of deployment"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0806",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 806,
+        "kind": "statement",
+        "locator": "Printed slide 8: Supervised Learning: Generalization; equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0807-Q02",
+    "version": 2,
+    "stem": "A model with too few informative features has high training and high test error. What change directly addresses the stated underfitting cause?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Repeat the already converged optimization longer without changing inputs or model family"
+      },
+      {
+        "id": "o4",
+        "text": "Change only the train-test split while keeping the same incomplete inputs and fitted model family"
+      },
+      {
+        "id": "o1",
+        "text": "Add relevant informative features or use appropriate model capacity to represent the missing relationship"
+      },
+      {
+        "id": "o2",
+        "text": "Collect more samples of the same incomplete features while leaving the missing information unmeasured"
+      }
+    ],
+    "assumptions": [
+      "Optimization has converged for the current model; the question stipulates insufficient informative features as the cause, not merely infers it from error rates."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0807",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 807,
+        "kind": "statement",
+        "locator": "Printed slide 9: Supervised Learning: Overfitting v/s Underfitting; equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0807-Q03",
+    "version": 2,
+    "stem": "Which pair correctly matches causes highlighted on the slide?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Many features relative to samples: underfitting risk; excessively strong regularization: overfitting risk"
+      },
+      {
+        "id": "o3",
+        "text": "Insufficient informative features: overfitting risk; highly flexible models relative to available data: underfitting risk"
+      },
+      {
+        "id": "o4",
+        "text": "Insufficient informative features: underfitting risk; excessively strong regularization: overfitting risk"
+      },
+      {
+        "id": "o1",
+        "text": "Many features relative to samples: overfitting risk; excessively strong regularization: underfitting risk"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0807",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 807,
+        "kind": "statement",
+        "locator": "Printed slide 9: Supervised Learning: Overfitting v/s Underfitting; equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0807-Q04",
+    "version": 2,
+    "stem": "How should the slide’s “too many training iterations” overfitting cause be used responsibly?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Choose the stopping point at the lowest training error, using continued training improvement as sufficient evidence of generalization"
+      },
+      {
+        "id": "o3",
+        "text": "Transfer the best epoch count from one model and dataset to another without rechecking held-out performance"
+      },
+      {
+        "id": "o4",
+        "text": "Diagnose overfitting from a high iteration count alone, even when both training and held-out errors are still improving"
+      },
+      {
+        "id": "o1",
+        "text": "Treat it as a possible risk in an iterative training setup, using held-out performance to judge when further fitting hurts generalization"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0807",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 807,
+        "kind": "statement",
+        "locator": "Printed slide 9: Supervised Learning: Overfitting v/s Underfitting; equations, labels and associated explanatory bullets",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0808-Q03",
+    "version": 2,
+    "stem": "Which four-item list reproduces the model-design choices explicitly enumerated on the trade-off slide?",
+    "selectionMode": "single",
+    "type": "statement",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Dataset size, evaluation strategy, initialization method, optimizer momentum"
+      },
+      {
+        "id": "o4",
+        "text": "Feature count, dataset size, optimizer learning rate, parameter initialization"
+      },
+      {
+        "id": "o1",
+        "text": "Feature count, regularization strength, dataset size, evaluation strategy"
+      },
+      {
+        "id": "o2",
+        "text": "Feature count, regularization strength, optimizer learning rate, mini-batch size"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0808",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 808,
+        "kind": "statement",
+        "locator": "Printed slide 10: Supervised Learning: Trade-off; equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0811-Q04",
+    "version": 2,
+    "stem": "What does the flowchart’s “centers remained unchanged” condition establish in its simplified exact-arithmetic setting?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A fixed point of the assignment/update loop, without certifying the globally lowest within-cluster squared error"
+      },
+      {
+        "id": "o2",
+        "text": "The globally lowest within-cluster squared error among all partitions into k clusters"
+      },
+      {
+        "id": "o3",
+        "text": "The same final partition would be obtained from every possible initial set of centers"
+      },
+      {
+        "id": "o4",
+        "text": "The assignments are stationary, but another mean update must still strictly decrease the objective"
+      }
+    ],
+    "assumptions": [
+      "Fixed data, no ties changing assignments and no empty clusters; simplified exact fixed-point stopping rule, not a claim about every library tolerance."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0811",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 811,
+        "kind": "figure",
+        "locator": "Printed slide 13: left-side K-means assignment/mean-update flowchart and unchanged-center stopping condition",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0811-Q06",
+    "version": 2,
+    "stem": "In the K-means illustration, what do the colored triangles represent relative to the circular samples?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "New observations withheld from fitting and then assigned to the colored groups"
+      },
+      {
+        "id": "o4",
+        "text": "One boundary sample per cluster chosen as the most distant observation from its center"
+      },
+      {
+        "id": "o1",
+        "text": "Current cluster centers, with colors corresponding to the circular samples’ memberships"
+      },
+      {
+        "id": "o2",
+        "text": "The initial center positions before any assignment or mean-update step"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0811",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 811,
+        "kind": "figure",
+        "locator": "Printed slide 13: Clustering: K-Means; equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0812-Q01",
+    "version": 2,
+    "stem": "Which configuration matches the indoor zone-clustering problem?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Temperature in °C and Wi-Fi strength in percent; no labeled target; two groups because there are two features"
+      },
+      {
+        "id": "o4",
+        "text": "Temperature in °C and Wi-Fi strength in percent; a continuous room-score target; three fitted output values"
+      },
+      {
+        "id": "o1",
+        "text": "Temperature in °C and Wi-Fi strength in percent; no labeled target; three requested groups"
+      },
+      {
+        "id": "o2",
+        "text": "Temperature in °C and Wi-Fi strength in percent; labeled room names; three supervised classes"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0812",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 812,
+        "kind": "statement",
+        "locator": "Printed slide 14: Zone Clustering: K-Means; equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0812-Q02",
+    "version": 2,
+    "stem": "Which conclusion respects what temperature/Wi-Fi clustering can establish about physical rooms?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "A change of cluster label along a route establishes that the robot crossed a physical room boundary"
+      },
+      {
+        "id": "o4",
+        "text": "Two adjoining rooms must receive different cluster labels even when their sensor readings overlap"
+      },
+      {
+        "id": "o1",
+        "text": "A feature cluster can contain spatially separated locations whose temperature and Wi-Fi readings are similar"
+      },
+      {
+        "id": "o2",
+        "text": "A feature cluster must be spatially connected because Euclidean distances are used between its sensor readings"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0812",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 812,
+        "kind": "statement",
+        "locator": "Printed slide 14: Zone Clustering: K-Means; equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0813-Q03",
+    "version": 2,
+    "stem": "What does the (100,2) output shape mean for each generated zone?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "100 observations divided between two zone populations, with one population per column"
+      },
+      {
+        "id": "o1",
+        "text": "100 observations, each with temperature and Wi-Fi feature values"
+      },
+      {
+        "id": "o2",
+        "text": "Two observations, each measured on 100 sensor-feature channels"
+      },
+      {
+        "id": "o3",
+        "text": "100 observations, with the first column storing means and the second storing standard deviations"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0813",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 813,
+        "kind": "code",
+        "locator": "Printed slide 15: Zone Clustering: K-Means (Code); equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0813-Q05",
+    "version": 2,
+    "stem": "The slide writes temperature 10±2 and Wi-Fi 20±5 for the Gaussian example. Which interpretation is correct?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "The plus/minus values ensure Wi-Fi can never exceed 100% in any generated zone"
+      },
+      {
+        "id": "o1",
+        "text": "These describe mean and standard deviation, not guaranteed minimum and maximum values"
+      },
+      {
+        "id": "o2",
+        "text": "Every temperature lies in [8,12] and every Wi-Fi value in [15,25]"
+      },
+      {
+        "id": "o3",
+        "text": "The first number is always a variance and the second is a mean"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0813",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 813,
+        "kind": "code",
+        "locator": "Printed slide 15: np.random.normal location and scale arrays plus the standard-deviation annotation",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0815",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 815,
+        "kind": "figure",
+        "locator": "Printed slide 17: upper sensor cluster in the scatter plot; purple observation markers above the 100% horizontal Wi-Fi gridline",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0815-Q02",
+    "version": 2,
+    "stem": "Which legend interpretation matches the zone plot?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Small circles: held-out test readings; red X marks: fitted centroids; magenta star: one of the original training samples"
+      },
+      {
+        "id": "o4",
+        "text": "Small circles: exploration data; red X marks: new readings; magenta star: the centroid of the upper group"
+      },
+      {
+        "id": "o1",
+        "text": "Small circles: exploration data; red X marks: centroids; magenta star: new reading"
+      },
+      {
+        "id": "o2",
+        "text": "Small circles: exploration data; red X marks: initial centers; magenta star: the mean of all sensor readings"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0815",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 815,
+        "kind": "figure",
+        "locator": "Printed slide 17: Zone Clustering: K-Means (Code); equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0815-Q03",
+    "version": 2,
+    "stem": "Suppose a second implementation produces identical groups but relabels the source’s cluster 0 as cluster 2. Does that alone mean the clustering is worse?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "No; a consistent permutation of cluster IDs leaves the partition unchanged"
+      },
+      {
+        "id": "o2",
+        "text": "Yes; label 0 always means the highest-quality cluster"
+      },
+      {
+        "id": "o3",
+        "text": "Yes; cluster number must equal the zone_A/B/C generation order"
+      },
+      {
+        "id": "o4",
+        "text": "No; labels can be changed independently for individual points without changing the partition"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0815",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 815,
+        "kind": "statement",
+        "locator": "Printed slide 17: Zone Clustering: K-Means (Code); equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0816-Q02",
+    "version": 2,
+    "stem": "An unsupervised monitor flags a joint-torque pattern as unusual. What is the most defensible interpretation of the lecture’s mechanical-failure example?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "It identifies mechanical failure rather than changed operating conditions because the detector used torque data"
+      },
+      {
+        "id": "o3",
+        "text": "It identifies a sensor fault rather than a mechanical fault because the monitor did not use failure labels"
+      },
+      {
+        "id": "o4",
+        "text": "It identifies harmless distribution shift rather than failure whenever the flagged pattern was absent from training"
+      },
+      {
+        "id": "o1",
+        "text": "It may indicate a problem requiring investigation, but an anomaly alone does not identify its cause"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0816",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 816,
+        "kind": "statement",
+        "locator": "Printed slide 18: Unsupervised Learning: Robotics Examples; equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0816-Q03",
+    "version": 2,
+    "stem": "How does grouping similar pixel colors support the image-compression example?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Replace each color by its cluster center while requiring every original color to remain exactly recoverable"
+      },
+      {
+        "id": "o1",
+        "text": "Replace similar original colors by a smaller palette of representative colors, accepting possible reconstruction error"
+      },
+      {
+        "id": "o2",
+        "text": "Store a cluster ID in addition to every unchanged full-precision pixel color, treating the extra labels as the compression"
+      },
+      {
+        "id": "o3",
+        "text": "Retain one distinct palette entry for every original color, using clustering only to reorder those entries"
+      }
+    ],
+    "assumptions": [
+      "Interpret the slide’s color-grouping mechanism as palette reduction; net file size also depends on palette and index encoding overhead."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0816",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 816,
+        "kind": "statement",
+        "locator": "Printed slide 18: Unsupervised Learning: Robotics Examples; equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0817-Q02",
+    "version": 2,
+    "stem": "A navigation controller can choose {left, right, forward} and now chooses left. Which terminology distinguishes the set from the selected move?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "{left, right, forward} is the action set; left is the new observed state rather than a selected move"
+      },
+      {
+        "id": "o3",
+        "text": "{left, right, forward} is one selected action; left is the entire action set"
+      },
+      {
+        "id": "o4",
+        "text": "{left, right, forward} is the state space; left is a policy mapping observations to decisions"
+      },
+      {
+        "id": "o1",
+        "text": "{left, right, forward} is the action set; left is the selected action"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0817",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 817,
+        "kind": "statement",
+        "locator": "Printed slide 19: Reinforcement Learning; equations, labels and associated explanatory bullets",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0817-Q03",
+    "version": 2,
+    "stem": "The slide describes rewards as arriving only after a sequence of actions, while the next slide shows action then reward in a repeated loop. Which qualified statement accommodates both examples?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "A reward after a single action cannot be used in reinforcement learning"
+      },
+      {
+        "id": "o3",
+        "text": "Every RL task must reveal the correct action as a supervised label"
+      },
+      {
+        "id": "o4",
+        "text": "Only the final action can influence a delayed reward"
+      },
+      {
+        "id": "o1",
+        "text": "Rewards may be immediate or delayed; delayed consequences create a credit-assignment challenge"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0817",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 817,
+        "kind": "statement",
+        "locator": "Printed slide 19: Reinforcement Learning; equations, labels and associated explanatory bullets",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0818",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 818,
+        "kind": "statement",
+        "locator": "Printed slide 20: Reinforcement Learning; equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0817-Q04",
+    "version": 2,
+    "stem": "A controller interacts with a simulated navigation world rather than hardware. Is that excluded by the agent/environment interaction idea?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "No; a fixed log of one route provides the same interactive responses for any alternative action the agent chooses"
+      },
+      {
+        "id": "o4",
+        "text": "Yes; an environment must contain the policy that chooses the agent’s action, rather than respond to that action"
+      },
+      {
+        "id": "o1",
+        "text": "No; a simulator can provide action-dependent state transitions and reward feedback, fulfilling the functional environment role"
+      },
+      {
+        "id": "o2",
+        "text": "Yes; simulator feedback cannot serve as reinforcement feedback until a physical robot repeats the same actions"
+      }
+    ],
+    "assumptions": [
+      "The supplied simulator responds to the agent’s selected actions and provides observations and reward feedback; no claim is made that it perfectly represents hardware."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0817",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 817,
+        "kind": "statement",
+        "locator": "Printed slide 19: Reinforcement Learning; equations, labels and associated explanatory bullets",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0817-Q06",
+    "version": 2,
+    "stem": "What distinguishes the lecture’s “learning with a critic” description from supervised learning with correct-answer labels?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Feedback is only sensor-reconstruction error, without evaluating consequences of the selected action"
+      },
+      {
+        "id": "o4",
+        "text": "Feedback is only membership in a group of similar sensor observations, without evaluating action outcomes"
+      },
+      {
+        "id": "o1",
+        "text": "Feedback evaluates action consequences through rewards or penalties without necessarily specifying the correct action"
+      },
+      {
+        "id": "o2",
+        "text": "Feedback supplies correct-action labels paired with states so the agent can fit an action-prediction target"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0817",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 817,
+        "kind": "statement",
+        "locator": "Printed slide 19: Reinforcement Learning; equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0818-Q03",
+    "version": 2,
+    "stem": "Choice A tries a less-known route primarily to learn its outcome. Choice B chooses the route with the highest current estimated reward primarily to obtain that reward. How are the choices classified?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Both choices are exploration"
+      },
+      {
+        "id": "o4",
+        "text": "Both choices are exploitation"
+      },
+      {
+        "id": "o1",
+        "text": "Choice A is exploration; choice B is exploitation"
+      },
+      {
+        "id": "o2",
+        "text": "Choice A is exploitation; choice B is exploration"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0818",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 818,
+        "kind": "statement",
+        "locator": "Printed slide 20: Reinforcement Learning; equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0819-Q01",
+    "version": 2,
+    "stem": "A robot’s complex sensor patterns are difficult to describe with hand-crafted rules. A team learns to predict a quantity accurately, but that quantity is unrelated to the required robotics task. Which response combines the summary’s motivation for learning with its warning?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use learning to model sensor patterns that resist hand-crafted rules, but align the learned target and evaluation with the required robotics task"
+      },
+      {
+        "id": "o2",
+        "text": "Keep the unrelated target because high accuracy on a complex sensor prediction is sufficient evidence of robotics-task success"
+      },
+      {
+        "id": "o3",
+        "text": "Keep the target and use a more flexible model, treating improved prediction accuracy as the remedy for task misalignment"
+      },
+      {
+        "id": "o4",
+        "text": "Evaluate only reconstruction of all sensor values, treating that metric as a substitute for the required task outcome"
+      }
+    ],
+    "assumptions": [
+      "The scenario stipulates that the predicted quantity is unrelated to the required task; it does not claim that learning is always necessary or always better than hand-crafted rules."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0819",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 819,
+        "kind": "statement",
+        "locator": "Printed slide 21: first bullet on complex sensor data and hand-crafted rules, together with the final warning about solving the wrong problem",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0819-Q02",
+    "version": 2,
+    "stem": "Which statements match the summary’s task-and-data perspective? Select all that apply.",
+    "selectionMode": "multi",
+    "type": "synthesis",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Known target outputs can motivate a supervised setup"
+      },
+      {
+        "id": "o2",
+        "text": "Unlabeled sensor structure can motivate an unsupervised setup"
+      },
+      {
+        "id": "o3",
+        "text": "Action-dependent rewards can motivate a reinforcement setup"
+      },
+      {
+        "id": "o4",
+        "text": "Continuous sensor inputs make their unlabeled clustering a supervised regression task"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0802",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 802,
+        "kind": "statement",
+        "locator": "Printed slide 4: Example of Linear Regression (Supervised Learning); equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0809",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 809,
+        "kind": "statement",
+        "locator": "Printed slide 11: Unsupervised Learning; equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0817",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 817,
+        "kind": "statement",
+        "locator": "Printed slide 19: Reinforcement Learning; equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0819",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 819,
+        "kind": "statement",
+        "locator": "Printed slide 21: Summary; equations, labels and associated explanatory bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L27-P0813-Q06",
+    "version": 1,
+    "stem": "The code uses np.random.seed(42) before creating sensor data and KMeans(n_clusters=3, random_state=42) when fitting. Which distinction correctly identifies the two randomness controls?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Both integers refer to one shared mutable generator, so additional NumPy draws necessarily advance estimator initialization despite its fixed integer random_state"
+      },
+      {
+        "id": "o1",
+        "text": "The NumPy seed controls estimator-center initialization; KMeans random_state controls the earlier Gaussian sensor draws"
+      },
+      {
+        "id": "o2",
+        "text": "The NumPy seed controls synthetic sensor draws; the estimator’s random_state controls its own initialization randomness"
+      },
+      {
+        "id": "o3",
+        "text": "The NumPy seed controls both stages; the estimator’s random_state only chooses which final group is called cluster 0"
+      }
+    ],
+    "assumptions": [
+      "Compare repeated runs with the same library versions, algorithm settings, input data and operation order. No universal cluster-number identity across implementations is asserted."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0813",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 813,
+        "kind": "code",
+        "locator": "Printed slide 15: np.random.seed(42), followed by three np.random.normal calls",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0814",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 814,
+        "kind": "code",
+        "locator": "Printed slide 16: KMeans(n_clusters=3, random_state=42), followed by fit(X_sensors)",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  }
+]

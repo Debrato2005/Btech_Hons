@@ -1,0 +1,112 @@
+{
+  "batchId": "W10-L47",
+  "authorOnly": true,
+  "independentReviewRequired": true,
+  "entries": [
+    {
+      "questionId": "W10-L47-Q015",
+      "pages": [
+        1486
+      ],
+      "sourceClaim": "The formula already includes scaling, while the next numbered step describes it again.",
+      "qualification": "The intended scaled score has one square-root division; the prose restates that operation."
+    },
+    {
+      "questionId": "W10-L47-Q018",
+      "pages": [
+        1486
+      ],
+      "sourceClaim": "The slide calls multiplication by WO a reshape; a learned linear projection is not merely a reshape.",
+      "qualification": "WO is a linear projection, so it can change values as well as output dimensionality."
+    },
+    {
+      "questionId": "W10-L47-Q020",
+      "pages": [
+        1487
+      ],
+      "sourceClaim": "Some arrows in the detailed diagram are labeled dv near query/key paths; the dot-product dimensions are dk.",
+      "qualification": "Queries and keys share dk=8, while the weighted content can have a different dv=5."
+    },
+    {
+      "questionId": "W10-L47-Q034",
+      "pages": [
+        1493
+      ],
+      "sourceClaim": "The displayed LayerNorm formula omits the small positive variance stabilizer.",
+      "qualification": "A positive stabilizer keeps the denominator defined at zero variance."
+    },
+    {
+      "questionId": "W10-L47-Q035",
+      "pages": [
+        1493,
+        1503
+      ],
+      "sourceClaim": "Earlier slides use pre-norm equations while the final original-Transformer diagram is post-norm.",
+      "qualification": "These are distinct valid architecture arrangements; the slide set should not be read as one identical normalization order."
+    },
+    {
+      "questionId": "W10-L47-Q039",
+      "pages": [
+        1494
+      ],
+      "sourceClaim": "The slide’s independence wording refers to parallel row computations from known layer inputs, not to independent future generation.",
+      "qualification": "Known token representations permit parallel row calculations, but future generation steps still depend on chosen tokens."
+    },
+    {
+      "questionId": "W10-L47-Q045",
+      "pages": [
+        1496
+      ],
+      "sourceClaim": "The schematic explicitly leaves out scaling and softmax; its masked score table is not itself the weight matrix.",
+      "qualification": "The weighted sum uses normalized finite attention weights, not raw masked logits."
+    },
+    {
+      "questionId": "W10-L47-Q050",
+      "pages": [
+        1498
+      ],
+      "sourceClaim": "The illustrative ID 5 and one-hot vector imply one-based indexing; software tokenizers often use zero-based indexing.",
+      "qualification": "Four preceding zeros place the one in the fifth entry, which matches a one-based convention."
+    },
+    {
+      "questionId": "W10-L47-Q055",
+      "pages": [
+        1499
+      ],
+      "sourceClaim": "The worked example uses learned absolute positions and a pre-trained lookup; these are design choices, not universal Transformer requirements.",
+      "qualification": "The slide illustrates learned absolute positions, not a universal requirement."
+    },
+    {
+      "questionId": "W10-L47-Q057",
+      "pages": [
+        1500
+      ],
+      "sourceClaim": "The slide presents tied Eᵀ as the head; this is the illustrated model choice rather than a requirement for all language models.",
+      "qualification": "The shown design reuses E for the output map; tying is an architectural choice."
+    },
+    {
+      "questionId": "W10-L47-Q061",
+      "pages": [
+        1501
+      ],
+      "sourceClaim": "The slide calls choosing the highest-probability token sampling; distinguish deterministic greedy selection from stochastic sampling.",
+      "qualification": "Greedy decoding takes the maximum-probability token rather than drawing randomly from the distribution."
+    },
+    {
+      "questionId": "W10-L47-Q067",
+      "pages": [
+        1502
+      ],
+      "sourceClaim": "The prose says p percent, but the formula uses p as a fraction on the probability scale.",
+      "qualification": "The normalized probabilities sum to one, so 90% is written as the fraction 0.9."
+    }
+  ],
+  "additionalScope": [
+    "Timeline dates are not assessed as verified historical priority.",
+    "The lecture has no executable program to reproduce; numerical checks are explicit source-derived reconstructions.",
+    "Modern architectures can vary in normalization, activation, position scheme and weight tying; questions bind to the shown design.",
+    "Tokens need not be complete words.",
+    "Attention weights are normalized over keys for each query.",
+    "Causal self-attention includes the current token in the illustrated convention."
+  ]
+}

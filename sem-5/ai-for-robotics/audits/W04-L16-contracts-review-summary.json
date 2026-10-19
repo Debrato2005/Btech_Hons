@@ -1,0 +1,355 @@
+{
+  "reviewerId": "define_robotics_data_contracts:L16-independent-reviewer",
+  "completedAt": "2026-10-19T17:48:07.110902+00:00",
+  "questionsReviewed": 108,
+  "verified": 84,
+  "flagged": 24,
+  "keyDisagreements": 0,
+  "actualPagesInspected": 32,
+  "reviewFile": "data/reviews/W04-L16-v1-independent-contracts.json",
+  "reviewSha256": "08b8e42264535e83900617256b9a3906ce8a1b077bb09cf4234f0c9b4720acb3",
+  "blindAnswersSha256": "9f7bc7ef897d8c48f01c5bf058f1bad8d92cf8bfbe7d5bca2009995919a9f260",
+  "independentChecks": "audits/W04-L16-independent-checks.json",
+  "flaggedQuestionIds": [
+    "W04-L16-P0476-Q03",
+    "W04-L16-P0478-Q04",
+    "W04-L16-P0479-Q02",
+    "W04-L16-P0480-Q04",
+    "W04-L16-P0480-Q05",
+    "W04-L16-P0486-Q01",
+    "W04-L16-P0486-Q02",
+    "W04-L16-P0488-Q03",
+    "W04-L16-P0488-Q04",
+    "W04-L16-P0490-Q03",
+    "W04-L16-P0491-Q05",
+    "W04-L16-P0492-Q01",
+    "W04-L16-P0492-Q02",
+    "W04-L16-P0492-Q03",
+    "W04-L16-P0492-Q04",
+    "W04-L16-P0495-Q04",
+    "W04-L16-P0496-Q02",
+    "W04-L16-P0499-Q02",
+    "W04-L16-P0499-Q05",
+    "W04-L16-P0499-Q06",
+    "W04-L16-P0500-Q04",
+    "W04-L16-P0500-Q05",
+    "W04-L16-P0501-Q02",
+    "W04-L16-P0502-Q03"
+  ],
+  "findings": [
+    {
+      "questionId": "W04-L16-P0476-Q03",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Replace unrelated duration/unit choices with credible failures such as endpoint-only compliance, dynamic torque infeasibility and derivative discontinuity. The current options allow guessing from category relevance without understanding the interior joint-limit issue."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0478-Q04",
+      "criteria": [
+        "explanation"
+      ],
+      "findings": [
+        "The o3 rationale says a jerk discontinuity does not imply a velocity impulse, but the question asks about impulsive acceleration. Explain the actual reason: the stated continuous acceleration has no acceleration impulse; a jump in jerk affects a higher derivative. Keep the correct velocity-step key."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0479-Q02",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The alternatives infinite torque limit, zero inertia and equal endpoint positions do not credibly compete with the continuity hypothesis. Use plausible incomplete assumptions, such as continuous M alone, bounded but discontinuous V/G, or smooth kinematics despite a discontinuous added effort."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0480-Q04",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The distractors constant joint angles while every link moves, no coordinate transforms anywhere and torque independent of position are not realistic rival planning tasks. Use credible joint-space tasks or other workspace requirements so selecting a prescribed straight tool path actually discriminates the two schemes."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0480-Q05",
+      "criteria": [
+        "sourceSupport",
+        "difficulty"
+      ],
+      "findings": [
+        "Page480 names a Jacobian velocity mapping but does not print the proposed equation. Add the forward-kinematics premise x=f(theta) on page482 (or an earlier exact Jacobian equation) and mark the differentiation as a derivation, with J defined as the corresponding derivative. This makes the equation-level answer traceable to all needed course premises.",
+        "This is direct recognition of the basic Jacobian velocity relation, with position/velocity and effort mismatches as distractors. Mark easy, or retain medium only after adding a genuine frame/coordinate or rank-dependent application."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0486-Q01",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Use realistic piecewise-interpolation misconceptions, such as one global cubic through every point, a polynomial per joint rather than per interval, or segments that omit the shared via condition. Converting via positions into torques and changing polynomial every instant are not plausible alternatives to the stated construction."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0486-Q02",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Replace mandatory zero displacement and impossibility of joint-space via points with plausible underdetermination mistakes: assuming times fix slopes, assuming adjacent secants uniquely fix a C2 join, or assuming position continuity supplies all four conditions. Keep the correct need for a velocity/spline assignment."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0488-Q03",
+      "criteria": [
+        "assumptions"
+      ],
+      "findings": [
+        "The standalone question uses R and S without defining them or displaying the residual equations. The cited source uses Delta theta and Delta theta-dot, not R and S. State R=theta_f-theta_0-v0*T and S=vf-v0 (or display the two starting equations) before asking for elimination; do not rely on the preceding quiz item."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0488-Q04",
+      "criteria": [
+        "assumptions",
+        "difficulty"
+      ],
+      "findings": [
+        "Define R and S in the stem or question assumptions. They are author-renamed residual symbols not present under those names in the cited source; the definitions currently appear only after answering or in another question.",
+        "After the residuals are defined, this is two direct numerical substitutions with no extra inference. Mark easy, or add a nontrivial diagnostic/reconstruction task if retaining medium."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0490-Q03",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "This is a single midpoint substitution in a displayed standard cubic shape. Mark easy; a medium version should require an additional nontrivial condition or inversion rather than merely substituting u=1/2."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0491-Q05",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "Computing jerk here is one power-rule derivative of a linear acceleration. Mark easy, or keep medium only for a meaningful boundary/impulse distinction beyond the explicitly stated interior derivative."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0492-Q01",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The random-torque/mass/rotation list is unrelated to via-point rate assignment, and the dynamic-computation list tests only topic recognition. Use credible alternative velocity-assignment lists with one realistic substitution in each, rather than an obviously unrelated three-item set."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0492-Q02",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Differentiating total mass and automatically replacing all via rates with zero are implausible competitors. Use realistic mapping errors such as using J rather than its appropriate inverse/solve, using a configuration from the wrong via point, or assuming a unique inverse at a singular/redundant pose; state any dimensions needed."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0492-Q03",
+      "criteria": [
+        "duplication"
+      ],
+      "findings": [
+        "This repeats the C2 matching condition already tested by P0478-Q01 and the C1-versus-C2 join distinction in P0486-Q04. Replace it with a distinct supplied-derivative consistency test or merge it, rather than counting another verbal restatement as coverage."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0492-Q04",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "Because both one-sided acceleration expressions are supplied, the learner only solves -6+4v=6-4v. Mark easy, or remove those supplied expressions and require deriving them from the two cubic boundary problems to justify medium."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0495-Q04",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Zero duration, ignoring the discontinuity and increasing the jump are not plausible repair methods. Use realistic but insufficient changes such as increasing duration without blending, increasing sampling resolution, or merely relabeling the ramp as a cubic."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0496-Q02",
+      "criteria": [
+        "explanation"
+      ],
+      "findings": [
+        "The o3 velocity equation 2a2+15a3=0 is correct: it is the correct 10a2+75a3=0 divided by5. The current rationale incorrectly calls its derivative factors wrong. Only the position equation is inconsistent because dividing its row by5 requires RHS12, not60. Correct that rationale and its copied misconception without changing the key."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0499-Q02",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "This directly substitutes tf=5 into a printed 2x2 array and subtracts10 from70. Mark easy, or introduce nonzero endpoint rates or a matrix-order diagnosis requiring an additional reasoning step if medium is retained."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0499-Q05",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The alternatives automatically choose infinite velocity, mutate theta_f and reuse old coefficients are not credible np.linalg.solve behaviors. Use realistic misconceptions about zero output, least-squares fallback or division-by-zero versus singular-matrix failure, with a correct rationale for each."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0499-Q06",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "This is direct recognition of moving the known a1*tf term to the RHS. Mark easy, or require tracing a nonzero-rate mutation and checking both endpoint conditions to retain medium."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0500-Q04",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The radian misconception is plausible, but reversing time and selecting logarithmic axes are unrelated to raw-string behavior. Replace them with realistic string/MathText confusions, such as Python escape processing, automatic variable substitution, or enabling an external TeX engine."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0500-Q05",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "All alternatives except the key attribute coefficient solving, differentiation, unit conversion or sampling to plotting commands. Use credible confusion between layout adjustment, data rescaling, file saving and figure display; avoid two obviously unrelated numerical operations per distractor."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0501-Q02",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "Reading that an acceleration zero crossing from positive to negative coincides with a velocity peak is a straightforward two-panel derivative interpretation in this example. Mark easy, or add a nontrivial alternative crossing/tangency case to justify medium."
+      ]
+    },
+    {
+      "questionId": "W04-L16-P0502-Q03",
+      "criteria": [
+        "duplication"
+      ],
+      "findings": [
+        "This is another verbal statement that quintic degree alone does not guarantee C2, already covered by P0493-Q05 and the earlier nested continuity/join questions. Replace it with a distinct nonzero-acceleration endpoint matching case, or merge it into the summary citations of an existing item."
+      ]
+    }
+  ],
+  "coverageChallenge": [
+    {
+      "id": "L16-COVERAGE-01",
+      "status": "open",
+      "sourcePages": [
+        493
+      ],
+      "finding": "General quintic boundary control includes nonzero acceleration at both endpoints. Existing items identify six constraints and a2=alpha0/2 but all actual solved quintics use zero endpoint velocities and accelerations. Add one meaningfully distinct general-boundary example that reconstructs the remaining coefficients and checks a nonzero final acceleration, or use that task to replace the redundant P0502-Q03. This tests the actual sixth constraint rather than another zero-derivative shape paraphrase."
+    },
+    {
+      "id": "L16-COVERAGE-02",
+      "status": "bounded_accounting_note",
+      "sourcePages": [
+        473,
+        474,
+        475,
+        476,
+        477,
+        478,
+        479,
+        480,
+        481,
+        482,
+        483,
+        484,
+        485,
+        486,
+        487,
+        488,
+        489,
+        490,
+        491,
+        492,
+        493,
+        494,
+        495,
+        496,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504
+      ],
+      "finding": "All 32 actual pages were independently inspected. Pages473–475 are title/outcome/outline,503 reference,504 closing;502 repeats qualified summary claims. The 25 ledger objects are topic clusters, not 25 atomic independent facts; their examinationAngles preserve the finer distinctions. All26 primary substantive pages476–501 are cited by at least one draft. Verified coverage remains incomplete until quality repairs and the general-quintic gap are independently accepted."
+    }
+  ],
+  "validation": {
+    "valid": true,
+    "release": false,
+    "errors": [],
+    "warnings": [],
+    "counts": {
+      "sources": 2,
+      "sourcesReady": 2,
+      "pagesExpected": 2012,
+      "pagesInventoried": 2012,
+      "pagesVisuallyInspected": 365,
+      "pagesExcluded": 140,
+      "pagesRepeated": 0,
+      "concepts": 25,
+      "conceptsWithDraftQuestions": 25,
+      "conceptsWithVerifiedQuestions": 24,
+      "questions": 108,
+      "questionsByStatus": {
+        "verified": 84,
+        "flagged": 24
+      },
+      "currentlyVerifiedQuestions": 84,
+      "staleReviews": 0,
+      "numericalFamilies": 0,
+      "verifiedByWeek": {
+        "4": 84
+      },
+      "verifiedByDifficulty": {
+        "easy": 52,
+        "medium": 31,
+        "hard": 1
+      },
+      "verifiedByType": {
+        "code_output": 11,
+        "conceptual": 47,
+        "numerical": 11,
+        "match": 2,
+        "exception": 2,
+        "scenario": 3,
+        "diagram": 8
+      }
+    }
+  },
+  "sourceQualifications": "Preserve finite acceleration-step versus velocity-impulse distinction, time-scaling schematic caveat, selected IK branch, continuous dynamic-model assumptions, independent constraints, signed speed/velocity distinction, polynomial-interior versus hold/join continuity, and exact sampled versus analytical peaks.",
+  "mutations": "Review, audit, check-script and handoff files only; no author question, canonical bank, source or Git edits."
+}

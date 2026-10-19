@@ -10,6 +10,8 @@
   function hash(value) { let h=2166136261; for (const c of text(value)) { h ^= c.charCodeAt(0); h = Math.imul(h,16777619); } return h >>> 0; }
   function random(seed) { let a=hash(seed); return () => { a += 0x6D2B79F5; let t=a; t=Math.imul(t ^ t>>>15,t|1); t ^= t+Math.imul(t ^ t>>>7,t|61); return ((t ^ t>>>14)>>>0)/4294967296; }; }
   function shuffle(values, seed) { const out=values.slice(), rng=random(seed); for(let i=out.length-1;i>0;i--){const j=Math.floor(rng()*(i+1)); [out[i],out[j]]=[out[j],out[i]];} return out; }
+  // Presentation order is independent of the answer key and of cyclic author array order.
+  function baseOptionOrder(q) { return shuffle(q.options.map(o=>o.id).slice().sort(), `presentation-v1:${q.id}`); }
   function normalizeQuestion(raw) {
     const explanation = raw.explanation || raw.solution || {};
     const citations = array(raw.source_refs || raw.citations || raw.sources);
@@ -34,7 +36,7 @@
     if(rules.partial && isMulti(q) && chosen.length && !exact) { const hits=chosen.filter(id=>answers.has(id)).length; const wrong=chosen.length-hits; const incorrectCount=q.options.length-answers.size; points=Math.max(-rules.incorrect,rules.correct*(hits/answers.size-(incorrectCount?wrong/incorrectCount:0))); }
     return {correct:exact, answered:chosen.length>0, points:Number(points.toFixed(6)), maximum:rules.correct, selected_option_ids:chosen};
   }
-  function freshProgress(version) { return {schema_version:SCHEMA,bank_version:version || 'unknown',updated_at:new Date().toISOString(),settings:{theme:'system',immediate:false,shuffle_options:false},questions:{},variants:{},attempts:[],active_exam:null}; }
+  function freshProgress(version) { return {schema_version:SCHEMA,bank_version:version || 'unknown',updated_at:new Date().toISOString(),settings:{theme:'system',immediate:false,shuffle_options:true},questions:{},variants:{},attempts:[],active_exam:null}; }
   function questionState(progress,id) { return Object.hasOwn(progress.questions,id) ? progress.questions[id] : {bookmark:false,review:false,events:[]}; }
   function record(progress,q,selected,optionOrder,mode='practice',rules={correct:1,incorrect:0,partial:false}) { const result=score(q,selected,rules); const s=questionState(progress,q.id); s.events=array(s.events); s.events.push({...result,id:uid(),question_id:q.id,timestamp:new Date().toISOString(),mode,question_version:q.version,question_fingerprint:q.fingerprint,correct_option_ids:q.correct_option_ids.slice(),source_refs:clone(q.source_refs),question_snapshot:{id:q.id,version:q.version,stem:q.prompt,options:clone(q.options),correctOptionIds:q.correct_option_ids.slice()},rules:clone(rules),option_order:optionOrder.slice(),variant:q.variant || null}); progress.questions[q.id]=s; progress.updated_at=new Date().toISOString(); return result; }
   function mastery(progress,questions) {
@@ -97,6 +99,6 @@
   }
   function shortcutAllowed(event) { if(event.altKey||event.ctrlKey||event.metaKey||event.target?.closest?.('input,textarea,select,[contenteditable=true]'))return false;if((event.key==='Enter'||event.key===' ')&&event.target?.closest?.('button,a,summary,[role=button]'))return false;return true; }
   function csv(rows) { return rows.map(row=>row.map(cell=>{let s=cell==null?'':typeof cell==='object'?JSON.stringify(cell):String(cell);if(/^[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';}).join(',')).join('\r\n'); }
-  const api={SCHEMA,clone,array,unique,uid,hash,random,shuffle,normalizeQuestion,normalizeBank,searchable,isMulti,score,freshProgress,questionState,record,mastery,revisionScore,selectQuestions,createExam,finishExam,validateProgress,mergeProgress,selectAlgorithmRecords,shortcutAllowed,csv};
+  const api={SCHEMA,clone,array,unique,uid,hash,random,shuffle,baseOptionOrder,normalizeQuestion,normalizeBank,searchable,isMulti,score,freshProgress,questionState,record,mastery,revisionScore,selectQuestions,createExam,finishExam,validateProgress,mergeProgress,selectAlgorithmRecords,shortcutAllowed,csv};
   if(typeof module==='object'&&module.exports)module.exports=api;root.RoboticsStudyCore=api;
 })(typeof window==='object'?window:globalThis);

@@ -1,0 +1,762 @@
+{
+  "batchId": "W07-L34",
+  "reviewerId": "robotics-contracts-independent-reviewer",
+  "completedAt": "2026-10-19T20:50:22.294162+00:00",
+  "releaseComplete": false,
+  "actualPagesInspected": 39,
+  "substantiveTeachingPages": 34,
+  "substantivePagesWithCitations": 34,
+  "repeatedTechnicalSummaryPages": 1,
+  "referenceEvidencePages": 1,
+  "nontechnicalTitleObjectivesClosingPages": 3,
+  "conceptRecords": 34,
+  "conceptCountWarning": "These are broad per-page concept records containing multiple examination angles, not a count of34 atomic unique concepts. Citation on every substantive page does not establish complete meaningful-angle coverage.",
+  "gaps": [
+    {
+      "id": "L34-G01",
+      "physicalPages": [
+        1038,
+        1039,
+        1043,
+        1044,
+        1046,
+        1047
+      ],
+      "angle": "Full multilayer forward/loss/backward/update synthesis",
+      "finding": "The134 items separately test a hidden forward map, output sigmoid, scalar linear gradient and nonlinear derivative factor, but never perform one complete multilayer gradient/update chain. The actual training-stage diagram and chain-rule content support a meaningful hard synthesis.",
+      "boundedRemedy": "Provide a small nondegenerate two-layer network, explicit column shapes, biases, one target, loss and rate. Compute hidden/output values, loss, output and hidden gradients, and simultaneous parameter updates. Keep ReLU inputs away from zero or declare its convention. Cite all affine, activation, loss and chain-rule premises; independently execute finite-difference checks."
+    },
+    {
+      "id": "L34-G02",
+      "physicalPages": [
+        1032,
+        1033
+      ],
+      "angle": "Multi-example perceptron trace with both mistake branches",
+      "finding": "Current trace questions cover one positive update and negative equality, not a sequence that distinguishes update timing, bias changes, correct-example no-ops and revisiting.",
+      "boundedRemedy": "Supply a finite separable set, explicit augmented coordinates, initial weights and deterministic presentation order as a variation of the random-choice source. Trace both positive and negative mistakes plus at least one correct example, and check all-example termination. Do not infer a single-pass convergence guarantee."
+    },
+    {
+      "id": "L34-G03",
+      "physicalPages": [
+        1043
+      ],
+      "angle": "Negative-label and batch binary cross-entropy",
+      "finding": "The only numerical binary loss item uses y1,p0.5. It does not test the(1-y)log(1-p) branch or averaging over mixed labels, despite those being explicit terms in the source formula.",
+      "boundedRemedy": "Supply at least one positive and one negative target with predicted class1 probabilities, use the explicitly repaired negative mean log-likelihood, and calculate both per-example terms and their average. Compare sign, class-probability and sum-versus-mean mistakes with natural-log and exact/rounded conventions."
+    },
+    {
+      "id": "L34-G04",
+      "physicalPages": [
+        1025,
+        1028
+      ],
+      "angle": "Named MP versus trainable-perceptron historical attribution",
+      "finding": "The source explicitly attributes the1943 artificial-neuron model to McCulloch/Pitts, including their complementary disciplines, and the1958 classical perceptron to Rosenblatt. Existing questions address Minsky/Papert misattribution and broad timeline associations, but not this direct model/person distinction.",
+      "boundedRemedy": "Add one narrow source-attributed matching/statement item connecting the two named models, contributors and fixed-logic versus learnable-parameter distinction. Avoid repeating unreliable robotics dates or adding an unsupported invention claim."
+    }
+  ],
+  "ledgerFindings": [
+    {
+      "id": "L34-LEDGER-1057",
+      "physicalPages": [
+        1057
+      ],
+      "finding": "The summary exclusion says it is mapped to existing concepts, but repeatsSlideIds and conceptIds are empty and no question cites1057. Thus the claimed repetition mapping is not actually encoded.",
+      "boundedRemedy": "Record the specific earlier slide/concept/question links for every summary bullet and mark incremental changes checked. No duplicate summary questions are needed. Preserve the architecture metaphors as analogies, not universal capability claims."
+    }
+  ],
+  "pages": [
+    {
+      "physicalPage": 1021,
+      "previewPath": "sources/previews/lectures/page-1021.webp",
+      "previewSha256": "9b58690ba65b735a5c64f11d32da80ea8e62cb452df5832f5c7468dc47998fd8",
+      "observed": "Lecture 34 title: Fundamentals of Neural Networks. Footer 1; no technical content.",
+      "disposition": "title/objectives/closing-only",
+      "questionIds": [],
+      "conceptRecordIds": [],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1022,
+      "previewPath": "sources/previews/lectures/page-1022.webp",
+      "previewSha256": "c3c75e040d05699d2192da37cf63a4f82e6012007cc48f72cee822df6199a80b",
+      "observed": "Learning-objective list: biological history, perceptron, activations, architecture, forward/loss/backprop/gradient descent, training and robotic applications. Footer 2; technical details occur later.",
+      "disposition": "title/objectives/closing-only",
+      "questionIds": [],
+      "conceptRecordIds": [],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1023,
+      "previewPath": "sources/previews/lectures/page-1023.webp",
+      "previewSha256": "95ca8c2e54acaafec2187fad45acad49d02ffb754e4bb94a4d381a351f7e49e8",
+      "observed": "Timeline associates 1958 perceptron/Unimate, 1986 backprop/grippers, 1998 LeNet/vision pick-place, 2012 AlexNet/DARPA, 2016 policy gradient/dexterity, 2020 transformers/RT-1 and 2023+ LLM vision. Associations are printed schematic history, not verified invention dates; Unimate deployment, transformer origins and RT-1 dates need qualification rather than silent acceptance.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1023-Q01",
+        "W07-L34-P1023-Q02",
+        "W07-L34-P1023-Q03"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1023-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1024,
+      "previewPath": "sources/previews/lectures/page-1024.webp",
+      "previewSha256": "5924bb51be87630ffe12abad01792ed60446e4c9622e3c286937520a8b34b81b",
+      "observed": "Four sensor inputs (touch, pixel, IMU, mic) feed weighted sum plus bias, f(z), action. Analogy maps dendrite to robot sensor, cell body to microcontroller, synapse to wire/CAN bus, axon to motor signal and threshold to trigger voltage. This is a computational analogy, not equivalence to biological mechanisms or automatically calibrated sensor importance.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1024-Q01",
+        "W07-L34-P1024-Q02",
+        "W07-L34-P1024-Q03",
+        "W07-L34-P1024-Q04"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1024-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1025,
+      "previewPath": "sources/previews/lectures/page-1025.webp",
+      "previewSha256": "bf3a025e9d8297ca62d64d673753810e861a848acb63c62b764f1b45ddba747c",
+      "observed": "MP unit uses binary inputs and manually chosen inclusive threshold; sum has implicit unit coefficients, not learned weights. Dates 1943 and named authors appear.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1025-Q01",
+        "W07-L34-P1025-Q02",
+        "W07-L34-P1025-Q03",
+        "W07-L34-P1025-Q04",
+        "W07-L34-P1026-Q02"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1025-C01"
+      ],
+      "openGapIds": [
+        "L34-G04"
+      ]
+    },
+    {
+      "physicalPage": 1026,
+      "previewPath": "sources/previews/lectures/page-1026.webp",
+      "previewSha256": "05dd72c49167dc0f1200491480b01b67478a5c919c8119c26d16d176df7db896",
+      "observed": "Fictional three-feature patient example maps looking fine, normal voice, verbal confirmation to a binary output. This page gives no threshold and is not clinical validation.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1026-Q01",
+        "W07-L34-P1026-Q02"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1026-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1027,
+      "previewPath": "sources/previews/lectures/page-1027.webp",
+      "previewSha256": "1b92a50d4a3935ae5261d0db22c03045972cc76d73336b1013bb0e8eb1797b1a",
+      "observed": "Threshold two fires on all three ones; equal unit input contributions are meant by no weights. The toy rule is not a trained diagnostic model.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1027-Q01",
+        "W07-L34-P1027-Q02",
+        "W07-L34-P1027-Q03"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1027-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1028,
+      "previewPath": "sources/previews/lectures/page-1028.webp",
+      "previewSha256": "07db035b353e4f0923cd1aa35334ae9c6dd2c17fb801995597632d1105599bd2",
+      "observed": "Source conflates real-valued inputs and linear separability and wrongly attributes perceptron refinement/invention to the 1969 Minsky/Papert book. Neither assertion is adopted unqualified.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1028-Q01",
+        "W07-L34-P1028-Q02",
+        "W07-L34-P1028-Q03",
+        "W07-L34-P1028-Q04"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1028-C01"
+      ],
+      "openGapIds": [
+        "L34-G04"
+      ]
+    },
+    {
+      "physicalPage": 1029,
+      "previewPath": "sources/previews/lectures/page-1029.webp",
+      "previewSha256": "b7cc8e1038d64f569d018d824cb836ead3adaceaf944acd4d3ce8bcdba8dbe59",
+      "observed": "Perceptron diagram includes learnable weights, augmented x0=1 and w0=-theta, and inclusive step of the augmented sum. Three pictured features do not limit general n.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1028-Q02",
+        "W07-L34-P1028-Q03",
+        "W07-L34-P1029-Q01",
+        "W07-L34-P1029-Q02",
+        "W07-L34-P1029-Q03"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1029-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1030,
+      "previewPath": "sources/previews/lectures/page-1030.webp",
+      "previewSha256": "a4563c0187eaf6ae12ed9095b502e046217ceb5ca9a5d301d5e42877a52324a3",
+      "observed": "Displayed threshold algebra becomes additive bias through x0=1, w0=-theta. Boundary shift depends on fixed weights; origin distance depends on bias divided by weight norm.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1030-Q01",
+        "W07-L34-P1030-Q02",
+        "W07-L34-P1030-Q03"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1030-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1031,
+      "previewPath": "sources/previews/lectures/page-1031.webp",
+      "previewSha256": "3a464ac679cfd7ad305fa18756aecad92e8263a22f2b4f56e12da33b84013c0e",
+      "observed": "Comparison shows fixed equal MP coefficients versus learnable unequal perceptron weights and bias. Binary classification describes individual units, not all architectures.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1028-Q03",
+        "W07-L34-P1031-Q01",
+        "W07-L34-P1031-Q02"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1031-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1032,
+      "previewPath": "sources/previews/lectures/page-1032.webp",
+      "previewSha256": "90517fc26f9694f378c119e6bcd0701f9cfe0210f1038f2804bfdd9c589f696e",
+      "observed": "Positive set P uses target one and negative set N zero. Correctly classified examples leave weights unchanged. Convergence claim needs separable finite data and suitable updates/visits.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1032-Q01",
+        "W07-L34-P1032-Q02",
+        "W07-L34-P1032-Q03"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1032-C01"
+      ],
+      "openGapIds": [
+        "L34-G02"
+      ]
+    },
+    {
+      "physicalPage": 1033,
+      "previewPath": "sources/previews/lectures/page-1033.webp",
+      "previewSha256": "cbdf83b2cb4bc8bafd4e4b69f192f5398069eeca1859349c1f1f58dd7d0e4c5a",
+      "observed": "Actual inset includes both positive-error addition and negative-error subtraction, including score zero in negative branch. Dot-product angle requires nonzero vectors. Adding x improves its own score by squared norm but need not immediately fix classification or increase every coordinate.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1032-Q02",
+        "W07-L34-P1032-Q03",
+        "W07-L34-P1033-Q01",
+        "W07-L34-P1033-Q02",
+        "W07-L34-P1033-Q03",
+        "W07-L34-P1033-Q04",
+        "W07-L34-P1033-Q05",
+        "W07-L34-P1033-Q06"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1033-C01"
+      ],
+      "openGapIds": [
+        "L34-G02"
+      ]
+    },
+    {
+      "physicalPage": 1034,
+      "previewPath": "sources/previews/lectures/page-1034.webp",
+      "previewSha256": "57d337341ed326276f2ad8f6894834458400088f183a76c731e9528d75afdb67",
+      "observed": "Step is already nonlinear but has zero derivative away from threshold and undefined derivative at threshold. Sigmoid and tanh formulas/plots shown. Multiple identity-activated affine layers remain affine.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1034-Q01",
+        "W07-L34-P1034-Q02",
+        "W07-L34-P1034-Q03",
+        "W07-L34-P1034-Q04",
+        "W07-L34-P1036-Q01",
+        "W07-L34-P1046-Q04"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1034-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1035,
+      "previewPath": "sources/previews/lectures/page-1035.webp",
+      "previewSha256": "2667289b924dc1df5c2e8fd626e8ca086d3bc46044775e88179fba3a7ec5f41f",
+      "observed": "Printed closed sigmoid/tanh ranges need open finite-input endpoints in exact arithmetic. Softmax normalizes mutually exclusive logits; binary sigmoid and independent multilabel sigmoids remain valid distinct choices. Tanh zero-centeredness is not universal superiority.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1035-Q01",
+        "W07-L34-P1035-Q02",
+        "W07-L34-P1035-Q03",
+        "W07-L34-P1035-Q04",
+        "W07-L34-P1035-Q05",
+        "W07-L34-P1035-Q06",
+        "W07-L34-P1043-Q04"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1035-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1036,
+      "previewPath": "sources/previews/lectures/page-1036.webp",
+      "previewSha256": "243331a4a2eb685845f7611ef7bcea223ca5fd4a37704c6b8072ef08b55b65c6",
+      "observed": "Backprop multiplies activation derivatives and weight factors. Sigmoid maximum derivative is one quarter, while tanh reaches one at zero despite source grouping. ReLU-family alternatives mitigate, not universally eliminate, vanishing gradients.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1036-Q01",
+        "W07-L34-P1036-Q02",
+        "W07-L34-P1036-Q03",
+        "W07-L34-P1036-Q04"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1036-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1037,
+      "previewPath": "sources/previews/lectures/page-1037.webp",
+      "previewSha256": "71e9902e1ea0779d20d4e31eaf3276975391d760bfba82b716e664d72ccb0ce3",
+      "observed": "Actual table shows ReLU=max(0,x), leaky=max(.01x,x), GELU=x Phi(x). ReLU and leaky have a kink at zero; GELU minimum near -.17 is rounded. The solution title and prevention language should not imply every full-network gradient is protected.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1037-Q01",
+        "W07-L34-P1037-Q02",
+        "W07-L34-P1037-Q03",
+        "W07-L34-P1037-Q04",
+        "W07-L34-P1037-Q05",
+        "W07-L34-P1037-Q06",
+        "W07-L34-P1037-Q07"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1037-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1038,
+      "previewPath": "sources/previews/lectures/page-1038.webp",
+      "previewSha256": "734e08221a8799d2bf18e60f1e4325254932ab801a4f6788b13de80b7cfa4dfe",
+      "observed": "Architecture diagram has three inputs, four hidden nodes and one output. With one bias per non-input node there are 21 scalars. Formula is first-hidden-layer affine transform plus ReLU; one versus multiple hidden layers defines the stated shallow/deep distinction.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1034-Q04",
+        "W07-L34-P1038-Q01",
+        "W07-L34-P1038-Q02",
+        "W07-L34-P1038-Q03",
+        "W07-L34-P1038-Q04",
+        "W07-L34-P1039-Q01"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1038-C01"
+      ],
+      "openGapIds": [
+        "L34-G01"
+      ]
+    },
+    {
+      "physicalPage": 1039,
+      "previewPath": "sources/previews/lectures/page-1039.webp",
+      "previewSha256": "679d38e8fdb341d2ff239f12d1359f36ab14a3c5a3034a55813a2c2f3c28afe2",
+      "observed": "Output formula is sigmoid(W2 a1+b2). Hidden nonlinearities learn representations; output activation matches the prediction format. Number of output units equals number of encoded outputs, not universally number of binary class labels.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1034-Q04",
+        "W07-L34-P1035-Q05",
+        "W07-L34-P1039-Q01",
+        "W07-L34-P1039-Q02",
+        "W07-L34-P1039-Q03",
+        "W07-L34-P1039-Q04"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1039-C01"
+      ],
+      "openGapIds": [
+        "L34-G01"
+      ]
+    },
+    {
+      "physicalPage": 1040,
+      "previewPath": "sources/previews/lectures/page-1040.webp",
+      "previewSha256": "02900ecc0c2555a40f9f6bdf77db56dafbecfa8448eceac20f3822f3edea2668",
+      "observed": "Four-stage training schematic explicitly orders forward pass, loss calculation, backpropagation and gradient descent update; the last two are distinct operations.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1040-Q01",
+        "W07-L34-P1040-Q02"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1040-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1041,
+      "previewPath": "sources/previews/lectures/page-1041.webp",
+      "previewSha256": "e1318480e04f1347c75d79f533b7bde8bf6f92e8caeeeeecaade833f9b18a1df",
+      "observed": "Forward pass computes z=sum wi xi+b then f(z); explicit b replaces augmented w0. No learning refers to fixed-parameter feedforward computation, not every possible stateful model execution.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1041-Q01",
+        "W07-L34-P1041-Q02",
+        "W07-L34-P1041-Q03"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1041-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1042,
+      "previewPath": "sources/previews/lectures/page-1042.webp",
+      "previewSha256": "0289244c7acb5d688e77231adeb536cbd6ce64c2f540b8686304fe4a2234cbf9",
+      "observed": "Loss compares predictions to labels and guides training; source says training only, but held-out labeled evaluation can compute loss without updating. Cross-entropy/classification and MSE/regression are common choices, not exclusive mathematical domains.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1042-Q01",
+        "W07-L34-P1042-Q02",
+        "W07-L34-P1042-Q03"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1042-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1043,
+      "previewPath": "sources/previews/lectures/page-1043.webp",
+      "previewSha256": "ebdea42782353c418b07873504f71fc727111c3efe83871726e5b8ca388dbe98",
+      "observed": "Both printed cross-entropy sums visibly omit the leading minus. The multiclass loss is also called Softmax, conflating normalization and objective. MSE averages squared errors. i indexes examples, j classes.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1043-Q01",
+        "W07-L34-P1043-Q02",
+        "W07-L34-P1043-Q03",
+        "W07-L34-P1043-Q04",
+        "W07-L34-P1043-Q05",
+        "W07-L34-P1043-Q06"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1043-C01"
+      ],
+      "openGapIds": [
+        "L34-G01",
+        "L34-G03"
+      ]
+    },
+    {
+      "physicalPage": 1044,
+      "previewPath": "sources/previews/lectures/page-1044.webp",
+      "previewSha256": "55755bba3eed57235c7a4da58db1de3a4e3cc406e749453d5409d83a5c8a97ba",
+      "observed": "Source groups derivative calculation, backward propagation and descent into a broad training explanation. Backprop computes derivatives; optimizer updates parameters. Negative-gradient direction is locally descending only with suitable step size.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1044-Q01",
+        "W07-L34-P1044-Q02"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1044-C01"
+      ],
+      "openGapIds": [
+        "L34-G01"
+      ]
+    },
+    {
+      "physicalPage": 1045,
+      "previewPath": "sources/previews/lectures/page-1045.webp",
+      "previewSha256": "615af0b104101ef6f3697330600f9d782e312ceca9c1448f7ca1a27e28533c0b",
+      "observed": "Weights/biases are parameters and eta a hyperparameter. Single-sample half-squared loss is an explicit rescaling, not n=1 substitution into ordinary MSE. Half factor simplifies derivative coefficients, not differentiability.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1045-Q01",
+        "W07-L34-P1045-Q02",
+        "W07-L34-P1045-Q03"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1045-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1046,
+      "previewPath": "sources/previews/lectures/page-1046.webp",
+      "previewSha256": "25341e830db84b46126dfbd8d7b2576a4bf50426b5f6100e8c0c2fe0e9799ed3",
+      "observed": "Chain rule derives (yhat-y)*x and yhat-y for an identity-output affine model with half-squared loss. Nonlinear output would require an additional activation derivative.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1046-Q01",
+        "W07-L34-P1046-Q02",
+        "W07-L34-P1046-Q03",
+        "W07-L34-P1046-Q04",
+        "W07-L34-P1052-Q03",
+        "W07-L34-P1052-Q04"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1046-C01"
+      ],
+      "openGapIds": [
+        "L34-G01"
+      ]
+    },
+    {
+      "physicalPage": 1047,
+      "previewPath": "sources/previews/lectures/page-1047.webp",
+      "previewSha256": "a668407a28521571c3cf07048fc4811fab949f4e734ccbcd99ba3c04f5ad8fcc",
+      "observed": "Update equations subtract eta times derivatives and iterate until the chosen loss stopping criterion. A loss plateau does not certify a global optimum or generalization. Visualization link is supplemental.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1047-Q01",
+        "W07-L34-P1047-Q02",
+        "W07-L34-P1047-Q03",
+        "W07-L34-P1052-Q03",
+        "W07-L34-P1052-Q04"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1047-C01"
+      ],
+      "openGapIds": [
+        "L34-G01"
+      ]
+    },
+    {
+      "physicalPage": 1048,
+      "previewPath": "sources/previews/lectures/page-1048.webp",
+      "previewSha256": "b38b232913fce8fd35934bcf4c892ab88a8cdb36fca6787d684bac1fcaab4fef",
+      "observed": "Toy braking example gives x=2 m, target10 Nm, initial w3,b1 and eta.1. Dimensional parameter scaling matters; one observation leaves infinitely many affine fits and cannot establish a safe braking controller.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1048-Q01",
+        "W07-L34-P1048-Q02",
+        "W07-L34-P1048-Q03",
+        "W07-L34-P1048-Q04",
+        "W07-L34-P1052-Q02"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1048-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1049,
+      "previewPath": "sources/previews/lectures/page-1049.webp",
+      "previewSha256": "6e8a614db512974ffaf3b25b324134af367c59cfa13e227e02d2e640b7f826c4",
+      "observed": "Affine prediction3*2+1=7 and half-squared loss4.5 are shown. Slide calls this MSE though ordinary one-example MSE is9; scaling must remain explicit.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1039-Q03",
+        "W07-L34-P1049-Q01",
+        "W07-L34-P1049-Q02"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1049-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1050,
+      "previewPath": "sources/previews/lectures/page-1050.webp",
+      "previewSha256": "107eb7f8edb2d2fe5c5ecb3822ade1eb0b70d939c053062c08613777506344b5",
+      "observed": "Both gradients evaluated at the old state are -6 for w and -3 for b. The intuition to increase w is specific to this residual/input and a sufficiently small step.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1050-Q01",
+        "W07-L34-P1050-Q02"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1050-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1051,
+      "previewPath": "sources/previews/lectures/page-1051.webp",
+      "previewSha256": "493b12a1801f2c6dcf45bf4e2bea30831b637e8832d2b5795b7e8611a5ae9e57",
+      "observed": "Simultaneous update gives w3.6,b1.3. Next prediction8.5 has half-loss1.125. Epoch2 labels the second evaluation after only one update.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1051-Q01",
+        "W07-L34-P1051-Q02",
+        "W07-L34-P1051-Q03"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1051-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1052,
+      "previewPath": "sources/previews/lectures/page-1052.webp",
+      "previewSha256": "79f069aa73202f5493a95fc78513c2af408fdfe1b4fa2645bd67ecac5d7bb197",
+      "observed": "Actual static graph shows only initial y=3x+1 and loss4.5 at epoch1, despite prose promising five-epoch trend. Graph labels Motor Speed whereas earlier example specifies braking torque. The separately linked notebook is now read as original source, not an author answer key.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1052-Q01",
+        "W07-L34-P1052-Q02",
+        "W07-L34-P1052-Q03",
+        "W07-L34-P1052-Q04",
+        "W07-L34-P1052-Q05",
+        "W07-L34-P1052-Q06",
+        "W07-L34-P1052-Q07",
+        "W07-L34-P1052-Q08",
+        "W07-L34-P1052-Q09",
+        "W07-L34-P1052-Q10",
+        "W07-L34-P1052-Q11",
+        "W07-L34-P1052-Q12"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1052-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1053,
+      "previewPath": "sources/previews/lectures/page-1053.webp",
+      "previewSha256": "cc430a850193494df2640851dfea3fbb209d5ee2076c614cbb68b725c7669527",
+      "observed": "CNN digit diagram explicitly shows input28x28, first pooling12x12, second convolution8x8, second pooling4x4, flatten, fully connected ten neurons, output example7. Kernel sizes/channel counts are not printed; any inference needs supplied padding/stride assumptions.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1053-Q01",
+        "W07-L34-P1053-Q02",
+        "W07-L34-P1053-Q03",
+        "W07-L34-P1053-Q04",
+        "W07-L34-P1053-Q05",
+        "W07-L34-P1053-Q06"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1053-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1054,
+      "previewPath": "sources/previews/lectures/page-1054.webp",
+      "previewSha256": "546876bf5010e77e64a828cf427df8d5f6c794175e6e66d031633bcfe6f65c82",
+      "observed": "Recurrent block takes xt and h(t-1), emits yt and ht. The temporal-summary analogy is not exact indefinite recall. Applications include trajectory prediction, speech and IMU sequences; no LSTM gate equations are printed.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1054-Q01",
+        "W07-L34-P1054-Q02",
+        "W07-L34-P1054-Q03"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1054-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1055,
+      "previewPath": "sources/previews/lectures/page-1055.webp",
+      "previewSha256": "88f8f8b8d284a120640e9c9051cb1e82ee6e97328256df298c40397102ec9522",
+      "observed": "Actual Transformer diagram includes positional encoding, shifted-right decoder input, masked self-attention, encoder-to-decoder attention, Add&Norm blocks, Nx repetition and linear/softmax output. Order is not irrelevant despite loose prose; VLA language/vision/action mapping is a task association, not guaranteed robot capability.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1055-Q01",
+        "W07-L34-P1055-Q02",
+        "W07-L34-P1055-Q03",
+        "W07-L34-P1055-Q04",
+        "W07-L34-P1055-Q05",
+        "W07-L34-P1055-Q06"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1055-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1056,
+      "previewPath": "sources/previews/lectures/page-1056.webp",
+      "previewSha256": "0f358541d2f277b3d65142801c5ca58155dc9c8529508ed5b6b56228c6ba7e0c",
+      "observed": "Two source word clouds place warehouse logistics/precision agriculture/navigation on applications and sim-to-real/continuous learning/XAI among aims. Embodied AI appears in both; headings do not establish exclusive maturity or globally solved capabilities.",
+      "disposition": "substantive",
+      "questionIds": [
+        "W07-L34-P1056-Q01",
+        "W07-L34-P1056-Q02",
+        "W07-L34-P1056-Q03",
+        "W07-L34-P1056-Q04"
+      ],
+      "conceptRecordIds": [
+        "W07-L34-P1056-C01"
+      ],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1057,
+      "previewPath": "sources/previews/lectures/page-1057.webp",
+      "previewSha256": "7609c45689e3976b5c4fc2e00f28bf18463ec44ce7880a908a4a7c8adaab5309",
+      "observed": "Summary lists biological origins, perceptrons, activations, MLP architecture, forward/loss/backprop, applications; no new technical equations.",
+      "disposition": "repeated technical summary requiring explicit shared links",
+      "questionIds": [],
+      "conceptRecordIds": [],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1058,
+      "previewPath": "sources/previews/lectures/page-1058.webp",
+      "previewSha256": "2b4b740ab042f6c5082249287198f4f49dff239e68332c509155a8fce17c8fd4",
+      "observed": "Actual reference slide lists Bengio/Goodfellow/Courville Deep Learning (2017 as printed), Pratihar Soft Computing (2013), Vaswani et al. Attention Is All You Need (2017), and Szeliski Computer Vision (2022). The2017 Transformer reference contradicts interpreting the2020 timeline association as its invention year.",
+      "disposition": "reference evidence, not separate technical teaching",
+      "questionIds": [
+        "W07-L34-P1023-Q03"
+      ],
+      "conceptRecordIds": [],
+      "openGapIds": []
+    },
+    {
+      "physicalPage": 1059,
+      "previewPath": "sources/previews/lectures/page-1059.webp",
+      "previewSha256": "5815358d8c590d9b8ec872f0238963c1cfbc3087c37621f7588a7ef7d0ece352",
+      "observed": "Thank-you closing slide, footer39, no examinable technical content.",
+      "disposition": "title/objectives/closing-only",
+      "questionIds": [],
+      "conceptRecordIds": [],
+      "openGapIds": []
+    }
+  ],
+  "difficultyCounts": {
+    "easy": 130,
+    "medium": 4
+  },
+  "difficultyFinding": "130easy and4medium labels, no hard items. Most local labels are reasonable, but the missing full derivation/trace angles prevent complete depth. Do not simply relabel short recall questions to meet a difficulty mix.",
+  "selectionModes": {
+    "single": 133,
+    "multi": 1
+  },
+  "questionFormats": {
+    "match": 7,
+    "conceptual": 57,
+    "diagram": 17,
+    "numerical": 29,
+    "scenario": 8,
+    "synthesis": 5,
+    "algorithm_trace": 2,
+    "sequence": 2,
+    "exception": 1,
+    "code": 6
+  },
+  "answerPositionFinding": "All intended answers use stable optiono1 except the multi-select set. Stored IDs are not presentation letters, and the parent has already fixed answer-independent default permutations. No new displayed-position defect is alleged and this reviewer did not repeat browser QA.",
+  "reviewFile": "data/reviews/W07-L34-v1-independent-contracts.json"
+}

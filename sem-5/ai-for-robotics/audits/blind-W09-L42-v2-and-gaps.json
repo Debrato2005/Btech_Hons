@@ -1,0 +1,1786 @@
+[
+  {
+    "id": "W09-L42-Q002",
+    "version": 2,
+    "stem": "A robot must never enter occupied cells, while shorter distance and fewer turns are preferences. Which formulation keeps these roles distinct?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Minimize length plus a finite collision penalty over all routes, permitting a collision when its length saving exceeds the penalty."
+      },
+      {
+        "id": "o2",
+        "text": "Minimize turns over all routes and treat obstacle clearance only as a tie-breaker."
+      },
+      {
+        "id": "o3",
+        "text": "First minimize length over all routes, then prefer collision-free routes only among equal-length minimizers."
+      },
+      {
+        "id": "o4",
+        "text": "Minimize a length/turn cost over collision-free routes."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1300",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1300,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1300, printed footer 4: Collision and motion constraints versus efficiency/smoothness objectives.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1304",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1304,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1304, printed footer 8: Collision and motion constraints versus efficiency/smoothness objectives.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q003",
+    "version": 2,
+    "stem": "Two feasible paths have equal length, but one has more sharp turns and lower obstacle clearance. What motivates a richer GA cost?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use waypoint count as the clearance penalty because routes with fewer stored points must stay farther from obstacles."
+      },
+      {
+        "id": "o2",
+        "text": "Increase the length weight while keeping the objective dependent on length alone."
+      },
+      {
+        "id": "o3",
+        "text": "Length alone cannot distinguish those smoothness and clearance differences."
+      },
+      {
+        "id": "o4",
+        "text": "Use length divided by the common maximum length as the only objective."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1301",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1301,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1301, printed footer 5: Multiple objectives and large search-space motivation.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q004",
+    "version": 2,
+    "stem": "Which order matches the route-search cycle before repetition?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Initialize → evaluate → recombine → mutate → select parents using unchanged pre-variation scores."
+      },
+      {
+        "id": "o2",
+        "text": "Initialize candidates → evaluate fitness → select parents → recombine → mutate."
+      },
+      {
+        "id": "o3",
+        "text": "Initialize → select by fitness → evaluate for the first time → recombine → mutate."
+      },
+      {
+        "id": "o4",
+        "text": "Initialize → evaluate → mutate → select using old scores → recombine."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1302",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1302,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1302, printed footer 6: Five-stage picture and limitations.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1332",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1332,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1332, printed footer 36: Five-stage picture and limitations.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q005",
+    "version": 2,
+    "stem": "Under the whole-waypoint gene convention shown for this two-waypoint chromosome, which mapping is correct?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "One waypoint pair is a gene, the full pair-list is a chromosome, and a collection of such lists is a population."
+      },
+      {
+        "id": "o2",
+        "text": "Each scalar coordinate is a gene, the full pair-list is a chromosome, and a collection of such lists is a population."
+      },
+      {
+        "id": "o3",
+        "text": "The full pair-list is one gene, a collection of pair-lists is a chromosome, and a collection of those collections is a population."
+      },
+      {
+        "id": "o4",
+        "text": "One waypoint pair is a chromosome, the two-pair route is a population, and each scalar coordinate is a gene."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1303",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1303,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1303, printed footer 7: Gene, chromosome, population and generation definitions.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1307",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1307,
+        "kind": "figure",
+        "locator": "Lecture L42, physical PDF page 1307, printed footer 11: Chromosome diagram: waypoint pairs W1 and W2 are the two genes.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q007",
+    "version": 2,
+    "stem": "Which set correctly matches the three listed representations?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Intermediate points → heading commands; left/straight/right → waypoint encoding; spline control points → control parameters."
+      },
+      {
+        "id": "o2",
+        "text": "Intermediate points → waypoint encoding; left/straight/right → control parameters; spline control points → heading commands."
+      },
+      {
+        "id": "o3",
+        "text": "Intermediate points → waypoint encoding; left/straight/right → heading commands; spline control points → control parameters."
+      },
+      {
+        "id": "o4",
+        "text": "Intermediate points → control parameters; left/straight/right → heading commands; spline control points → waypoint encoding."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1305",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1305,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1305, printed footer 9: Three encoding bullets.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q010",
+    "version": 2,
+    "stem": "Why can partly heuristic but varied initial paths be preferable to six identical copies of one path?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Identical copies preserve seed quality and also provide the same initial recombination diversity as distinct paths."
+      },
+      {
+        "id": "o2",
+        "text": "Varied seeds should be preferred only when every seed has equal fitness; otherwise diversity has no value."
+      },
+      {
+        "id": "o3",
+        "text": "Identical copies are preferable whenever one seed is shortest, because crossover alone can introduce waypoint values absent from that seed."
+      },
+      {
+        "id": "o4",
+        "text": "They provide different candidate material for exploration while retaining useful seed structure."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1308",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1308,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1308, printed footer 12: All six initial chromosomes and diversity bullets.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q012",
+    "version": 2,
+    "stem": "A decoded route has L=12, N_obs=1 and N_turn=2. Using α=10, β=1 and F=1/(1+C), what are its cost and fitness?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "C=42 and F=1/43."
+      },
+      {
+        "id": "o2",
+        "text": "C=24 and F=1/25."
+      },
+      {
+        "id": "o3",
+        "text": "C=24 and F=1/24."
+      },
+      {
+        "id": "o4",
+        "text": "C=15 and F=1/16."
+      }
+    ],
+    "assumptions": [
+      "Added route metrics; normalized dimensionless cost units."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1310",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1310,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1310, printed footer 14: Cost and inverse-fitness equations.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1311",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1311,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1311, printed footer 15: Cost and inverse-fitness equations.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q013",
+    "version": 2,
+    "stem": "For nonnegative costs, what property of F(C)=1/(1+C) is used for maximization?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It is positive and strictly decreases as cost increases."
+      },
+      {
+        "id": "o2",
+        "text": "It is positive and strictly increases as cost increases."
+      },
+      {
+        "id": "o3",
+        "text": "It assigns zero fitness to every route with a collision."
+      },
+      {
+        "id": "o4",
+        "text": "It preserves the cost values exactly, not merely their reversed ordering."
+      }
+    ],
+    "assumptions": [
+      "C≥0; weights and counts nonnegative."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1311",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1311,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1311, printed footer 15: Fitness equation and positivity statement.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q014",
+    "version": 2,
+    "stem": "As an added counterexample, route A has L=10, N_obs=1, N_turn=0; route B has L=30, N_obs=0, N_turn=1. With α=10 and β=1, which route receives higher fitness?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "B, because every collision-free route must outrank every colliding route under this formula."
+      },
+      {
+        "id": "o2",
+        "text": "They tie because the obstacle penalty cancels any length difference."
+      },
+      {
+        "id": "o3",
+        "text": "B, because the larger total cost 31 is treated as the larger fitness."
+      },
+      {
+        "id": "o4",
+        "text": "A, even though it collides, because its total cost is lower."
+      }
+    ],
+    "assumptions": [
+      "Explicit added route metrics, not a claim that these two routes occur in the six-member source pool."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1310",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1310,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1310, printed footer 14: Cost equation and blanket collision-ranking sentence.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1311",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1311,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1311, printed footer 15: Cost equation and blanket collision-ranking sentence.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q027",
+    "version": 2,
+    "stem": "Trace this declared six-slot GA generation. The selected parents are P1,P2,P3,P4,P4,P6, paired (P1,P3),(P4,P6),(P2,P4); swap the second waypoint in each pair, label children C1…C6 in that order, then change only C1 from [(0,3),(3,4)] to C1′=[(0,3),(3,5)]. Use the source grid and H-then-V decoder with C=L+10N_obs+N_turn and F=1/(1+C). Retain old elite P1 in one slot, then the five lowest-cost evaluated children, breaking equal costs by child number. Which child-cost vector, next population and best fitness result?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Child costs (23,11,23,33,44,33); retain P1,C2,C1,C3,C4,C6; best fitness1/12."
+      },
+      {
+        "id": "o2",
+        "text": "Child costs (11,11,23,33,44,33); retain P1,C1′,C2,C3,C4,C5,C6; best fitness1/12."
+      },
+      {
+        "id": "o3",
+        "text": "Child costs (11,11,23,33,44,33); retain P1,C1′,C2,C3,C4,C6; best fitness1/12."
+      },
+      {
+        "id": "o4",
+        "text": "Child costs (11,11,23,33,44,33); retain P1,C5,C4,C6,C3,C1′; best fitness1/12."
+      }
+    ],
+    "assumptions": [
+      "Source parents: P1=[(0,3),(4,5)],P2=[(2,1),(5,3)],P3=[(0,2),(3,4)],P4=[(3,0),(5,4)],P6=[(2,0),(5,2)].",
+      "Source grid S=(0,0),G=(5,5),occupied cells={(1,1),(1,2),(2,2),(2,4),(3,2),(4,3)}; count entered occupied visits and direction changes across the full decoded route.",
+      "Deterministic exercise policy: retain one evaluated old elite and the five lowest-cost children; no additional mutation; equal child costs break by child number."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1319",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1319,
+        "kind": "table",
+        "locator": "Lecture L42, physical PDF page 1319, printed footer 23: Six draws and resulting mating pool; only P4 appears twice.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1306",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1306,
+        "kind": "figure",
+        "locator": "Lecture L42, physical PDF page 1306, printed footer 10: 6×6 obstacle grid and start/goal.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1309",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1309,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1309, printed footer 13: H-then-V decoding convention.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1310",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1310,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1310, printed footer 14: Weighted route-cost expression.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1311",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1311,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1311, printed footer 15: Inverse cost-to-fitness transform.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1312",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1312,
+        "kind": "table",
+        "locator": "Lecture L42, physical PDF page 1312, printed footer 16: Six original waypoint chromosomes.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1320",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1320,
+        "kind": "table",
+        "locator": "Lecture L42, physical PDF page 1320, printed footer 24: Three pairings and six whole-waypoint crossover children.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1321",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1321,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1321, printed footer 25: Single specified mutation of C1 second-waypoint column.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1322",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1322,
+        "kind": "table",
+        "locator": "Lecture L42, physical PDF page 1322, printed footer 26: Evaluation table for mutated children, with unmutated C1 as comparison row.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1326",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1326,
+        "kind": "code",
+        "locator": "Lecture L42, physical PDF page 1326, printed footer 30: Pseudocode evaluates candidates and retains an elite; exact fixed-size policy is supplied in this exercise.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q034",
+    "version": 2,
+    "stem": "The source mutation improves C1 to C1′, but C2 already has fitness 1/12 without mutation. What does this establish?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Mutation is required to attain fitness1/12 because C1 had lower fitness before the mutation."
+      },
+      {
+        "id": "o2",
+        "text": "Crossover alone caused C1’s improvement, since C2 has the same final fitness."
+      },
+      {
+        "id": "o3",
+        "text": "The mutation result shows that applying the same coordinate change to every child will preserve or improve each child’s fitness."
+      },
+      {
+        "id": "o4",
+        "text": "Mutation improved this child; it does not prove that crossover alone could not reach the same fitness in this generation."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1322",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1322,
+        "kind": "table",
+        "locator": "Lecture L42, physical PDF page 1322, printed footer 26: C2 row and mutation interpretation paragraph.",
+        "role": "conflict",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1324",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1324,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1324, printed footer 28: C2 row and mutation interpretation paragraph.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q035",
+    "version": 2,
+    "stem": "C5 comes from P2 and P4. The slides give P2 cost 44, P4 cost 23 and C5 cost 44. Which statement is supported?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "C5 is worse than P4 but better than P2 because it inherits P4’s second waypoint."
+      },
+      {
+        "id": "o2",
+        "text": "C5 ties P4 and is worse than P2 because both contribute one waypoint."
+      },
+      {
+        "id": "o3",
+        "text": "C5 ties the old worst parent P2 and is worse than P4; both cited parents were already infeasible."
+      },
+      {
+        "id": "o4",
+        "text": "C5’s cost must lie strictly between23 and44 because its two waypoint genes come from those parents."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1313",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1313,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1313, printed footer 17: P2/P4 costs, C5 row and interpretive paragraph.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1315",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1315,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1315, printed footer 19: P2/P4 costs, C5 row and interpretive paragraph.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1322",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1322,
+        "kind": "table",
+        "locator": "Lecture L42, physical PDF page 1322, printed footer 26: P2/P4 costs, C5 row and interpretive paragraph.",
+        "role": "conflict",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1325",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1325,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1325, printed footer 29: P2/P4 costs, C5 row and interpretive paragraph.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q036",
+    "version": 2,
+    "stem": "Before fitness-based selection in the printed loop, which sequence is needed for each chromosome?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Decode and score before waypoint repair, then use that score after repair without invalidating it."
+      },
+      {
+        "id": "o2",
+        "text": "Decode the path, compute length/violations/turns, form cost, then compute fitness."
+      },
+      {
+        "id": "o3",
+        "text": "Score each free waypoint in isolation and sum those scores without checking the joining paths."
+      },
+      {
+        "id": "o4",
+        "text": "Select using the previous-generation scores and update scores only after the selected candidates reproduce."
+      }
+    ],
+    "assumptions": [
+      "Language-neutral source pseudocode, not literal executable Python."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1326",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1326,
+        "kind": "code",
+        "locator": "Lecture L42, physical PDF page 1326, printed footer 30: Inner evaluation loop before selection.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q037",
+    "version": 2,
+    "stem": "Suppose the pseudocode is implemented literally: evaluate P, create children, replace P, and after the last iteration return the highest-fitness member of P. What must be added or otherwise ensured?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Evaluate newly created/repaired final candidates before comparing their fitness, or return an explicitly retained evaluated best-so-far record."
+      },
+      {
+        "id": "o2",
+        "text": "Return the final child occupying the old elite’s list index without checking whether that child changed."
+      },
+      {
+        "id": "o3",
+        "text": "Evaluate only the first final child and reuse parent scores for the other final children."
+      },
+      {
+        "id": "o4",
+        "text": "Return the final child with the lowest stored pre-mutation score, assuming mutation did not alter its ordering."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1326",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1326,
+        "kind": "code",
+        "locator": "Lecture L42, physical PDF page 1326, printed footer 30: Replacement and return lines at the bottom of the pseudocode.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q039",
+    "version": 2,
+    "stem": "Mutation places a waypoint inside an obstacle and repair moves it to a nearby free cell. What is the appropriate next action?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Recheck the repaired waypoint’s occupancy only and retain its old segment costs."
+      },
+      {
+        "id": "o2",
+        "text": "Recompute distances between repaired waypoints but reuse old obstacle and turn counts."
+      },
+      {
+        "id": "o3",
+        "text": "Decode and re-evaluate the repaired route, including its connecting segments."
+      },
+      {
+        "id": "o4",
+        "text": "Keep the pre-mutation fitness because repair has restored a free waypoint."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1326",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1326,
+        "kind": "code",
+        "locator": "Lecture L42, physical PDF page 1326, printed footer 30: Repair invalid waypoints and later replacement; initialization free-cell restriction.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q041",
+    "version": 2,
+    "stem": "In the pendulum diagram, how are θ1 and θ2 measured for the printed potential-energy formula?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Each is an absolute bar angle from the downward vertical at its own upper pin."
+      },
+      {
+        "id": "o2",
+        "text": "θ1 is absolute, but θ2 is the relative angle from bar 1 to bar 2."
+      },
+      {
+        "id": "o3",
+        "text": "Both are measured from the positive horizontal direction."
+      },
+      {
+        "id": "o4",
+        "text": "Both angles are signed clockwise from the upward vertical at their upper pins."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1327",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1327,
+        "kind": "figure",
+        "locator": "Lecture L42, physical PDF page 1327, printed footer 31: Angle arcs, vertical dashed references and labeled A/B/C pins.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q044",
+    "version": 2,
+    "stem": "Why does the W2 contribution contain both l 1 cosθ1 and (l 2/2)cosθ2?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Both weights use only half of bar1’s vertical projection, because all centers are measured from a common fixed origin."
+      },
+      {
+        "id": "o2",
+        "text": "The second bar’s center is displaced by the full first-bar vertical projection plus half of its own vertical projection."
+      },
+      {
+        "id": "o3",
+        "text": "Half of each bar length must be used because both bars are uniform."
+      },
+      {
+        "id": "o4",
+        "text": "Only l 2 cosθ2 matters because W2 is attached to the second bar."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1327",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1327,
+        "kind": "figure",
+        "locator": "Lecture L42, physical PDF page 1327, printed footer 31: W2 downward arrow and second weight potential term.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q045",
+    "version": 2,
+    "stem": "For two uniform bars with absolute angles θ1 and θ2 from downward vertical, P=W1=W2=2 and l 1=l 2=2 in consistent units, which potential follows from the displayed model?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Π=−4 sinθ1−6 cosθ1−4 sinθ2−2 cosθ2."
+      },
+      {
+        "id": "o2",
+        "text": "Π=−4 sinθ1−2 cosθ1−4 sinθ2−2 cosθ2."
+      },
+      {
+        "id": "o3",
+        "text": "Π=−4sinθ1−8cosθ1−4sinθ2−4cosθ2."
+      },
+      {
+        "id": "o4",
+        "text": "Π=−2 sinθ1−6 cosθ1−2 sinθ2−2 cosθ2."
+      }
+    ],
+    "assumptions": [
+      "Source numbers use a consistent but unnamed force/length unit system; no unprinted SI label is asserted."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1327",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1327,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1327, printed footer 31: General potential, parameter list and substituted expression.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q046",
+    "version": 2,
+    "stem": "For Π=−4 sinθ1−6 cosθ1−4 sinθ2−2 cosθ2, with angles in radians, which gradient is correct?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "(4 cosθ1−6 sinθ1, 4 cosθ2−2 sinθ2)."
+      },
+      {
+        "id": "o2",
+        "text": "(-4 sinθ1−6 cosθ1, -4 sinθ2−2 cosθ2)."
+      },
+      {
+        "id": "o3",
+        "text": "(-4 cosθ1−6 sinθ1, -4 cosθ2−2 sinθ2)."
+      },
+      {
+        "id": "o4",
+        "text": "(-4 cosθ1+6 sinθ1, -4 cosθ2+2 sinθ2)."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1327",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1327,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1327, printed footer 31: Potential on p 1327 and two derivative lines on p 1328.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1328",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1328,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1328, printed footer 32: Potential on p 1327 and two derivative lines on p 1328.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q047",
+    "version": 2,
+    "stem": "Solve −4cosθ1+6sinθ1=0 and −4cosθ2+2sinθ2=0 for 0≤θ1, θ2≤90°. What stationary angle pair is obtained?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "(63.43°, 33.69°)."
+      },
+      {
+        "id": "o2",
+        "text": "(33.69°, 26.57°)."
+      },
+      {
+        "id": "o3",
+        "text": "(θ1, θ2)≈(33.69°, 63.43°)."
+      },
+      {
+        "id": "o4",
+        "text": "(56.31°, 26.57°)."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1328",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1328,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1328, printed footer 32: Stationarity equations and tangent ratios.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1327",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1327,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1327, printed footer 31: Pendulum diagram and original potential-energy equation used to differentiate.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q050",
+    "version": 2,
+    "stem": "For Π=−4sinθ1−6cosθ1−4sinθ2−2cosθ2, at tanθ1=2/3 and tanθ2=2 in the first quadrant, which Hessian confirms a strict local minimum?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "diag (−√52, −√20)."
+      },
+      {
+        "id": "o2",
+        "text": "The zero matrix because both first derivatives vanish."
+      },
+      {
+        "id": "o3",
+        "text": "A matrix with both off-diagonal entries 4 and zero diagonal entries."
+      },
+      {
+        "id": "o4",
+        "text": "diag (√52, √20)."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1327",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1327,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1327, printed footer 31: Potential and stationary-angle equations.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1328",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1328,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1328, printed footer 32: Potential and stationary-angle equations.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q055",
+    "version": 2,
+    "stem": "In the objective contour illustration, which legend mapping is printed?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Filled squares: selected members; hollow circle: minimum; hollow squares: left-out members."
+      },
+      {
+        "id": "o2",
+        "text": "Filled squares: left-out members; hollow circle: selected member; hollow squares: minima."
+      },
+      {
+        "id": "o3",
+        "text": "Filled squares: left-out initial members; hollow circle: minimum; hollow squares: selected mating-pool members."
+      },
+      {
+        "id": "o4",
+        "text": "Filled squares: minimum; hollow circle: left-out member; hollow squares: selected members."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1330",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1330,
+        "kind": "figure",
+        "locator": "Lecture L42, physical PDF page 1330, printed footer 34: Contour legend beneath left objective plot; axes θ1 and θ2.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q057",
+    "version": 2,
+    "stem": "Using Π=−4sinθ1−6cosθ1−4sinθ2−2cosθ2 and F=−Π−7, evaluate the allowed configuration (θ1, θ2)=(90°, 0°). What consequence follows for direct roulette selection using F as weight?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "F=−1, so the raw score cannot be used as a nonnegative roulette weight over the entire allowed domain."
+      },
+      {
+        "id": "o2",
+        "text": "F=1, so the source shift guarantees strictly positive weights everywhere."
+      },
+      {
+        "id": "o3",
+        "text": "F=0, so every boundary configuration is excluded automatically."
+      },
+      {
+        "id": "o4",
+        "text": "F=7, because the shift changes sign at boundary angles."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1327",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1327,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1327, printed footer 31: Bounds and F=−f−7 definition.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1330",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1330,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1330, printed footer 34: Bounds and F=−f−7 definition.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1319",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1319,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1319, printed footer 23: Roulette probabilities equal candidate fitness divided by the population fitness sum.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q058",
+    "version": 2,
+    "stem": "For chromosome 0110 1010, the source angles are (36°, 60°). Using F=4sinθ1+6cosθ1+4sinθ2+2cosθ2−7 with degree-to-radian conversion, what is F rounded to two decimals?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "4.60."
+      },
+      {
+        "id": "o2",
+        "text": "11.67."
+      },
+      {
+        "id": "o3",
+        "text": "−4.67."
+      },
+      {
+        "id": "o4",
+        "text": "4.67."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1330",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1330,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1330, printed footer 34: F definition and fifth population row.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1331",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1331,
+        "kind": "table",
+        "locator": "Lecture L42, physical PDF page 1331, printed footer 35: F definition and fifth population row.",
+        "role": "conflict",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q060",
+    "version": 2,
+    "stem": "Assume all compared weights remain positive. Replacing−Π by F=−Π−7 preserves which property, but generally changes which other property?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It changes the maximizing angle even though every score is shifted equally."
+      },
+      {
+        "id": "o2",
+        "text": "It preserves ranking but changes normalized roulette probabilities."
+      },
+      {
+        "id": "o3",
+        "text": "It preserves every roulette probability but reverses ranking."
+      },
+      {
+        "id": "o4",
+        "text": "It preserves both ranking and every roulette probability."
+      }
+    ],
+    "assumptions": [
+      "Added illustration with positive before/after weights; the separate full-domain negativity issue remains."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1330",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1330,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1330, printed footer 34: Score shift and evaluated population.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1331",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1331,
+        "kind": "table",
+        "locator": "Lecture L42, physical PDF page 1331, printed footer 35: Score shift and evaluated population.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1319",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1319,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1319, printed footer 23: Roulette probabilities equal candidate fitness divided by the population fitness sum.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q063",
+    "version": 2,
+    "stem": "On a known weighted graph with a standard shortest-path objective, why might direct graph search be preferred over a generic GA?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Direct graph search removes the need to choose any graph representation, even though its edges and costs are already supplied."
+      },
+      {
+        "id": "o2",
+        "text": "A GA is preferable for this fixed objective because crossover necessarily visits fewer graph states than a shortest-path algorithm."
+      },
+      {
+        "id": "o3",
+        "text": "It exploits the graph structure directly and may avoid many population fitness evaluations."
+      },
+      {
+        "id": "o4",
+        "text": "The GA representation is useful only when every candidate route has the same number of edges, so it cannot handle this graph."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1333",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1333,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1333, printed footer 37: Classical methods versus GA and computational-load takeaway.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1336",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1336,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1336, printed footer 40: Classical methods versus GA and computational-load takeaway.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q064",
+    "version": 2,
+    "stem": "Which assignment matches the three-stage hybrid described?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "GA creates seed waypoints → PID performs global path refinement → PRM tracks the final path."
+      },
+      {
+        "id": "o2",
+        "text": "PRM/grid/heuristic seeds → GA waypoint refinement → PID/MPC/pure-pursuit tracking."
+      },
+      {
+        "id": "o3",
+        "text": "PRM tracks the path → GA estimates feedback error → PID selects global waypoints."
+      },
+      {
+        "id": "o4",
+        "text": "PID creates route seeds → pure pursuit optimizes waypoint populations → GA tracks the final path."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1334",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1334,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1334, printed footer 38: Global, GA and local-control bullets.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q065",
+    "version": 2,
+    "stem": "Suppose changing path length from metres to centimetres makes its numeric term 100 times larger while all other terms are unchanged. What correction best follows the normalization advice?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Rescale the length term or its weight so the intended tradeoff is unchanged."
+      },
+      {
+        "id": "o2",
+        "text": "Keep all coefficients unchanged because converting units does not alter the numeric weighted sum."
+      },
+      {
+        "id": "o3",
+        "text": "Multiply the length weight by100 as well, leaving all other terms unchanged."
+      },
+      {
+        "id": "o4",
+        "text": "Multiply every term of the already altered objective by100, including the already100-times-larger length term."
+      }
+    ],
+    "assumptions": [
+      "Added unit-conversion example; the original grid cost uses normalized units."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1335",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1335,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1335, printed footer 39: Normalization implementation tip.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q066",
+    "version": 2,
+    "stem": "The implementation tip suggests plotting the best path every five generations. What is an appropriate use of these plots?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Identical best-path plots imply that the population mean fitness and genetic diversity are also unchanged."
+      },
+      {
+        "id": "o2",
+        "text": "Changes in the population’s coordinate strings necessarily imply changes in the plotted physical route."
+      },
+      {
+        "id": "o3",
+        "text": "A smoother-looking best path establishes that the population mean cost improved, even without score records."
+      },
+      {
+        "id": "o4",
+        "text": "Inspect route changes and apparent progress, while still checking feasibility and optimization limits separately."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1335",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1335,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1335, printed footer 39: Visualization frequency, geometric collision-checking tip and takeaway scope.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1336",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1336,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1336, printed footer 40: Visualization frequency, geometric collision-checking tip and takeaway scope.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q067",
+    "version": 2,
+    "stem": "Every listed initial path has waypoint rows and columns that never decrease from S=(0, 0) to G=(5, 5). Why is its total Manhattan length 10 before penalties?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Each of the three waypoint segments contributes five row moves and five column moves, giving length30."
+      },
+      {
+        "id": "o2",
+        "text": "The net displacement is a straight diagonal with length√50, so that is also the four-neighbor route length."
+      },
+      {
+        "id": "o3",
+        "text": "The nonnegative row increments telescope to5 and column increments telescope to5."
+      },
+      {
+        "id": "o4",
+        "text": "Signed row and column increments telescope to10 even for a backtracking route, so its actual length is also10."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1308",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1308,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1308, printed footer 12: Initial waypoint list and Manhattan-distance worked examples.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1312",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1312,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1312, printed footer 16: Initial waypoint list and Manhattan-distance worked examples.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1317",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1317,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1317, printed footer 21: Initial waypoint list and Manhattan-distance worked examples.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q070",
+    "version": 2,
+    "stem": "A population rapidly becomes almost identical, then shows little progress. Which adjustment is most consistent with the lecture’s diversity and mutation discussion?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Increase selection pressure and elite fraction while leaving mutation very low."
+      },
+      {
+        "id": "o2",
+        "text": "Keep the same concentrated selection and reduce mutation further to preserve the current chromosomes."
+      },
+      {
+        "id": "o3",
+        "text": "Increase the number of identical elite copies without introducing new candidate material."
+      },
+      {
+        "id": "o4",
+        "text": "Introduce controlled diversity, such as less concentrated selection or a modest mutation increase, then re-evaluate performance."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1308",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1308,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1308, printed footer 12: Initial diversity, mutation tradeoff and parameter-sensitivity limitation.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1321",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1321,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1321, printed footer 25: Initial diversity, mutation tradeoff and parameter-sensitivity limitation.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1332",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1332,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1332, printed footer 36: Initial diversity, mutation tradeoff and parameter-sensitivity limitation.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q071",
+    "version": 1,
+    "stem": "For the pendulum model, compare chromosomes A=0110 1011 and B=0000 0000. Decode each four-bit part by θ=6D degrees; use F=4sinθ1+6cosθ1+4sinθ2+2cosθ2−7. As an explicitly added valid-weight policy, use w=F+2 and roulette selection over only A and B. Which result is correct?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A=(36°,66°), B=(0°,0°); A has the larger F and p(A)≈0.6899; A is not the exact continuous optimum."
+      },
+      {
+        "id": "o2",
+        "text": "A=(36°,66°), B=(0°,0°); A has the larger F and p(A)≈0.8237; A is not the exact continuous optimum."
+      },
+      {
+        "id": "o3",
+        "text": "A=(6°,11°), B=(0°,0°); A has the larger F and p(A)≈0.6899; the binary integers are already angles."
+      },
+      {
+        "id": "o4",
+        "text": "A=(36°,66°), B=(0°,0°); A has the larger F and p(A)≈0.6899; A equals the exact continuous optimum."
+      }
+    ],
+    "assumptions": [
+      "Added two-member selection pool and weight shift2; this is not the source’s original eight-member selection run.",
+      "Trigonometric inputs are converted from degrees to radians; retained angles lie in0–90°."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1319",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1319,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1319, printed footer 23: Normalized roulette-selection rule.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1329",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1329,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1329, printed footer 33: Four-bit inclusive angle decoding table and equation.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1330",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1330,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1330, printed footer 34: Potential, angle domain, continuous minimum, and shifted score F.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1331",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1331,
+        "kind": "table",
+        "locator": "Lecture L42, physical PDF page 1331, printed footer 35: Eight-bit two-angle population representation.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q072",
+    "version": 1,
+    "stem": "The contour illustration extends to2 radians on each axis, but the stated optimization bounds are0≤θ1,θ2≤π/2. Is the displayed coordinate(1.8,1.0) radians admissible?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Yes, because every coordinate within a plotted axis range is feasible."
+      },
+      {
+        "id": "o2",
+        "text": "No, because θ1=1.8 exceedsπ/2 even though the point can be displayed."
+      },
+      {
+        "id": "o3",
+        "text": "No, because both1.8 and1.0 exceedπ/2."
+      },
+      {
+        "id": "o4",
+        "text": "Yes, because the constraint applies only to the sum of the two angles."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1330",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1330,
+        "kind": "figure",
+        "locator": "Lecture L42, physical PDF page 1330, printed footer 34: Contour axes extend to2 radians, while the text constrains each angle to0–90 degrees.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L42-Q073",
+    "version": 1,
+    "stem": "A circular robot has nonzero radius. A proposed route has free stored waypoint cells, but a connecting segment passes close to an obstacle. Which implementation best follows the source’s staged collision-checking advice?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Accept the route after testing only the waypoint center cells; the robot radius affects cost but not feasibility."
+      },
+      {
+        "id": "o2",
+        "text": "Test the midpoint of each segment and accept if those centers are free, without checking the remaining swept path."
+      },
+      {
+        "id": "o3",
+        "text": "Use occupancy lookup as a cheap screen, then check the connecting swept robot body against obstacle geometry, or use an equivalent correctly inflated obstacle model."
+      },
+      {
+        "id": "o4",
+        "text": "Check the complete centerline against uninflated obstacles and accept whenever the centerline itself is clear."
+      }
+    ],
+    "assumptions": [
+      "Added planar circular robot and static obstacles; treat known body radius exactly or conservatively through obstacle inflation."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1335",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1335,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1335, printed footer 39: Collision-checking tip: grid occupancy lookup first, then geometric collision tests.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  }
+]

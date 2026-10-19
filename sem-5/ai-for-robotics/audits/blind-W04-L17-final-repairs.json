@@ -1,0 +1,248 @@
+[
+  {
+    "id": "W04-L17-Q003",
+    "version": 3,
+    "stem": "In the introductory Cartesian-path diagram, what do the three yellow intermediate markers explicitly show, as distinct from the general text about Cartesian pose trajectories?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Three complete pose frames with visibly drawn orientation axes at every yellow marker"
+      },
+      {
+        "id": "o4",
+        "text": "Position-error tolerance boundaries surrounding only the final END point"
+      },
+      {
+        "id": "o1",
+        "text": "Ordered XYZ position points along the path; intermediate orientation axes are not drawn at those markers"
+      },
+      {
+        "id": "o2",
+        "text": "Alternative final XYZ goals, any one replacing the red END point"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0508",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 508,
+        "kind": "figure",
+        "locator": "Lecture 17, physical PDF page 508, printed slide 4: introductory START/via-pose/END XYZ figure",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q016",
+    "version": 3,
+    "stem": "In scaled velocity units, J=diag(1,0.01) and desired v=(0,1); what qdot solves v=Jqdot?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "(0,1)"
+      },
+      {
+        "id": "o1",
+        "text": "(0,100)"
+      },
+      {
+        "id": "o2",
+        "text": "(0,0.01)"
+      },
+      {
+        "id": "o3",
+        "text": "(1,0)"
+      }
+    ],
+    "assumptions": [
+      "Coordinates are scaled consistently; this is an illustrative local Jacobian, not a full robot specification."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0514",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 514,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 514, printed slide 10: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q018",
+    "version": 3,
+    "stem": "For a one-unit straight task move with constant J=diag(1,0.01), no first-component motion and |qdot2|≤10, what is the fastest constant second-component speed and its travel time, compared with an intended one-second move?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Speed 0.1 and travel time 1 s; reducing speed does not affect the scheduled arrival"
+      },
+      {
+        "id": "o3",
+        "text": "Speed 1 and travel time 1 s; the joint-rate limit remains satisfied"
+      },
+      {
+        "id": "o4",
+        "text": "Speed 0.01 and travel time 100 s; this is the fastest permitted motion"
+      },
+      {
+        "id": "o1",
+        "text": "Speed 0.1 and travel time 10 s; the geometric move is retained but its intended timing is slowed"
+      }
+    ],
+    "assumptions": [
+      "This is a hypothetical locally scaled example with the displayed diagonal Jacobian assumed constant over the move.",
+      "Task units are consistently scaled, joint2 rate units match the bound, and endpoint acceleration transitions are excluded.",
+      "Slowing a feasible direction does not make an infeasible direction attainable at an exact singularity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0514",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 514,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 514, printed slide 10: joint-rate limitation and changed temporal attributes under slowing",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q022",
+    "version": 3,
+    "stem": "An LSPB segment starts at global time 5 s, lasts 2 s and uses blend duration 0.3 s at each end; at global times 5.2, 6.0 and 6.8 s, which local times and regions should the runtime selector use?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Local times 5.2,6.0,6.8 s: final blend at all three updates"
+      },
+      {
+        "id": "o3",
+        "text": "Local times 0.2,1.0,1.8 s: linear region, initial blend, final blend"
+      },
+      {
+        "id": "o4",
+        "text": "Local times 0.2,1.0,1.8 s: initial blend, final blend, linear region"
+      },
+      {
+        "id": "o1",
+        "text": "Local times 0.2,1.0,1.8 s: initial blend, linear region, final blend"
+      }
+    ],
+    "assumptions": [
+      "Use the stated hypothetical symmetric LSPB timing; no sample lies exactly at a boundary.",
+      "This selection test does not silently correct the source’s separate blend-position/velocity inconsistency."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0517",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 517,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 517, printed slide 13: local-clock reset and elapsed-time choice of linear or blend region",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0518",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 518,
+        "kind": "figure",
+        "locator": "Lecture 17, physical PDF page 518, printed slide 14: local-clock reset and elapsed-time choice of linear or blend region",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0520",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 520,
+        "kind": "equation",
+        "locator": "Lecture 17, physical PDF page 520, printed slide 16: local-clock reset and elapsed-time choice of linear or blend region",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q050",
+    "version": 3,
+    "stem": "With y(t)=0.200−0.150t m, when does the path cross y=0?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "t=1.2 s exactly because it is the last positive listed sample"
+      },
+      {
+        "id": "o3",
+        "text": "t=1.4 s exactly because it is the first negative listed sample"
+      },
+      {
+        "id": "o4",
+        "text": "t=2 s because every coordinate crosses zero at the midpoint"
+      },
+      {
+        "id": "o1",
+        "text": "t=4/3 s, between the1.2 s and1.4 s samples"
+      }
+    ],
+    "assumptions": [
+      "Planar Cartesian pose starts at(x,y,φ)=(0.700 m,0.200 m,0°) and ends at(0.300 m,−0.400 m,60°) over4.0 s; use affine component interpolation with this unwrapped planar angle."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0530",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 530,
+        "kind": "equation",
+        "locator": "Lecture 17, physical PDF page 530, printed slide 26: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0536",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 536,
+        "kind": "table",
+        "locator": "Lecture 17, physical PDF page 536, printed slide 32: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0537",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 537,
+        "kind": "figure",
+        "locator": "Lecture 17, physical PDF page 537, printed slide 33: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  }
+]

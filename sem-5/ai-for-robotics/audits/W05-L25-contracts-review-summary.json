@@ -1,0 +1,394 @@
+{
+  "reviewerId": "define_robotics_data_contracts:L25-independent-reviewer",
+  "completedAt": "2026-10-19T19:07:45.392925+00:00",
+  "questionsReviewed": 52,
+  "verified": 32,
+  "flagged": 20,
+  "criterionFindings": 24,
+  "keyDisagreements": 0,
+  "actualPagesInspected": 23,
+  "reviewFile": "data/reviews/W05-L25-v1-independent-contracts.json",
+  "reviewSha256": "74afaeaae9fff181bab1a3fd5b798fb126a9e3dc1349cafab42d6c240bb1b677",
+  "blindAnswersSha256": "967c0facbf74e16a1b94c11a3ef684b7e76df20d911da4306e88831d9aaf133b",
+  "independentChecks": "audits/W05-L25-independent-checks.json",
+  "flaggedQuestionIds": [
+    "W05-L25-Q003",
+    "W05-L25-Q004",
+    "W05-L25-Q012",
+    "W05-L25-Q013",
+    "W05-L25-Q014",
+    "W05-L25-Q023",
+    "W05-L25-Q027",
+    "W05-L25-Q029",
+    "W05-L25-Q030",
+    "W05-L25-Q031",
+    "W05-L25-Q032",
+    "W05-L25-Q035",
+    "W05-L25-Q037",
+    "W05-L25-Q038",
+    "W05-L25-Q039",
+    "W05-L25-Q041",
+    "W05-L25-Q044",
+    "W05-L25-Q047",
+    "W05-L25-Q050",
+    "W05-L25-Q051"
+  ],
+  "findings": [
+    {
+      "questionId": "W05-L25-Q003",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Calling every derivative dot decorative and inferring perfect actual velocity from one missing feedback arrow are self-disqualifying alternatives. Use credible competing signal interpretations, such as weighted normalized acceleration control, separate joint-reference channels, or an explicitly stated position-only simplification; make only the intended schematic reading defensible."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q004",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Integrating Cartesian position once and calling it joint angle is not a credible inverse-kinematics procedure. Replace o1 with a realistic confusion such as using one local Jacobian inverse on a finite Cartesian target without a reference configuration or iterative update."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q012",
+      "criteria": [
+        "sourceSupport"
+      ],
+      "findings": [
+        "The answer and error subtraction are correctly supported by page 757, but the reused formula record adds F=K_x deltaX and tau=J^T F from page 761, which is not cited. Prefer a focused deltaX=X_d-X formula with its vector definitions and units; otherwise cite the actual additional premise and distinguish the controller it belongs to."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q013",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The claim that moving transformations inside feedback necessarily removes all computation delay is implausible and does not test the architectural distinction. Use a realistic competing placement of forward/reference conversion or feedback coordinates instead of a universal delay-elimination claim."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q014",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "All three wrong options make extreme or causally impossible claims: perfect tracking with arbitrary saturation, uniformly fewer computations than every controller, or accuracy merely from writing an unused error. Replace them with realistic workspace-versus-joint-space benefits/costs or an explicit implementation scenario."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q023",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "This is a one-step transpose/matrix-dimension check with all dimensions supplied. Classify it easy, or add a genuinely additional rank, power or realizability inference if medium is retained."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q027",
+      "criteria": [
+        "distractors",
+        "sourceSupport"
+      ],
+      "findings": [
+        "Alternatives such as inertia being a joint-angle vector, gravity being a damping ratio, and velocity terms being desired acceleration mix unrelated signal classes rather than plausible dynamic-model confusions. Use parallel inertia/velocity/gravity role swaps or realistic joint-versus-Cartesian distinctions.",
+        "The attached formula record also introduces the commanded-force partition and complete acceleration feedforward/PD servo law. Page 763 states the plant and page 771 summarizes topics, but neither gives those additional equations. Restrict the formula to the plant terms being tested or add exact pages 764 and 765."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q029",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Three extra translational joints inferred from coordinate axes and coincident frames inferred only from matching letters are implausible geometry interpretations. Replace these with credible base-versus-tool axis/origin or schematic-workspace confusions; keep the source-supported limitation on the dashed sphere."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q030",
+      "criteria": [
+        "sourceSupport"
+      ],
+      "findings": [
+        "The numerical plant-force calculation is correct, but its reused formula record includes commanded-force and servo equations from pages 764–765 absent from the sole page 763 citation. A focused F=M_x Xddot+V_x+G_x record is sufficient and avoids unsupported extra material."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q031",
+      "criteria": [
+        "sourceSupport",
+        "difficulty"
+      ],
+      "findings": [
+        "Pages 763–764 support exact cancellation, but the attached formula also includes the desired-acceleration plus velocity/position-error servo law first given on page 765. Add that exact source or remove the unrelated servo equation from this cancellation-only formula record.",
+        "All matched plant/control terms are supplied and the task is direct cancellation followed by an inverse already assumed to exist. Classify easy, or add a nontrivial mismatch/coupling condition rather than counting this immediate algebra as medium."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q032",
+      "criteria": [
+        "sourceSupport"
+      ],
+      "findings": [
+        "The normalized-input units are supported by page 764. The attached omnibus formula adds the full servo law from page 765 without citing it. Restrict the formula to F=M_x F_prime+V_x+G_x and the relevant units, or cite the added equation precisely."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q035",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "The task is direct application of k_v=2sqrt(k_p) to two supplied diagonal entries; the two axes do not add conceptual difficulty. Classify easy or add meaningful coupled/robustness/pole-design reasoning for medium."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q037",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "This requires only 3*4/2 with the actual and estimated inertias explicitly supplied. It is an easy application illustrating mismatch, not a medium multi-stage inference as currently written."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q038",
+      "criteria": [
+        "sourceSupport",
+        "explanation"
+      ],
+      "findings": [
+        "The correct actual feedback maps are on pages 765–766, but the formula record unnecessarily contains desired-branch inverse-Jacobian velocity and acceleration equations from page 756. Remove the unrelated reference-conversion equations or cite their actual premise.",
+        "The reused formula assumes a square nonsingular J and a smooth desired IK branch, neither of which is required to evaluate actual forward kinematics or actual velocity J(theta) theta_dot. Use a focused actual-feedback formula so the solution does not imply these unnecessary restrictions."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q039",
+      "criteria": [
+        "explanation"
+      ],
+      "findings": [
+        "The second attached formula record equates F=K_x deltaX while this question computes F=M_x u+V_x+G_x. These are different controllers and are not generally equal for the stated data. Keep tau=J^T F and its work-conjugate definitions, but remove or explicitly distinguish the unrelated virtual-stiffness law. The answer and all numerical option rationales are correct."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q041",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Subtracting Cartesian position error from force is dimensionally unrelated to frame conversion and is an implausible alternative. Replace o4 with a realistic rotation-direction or point/frame-convention error while retaining the explicit same-point force-only assumption."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q044",
+      "criteria": [
+        "difficulty",
+        "distractors"
+      ],
+      "findings": [
+        "Identifying rapid model variation as the exception to a stated slow-variation premise is direct conceptual recognition. Classify easy or supply a quantitative coefficient-hold error/interval comparison for medium.",
+        "Merely being a matrix rather than a scalar is not a plausible reason that slow background updating fails. Replace o1 with a meaningful competing timing or error-budget condition; keep only one choice that directly violates the source premise."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q047",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The wrong options consist of unconditional better/worse performance claims, including immunity to arbitrary model mismatch. Use credible trade-offs involving update timing, transform computation or matched-model performance rather than making the qualified option the only non-extreme choice."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q050",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Identifying physical torque as measured Cartesian position or as desired acceleration requiring two integrations is not a plausible role assignment in this diagram. Use competing normalized-versus-physical command interpretations, model compensation placement, or gain-unit errors."
+      ]
+    },
+    {
+      "questionId": "W05-L25-Q051",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Instantly exact estimates after any nonzero error and monotonic error reduction for any update rule are implausibly universal alternatives. Keep the important no-proof qualification, but compare credible distinctions among bounded tracking, parameter convergence, excitation and an unspecified update law without inventing a source theorem."
+      ]
+    }
+  ],
+  "coverageChallenge": [
+    {
+      "id": "L25-COVERAGE-01",
+      "status": "open",
+      "sourcePages": [
+        763,
+        764,
+        765
+      ],
+      "finding": "The servo is computed in Q033 and the physical command is computed in Q039 starting from u already supplied. Add one complete coupled task-space chain from desired/actual position and velocity plus nonzero desired acceleration, through normalized u, non-diagonal Cartesian inertia/compensation, and a nontrivial J^T to actuator torque. This is a meaningful supported hard synthesis angle, not another isolated multiplication."
+    },
+    {
+      "id": "L25-COVERAGE-02",
+      "status": "open",
+      "sourcePages": [
+        756
+      ],
+      "finding": "The inverse derivative is tested symbolically and acceleration numerically only in a scalar example. Add one coupled nonsymmetric matrix acceleration conversion with noncommuting J and J_dot, requiring both desired joint velocity and the J_dot theta_dot contribution. State branch, frame, derivative and invertibility assumptions. This specifically tests the matrix-order mistake that scalar examples cannot expose."
+    },
+    {
+      "id": "L25-COVERAGE-03",
+      "status": "bounded_accounting_note",
+      "sourcePages": [
+        751,
+        752,
+        753,
+        754,
+        755,
+        756,
+        757,
+        758,
+        759,
+        760,
+        761,
+        762,
+        763,
+        764,
+        765,
+        766,
+        767,
+        768,
+        769,
+        770,
+        771,
+        772,
+        773
+      ],
+      "finding": "All 23 actual pages were inspected. All 17 substantive pages 754–770 are cited; 771 summarizes repeated content. Title/outcome/contents pages 751–753 and references/closing pages 772–773 are appropriately excluded from new technical questions. The 52 concept records are mostly one-per-question angles, not 52 independent source concepts or proof of complete coverage. There is no specified adaptive update algorithm to trace or prove, so no algorithm is invented. Current difficulty counts are 20 easy, 32 medium, zero hard/tricky, with five medium classifications requiring calibration."
+    }
+  ],
+  "batchQualityFindings": [
+    {
+      "id": "L25-BATCH-ANSWER-PATTERN",
+      "status": "open",
+      "finding": "Apart from the multi-select Q048, single-select keys occupy the exact repeating author-order cycle o1,o4,o3,o2 by question index. This is a batch-level answer-position clue rather than an incorrect item key. Confirm the application randomizes display order consistently, including exported/static study views, or re-order authored options with version-bound re-review if their correctness hashes change. Do not silently mutate accepted objects.",
+      "singleSelectCount": 51,
+      "cycleByOriginalQuestionIndex": [
+        "o1",
+        "o4",
+        "o3",
+        "o2"
+      ]
+    }
+  ],
+  "validation": {
+    "valid": true,
+    "release": false,
+    "errors": [],
+    "warnings": [],
+    "counts": {
+      "sources": 2,
+      "sourcesReady": 2,
+      "pagesExpected": 2012,
+      "pagesInventoried": 2012,
+      "pagesVisuallyInspected": 356,
+      "pagesExcluded": 140,
+      "pagesRepeated": 0,
+      "concepts": 52,
+      "conceptsWithDraftQuestions": 52,
+      "conceptsWithVerifiedQuestions": 32,
+      "questions": 52,
+      "questionsByStatus": {
+        "verified": 32,
+        "flagged": 20
+      },
+      "currentlyVerifiedQuestions": 32,
+      "staleReviews": 0,
+      "numericalFamilies": 0,
+      "verifiedByWeek": {
+        "5": 32
+      },
+      "verifiedByDifficulty": {
+        "easy": 12,
+        "medium": 20
+      },
+      "verifiedByType": {
+        "diagram": 4,
+        "conceptual": 9,
+        "numerical": 9,
+        "match": 1,
+        "scenario": 2,
+        "derivation": 5,
+        "sequence": 1,
+        "statement": 1
+      }
+    }
+  },
+  "sourceQualifications": [
+    {
+      "physicalPage": 755,
+      "description": "Joint desired position, velocity and acceleration arrows share one summing icon although the output is labeled δθ.",
+      "qualification": "Treat the picture as a compressed architecture, not an instruction to add unlike units without separate error/gain channels.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 756,
+      "description": "Reference-conversion Jacobian is printed at Θ, not explicitly Θ_d; inverse and inverse-derivative regularity are not stated.",
+      "qualification": "For derivatives of a chosen desired IK branch use J(Θ_d) and its derivative along that branch, with square nonsingular differentiable J.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 760,
+      "description": "δθ=J^-1δX is displayed without a local-displacement or invertibility qualification.",
+      "qualification": "Use a local linearization and a square nonsingular Jacobian; do not claim exact finite nonlinear IK or global convergence.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 762,
+      "description": "Configuration-independent critically damped decoupling is a goal without all implementation hypotheses.",
+      "qualification": "Require accurate compensation, nonsingular task inertia, suitable diagonal gains, coordinate regularity and feasible actuation.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 763,
+      "description": "Position/orientation coordinates and physical force/moment are named without specifying an orientation-rate representation or conjugate wrench convention.",
+      "qualification": "Use translation-only examples or explicitly work-conjugate generalized coordinates and forces; do not equate arbitrary Euler-angle rates with angular velocity.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 767,
+      "description": "The practical diagram writes B_x(θ)+C_x(θ) while feeding actual θ̇ into that block; slow-variation prose is conditional.",
+      "qualification": "Preserve velocity dependence and restrict slow coefficient updates to adequately slowly varying configurations; no rate value is supplied.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 768,
+      "description": "Improved disturbance rejection and tracking are listed without a comparator or quantified universal bound.",
+      "qualification": "Treat as potential benefits of a well-designed accurate implementation, not a proof of superiority for arbitrary mismatch/delay.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 770,
+      "description": "Online learning/reduced tracking-error prose gives no adaptation equation or stability/convergence conditions.",
+      "qualification": "Describe the architecture and purpose only; no universal monotonic improvement or guaranteed parameter identification is claimed.",
+      "status": "preserved with explicit scope; not globally resolved"
+    }
+  ],
+  "highResolutionCheck": [
+    {
+      "physicalPage": 769,
+      "path": "audits/evidence/L25-p769-top-4x.png",
+      "sha256": "10c58e7d66f65b1707cfc4b299866c40876e7083b2e1aaa0fda776aa8e6f975f",
+      "observed": "Desired feedforward theta visibly has two derivative dots. It is desired joint acceleration, not a source typo. The velocity reference lower down has one dot.",
+      "method": "original_PDF_4x_render_actual_pixels_view_image",
+      "inspectedAt": "2026-10-19T19:02:51.638752+00:00"
+    }
+  ],
+  "mutations": "Reviewer evidence, check script, review and handoff only. No author object, canonical bank, source or Git edits."
+}

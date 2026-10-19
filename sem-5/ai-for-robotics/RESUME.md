@@ -13,6 +13,10 @@
 11. A successful data validator does not establish source correctness or complete visual coverage.
 12. Never modify the OncoSyn document or repository in this project.
 
+## Checkpoint authorization and remote state
+
+The user explicitly authorized this and future validated checkpoint pushes to main on19October2026 at22:47UTC. Inspect main and use expected-SHA protection before updates. The last verified main before this snapshot was acf4ba33dd2894e56f4cc6985de4178ecc0423c5. Older unreferenced commit080eee36f72d244176dd16a082757648385901a6 is superseded by the newer coherent snapshot, not a completion claim. Only validated independent reviews enter the default pool; drafts and flagged items remain excluded.
+
 ## Next actions
 
 Read docs/handoffs/integration.md and each worker handoff before assigning more work. Sources are retrieved and hashed: 1,953 lecture pages plus59 assignment pages. Read sources/README.md to recover sources and regenerate maps/text/previews. Run python3 scripts/assemble_bank.py, python3 scripts/validate.py, and python3 scripts/build.py after recovery. Question and inspection batches are the editable source of truth; generated bank.json is rebuilt. Review records bind exact question/source hashes and are never reusable after content revisions. Keep source disputes visible and unresolved items out of accepted study. App and learning engines are implemented, but full course content and actual downloaded-file offline QA remain unfinished.

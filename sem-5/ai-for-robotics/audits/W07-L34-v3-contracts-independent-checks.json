@@ -1,0 +1,48 @@
+{
+  "reviewerId": "robotics-contracts-independent-reviewer",
+  "completedAt": "2026-10-19T22:08:19.846923+00:00",
+  "derivation": "dL/dw=e*x, dL/db=e; e_new=(w\u2212eta*e*x)x+(b\u2212eta*e)\u2212y=[1\u2212eta(x\u00b2+1)]e. At x=2, eta=.1 residual factor=.5 and loss factor=.25. Strict magnitude contraction iff |1\u22125eta|<1, giving0<eta<.4. Eta=.2 reacheszero; .2<eta<.4 alternates sign but contracts.",
+  "checks": [
+    {
+      "eta": "0",
+      "residualMultiplier": "1",
+      "lossMultiplier": "1",
+      "strictlyContracts": false
+    },
+    {
+      "eta": "1/10",
+      "residualMultiplier": "1/2",
+      "lossMultiplier": "1/4",
+      "strictlyContracts": true
+    },
+    {
+      "eta": "1/5",
+      "residualMultiplier": "0",
+      "lossMultiplier": "0",
+      "strictlyContracts": true
+    },
+    {
+      "eta": "3/10",
+      "residualMultiplier": "-1/2",
+      "lossMultiplier": "1/4",
+      "strictlyContracts": true
+    },
+    {
+      "eta": "2/5",
+      "residualMultiplier": "-1",
+      "lossMultiplier": "1",
+      "strictlyContracts": false
+    },
+    {
+      "eta": "1/2",
+      "residualMultiplier": "-3/2",
+      "lossMultiplier": "9/4",
+      "strictlyContracts": false
+    }
+  ],
+  "assertionCount": 6,
+  "variedCases": 1000,
+  "priorSourceExecutionPath": "audits/W07-L34-v2-contracts-independent-checks.json",
+  "priorSourceExecutionSha256": "729866c0039fcc37b4b565af55b26c938668f925e4da799e5c3011e989bdca46",
+  "executionScope": "Same unchanged two-parameter source model re-derived and numerically checked. Earlier original-notebook execution is reused transparently, not claimed freshly repeated."
+}

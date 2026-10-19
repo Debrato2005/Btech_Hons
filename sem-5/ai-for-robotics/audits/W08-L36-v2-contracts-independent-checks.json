@@ -1,0 +1,431 @@
+{
+  "reviewerId": "robotics-contracts-independent-reviewer",
+  "completedAt": "2026-10-19T21:59:50.680044+00:00",
+  "assertionCount": 17,
+  "variedCases": 1000,
+  "checks": [
+    {
+      "name": "UCS six non-goal expansions",
+      "passed": true
+    },
+    {
+      "name": "A-star three non-goal expansions",
+      "passed": true
+    },
+    {
+      "name": "both nine-kilometer parent paths",
+      "passed": true
+    },
+    {
+      "name": "E parent improves B to F",
+      "passed": true
+    },
+    {
+      "name": "D parent improves B to E",
+      "passed": true
+    },
+    {
+      "name": "D before G tie resolved alphabetically",
+      "passed": true
+    },
+    {
+      "name": "worse G15 does not overwrite G9",
+      "passed": true
+    },
+    {
+      "name": "heuristic consistency on all18 orientations",
+      "passed": true
+    },
+    {
+      "name": "directed route costs",
+      "passed": true
+    },
+    {
+      "name": "directed minimum route search",
+      "passed": true
+    },
+    {
+      "name": "coarse endpoint cells blocked",
+      "passed": true
+    },
+    {
+      "name": "fine entire horizontal chain free",
+      "passed": true
+    },
+    {
+      "name": "strict boundary excludes squares touching walls",
+      "passed": true
+    },
+    {
+      "name": "4-connected length",
+      "passed": true
+    },
+    {
+      "name": "8-connected length",
+      "passed": true
+    },
+    {
+      "name": "Euclidean and equal-hop distractors distinct",
+      "passed": true
+    },
+    {
+      "name": "1000 independent octile dynamic-programming comparisons",
+      "passed": true
+    }
+  ],
+  "UCS": {
+    "cost": 9,
+    "path": [
+      "A",
+      "C",
+      "F",
+      "G"
+    ],
+    "expanded": [
+      "A",
+      "C",
+      "B",
+      "F",
+      "E",
+      "D"
+    ],
+    "trace": [
+      {
+        "expanded": "A",
+        "changes": [
+          {
+            "vertex": "B",
+            "old": null,
+            "new": 5,
+            "parent": "A"
+          },
+          {
+            "vertex": "C",
+            "old": null,
+            "new": 2,
+            "parent": "A"
+          }
+        ],
+        "frontier": [
+          [
+            2,
+            "C",
+            2,
+            "A"
+          ],
+          [
+            5,
+            "B",
+            5,
+            "A"
+          ]
+        ]
+      },
+      {
+        "expanded": "C",
+        "changes": [
+          {
+            "vertex": "F",
+            "old": null,
+            "new": 6,
+            "parent": "C"
+          }
+        ],
+        "frontier": [
+          [
+            5,
+            "B",
+            5,
+            "A"
+          ],
+          [
+            6,
+            "F",
+            6,
+            "C"
+          ]
+        ]
+      },
+      {
+        "expanded": "B",
+        "changes": [
+          {
+            "vertex": "D",
+            "old": null,
+            "new": 11,
+            "parent": "B"
+          },
+          {
+            "vertex": "E",
+            "old": null,
+            "new": 8,
+            "parent": "B"
+          }
+        ],
+        "frontier": [
+          [
+            6,
+            "F",
+            6,
+            "C"
+          ],
+          [
+            8,
+            "E",
+            8,
+            "B"
+          ],
+          [
+            11,
+            "D",
+            11,
+            "B"
+          ]
+        ]
+      },
+      {
+        "expanded": "F",
+        "changes": [
+          {
+            "vertex": "E",
+            "old": 8,
+            "new": 7,
+            "parent": "F"
+          },
+          {
+            "vertex": "G",
+            "old": null,
+            "new": 9,
+            "parent": "F"
+          }
+        ],
+        "frontier": [
+          [
+            7,
+            "E",
+            7,
+            "F"
+          ],
+          [
+            9,
+            "G",
+            9,
+            "F"
+          ],
+          [
+            11,
+            "D",
+            11,
+            "B"
+          ]
+        ]
+      },
+      {
+        "expanded": "E",
+        "changes": [
+          {
+            "vertex": "D",
+            "old": 11,
+            "new": 9,
+            "parent": "E"
+          }
+        ],
+        "frontier": [
+          [
+            9,
+            "D",
+            9,
+            "E"
+          ],
+          [
+            9,
+            "G",
+            9,
+            "F"
+          ]
+        ]
+      },
+      {
+        "expanded": "D",
+        "changes": [],
+        "frontier": [
+          [
+            9,
+            "G",
+            9,
+            "F"
+          ]
+        ]
+      }
+    ],
+    "parents": {
+      "A": null,
+      "B": "A",
+      "C": "A",
+      "F": "C",
+      "D": "E",
+      "E": "F",
+      "G": "F"
+    },
+    "g": {
+      "A": 0,
+      "B": 5,
+      "C": 2,
+      "F": 6,
+      "D": 9,
+      "E": 7,
+      "G": 9
+    }
+  },
+  "AStar": {
+    "cost": 9,
+    "path": [
+      "A",
+      "C",
+      "F",
+      "G"
+    ],
+    "expanded": [
+      "A",
+      "C",
+      "F"
+    ],
+    "trace": [
+      {
+        "expanded": "A",
+        "changes": [
+          {
+            "vertex": "B",
+            "old": null,
+            "new": 5,
+            "parent": "A"
+          },
+          {
+            "vertex": "C",
+            "old": null,
+            "new": 2,
+            "parent": "A"
+          }
+        ],
+        "frontier": [
+          [
+            7,
+            "C",
+            2,
+            "A"
+          ],
+          [
+            11,
+            "B",
+            5,
+            "A"
+          ]
+        ]
+      },
+      {
+        "expanded": "C",
+        "changes": [
+          {
+            "vertex": "F",
+            "old": null,
+            "new": 6,
+            "parent": "C"
+          }
+        ],
+        "frontier": [
+          [
+            8,
+            "F",
+            6,
+            "C"
+          ],
+          [
+            11,
+            "B",
+            5,
+            "A"
+          ]
+        ]
+      },
+      {
+        "expanded": "F",
+        "changes": [
+          {
+            "vertex": "E",
+            "old": null,
+            "new": 7,
+            "parent": "F"
+          },
+          {
+            "vertex": "G",
+            "old": null,
+            "new": 9,
+            "parent": "F"
+          }
+        ],
+        "frontier": [
+          [
+            9,
+            "G",
+            9,
+            "F"
+          ],
+          [
+            10,
+            "E",
+            7,
+            "F"
+          ],
+          [
+            11,
+            "B",
+            5,
+            "A"
+          ]
+        ]
+      }
+    ],
+    "parents": {
+      "A": null,
+      "B": "A",
+      "C": "A",
+      "F": "C",
+      "E": "F",
+      "G": "F"
+    },
+    "g": {
+      "A": 0,
+      "B": 5,
+      "C": 2,
+      "F": 6,
+      "E": 7,
+      "G": 9
+    }
+  },
+  "directedRouteCosts": {
+    "ABE": 4,
+    "ACDE": 10,
+    "ACBE": 9,
+    "ABDE": 15
+  },
+  "resolution": {
+    "coarseEndpointCell": [
+      0,
+      0
+    ],
+    "fineEndpointCell": [
+      2,
+      2
+    ],
+    "fineGoalCell": [
+      17,
+      2
+    ],
+    "fineHorizontalHops": 15
+  },
+  "minimumGridLengths": {
+    "fourConnected": 3.2,
+    "eightConnected": 2.4970562748477145
+  },
+  "codeScope": "Reviewer-authored reconstruction of the actual printed graphs and explicitly supplied occupancy/step variants. No literal source Python code or linked notebook appears in L36; this is not claimed as execution of source code. No current author key, repair narrative or expected check result was loaded."
+}

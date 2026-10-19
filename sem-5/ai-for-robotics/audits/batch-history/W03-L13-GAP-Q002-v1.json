@@ -1,0 +1,89 @@
+{
+  "id": "W03-L13-GAP-Q002",
+  "version": 1,
+  "status": "draft",
+  "authorId": "robotics-integration-author-L13-gap",
+  "stem": "The source notes that even a2-DOF closed-form torque equation is lengthy; why can the recursive method still be useful for a6-DOF robot?",
+  "selectionMode": "single",
+  "type": "conceptual",
+  "difficulty": "easy",
+  "cognitiveSkill": "conceptual",
+  "week": 3,
+  "lectureId": "L13",
+  "topic": "Two-link Newton–Euler derivation",
+  "subtopic": "Long symbolic equations do not prevent recursive evaluation",
+  "tags": [
+    "closed-form-versus-recursion"
+  ],
+  "conceptIds": [
+    "W03-L13-GAP-C-closed-form-versus-recursion"
+  ],
+  "assumptions": [],
+  "options": [
+    {
+      "id": "o2",
+      "text": "It makes all six joint torques equal so only one formula is needed"
+    },
+    {
+      "id": "o3",
+      "text": "It removes the dependence of torque on joint velocity and acceleration"
+    },
+    {
+      "id": "o4",
+      "text": "It guarantees that every6-DOF expanded symbolic expression is shorter than the2-DOF one"
+    },
+    {
+      "id": "o1",
+      "text": "It evaluates linkwise motion and force recursions without requiring a fully expanded symbolic torque formula"
+    }
+  ],
+  "correctOptionIds": [
+    "o1"
+  ],
+  "citations": [
+    {
+      "slideId": "lectures-p0424",
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 424,
+      "kind": "statement",
+      "locator": "Lecture 13, physical PDF page 424, printed slide 21: relevant text, equations and associated figures",
+      "evidenceText": "•  Expressions for the torque at the actuators 𝜏1 and 𝜏2 are function\n   of joint position, velocity, and acceleration.\n•  Note that these complex expressions are for one of the simplest\n   manipulators imaginable (2 DOF planar).\n•  Obviously, the closed-form equations for a manipulator with 6\n  DOF will be quite complex.\n\n\n\n\n\n                                                                                                          21",
+      "role": "explicit",
+      "region": null
+    },
+    {
+      "slideId": "lectures-p0425",
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 425,
+      "kind": "statement",
+      "locator": "Lecture 13, physical PDF page 425, printed slide 22: relevant text, equations and associated figures",
+      "evidenceText": "Summary\n\n•  The complete algorithm for computing joint\n   torques from the motion of the joints is\n  composed of two parts.\n•  First, link velocities and accelerations are\n   iteratively computed from link 1 out to link 𝑛\n  and the Newton—Euler equations are applied\n   to each link.\n•  Second, for given forces and torques of\n   interaction at EE, joint actuator torques are\n  computed recursively from link 𝑛 back to link 1.\n\n\n\n\n                                                                                                          22",
+      "role": "explicit",
+      "region": null
+    }
+  ],
+  "solution": {
+    "justification": "The warning concerns the size of explicitly expanded expressions; the two-pass algorithm can evaluate the same dynamics through local intermediate quantities.",
+    "optionExplanations": {
+      "o1": "This distinguishes symbolic expression size from recursive numerical evaluation.",
+      "o2": "Different joints generally require different efforts.",
+      "o3": "The recursions retain the motion-state dependence.",
+      "o4": "No such symbolic-size guarantee follows from recursion."
+    },
+    "steps": [],
+    "formulas": [],
+    "simpleExplanation": "The warning concerns the size of explicitly expanded expressions; the two-pass algorithm can evaluate the same dynamics through local intermediate quantities.",
+    "memoryAid": null,
+    "misconceptions": [
+      "Different joints generally require different efforts.",
+      "The recursions retain the motion-state dependence.",
+      "No such symbolic-size guarantee follows from recursion."
+    ],
+    "examTraps": [],
+    "prerequisiteConceptIds": []
+  },
+  "origin": "generated",
+  "reviewIds": []
+}

@@ -1,0 +1,318 @@
+{
+  "reviewerId": "independent-reviewer-robotics-batches-v2",
+  "scope": "Fresh pure-Python arithmetic, AST and explicit stub traces from visually inspected source. No actual ROS middleware, DDS delivery, executor scheduling, hardware deadlines or installed API compatibility was tested. No frozen author script was used.",
+  "pythonVersion": "3.12.14",
+  "checks": [
+    {
+      "name": "30 Hz period in ms",
+      "actual": 33.33,
+      "expected": 33.33,
+      "passed": true
+    },
+    {
+      "name": "0.1 s timer Hz",
+      "actual": "10",
+      "expected": 10,
+      "passed": true
+    },
+    {
+      "name": "positive ticks through 0",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "positive ticks through 0.099",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "positive ticks through 0.1",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "positive ticks through 1.999",
+      "actual": 19,
+      "expected": 19,
+      "passed": true
+    },
+    {
+      "name": "positive ticks through 2.0",
+      "actual": 20,
+      "expected": 20,
+      "passed": true
+    },
+    {
+      "name": "positive ticks through 2.001",
+      "actual": 20,
+      "expected": 20,
+      "passed": true
+    },
+    {
+      "name": "camera events in (0,1]",
+      "actual": 30,
+      "expected": 30,
+      "passed": true
+    },
+    {
+      "name": "timer events in (0,1]",
+      "actual": 10,
+      "expected": 10,
+      "passed": true
+    },
+    {
+      "name": "camera to timer count ratio",
+      "actual": "3",
+      "expected": 3,
+      "passed": true
+    },
+    {
+      "name": "sustained backlog growth",
+      "actual": "20",
+      "expected": 20,
+      "passed": true
+    },
+    {
+      "name": "invalid mathematical domains rejected",
+      "actual": 5,
+      "expected": 5,
+      "passed": true
+    },
+    {
+      "name": "module import guard does not launch main",
+      "actual": [
+        [
+          "init"
+        ],
+        [
+          "construct",
+          "my_node"
+        ],
+        [
+          "spin",
+          "my_node"
+        ],
+        [
+          "shutdown"
+        ]
+      ],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "name": "source main lifecycle order",
+      "actual": [
+        [
+          "init"
+        ],
+        [
+          "construct",
+          "my_node"
+        ],
+        [
+          "spin",
+          "my_node"
+        ],
+        [
+          "shutdown"
+        ]
+      ],
+      "expected": [
+        [
+          "init"
+        ],
+        [
+          "construct",
+          "my_node"
+        ],
+        [
+          "spin",
+          "my_node"
+        ],
+        [
+          "shutdown"
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "publisher signature separate from timer",
+      "actual": [
+        "publisher",
+        "String",
+        "topic",
+        10
+      ],
+      "expected": [
+        "publisher",
+        "String",
+        "topic",
+        10
+      ],
+      "passed": true
+    },
+    {
+      "name": "subscription callback signature",
+      "actual": [
+        "subscription",
+        "String",
+        "topic",
+        "callback",
+        10
+      ],
+      "expected": [
+        "subscription",
+        "String",
+        "topic",
+        "callback",
+        10
+      ],
+      "passed": true
+    },
+    {
+      "name": "timer uses period and publish callback",
+      "actual": [
+        "timer",
+        0.1,
+        "publish_msg"
+      ],
+      "expected": [
+        "timer",
+        0.1,
+        "publish_msg"
+      ],
+      "passed": true
+    },
+    {
+      "name": "construction does not itself publish",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "manual timer callback constructs String",
+      "actual": "String",
+      "expected": "String",
+      "passed": true
+    },
+    {
+      "name": "published payload",
+      "actual": "Hello ROS",
+      "expected": "Hello ROS",
+      "passed": true
+    },
+    {
+      "name": "conditional subscription output",
+      "actual": "Received: Hello ROS\n",
+      "expected": "Received: Hello ROS\n",
+      "passed": true
+    },
+    {
+      "name": "handler signed addition 2,3",
+      "actual": 5,
+      "expected": 5,
+      "passed": true
+    },
+    {
+      "name": "handler returns response object 2,3",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "handler signed addition -4,7",
+      "actual": 3,
+      "expected": 3,
+      "passed": true
+    },
+    {
+      "name": "handler returns response object -4,7",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "handler signed addition 0,0",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "handler returns response object 0,0",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "handler signed addition -4,4",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "handler returns response object -4,4",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "handler signed addition -2,-3",
+      "actual": -5,
+      "expected": -5,
+      "passed": true
+    },
+    {
+      "name": "handler returns response object -2,-3",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "independent parameter print 1.0",
+      "actual": "Speed param: 1.0",
+      "expected": "Speed param: 1.0",
+      "passed": true
+    },
+    {
+      "name": "independent parameter print 2.5",
+      "actual": "Speed param: 2.5",
+      "expected": "Speed param: 2.5",
+      "passed": true
+    },
+    {
+      "name": "request code contains call_async",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "request code has no future.result call",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "global translation preserves relative mount",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "global camera position changes",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "numeric alternatives distinct at displayed precision",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    }
+  ],
+  "passed": 39,
+  "failed": 0
+}

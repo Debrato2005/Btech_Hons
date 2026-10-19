@@ -1,0 +1,1501 @@
+{
+  "authorId": "build_offline_study_interface:L42-author",
+  "checkedAt": "2026-10-19T21:49:10.776636+00:00",
+  "independentReview": false,
+  "sourceCodePresent": "Language-neutral pseudocode only; no literal runnable code.",
+  "scope": "Author-added reconstruction of inspected grid traces and pendulum mathematics, plus declared completion conventions. Not independent review or physical safety validation.",
+  "conventions": {
+    "coordinates": "zero-based row,column",
+    "decoding": "horizontal then vertical per segment",
+    "turns": "changes between consecutive unit moves, merging across waypoint boundaries",
+    "violations": "occupied entered-cell visits; all source paths have no repeated occupied visits",
+    "gen1": "six children; mutated C1 replaces unmutated C1",
+    "pendulum": "consistent force/length units; trig receives radians after degree conversion",
+    "extraSearch": "900 ordered free-cell waypoint pairs, repeats and endpoints allowed;256 binary angle pairs"
+  },
+  "namedChecks": 42,
+  "checks": [
+    {
+      "name": "All six route lengths",
+      "passed": true,
+      "result": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "name": "All original collision lists",
+      "passed": true,
+      "result": [
+        [],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            3
+          ]
+        ],
+        [
+          [
+            2,
+            4
+          ]
+        ],
+        [
+          [
+            3,
+            2
+          ]
+        ],
+        [
+          [
+            2,
+            4
+          ]
+        ],
+        [
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            2
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "All original turn counts",
+      "passed": true,
+      "result": [
+        1,
+        4,
+        3,
+        3,
+        5,
+        3
+      ]
+    },
+    {
+      "name": "All original costs",
+      "passed": true,
+      "result": [
+        11,
+        44,
+        23,
+        23,
+        25,
+        33
+      ]
+    },
+    {
+      "name": "P2 printed denominator error",
+      "passed": true,
+      "result": {
+        "correct": "1/45",
+        "printed": "1/12"
+      }
+    },
+    {
+      "name": "Rounded total .2568",
+      "passed": true,
+      "result": "321/1250"
+    },
+    {
+      "name": "Exact initial mean",
+      "passed": true,
+      "result": 0.042793698676051616
+    },
+    {
+      "name": "Roulette six draws",
+      "passed": true,
+      "result": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        6
+      ]
+    },
+    {
+      "name": "Only P4 repeated",
+      "passed": true,
+      "result": {
+        "P1": 1,
+        "P4": 2
+      }
+    },
+    {
+      "name": "P1 selection probability",
+      "passed": true,
+      "result": 0.32437694704049846
+    },
+    {
+      "name": "All crossover children",
+      "passed": true,
+      "result": [
+        [
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            5
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        [
+          [
+            3,
+            0
+          ],
+          [
+            5,
+            2
+          ]
+        ],
+        [
+          [
+            2,
+            0
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        [
+          [
+            2,
+            1
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        [
+          [
+            3,
+            0
+          ],
+          [
+            5,
+            3
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "All mutated-generation costs",
+      "passed": true,
+      "result": [
+        11,
+        11,
+        23,
+        33,
+        44,
+        33
+      ]
+    },
+    {
+      "name": "Mutation changes collision and turns",
+      "passed": true,
+      "result": {
+        "before": {
+          "path": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              5
+            ]
+          ],
+          "L": 10,
+          "obstacles": [
+            [
+              2,
+              4
+            ]
+          ],
+          "Nobs": 1,
+          "Nturn": 3,
+          "cost": 23,
+          "fitness": 0.041666666666666664
+        },
+        "after": {
+          "path": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              5
+            ]
+          ],
+          "L": 10,
+          "obstacles": [],
+          "Nobs": 0,
+          "Nturn": 1,
+          "cost": 11,
+          "fitness": 0.08333333333333333
+        }
+      }
+    },
+    {
+      "name": "Genotype differs but route same",
+      "passed": true,
+      "result": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          5
+        ]
+      ]
+    },
+    {
+      "name": "True six-child mean",
+      "passed": true,
+      "result": 0.04822984749455338
+    },
+    {
+      "name": "Printed mean counts comparison row",
+      "passed": true,
+      "result": 0.0472922502334267
+    },
+    {
+      "name": "Crossover C2 already best",
+      "passed": true,
+      "result": 0.08333333333333333
+    },
+    {
+      "name": "C5 uniquely worst current child",
+      "passed": true,
+      "result": 44
+    },
+    {
+      "name": "Exhaustive declared two-waypoint space",
+      "passed": true,
+      "result": 900
+    },
+    {
+      "name": "Bounded exact grid optimum",
+      "passed": true,
+      "result": {
+        "minimumCost": 11,
+        "proof": "Every four-neighbor S-to-G path needs at least10 moves and at least1 direction change; nonnegative penalties. P1 attains11."
+      }
+    },
+    {
+      "name": "Finite collision penalty counterexample",
+      "passed": true,
+      "result": {
+        "collidingCost": 20,
+        "collisionFreeCost": 31
+      }
+    },
+    {
+      "name": "Correct actual gradients",
+      "passed": true,
+      "result": [
+        "6*sin(a) - 4*cos(a)",
+        "2*sin(b) - 4*cos(b)"
+      ]
+    },
+    {
+      "name": "Equilibrium angles",
+      "passed": true,
+      "result": {
+        "radians": [
+          0.5880026035475675,
+          1.1071487177940904
+        ],
+        "degrees": [
+          33.690067525979785,
+          63.43494882292201
+        ]
+      }
+    },
+    {
+      "name": "Energy at exact equilibrium",
+      "passed": true,
+      "result": -11.683238505927559
+    },
+    {
+      "name": "Positive Hessian at equilibrium",
+      "passed": true,
+      "result": [
+        7.211102550927978,
+        4.47213595499958
+      ]
+    },
+    {
+      "name": "Radian typo .558",
+      "passed": true,
+      "result": 0.5880026035475675
+    },
+    {
+      "name": "Angle grid sixteen inclusive values",
+      "passed": true,
+      "result": [
+        0,
+        6,
+        12,
+        18,
+        24,
+        30,
+        36,
+        42,
+        48,
+        54,
+        60,
+        66,
+        72,
+        78,
+        84,
+        90
+      ]
+    },
+    {
+      "name": "Eight bits total",
+      "passed": true,
+      "result": 256
+    },
+    {
+      "name": "All table recomputations",
+      "passed": true,
+      "result": [
+        1.0,
+        2.107690011481033,
+        3.1172960328491293,
+        4.011372882301165,
+        4.669344590557332,
+        1.9160988757063073,
+        1.933672145649755,
+        4.557651432230308
+      ]
+    },
+    {
+      "name": "Most material table typo",
+      "passed": true,
+      "result": 4.669344590557332
+    },
+    {
+      "name": "Landscape false maximum",
+      "passed": true,
+      "result": {
+        "atOrigin": 8,
+        "maximum": 11.683238505927559
+      }
+    },
+    {
+      "name": "Fitness can be negative within bounds",
+      "passed": true,
+      "result": -1.0
+    },
+    {
+      "name": "Discrete optimum differs from continuous",
+      "passed": true,
+      "result": {
+        "fitness": 4.6728980921415815,
+        "angles": [
+          36,
+          66
+        ],
+        "chromosome": "0110 1011"
+      }
+    },
+    {
+      "name": "Constant shifts preserve order but alter roulette ratios",
+      "passed": true,
+      "result": {
+        "shiftedRatio": 4.669344590557332,
+        "unshiftedRatio": 1.4586680738196665
+      }
+    },
+    {
+      "name": "Added cost exercise",
+      "passed": true,
+      "result": {
+        "cost": 24,
+        "fitness": "1/25"
+      }
+    },
+    {
+      "name": "Expected six-draw copies",
+      "passed": true,
+      "result": 1.9464
+    },
+    {
+      "name": "Independent gene mutation",
+      "passed": true,
+      "result": 0.19
+    },
+    {
+      "name": "Fixed-size elite capacity",
+      "passed": true,
+      "result": 5
+    },
+    {
+      "name": "Evaluation budget units",
+      "passed": true,
+      "result": {
+        "milliseconds": 10000,
+        "seconds": 10
+      }
+    },
+    {
+      "name": "Nearest-level quantization bound",
+      "passed": true,
+      "result": 3
+    },
+    {
+      "name": "Full two-angle decoding",
+      "passed": true,
+      "result": [
+        36,
+        66
+      ]
+    },
+    {
+      "name": "Varied invariants",
+      "passed": true,
+      "result": {
+        "trials": 1000,
+        "comparisons": 4000
+      }
+    }
+  ],
+  "initialRows": [
+    {
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "L": 10,
+      "obstacles": [],
+      "Nobs": 0,
+      "Nturn": 1,
+      "cost": 11,
+      "fitness": 0.08333333333333333
+    },
+    {
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "L": 10,
+      "obstacles": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "Nobs": 3,
+      "Nturn": 4,
+      "cost": 44,
+      "fitness": 0.022222222222222223
+    },
+    {
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "L": 10,
+      "obstacles": [
+        [
+          2,
+          4
+        ]
+      ],
+      "Nobs": 1,
+      "Nturn": 3,
+      "cost": 23,
+      "fitness": 0.041666666666666664
+    },
+    {
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "L": 10,
+      "obstacles": [
+        [
+          3,
+          2
+        ]
+      ],
+      "Nobs": 1,
+      "Nturn": 3,
+      "cost": 23,
+      "fitness": 0.041666666666666664
+    },
+    {
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "L": 10,
+      "obstacles": [
+        [
+          2,
+          4
+        ]
+      ],
+      "Nobs": 1,
+      "Nturn": 5,
+      "cost": 25,
+      "fitness": 0.038461538461538464
+    },
+    {
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "L": 10,
+      "obstacles": [
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "Nobs": 2,
+      "Nturn": 3,
+      "cost": 33,
+      "fitness": 0.029411764705882353
+    }
+  ],
+  "newRows": [
+    {
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "L": 10,
+      "obstacles": [],
+      "Nobs": 0,
+      "Nturn": 1,
+      "cost": 11,
+      "fitness": 0.08333333333333333
+    },
+    {
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "L": 10,
+      "obstacles": [],
+      "Nobs": 0,
+      "Nturn": 1,
+      "cost": 11,
+      "fitness": 0.08333333333333333
+    },
+    {
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "L": 10,
+      "obstacles": [
+        [
+          3,
+          2
+        ]
+      ],
+      "Nobs": 1,
+      "Nturn": 3,
+      "cost": 23,
+      "fitness": 0.041666666666666664
+    },
+    {
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "L": 10,
+      "obstacles": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "Nobs": 2,
+      "Nturn": 3,
+      "cost": 33,
+      "fitness": 0.029411764705882353
+    },
+    {
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "L": 10,
+      "obstacles": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "Nobs": 3,
+      "Nturn": 4,
+      "cost": 44,
+      "fitness": 0.022222222222222223
+    },
+    {
+      "path": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "L": 10,
+      "obstacles": [
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "Nobs": 2,
+      "Nturn": 3,
+      "cost": 33,
+      "fitness": 0.029411764705882353
+    }
+  ],
+  "unmutatedComparison": {
+    "path": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        5
+      ]
+    ],
+    "L": 10,
+    "obstacles": [
+      [
+        2,
+        4
+      ]
+    ],
+    "Nobs": 1,
+    "Nturn": 3,
+    "cost": 23,
+    "fitness": 0.041666666666666664
+  },
+  "roulette": {
+    "roundedWeights": [
+      "833/10000",
+      "111/5000",
+      "417/10000",
+      "417/10000",
+      "77/2000",
+      "147/5000"
+    ],
+    "probabilities": [
+      0.32437694704049846,
+      0.08644859813084112,
+      0.16238317757009346,
+      0.16238317757009346,
+      0.1499221183800623,
+      0.11448598130841121
+    ],
+    "draws": [
+      0.15,
+      0.35,
+      0.5,
+      0.6,
+      0.72,
+      0.9
+    ],
+    "pool": [
+      1,
+      2,
+      3,
+      4,
+      4,
+      6
+    ]
+  },
+  "means": {
+    "initial": 0.042793698676051616,
+    "sixChildren": 0.04822984749455338,
+    "sevenDisplayedRows": 0.0472922502334267
+  },
+  "pendulumTable": {
+    "anglesDegrees": [
+      [
+        0,
+        0
+      ],
+      [
+        12,
+        6
+      ],
+      [
+        6,
+        30
+      ],
+      [
+        12,
+        48
+      ],
+      [
+        36,
+        60
+      ],
+      [
+        84,
+        48
+      ],
+      [
+        84,
+        78
+      ],
+      [
+        42,
+        72
+      ]
+    ],
+    "computedFitness": [
+      1.0,
+      2.107690011481033,
+      3.1172960328491293,
+      4.011372882301165,
+      4.669344590557332,
+      1.9160988757063073,
+      1.933672145649755,
+      4.557651432230308
+    ],
+    "printedFitness": [
+      1,
+      2.1,
+      3.11,
+      4.01,
+      4.6,
+      1.91,
+      1.93,
+      4.55
+    ]
+  },
+  "discreteOptimum": [
+    4.6728980921415815,
+    36,
+    66
+  ],
+  "randomTrials": 1000,
+  "randomComparisons": 4000,
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "sympy": "1.14.0"
+  },
+  "figure": {
+    "path": "audits/W09-L42-reconstruction.png",
+    "sha256": "99d0d11d3ba6ff8231e14ea4d48ebec1811b957501b0e32d3ac951089b175233"
+  }
+}

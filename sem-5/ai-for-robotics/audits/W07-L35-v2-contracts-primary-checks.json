@@ -1,0 +1,62 @@
+{
+  "reviewerId": "robotics-contracts-reviewer-L35-v2",
+  "checkedAt": "2026-10-19T21:28:34.722103+00:00",
+  "authorMaterialRead": false,
+  "sources": [
+    {
+      "url": "https://docs.pytorch.org/docs/2.9/generated/torch.nn.Conv2d.html",
+      "supports": [
+        "Q010",
+        "Q013",
+        "Q016",
+        "Q020"
+      ],
+      "finding": "Version2.9 docs explicitly define logical NCHW, cross-correlation, channel connections at groups1, and spatial output equation. Our runtime is separately recorded as2.14.1+cpu."
+    },
+    {
+      "url": "https://arxiv.org/pdf/1504.08083",
+      "supports": [
+        "Q008",
+        "Q040"
+      ],
+      "finding": "Original Fast R-CNN retains external region proposals such as selective search and shares convolutional image processing."
+    },
+    {
+      "url": "https://arxiv.org/pdf/1506.01497",
+      "supports": [
+        "Q008",
+        "Q040"
+      ],
+      "finding": "Original Faster R-CNN introduces RPN and shares convolutional layers with detection."
+    },
+    {
+      "url": "https://arxiv.org/html/1506.02640v5",
+      "supports": [
+        "Q044",
+        "Q045",
+        "Q049",
+        "Q050",
+        "Q051",
+        "Q053",
+        "Q060"
+      ],
+      "finding": "Section2 specifies center-containing-cell responsibility, cell-relative center, image-relative size, conditional class probabilities and multiplication by box confidence. Network has24convolutions and2dense layers."
+    },
+    {
+      "url": "https://docs.ultralytics.com/models/yolov8/",
+      "supports": [
+        "Q067",
+        "Q068",
+        "Q069"
+      ],
+      "finding": "Official documentation identifies January2023 Ultralytics release and anchor-free split head."
+    },
+    {
+      "url": "https://github.com/robotics-lab-iitr/nptel-ai-robotics",
+      "finding": "The PDF p1083 link is this repository. Its public README lists Lecture35 among notebooks; no L35 notebook content retrieved or executed. A metadata read was blocked by a mistaken OncoSyn-scope denial, reported to lead and not retried pending fresh evidence."
+    }
+  ],
+  "localInstalledSourceEvidence": "audits/W07-L35-v2-contracts-independent-checks.json",
+  "runtimeAnnotatedImagePersonallyViewed": true,
+  "runtimeImageObservation": "Bus, four people and a low-confidence stop-sign detection match the printed visual example; the sign label is not treated as verified ground truth."
+}

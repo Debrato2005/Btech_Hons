@@ -1,0 +1,1506 @@
+[
+  {
+    "id": "W04-L17-Q002",
+    "version": 2,
+    "stem": "Two joints each follow a linear function of time; what can be concluded about the tool path without examining the robot kinematics?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "It must be a straight Cartesian line because both joint functions are linear"
+      },
+      {
+        "id": "o3",
+        "text": "It must be a circular arc for every robot"
+      },
+      {
+        "id": "o4",
+        "text": "Its orientation must remain fixed whenever its position changes"
+      },
+      {
+        "id": "o1",
+        "text": "It need not be a straight line in Cartesian space"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0508",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 508,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 508, printed slide 4: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q003",
+    "version": 2,
+    "stem": "In the introductory XYZ diagram, which interpretation matches the ordered intermediate frame markers between START and END?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Position-only samples whose frame-axis orientations impose no pose information"
+      },
+      {
+        "id": "o4",
+        "text": "Tolerance bounds around a single endpoint rather than intermediate path specifications"
+      },
+      {
+        "id": "o1",
+        "text": "Specified via poses along the tool path, including intermediate position and orientation"
+      },
+      {
+        "id": "o2",
+        "text": "Alternative final tool poses, any one of which replaces END as the goal"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0508",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 508,
+        "kind": "figure",
+        "locator": "Lecture 17, physical PDF page 508, printed slide 4: introductory START/via-pose/END XYZ figure",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q004",
+    "version": 2,
+    "stem": "Which pose relation is stated for describing the tool trajectory in this lecture?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "The tool frame expressed relative to a camera frame"
+      },
+      {
+        "id": "o1",
+        "text": "The tool frame expressed relative to the station frame"
+      },
+      {
+        "id": "o2",
+        "text": "The station frame expressed relative to the tool frame"
+      },
+      {
+        "id": "o3",
+        "text": "The tool frame expressed relative to its wrist attachment frame"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0509",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 509,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 509, printed slide 5: tool-relative-to-station pose description",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q005",
+    "version": 2,
+    "stem": "In the source-described runtime-IK workflow, how are Cartesian pose samples converted into joint configurations?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Interpolate a desired Cartesian pose at each update, then solve inverse kinematics for that pose"
+      },
+      {
+        "id": "o2",
+        "text": "Solve inverse kinematics for every time sample before execution, then only replay the stored joint table"
+      },
+      {
+        "id": "o3",
+        "text": "Interpolate a desired Cartesian pose at each update, then apply forward kinematics to obtain its joints"
+      },
+      {
+        "id": "o4",
+        "text": "Interpolate only joint endpoints at each update, then apply forward kinematics to prescribe a straight tool line"
+      }
+    ],
+    "assumptions": [
+      "This is the described workflow, not a claim that every Cartesian planner postpones all inverse kinematics until runtime."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0509",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 509,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 509, printed slide 5: runtime inverse-kinematics and path-update description",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q006",
+    "version": 2,
+    "stem": "Relative to direct evaluation of a precomputed joint polynomial, which added operation explains the source runtime-IK workflow’s extra work?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Reading the current segment clock before evaluating the interpolation"
+      },
+      {
+        "id": "o3",
+        "text": "Evaluating the planned interpolation polynomial at the current time"
+      },
+      {
+        "id": "o4",
+        "text": "Advancing the control update counter and checking the segment end"
+      },
+      {
+        "id": "o1",
+        "text": "Solving inverse kinematics for each newly interpolated Cartesian pose"
+      }
+    ],
+    "assumptions": [
+      "Compare the source’s runtime-IK workflow with direct evaluation of a preplanned joint trajectory."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0509",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 509,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 509, printed slide 5: additional runtime inverse-kinematics operation",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q009",
+    "version": 2,
+    "stem": "Which position/orientation representation matches the stated six-component vector χ=[p;K]?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Three Cartesian position coordinates and a three-component orientation parameterization"
+      },
+      {
+        "id": "o2",
+        "text": "Three Cartesian position coordinates and a four-component unit quaternion"
+      },
+      {
+        "id": "o3",
+        "text": "Three Cartesian position coordinates and all nine entries of a rotation matrix"
+      },
+      {
+        "id": "o4",
+        "text": "Two planar position coordinates and one planar orientation angle"
+      }
+    ],
+    "assumptions": [
+      "K denotes a three-parameter orientation representation; it is not a full3×3 matrix."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0511",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 511,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 511, printed slide 7: six-component pose vector χ=[p;K]",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q010",
+    "version": 2,
+    "stem": "To resolve the slide’s ROT notation explicitly, adopt the three-component rotation vector K=θk with unit axis k and θ in radians; which K represents a +90° rotation about the z-axis?",
+    "selectionMode": "single",
+    "type": "source-reconciliation",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "(0,0,1)"
+      },
+      {
+        "id": "o3",
+        "text": "(0,π/2,0)"
+      },
+      {
+        "id": "o4",
+        "text": "(0,0,90)"
+      },
+      {
+        "id": "o1",
+        "text": "(0,0,π/2)"
+      }
+    ],
+    "assumptions": [
+      "This question explicitly defines ROT’s three-parameter interpretation as K=θk; it does not silently identify a 3×3 matrix with a vector."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0511",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 511,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 511, printed slide 7: ROT(k,θ) notation inside the six-component pose vector",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q015",
+    "version": 2,
+    "stem": "Why can a near-singular configuration make a requested Cartesian motion hard to track?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "A singular Jacobian makes every joint position undefined"
+      },
+      {
+        "id": "o4",
+        "text": "Increasing the update rate alone removes the singular geometric mapping"
+      },
+      {
+        "id": "o1",
+        "text": "Some task-velocity directions require very large joint rates, which can exceed actuator limits"
+      },
+      {
+        "id": "o2",
+        "text": "Every Cartesian velocity requires exactly the same joint rate at a singularity"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0514",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 514,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 514, printed slide 10: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q016",
+    "version": 2,
+    "stem": "In scaled velocity units, J=diag(1,0.01) and desired v=(0,1); what qdot solves v=Jqdot?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "(0,1)"
+      },
+      {
+        "id": "o1",
+        "text": "(0,100)"
+      },
+      {
+        "id": "o2",
+        "text": "(0,0.01)"
+      },
+      {
+        "id": "o3",
+        "text": "(1,0)"
+      }
+    ],
+    "assumptions": [
+      "Coordinates are scaled consistently; this is an illustrative local Jacobian, not a full robot specification."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0514",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 514,
+        "kind": "equation",
+        "locator": "Lecture 17, physical PDF page 514, printed slide 10: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q017",
+    "version": 2,
+    "stem": "For the same J=diag(1,0.01), which desired task velocity avoids the100-fold second-axis rate amplification?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "v=(1,0)"
+      },
+      {
+        "id": "o2",
+        "text": "v=(0,1)"
+      },
+      {
+        "id": "o3",
+        "text": "v=(1,1)"
+      },
+      {
+        "id": "o4",
+        "text": "v=(0,−1)"
+      }
+    ],
+    "assumptions": [
+      "Use the scaled local Jacobian shown in the question."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0514",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 514,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 514, printed slide 10: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q018",
+    "version": 2,
+    "stem": "For a one-unit straight task move with constant J=diag(1,0.01), no first-component motion and |qdot2|≤10, what is the fastest constant second-component speed and its travel time, compared with an intended one-second move?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Speed 0.1 and travel time 1 s; reducing speed does not affect the scheduled arrival"
+      },
+      {
+        "id": "o3",
+        "text": "Speed 1 and travel time 1 s; the joint-rate limit remains satisfied"
+      },
+      {
+        "id": "o4",
+        "text": "Speed 0.01 and travel time 100 s; this is the fastest permitted motion"
+      },
+      {
+        "id": "o1",
+        "text": "Speed 0.1 and travel time 10 s; the geometric move is retained but its intended timing is slowed"
+      }
+    ],
+    "assumptions": [
+      "This is a hypothetical locally scaled example with the displayed diagonal Jacobian assumed constant over the move.",
+      "Task units are consistently scaled, joint2 rate units match the bound, and endpoint acceleration transitions are excluded.",
+      "Slowing a feasible direction does not make an infeasible direction attainable at an exact singularity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0514",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 514,
+        "kind": "equation",
+        "locator": "Lecture 17, physical PDF page 514, printed slide 10: joint-rate limitation and changed temporal attributes under slowing",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q019",
+    "version": 2,
+    "stem": "A path’s start and goal each have an inverse-kinematics solution; why can the requested Cartesian path still fail?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Two inverse branches are always interchangeable without changing joint position"
+      },
+      {
+        "id": "o4",
+        "text": "Any reachable endpoint eliminates intermediate singularities"
+      },
+      {
+        "id": "o1",
+        "text": "The available endpoint solutions may not connect through a continuous branch that respects joint limits"
+      },
+      {
+        "id": "o2",
+        "text": "An inverse solution at the start proves every future point has the same solution"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0515",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 515,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 515, printed slide 11: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q020",
+    "version": 2,
+    "stem": "Which three joint references does the source trajectory generator provide at successive updates?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Joint velocity, joint acceleration and joint torque"
+      },
+      {
+        "id": "o1",
+        "text": "Joint position, joint velocity and joint acceleration"
+      },
+      {
+        "id": "o2",
+        "text": "Joint position, joint velocity and joint torque"
+      },
+      {
+        "id": "o3",
+        "text": "Joint position, joint acceleration and joint jerk"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0516",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 516,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 516, printed slide 12: successive position, velocity and acceleration trajectory outputs",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q022",
+    "version": 2,
+    "stem": "An LSPB segment starts at global time 5 s, lasts 2 s and uses blend duration 0.3 s at each end; at global times 5.2, 6.0 and 6.8 s, which local times and regions should the runtime selector use?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Local times 5.2,6.0,6.8 s: final blend at all three updates"
+      },
+      {
+        "id": "o3",
+        "text": "Local times 0.2,1.0,1.8 s: linear region, initial blend, final blend"
+      },
+      {
+        "id": "o4",
+        "text": "Local times 0.2,1.0,1.8 s: initial blend, final blend, linear region"
+      },
+      {
+        "id": "o1",
+        "text": "Local times 0.2,1.0,1.8 s: initial blend, linear region, final blend"
+      }
+    ],
+    "assumptions": [
+      "Use the stated hypothetical symmetric LSPB timing; no sample lies exactly at a boundary.",
+      "This selection test does not silently correct the source’s separate blend-position/velocity inconsistency."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0517",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 517,
+        "kind": "equation",
+        "locator": "Lecture 17, physical PDF page 517, printed slide 13: local-clock reset and elapsed-time choice of linear or blend region",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0518",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 518,
+        "kind": "equation",
+        "locator": "Lecture 17, physical PDF page 518, printed slide 14: local-clock reset and elapsed-time choice of linear or blend region",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0520",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 520,
+        "kind": "figure",
+        "locator": "Lecture 17, physical PDF page 520, printed slide 16: local-clock reset and elapsed-time choice of linear or blend region",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q025",
+    "version": 2,
+    "stem": "With xb=2 m,vb=3 m/s,a=4 m/s² and s=0.5 s, what are position and velocity for x=xb+vb s+(1/2)a s²?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "4 m and5 m/s"
+      },
+      {
+        "id": "o2",
+        "text": "2.5 m and2 m/s"
+      },
+      {
+        "id": "o3",
+        "text": "4.5 m and7 m/s"
+      },
+      {
+        "id": "o4",
+        "text": "3.5 m and3 m/s"
+      }
+    ],
+    "assumptions": [
+      "Use the explicitly stated consistent local blend, not the inconsistent literal position expression on the slide."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0518",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 518,
+        "kind": "equation",
+        "locator": "Lecture 17, physical PDF page 518, printed slide 14: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0520",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 520,
+        "kind": "equation",
+        "locator": "Lecture 17, physical PDF page 520, printed slide 16: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q027",
+    "version": 2,
+    "stem": "A planar trajectory from(0,0) to(1,1) uses x=s and y=s² for0≤s≤1; which path results?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "A circle of radius1 because x and y use the same interval"
+      },
+      {
+        "id": "o4",
+        "text": "A stationary point because the coordinates have unequal powers"
+      },
+      {
+        "id": "o1",
+        "text": "The parabola y=x², not the diagonal straight segment"
+      },
+      {
+        "id": "o2",
+        "text": "The straight segment y=x because both endpoints match"
+      }
+    ],
+    "assumptions": [
+      "Coordinates are normalized by the same1 m scale; s is dimensionless."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0519",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 519,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 519, printed slide 15: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q028",
+    "version": 2,
+    "stem": "For a fixed planned LSPB segment, which planning/runtime allocation is correct?",
+    "selectionMode": "single",
+    "type": "source-reconciliation",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Plan durations and freeze the first region selection; update elapsed time but keep using that initial regional equation"
+      },
+      {
+        "id": "o1",
+        "text": "Plan durations, slopes and blend coefficients; update elapsed time and select the active region during execution"
+      },
+      {
+        "id": "o2",
+        "text": "Plan elapsed time and active region once; recalculate segment durations and all coefficients on every clock tick"
+      },
+      {
+        "id": "o3",
+        "text": "Plan only the final pose; derive all segment slopes and blend coefficients from the current measured acceleration at every update"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0520",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 520,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 520, printed slide 16: preplanned coefficients and runtime trajectory evaluation",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q029",
+    "version": 2,
+    "stem": "With R mapping tool coordinates to station coordinates and p the tool origin in station coordinates, which homogeneous transform maps a tool point to station coordinates?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "T=[[R,p],[0,0,0,1]]"
+      },
+      {
+        "id": "o2",
+        "text": "T=[[Rᵀ,p],[0,0,0,1]] without changing p"
+      },
+      {
+        "id": "o3",
+        "text": "T=[[R,0],[pᵀ,1]]"
+      },
+      {
+        "id": "o4",
+        "text": "T=[[R,p],[0,0,0,0]]"
+      }
+    ],
+    "assumptions": [
+      "Column-vector convention is explicitly stated here because the displayed source transform labels are not fully consistent with its earlier tool/station notation."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0521",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 521,
+        "kind": "equation",
+        "locator": "Lecture 17, physical PDF page 521, printed slide 17: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q031",
+    "version": 2,
+    "stem": "A continuous positive rotation is recorded as179° then−179° after0.1 s; what rate follows after correctly unwrapping the second angle to181°?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "−20°/s"
+      },
+      {
+        "id": "o4",
+        "text": "+3580°/s"
+      },
+      {
+        "id": "o1",
+        "text": "+20°/s"
+      },
+      {
+        "id": "o2",
+        "text": "−3580°/s"
+      }
+    ],
+    "assumptions": [
+      "The physical motion is known to be the short positive rotation; branch continuity is maintained."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0521",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 521,
+        "kind": "equation",
+        "locator": "Lecture 17, physical PDF page 521, printed slide 17: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q034",
+    "version": 2,
+    "stem": "For MOVE ARM TO C VIA B with specified speed and smoothness attributes, which interpretation and software sequence match the lecture?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "C is an intermediate pose before B; the programming system interprets the motion attributes and invokes the path generator"
+      },
+      {
+        "id": "o3",
+        "text": "B and C are alternative final poses; the path generator chooses one without preserving an ordered via sequence"
+      },
+      {
+        "id": "o4",
+        "text": "B is an intermediate pose before C; the programming system discards speed and smoothness because those attributes never affect generated trajectories"
+      },
+      {
+        "id": "o1",
+        "text": "B is an intermediate pose before C; the programming system interprets the motion attributes and invokes the path generator"
+      }
+    ],
+    "assumptions": [
+      "Use the illustrative command meanings shown in the source."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0522",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 522,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 522, printed slide 18: via sequence, speed/smoothness attributes, interpreter and path generator",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q035",
+    "version": 2,
+    "stem": "Why is a fixed maximum acceleration in simple trajectory planning a simplification?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Torque-speed characteristics determine only geometric reachability"
+      },
+      {
+        "id": "o4",
+        "text": "Joint acceleration depends only on the number of via points"
+      },
+      {
+        "id": "o1",
+        "text": "Achievable acceleration depends on the current dynamics and actuator torque-speed limits"
+      },
+      {
+        "id": "o2",
+        "text": "Every actuator has a constant acceleration limit that is independent of load"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0523",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 523,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 523, printed slide 19: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q038",
+    "version": 2,
+    "stem": "A path has one region with a low feasible acceleration and another with a much higher feasible acceleration; what trade-off can follow from imposing the lower bound throughout?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "It necessarily gives the shortest travel time because both regions use one common value"
+      },
+      {
+        "id": "o3",
+        "text": "It removes the physical configuration dependence of the robot’s available acceleration"
+      },
+      {
+        "id": "o4",
+        "text": "It automatically increases the bound in the easier region without needing any timing adaptation"
+      },
+      {
+        "id": "o1",
+        "text": "It can respect the limiting region while underusing acceleration capability and increasing travel time elsewhere"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0524",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 524,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 524, printed slide 20: conservative acceleration bound and unused speed capability",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q039",
+    "version": 2,
+    "stem": "Which condition is required for a collision-free manipulator path?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "The end-effector line must be straight, regardless of where other links pass"
+      },
+      {
+        "id": "o4",
+        "text": "Every via point must have the same orientation"
+      },
+      {
+        "id": "o1",
+        "text": "Every traversed robot configuration must avoid obstacles and respect the stated constraints"
+      },
+      {
+        "id": "o2",
+        "text": "Only the start and final tool points must lie outside obstacles"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0525",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 525,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 525, printed slide 21: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q040",
+    "version": 2,
+    "stem": "Which model set supplies the geometric information required by the source collision-free planning description?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Manipulator geometry and configurations, workspace dimensions, and only the final target pose instead of obstacle locations"
+      },
+      {
+        "id": "o1",
+        "text": "Manipulator geometry and configurations, workspace geometry, and obstacle geometry"
+      },
+      {
+        "id": "o2",
+        "text": "Tool-point positions, workspace geometry, and obstacle geometry, with no model of the robot links"
+      },
+      {
+        "id": "o3",
+        "text": "Manipulator geometry and configurations, joint actuator limits, and no obstacle geometry"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0526",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 526,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 526, printed slide 22: manipulator/workspace/obstacle model requirement",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q041",
+    "version": 2,
+    "stem": "Which pairing matches the two planning approaches described by the source?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Free-space graph: search connectivity between feasible regions; potential field: follow goal attraction combined with obstacle repulsion"
+      },
+      {
+        "id": "o2",
+        "text": "Free-space graph: choose the spatially closest region without checking graph edges; potential field: follow goal attraction combined with obstacle repulsion"
+      },
+      {
+        "id": "o3",
+        "text": "Free-space graph: search connectivity between feasible regions; potential field: descend a goal-distance field with no obstacle contribution"
+      },
+      {
+        "id": "o4",
+        "text": "Free-space graph: interpolate one direct edge between endpoints without checking intermediate free space; potential field: globally enumerate every graph path before moving"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0526",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 526,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 526, printed slide 22: free-space graph and attractive/repulsive potential-field mechanisms",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q042",
+    "version": 2,
+    "stem": "Away from the goal, attractive and repulsive artificial forces cancel and the local descent direction vanishes; what can happen?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "The zero net force guarantees that the next update will pass through the stationary point toward the goal"
+      },
+      {
+        "id": "o3",
+        "text": "Every stationary point must be the global goal because attraction is included in the field"
+      },
+      {
+        "id": "o4",
+        "text": "The local cancellation certifies that the path taken so far is globally shortest"
+      },
+      {
+        "id": "o1",
+        "text": "The planner can stall at a local minimum rather than reach the goal"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0526",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 526,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 526, printed slide 22: potential-field local minimum limitation",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q046",
+    "version": 2,
+    "stem": "What is the Cartesian pose at t=2.0 s in the4 s source example?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "(0.500 m,0.100 m,30°)"
+      },
+      {
+        "id": "o3",
+        "text": "(0.300 m,−0.400 m,60°)"
+      },
+      {
+        "id": "o4",
+        "text": "(0.200 m,−0.300 m,30°)"
+      },
+      {
+        "id": "o1",
+        "text": "(0.500 m,−0.100 m,30°)"
+      }
+    ],
+    "assumptions": [
+      "Planar Cartesian pose starts at(x,y,φ)=(0.700 m,0.200 m,0°) and ends at(0.300 m,−0.400 m,60°) over4.0 s; use affine component interpolation with this unwrapped planar angle."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0529",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 529,
+        "kind": "equation",
+        "locator": "Lecture 17, physical PDF page 529, printed slide 25: worked x/y/orientation values at the temporal midpoint",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0530",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 530,
+        "kind": "equation",
+        "locator": "Lecture 17, physical PDF page 530, printed slide 26: worked x/y/orientation values at the temporal midpoint",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q050",
+    "version": 2,
+    "stem": "With y(t)=0.200−0.150t m, when does the path cross y=0?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "t=1.2 s exactly because it is the last positive listed sample"
+      },
+      {
+        "id": "o3",
+        "text": "t=1.4 s exactly because it is the first negative listed sample"
+      },
+      {
+        "id": "o4",
+        "text": "t=2 s because every coordinate crosses zero at the midpoint"
+      },
+      {
+        "id": "o1",
+        "text": "t=4/3 s, between the1.2 s and1.4 s samples"
+      }
+    ],
+    "assumptions": [
+      "Planar Cartesian pose starts at(x,y,φ)=(0.700 m,0.200 m,0°) and ends at(0.300 m,−0.400 m,60°) over4.0 s; use affine component interpolation with this unwrapped planar angle."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0530",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 530,
+        "kind": "equation",
+        "locator": "Lecture 17, physical PDF page 530, printed slide 26: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0536",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 536,
+        "kind": "equation",
+        "locator": "Lecture 17, physical PDF page 536, printed slide 32: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0537",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 537,
+        "kind": "equation",
+        "locator": "Lecture 17, physical PDF page 537, printed slide 33: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q052",
+    "version": 2,
+    "stem": "Why does the example use tf+dt as the stop argument rather than tf?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Because adding dt changes the physical duration from4.0 s to4.2 s"
+      },
+      {
+        "id": "o1",
+        "text": "To include the desired4.0 s endpoint in this particular half-open arange grid"
+      },
+      {
+        "id": "o2",
+        "text": "Because arange always includes its stop argument"
+      },
+      {
+        "id": "o3",
+        "text": "Because a trajectory must continue through4.2 s"
+      }
+    ],
+    "assumptions": [
+      "The exact NumPy expression and observed array are the subject; robust general code should check its generated endpoints."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0534",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 534,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 534, printed slide 30: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q056",
+    "version": 2,
+    "stem": "At index7 of the displayed0.2 s time array, which printed t,x,y,φ values appear?",
+    "selectionMode": "single",
+    "type": "code_output",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "7.0,0.000,−0.850,105.0"
+      },
+      {
+        "id": "o1",
+        "text": "1.4,0.560,−0.010,21.0"
+      },
+      {
+        "id": "o2",
+        "text": "1.2,0.580,0.020,18.0"
+      },
+      {
+        "id": "o3",
+        "text": "1.4,0.560,0.010,21.0"
+      }
+    ],
+    "assumptions": [
+      "Planar Cartesian pose starts at(x,y,φ)=(0.700 m,0.200 m,0°) and ends at(0.300 m,−0.400 m,60°) over4.0 s; use affine component interpolation with this unwrapped planar angle.",
+      "Use zero-based NumPy indexing and the displayed formatting."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0534",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 534,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 534, printed slide 30: 0.2 s array, formatting loop and index-seven printed row",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0535",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 535,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 535, printed slide 31: 0.2 s array, formatting loop and index-seven printed row",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0536",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 536,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 536, printed slide 32: 0.2 s array, formatting loop and index-seven printed row",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q057",
+    "version": 2,
+    "stem": "Which precision assignment does the printed Python f-string apply to t, x, y and φ?",
+    "selectionMode": "single",
+    "type": "code_output",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "t: one decimal; x,y: three decimals; φ: one decimal"
+      },
+      {
+        "id": "o2",
+        "text": "t: three decimals; x,y: one decimal; φ: three decimals"
+      },
+      {
+        "id": "o3",
+        "text": "t: one decimal; x,y: one decimal; φ: three decimals"
+      },
+      {
+        "id": "o4",
+        "text": "t: three decimals; x,y: three decimals; φ: one decimal"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0535",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 535,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 535, printed slide 31: .1f and .3f field-format specifiers",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q058",
+    "version": 2,
+    "stem": "What is missing from the printed program needed to reproduce the later graph figures directly?",
+    "selectionMode": "single",
+    "type": "source-reconciliation",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "The NumPy import, which is not shown anywhere"
+      },
+      {
+        "id": "o3",
+        "text": "The time vector, which the program never defines"
+      },
+      {
+        "id": "o4",
+        "text": "Every Cartesian position formula, which appears only in the graphs"
+      },
+      {
+        "id": "o1",
+        "text": "Plotting commands; the shown program generates arrays and prints a table but contains no plot calls"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0534",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 534,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 534, printed slide 30: relevant text, equations and associated figures",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0535",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 535,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 535, printed slide 31: relevant text, equations and associated figures",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0537",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 537,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 537, printed slide 33: relevant text, equations and associated figures",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0538",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 538,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 538, printed slide 34: relevant text, equations and associated figures",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0539",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 539,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 539, printed slide 35: relevant text, equations and associated figures",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0540",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 540,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 540, printed slide 36: relevant text, equations and associated figures",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q060",
+    "version": 2,
+    "stem": "The x-velocity graph has a narrow vertical axis around−0.100 and a horizontal trace; what does it show?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Zero x-velocity because a horizontal line means no motion"
+      },
+      {
+        "id": "o1",
+        "text": "Constant negative x-velocity, despite the axis range surrounding that value"
+      },
+      {
+        "id": "o2",
+        "text": "Acceleration because the axis has several labelled ticks"
+      },
+      {
+        "id": "o3",
+        "text": "A sign change because the graph includes values above and below the trace"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0538",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 538,
+        "kind": "figure",
+        "locator": "Lecture 17, physical PDF page 538, printed slide 34: relevant text, equations and associated figures",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W04-L17-Q062",
+    "version": 2,
+    "stem": "The plot labels orientation θ while the code calls it φ; without a specified robot and inverse-kinematics solution, which interpretation is justified?",
+    "selectionMode": "single",
+    "type": "source-reconciliation",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "The angle is necessarily joint 1’s angle, regardless of the mechanism"
+      },
+      {
+        "id": "o3",
+        "text": "The angle is necessarily the direction of the XY path tangent rather than the tool orientation"
+      },
+      {
+        "id": "o4",
+        "text": "The angle is necessarily every joint’s common rotation, so each joint turns at 15°/s"
+      },
+      {
+        "id": "o1",
+        "text": "The angle is the planar task orientation; no specific joint-angle history is established"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0537",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 537,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 537, printed slide 33: task-orientation labels and tool-axis arrows",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0540",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 540,
+        "kind": "statement",
+        "locator": "Lecture 17, physical PDF page 540, printed slide 36: task-orientation labels and tool-axis arrows",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  }
+]

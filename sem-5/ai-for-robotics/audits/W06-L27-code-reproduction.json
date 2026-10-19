@@ -1,0 +1,305 @@
+{
+  "batchId": "W06-L27",
+  "authorOnly": true,
+  "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scikit-learn": "1.8.0"
+  },
+  "transcriptionNote": "Visible source tokens and data preserved; whitespace alignment normalized. No plot-generation code is supplied for pages 805 or 815, so displayed figures were inspected rather than attributed to invented code.",
+  "snippets": [
+    {
+      "pages": [
+        803,
+        804,
+        805
+      ],
+      "code": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.linear_model import LinearRegression\nX_lifting = np.array([\n    [1.0, 0.5], # 1 kg, extended half a meter\n    [2.0, 0.5], # 2 kg, extended half a meter\n    [1.0, 1.0], # 1 kg, extended a full meter\n    [5.0, 1.0]  # 5 kg, extended a full meter\n])\ny_torque = np.array([4.9, 9.8, 9.8, 49.0]) # Continuous numbers\nregressor = LinearRegression()\nregressor.fit(X_lifting, y_torque)\nnew_box = [[3.5, 0.8]]\npred_torque = regressor.predict(new_box)[0]\nprint(\"--- REGRESSION RESULT ---\")\nprint(f\"Task          : Lift a 3.5kg box at 0.8m extension\")\nprint(f\"Robot Predicts  : {pred_torque:.2f} Newton-meters of torque required\")\n",
+      "executed": true,
+      "output": "--- REGRESSION RESULT ---\nTask          : Lift a 3.5kg box at 0.8m extension\nRobot Predicts  : 31.04 Newton-meters of torque required\n"
+    },
+    {
+      "pages": [
+        811
+      ],
+      "code": "import mglearn\nmglearn.plots.plot_kmeans_algorithm()\n",
+      "executed": false,
+      "reason": "Optional mglearn package absent; syntax checked, actual source figure inspected."
+    },
+    {
+      "pages": [
+        813,
+        814,
+        815
+      ],
+      "code": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.cluster import KMeans\nnp.random.seed(42)\nzone_A = np.random.normal([10, 20], [2, 5], (100, 2)) # Cold, bad Wi-Fi\nzone_B = np.random.normal([22, 90], [2, 5], (100, 2)) # Warm, great Wi-Fi\nzone_C = np.random.normal([25, 40], [2, 5], (100, 2)) # Warm, okay Wi-Fi\nX_sensors = np.vstack([zone_A, zone_B, zone_C])\nclustering_model = KMeans(n_clusters=3, random_state=42)\nclustering_model.fit(X_sensors)\nnew_reading = [[23, 85]]\npredicted_zone = clustering_model.predict(new_reading)[0]\nprint(\"--- UNSUPERVISED CLUSTERING RESULT ---\")\nprint(f\"Robot sensors    : 23°C, 85% Wi-Fi\")\nprint(f\"Robot classifies : 'I belong to Zone {predicted_zone}'\")\n",
+      "executed": true,
+      "output": "--- UNSUPERVISED CLUSTERING RESULT ---\nRobot sensors    : 23°C, 85% Wi-Fi\nRobot classifies : 'I belong to Zone 0'\n"
+    }
+  ],
+  "checks": [
+    {
+      "id": "L27-CHECK-01",
+      "check": "Printed feature and target shapes",
+      "result": {
+        "X": [
+          4,
+          2
+        ],
+        "y": [
+          4
+        ]
+      },
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-02",
+      "check": "Fourth-row alignment",
+      "result": "Row index 3 is [5,1] -> 49",
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-03",
+      "check": "Exact OLS coefficient solution",
+      "result": [
+        "-147/10",
+        "1617/170",
+        "1323/85"
+      ],
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-04",
+      "check": "Unique affine fit rank",
+      "result": "Design rank 3, three affine coefficients",
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-05",
+      "check": "OLS orthogonality and nonzero training residual",
+      "result": [
+        "-196/85",
+        "196/85",
+        "49/85",
+        "-49/85"
+      ],
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-06",
+      "check": "Library agrees with exact affine coefficients",
+      "result": [
+        -14.7,
+        9.511764705882353,
+        15.564705882352941
+      ],
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-07",
+      "check": "Prediction and printed formatting",
+      "result": {
+        "exact": "52773/1700",
+        "printed": "31.04"
+      },
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-08",
+      "check": "Regression distractor arithmetic",
+      "result": {
+        "physical_product": 27.44,
+        "no_intercept": 45.74294117647059,
+        "swapped_features": 47.385882352941174
+      },
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-09",
+      "check": "Unequal mass slopes forbid interpolation",
+      "result": {
+        "at_r_half": 4.9,
+        "at_r_one": 9.8
+      },
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-10",
+      "check": "All source labels match supplied static product",
+      "result": "Static point-load model is an explicit comparison, not the fitted model form.",
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-11",
+      "check": "Seeded zone shapes and stacking",
+      "result": {
+        "perZone": [
+          100,
+          2
+        ],
+        "stack": [
+          300,
+          2
+        ]
+      },
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-12",
+      "check": "Repeated exact code seeded reproducibility",
+      "result": "Identical NumPy data and printed output in recorded local versions",
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-13",
+      "check": "As-printed KMeans output",
+      "result": {
+        "output": "--- UNSUPERVISED CLUSTERING RESULT ---\nRobot sensors    : 23°C, 85% Wi-Fi\nRobot classifies : 'I belong to Zone 0'",
+        "centers": [
+          [
+            22.256497449227705,
+            90.2174382459195
+          ],
+          [
+            24.909925226208436,
+            39.36863659061274
+          ],
+          [
+            9.768871490423221,
+            20.1701116222211
+          ]
+        ],
+        "defaults": {
+          "algorithm": "lloyd",
+          "copy_x": true,
+          "init": "k-means++",
+          "max_iter": 300,
+          "n_clusters": 3,
+          "n_init": "auto",
+          "random_state": 42,
+          "tol": 0.0001,
+          "verbose": 0
+        }
+      },
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-14",
+      "check": "Centroids match corresponding empirical sample means",
+      "result": "Learned ID order B,C,A in this recorded run",
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-15",
+      "check": "Explicit initialization-count variants checked",
+      "result": "n_init=1,10,auto yield same local partition and label; no universal cross-version guarantee.",
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-16",
+      "check": "Gaussian percentages exceed physical bound",
+      "result": {
+        "values_above_100": 2,
+        "maximum": 109.26365745327361
+      },
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-17",
+      "check": "Illustrative mean-center distances and Manhattan distractor",
+      "result": {
+        "squaredScores": [
+          4394,
+          26,
+          2029
+        ],
+        "ManhattanToB": 6
+      },
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-18",
+      "check": "Nearest 1D center",
+      "result": "Cluster 1, score 4",
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-19",
+      "check": "2D centroid and median/sum distractors",
+      "result": {
+        "mean": [
+          2,
+          2
+        ],
+        "median": [
+          2,
+          0
+        ],
+        "sum": [
+          6,
+          6
+        ]
+      },
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-20",
+      "check": "Rescaling can change nearest center",
+      "result": "x=(0,0), centers (1,0),(0,10); multiplying first coordinate by 100 reverses the nearest center.",
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-21",
+      "check": "Label permutation preserves pairwise partition",
+      "result": "Bijective relabeling preserves same-cluster relationships.",
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-22",
+      "check": "Undiscounted two-step returns",
+      "result": "A=1, B=4; B preferred.",
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-23",
+      "check": "200 random mean-update checks",
+      "result": "Mean minimizes within-cluster squared distance against each tested alternate center; residual sums vanish.",
+      "status": "passed",
+      "independentReview": false
+    },
+    {
+      "id": "L27-CHECK-24",
+      "check": "Visualization call syntax and dependency disclosure",
+      "result": {
+        "syntax": "valid",
+        "mglearnInstalled": false,
+        "execution": "not executed; unavailable optional mglearn dependency"
+      },
+      "status": "passed",
+      "independentReview": false
+    }
+  ]
+}

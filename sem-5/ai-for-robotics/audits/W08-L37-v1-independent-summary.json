@@ -1,0 +1,584 @@
+{
+  "reviewerId": "independent-reviewer-robotics-batches-v2",
+  "frozenAt": "2026-10-19T20:58:07.173402+00:00",
+  "reviewPath": "data/reviews/W08-L37-v1-independent.json",
+  "reviewSha256": "a670acbeb59b3767e19210d4413e2718d053e7f10473187ca19440e44941e75f",
+  "questionCount": 86,
+  "decisions": {
+    "flagged": 58,
+    "verified": 28
+  },
+  "allIntendedKeysAgree": true,
+  "freshBlindAnswers": 86,
+  "sourcePagesViewed": 38,
+  "overlappingFailedGates": {
+    "sourceSupport": 16,
+    "assumptions": 3,
+    "answerSet": 2,
+    "distractors": 40,
+    "calculations": 1,
+    "figureFidelity": 1,
+    "explanation": 3,
+    "difficulty": 37,
+    "duplication": 1
+  },
+  "existingSearch": {
+    "verified": 28,
+    "flagged": 1,
+    "retainedFlag": "W08-L37-P1135-Q03",
+    "verifiedFrontierRepair": "W08-L37-P1135-Q04 v3"
+  },
+  "currentLectureAccepted": 56,
+  "currentLectureTotal": 115,
+  "coverageChallenge": "audits/W08-L37-coverage-challenge-independent.json",
+  "boundedGapTargets": [
+    {
+      "id": "L37-GAP-sensor-limits",
+      "physicalPages": [
+        1138
+      ],
+      "angle": "Onboard sensor capabilities and limits are a separate feasibility/design constraint, alongside goal, speed/kinematics and current/future collision risk.",
+      "whyMissing": "Q002 selects motion constraints, Q003 rejects universal optimality, and neither requires identifying sensor limits as the independent remaining constraint.",
+      "repairTarget": "Extend an existing objectives item rather than add another generic role-recall question."
+    },
+    {
+      "id": "L37-GAP-steering-weight-tradeoff",
+      "physicalPages": [
+        1152
+      ],
+      "angle": "Differentiate the goal term a, current-heading term b and previous-command term c, including higher c giving smoother but less reactive control.",
+      "whyMissing": "Q045 directly tests only the previous term, Q047 supplies all errors, Q049 tests previous-command preference but not the stated reactivity trade-off.",
+      "repairTarget": "Extend Q045 or Q049 into a parallel association or controlled trade-off; retain the wrapped-angle and cost tasks as separate operations."
+    },
+    {
+      "id": "L37-GAP-comparison-table-associations",
+      "physicalPages": [
+        1154,
+        1162
+      ],
+      "angle": "The table’s actual low-versus-moderate computation association and simple-prototype-versus-noisy-real-robot typical-use association.",
+      "whyMissing": "Q057 only asks whether labels are qualitative and Q058 only asks completeness; neither requires mapping the omitted rows to Bug and VFH.",
+      "repairTarget": "Extend the table item with the named rows and explicit qualitative scope, without implying all real robots must use VFH."
+    },
+    {
+      "id": "L37-GAP-current-cspace-point",
+      "physicalPages": [
+        1156
+      ],
+      "angle": "Interpret the plotted red current configuration relative to the shaded forbidden region and the two joint-angle axes.",
+      "whyMissing": "Q063 defines the region but never asks whether the actual displayed point is inside it; Q064 instead corrects the mapping arrow.",
+      "repairTarget": "Extend Q063 to the displayed point being outside the shown C-obstacle. Avoid inventing precise coordinates from the stylized/nonuniform tick drawing or claiming global path feasibility."
+    }
+  ],
+  "computations": "audits/W08-L37-independent-computations.json",
+  "checkCount": 30,
+  "variedCases": 4000,
+  "sourceQualificationsPreserved": 16,
+  "authorScriptsReadOrExecuted": false,
+  "canonicalBankModified": false,
+  "gitModified": false,
+  "flaggedItems": [
+    {
+      "questionId": "W08-L37-Q001",
+      "questionVersion": 1,
+      "questionSha256": "f0d57a2f8d912e7f1267e727a493628233464f9e1b3d59d8678f2f1c773abc94",
+      "findings": [
+        "Distractor quality: o2 discards the goal, o3 demands a complete building map, and o4 gives the static route knowledge of unexpected obstacles; replace with plausible local/global responsibility mistakes.",
+        "Difficulty: this is one-step local/global role recognition; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q002",
+      "questionVersion": 1,
+      "questionSha256": "35ff9e275c4a346527a71675dee9caa6216042aa1844de90bf931fe13b515481",
+      "findings": [
+        "Difficulty: this is direct identification of the missing motion constraint; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q003",
+      "questionVersion": 1,
+      "questionSha256": "d276bc41d331dfd88544d5fed0480414e22f6fcb80459133fb8db7de0ad69d8a",
+      "findings": [
+        "Distractor quality: o3 makes collision risk irrelevant and o4 makes sensor range irrelevant, rather than competing interpretations of the stated optimality objective.",
+        "Difficulty: this is recognition that an objective sentence is not a proof; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q006",
+      "questionVersion": 1,
+      "questionSha256": "2c646d96f90cee927f3ca2f9646050cf9c018b264887ce51896bd4840004b711",
+      "findings": [
+        "Citation/source fidelity: The only explicit citation p1140 mentions sensors and memory, but the key also asserts leave-rule differences. Add precise premises on p1141/p1143/p1145 for those rules."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q007",
+      "questionVersion": 1,
+      "questionSha256": "d8e4e0dd5809efdc31f57189c1ab056b7cb416c6d329767d7bea9e8dc5ae38d2",
+      "findings": [
+        "Difficulty: this is definition of wall following; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q010",
+      "questionVersion": 1,
+      "questionSha256": "4d62cd62fb6fea173898339a2337d85f942e9dd016fb8782bd4ee4249cfa4e89",
+      "findings": [
+        "Distractor quality: o3 cannot distinguish modes and o4 discards readings before using them are category errors; contrast plausible retained-state subsets."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q011",
+      "questionVersion": 1,
+      "questionSha256": "b94f781c3809c30b5823c93bbcbbbaf8ba57f302a5c8c9c53981c34e1f6d893a",
+      "findings": [
+        "Distractor quality: o4 claims renaming a U-shaped obstacle restores completeness, an implausible word-play distractor.",
+        "Difficulty: this is the stem already states reachable-goal cycling; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q012",
+      "questionVersion": 1,
+      "questionSha256": "3e3763eb67cd7a179b701793dec1cb3a224d8f48a78309482c631a794ca92b52",
+      "findings": [
+        "Citation/source fidelity: p1142 states Bug0 non-completeness but does not explicitly define shortest-path optimality. Cite the actual definition/prerequisite and mark the comparison as derived rather than explicit on this page."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q016",
+      "questionVersion": 1,
+      "questionSha256": "e5ff7e21a91397c573ca0880e58c71a306fc5a7c85477b4e498d401690da2be9",
+      "findings": [
+        "Difficulty: this is compare two supplied goal distances under one stated rule; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q017",
+      "questionVersion": 1,
+      "questionSha256": "9d4f0c7b9e490a4167c3cfaa6bfea2f34780336a5264153daa13d0d39f3920b1",
+      "findings": [
+        "Distractor quality: o2 makes H the goal, o3 assumes an obstacle diameter, and o4 predetermines L before observing; use plausible hit/leave/return-point confusions."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q021",
+      "questionVersion": 1,
+      "questionSha256": "31d3525665178f4dccd40a3fddffe8384060f334edbd330dab71235ee5ed4817",
+      "findings": [
+        "Difficulty: this is single closer-crossing application; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q022",
+      "questionVersion": 1,
+      "questionSha256": "5ea6df2941df60f770266316b8985bda7dcf66b55431f6f043ab25de6f14c1b8",
+      "findings": [
+        "Difficulty: this is one conjunction of explicit line and distance tests; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q024",
+      "questionVersion": 1,
+      "questionSha256": "2f20039438dd639b718d60bb8282cdc92e22464bbc1b18e891b596469fbdd25e",
+      "findings": [
+        "Distractor quality: o3 invents a neural policy and o2/o4 infer full maps or exact trajectory logs from one reading; contrast realistic retained reference states.",
+        "Citation/source fidelity: p1146 is the qualified sensor-use claim; retained start–goal line and closer-hit test are explicitly on p1145. Add that premise so the correction is source-complete."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q025",
+      "questionVersion": 1,
+      "questionSha256": "041fb44192a3a667392b8f3b60f0c1d78997ff93a4b16134c61c8af73e14bd48",
+      "findings": [
+        "Difficulty: this is direct qualified comparison recall; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q026",
+      "questionVersion": 1,
+      "questionSha256": "e1588b73600c8406950abc8ff326b1a95fc301ba40e601af951b9b310b4adb8a",
+      "findings": [
+        "Distractor quality: Momentum as steering angle, turning radius as force, and both as goal distance are obvious category errors rather than close kinematics/dynamics confusions."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q027",
+      "questionVersion": 1,
+      "questionSha256": "d716edb14587039a11f156dc9d48cd7dce908ef3fe913cc1283aeea68b5ba710",
+      "findings": [
+        "Distractor quality: o3 redefines the geometric goal line from noise and o4 grants arbitrary-error immunity; use plausible filtering, hysteresis or mode-switch interpretations.",
+        "Difficulty: this is recognition of noisy switching; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q028",
+      "questionVersion": 1,
+      "questionSha256": "3e6f075d61e541df2ae491f135ab00b6ca6702738184fe0a4732928ae57dd66c",
+      "findings": [
+        "Distractor quality: o3 replaces the goal with average range and o2 removes all sensor dependence; alternatives should compare plausible evidence-aggregation effects.",
+        "Difficulty: this is direct purpose of accumulated evidence; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q032",
+      "questionVersion": 1,
+      "questionSha256": "12522e78cdf234e1a1adcc7ecf985b6a1acb2457b44196fefda83e9aa67419e2",
+      "findings": [
+        "Distractor quality: Range in metres and A* path cost are unrelated quantities here; use parallel certainty/probability/calibration interpretations.",
+        "Difficulty: this is definition of certainty versus probability; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content.",
+        "Citation/source fidelity: p1149 says confidence/certainty, not the conflict wording “obstacle probabilities.” That wording is on p1148. Cite p1148 as the conflict and p1149 as the update premise, rather than attributing the wording to the wrong page."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q034",
+      "questionVersion": 1,
+      "questionSha256": "cf53251a0171fc0b700c7a8a4787ddabf51d44a3a23aa53e1e58561f0f4035a2",
+      "findings": [
+        "Distractor quality: o3 removes pose updates and o4 turns all uncertainty into collision; use credible local-window trade-offs.",
+        "Difficulty: this is direct purpose of a local active window; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q035",
+      "questionVersion": 1,
+      "questionSha256": "066e6d1d78f0d2afefcca8b23f45e698e8f69f3b482d6dc65044efbac282f434",
+      "findings": [
+        "Distractor quality: o3 concerns saved-file order and o4 makes the wall move with the robot; use frame registration, timestamp or pose-compensation errors.",
+        "Difficulty: this is one-step pose-registration recognition; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q037",
+      "questionVersion": 1,
+      "questionSha256": "357ee2e95d15ee49f0a911d9d60c5afaac561de778aa26b0331452ae4c665e5d",
+      "findings": [
+        "Difficulty: this is read a histogram peak and axis; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content.",
+        "The p1150 histogram labels alpha and -180/0/+180 but does not tie 0 degrees to the robot’s forward heading. The keyed “forward ... illustrated coordinate convention” is unsupported. Define 0 as forward in the stem or remove the forward assertion; density near alpha=0 is supported. Intended o1 agreement is conditional, not an unqualified unique supported answer."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q038",
+      "questionVersion": 1,
+      "questionSha256": "3c973074b8ad358541db2fa1e2d92f56380b4c6251fbb320bf580e6ddbedce6f",
+      "findings": [
+        "Difficulty: this is recognize an unstated equality convention; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content.",
+        "Citation/source fidelity: The absence of an equality rule is observable on p1150, but the implementation recommendation is an inference. Mark the citation as premise and identify the threshold bullet, not an explicit source prescription."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q039",
+      "questionVersion": 1,
+      "questionSha256": "04d180f563660fae71f614fa7c08309a42a257f1368a0b25ef181f2de740054f",
+      "findings": [
+        "Distractor quality: o4 says negative angles are impossible; replace with a credible circular adjacency mistake.",
+        "The o3 rationale calls the ±180-degree direction “backward,” although no zero-forward convention is stated. Remove the physical heading label or explicitly define the frame. Circular connectedness itself is correct."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q042",
+      "questionVersion": 1,
+      "questionSha256": "27504add8735ad10512a28b94081e9ef57d9ebd3f09b33b655022af9b00dda5f",
+      "findings": [
+        "Distractor quality: o4 rejects the opening merely because it has multiple directions; use plausible candidate-selection rules.",
+        "Difficulty: this is direct application of the wide-opening rule; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q043",
+      "questionVersion": 1,
+      "questionSha256": "c0b73e263f4f552a30090dc4aeb4b5da0b0b93604a6fba55afb2d4bcbb024715",
+      "findings": [
+        "Distractor quality: o3 changes physical robot width when sector count changes; keep alternatives within plausible angular/metric clearance errors.",
+        "Citation/source fidelity: p1151 discusses angular sectors and robot width but does not explicitly state the range-to-metric-width inference. Mark premise and explain the geometric inference under the stated equal-span setup."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q044",
+      "questionVersion": 1,
+      "questionSha256": "92ff376c92530cd8c3d53310c854f77d89db7bbd36b6c5d254c1f7293c58a7bd",
+      "findings": [
+        "Difficulty: this is recognize that blocked choices are not feasible; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content.",
+        "Citation/source fidelity: p1151 addresses no valley in the goal’s general direction, not the case where every direction is blocked or speed is reduced. Add the appropriate masking/recovery premise (p1153 and the already available VFH+ primary paper) and distinguish these two cases."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q047",
+      "questionVersion": 1,
+      "questionSha256": "d7edaab3e037cfe2cd3017fe3fde05d330f061e478e03c53372ed7dacb2a40bc",
+      "findings": [
+        "The o3 rationale says the 100/100 tie omits A’s previous-direction contribution. A without that term is 5×10+2×20=90, not 100. Correct the mechanism or change the distractor, preserving the valid keyed costs A=150 and B=100."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q048",
+      "questionVersion": 1,
+      "questionSha256": "a29c07f0a16ca5a9558fcfc4695b58f1eebab4647159a818e4ff649020c96541",
+      "findings": [
+        "Difficulty: this is common positive scaling preserves order; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q050",
+      "questionVersion": 1,
+      "questionSha256": "b737f9049e93ed9eae33f340e25f8cc1275737a2b1b5b12395f9408089379d5b",
+      "findings": [
+        "Distractor quality: o4 claims maximum cost must be safer and o3 drops status entirely; compare plausible feasibility/ranking order mistakes.",
+        "Difficulty: this is apply feasibility before ranking; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content.",
+        "Citation/source fidelity: p1152 supplies angular costs; the blocked/free candidate restriction comes from p1150/p1151 or p1153. Add the feasibility premise rather than citing only the ranking equation."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q052",
+      "questionVersion": 1,
+      "questionSha256": "e0c3ea70099bb82731e118ba305e3afa57ae49f669876837df816016fb70bd29",
+      "findings": [
+        "Distractor quality: o3 guarantees instantaneous turns and o4 replaces obstacle evidence with a Bug goal line; use actual mask/width/cost-stage confusions.",
+        "Difficulty: this is identify trajectory masking from its description; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q054",
+      "questionVersion": 1,
+      "questionSha256": "18968185f5000d62c670e37c1420aa3b679c2806abc92bb244475f799f75e38f",
+      "findings": [
+        "Distractor quality: o3 removes obstacle sensing in favor of target-only guarantees; keep the historical algorithm comparisons parallel."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q055",
+      "questionVersion": 1,
+      "questionSha256": "84922dfc2e47e45cbc35b870edf68798d4d93e06597c2e9334ca8bf8a494dc6d",
+      "findings": [
+        "Distractor quality: o2 permits sideways differential-drive translation and o4 erases motion limits with map accuracy; use realistic zero-speed versus moving-turn distinctions.",
+        "Difficulty: this is recognize in-place rotation in an ideal differential drive; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content.",
+        "Citation/source fidelity: The in-place differential-drive exception is not explicit on p1153. Mark this source as a premise/qualification and tie the exception to the primary paper or earlier course kinematics, rather than attributing it directly to this slide."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q056",
+      "questionVersion": 1,
+      "questionSha256": "1452916b57bf902c230881bdda0683ffdc9be73e309227786dc5cc5474bd477c",
+      "findings": [
+        "Distractor quality: o4 erases the certainty grid when speed changes; use plausible mask-recomputation or speed-bound errors.",
+        "Difficulty: this is the stem explicitly states lower-speed feasibility; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q057",
+      "questionVersion": 1,
+      "questionSha256": "77e1b2c6af12e33410ee1e776055cb8c5ae712ce5f6df8f947b893e25b8b9f7e",
+      "findings": [
+        "Distractor quality: o3 global completeness and o4 Bug memory are unrelated to interpreting cost/noise labels; use parallel qualitative/quantitative comparison claims.",
+        "Difficulty: this is recognize qualitative labels rather than numerical guarantees; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content.",
+        "Citation/source fidelity: p1154 is a table, not prose under a displayed heading. Use kind table and exact Computational cost/Noise robustness rows; the interpretation is qualified inference."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q058",
+      "questionVersion": 1,
+      "questionSha256": "926f2b0befc424066ff1ac93985530a13df78b8f43cf1075735cf6b93f41ee71",
+      "findings": [
+        "Difficulty: this is recall qualified completeness properties; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content.",
+        "Citation/source fidelity: p1154 is a table. Use kind table and the Completeness guarantee row, with the ideal-model qualifier clearly distinguished."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q059",
+      "questionVersion": 1,
+      "questionSha256": "261f914fad80e136723fb99be93405c8e8ed0ee9366f74902bd63f800bf08f40",
+      "findings": [
+        "Distractor quality: o3 makes a shared model file confer collision freedom; use plausible whole-link, sampled-path or endpoint-only errors."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q061",
+      "questionVersion": 1,
+      "questionSha256": "5e301a1cad60fad266d2dcd69e5b04b499319a0085a68572501108ba90b7646b",
+      "findings": [
+        "Difficulty: this is identify two angle coordinates and one displacement; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q062",
+      "questionVersion": 1,
+      "questionSha256": "8f2ab2a86239356e04fd5c7f2d8f3a26ccbe3598533a34dc16d8fc280823c3b6",
+      "findings": [
+        "Distractor quality: o3 uses obstacle count and o4 doubles dimensions for start and goal; replace with plausible configuration/task-space coordinate confusions."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q063",
+      "questionVersion": 1,
+      "questionSha256": "55c186b8cf66def62db50c02de1e4fcbea8c1c470d4412c8f7e977757b21a452",
+      "findings": [
+        "Distractor quality: o4 marks every nonzero joint angle colliding; use realistic C-space region, path or workspace projection confusions."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q064",
+      "questionVersion": 1,
+      "questionSha256": "4741c13e9a28cd6123e5f92e01ef2a32cf3908e185d9982de874a600fc75b64e",
+      "findings": [
+        "Citation/source fidelity: The reversed arrow is in the p1156 figure, not a statement under the heading. Use kind figure and identify the Workspace → Configuration Space arrow labeled Forward Kinematics."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q065",
+      "questionVersion": 1,
+      "questionSha256": "efe3888160ba9f67c9886764432d787d3608ef5d66ec4b0c19f347e4d34dbef1",
+      "findings": [
+        "Distractor quality: o2 copies one Cartesian coordinate into all joints and o3 uses vector norm as collision test; use credible geometry-check omissions.",
+        "Difficulty: this is recognize configuration-to-geometry collision checking; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q066",
+      "questionVersion": 1,
+      "questionSha256": "23164781cc669b2975b268af11ea75acddfe9be01bb5d53600a5d485dce75582",
+      "findings": [
+        "Distractor quality: o3 compares vector lengths and o4 only checks final x sign; use plausible interpolation/sampling/swept-volume errors.",
+        "Difficulty: this is recognize endpoint clearance is insufficient; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q067",
+      "questionVersion": 1,
+      "questionSha256": "e0545eba96a50eb1237112892615f07acb328f3a254a0d74483af98af6a9796b",
+      "findings": [
+        "Distractor quality: o4 multiplies goal by obstacle count and o3 treats a scalar as a direction vector; retain sign/normalization/gradient misconceptions in parallel vector form.",
+        "Citation/source fidelity: p1157 gives the downhill-force analogy but does not print the negative-gradient formula. Mark the source as premise and explicitly identify the mathematical interpretation, supported by the primary potential-field reference."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q068",
+      "questionVersion": 1,
+      "questionSha256": "a953b2969fd7938be6f2be68c1850193e4e6289deca3c2d8bfbb71c8cb83a367",
+      "findings": [
+        "Distractor quality: o2 makes measured gravity vanish at every obstacle; use plausible distinctions between virtual guidance and actuator commands.",
+        "Citation/source fidelity: The computational-versus-literal-force explanation is an interpretation of the artificial-field analogy, not an explicit sentence on p1157. Mark premise and retain the distinction in the solution."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q072",
+      "questionVersion": 1,
+      "questionSha256": "ce81ab7e787b9b4806b1a8745defcf212856e633023c9a349606d3d1df56425c",
+      "findings": [
+        "Distractor quality: o2 makes all repulsive terms cancel by definition and o4 ignores gradients; use parallel differentiable force-combination errors.",
+        "Difficulty: this is linearity of the gradient for a stated sum; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q073",
+      "questionVersion": 1,
+      "questionSha256": "dfaa350eac2daa431b484473c0d3e9cbeb49c4a86dd18a36e83880d46fb184af",
+      "findings": [
+        "Distractor quality: o4 assigns the base pose to all articulated links; use plausible link/control-point coverage omissions.",
+        "Difficulty: this is direct whole-arm field requirement; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q074",
+      "questionVersion": 1,
+      "questionSha256": "03b4866cd47cc97d0893c9a9231b9efee57dffbd09a004b6d04682142080d983",
+      "findings": [
+        "Difficulty: this is one Cartesian-product count, 20^6; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q075",
+      "questionVersion": 1,
+      "questionSha256": "c641d34aa9f2720b41d2afd952bffa56a160f8ada4a489ba75947dbeec4dd61d",
+      "findings": [
+        "Difficulty: this is one-factor growth law; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content.",
+        "The domain permits m=1, making multiplication by m, unchanged count and division by m coincide. For a one-joint old grid with m=2, increase by exactly m also holds for that instance. Explicitly ask for the general law across allowed m,n, or constrain the instance to avoid option equivalence (for example m≥2 and at least two old independent joints)."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q077",
+      "questionVersion": 1,
+      "questionSha256": "e84f963b3b451f3be35a70ebbd9eaac4e9db226b8390baaa7bf6981c1db42cd7",
+      "findings": [
+        "Difficulty: this is recognize a stated non-goal local-minimum trap; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q078",
+      "questionVersion": 1,
+      "questionSha256": "3516f64f43b8b1b73959257bff5bb35b3c165a03c98e7ffe1c6d3e0f71402772",
+      "findings": [
+        "Distractor quality: All wrong alternatives change mechanical degrees of freedom, rename angles as distances, or only change display color. Replace with realistic moving-obstacle/C-space update errors."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q079",
+      "questionVersion": 1,
+      "questionSha256": "8d75e8f9684d9b8373c3e967e23b1479c5e8543119a1e7204ba17afa7abbd291",
+      "findings": [
+        "Distractor quality: o3 changes physical degrees of freedom through training and o4 guarantees error-free unseen recognition; use plausible perception/planning role confusions."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q080",
+      "questionVersion": 1,
+      "questionSha256": "c9ec4b2a24f611d9b7b889ec80b3f3c02ec38f3ac1ac3b570d2be7c574766a15",
+      "findings": [
+        "Distractor quality: o3 compares network layer counts and o4 declares learned thresholds universally optimal; use competing deployment-validation criteria.",
+        "Difficulty: this is generic deployment-validation requirement; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q081",
+      "questionVersion": 1,
+      "questionSha256": "0401ec308bf65a09284026d71fb53c7ab74be9ffb23e369a2300730a9f972281",
+      "findings": [
+        "Distractor quality: o2 turns weights into coordinates and o4 equates every field to VFH cost; use close mathematical-role or normalization confusions.",
+        "Difficulty: this is direct comparison of explicitly named parameter roles; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q082",
+      "questionVersion": 1,
+      "questionSha256": "84633a07264ca3610ba4bfad8782faa8d287c173521728b72a70707758e29a98",
+      "findings": [
+        "Distractor quality: o3 provides omniscient future obstacles and o4 proves zero training collisions; use plausible policy/reward/value roles."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q083",
+      "questionVersion": 1,
+      "questionSha256": "84179f8f6ff373a3fe97827fcb6d2614ccdbbeec80727c20604474998a3dd0c1",
+      "findings": [
+        "Distractor quality: The incorrect pairs mix state estimates, rewards and labels against physical commands, allowing category elimination; use parallel mobile/manipulator action mappings."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q084",
+      "questionVersion": 1,
+      "questionSha256": "934d72b134d00b0759b419530d77c0ee56239a29046eb33eb1cf74fe1658677d",
+      "findings": [
+        "Distractor quality: Every wrong alternative asserts an absolute guarantee, while the keyed option alone is cautious. Use plausible reward/constraint trade-offs instead.",
+        "Citation/source fidelity: p1161 lists reward/penalty terms; their lack of a safety guarantee is a derived qualification rather than an explicit source assertion. Mark premise and explain the inference."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q085",
+      "questionVersion": 1,
+      "questionSha256": "fada1124fa0febf4aacfe929255e32c7d22fc9c00a4ba7efcfa955f78cfcb916",
+      "findings": [
+        "Distractor quality: o3 denies that the observed trap existed and o4 removes constraints; use realistically bounded claims from one successful test.",
+        "Difficulty: this is recognize that one successful case is not universal evidence; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content."
+      ]
+    },
+    {
+      "questionId": "W08-L37-Q086",
+      "questionVersion": 1,
+      "questionSha256": "381fde54623701b99b224d4f47d40ac3abec9867c9663d615a9dca00857be43b",
+      "findings": [
+        "Distractor quality: o3 permanently discards the goal and o4 ignores every non-tool link; use coherent alternative planner/controller architectures.",
+        "Difficulty: this is same direct local/global role recognition as Q001; the current task is easy, not medium. Relabel or add genuine reasoning without importing unsupported content.",
+        "This repeats Q001’s global-route/local-sensing architecture with no new required operation. A summary page is not a new concept. Consolidate its source reference or replace with an actual unrepresented comparison angle."
+      ]
+    }
+  ]
+}

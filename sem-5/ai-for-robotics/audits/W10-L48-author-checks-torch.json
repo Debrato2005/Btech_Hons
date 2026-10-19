@@ -1,0 +1,125 @@
+{
+  "checkedAt": "2026-10-19T22:33:08.691066+00:00",
+  "scope": "Author-added tensor checks, not independent review or pretrained speech inference. Existing dependency environment used read-only.",
+  "versions": {
+    "torch": "2.14.1+cpu",
+    "numpy": "2.5.2"
+  },
+  "checks": [
+    {
+      "name": "Source-style cross-correlation, padding one",
+      "actual": [
+        [
+          [
+            -2.0,
+            -2.0,
+            -2.0,
+            3.0
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          [
+            -2,
+            -2,
+            -2,
+            3
+          ]
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "Stride two",
+      "actual": [
+        [
+          [
+            -2.0,
+            -2.0
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          [
+            -2,
+            -2
+          ]
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "Length preserving width one",
+      "actual": [
+        1,
+        1,
+        4
+      ],
+      "expected": [
+        1,
+        1,
+        4
+      ],
+      "passed": true
+    },
+    {
+      "name": "Whisper-style two temporal convolution lengths",
+      "actual": [
+        3000,
+        1500
+      ],
+      "expected": [
+        3000,
+        1500
+      ],
+      "passed": true
+    },
+    {
+      "name": "no_grad disables result gradient tracking",
+      "passed": true
+    },
+    {
+      "name": "no_grad does not set evaluation mode",
+      "passed": true
+    },
+    {
+      "name": "Stereo squeeze shape",
+      "actual": [
+        2,
+        160
+      ],
+      "expected": [
+        2,
+        160
+      ],
+      "passed": true
+    },
+    {
+      "name": "Mono squeeze shape",
+      "actual": [
+        160
+      ],
+      "expected": [
+        160
+      ],
+      "passed": true
+    },
+    {
+      "name": "Hann and Hamming initial weights differ",
+      "actual": [
+        0.0,
+        0.08000001311302185
+      ],
+      "expected": [
+        0.0,
+        0.08
+      ],
+      "passed": true
+    }
+  ],
+  "namedChecks": 9,
+  "variedChecks": 500,
+  "pretrainedModelExecuted": false
+}

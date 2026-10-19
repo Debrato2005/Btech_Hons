@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-10-19T19:28:56.708651+00:00",
+  "sourceVersion": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+  "officialDocumentationCheckedOn": "2026-10-19",
+  "installedSklearnVersion": "1.8.0",
+  "issues": [
+    {
+      "pages": [
+        861
+      ],
+      "claim": "color == red displayed next to n-way categorical description",
+      "qualification": "The shown equality is binary; a separate multiway category test can have one branch per category."
+    },
+    {
+      "pages": [
+        870
+      ],
+      "claim": "scikit-learn supports only pre-pruning",
+      "qualification": "The documented ccp_alpha parameter supports minimal cost-complexity post-pruning; it was added in 0.22.",
+      "officialSource": "https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html"
+    },
+    {
+      "pages": [
+        870
+      ],
+      "claim": "min_samples_leaf described as a parent-node sample requirement",
+      "qualification": "The integer leaf constraint applies to each child of a proposed split; min_samples_split is a separate parent-node condition.",
+      "officialSource": "https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html"
+    },
+    {
+      "pages": [
+        873
+      ],
+      "claim": "Root displays Stable despite equal class counts",
+      "qualification": "The label is tie-breaking, not a strict majority; plotted thresholds are rounded, not exact estimator values."
+    },
+    {
+      "pages": [
+        874,
+        883
+      ],
+      "claim": "Cannot extrapolate and predicts last seen value",
+      "qualification": "Prediction outside input range is possible; mean-leaf predictions do not automatically extend a numerical target trend and need not equal the last chronological target.",
+      "officialSource": "https://scikit-learn.org/stable/modules/tree.html"
+    },
+    {
+      "pages": [
+        880,
+        881
+      ],
+      "claim": "Forest code and binary figure appear near the three-class fall example",
+      "qualification": "The snippet uses undefined X_train/y_train names and the plotted binary data are not the earlier three-class synthetic dataset; no exact plot reproduction is claimed."
+    },
+    {
+      "pages": [
+        882
+      ],
+      "claim": "RandomForestRegressor defaults to log2(n_features)",
+      "qualification": "Current official default is max_features=1.0, meaning all features; classifier default sqrt is distinct.",
+      "officialSource": "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html"
+    },
+    {
+      "pages": [
+        884
+      ],
+      "claim": "Forests outperform a single tree on all robotics benchmarks",
+      "qualification": "No all-benchmarks evidence is provided; applications and prototype advice are not deployment or safety validation."
+    }
+  ],
+  "classificationAggregationSource": "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html"
+}

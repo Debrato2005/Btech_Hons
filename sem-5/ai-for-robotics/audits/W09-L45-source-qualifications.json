@@ -1,0 +1,117 @@
+{
+  "batchId": "W09-L45",
+  "authorOnly": true,
+  "independentReviewRequired": true,
+  "entries": [
+    {
+      "questionId": "W09-L45-Q010",
+      "pages": [
+        1409,
+        1410
+      ],
+      "sourceClaim": "The slide’s augmentation blocks mix M as a landmark count with M as a state dimension; this question explicitly uses M 2D landmarks.",
+      "qualification": "The old state has 2M coordinates and the new landmark adds two, so every covariance dimension is 2M+2."
+    },
+    {
+      "questionId": "W09-L45-Q011",
+      "pages": [
+        1410,
+        1411
+      ],
+      "sourceClaim": "The slide prints Gx=∂g/∂x_v as an all-zero matrix in ideal localization; the derivative itself is nonzero.",
+      "qualification": "Knowing a variable exactly removes its uncertainty contribution, not the mathematical dependence of the inverse model on that variable."
+    },
+    {
+      "questionId": "W09-L45-Q014",
+      "pages": [
+        1411
+      ],
+      "sourceClaim": "The slide writes arctan(dy/dx), which needs quadrant handling; this item explicitly uses atan2.",
+      "qualification": "atan2(dy,dx) uses both coordinate signs and returns 135° for the second quadrant."
+    },
+    {
+      "questionId": "W09-L45-Q032",
+      "pages": [
+        1419,
+        1420
+      ],
+      "sourceClaim": "The slide prints a two-element noise Jacobian beside scalar measurement noise; this question explicitly uses the dimensionally consistent scalar noise model.",
+      "qualification": "The two state variances contribute 0.5+1, and measurement variance adds 0.25, giving 1.75."
+    },
+    {
+      "questionId": "W09-L45-Q035",
+      "pages": [
+        1420
+      ],
+      "sourceClaim": "The printed posterior off-diagonal is 0.143; direct multiplication and the Joseph covariance form both give 2/7≈0.285714.",
+      "qualification": "The first row of I−K H is (5/7,2/7), so multiplying by diag(0.5,1) gives the cross entry 2/7."
+    },
+    {
+      "questionId": "W09-L45-Q039",
+      "pages": [
+        1423
+      ],
+      "sourceClaim": "The slide’s most-recent-correlations wording can suggest that EKF forgets prior information; its current joint distribution summarizes past updates.",
+      "qualification": "Filtering compresses historical information into the current joint estimate; graph methods represent multiple poses and their constraints explicitly."
+    },
+    {
+      "questionId": "W09-L45-Q041",
+      "pages": [
+        1424
+      ],
+      "sourceClaim": "The slide prints a planar matrix with both off-diagonal sine entries positive; the question states the standard counterclockwise convention.",
+      "qualification": "The standard rotation sends the +x unit vector to (cos a,sin a) and preserves orthonormal axes with determinant +1."
+    },
+    {
+      "questionId": "W09-L45-Q044",
+      "pages": [
+        1424,
+        1426
+      ],
+      "sourceClaim": "The slides pass from a transform residual to fᵀΩf without defining the minimal vector representation; this question makes that required convention explicit.",
+      "qualification": "A planar residual can be represented by three coordinate errors; Ω must act on that vector in the same convention."
+    },
+    {
+      "questionId": "W09-L45-Q051",
+      "pages": [
+        1429
+      ],
+      "sourceClaim": "The introduction broadly says SLAM requires depth sensing and is unsuitable for resource-constrained robots; these are not universal requirements.",
+      "qualification": "The appropriate method depends on sensors, algorithms, hardware and the task; the motivation is not a universal impossibility result."
+    },
+    {
+      "questionId": "W09-L45-Q055",
+      "pages": [
+        1430
+      ],
+      "sourceClaim": "The same slide emphasizes texture rather than color but also lists hue, saturation and luminosity; preserve the combined-feature interpretation.",
+      "qualification": "The slide lists both color and texture attributes, so the distinction is from color-only matching, not a prohibition on color."
+    },
+    {
+      "questionId": "W09-L45-Q069",
+      "pages": [
+        1435
+      ],
+      "sourceClaim": "The figure labels v=300 as the horizon although its own level-camera equation and principal point imply v=200.",
+      "qualification": "The fraction tends to zero, so the horizon for this level-camera equation is v0=200."
+    },
+    {
+      "questionId": "W09-L45-Q075",
+      "pages": [
+        1430,
+        1436
+      ],
+      "sourceClaim": "The slides describe reliable safe regions and ensuring collision-free motion; those phrases do not prove safety under all real sensing and motion conditions.",
+      "qualification": "An appearance classification is only one input to a physical safety decision and depends on several assumptions."
+    }
+  ],
+  "additionalScope": [
+    "Source code examples were reconstructed and executed with official PyPI RTB 1.4.4; the original Lecture45 notebook was not found in the checked course directory.",
+    "Map colors without legends are not assigned invented occupancy meanings.",
+    "Static landmark corrections change estimates, not physical objects.",
+    "Topological maps can be augmented with metric attributes; the bare graph distinction is explicit.",
+    "A generalized pose-landmark graph differs from a pure pose graph.",
+    "Floor-finding perspective calculations assume calibrated level camera, flat floor and floor-contact points.",
+    "Pixel erosion is not a substitute for physical robot-clearance validation."
+  ]
+}

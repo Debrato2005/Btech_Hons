@@ -1,0 +1,710 @@
+{
+  "completedAt": "2026-10-19T22:29:02.967836+00:00",
+  "reviewerId": "robotics-contracts-independent-reviewer",
+  "pagesInspected": [
+    1297,
+    1298,
+    1299,
+    1300,
+    1301,
+    1302,
+    1303,
+    1304,
+    1305,
+    1306,
+    1307,
+    1308,
+    1309,
+    1310,
+    1311,
+    1312,
+    1313,
+    1314,
+    1315,
+    1316,
+    1317,
+    1318,
+    1319,
+    1320,
+    1321,
+    1322,
+    1323,
+    1324,
+    1325,
+    1326,
+    1327,
+    1328,
+    1329,
+    1330,
+    1331,
+    1332,
+    1333,
+    1334,
+    1335,
+    1336,
+    1337,
+    1338,
+    1339
+  ],
+  "substantivePages": [
+    1300,
+    1301,
+    1302,
+    1303,
+    1304,
+    1305,
+    1306,
+    1307,
+    1308,
+    1309,
+    1310,
+    1311,
+    1312,
+    1313,
+    1314,
+    1315,
+    1316,
+    1317,
+    1318,
+    1319,
+    1320,
+    1321,
+    1322,
+    1323,
+    1324,
+    1325,
+    1326,
+    1327,
+    1328,
+    1329,
+    1330,
+    1331,
+    1332,
+    1333,
+    1334,
+    1335,
+    1336,
+    1337
+  ],
+  "pageCoverage": [
+    {
+      "physicalPage": 1297,
+      "questionIds": [],
+      "conceptIds": [],
+      "notes": "Title Lecture 42: Genetic Algorithms for Path Planning of Robots; institution/decorative."
+    },
+    {
+      "physicalPage": 1298,
+      "questionIds": [],
+      "conceptIds": [],
+      "notes": "Learning outcomes: planning optimization, encode chromosome/fitness by hand, compare classical/hybrid methods."
+    },
+    {
+      "physicalPage": 1299,
+      "questionIds": [],
+      "conceptIds": [],
+      "notes": "Agenda: planning, encoding, worked fitness/selection/crossover/mutation, strengths/limits/hybrids."
+    },
+    {
+      "physicalPage": 1300,
+      "questionIds": [
+        "W09-L42-Q001",
+        "W09-L42-Q002"
+      ],
+      "conceptIds": [
+        "W09-L42-C-planner-role",
+        "W09-L42-C-objective-constraint"
+      ],
+      "notes": "Planner between perception/control. Inputs map, start pose, goal pose, motion constraints. Objectives distance, smoothness, energy, safety margin."
+    },
+    {
+      "physicalPage": 1301,
+      "questionIds": [
+        "W09-L42-Q003"
+      ],
+      "conceptIds": [
+        "W09-L42-C-multiobjective-motivation"
+      ],
+      "notes": "Population iteration for complex layouts/local dead ends; shortest distance alone ignores safety, smoothness and effort; exhaustive waypoint enumeration impractical."
+    },
+    {
+      "physicalPage": 1302,
+      "questionIds": [
+        "W09-L42-Q004"
+      ],
+      "conceptIds": [
+        "W09-L42-C-ga-cycle"
+      ],
+      "notes": "Initialize, evaluate, select, recombine, mutate. No mathematical guarantee of global optimum."
+    },
+    {
+      "physicalPage": 1303,
+      "questionIds": [
+        "W09-L42-Q005"
+      ],
+      "conceptIds": [
+        "W09-L42-C-terminology"
+      ],
+      "notes": "Gene decision variable, chromosome full path, population collection, scalar fitness, biased selection, generation cycle."
+    },
+    {
+      "physicalPage": 1304,
+      "questionIds": [
+        "W09-L42-Q002",
+        "W09-L42-Q006"
+      ],
+      "conceptIds": [
+        "W09-L42-C-objective-constraint",
+        "W09-L42-C-soft-goal"
+      ],
+      "notes": "Cost length + obstacle penalty + turn penalty + goal error. Printed claims removes unsafe paths / ensures goal overstate finite penalties unless constraints/fixed endpoint."
+    },
+    {
+      "physicalPage": 1305,
+      "questionIds": [
+        "W09-L42-Q007"
+      ],
+      "conceptIds": [
+        "W09-L42-C-encodings"
+      ],
+      "notes": "Waypoint list, heading sequence, control-parameter encodings."
+    },
+    {
+      "physicalPage": 1306,
+      "questionIds": [
+        "W09-L42-Q008"
+      ],
+      "conceptIds": [
+        "W09-L42-C-grid-reading"
+      ],
+      "notes": "6x6 grid S(0,0), G(5,5), obstacles (1,1),(1,2),(2,2),(2,4),(3,2),(4,3). Purple waypoints (1,0),(4,2)."
+    },
+    {
+      "physicalPage": 1307,
+      "questionIds": [
+        "W09-L42-Q006",
+        "W09-L42-Q008",
+        "W09-L42-Q009"
+      ],
+      "conceptIds": [
+        "W09-L42-C-soft-goal",
+        "W09-L42-C-grid-reading",
+        "W09-L42-C-free-waypoints"
+      ],
+      "notes": "[1,0 | 4,2] two waypoint genes, full chromosome S->W1->W2->G; segments must be checked, not merely endpoints."
+    },
+    {
+      "physicalPage": 1308,
+      "questionIds": [
+        "W09-L42-Q010",
+        "W09-L42-Q067",
+        "W09-L42-Q070"
+      ],
+      "conceptIds": [
+        "W09-L42-C-population-diversity",
+        "W09-L42-C-monotone-length",
+        "W09-L42-C-exploration-pressure"
+      ],
+      "notes": "P1(0,3)(4,5), P2(2,1)(5,3), P3(0,2)(3,4), P4(3,0)(5,4), P5(1,3)(4,4), P6(2,0)(5,2). Initial diversity necessary."
+    },
+    {
+      "physicalPage": 1309,
+      "questionIds": [
+        "W09-L42-Q009",
+        "W09-L42-Q011",
+        "W09-L42-Q015",
+        "W09-L42-Q017"
+      ],
+      "conceptIds": [
+        "W09-L42-C-free-waypoints",
+        "W09-L42-C-decoder-order",
+        "W09-L42-C-p1-trace",
+        "W09-L42-C-p2-collisions"
+      ],
+      "notes": "Horizontal-first then vertical Manhattan segment decoder explicitly printed; straight-line crossed-cell checks offered as alternative."
+    },
+    {
+      "physicalPage": 1310,
+      "questionIds": [
+        "W09-L42-Q012",
+        "W09-L42-Q014",
+        "W09-L42-Q040"
+      ],
+      "conceptIds": [
+        "W09-L42-C-cost-evaluation",
+        "W09-L42-C-finite-penalty",
+        "W09-L42-C-finite-grid-bound"
+      ],
+      "notes": "C=L+alpha*Nobs+beta*Nturn; all symbols defined, no literal physical units assigned."
+    },
+    {
+      "physicalPage": 1311,
+      "questionIds": [
+        "W09-L42-Q012",
+        "W09-L42-Q013",
+        "W09-L42-Q014"
+      ],
+      "conceptIds": [
+        "W09-L42-C-cost-evaluation",
+        "W09-L42-C-fitness-domain",
+        "W09-L42-C-finite-penalty"
+      ],
+      "notes": "F=1/(1+C), alpha10,beta1. Finite penalty does not universally make every colliding path worse than every free one."
+    },
+    {
+      "physicalPage": 1312,
+      "questionIds": [
+        "W09-L42-Q015",
+        "W09-L42-Q016",
+        "W09-L42-Q040",
+        "W09-L42-Q067"
+      ],
+      "conceptIds": [
+        "W09-L42-C-p1-trace",
+        "W09-L42-C-p1-fitness",
+        "W09-L42-C-finite-grid-bound",
+        "W09-L42-C-monotone-length"
+      ],
+      "notes": "P1 top/right boundary R5D5, L10, no hits, one turn,C11,F1/12."
+    },
+    {
+      "physicalPage": 1313,
+      "questionIds": [
+        "W09-L42-Q017",
+        "W09-L42-Q018",
+        "W09-L42-Q035"
+      ],
+      "conceptIds": [
+        "W09-L42-C-p2-collisions",
+        "W09-L42-C-p2-fraction-error",
+        "W09-L42-C-crossover-claim-scope"
+      ],
+      "notes": "P2 hits1,1;2,2;4,3, four turns,C44. Printed 1/12 fraction contradicts expression1/(1+44) and decimal. Correct1/45."
+    },
+    {
+      "physicalPage": 1314,
+      "questionIds": [
+        "W09-L42-Q019"
+      ],
+      "conceptIds": [
+        "W09-L42-C-p3-p4-tie"
+      ],
+      "notes": "P3 R4D3R1D2, hits2,4, three turns,C23."
+    },
+    {
+      "physicalPage": 1315,
+      "questionIds": [
+        "W09-L42-Q019",
+        "W09-L42-Q035"
+      ],
+      "conceptIds": [
+        "W09-L42-C-p3-p4-tie",
+        "W09-L42-C-crossover-claim-scope"
+      ],
+      "notes": "P4 D3R4D2R1, hits3,2, three turns,C23."
+    },
+    {
+      "physicalPage": 1316,
+      "questionIds": [
+        "W09-L42-Q020"
+      ],
+      "conceptIds": [
+        "W09-L42-C-p5-turns"
+      ],
+      "notes": "P5 R3D1R1D3R1D1, hits2,4, five turns,C25."
+    },
+    {
+      "physicalPage": 1317,
+      "questionIds": [
+        "W09-L42-Q021",
+        "W09-L42-Q067"
+      ],
+      "conceptIds": [
+        "W09-L42-C-p6-violations",
+        "W09-L42-C-monotone-length"
+      ],
+      "notes": "P6 D2R2D3R3, hits2,2 and3,2, three turns,C33."
+    },
+    {
+      "physicalPage": 1318,
+      "questionIds": [
+        "W09-L42-Q022",
+        "W09-L42-Q023",
+        "W09-L42-Q033"
+      ],
+      "conceptIds": [
+        "W09-L42-C-initial-ranking",
+        "W09-L42-C-roulette-normalization",
+        "W09-L42-C-generation-statistics"
+      ],
+      "notes": "Initial table orders P1,P3,P4,P5,P6,P2; rounded fitness total.2568."
+    },
+    {
+      "physicalPage": 1319,
+      "questionIds": [
+        "W09-L42-Q023",
+        "W09-L42-Q024",
+        "W09-L42-Q025",
+        "W09-L42-Q026",
+        "W09-L42-Q068"
+      ],
+      "conceptIds": [
+        "W09-L42-C-roulette-normalization",
+        "W09-L42-C-roulette-draws",
+        "W09-L42-C-selection-callout",
+        "W09-L42-C-crossover-pair-one",
+        "W09-L42-C-selection-expectation"
+      ],
+      "notes": "Roulette intervals and draws select1,2,3,4,4,6. Callout wrongly says P1 selected more than once."
+    },
+    {
+      "physicalPage": 1320,
+      "questionIds": [
+        "W09-L42-Q026",
+        "W09-L42-Q027"
+      ],
+      "conceptIds": [
+        "W09-L42-C-crossover-pair-one",
+        "W09-L42-C-crossover-pairs-two-three"
+      ],
+      "notes": "Whole-waypoint crossover pairs(P1,P3),(P4,P6),(P2,P4), six children verified by swapping second pairs."
+    },
+    {
+      "physicalPage": 1321,
+      "questionIds": [
+        "W09-L42-Q028",
+        "W09-L42-Q029",
+        "W09-L42-Q069",
+        "W09-L42-Q070"
+      ],
+      "conceptIds": [
+        "W09-L42-C-mutation-coordinate",
+        "W09-L42-C-mutation-trace",
+        "W09-L42-C-mutation-probability",
+        "W09-L42-C-exploration-pressure"
+      ],
+      "notes": "Low mutation for diversity; column4->5 in second waypoint ofC1. Too little stagnates, too much randomizes."
+    },
+    {
+      "physicalPage": 1322,
+      "questionIds": [
+        "W09-L42-Q029",
+        "W09-L42-Q030",
+        "W09-L42-Q031",
+        "W09-L42-Q032",
+        "W09-L42-Q033",
+        "W09-L42-Q034",
+        "W09-L42-Q035"
+      ],
+      "conceptIds": [
+        "W09-L42-C-mutation-trace",
+        "W09-L42-C-children-collision-lists",
+        "W09-L42-C-same-phenotype",
+        "W09-L42-C-mean-seven-error",
+        "W09-L42-C-generation-statistics",
+        "W09-L42-C-mutation-crossover-scope",
+        "W09-L42-C-crossover-claim-scope"
+      ],
+      "notes": "Seven evaluation rows include unmutatedC1 comparison, but next population has six mutated/surviving children. C5 uniquely worst in new population."
+    },
+    {
+      "physicalPage": 1323,
+      "questionIds": [
+        "W09-L42-Q032",
+        "W09-L42-Q033"
+      ],
+      "conceptIds": [
+        "W09-L42-C-mean-seven-error",
+        "W09-L42-C-generation-statistics"
+      ],
+      "notes": "Best/worst unchanged, two best. Printed new mean.0473 corresponds to seven rows, not actual six-child mean.0482."
+    },
+    {
+      "physicalPage": 1324,
+      "questionIds": [
+        "W09-L42-Q034"
+      ],
+      "conceptIds": [
+        "W09-L42-C-mutation-crossover-scope"
+      ],
+      "notes": "Printed inequality .0428>.0473 wrong; mutation helpsC1 but C2 reaches same best without mutation, so necessity claim unsupported."
+    },
+    {
+      "physicalPage": 1325,
+      "questionIds": [
+        "W09-L42-Q035",
+        "W09-L42-Q040"
+      ],
+      "conceptIds": [
+        "W09-L42-C-crossover-claim-scope",
+        "W09-L42-C-finite-grid-bound"
+      ],
+      "notes": "C5 parentsP2/P4 already infeasible. C5 ties oldP2 not another newchild. Crossover can alter route geometry but given example does not establish feasible-parent premise."
+    },
+    {
+      "physicalPage": 1326,
+      "questionIds": [
+        "W09-L42-Q036",
+        "W09-L42-Q037",
+        "W09-L42-Q038",
+        "W09-L42-Q039"
+      ],
+      "conceptIds": [
+        "W09-L42-C-pseudocode-order",
+        "W09-L42-C-final-evaluation",
+        "W09-L42-C-elitism-size",
+        "W09-L42-C-repair-limits"
+      ],
+      "notes": "Language-neutral pseudocode, no supplied executable program. It omits explicit elite insertion/size and final-child re-evaluation. Free endpoints do not certify free segments."
+    },
+    {
+      "physicalPage": 1327,
+      "questionIds": [
+        "W09-L42-Q041",
+        "W09-L42-Q042",
+        "W09-L42-Q043",
+        "W09-L42-Q044",
+        "W09-L42-Q045",
+        "W09-L42-Q046",
+        "W09-L42-Q049",
+        "W09-L42-Q050",
+        "W09-L42-Q057"
+      ],
+      "conceptIds": [
+        "W09-L42-C-pendulum-geometry",
+        "W09-L42-C-pendulum-model",
+        "W09-L42-C-endpoint-work",
+        "W09-L42-C-weight-two",
+        "W09-L42-C-numeric-energy",
+        "W09-L42-C-gradient-sign",
+        "W09-L42-C-minimum-proof",
+        "W09-L42-C-hessian-check",
+        "W09-L42-C-negative-fitness"
+      ],
+      "notes": "Uniform frictionless bars, absolute angles from downward vertical, horizontal force atC. Energy -P(l1sin1+l2sin2)-W1l1cos1/2-W2(l1cos1+l2cos2/2). Values2 yield -4sin1-6cos1-4sin2-2cos2."
+    },
+    {
+      "physicalPage": 1328,
+      "questionIds": [
+        "W09-L42-Q046",
+        "W09-L42-Q047",
+        "W09-L42-Q048",
+        "W09-L42-Q049",
+        "W09-L42-Q050"
+      ],
+      "conceptIds": [
+        "W09-L42-C-gradient-sign",
+        "W09-L42-C-stationary-angles",
+        "W09-L42-C-radians-correction",
+        "W09-L42-C-minimum-proof",
+        "W09-L42-C-hessian-check"
+      ],
+      "notes": "Printed derivatives reverse actual gradient signs but zero equations yield same angles. 33.7degrees=0.588 not printed0.558 rad.63.43degrees=1.107. Energyabout-11.68."
+    },
+    {
+      "physicalPage": 1329,
+      "questionIds": [
+        "W09-L42-Q051",
+        "W09-L42-Q052",
+        "W09-L42-Q053",
+        "W09-L42-Q054"
+      ],
+      "conceptIds": [
+        "W09-L42-C-binary-resolution",
+        "W09-L42-C-binary-decode",
+        "W09-L42-C-quantization-error",
+        "W09-L42-C-continuous-discrete"
+      ],
+      "notes": "Four bits perangle, inclusivemap90/(16-1)=6degrees. All16 code levels0..90. Formula Si unsigned value."
+    },
+    {
+      "physicalPage": 1330,
+      "questionIds": [
+        "W09-L42-Q048",
+        "W09-L42-Q049",
+        "W09-L42-Q054",
+        "W09-L42-Q055",
+        "W09-L42-Q056",
+        "W09-L42-Q057",
+        "W09-L42-Q058",
+        "W09-L42-Q059",
+        "W09-L42-Q060"
+      ],
+      "conceptIds": [
+        "W09-L42-C-radians-correction",
+        "W09-L42-C-minimum-proof",
+        "W09-L42-C-continuous-discrete",
+        "W09-L42-C-contour-legend",
+        "W09-L42-C-fitness-maximum-error",
+        "W09-L42-C-negative-fitness",
+        "W09-L42-C-pendulum-table-error",
+        "W09-L42-C-population-rounding",
+        "W09-L42-C-shift-selection"
+      ],
+      "notes": "Contour legend filledsquares leftout,hollowcircle minimum,hollowsquares matingpool. Minimum(.588,1.107). Claim max(-Pi)=8 atzero false. Shift F=-Pi-7 can be negative."
+    },
+    {
+      "physicalPage": 1331,
+      "questionIds": [
+        "W09-L42-Q058",
+        "W09-L42-Q059",
+        "W09-L42-Q060"
+      ],
+      "conceptIds": [
+        "W09-L42-C-pendulum-table-error",
+        "W09-L42-C-population-rounding",
+        "W09-L42-C-shift-selection"
+      ],
+      "notes": "Eight binary population rows. Source36,60fitness4.60 should4.67;12,6;6,30;84,48;42,72 ordinary roundedvalues2.11,3.12,1.92,4.56. Reevaluate and repeat until termination."
+    },
+    {
+      "physicalPage": 1332,
+      "questionIds": [
+        "W09-L42-Q004",
+        "W09-L42-Q061",
+        "W09-L42-Q070"
+      ],
+      "conceptIds": [
+        "W09-L42-C-ga-cycle",
+        "W09-L42-C-runtime-budget",
+        "W09-L42-C-exploration-pressure"
+      ],
+      "notes": "No global optimum guarantee; computation and parameter sensitivity. Offline or faster local-planner hybrid for realtime."
+    },
+    {
+      "physicalPage": 1333,
+      "questionIds": [
+        "W09-L42-Q062",
+        "W09-L42-Q063"
+      ],
+      "conceptIds": [
+        "W09-L42-C-rrt-name",
+        "W09-L42-C-planner-choice"
+      ],
+      "notes": "Classicalknownstructure faster, multiobjectives may require morework;GAflexible/irregular. RRT incorrectly expanded as PRM."
+    },
+    {
+      "physicalPage": 1334,
+      "questionIds": [
+        "W09-L42-Q064"
+      ],
+      "conceptIds": [
+        "W09-L42-C-hybrid-stages"
+      ],
+      "notes": "Global PRM/grid/heuristic feasible seeds; GA refines distance clearance smoothness; PID/MPC/purepursuit/feedbacklinearization tracks."
+    },
+    {
+      "physicalPage": 1335,
+      "questionIds": [
+        "W09-L42-Q065",
+        "W09-L42-Q066"
+      ],
+      "conceptIds": [
+        "W09-L42-C-normalization",
+        "W09-L42-C-visualization-scope"
+      ],
+      "notes": "Occupancy first then geometry collisionchecks; normalization; visualize best everyfivegenerations."
+    },
+    {
+      "physicalPage": 1336,
+      "questionIds": [
+        "W09-L42-Q063",
+        "W09-L42-Q066"
+      ],
+      "conceptIds": [
+        "W09-L42-C-ga-cycle",
+        "W09-L42-C-encodings",
+        "W09-L42-C-cost-evaluation",
+        "W09-L42-C-finite-penalty",
+        "W09-L42-C-finite-grid-bound",
+        "W09-L42-C-rrt-name",
+        "W09-L42-C-planner-choice",
+        "W09-L42-C-hybrid-stages",
+        "W09-L42-C-visualization-scope"
+      ],
+      "notes": "Encoding/fitness/operators crucial, multiobjectivefeasibility, computationalburden andhybrids. Repeats prior concepts."
+    },
+    {
+      "physicalPage": 1337,
+      "questionIds": [
+        "W09-L42-Q006"
+      ],
+      "conceptIds": [
+        "W09-L42-C-ga-cycle",
+        "W09-L42-C-soft-goal",
+        "W09-L42-C-encodings",
+        "W09-L42-C-cost-evaluation",
+        "W09-L42-C-finite-penalty",
+        "W09-L42-C-finite-grid-bound",
+        "W09-L42-C-rrt-name",
+        "W09-L42-C-planner-choice",
+        "W09-L42-C-hybrid-stages"
+      ],
+      "notes": "Summarypopulationoptimization,waypointrepresentation,cost,operators/hybrids;goalerror not in worked fixedgoal cost."
+    },
+    {
+      "physicalPage": 1338,
+      "questionIds": [],
+      "conceptIds": [],
+      "notes": "References only, no new examinablecoursepropositions."
+    },
+    {
+      "physicalPage": 1339,
+      "questionIds": [],
+      "conceptIds": [],
+      "notes": "Thank you, no examinablecontent."
+    }
+  ],
+  "exclusions": {
+    "1297": "Title/decorative metadata",
+    "1298": "Learning objectives, all substantive outcomes reviewed on following pages",
+    "1299": "Agenda, no additional technical content",
+    "1338": "Bibliography, not new course propositions",
+    "1339": "Thank-you slide"
+  },
+  "remainingBoundedGaps": [
+    {
+      "id": "L42-G01",
+      "pages": [
+        1319,
+        1320,
+        1321,
+        1322,
+        1326
+      ],
+      "finding": "Separate normalization, crossover and mutation questions do not test one integrated generation with final evaluation and fixed-size elitism. Q027 repeats a simple swap rather than adding a distinct reasoning angle.",
+      "remedy": "Replace Q027 or add a bounded hard trace with declared draw/pair/mutation/elite rules. Require decoded child costs, current evaluated best and exact next-population membership; do not invent a source-run result."
+    },
+    {
+      "id": "L42-G02",
+      "pages": [
+        1329,
+        1330,
+        1331
+      ],
+      "finding": "No combined binary-chromosome decoding, energy ranking and selection-weight transformation exercise; all current items isolate one step.",
+      "remedy": "Add a source-derived synthesis question with explicit bit operations or positive-weight transformation and declared selection policy. Include full wrong-option arithmetic and distinguish continuous from discrete optima."
+    },
+    {
+      "id": "L42-G03",
+      "pages": [
+        1330
+      ],
+      "finding": "The contour axes extend to 2 radians while the declared feasible domain ends at pi/2. Author notes preserve this but no concept/question tests that distinction.",
+      "remedy": "Add a diagram/domain interpretation item: a displayed point need not be admissible; do not silently expand the optimization bounds."
+    },
+    {
+      "id": "L42-G04",
+      "pages": [
+        1335
+      ],
+      "finding": "The collision-checking tip, occupancy lookup followed by geometric collision tests, is not mapped to a discriminating question; existing p1335 items cover only normalization and plotting.",
+      "remedy": "Add a bounded implementation scenario contrasting coarse occupancy lookup with exact geometry/whole-route checks under explicit point-versus-finite-body assumptions."
+    }
+  ],
+  "sourceQualifications": "Keep original printed arithmetic, derivative, finite-penalty and score-domain conflicts visible. The p1324 arrow misread is corrected separately and must not be counted as a source issue.",
+  "questionVsConcept": "Seventy draft records are not automatically seventy unique concepts. Q012/Q016 are cost-evaluation variants and Q026/Q027 repeat the same crossover operator; ledger should retain page coverage while avoiding inflated unique conceptual coverage.",
+  "tableRemainder": "All eight source pendulum rows were inspected. The omitted direct variants (12,48) and (84,78) evaluate to 4.0113728823 and 1.9336721456; they do not require separate questions merely to inflate totals.",
+  "presentation": "Stored correct option IDs follow a cyclic pattern. Existing answer-independent display/export permutation fix is already recorded centrally; no question mutation is requested merely to change stable IDs.",
+  "releaseComplete": false
+}

@@ -1,0 +1,3054 @@
+[
+  {
+    "id": "W05-L21-Q001",
+    "version": 1,
+    "stem": "Why can linear control theory be useful for a manipulator whose full equations of motion are nonlinear?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A justified approximation can provide a linear differential-equation model over a suitable operating regime."
+      },
+      {
+        "id": "o2",
+        "text": "Writing joint angles as a vector automatically makes their dynamics linear."
+      },
+      {
+        "id": "o3",
+        "text": "Using position sensors removes all nonlinear terms from the mechanical equations."
+      },
+      {
+        "id": "o4",
+        "text": "Every multi-joint manipulator has an exactly linear model at all configurations and speeds."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0640",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 640,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 640, printed slide 4: Linear approximation of manipulator dynamics",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0666",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 666,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 666, printed slide 30: summary bullet for Linear approximation of manipulator dynamics",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q002",
+    "version": 1,
+    "stem": "Which signals go from the trajectory generator into the open-loop controller in the shown diagram?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Measured position, measured velocity and measured torque only."
+      },
+      {
+        "id": "o2",
+        "text": "Desired end-effector position alone, without joint derivatives."
+      },
+      {
+        "id": "o3",
+        "text": "Position error, velocity error and integrated error."
+      },
+      {
+        "id": "o4",
+        "text": "Desired joint position, velocity and acceleration."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0641",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 641,
+        "kind": "figure",
+        "locator": "Lecture 21, physical PDF page 641, printed slide 5: Open-loop model-based torque and assumptions",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q003",
+    "version": 1,
+    "stem": "An unmeasured external torque changes the robot’s actual motion while its desired trajectory stays unchanged. What corrective action does the shown purely open-loop controller obtain from the actual error?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It automatically integrates the disturbance until the position error vanishes."
+      },
+      {
+        "id": "o2",
+        "text": "It updates the desired acceleration from an actual-velocity return signal."
+      },
+      {
+        "id": "o3",
+        "text": "None from measured error, because the diagram contains no actual-state feedback path."
+      },
+      {
+        "id": "o4",
+        "text": "It automatically adds a proportional torque based on measured position error."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0641",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 641,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 641, printed slide 5: Open-loop model-based torque and assumptions",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q004",
+    "version": 1,
+    "stem": "At a desired state of a two-revolute-joint model, M=[[2,1],[1,3]], Θ̈_d=[1,−2]ᵀ, V=[1,0]ᵀ and G=[3,4]ᵀ in consistent SI units. What torque vector follows from the displayed feedforward law?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "[−4,−9]ᵀ N·m."
+      },
+      {
+        "id": "o2",
+        "text": "[4,−1]ᵀ N·m."
+      },
+      {
+        "id": "o3",
+        "text": "[6,−2]ᵀ N·m."
+      },
+      {
+        "id": "o4",
+        "text": "[0,−5]ᵀ N·m."
+      }
+    ],
+    "assumptions": [
+      "All quantities are evaluated at the same desired state; inertia entries use kg·m², accelerations rad/s², and V/G entries N·m."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0641",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 641,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 641, printed slide 5: Open-loop model-based torque and assumptions",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q005",
+    "version": 1,
+    "stem": "Which premises support exact tracking by the ideal desired-trajectory inverse-dynamics feedforward law, rather than merely an accurate computed torque?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An exact model, compatible desired and actual initial state, and no unmodeled forcing."
+      },
+      {
+        "id": "o2",
+        "text": "An exact model alone, regardless of actual initial position and velocity."
+      },
+      {
+        "id": "o3",
+        "text": "A matching initial position only; initial velocity and disturbance torque are irrelevant."
+      },
+      {
+        "id": "o4",
+        "text": "A desired trajectory with no derivatives, because inverse dynamics does not use acceleration."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0641",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 641,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 641, printed slide 5: Open-loop model-based torque and assumptions",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q006",
+    "version": 1,
+    "stem": "What structural change distinguishes the closed-loop diagram from the preceding open-loop one?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The desired acceleration arrow is removed."
+      },
+      {
+        "id": "o2",
+        "text": "The torque command is fed directly back into the trajectory generator instead of driving the robot."
+      },
+      {
+        "id": "o3",
+        "text": "The actual output is replaced by the desired state, so no sensor information is used."
+      },
+      {
+        "id": "o4",
+        "text": "Actual joint position and velocity return from the robot to the controller."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0641",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 641,
+        "kind": "figure",
+        "locator": "Lecture 21, physical PDF page 641, printed slide 5: Feedback signals and incomplete displayed law",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0642",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 642,
+        "kind": "figure",
+        "locator": "Lecture 21, physical PDF page 642, printed slide 6: Feedback signals and incomplete displayed law",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q007",
+    "version": 1,
+    "stem": "For the N-joint control diagram, what is the size of each joint position, velocity, acceleration or torque signal vector?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "3×1 for every manipulator, regardless of N."
+      },
+      {
+        "id": "o2",
+        "text": "1×1 even when N>1."
+      },
+      {
+        "id": "o3",
+        "text": "N×1."
+      },
+      {
+        "id": "o4",
+        "text": "N×N."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0642",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 642,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 642, printed slide 6: Feedback signals and incomplete displayed law",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q008",
+    "version": 1,
+    "stem": "The page shows a feedback diagram but repeats τ=M(Θ_d)Θ̈_d+V(Θ_d,Θ̇_d)+G(Θ_d). What limitation of this displayed equation should be recognized?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The desired acceleration term is itself measured position error."
+      },
+      {
+        "id": "o2",
+        "text": "By itself it contains only desired-trajectory feedforward terms; a measurement-dependent correction is not written in that equation."
+      },
+      {
+        "id": "o3",
+        "text": "It already contains explicit proportional and derivative error gains through the symbols M and G."
+      },
+      {
+        "id": "o4",
+        "text": "It proves that actual-state measurements are never needed in closed-loop control."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0642",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 642,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 642, printed slide 6: Feedback signals and incomplete displayed law",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q009",
+    "version": 1,
+    "stem": "A joint has desired position 0.8 rad and measured position 0.5 rad; desired velocity is −0.2 rad/s and measured velocity is 0.1 rad/s. Using the lecture’s desired-minus-actual convention, what are E and Ė?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "E=0.3 rad and Ė=−0.3 rad/s."
+      },
+      {
+        "id": "o2",
+        "text": "E=−0.3 rad and Ė=0.3 rad/s."
+      },
+      {
+        "id": "o3",
+        "text": "E=0.3 rad and Ė=0.3 rad/s."
+      },
+      {
+        "id": "o4",
+        "text": "E=0.3 rad and Ė=0.7 rad/s."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0643",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 643,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 643, printed slide 7: Servo error and derivative sign conventions",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q010",
+    "version": 1,
+    "stem": "Which statement is the defensible interpretation of feedback helping to reduce servo error?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Every feedback connection is stable regardless of gain sign or magnitude."
+      },
+      {
+        "id": "o2",
+        "text": "Stability means the error is exactly zero at every instant, including an initial mismatch."
+      },
+      {
+        "id": "o3",
+        "text": "If error is bounded, it must converge to zero under every bounded disturbance."
+      },
+      {
+        "id": "o4",
+        "text": "A suitably designed feedback law can reduce errors, but the presence of a feedback path alone does not prove stability."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0643",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 643,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 643, printed slide 7: Feedback and stability qualifications",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q011",
+    "version": 1,
+    "stem": "What does independent joint control do to the manipulator’s coupled MIMO control problem?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It replaces the N-joint robot by one single SISO loop carrying every joint error as one scalar."
+      },
+      {
+        "id": "o2",
+        "text": "It requires every joint to share the same trajectory and same torque at all times."
+      },
+      {
+        "id": "o3",
+        "text": "It approximately treats the N joints as N separate SISO loops."
+      },
+      {
+        "id": "o4",
+        "text": "It proves all inter-joint coupling terms are physically zero."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0644",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 644,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 644, printed slide 8: Coupled manipulator versus independent joint approximation",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0666",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 666,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 666, printed slide 30: summary bullet for Coupled manipulator versus independent joint approximation",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q012",
+    "version": 1,
+    "stem": "For positive displacement x and positive velocity ẋ in the diagram’s rightward coordinate, which directions do the linear spring and viscous-damper forces on the mass have?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The spring acts leftward and the damper rightward."
+      },
+      {
+        "id": "o2",
+        "text": "Both act leftward: −kx and −bẋ."
+      },
+      {
+        "id": "o3",
+        "text": "Both act rightward: +kx and +bẋ."
+      },
+      {
+        "id": "o4",
+        "text": "The spring acts rightward and the damper leftward."
+      }
+    ],
+    "assumptions": [
+      "x and ẋ are both positive; a force component reverses if its corresponding displacement or velocity changes sign."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0645",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 645,
+        "kind": "figure",
+        "locator": "Lecture 21, physical PDF page 645, printed slide 9: Mass–spring–damper force balance",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q013",
+    "version": 1,
+    "stem": "For m=2 kg, b=3 N·s/m, k=8 N/m, x=0.5 m and ẋ=−1 m/s, with no applied force, what is ẍ?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "−0.5 m/s²."
+      },
+      {
+        "id": "o2",
+        "text": "−3.5 m/s²."
+      },
+      {
+        "id": "o3",
+        "text": "0.5 m/s²."
+      },
+      {
+        "id": "o4",
+        "text": "−1 m/s²."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0645",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 645,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 645, printed slide 9: Mass–spring–damper force balance",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q014",
+    "version": 1,
+    "stem": "Which friction model is represented by the force term −bẋ in this linear mass–spring–damper equation?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A constant-magnitude Coulomb force proportional only to sign(ẋ)."
+      },
+      {
+        "id": "o2",
+        "text": "A restoring force proportional to displacement."
+      },
+      {
+        "id": "o3",
+        "text": "An inertial force proportional to acceleration with coefficient b."
+      },
+      {
+        "id": "o4",
+        "text": "Linear viscous damping proportional to velocity."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0645",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 645,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 645, printed slide 9: Mass–spring–damper force balance",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q015",
+    "version": 1,
+    "stem": "Substituting a nonzero exponential mode x(t)=Ce^(st) into mẍ+bẋ+kx=0 leads to which characteristic equation?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "ms²+bs−k=0."
+      },
+      {
+        "id": "o2",
+        "text": "m+b+k=0."
+      },
+      {
+        "id": "o3",
+        "text": "ms²+bs+k=0."
+      },
+      {
+        "id": "o4",
+        "text": "ms+bs²+k=0."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0645",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 645,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 645, printed slide 9: Characteristic roots and response parameters",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0646",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 646,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 646, printed slide 10: Characteristic roots and response parameters",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q016",
+    "version": 1,
+    "stem": "For m=1 kg, b=5 N·s/m and k=6 N/m, which poles follow from the characteristic equation?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "−2.5±i√6 s⁻¹."
+      },
+      {
+        "id": "o2",
+        "text": "−2 s⁻¹ and −3 s⁻¹."
+      },
+      {
+        "id": "o3",
+        "text": "2 s⁻¹ and 3 s⁻¹."
+      },
+      {
+        "id": "o4",
+        "text": "−5 s⁻¹ and −6 s⁻¹."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0646",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 646,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 646, printed slide 10: Characteristic roots and response parameters",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q017",
+    "version": 1,
+    "stem": "For m>0, k>0 and b>0, which discriminant relation corresponds to an underdamped natural response?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "b²<4mk."
+      },
+      {
+        "id": "o2",
+        "text": "b²>4mk."
+      },
+      {
+        "id": "o3",
+        "text": "b²=4mk."
+      },
+      {
+        "id": "o4",
+        "text": "b<0 with no condition on b²−4mk."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0646",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 646,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 646, printed slide 10: Damping classes and discriminant conditions",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0647",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 647,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 647, printed slide 11: Damping classes and discriminant conditions",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0666",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 666,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 666, printed slide 30: summary bullet for Damping classes and discriminant conditions",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q018",
+    "version": 1,
+    "stem": "For m=k=1 in consistent units, classify b=1, b=2 and b=3 in that order.",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Overdamped, critically damped, underdamped."
+      },
+      {
+        "id": "o2",
+        "text": "Underdamped, overdamped, critically damped."
+      },
+      {
+        "id": "o3",
+        "text": "Critically damped, underdamped, overdamped."
+      },
+      {
+        "id": "o4",
+        "text": "Underdamped, critically damped, overdamped."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0646",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 646,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 646, printed slide 10: Damping classes and discriminant conditions",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0647",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 647,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 647, printed slide 11: Damping classes and discriminant conditions",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q019",
+    "version": 1,
+    "stem": "What qualification is needed when using the lecture’s description of critical damping as the fastest non-oscillatory response?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Every critically damped system is faster than every underdamped or overdamped system with any natural frequency."
+      },
+      {
+        "id": "o2",
+        "text": "The description means all initial velocities produce an identical monotonic response."
+      },
+      {
+        "id": "o3",
+        "text": "It concerns the usual fixed-natural-frequency second-order comparison, not a universal minimum settling time over arbitrary gains, initial states and actuator constraints."
+      },
+      {
+        "id": "o4",
+        "text": "Critical damping guarantees zero settling time for every nonzero initial displacement."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0647",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 647,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 647, printed slide 11: Scope of the fastest non-oscillatory description",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0652",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 652,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 652, printed slide 16: Scope of the fastest non-oscillatory description",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q020",
+    "version": 1,
+    "stem": "Which two quantities determine the constants in the second-order free response x(t)=c₁e^(s₁t)+c₂e^(s₂t), once distinct roots are fixed?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Only the final equilibrium position, without initial information."
+      },
+      {
+        "id": "o2",
+        "text": "Initial position and initial velocity."
+      },
+      {
+        "id": "o3",
+        "text": "Initial position alone, regardless of initial velocity."
+      },
+      {
+        "id": "o4",
+        "text": "Only the pole locations; initial state does not affect amplitudes."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0648",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 648,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 648, printed slide 12: Real modes, initial conditions and dominant poles",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q021",
+    "version": 1,
+    "stem": "For poles s₁=−2 s⁻¹ and s₂=−3 s⁻¹, x(0)=1 m and ẋ(0)=0, which free response satisfies both initial conditions?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "x(t)=3e^(−2t)−2e^(−3t) m."
+      },
+      {
+        "id": "o2",
+        "text": "x(t)=e^(−2t) m."
+      },
+      {
+        "id": "o3",
+        "text": "x(t)=−2e^(−2t)+3e^(−3t) m."
+      },
+      {
+        "id": "o4",
+        "text": "x(t)=3e^(−2t)+2e^(−3t) m."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0648",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 648,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 648, printed slide 12: Real modes, initial conditions and dominant poles",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q022",
+    "version": 1,
+    "stem": "In the pole diagram, s₁ lies farther left on the negative real axis than s₂. With nonzero comparable modal amplitudes, which term dominates sufficiently late in the response?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The s₁ term, because a larger pole magnitude always makes a response persist longer."
+      },
+      {
+        "id": "o2",
+        "text": "Both terms must remain equal at every time because both poles are real."
+      },
+      {
+        "id": "o3",
+        "text": "Neither term decays, because zero imaginary parts imply constant displacement."
+      },
+      {
+        "id": "o4",
+        "text": "The s₂ term, because the pole nearer the origin has the slower exponential decay."
+      }
+    ],
+    "assumptions": [
+      "Distinct stable poles, nonzero comparable initial modal amplitudes, and sufficiently late time."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0648",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 648,
+        "kind": "figure",
+        "locator": "Lecture 21, physical PDF page 648, printed slide 12: Real modes, initial conditions and dominant poles",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q023",
+    "version": 1,
+    "stem": "A free response has poles −1 and −20 s⁻¹, but its coefficient of e^(−t) is exactly zero. Which caution applies to the “dominant pole” shortcut?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The −20 pole becomes unstable because the −1 mode is absent."
+      },
+      {
+        "id": "o2",
+        "text": "A zero slow-mode coefficient makes the displacement identically zero even if the fast coefficient is nonzero."
+      },
+      {
+        "id": "o3",
+        "text": "The slow pole is not excited in this response, so its exponential cannot dominate despite its location."
+      },
+      {
+        "id": "o4",
+        "text": "The missing coefficient becomes nonzero automatically after a long time in the homogeneous solution."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0648",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 648,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 648, printed slide 12: Real modes, initial conditions and dominant poles",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q024",
+    "version": 1,
+    "stem": "For roots λ+iμ and λ−iμ of a real system, which form expresses the corresponding real motion using real constants A and B?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "e^(λt)[A cos(μt)+iB sin(μt)] for arbitrary real A and B."
+      },
+      {
+        "id": "o2",
+        "text": "e^(λt)[A cos(μt)+B sin(μt)]."
+      },
+      {
+        "id": "o3",
+        "text": "e^(μt)[A cos(λt)+B sin(λt)]."
+      },
+      {
+        "id": "o4",
+        "text": "A cos(μt)+B sin(μt), with no exponential factor for every λ."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0649",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 649,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 649, printed slide 13: Conjugate poles and real sinusoidal form",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q025",
+    "version": 1,
+    "stem": "Let x(t)=c₁e^((λ+iμ)t)+c₂e^((λ−iμ)t). Which coefficient mapping follows from Euler’s identity for x(t)=e^(λt)[A cos(μt)+B sin(μt)]?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A=c₁+c₂ and B=i(c₁−c₂)."
+      },
+      {
+        "id": "o2",
+        "text": "A=c₁−c₂ and B=i(c₁+c₂)."
+      },
+      {
+        "id": "o3",
+        "text": "A=c₁+c₂ and B=c₁−c₂ without i."
+      },
+      {
+        "id": "o4",
+        "text": "A=c₁c₂ and B=c₁/c₂."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0649",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 649,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 649, printed slide 13: Conjugate poles and real sinusoidal form",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q026",
+    "version": 1,
+    "stem": "For real cosine/sine coefficients A=−3 m and B=4 m, what amplitude-phase description matches A cos(μt)+B sin(μt)=r cos(μt−δ)?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "r=5 m and δ=atan2(−3,4), in quadrant IV."
+      },
+      {
+        "id": "o2",
+        "text": "r=1 m and δ=atan2(4,−3)."
+      },
+      {
+        "id": "o3",
+        "text": "r=5 m and δ=atan(4/−3) with its principal quadrant-IV value."
+      },
+      {
+        "id": "o4",
+        "text": "r=5 m and δ=atan2(4,−3), in quadrant II."
+      }
+    ],
+    "assumptions": [
+      "A and B are the real trigonometric coefficients, not the earlier complex exponential coefficients."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0649",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 649,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 649, printed slide 13: Amplitude, phase and coefficient notation",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0650",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 650,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 650, printed slide 14: Amplitude, phase and coefficient notation",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q027",
+    "version": 1,
+    "stem": "Which pole feature determines exponential decay of the oscillation envelope in the shown left-half-plane conjugate-pole diagram?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The phase δ alone, regardless of λ."
+      },
+      {
+        "id": "o2",
+        "text": "The initial amplitude r alone, regardless of λ."
+      },
+      {
+        "id": "o3",
+        "text": "The negative real part λ."
+      },
+      {
+        "id": "o4",
+        "text": "The sign of μ alone, regardless of λ."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0650",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 650,
+        "kind": "figure",
+        "locator": "Lecture 21, physical PDF page 650, printed slide 14: Amplitude, phase and coefficient notation",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q028",
+    "version": 1,
+    "stem": "For m=4 kg, b=8 N·s/m and k=16 N/m, what are the damping ratio and undamped natural frequency?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "ζ=2 and ω_n=0.5 rad/s."
+      },
+      {
+        "id": "o2",
+        "text": "ζ=0.5 and ω_n=2 rad/s."
+      },
+      {
+        "id": "o3",
+        "text": "ζ=1 and ω_n=2 rad/s."
+      },
+      {
+        "id": "o4",
+        "text": "ζ=0.5 and ω_n=4 rad/s."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0651",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 651,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 651, printed slide 15: Damping ratio, natural frequency and poles",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0646",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 646,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 646, printed slide 10: Damping ratio, natural frequency and poles",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q029",
+    "version": 1,
+    "stem": "For ω_n=2 rad/s and ζ=0.5, what are λ and the positive damped frequency μ?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "λ=−1 s⁻¹ and μ=√3 rad/s."
+      },
+      {
+        "id": "o2",
+        "text": "λ=1 s⁻¹ and μ=√3 rad/s."
+      },
+      {
+        "id": "o3",
+        "text": "λ=−1 s⁻¹ and μ=2 rad/s."
+      },
+      {
+        "id": "o4",
+        "text": "λ=−2 s⁻¹ and μ=0.5 rad/s."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0651",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 651,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 651, printed slide 15: Damping ratio, natural frequency and poles",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q030",
+    "version": 1,
+    "stem": "For m,k>0 and zero damping b=0, which free-response statement is correct?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "ζ=1 and the response is critically damped."
+      },
+      {
+        "id": "o2",
+        "text": "The natural frequency is zero because b=0."
+      },
+      {
+        "id": "o3",
+        "text": "Every initial displacement vanishes immediately because there is no friction."
+      },
+      {
+        "id": "o4",
+        "text": "ζ=0 and the poles are purely imaginary; a nonzero natural oscillation does not decay."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0651",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 651,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 651, printed slide 15: Damping ratio, natural frequency and poles",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q031",
+    "version": 1,
+    "stem": "Why is the critically damped general solution (c₁+c₂t)e^(st), rather than simply c₁e^(st)+c₂e^(st)?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Repeated roots reduce the differential equation to first order for all initial states."
+      },
+      {
+        "id": "o2",
+        "text": "The t factor makes the response periodic even though the pole is real."
+      },
+      {
+        "id": "o3",
+        "text": "The two identical exponentials are dependent; t e^(st) provides the second independent solution."
+      },
+      {
+        "id": "o4",
+        "text": "The repeated root requires a second mode e^(−st), independent of whether −s is a root."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0652",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 652,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 652, printed slide 16: Repeated poles and independent critical solution",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q032",
+    "version": 1,
+    "stem": "A critically damped free system has repeated pole −4 s⁻¹, x(0)=1 m and ẋ(0)=0. Which response satisfies these conditions?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "x(t)=4t e^(−4t) m."
+      },
+      {
+        "id": "o2",
+        "text": "x(t)=(1+4t)e^(−4t) m, with t measured in seconds."
+      },
+      {
+        "id": "o3",
+        "text": "x(t)=e^(−4t) m."
+      },
+      {
+        "id": "o4",
+        "text": "x(t)=(1−4t)e^(−4t) m."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0652",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 652,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 652, printed slide 16: Repeated poles and independent critical solution",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q033",
+    "version": 1,
+    "stem": "Under which condition does (c₁+c₂t)e^(−at) tend to zero as t→∞ for arbitrary finite c₁,c₂?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "a>0."
+      },
+      {
+        "id": "o2",
+        "text": "a=0 for every c₂."
+      },
+      {
+        "id": "o3",
+        "text": "a<0 for every nonzero coefficient pair."
+      },
+      {
+        "id": "o4",
+        "text": "a=0 is sufficient whenever c₁=0, even if c₂ is arbitrary."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0652",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 652,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 652, printed slide 16: Repeated poles and independent critical solution",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q034",
+    "version": 1,
+    "stem": "After adding the applied force f and choosing f=−K_p x−K_v ẋ, which closed-loop equation follows?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "mẍ+(b−K_v)ẋ+(k−K_p)x=0."
+      },
+      {
+        "id": "o2",
+        "text": "(m+K_v)ẍ+bẋ+(k+K_p)x=0."
+      },
+      {
+        "id": "o3",
+        "text": "mẍ+(b+K_p)ẋ+(k+K_v)x=0."
+      },
+      {
+        "id": "o4",
+        "text": "mẍ+(b+K_v)ẋ+(k+K_p)x=0."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0653",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 653,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 653, printed slide 17: Direct force-feedback coefficient changes",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0654",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 654,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 654, printed slide 18: Direct force-feedback coefficient changes",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q035",
+    "version": 1,
+    "stem": "In the direct-feedback block diagram, which measured signal is multiplied by the position gain and which by the velocity gain?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "x is multiplied by K_p, and ẋ by K_v; both contributions are added as positive feedback."
+      },
+      {
+        "id": "o2",
+        "text": "Only ẋ is measured, and the position branch is obtained by differentiating ẋ."
+      },
+      {
+        "id": "o3",
+        "text": "x is multiplied by K_p, and ẋ by K_v; both contributions are subtracted at the force summation."
+      },
+      {
+        "id": "o4",
+        "text": "x is multiplied by K_v, and ẋ by K_p; both are subtracted."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0654",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 654,
+        "kind": "figure",
+        "locator": "Lecture 21, physical PDF page 654, printed slide 18: Direct force-feedback coefficient changes",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q036",
+    "version": 1,
+    "stem": "For m=b=k=1 in consistent SI units, choose a critically damped closed loop with effective stiffness k′=16 N/m. What direct force-feedback gains are required?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "K_p=7 N/m and K_v=15 N·s/m."
+      },
+      {
+        "id": "o2",
+        "text": "K_p=15 N/m and K_v=7 N·s/m."
+      },
+      {
+        "id": "o3",
+        "text": "K_p=16 N/m and K_v=8 N·s/m."
+      },
+      {
+        "id": "o4",
+        "text": "K_p=15 N/m and K_v=8 N·s/m."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0654",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 654,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 654, printed slide 18: Direct-feedback critical damping design",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0655",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 655,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 655, printed slide 19: Direct-feedback critical damping design",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q037",
+    "version": 1,
+    "stem": "A plant has m=1 kg, b=10 N·s/m and k=9 N/m. The direct controller uses K_p=−5 N/m and K_v=−6 N·s/m. Which conclusion follows?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The effective coefficients are k′=4 N/m and b′=4 N·s/m, giving a stable critically damped loop."
+      },
+      {
+        "id": "o2",
+        "text": "The loop is necessarily unstable because both feedback gains are negative."
+      },
+      {
+        "id": "o3",
+        "text": "The loop is undamped because negative K_v exactly cancels b."
+      },
+      {
+        "id": "o4",
+        "text": "The loop has negative effective stiffness k′=−14 N/m."
+      }
+    ],
+    "assumptions": [
+      "The exact linear model applies and there are no actuator limits or delays."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0655",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 655,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 655, printed slide 19: Direct-feedback critical damping design",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q038",
+    "version": 1,
+    "stem": "For m>0 in mẍ+b′ẋ+k′x=0, which conditions give strict asymptotic stability of the second-order system?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "b′≥0 and k′≥0, including both boundary equalities."
+      },
+      {
+        "id": "o2",
+        "text": "Only k′>0; any sign of b′ is acceptable."
+      },
+      {
+        "id": "o3",
+        "text": "Only b′>0; any sign of k′ is acceptable."
+      },
+      {
+        "id": "o4",
+        "text": "b′>0 and k′>0."
+      }
+    ],
+    "assumptions": [
+      "In ROOT, substitute b=b′ and k=k′; strict asymptotic stability is stronger than bounded motion for selected initial states."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0655",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 655,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 655, printed slide 19: Stability depends on effective coefficient signs",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q039",
+    "version": 1,
+    "stem": "What is the purpose of separating the controller into a model-based portion and a servo portion?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Design an unrelated force for each physical parameter and never combine them."
+      },
+      {
+        "id": "o2",
+        "text": "Make the model-based portion generate only a desired position, leaving all physical-parameter cancellation to the servo gain selection."
+      },
+      {
+        "id": "o3",
+        "text": "Use the model-based portion to simplify the effective plant, then design feedback for that simpler plant."
+      },
+      {
+        "id": "o4",
+        "text": "Remove all state measurements so that the controller becomes purely open-loop."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0656",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 656,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 656, printed slide 20: Model-based and servo control-law portions",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0666",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 666,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 666, printed slide 30: summary bullet for Model-based and servo control-law portions",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q040",
+    "version": 1,
+    "stem": "In f=αf′+β, which choice produces ẍ=f′ from mẍ+bẋ+kx=f under the ideal model?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "α=m and β=0."
+      },
+      {
+        "id": "o2",
+        "text": "α=m and β=bẋ+kx."
+      },
+      {
+        "id": "o3",
+        "text": "α=1/m and β=bẋ+kx."
+      },
+      {
+        "id": "o4",
+        "text": "α=m and β=−bẋ−kx."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0657",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 657,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 657, printed slide 21: Exact model cancellation and normalized input",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q041",
+    "version": 1,
+    "stem": "If the physical actuator force f is measured in newtons and α=m is measured in kilograms, what are the SI units of f′ in f=mf′+bẋ+kx?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "m/s², because f′ is an acceleration command."
+      },
+      {
+        "id": "o2",
+        "text": "N, because every signal named f must have force units."
+      },
+      {
+        "id": "o3",
+        "text": "m/s, because the compensator includes velocity."
+      },
+      {
+        "id": "o4",
+        "text": "s⁻² with no length factor, because the command is a gain."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0657",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 657,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 657, printed slide 21: Exact model cancellation and normalized input",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q042",
+    "version": 1,
+    "stem": "For m=2 kg, b=3 N·s/m, k=5 N/m, x=0.4 m, ẋ=−0.2 m/s and f′=1.5 m/s², what physical actuator force does exact partitioning command?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "1.6 N."
+      },
+      {
+        "id": "o2",
+        "text": "2.9 N."
+      },
+      {
+        "id": "o3",
+        "text": "5.6 N."
+      },
+      {
+        "id": "o4",
+        "text": "4.4 N."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0657",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 657,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 657, printed slide 21: Exact model cancellation and normalized input",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q043",
+    "version": 1,
+    "stem": "Suppose a controller uses estimates m̂,b̂,k̂ in f=m̂f′+b̂ẋ+k̂x, while the true plant has m,b,k. Which actual equation follows before assuming the estimates are exact?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "mẍ=m̂f′+(b̂+b)ẋ+(k̂+k)x."
+      },
+      {
+        "id": "o2",
+        "text": "mẍ=mf′ with no residual terms whenever b̂ and k̂ are positive."
+      },
+      {
+        "id": "o3",
+        "text": "mẍ=m̂f′+(b̂−b)ẋ+(k̂−k)x."
+      },
+      {
+        "id": "o4",
+        "text": "ẍ=f′ for every possible parameter estimate."
+      }
+    ],
+    "assumptions": [
+      "Hatted quantities are controller estimates, not additional measured states."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0657",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 657,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 657, printed slide 21: Limits of exact model compensation",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q044",
+    "version": 1,
+    "stem": "After exact model cancellation, f′=−k_v ẋ−k_p x gives a desired critically damped servo with k_p=25 s⁻². Which positive k_v is required?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "9 s⁻¹."
+      },
+      {
+        "id": "o2",
+        "text": "10 s⁻¹."
+      },
+      {
+        "id": "o3",
+        "text": "5 s⁻¹."
+      },
+      {
+        "id": "o4",
+        "text": "50 s⁻¹."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0658",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 658,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 658, printed slide 22: Normalized servo equation and critical damping",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q045",
+    "version": 1,
+    "stem": "Which unit pairing correctly distinguishes direct force-feedback position gain K_p from normalized acceleration-servo position gain k_p?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "K_p has units N/m, whereas k_p has units s⁻²."
+      },
+      {
+        "id": "o2",
+        "text": "Both have units N/m for arbitrary mass because both multiply x."
+      },
+      {
+        "id": "o3",
+        "text": "K_p has units s⁻², whereas k_p has units N/m."
+      },
+      {
+        "id": "o4",
+        "text": "Both are dimensionless because feedback gains never carry units."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0654",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 654,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 654, printed slide 18: Direct force gains versus normalized servo gains",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0658",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 658,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 658, printed slide 22: Direct force gains versus normalized servo gains",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q046",
+    "version": 1,
+    "stem": "In the partitioned controller diagram, what is added after multiplying the servo output f′ by m?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The negative compensation −bẋ−kx."
+      },
+      {
+        "id": "o2",
+        "text": "Only the desired position x_d, with no physical coefficients."
+      },
+      {
+        "id": "o3",
+        "text": "The acceleration command f′ again without mass scaling."
+      },
+      {
+        "id": "o4",
+        "text": "The model compensation bẋ+kx, using actual velocity and displacement."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0659",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 659,
+        "kind": "figure",
+        "locator": "Lecture 21, physical PDF page 659, printed slide 23: Partitioned block diagram and numerical example",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q047",
+    "version": 1,
+    "stem": "For the slide’s m=b=k=1 example with normalized k_p=16 s⁻² and critical damping, what are α, β and k_v?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "α=1 kg, β=ẋ+x in that model, and k_v=7 s⁻¹."
+      },
+      {
+        "id": "o2",
+        "text": "α=16 kg, β=ẋ+x in that model, and k_v=8 s⁻¹."
+      },
+      {
+        "id": "o3",
+        "text": "α=1 kg, β=ẋ+x in the stated unit-coefficient SI model, and k_v=8 s⁻¹."
+      },
+      {
+        "id": "o4",
+        "text": "α=1 kg, β=−ẋ−x in that model, and k_v=8 s⁻¹."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0659",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 659,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 659, printed slide 23: Partitioned block diagram and numerical example",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q048",
+    "version": 1,
+    "stem": "Why do the lecture’s direct gains (K_p,K_v)=(15,7) and partitioned servo gains (k_p,k_v)=(16,8) produce the same physical zero-reference controller when m=b=k=1?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Both designs remove the actual spring and damper from the physical plant."
+      },
+      {
+        "id": "o2",
+        "text": "The partitioned force expands to (−16x−8ẋ)+(x+ẋ)=−15x−7ẋ."
+      },
+      {
+        "id": "o3",
+        "text": "The two controllers are identical only because the gain labels can be exchanged without changing the law."
+      },
+      {
+        "id": "o4",
+        "text": "The partitioned force is −16x−8ẋ with no additional compensation."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0655",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 655,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 655, printed slide 19: Equivalence of the two numerical designs",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0659",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 659,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 659, printed slide 23: Equivalence of the two numerical designs",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q049",
+    "version": 1,
+    "stem": "Which desired-trajectory signals does the shown tracking servo assume are available?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "x_d(t), ẋ_d(t) and ẍ_d(t)."
+      },
+      {
+        "id": "o2",
+        "text": "Only x_d(t), even when the specified law contains desired velocity and acceleration."
+      },
+      {
+        "id": "o3",
+        "text": "Only a final endpoint and a total duration, without a time-dependent trajectory."
+      },
+      {
+        "id": "o4",
+        "text": "Actual x(t) and ẋ(t) only, with no desired motion input."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0660",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 660,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 660, printed slide 24: Desired trajectory and error-space command",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q050",
+    "version": 1,
+    "stem": "Using e=x_d−x and ė=ẋ_d−ẋ, which acceleration command is the lecture’s trajectory-following servo law?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "f′=ẍ_d−k_v ė−k_p e."
+      },
+      {
+        "id": "o2",
+        "text": "f′=k_v ė+k_p e, always omitting ẍ_d."
+      },
+      {
+        "id": "o3",
+        "text": "f′=ẍ_d+k_v ẋ+k_p x, with no desired-minus-actual differences."
+      },
+      {
+        "id": "o4",
+        "text": "f′=ẍ_d+k_v ė+k_p e."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0660",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 660,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 660, printed slide 24: Desired trajectory and error-space command",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q051",
+    "version": 1,
+    "stem": "For the exactly compensated plant ẍ=f′ and f′=ẍ_d+k_v ė+k_p e, what equation does e=x_d−x satisfy?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "ë+k_v ė+k_p e=ẍ_d."
+      },
+      {
+        "id": "o2",
+        "text": "ẍ+k_v ẋ+k_p x=0 for every nonzero desired trajectory."
+      },
+      {
+        "id": "o3",
+        "text": "ë+k_v ė+k_p e=0."
+      },
+      {
+        "id": "o4",
+        "text": "ë−k_v ė−k_p e=0."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0660",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 660,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 660, printed slide 24: Derivation of homogeneous tracking-error dynamics",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0661",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 661,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 661, printed slide 25: Derivation of homogeneous tracking-error dynamics",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0666",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 666,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 666, printed slide 30: summary bullet for Derivation of homogeneous tracking-error dynamics",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q052",
+    "version": 1,
+    "stem": "At one instant, x_d=0.5 m, x=0.3 m, ẋ_d=0.4 m/s, ẋ=0.1 m/s and ẍ_d=−0.2 m/s². With k_p=9 s⁻² and k_v=6 s⁻¹, what is f′?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "3.7 m/s²."
+      },
+      {
+        "id": "o2",
+        "text": "3.4 m/s²."
+      },
+      {
+        "id": "o3",
+        "text": "3.6 m/s²."
+      },
+      {
+        "id": "o4",
+        "text": "−3.8 m/s²."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0660",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 660,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 660, printed slide 24: Numerical trajectory-following acceleration command",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q053",
+    "version": 1,
+    "stem": "A modified servo omits desired acceleration and uses f′=k_v ė+k_p e on the ideal plant ẍ=f′. What is the resulting tracking-error equation?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "ë+k_v ė+k_p e=ẍ_d."
+      },
+      {
+        "id": "o2",
+        "text": "ë+k_v ė+k_p e=0 for every smooth trajectory."
+      },
+      {
+        "id": "o3",
+        "text": "ë+k_v ė+k_p e=−ẍ_d."
+      },
+      {
+        "id": "o4",
+        "text": "ë+k_v ė+k_p e=x_d."
+      }
+    ],
+    "assumptions": [
+      "This is an explicitly modified controller, not a transcription of the full source law."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0660",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 660,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 660, printed slide 24: Role of desired-acceleration feedforward",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0661",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 661,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 661, printed slide 25: Role of desired-acceleration feedforward",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q054",
+    "version": 1,
+    "stem": "Which description matches the trajectory-following block diagram?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Actual-minus-desired errors pass through the same positive gains, with no other sign changes."
+      },
+      {
+        "id": "o2",
+        "text": "Desired acceleration is fed back from the plant after the torque output."
+      },
+      {
+        "id": "o3",
+        "text": "The compensation bẋ+kx is computed using only desired position and velocity in this figure."
+      },
+      {
+        "id": "o4",
+        "text": "Desired-minus-actual position and velocity errors pass through gains, add to desired acceleration, then pass through the model-based force reconstruction."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0661",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 661,
+        "kind": "figure",
+        "locator": "Lecture 21, physical PDF page 661, printed slide 25: Tracking-controller comparator and model branches",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q055",
+    "version": 1,
+    "stem": "What is a defensible interpretation of the claim that choosing the error-equation coefficients lets us design “any response”?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Positive gains guarantee the same actual tracking response despite arbitrary model mismatch."
+      },
+      {
+        "id": "o2",
+        "text": "The gains can independently specify any number of poles in this second-order model."
+      },
+      {
+        "id": "o3",
+        "text": "Within the ideal second-order model, gains shape its characteristic polynomial; real actuator, sensing and model limits still matter."
+      },
+      {
+        "id": "o4",
+        "text": "Any arbitrarily fast desired response is physically realizable regardless of force limits or delays."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0661",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 661,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 661, printed slide 25: Limits of selecting ideal error dynamics",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q056",
+    "version": 1,
+    "stem": "In the figure, a resisting physical disturbance F_dist enters with a minus sign after mass scaling. With exact compensation and e=x_d−x, which forced error equation has consistent mass scaling?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "ë+k_v ė+k_p e=mF_dist."
+      },
+      {
+        "id": "o2",
+        "text": "ë+k_v ė+k_p e=F_dist/m."
+      },
+      {
+        "id": "o3",
+        "text": "ë+k_v ė+k_p e=F_dist for every physical mass."
+      },
+      {
+        "id": "o4",
+        "text": "ë+k_v ė+k_p e=−F_dist/m."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0662",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 662,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 662, printed slide 26: Physical force sign and normalized error forcing",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q057",
+    "version": 1,
+    "stem": "If the same plant instead receives an ADDITIVE physical force F_ext, so ẍ=f′+F_ext/m, what is the right side of ë+k_v ė+k_p e under e=x_d−x?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "−F_ext/m."
+      },
+      {
+        "id": "o2",
+        "text": "+F_ext/m."
+      },
+      {
+        "id": "o3",
+        "text": "Zero for all F_ext because model compensation cancels any external force automatically."
+      },
+      {
+        "id": "o4",
+        "text": "−mF_ext."
+      }
+    ],
+    "assumptions": [
+      "F_ext is a signed physical force in newtons; m>0; this is an explicitly modified additive-force scenario."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0662",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 662,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 662, printed slide 26: Physical force sign and normalized error forcing",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q058",
+    "version": 1,
+    "stem": "What objective does disturbance rejection describe in this tracking-control discussion?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Guarantee that every external disturbance is physically removed before reaching the robot."
+      },
+      {
+        "id": "o2",
+        "text": "Replace actual-state feedback by a purely open-loop trajectory command."
+      },
+      {
+        "id": "o3",
+        "text": "Make a bounded disturbance produce exactly zero error at every instant without additional assumptions."
+      },
+      {
+        "id": "o4",
+        "text": "Maintain good performance by limiting errors despite external disturbances or noise."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0662",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 662,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 662, printed slide 26: Meaning of disturbance rejection",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q059",
+    "version": 1,
+    "stem": "Which condition correctly expresses a bounded scalar disturbance magnitude over t≥0?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "d(t) must tend to zero; no nonzero constant input can be bounded."
+      },
+      {
+        "id": "o2",
+        "text": "d(t) must be differentiable at every instant."
+      },
+      {
+        "id": "o3",
+        "text": "There is a finite a such that |d(t)|≤a for all t≥0."
+      },
+      {
+        "id": "o4",
+        "text": "There is a finite a such that d(t)<a, with no lower bound required."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0663",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 663,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 663, printed slide 27: Bounded-input bounded-output qualification",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q060",
+    "version": 1,
+    "stem": "What additional premise supports the lecture’s inference that bounded normalized disturbance produces bounded error for the linear closed-loop model?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The disturbance is nonnegative, so the characteristic roots are irrelevant."
+      },
+      {
+        "id": "o2",
+        "text": "The disturbance-to-error system is stable, with finite initial conditions."
+      },
+      {
+        "id": "o3",
+        "text": "The input is bounded; any feedback gain signs then suffice."
+      },
+      {
+        "id": "o4",
+        "text": "The position gain is zero, so the controller cannot amplify disturbance."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0663",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 663,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 663, printed slide 27: Bounded-input bounded-output qualification",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q061",
+    "version": 1,
+    "stem": "A stable loop receives a finite nonzero constant normalized disturbance d. What does BIBO stability alone guarantee, and what does the proportional-derivative steady-state equation generally show?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Error remains bounded, but it can settle to the nonzero value d/k_p."
+      },
+      {
+        "id": "o2",
+        "text": "Error is zero at every instant because the input is bounded."
+      },
+      {
+        "id": "o3",
+        "text": "Error necessarily grows without limit under every nonzero constant input."
+      },
+      {
+        "id": "o4",
+        "text": "Error settles to zero regardless of k_p because k_v removes all constant disturbances."
+      }
+    ],
+    "assumptions": [
+      "k_p>0, k_v>0, finite initial state, and no integral action."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0663",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 663,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 663, printed slide 27: Bounded error versus vanishing error",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0664",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 664,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 664, printed slide 28: Bounded error versus vanishing error",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q062",
+    "version": 1,
+    "stem": "For ë+k_v ė+k_p e=d with constant d, a stable settled response and k_p≠0, what equation determines the steady error?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "k_v e_ss=d, hence e_ss=d/k_v."
+      },
+      {
+        "id": "o2",
+        "text": "k_p e_ss=0 for every d, hence e_ss=0."
+      },
+      {
+        "id": "o3",
+        "text": "e_ss=k_p d."
+      },
+      {
+        "id": "o4",
+        "text": "k_p e_ss=d, hence e_ss=d/k_p."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0664",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 664,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 664, printed slide 28: Constant-disturbance steady-state error",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q063",
+    "version": 1,
+    "stem": "A 2 kg plant has a constant 6 N resisting disturbance entering subtractively and normalized k_p=3 s⁻², with stable positive velocity gain. What is the ideal steady position error e=x_d−x?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "−1 m."
+      },
+      {
+        "id": "o2",
+        "text": "4 m."
+      },
+      {
+        "id": "o3",
+        "text": "1 m."
+      },
+      {
+        "id": "o4",
+        "text": "2 m."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0662",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 662,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 662, printed slide 26: Constant-disturbance steady-state error",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0664",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 664,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 664, printed slide 28: Constant-disturbance steady-state error",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q064",
+    "version": 1,
+    "stem": "With a fixed nonzero constant normalized disturbance, no integral action and stable positive gains, which gain change halves |e_ss|?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Double both the disturbance magnitude and k_p."
+      },
+      {
+        "id": "o2",
+        "text": "Double k_p while keeping the new loop stable."
+      },
+      {
+        "id": "o3",
+        "text": "Double k_v while keeping k_p fixed."
+      },
+      {
+        "id": "o4",
+        "text": "Halve k_p while keeping the new loop stable."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0664",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 664,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 664, printed slide 28: Position and velocity gain effects on constant offset",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0666",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 666,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 666, printed slide 30: summary bullet for Position and velocity gain effects on constant offset",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q065",
+    "version": 1,
+    "stem": "Which qualification is needed for the slide’s statement that the proportional-derivative steady-state error is “never zero”?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The constant forcing must be nonzero and the positive position gain finite."
+      },
+      {
+        "id": "o2",
+        "text": "The statement is true even for d=0 and a stable loop."
+      },
+      {
+        "id": "o3",
+        "text": "The velocity gain must be infinite for a nonzero constant offset to exist."
+      },
+      {
+        "id": "o4",
+        "text": "The actual and desired trajectories must always both be stationary."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0664",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 664,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 664, printed slide 28: Scope of the nonzero-offset statement",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q066",
+    "version": 1,
+    "stem": "Which added servo term is the integral component in the lecture’s PID-style trajectory controller?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "k_i ė, a second velocity-error term."
+      },
+      {
+        "id": "o2",
+        "text": "k_i e², the squared instantaneous error."
+      },
+      {
+        "id": "o3",
+        "text": "k_i ẍ_d alone, a rescaling of feedforward acceleration."
+      },
+      {
+        "id": "o4",
+        "text": "k_i z, where z(t)=z(0)+∫₀ᵗ e(τ)dτ."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0665",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 665,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 665, printed slide 29: Integral action, state and controller order",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q067",
+    "version": 1,
+    "stem": "For normalized f′ measured in m/s², what units must k_i have when it multiplies z=∫e dt and e is in metres?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "s⁻¹."
+      },
+      {
+        "id": "o2",
+        "text": "N/m."
+      },
+      {
+        "id": "o3",
+        "text": "s⁻³."
+      },
+      {
+        "id": "o4",
+        "text": "s⁻²."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0665",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 665,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 665, printed slide 29: Integral action, state and controller order",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q068",
+    "version": 1,
+    "stem": "On an interval where d(t) is differentiable, differentiating ë+k_v ė+k_p e+k_i z=d with ż=e and constant gains gives which equation?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "e⁽³⁾+k_v ë+k_p ė+k_i z=ḋ."
+      },
+      {
+        "id": "o2",
+        "text": "e⁽³⁾+k_v ë+k_p ė+k_i e=ḋ."
+      },
+      {
+        "id": "o3",
+        "text": "e⁽³⁾+k_v ë+k_p ė+k_i e=d."
+      },
+      {
+        "id": "o4",
+        "text": "ë+k_v ė+k_p e+k_i e=ḋ."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0665",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 665,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 665, printed slide 29: Differentiated error equation and disturbance derivative",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q069",
+    "version": 1,
+    "stem": "Under what premises does the integral-augmented model imply zero settled position error for a constant disturbance?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The augmented closed loop is stable, reaches a steady state, and k_i≠0."
+      },
+      {
+        "id": "o2",
+        "text": "Any nonzero k_i guarantees zero error even if the augmented dynamics are unstable."
+      },
+      {
+        "id": "o3",
+        "text": "k_i=0 is sufficient because the disturbance derivative is zero."
+      },
+      {
+        "id": "o4",
+        "text": "No stability condition is needed if the desired reference is constant, even when initial error is nonzero."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0665",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 665,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 665, printed slide 29: Stable integral control and zero constant offset",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0666",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 666,
+        "kind": "statement",
+        "locator": "Lecture 21, physical PDF page 666, printed slide 30: summary bullet for Stable integral control and zero constant offset",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q070",
+    "version": 1,
+    "stem": "A stable integral-augmented loop has constant normalized disturbance d=6 m/s² and k_i=3 s⁻³. At its zero-error equilibrium, what value of the integrator state z supplies the balancing term?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "z=0 because the current error is zero."
+      },
+      {
+        "id": "o2",
+        "text": "z=18 m·s."
+      },
+      {
+        "id": "o3",
+        "text": "z=−2 m·s."
+      },
+      {
+        "id": "o4",
+        "text": "z=2 m·s."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0665",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 665,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 665, printed slide 29: Nonzero integral state at zero error",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q071",
+    "version": 1,
+    "stem": "As a derived stability check, let k_v=2 s⁻¹, k_p=1 s⁻² and k_i=12 s⁻³. The characteristic polynomial factors as (s+3)(s²−s+4). What does this show about positive gains?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The loop is critically damped because the cubic has one negative real root."
+      },
+      {
+        "id": "o2",
+        "text": "The constant disturbance derivative being zero makes the unstable homogeneous modes disappear for every initial condition."
+      },
+      {
+        "id": "o3",
+        "text": "Positive gains alone do not guarantee stability: the quadratic pair has real part +1/2 s⁻¹."
+      },
+      {
+        "id": "o4",
+        "text": "All roots are negative because every coefficient of the expanded cubic is positive."
+      }
+    ],
+    "assumptions": [
+      "This explicit derived example uses the source’s normalized cubic characteristic equation; it is not claimed as a source-provided gain choice."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0665",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 665,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 665, printed slide 29: Positive integral gains are not a stability proof",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L21-Q072",
+    "version": 1,
+    "stem": "Why must the integrator’s initial state still be retained after replacing the integral equation by its differentiated third-order equation?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A step disturbance is differentiable with derivative zero at its jump, so no onset condition matters."
+      },
+      {
+        "id": "o2",
+        "text": "Differentiation removes an integration constant; the original equation supplies the compatibility condition involving z(0)."
+      },
+      {
+        "id": "o3",
+        "text": "Differentiation proves z(0)=0 for every implementation."
+      },
+      {
+        "id": "o4",
+        "text": "The differentiated equation always has lower order and therefore needs no initial conditions."
+      }
+    ],
+    "assumptions": [
+      "k_i≠0; this is a mathematical qualification of differentiating the source’s integral equation."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0665",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 665,
+        "kind": "equation",
+        "locator": "Lecture 21, physical PDF page 665, printed slide 29: Differentiation and integrator initial conditions",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  }
+]

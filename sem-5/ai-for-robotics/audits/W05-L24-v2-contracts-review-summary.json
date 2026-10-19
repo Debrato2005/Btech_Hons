@@ -1,0 +1,213 @@
+{
+  "completedAt": "2026-10-19T19:31:36.390041+00:00",
+  "reviewerId": "define_robotics_data_contracts:L24-independent-reviewer",
+  "revisionAndGapItemsReviewed": 40,
+  "verified": 37,
+  "flagged": 3,
+  "totalCurrentVerified": 83,
+  "totalCurrentQuestions": 86,
+  "preservedAcceptedHashes": 46,
+  "keyDisagreements": 0,
+  "actualPagesInspected": 24,
+  "priorVersionExposure": false,
+  "independentAssertions": 29,
+  "randomTrials": 500,
+  "checksPerTrial": 4,
+  "reviewFile": "data/reviews/W05-L24-v2-independent-contracts.json",
+  "reviewSha256": "e44fffd476992da9d08e061f8ff2c67170587e890b62132df97bdbd773ec2252",
+  "blindAnswersSha256": "7baeca819acadccdc2d995ff866b1fea2164639b484c245ca0070d2dfe7caf37",
+  "validation": {
+    "valid": true,
+    "release": false,
+    "errors": [],
+    "warnings": [],
+    "counts": {
+      "sources": 2,
+      "sourcesReady": 2,
+      "pagesExpected": 2012,
+      "pagesInventoried": 2012,
+      "pagesVisuallyInspected": 357,
+      "pagesExcluded": 140,
+      "pagesRepeated": 0,
+      "concepts": 19,
+      "conceptsWithDraftQuestions": 19,
+      "conceptsWithVerifiedQuestions": 19,
+      "questions": 86,
+      "questionsByStatus": {
+        "verified": 83,
+        "flagged": 3
+      },
+      "currentlyVerifiedQuestions": 83,
+      "staleReviews": 0,
+      "numericalFamilies": 0,
+      "verifiedByWeek": {
+        "5": 83
+      },
+      "verifiedByDifficulty": {
+        "easy": 67,
+        "medium": 16
+      },
+      "verifiedByType": {
+        "conceptual": 40,
+        "numerical": 18,
+        "diagram": 7,
+        "match": 3,
+        "synthesis": 1,
+        "definition": 6,
+        "scenario": 3,
+        "sequence": 1,
+        "exception": 2,
+        "statement": 2
+      }
+    }
+  },
+  "flaggedQuestionIds": [
+    "W05-L24-P0733-Q02",
+    "W05-L24-P0735-Q02",
+    "W05-L24-P0738-Q01"
+  ],
+  "findings": [
+    {
+      "questionId": "W05-L24-P0733-Q02",
+      "criteria": [
+        "assumptions",
+        "distractors",
+        "explanation"
+      ],
+      "findings": [
+        "The o4 statement about fewer sensor readings and a faster servo is not uniformly false without a baseline sampling relationship. An initially oversampled sensor can be reduced from 1000 Hz to 500 Hz while the servo increases from 100 Hz to 200 Hz, still allowing fresh measurements every cycle. Specify one fresh measurement per original cycle with no surplus sampling, or replace o4 with a genuinely stale/reused-measurement misconception.",
+        "As written, o4 can describe a feasible oversampled-sensor configuration, so it is not a cleanly false alternative even though o1 remains the intended general source interpretation.",
+        "The explanation that fewer readings cannot provide fresh feedback at every faster cycle assumes an unstated baseline. Qualify that claim or change the alternative; do not teach a universal impossibility."
+      ]
+    },
+    {
+      "questionId": "W05-L24-P0735-Q02",
+      "criteria": [
+        "sourceSupport"
+      ],
+      "findings": [
+        "The answer and homogeneous matrix-coupling argument are correctly supported by page 735, but the attached formula introduces the full nonhomogeneous residual M qdd_d+h−tau_ff and h=V+G+F. Those premises require the plant on page 730 and controller architecture on page 734, as already cited by Q01. Either add those exact premise citations and explain the residual derivation, or narrow this formula record to the displayed homogeneous equation under the explicitly stated zero-residual approximation."
+      ]
+    },
+    {
+      "questionId": "W05-L24-P0738-Q01",
+      "criteria": [
+        "explanation"
+      ],
+      "findings": [
+        "The formula combines a transient error-dynamics equation with a steady equilibrium relation, but defines M only as actual inertia at the equilibrium pose. The transient disturbance-sign question uses M(q(t)) at the current actual configuration; only the steady expression evaluates it at equilibrium. Define both scopes explicitly so the general dynamic equation is not silently frozen. The positive disturbance sign and current key are correct."
+      ]
+    }
+  ],
+  "coverageChallenge": [
+    {
+      "findingId": "L24-GAP-741-acceleration-availability",
+      "status": "closed",
+      "questionId": "W05-L24-P0741-Q06",
+      "reason": "The repaired item directly distinguishes unavailable/omitted desired acceleration from actual zero acceleration and from exact integral-model compensation."
+    },
+    {
+      "findingId": "L24-GAP-745-c1-candidate",
+      "status": "closed",
+      "questionId": "W05-L24-P0745-Q07",
+      "reason": "The new meaningful candidate comparison distinguishes positive definiteness from C1 regularity; one-sided derivatives are explicitly derived and independently checked."
+    },
+    {
+      "id": "L24-v2-COVERAGE-ACCOUNTING",
+      "status": "bounded_source_pass",
+      "sourcePages": [
+        727,
+        728,
+        729,
+        730,
+        731,
+        732,
+        733,
+        734,
+        735,
+        736,
+        737,
+        738,
+        739,
+        740,
+        741,
+        742,
+        743,
+        744,
+        745,
+        746,
+        747,
+        748,
+        749,
+        750
+      ],
+      "finding": "All 24 actual pages reviewed independently; all 19 substantive pages 729–747 have concept and question coverage. The 19 authored concept groups aggregate meaningful sub-angles rather than merely one record per item. Dynamics terms and drawings, matched cancellation, error/gain geometry, practical limits, sampling, feedforward residual and gain order, dual-rate signal routing, disturbance sign/equilibrium coupling, uncertainty excitation, PID units and unavailable acceleration, gravity versus integral load balance, energy derivatives/boundary cases, positive-definite/C1 distinctions and nonlinear invariant-set qualifications are represented. Summary 748 repeats material; title/contents/references/closing are appropriately not new technical concepts. No extra formulas are invented for undefined B/C labels. No further compulsory bounded gap identified, but three exact-version quality flags remain; no complete-course certification."
+    }
+  ],
+  "sourceQualifications": [
+    {
+      "id": "L24-ISSUE-735-feedforward-residual",
+      "physicalPage": 735,
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "finding": "Desired-state model diagram734 does not generally yield the homogeneous actual-M equation735 away from tracking; moving-system poles are also a frozen-configuration description.",
+      "handling": "Explicitly derive residual and state zero-residual/frozen-configuration assumptions for simplified calculations.",
+      "status": "explicitly_scoped_pending_independent_review"
+    },
+    {
+      "id": "L24-ISSUE-741-command-units",
+      "physicalPage": 741,
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "finding": "α=I and unscaled desired acceleration are added to physical torque-domain PID terms; no normalization/inertia scale is stated.",
+      "handling": "Use desired acceleration zero in SI examples; explicitly test the missing scale rather than silently treat acceleration as torque.",
+      "status": "explicitly_scoped_pending_independent_review"
+    },
+    {
+      "id": "L24-ISSUE-742-pid-steady-error",
+      "physicalPage": 742,
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "finding": "Gravity creates steady-state error is overbroad for the displayed ideal PID architecture.",
+      "handling": "Distinguish PD residual error from PID integral-state load balance, with stability and actuator-limit assumptions stated.",
+      "status": "explicitly_scoped_pending_independent_review"
+    },
+    {
+      "id": "L24-ISSUE-744-semidefinite-energy",
+      "physicalPage": 744,
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "finding": "The linear example lists only b>0 explicitly and jumps from vdot≤0 to rest.",
+      "handling": "State m,k>0 for positive definiteness; use the zero-derivative invariant-set argument, not strict negativity in the full state.",
+      "status": "explicitly_scoped_pending_independent_review"
+    },
+    {
+      "id": "L24-ISSUE-745-theorem-scope",
+      "physicalPage": 745,
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "finding": "Informal direct-method statements omit equilibrium/domain/regularity and global boundedness conditions, and negative derivative must exclude the equilibrium.",
+      "handling": "Make local assumptions explicit, distinguish nonpositive from strictly negative derivative and qualify global claims by compact sublevels/properness.",
+      "status": "explicitly_scoped_pending_independent_review"
+    },
+    {
+      "id": "L24-ISSUE-743-stability-not-settling",
+      "physicalPage": 743,
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "finding": "Informal settling language can conflate Lyapunov stability with asymptotic convergence.",
+      "handling": "Separate remaining-near equilibrium, convergence and transient-rate properties in the question scope.",
+      "status": "explicitly_scoped_pending_independent_review"
+    },
+    {
+      "id": "L24-ISSUE-747-nonlinear-invariant-set",
+      "physicalPage": 747,
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "finding": "The right-hand prose applies zero velocity to all trajectories and writes −kx despite the nonlinear k(x) example. The ODE xddot=−kx itself has nonzero solutions.",
+      "handling": "Interpret only trajectories remaining in zero dissipation; persistent zero velocity implies zero acceleration, then nonlinear k(x)=0 forces x=0 under the strict sign condition.",
+      "status": "explicitly_scoped_pending_independent_review"
+    }
+  ],
+  "mutations": "Reviewer evidence, independent check/finalizer scripts, snapshot, reviews and handoff only. No author, bank, source or Git edits."
+}

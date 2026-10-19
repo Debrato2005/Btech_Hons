@@ -1,0 +1,2564 @@
+[
+  {
+    "id": "W05-L25-Q001",
+    "version": 1,
+    "stem": "A manipulator must trace a straight seam specified by points in the workspace. What motivates Cartesian-based control in the lecture?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The task is naturally expressed as an end-effector path in workspace coordinates."
+      },
+      {
+        "id": "o2",
+        "text": "A straight joint-angle interpolation necessarily produces a straight end-effector path."
+      },
+      {
+        "id": "o3",
+        "text": "A workspace path removes the need to account for manipulator kinematics."
+      },
+      {
+        "id": "o4",
+        "text": "Cartesian control changes joint torque actuators into independent x, y and z actuators."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0754",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 754,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 754, actual printed footer 4: Workspace task versus joint-coordinate regulation",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0771",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 771,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 771, actual printed footer 21: summary of Workspace task versus joint-coordinate regulation",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q002",
+    "version": 1,
+    "stem": "In the joint-based diagram with Cartesian-path input, which sequence correctly describes the main forward path?",
+    "selectionMode": "single",
+    "type": "sequence",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Cartesian desired trajectory → direct Cartesian-error gain → Cartesian force actuator, without joint conversion."
+      },
+      {
+        "id": "o2",
+        "text": "Measured joint position → inverse kinematics → Cartesian reference → torque."
+      },
+      {
+        "id": "o3",
+        "text": "Cartesian desired trajectory → forward kinematics → joint desired trajectory → arm position command."
+      },
+      {
+        "id": "o4",
+        "text": "Cartesian desired trajectory → joint trajectory conversion → joint-error/gain processing → torque → arm."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0755",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 755,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 755, actual printed footer 5: Trajectory conversion before joint feedback",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0771",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 771,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 771, actual printed footer 21: summary of Trajectory conversion before joint feedback",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q003",
+    "version": 2,
+    "stem": "The diagram sends θ_d, θ̇_d and θ̈_d toward a common summing icon labeled δθ. Which interpretation avoids treating that schematic as an invalid equation?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It fully specifies a normalized acceleration law with unit gains for every derivative channel."
+      },
+      {
+        "id": "o2",
+        "text": "It specifies a position-only controller, so the desired velocity and acceleration inputs can be discarded."
+      },
+      {
+        "id": "o3",
+        "text": "It abbreviates joint-reference and error processing; position, velocity and acceleration need appropriately defined channels and gains."
+      },
+      {
+        "id": "o4",
+        "text": "It defines the angular displacement δθ=θ_d+θ̇_d+θ̈_d−θ without any scaling."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0755",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 755,
+        "kind": "figure",
+        "locator": "Lecture 25, physical PDF page 755, actual printed footer 5: Mixed-unit signals in a compressed block diagram",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q004",
+    "version": 2,
+    "stem": "Which operation produces a desired joint-position configuration from a reachable desired Cartesian pose before joint-based tracking?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Apply one local Jacobian inverse directly to the finite Cartesian target without a reference configuration or iterative update."
+      },
+      {
+        "id": "o2",
+        "text": "Solve inverse kinematics and select a suitable consistent solution branch."
+      },
+      {
+        "id": "o3",
+        "text": "Multiply the desired position by the Jacobian transpose."
+      },
+      {
+        "id": "o4",
+        "text": "Apply forward kinematics to the desired Cartesian pose."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0755",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 755,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 755, actual printed footer 5: Desired joint position and branch choice",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0756",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 756,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 756, actual printed footer 6: Desired joint position and branch choice",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q005",
+    "version": 1,
+    "stem": "Let θ_d(t) be a smooth chosen IK branch satisfying X(θ_d(t))=X_d(t). Where must J be evaluated when differentiating this identity to obtain the exact desired joint velocity?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "At θ_d(t), along that same desired branch."
+      },
+      {
+        "id": "o2",
+        "text": "At any fixed home configuration, regardless of the desired motion."
+      },
+      {
+        "id": "o3",
+        "text": "At actual θ(t), even when it differs from θ_d(t), without changing the interpretation."
+      },
+      {
+        "id": "o4",
+        "text": "At the Cartesian velocity vector Ẋ_d, because it is the right-hand factor."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0756",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 756,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 756, actual printed footer 6: Evaluation along the desired inverse-kinematics branch",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q006",
+    "version": 1,
+    "stem": "With A(t)=J(θ_d(t))^−1, differentiating θ̇_d=A Ẋ_d gives which desired acceleration?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "θ̈_d=A Ẍ_d only, for every moving configuration."
+      },
+      {
+        "id": "o2",
+        "text": "θ̈_d=Ȧ Ẍ_d+A Ẋ_d."
+      },
+      {
+        "id": "o3",
+        "text": "θ̈_d=A Ẍ_d−Ȧ Ẋ_d."
+      },
+      {
+        "id": "o4",
+        "text": "θ̈_d=A Ẍ_d+Ȧ Ẋ_d."
+      }
+    ],
+    "assumptions": [
+      "J is square, invertible and differentiable along the desired branch."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0756",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 756,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 756, actual printed footer 6: Acceleration conversion and the inverse-Jacobian derivative",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0771",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 771,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 771, actual printed footer 21: summary of Acceleration conversion and the inverse-Jacobian derivative",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q007",
+    "version": 1,
+    "stem": "For differentiable invertible J(t), derive Ȧ where A=J^−1. Which expression follows from differentiating JA=I?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Ȧ=J^−1 J̇ J^−1."
+      },
+      {
+        "id": "o2",
+        "text": "Ȧ=−J̇ J^−2 for arbitrary J and J̇."
+      },
+      {
+        "id": "o3",
+        "text": "Ȧ=−J^−1 J̇ J^−1."
+      },
+      {
+        "id": "o4",
+        "text": "Ȧ=(J̇)^−1."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0756",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 756,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 756, actual printed footer 6: Matrix inverse derivative identity",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q008",
+    "version": 1,
+    "stem": "At a desired configuration, J=[[1,1],[0,2]] m/rad and Ẋ_d=[0.3,0.4]ᵀ m/s. What is θ̇_d?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "[0.3,1.1]ᵀ rad/s."
+      },
+      {
+        "id": "o2",
+        "text": "[0.1,0.2]ᵀ rad/s."
+      },
+      {
+        "id": "o3",
+        "text": "[0.3,0.2]ᵀ rad/s."
+      },
+      {
+        "id": "o4",
+        "text": "[0.7,0.8]ᵀ rad/s."
+      }
+    ],
+    "assumptions": [
+      "J is evaluated on the selected desired branch; the task has two translational coordinates and two revolute joints."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0756",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 756,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 756, actual printed footer 6: Coupled inverse-Jacobian velocity calculation",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q009",
+    "version": 1,
+    "stem": "For a one-coordinate reference conversion, J=2 m/rad, J̇=0.5 m/(rad·s), Ẋ_d=0.4 m/s and Ẍ_d=0.6 m/s² at one instant. What is θ̈_d?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "0.25 rad/s²."
+      },
+      {
+        "id": "o2",
+        "text": "0.30 rad/s²."
+      },
+      {
+        "id": "o3",
+        "text": "0.35 rad/s²."
+      },
+      {
+        "id": "o4",
+        "text": "1.10 rad/s²."
+      }
+    ],
+    "assumptions": [
+      "Scalar smooth nonsingular desired-path mapping; all stated values refer to the same instant."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0756",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 756,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 756, actual printed footer 6: Configuration-change contribution to acceleration",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q010",
+    "version": 1,
+    "stem": "A finite-difference velocity estimate is (x_k−x_{k−1})/Δt. Two position samples have errors +ε and −ε, respectively. What noise contribution enters the estimate?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "2εΔt."
+      },
+      {
+        "id": "o2",
+        "text": "Zero because equal-magnitude noise always cancels."
+      },
+      {
+        "id": "o3",
+        "text": "ε/2, independent of sampling interval."
+      },
+      {
+        "id": "o4",
+        "text": "2ε/Δt."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0756",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 756,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 756, actual printed footer 6: Numerical differentiation and measurement noise",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q011",
+    "version": 1,
+    "stem": "Which route returns the actual position to the direct Cartesian-error comparator in the diagram?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Commanded torque → J^T → actual X → positive input."
+      },
+      {
+        "id": "o2",
+        "text": "Desired X_d → Kin(X_d) → actual X, with no joint measurement."
+      },
+      {
+        "id": "o3",
+        "text": "Measured θ → Kin(θ) → actual X → negative input of X_d−X."
+      },
+      {
+        "id": "o4",
+        "text": "Measured θ → inverse kinematics → desired θ_d → positive input."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0757",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 757,
+        "kind": "figure",
+        "locator": "Lecture 25, physical PDF page 757, actual printed footer 7: Forward kinematics in the feedback branch",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q012",
+    "version": 2,
+    "stem": "In a common Cartesian frame, X_d=[0.4,0.2,0.5]ᵀ m and measured-joint forward kinematics gives X=[0.3,0.25,0.45]ᵀ m. What error enters the direct Cartesian controller?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "[0.1,0.05,0.05]ᵀ m."
+      },
+      {
+        "id": "o2",
+        "text": "[0.1,−0.05,0.05]ᵀ m."
+      },
+      {
+        "id": "o3",
+        "text": "[−0.1,0.05,−0.05]ᵀ m."
+      },
+      {
+        "id": "o4",
+        "text": "[0.7,0.45,0.95]ᵀ m."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0757",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 757,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 757, actual printed footer 7: Cartesian error sign and coordinate consistency",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q013",
+    "version": 2,
+    "stem": "Which comparison accurately distinguishes the two illustrated architectures?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Joint-based Cartesian input converts the desired path before joint-error control; direct Cartesian control converts measured joints inside Cartesian feedback."
+      },
+      {
+        "id": "o2",
+        "text": "Both diagrams compute only joint error; the label Cartesian merely changes the units displayed."
+      },
+      {
+        "id": "o3",
+        "text": "Direct Cartesian control eliminates forward kinematics, while the joint-based input diagram uses it to generate θ_d."
+      },
+      {
+        "id": "o4",
+        "text": "Both architectures convert only the desired path outside feedback and then compare desired and actual joint coordinates."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0755",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 755,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 755, actual printed footer 5: Coordinate-conversion location and cost",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0757",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 757,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 757, actual printed footer 7: Coordinate-conversion location and cost",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0758",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 758,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 758, actual printed footer 8: Coordinate-conversion location and cost",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q014",
+    "version": 2,
+    "stem": "Which is a defensible interpretation of the listed Cartesian-control advantages?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Specifying the task in Cartesian coordinates removes the need for current forward kinematics in direct Cartesian feedback."
+      },
+      {
+        "id": "o2",
+        "text": "A fixed joint-angle error then corresponds to the same Cartesian position error at every arm configuration."
+      },
+      {
+        "id": "o3",
+        "text": "Direct Cartesian error control avoids feedback-coordinate conversion by treating measured joint angles as Cartesian positions."
+      },
+      {
+        "id": "o4",
+        "text": "Workspace tasks can be specified naturally, while tracking quality still depends on controller design and implementation."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0758",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 758,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 758, actual printed footer 8: Potential benefits without automatic tracking guarantees",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q015",
+    "version": 1,
+    "stem": "Match each intuitive Cartesian controller to the intermediate quantity immediately before torque generation.",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Both create a joint displacement by multiplying Cartesian error by J^T."
+      },
+      {
+        "id": "o2",
+        "text": "Both solve full inverse kinematics before applying the same joint gain."
+      },
+      {
+        "id": "o3",
+        "text": "Inverse Jacobian: joint displacement correction; transpose Jacobian: virtual Cartesian force."
+      },
+      {
+        "id": "o4",
+        "text": "Inverse Jacobian: virtual Cartesian force; transpose Jacobian: joint displacement correction."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0759",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 759,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 759, actual printed footer 9: Distinct intermediate quantities in intuitive controllers",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0760",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 760,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 760, actual printed footer 10: Distinct intermediate quantities in intuitive controllers",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0761",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 761,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 761, actual printed footer 11: Distinct intermediate quantities in intuitive controllers",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0771",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 771,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 771, actual printed footer 21: summary of Distinct intermediate quantities in intuitive controllers",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q016",
+    "version": 1,
+    "stem": "For J=[[1,1],[0,2]] m/rad, δX=[0.02,0.04]ᵀ m and K_q=diag(2,3) N·m/rad, what torque follows from the stated inverse-Jacobian scheme?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "[−0.02,0.06]ᵀ N·m."
+      },
+      {
+        "id": "o2",
+        "text": "[0,0.06]ᵀ N·m."
+      },
+      {
+        "id": "o3",
+        "text": "[0.04,0.06]ᵀ N·m."
+      },
+      {
+        "id": "o4",
+        "text": "[0.04,0.30]ᵀ N·m."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0760",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 760,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 760, actual printed footer 10: Inverse-Jacobian correction followed by joint gains",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q017",
+    "version": 1,
+    "stem": "For nonlinear forward kinematics X=f(θ), what is the proper scope of δθ=J(θ)^−1δX in the intuitive controller?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A local first-order correction near a configuration with invertible J."
+      },
+      {
+        "id": "o2",
+        "text": "An exact solution of f(θ+δθ)=f(θ)+δX for every finite δX."
+      },
+      {
+        "id": "o3",
+        "text": "A mapping valid at every singular configuration because δX is a position error."
+      },
+      {
+        "id": "o4",
+        "text": "A direct Cartesian-force-to-joint-torque mapping that requires no gain."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0760",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 760,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 760, actual printed footer 10: Local displacement mapping is not finite inverse kinematics",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q018",
+    "version": 1,
+    "stem": "At a configuration J=diag(1,ε) m/rad with ε>0, a task correction δX=[0,0.01]ᵀ m is requested. What happens to the inverse-Jacobian correction as ε approaches zero?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Its second component approaches zero as 0.01ε."
+      },
+      {
+        "id": "o2",
+        "text": "It stays exactly 0.01 rad regardless of ε."
+      },
+      {
+        "id": "o3",
+        "text": "The ordinary inverse remains well-defined at ε=0 with a finite second component."
+      },
+      {
+        "id": "o4",
+        "text": "Its second component 0.01/ε grows without bound in the linear formula."
+      }
+    ],
+    "assumptions": [
+      "The Jacobian entries are the numerical values in m/rad; no pseudoinverse, damping or saturation is added."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0760",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 760,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 760, actual printed footer 10: Near-singular inverse amplification",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q019",
+    "version": 1,
+    "stem": "The diagram places J^−1 before a joint gain matrix K_q. Which torque expression preserves this order, without assuming that the matrices commute?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "τ=(K_qJ)^−1δX."
+      },
+      {
+        "id": "o2",
+        "text": "τ=J K_qδX."
+      },
+      {
+        "id": "o3",
+        "text": "τ=K_q J^−1δX."
+      },
+      {
+        "id": "o4",
+        "text": "τ=J^−1K_qδX for all J and K_q."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0760",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 760,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 760, actual printed footer 10: Matrix order in inverse-Jacobian control",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q020",
+    "version": 1,
+    "stem": "Which block order is shown in the transpose-Jacobian Cartesian controller?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Cartesian error → inverse kinematics → desired acceleration → direct Cartesian actuator."
+      },
+      {
+        "id": "o2",
+        "text": "Cartesian error → Cartesian gain → virtual force → J^T → joint torque."
+      },
+      {
+        "id": "o3",
+        "text": "Cartesian error → J^T → joint displacement → Cartesian gain → force."
+      },
+      {
+        "id": "o4",
+        "text": "Joint torque → J^−1 → desired Cartesian position → comparator."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0761",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 761,
+        "kind": "figure",
+        "locator": "Lecture 25, physical PDF page 761, actual printed footer 11: Virtual Cartesian stiffness and torque mapping",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q021",
+    "version": 1,
+    "stem": "Let J=[[1,2],[3,4]] m/rad, δX=[0.10,−0.05]ᵀ m and K_x=diag(10,20) N/m. What is τ in the transpose-Jacobian controller?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "[−2,−2]ᵀ N·m."
+      },
+      {
+        "id": "o2",
+        "text": "[−1,−1]ᵀ N·m."
+      },
+      {
+        "id": "o3",
+        "text": "[−3,2]ᵀ N·m."
+      },
+      {
+        "id": "o4",
+        "text": "[−0.5,0]ᵀ N·m."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0761",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 761,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 761, actual printed footer 11: Coupled force-to-torque numerical mapping",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q022",
+    "version": 1,
+    "stem": "Given Ẋ=Jθ̇ and compatible work-conjugate force F, which derivation supports τ=J^TF?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "FᵀẊ=(J^−1F)ᵀθ̇ for any square J, so τ=J^−1F."
+      },
+      {
+        "id": "o2",
+        "text": "Since J maps velocity forward, the same untransposed J must map force forward."
+      },
+      {
+        "id": "o3",
+        "text": "Equal power requires τ=F componentwise even when J is not the identity."
+      },
+      {
+        "id": "o4",
+        "text": "FᵀẊ=FᵀJθ̇=(JᵀF)ᵀθ̇, so the joint torque for equal power is JᵀF."
+      }
+    ],
+    "assumptions": [
+      "The force and velocity refer to the same point/frame; all task coordinates are translational here and no dissipation is included in the instantaneous mapping."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0756",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 756,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 756, actual printed footer 6: Why the transpose preserves virtual power",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0761",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 761,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 761, actual printed footer 11: Why the transpose preserves virtual power",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q023",
+    "version": 2,
+    "stem": "For a task with m Cartesian velocity components and n joint velocities, J is m×n. What dimensions make τ=J^TF valid?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Both F and τ must be m×1, so the formula requires m=n."
+      },
+      {
+        "id": "o2",
+        "text": "J^T must be inverted before multiplication whenever m≠n."
+      },
+      {
+        "id": "o3",
+        "text": "F is m×1 and τ is n×1; J^T is n×m."
+      },
+      {
+        "id": "o4",
+        "text": "F is n×1 and τ is m×1; J^T is m×n."
+      }
+    ],
+    "assumptions": [
+      "J and F are defined for a compatible task velocity/force pair."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0761",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 761,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 761, actual printed footer 11: Dimensions of the transpose mapping",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q024",
+    "version": 1,
+    "stem": "At an instant, J=[[1,0],[0,0]] m/rad and the virtual force is F=[0,2]ᵀ N. What torque does the transpose law produce, and what does this demonstrate?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "τ=[2,0]ᵀ; every unavailable task direction is automatically redirected into an available joint."
+      },
+      {
+        "id": "o2",
+        "text": "τ=[0,0]ᵀ; a nonzero task force can lie in the nullspace of J^T."
+      },
+      {
+        "id": "o3",
+        "text": "τ=[0,2]ᵀ; the transpose always copies force into torque."
+      },
+      {
+        "id": "o4",
+        "text": "The product J^TF is undefined because J is singular."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0761",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 761,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 761, actual printed footer 11: Transpose exists without guaranteeing task correction",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q025",
+    "version": 1,
+    "stem": "For translation-only tasks and revolute joints, compare K_q in τ=K_qδθ with K_x in F=K_xδX. Which units are appropriate?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "K_q: N·m/rad; K_x: N/m."
+      },
+      {
+        "id": "o2",
+        "text": "Both gains: N/m because both ultimately reduce Cartesian error."
+      },
+      {
+        "id": "o3",
+        "text": "K_q: N·m·rad; K_x: N·m."
+      },
+      {
+        "id": "o4",
+        "text": "K_q: rad/(N·m); K_x: m/N."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0760",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 760,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 760, actual printed footer 10: Different physical meanings of intuitive gain matrices",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0761",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 761,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 761, actual printed footer 11: Different physical meanings of intuitive gain matrices",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q026",
+    "version": 1,
+    "stem": "Which behavior is the stated target of Cartesian decoupling rather than simply applying a Cartesian position gain?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Fixed joint torques independent of both configuration and tracking error."
+      },
+      {
+        "id": "o2",
+        "text": "A physical inertia matrix that becomes identical at every arm configuration."
+      },
+      {
+        "id": "o3",
+        "text": "Independent joint errors only, with no requirement on Cartesian behavior."
+      },
+      {
+        "id": "o4",
+        "text": "Fixed, decoupled Cartesian error dynamics with a chosen damping behavior across configurations."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0762",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 762,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 762, actual printed footer 12: Desired Cartesian error dynamics",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q027",
+    "version": 2,
+    "stem": "Match the terms in ℱ=M_x(Θ)χ̈+V_x(Θ,Θ̇)+G_x(Θ).",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "M_x: Cartesian inertia; V_x: gravity terms; G_x: velocity-dependent terms."
+      },
+      {
+        "id": "o2",
+        "text": "M_x: velocity-dependent coefficient matrix; V_x: inertial acceleration force; G_x: gravity terms."
+      },
+      {
+        "id": "o3",
+        "text": "M_x: Cartesian inertia; V_x: velocity-dependent terms; G_x: gravity terms."
+      },
+      {
+        "id": "o4",
+        "text": "M_x: the joint-space inertia used unchanged; V_x and G_x: the joint-space torque vectors used unchanged."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0763",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 763,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 763, actual printed footer 13: Cartesian dynamic terms and state dependence",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0771",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 771,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 771, actual printed footer 21: summary of Cartesian dynamic terms and state dependence",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q028",
+    "version": 1,
+    "stem": "How should X=[x,y,z]ᵀ on the early page be distinguished from χ on the Cartesian-dynamics page?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Any three orientation-angle rates can be substituted for physical angular velocity without changing the Jacobian or force convention."
+      },
+      {
+        "id": "o2",
+        "text": "X there is position-only; χ is described as including position and orientation, so its precise representation must be specified."
+      },
+      {
+        "id": "o3",
+        "text": "Both symbols necessarily mean the same three position coordinates and never orientation."
+      },
+      {
+        "id": "o4",
+        "text": "χ always equals the joint-angle vector Θ because both appear in the same equation."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0755",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 755,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 755, actual printed footer 5: Position-only notation versus position and orientation",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0763",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 763,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 763, actual printed footer 13: Position-only notation versus position and orientation",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q029",
+    "version": 2,
+    "stem": "Which reading is supported by the Cartesian-dynamics illustration without inferring geometry that is not supplied?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Uppercase X,Y,Z mark base axes at O; lowercase x,y,z appear at P, and the dashed sphere is schematic."
+      },
+      {
+        "id": "o2",
+        "text": "The dashed sphere provides enough numerical data to calculate the exact reachable-workspace volume."
+      },
+      {
+        "id": "o3",
+        "text": "The lowercase axes are drawn at the base origin O, while the uppercase axes move with the tool point P."
+      },
+      {
+        "id": "o4",
+        "text": "The picture alone gives the complete numerical rotation and translation between the base and tool frames."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0763",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 763,
+        "kind": "figure",
+        "locator": "Lecture 25, physical PDF page 763, actual printed footer 13: Base axes and end-effector axes in the schematic",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q030",
+    "version": 2,
+    "stem": "For a two-coordinate translational task, M_x=[[2,1],[1,3]] kg, Ẍ=[1,−2]ᵀ m/s², V_x=[0.5,1]ᵀ N and G_x=[1,4]ᵀ N. What force follows from the displayed model?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "[3.5,−1]ᵀ N."
+      },
+      {
+        "id": "o2",
+        "text": "[−1.5,−10]ᵀ N."
+      },
+      {
+        "id": "o3",
+        "text": "[1,−1]ᵀ N."
+      },
+      {
+        "id": "o4",
+        "text": "[1.5,0]ᵀ N."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0763",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 763,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 763, actual printed footer 13: Cartesian dynamic force with coupled inertia",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q031",
+    "version": 2,
+    "stem": "For the exact plant F=M_xẌ+V_x+G_x, apply F=M_xu+V_x+G_x with invertible M_x. Which reduced equation results?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Ẍ=u+2(V_x+G_x)."
+      },
+      {
+        "id": "o2",
+        "text": "Ẍ=J^Tu."
+      },
+      {
+        "id": "o3",
+        "text": "Ẍ=u."
+      },
+      {
+        "id": "o4",
+        "text": "Ẍ=M_xu."
+      }
+    ],
+    "assumptions": [
+      "Task coordinates and generalized forces are consistent; the commanded force is realized, model terms match, and no additional force is present."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0763",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 763,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 763, actual printed footer 13: Exact Cartesian model compensation",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0764",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 764,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 764, actual printed footer 14: Exact Cartesian model compensation",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0771",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 771,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 771, actual printed footer 21: summary of Exact Cartesian model compensation",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q032",
+    "version": 2,
+    "stem": "In a translation-only model F=M_xℱ′+V_x+G_x, with M_x in kg and the other terms in N, what are the units of ℱ′?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "N·m."
+      },
+      {
+        "id": "o2",
+        "text": "m/s²."
+      },
+      {
+        "id": "o3",
+        "text": "N."
+      },
+      {
+        "id": "o4",
+        "text": "m."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0764",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 764,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 764, actual printed footer 14: Servo component is acceleration rather than force",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q033",
+    "version": 1,
+    "stem": "For a translation-only task, Ẍ_d=[0.5,−0.2]ᵀ m/s², E=[0.1,−0.2]ᵀ m, Ė=[−0.05,0.1]ᵀ m/s, K_p=diag(4,9) s^−2 and K_v=diag(4,6) s^−1. What is the servo command u?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "[0.7,−1.4]ᵀ m/s²."
+      },
+      {
+        "id": "o2",
+        "text": "[0.2,−1.2]ᵀ m/s²."
+      },
+      {
+        "id": "o3",
+        "text": "[0.3,1.0]ᵀ m/s²."
+      },
+      {
+        "id": "o4",
+        "text": "[1.1,−2.6]ᵀ m/s²."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0765",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 765,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 765, actual printed footer 15: Desired acceleration plus Cartesian error feedback",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q034",
+    "version": 1,
+    "stem": "Under exact cancellation Ẍ=u, define E=X_d−X and use u=Ẍ_d+K_vĖ+K_pE. Which error equation follows?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Ë−K_vĖ−K_pE=0."
+      },
+      {
+        "id": "o2",
+        "text": "M_xË+K_vĖ+K_pE=0 after exact normalization."
+      },
+      {
+        "id": "o3",
+        "text": "Ė+K_vĖ+K_pE=Ẍ_d."
+      },
+      {
+        "id": "o4",
+        "text": "Ë+K_vĖ+K_pE=0."
+      }
+    ],
+    "assumptions": [
+      "The exact model conditions of the cited cancellation law hold."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0763",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 763,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 763, actual printed footer 13: Derived Cartesian error equation",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0764",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 764,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 764, actual printed footer 14: Derived Cartesian error equation",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0765",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 765,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 765, actual printed footer 15: Derived Cartesian error equation",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q035",
+    "version": 2,
+    "stem": "The exact normalized error dynamics use K_p=diag(4,9) s^−2. Which diagonal K_v makes both channels critically damped with stable repeated real poles?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "diag(8,18) s^−1."
+      },
+      {
+        "id": "o2",
+        "text": "diag(−4,−6) s^−1."
+      },
+      {
+        "id": "o3",
+        "text": "diag(4,6) s^−1."
+      },
+      {
+        "id": "o4",
+        "text": "diag(2,3) s^−1."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0762",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 762,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 762, actual printed footer 12: Critically damped decoupled Cartesian channels",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0764",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 764,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 764, actual printed footer 14: Critically damped decoupled Cartesian channels",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0765",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 765,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 765, actual printed footer 15: Critically damped decoupled Cartesian channels",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q036",
+    "version": 1,
+    "stem": "With Ë+K_vĖ+K_pE=0, K_v=diag(4,6) and K_p=[[4,1],[1,9]] in consistent units, take E=[0,1]ᵀ m and Ė=0. What is Ë, and are the original coordinate errors decoupled?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "[−4,−1]ᵀ m/s²; no, because the first column must always be used."
+      },
+      {
+        "id": "o2",
+        "text": "[−1,−9]ᵀ m/s²; no, the second error drives the first acceleration."
+      },
+      {
+        "id": "o3",
+        "text": "[0,−9]ᵀ m/s²; yes, diagonal K_v alone guarantees decoupling."
+      },
+      {
+        "id": "o4",
+        "text": "[1,9]ᵀ m/s²; yes, model cancellation reverses all restoring signs."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0762",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 762,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 762, actual printed footer 12: Off-diagonal gains can retain cross-coordinate coupling",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0765",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 765,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 765, actual printed footer 15: Off-diagonal gains can retain cross-coordinate coupling",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q037",
+    "version": 2,
+    "stem": "In a scalar translation-only example, the actual inertia is 2 kg and actual V_x+G_x=0. The controller uses an inertia estimate of 3 kg, exact zero compensation and servo command u=4 m/s². What actual acceleration results?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "6 m/s²."
+      },
+      {
+        "id": "o2",
+        "text": "4 m/s²."
+      },
+      {
+        "id": "o3",
+        "text": "8 m/s²."
+      },
+      {
+        "id": "o4",
+        "text": "8/3 m/s²."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0763",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 763,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 763, actual printed footer 13: Inertia mismatch prevents exact normalization",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0764",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 764,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 764, actual printed footer 14: Inertia mismatch prevents exact normalization",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0769",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 769,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 769, actual printed footer 19: Inertia mismatch prevents exact normalization",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q038",
+    "version": 2,
+    "stem": "In the Cartesian model-based diagram, which pairing correctly reconstructs the actual feedback signals from measured joints?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "J(θ)θ gives exact X; Kin(θ̇) gives Ẋ."
+      },
+      {
+        "id": "o2",
+        "text": "J^Tθ gives X; J^−1θ̇ gives Ẋ."
+      },
+      {
+        "id": "o3",
+        "text": "Kin(X_d) gives actual X; J(X_d)Ẋ_d gives actual Ẋ."
+      },
+      {
+        "id": "o4",
+        "text": "Kin(θ) gives X; J(θ)θ̇ gives Ẋ."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0765",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 765,
+        "kind": "figure",
+        "locator": "Lecture 25, physical PDF page 765, actual printed footer 15: Different maps for position and velocity feedback",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0766",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 766,
+        "kind": "figure",
+        "locator": "Lecture 25, physical PDF page 766, actual printed footer 16: Different maps for position and velocity feedback",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0771",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 771,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 771, actual printed footer 21: summary of Different maps for position and velocity feedback",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q039",
+    "version": 2,
+    "stem": "At one instant, u=[1,−1]ᵀ m/s², M_x=[[2,1],[1,3]] kg, V_x+G_x=[1,2]ᵀ N, and J=[[1,2],[0,1]] m/rad. What actuator torque is commanded?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "[1,0]ᵀ N·m."
+      },
+      {
+        "id": "o2",
+        "text": "[1,1]ᵀ N·m."
+      },
+      {
+        "id": "o3",
+        "text": "[2,4]ᵀ N·m."
+      },
+      {
+        "id": "o4",
+        "text": "[2,0]ᵀ N·m."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0764",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 764,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 764, actual printed footer 14: Model compensation before torque conversion",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0765",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 765,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 765, actual printed footer 15: Model compensation before torque conversion",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q040",
+    "version": 1,
+    "stem": "Keep exact Ẍ=u and E=X_d−X, but deliberately modify the servo to u=K_vĖ+K_pE by removing Ẍ_d. Which error equation now holds?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Ë+K_vĖ+K_pE=−Ẍ_d."
+      },
+      {
+        "id": "o2",
+        "text": "Ë+K_vĖ+K_pE=Ẍ_d."
+      },
+      {
+        "id": "o3",
+        "text": "Ë+K_vĖ+K_pE=0 for every desired trajectory."
+      },
+      {
+        "id": "o4",
+        "text": "Ë−K_vĖ−K_pE=Ẍ_d."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0765",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 765,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 765, actual printed footer 15: Effect of omitting desired-acceleration feedforward",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q041",
+    "version": 2,
+    "stem": "A position Jacobian maps joint velocity to tool-point velocity expressed in the base frame, but a force measurement is expressed in the tool frame. Before using τ=J^TF, what is needed?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Express the force at that same point in the base frame, or consistently transform both force and Jacobian."
+      },
+      {
+        "id": "o2",
+        "text": "Use the tool-frame force entries unchanged because a transpose automatically rotates frames."
+      },
+      {
+        "id": "o3",
+        "text": "Replace J^T by J^−1 while keeping the unmatched force frame."
+      },
+      {
+        "id": "o4",
+        "text": "Multiply the tool-frame force by the base-to-tool rotation and treat the result as a base-frame force."
+      }
+    ],
+    "assumptions": [
+      "Both representations concern the same tool point; only a force vector, not a displaced wrench, is involved."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0761",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 761,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 761, actual printed footer 11: Compatible frames in Jacobian-transpose torque mapping",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0765",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 765,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 765, actual printed footer 15: Compatible frames in Jacobian-transpose torque mapping",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q042",
+    "version": 1,
+    "stem": "What allocation is proposed by the practical dual-rate architecture?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Run the model update quickly but hold the servo error fixed until the next slow update."
+      },
+      {
+        "id": "o2",
+        "text": "Stop using feedback between background updates and run the manipulator open-loop throughout each interval."
+      },
+      {
+        "id": "o3",
+        "text": "Compute all model quantities once at startup and never update them as the arm moves."
+      },
+      {
+        "id": "o4",
+        "text": "Run the error-feedback servo quickly and update expensive configuration-dependent model quantities more slowly when their variation permits."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0767",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 767,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 767, actual printed footer 17: Fast servo and slower model-coefficient updates",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0771",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 771,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 771, actual printed footer 21: summary of Fast servo and slower model-coefficient updates",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q043",
+    "version": 1,
+    "stem": "An illustrative implementation runs the servo every 1 ms and updates model coefficients every 20 ms. How many servo periods fit in one model-update period, and what remains active between model updates?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "0.05 servo periods; the model update is faster than the servo."
+      },
+      {
+        "id": "o2",
+        "text": "19 servo periods; the twentieth period must always be skipped to recompute the model."
+      },
+      {
+        "id": "o3",
+        "text": "20 servo periods; error-feedback correction continues using the available coefficients."
+      },
+      {
+        "id": "o4",
+        "text": "20 servo periods; all feedback must be disabled between model updates."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0767",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 767,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 767, actual printed footer 17: Illustrative servo and background update periods",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q044",
+    "version": 2,
+    "stem": "Which circumstance most directly undermines the slide’s reason for using a slower background model update?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The held model coefficients remain within the chosen modeling-error budget throughout the update interval."
+      },
+      {
+        "id": "o2",
+        "text": "Configuration-dependent model quantities change substantially during one update interval."
+      },
+      {
+        "id": "o3",
+        "text": "The desired trajectory is expressed in Cartesian coordinates rather than joint coordinates."
+      },
+      {
+        "id": "o4",
+        "text": "The servo uses current measured position error while coefficients are held briefly."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0767",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 767,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 767, actual printed footer 17: When slow background updates become questionable",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q045",
+    "version": 1,
+    "stem": "In the practical diagram, the lower block is labeled B_x(θ)+C_x(θ), and an actual θ̇ arrow enters it. What is the defensible interpretation?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The abbreviated coefficient labels do not erase velocity dependence; the actual velocity input must still be accounted for."
+      },
+      {
+        "id": "o2",
+        "text": "The block is independent of velocity because its printed label contains only θ."
+      },
+      {
+        "id": "o3",
+        "text": "The θ̇ arrow means the output is simply joint velocity, with no force compensation."
+      },
+      {
+        "id": "o4",
+        "text": "The block supplies the desired trajectory and therefore needs no actual measurements."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0763",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 763,
+        "kind": "figure",
+        "locator": "Lecture 25, physical PDF page 763, actual printed footer 13: Actual velocity still feeds practical compensation",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0767",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 767,
+        "kind": "figure",
+        "locator": "Lecture 25, physical PDF page 767, actual printed footer 17: Actual velocity still feeds practical compensation",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0768",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 768,
+        "kind": "figure",
+        "locator": "Lecture 25, physical PDF page 768, actual printed footer 18: Actual velocity still feeds practical compensation",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q046",
+    "version": 1,
+    "stem": "Which change distinguishes adaptive parameter estimation from merely recomputing a fixed-parameter model at a new configuration?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Any evaluation of M_x at a different θ proves that the payload estimate has been identified online."
+      },
+      {
+        "id": "o2",
+        "text": "Adaptation means only increasing the servo execution rate while leaving the model unchanged."
+      },
+      {
+        "id": "o3",
+        "text": "A slower background update necessarily estimates unknown friction even without an estimation law."
+      },
+      {
+        "id": "o4",
+        "text": "Adaptation changes estimates of uncertain physical/model parameters using online information; configuration recomputation can keep those estimates fixed."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0767",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 767,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 767, actual printed footer 17: Configuration recomputation versus parameter estimation",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0769",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 769,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 769, actual printed footer 19: Configuration recomputation versus parameter estimation",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0770",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 770,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 770, actual printed footer 20: Configuration recomputation versus parameter estimation",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0771",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 771,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 771, actual printed footer 21: summary of Configuration recomputation versus parameter estimation",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q047",
+    "version": 2,
+    "stem": "Which statement best captures the practical trade-off described on the page?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The added transformations are only offline trajectory preparation, so they impose no real-time feedback computation."
+      },
+      {
+        "id": "o2",
+        "text": "Choosing a high nominal update rate is sufficient; the actual computation deadline can be assessed separately from controller behavior."
+      },
+      {
+        "id": "o3",
+        "text": "Well-designed Cartesian model-based control can improve workspace response, but requires model computation and coordinate transformations."
+      },
+      {
+        "id": "o4",
+        "text": "Cartesian model compensation makes tracking insensitive to parameter errors that would matter in joint-based model compensation."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0768",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 768,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 768, actual printed footer 18: Model-based Cartesian performance and implementation burden",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q048",
+    "version": 1,
+    "stem": "Select all changes that directly match the lecture’s examples of physical dynamic-model parameters needing attention.",
+    "selectionMode": "multi",
+    "type": "statement",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Changing only joint configuration while keeping physical masses, inertias, friction coefficients and payload attachment fixed."
+      },
+      {
+        "id": "o2",
+        "text": "Replacing the carried payload with one of different mass or inertia."
+      },
+      {
+        "id": "o3",
+        "text": "Wear changing friction behavior during service."
+      },
+      {
+        "id": "o4",
+        "text": "Moving the payload center of mass relative to the attachment."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0769",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 769,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 769, actual printed footer 19: Sources of dynamic-model uncertainty and change",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0771",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 771,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 771, actual printed footer 21: summary of Sources of dynamic-model uncertainty and change",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q049",
+    "version": 1,
+    "stem": "In the adaptive-control diagram, which information enters the adaptation-law block, and what does its output modify?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Tracking error and its derivative, plus actual θ and θ̇, enter; the output modifies the dynamic model."
+      },
+      {
+        "id": "o2",
+        "text": "Only desired acceleration enters; the output retunes the desired path while leaving the dynamic model fixed."
+      },
+      {
+        "id": "o3",
+        "text": "Only the Cartesian virtual force enters; the output replaces forward kinematics."
+      },
+      {
+        "id": "o4",
+        "text": "Only actual torque enters; the output replaces the servo gains while leaving the dynamic model unchanged."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0769",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 769,
+        "kind": "figure",
+        "locator": "Lecture 25, physical PDF page 769, actual printed footer 19: Information paths into the adaptation mechanism",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0770",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 770,
+        "kind": "figure",
+        "locator": "Lecture 25, physical PDF page 770, actual printed footer 20: Information paths into the adaptation mechanism",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q050",
+    "version": 2,
+    "stem": "In the adaptive diagram, desired θ̈_d and gain-weighted Ė and E are summed into τ′ before the dynamic-model block. What distinction is important?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "τ′ is already physical torque, so the dynamic-model block only performs a dimensionless change of labels."
+      },
+      {
+        "id": "o2",
+        "text": "τ′ is applied directly to the arm, while the dynamic-model block only stores parameter estimates outside the torque path."
+      },
+      {
+        "id": "o3",
+        "text": "The model should add physical gravity torque directly to τ′ before any inertia scaling, treating their units as identical."
+      },
+      {
+        "id": "o4",
+        "text": "τ′ is the normalized servo input; the dynamic-model block scales and compensates it to produce actuator torque τ."
+      }
+    ],
+    "assumptions": [
+      "The sum uses consistent normalized joint-coordinate gains; the question identifies the shown signal roles rather than inventing a specific adaptation equation."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0769",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 769,
+        "kind": "figure",
+        "locator": "Lecture 25, physical PDF page 769, actual printed footer 19: Normalized servo signal versus actuator torque",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0770",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 770,
+        "kind": "figure",
+        "locator": "Lecture 25, physical PDF page 770, actual printed footer 20: Normalized servo signal versus actuator torque",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q051",
+    "version": 2,
+    "stem": "What conclusion about adaptation is justified by the lecture’s architecture and prose alone?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A bounded tracking error is sufficient by itself to conclude that every unknown physical parameter has been identified exactly."
+      },
+      {
+        "id": "o2",
+        "text": "The presence of measured position and velocity feedback establishes all excitation and identifiability conditions without further analysis."
+      },
+      {
+        "id": "o3",
+        "text": "Online model updates address uncertainty, but stability or parameter-convergence claims need a specified update law and assumptions."
+      },
+      {
+        "id": "o4",
+        "text": "The block diagram determines a unique numerical parameter-update equation even though no such equation is shown."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0770",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 770,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 770, actual printed footer 20: Online model learning is not an unconditional guarantee",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0771",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 771,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 771, actual printed footer 21: summary of Online model learning is not an unconditional guarantee",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q052",
+    "version": 1,
+    "stem": "Why is τ=J^TK_x(X_d−X) not, by itself, the complete Cartesian model-based decoupling law developed later?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The later law replaces J^T by J^−1 to convert Cartesian force to torque."
+      },
+      {
+        "id": "o2",
+        "text": "It contains virtual stiffness feedback but omits the Cartesian inertia scaling, velocity/gravity compensation and desired-acceleration servo structure."
+      },
+      {
+        "id": "o3",
+        "text": "It cannot produce a joint torque because J^T is reserved exclusively for velocity mapping."
+      },
+      {
+        "id": "o4",
+        "text": "It already cancels all nonlinear dynamics simply because the error is Cartesian."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0760",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 760,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 760, actual printed footer 10: Intuitive transpose feedback versus model-based decoupling",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0761",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 761,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 761, actual printed footer 11: Intuitive transpose feedback versus model-based decoupling",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0763",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 763,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 763, actual printed footer 13: Intuitive transpose feedback versus model-based decoupling",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0764",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 764,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 764, actual printed footer 14: Intuitive transpose feedback versus model-based decoupling",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0765",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 765,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 765, actual printed footer 15: Intuitive transpose feedback versus model-based decoupling",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0771",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 771,
+        "kind": "statement",
+        "locator": "Lecture 25, physical PDF page 771, actual printed footer 21: summary of Intuitive transpose feedback versus model-based decoupling",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q053",
+    "version": 1,
+    "stem": "At one instant, X_d=[1,2]ᵀ m, X=[0.5,2.5]ᵀ m, Ẋ_d=[0.8,−0.2]ᵀ m/s, Ẋ=[0.3,0.3]ᵀ m/s and Ẍ_d=[1,2]ᵀ m/s². With K_p=diag(4,6) s⁻², K_v=diag(2,4) s⁻¹, M_x=[[2,1],[1,3]] kg, V_x+G_x=[1,2]ᵀ N and J=[[1,2],[0,1]] m/rad, what torque follows from u=Ẍ_d+K_v(Ẋ_d−Ẋ)+K_p(X_d−X), F=M_xu+V_x+G_x and τ=J^TF?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o1",
+        "text": "[6,9]ᵀ N·m"
+      },
+      {
+        "id": "o2",
+        "text": "[2,−6]ᵀ N·m"
+      },
+      {
+        "id": "o3",
+        "text": "[9,11]ᵀ N·m"
+      },
+      {
+        "id": "o4",
+        "text": "[0,−3]ᵀ N·m"
+      }
+    ],
+    "assumptions": [
+      "This is an explicitly supplied translation-only instantaneous example with two revolute actuators, compatible frames and no saturation.",
+      "The desired-minus-actual error convention is used; the Jacobian and dynamics correspond to the actual configuration."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0763",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 763,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 763, printed slide 13: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0764",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 764,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 764, printed slide 14: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0765",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 765,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 765, printed slide 15: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W05-L25-Q054",
+    "version": 1,
+    "stem": "On a smooth desired inverse-kinematics branch, let J=[[1,2],[0,1]] m/rad and its total time derivative J̇=[[0,1],[1,0]] m/(rad·s). For Ẋ_d=[3,1]ᵀ m/s and Ẍ_d=[2,4]ᵀ m/s², what desired joint acceleration follows from Ẋ_d=Jθ̇_d and Ẍ_d=Jθ̈_d+J̇θ̇_d?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o2",
+        "text": "[−6,4]ᵀ rad/s²"
+      },
+      {
+        "id": "o3",
+        "text": "[−7,5]ᵀ rad/s²"
+      },
+      {
+        "id": "o4",
+        "text": "[5,1]ᵀ rad/s²"
+      },
+      {
+        "id": "o1",
+        "text": "[−5,3]ᵀ rad/s²"
+      }
+    ],
+    "assumptions": [
+      "The 2×2 Jacobian is nonsingular at this instant, and all task vectors use the same translation frame.",
+      "J and J̇ are evaluated along the selected desired branch; J̇ is supplied as the total derivative along that branch, not a matrix inverse of a derivative."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0756",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 756,
+        "kind": "equation",
+        "locator": "Lecture 25, physical PDF page 756, printed slide 6: relevant text, equations and associated figures",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  }
+]

@@ -1,0 +1,88 @@
+[
+  {
+    "id": "L11-ISSUE-356-forward-state",
+    "physicalPage": 356,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "Forward dynamics is abbreviated to torque-to-motion without explicitly listing model and initial state.",
+    "handling": "Questions make the omitted model/state assumptions explicit; no uniqueness from torque alone is asserted.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L11-ISSUE-367-model-constraints",
+    "physicalPage": 367,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The slide presents positive definiteness and hard-constraint encoding without delimiting degenerate mass distributions or actual implementation.",
+    "handling": "Questions explicitly assume a nondegenerate solid for positive definiteness; mathematical nonnegativity and implementation-dependent enforcement are separated.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L11-ISSUE-368-offdiagonal-convention",
+    "physicalPage": 368,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "p362 defines Ixy=∫xy dm and p361 uses −Ixy in the tensor; p368 writes Ixy,A=Ixy,C−mxc yc, which is instead the signed matrix-entry rule. p369 confirms this by inserting −mwl/4. p376 repeats both conventions together.",
+    "handling": "Use Pxy for raw products and I12 for signed tensor entries. Derive Pxy,A=Pxy,C+mxc yc and I12,A=I12,C−mxc yc. Preserve the slide notation conflict explicitly.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L11-ISSUE-371-table-axis-shell",
+    "physicalPage": 371,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The hollow-cylinder row mR² omits the thin-wall assumption; the plate row only says axis through center, omitting normal-to-plane direction.",
+    "handling": "State thin shell and central normal axis explicitly. Derive the plate row from the box limit, and do not extend mR² to arbitrary wall thickness.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L11-ISSUE-372-design-guarantees",
+    "physicalPage": 372,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The statements about smaller motors and COM stability across all configurations are unconditional in wording.",
+    "handling": "Questions treat inertia reduction as a geometric consequence under stated assumptions and motor/COM benefits as design goals requiring load, motion and configuration checks.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L11-ISSUE-373-matching-efficiency",
+    "physicalPage": 373,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "Inertia matching is called a universal efficiency maximum without a drive model or reflected-load convention; proximal mass is equated with better stability without conditions.",
+    "handling": "Retain the matching criterion as an explicitly source-attributed heuristic. Require stated drive coordinates/objective and treat stability/agility statements as conditional design guidance.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L11-ISSUE-374-positivity-trace",
+    "physicalPage": 374,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "Strictly positive moments exclude ideal axis/point-supported distributions; trace invariance is stated for orientation changes, not translations. Practical measurement wording is not exclusive of the following CAD computation advice.",
+    "handling": "Use nonnegative squared-distance derivation for degenerate cases, keep the origin fixed for orientation invariance, and distinguish measurement from calculation without treating either as forbidden.",
+    "status": "bounded_by_explicit_question_scope"
+  },
+  {
+    "id": "L11-ISSUE-375-principal-label",
+    "physicalPage": 375,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The slide calls ixx,iyy,izz principal moments and says products vanish if symmetric without stating axes.",
+    "handling": "The shown tensor is diagonal, so its diagonal entries are principal. General tensor components need not be eigenvalues; symmetry must be relevant to the chosen origin and axes. The actual XML is preserved and parsed without repair.",
+    "status": "bounded_by_explicit_question_scope",
+    "supplementalImplementationReference": {
+      "url": "https://raw.githubusercontent.com/ros2/ros2_documentation/rolling/source/Capabilities/Simulation/URDF/Adding-Physical-and-Collision-Properties-to-a-URDF-Model.rst",
+      "checkedAt": "2026-10-19",
+      "scope": "Official ROS documentation confirms kg mass, the symmetric six-entry matrix, and the inertial-origin frame. This supports implementation convention checks, not replacement of the supplied lecture as course authority."
+    }
+  },
+  {
+    "id": "L11-ISSUE-376-missing-origin-acceleration",
+    "physicalPage": 376,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The summary labels the coincident/zero-origin-acceleration expression as generalized but omits a0 from the general p359 equation.",
+    "handling": "Explicit comparison questions preserve the omission. General numerical questions use p359; summary equation is restricted to a0=0.",
+    "status": "bounded_by_explicit_question_scope"
+  }
+]

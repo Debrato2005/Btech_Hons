@@ -1,0 +1,179 @@
+{
+  "sourceId": "lectures",
+  "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+  "localQuestionQualifications": [
+    {
+      "questionId": "W10-L48-Q005",
+      "physicalPages": [
+        1512
+      ],
+      "sourceClaim": "The figure places the Digital Signal label after ASR, although digital audio inference requires prior digitization.",
+      "qualification": "The diagram is a conceptual workflow, not a literal placement of the analog-to-digital converter.",
+      "status": "Explicit local qualification awaiting independent review; source not globally resolved."
+    },
+    {
+      "questionId": "W10-L48-Q011",
+      "physicalPages": [
+        1515
+      ],
+      "sourceClaim": "The slide states an unqualified at-least-twice reconstruction slogan without the boundary/phase and bandlimiting qualifications.",
+      "qualification": "At the exact Nyquist boundary, phase matters. The usual safe reconstruction statement uses a bandlimited spectrum strictly below half the sample rate.",
+      "status": "Explicit local qualification awaiting independent review; source not globally resolved."
+    },
+    {
+      "questionId": "W10-L48-Q016",
+      "physicalPages": [
+        1517
+      ],
+      "sourceClaim": "The accompanying prose says Hamming smoothly reaches zero at the boundaries, contradicting its printed formula.",
+      "qualification": "The periodic formula is meaningful, but its first weight is nonzero. It must not be silently replaced by a Hann window.",
+      "status": "Explicit local qualification awaiting independent review; source not globally resolved."
+    },
+    {
+      "questionId": "W10-L48-Q030",
+      "physicalPages": [
+        1521
+      ],
+      "sourceClaim": "The source lists overall energy and dynamic features as if all base MFCC vectors necessarily contain them.",
+      "qualification": "Energy and dynamic features depend on the chosen feature configuration, not merely the name MFCC.",
+      "status": "Explicit local qualification awaiting independent review; source not globally resolved."
+    },
+    {
+      "questionId": "W10-L48-Q033",
+      "physicalPages": [
+        1522
+      ],
+      "sourceClaim": "The source characterizes all traditional components as independently trained, including a lexicon and search decoder.",
+      "qualification": "End-to-end integration changes modeling boundaries but does not make preprocessing or decoding disappear.",
+      "status": "Explicit local qualification awaiting independent review; source not globally resolved."
+    },
+    {
+      "questionId": "W10-L48-Q049",
+      "physicalPages": [
+        1527
+      ],
+      "sourceClaim": "The prose can be read as calling cross-attention new or specific to speech; the shown encoder–decoder mechanism is more general.",
+      "qualification": "The same conditional attention pattern can connect many encoder and decoder modalities.",
+      "status": "Explicit local qualification awaiting independent review; source not globally resolved."
+    },
+    {
+      "questionId": "W10-L48-Q053",
+      "physicalPages": [
+        1529
+      ],
+      "sourceClaim": "The left side is printed without the audio conditioning although the right side includes X.",
+      "qualification": "The source’s left side omits X even though every right-hand factor is conditioned on it; the intended conditional chain rule is explicit here.",
+      "status": "Explicit local qualification awaiting independent review; source not globally resolved."
+    },
+    {
+      "questionId": "W10-L48-Q055",
+      "physicalPages": [
+        1529
+      ],
+      "sourceClaim": "The prose suggests normalization of the whole score, while the equation divides only the acoustic log probability by character count.",
+      "qualification": "The source prose loosely describes a length-normalized score, but the literal equation normalizes only its acoustic part.",
+      "status": "Explicit local qualification awaiting independent review; source not globally resolved."
+    },
+    {
+      "questionId": "W10-L48-Q058",
+      "physicalPages": [
+        1530
+      ],
+      "sourceClaim": "The prose calls audio positions learned, whereas the figure labels audio positions sinusoidal and text positions learned.",
+      "qualification": "The source’s statement that audio positional encoding is learned is not silently accepted when its own diagram and implementation disagree.",
+      "status": "Explicit local qualification awaiting independent review; source not globally resolved."
+    },
+    {
+      "questionId": "W10-L48-Q059",
+      "physicalPages": [
+        1530,
+        1531
+      ],
+      "sourceClaim": "The 128-channel blanket statement is adjacent to code using whisper-small, whose checked configuration specifies 80.",
+      "qualification": "A blanket feature count is unsafe across Whisper versions; match preprocessing to the selected checkpoint.",
+      "status": "Explicit local qualification awaiting independent review; source not globally resolved."
+    },
+    {
+      "questionId": "W10-L48-Q065",
+      "physicalPages": [
+        1531
+      ],
+      "sourceClaim": "The unrestricted audio-loading example passes squeeze() as if it always yields the one-dimensional mono input expected; stereo requires an explicit policy.",
+      "qualification": "The excerpt works with an appropriate mono shape but does not implement a general stereo-downmix step.",
+      "status": "Explicit local qualification awaiting independent review; source not globally resolved."
+    }
+  ],
+  "additionalScopeNotes": [
+    {
+      "physicalPage": 1510,
+      "qualification": "The simplified source timeline is not an assertion of exact invention dates or the current best-performing architecture."
+    },
+    {
+      "physicalPage": 1512,
+      "qualification": "Real microphone response need not exactly reproduce the acoustic pressure shape; the source transduction drawing is idealized."
+    },
+    {
+      "physicalPage": 1513,
+      "qualification": "Amplitude/loudness and frequency/pitch are comparative simplified associations, not exact psychoacoustic laws for all speech."
+    },
+    {
+      "physicalPage": 1515,
+      "qualification": "Sampling discreteness in time is distinguished from amplitude quantization."
+    },
+    {
+      "physicalPage": 1517,
+      "qualification": "The prose calls L a number of frames, but the equation indexes L samples inside one window. The periodic denominator L is valid and is not silently changed to L−1."
+    },
+    {
+      "physicalPage": 1518,
+      "qualification": "Raw complex DFT coefficients are distinguished from magnitude, squared magnitude and dB displays."
+    },
+    {
+      "physicalPage": 1519,
+      "qualification": "The displayed 1127 natural-log mapping is one Mel convention, not every library default."
+    },
+    {
+      "physicalPage": 1520,
+      "qualification": "A filter’s weight vector and its scalar energy response are different despite overloaded m_i notation; numerical floor and scaling are separate implementation choices."
+    },
+    {
+      "physicalPage": 1523,
+      "qualification": "The 5–19 acoustic-to-text sequence ratio is illustrative; finite framing, speech rate and tokenization change it."
+    },
+    {
+      "physicalPage": 1524,
+      "qualification": "Stride-one output length equals input for the width-one example or appropriate padding, not all valid wider kernels."
+    },
+    {
+      "physicalPage": 1525,
+      "qualification": "The printed unflipped kernel sum follows cross-correlation convention. General channel/output-specific weights are suppressed in the compact notation. Subsampling need not remove every skipped-index contribution and does not itself solve alignment."
+    },
+    {
+      "physicalPage": 1526,
+      "qualification": "The illustrated encoder-decoder is not mandatory for all ASR architectures."
+    },
+    {
+      "physicalPage": 1528,
+      "qualification": "Characters are illustrative tokens; tokenization may use subwords. Greedy search is not a globally optimal-sequence guarantee."
+    },
+    {
+      "physicalPage": 1529,
+      "qualification": "The external-language-model scoring example does not establish default Whisper external-LM fusion. |Y|_c is character count, not a free exponent."
+    },
+    {
+      "physicalPage": 1530,
+      "qualification": "The checked frontend uses a Hann window, unlike the generic Hamming teaching pipeline. The two convolutional strides are one then two. Multitask capabilities do not force all outputs simultaneously."
+    },
+    {
+      "physicalPage": 1531,
+      "qualification": "No pretrained ASR inference was executed in this authoring run. The source notebook and slide sentence remain reported output. Static code analysis, numerical checks and module tests are not a reproduction of that transcript. The install route was denied and not retried."
+    },
+    {
+      "physicalPage": 1533,
+      "qualification": "TTS reverses modality direction, not a unique acoustic inverse. LLM-based understanding is an example, and speech-to-speech does not mean every architecture lacks internal text."
+    }
+  ],
+  "sourceGloballyResolved": false,
+  "pageNotesPath": "audits/W10-L48-page-observations.json",
+  "executionGap": "audits/W10-L48-source-retrieval.json"
+}

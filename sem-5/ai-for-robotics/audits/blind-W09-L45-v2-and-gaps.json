@@ -1,0 +1,1981 @@
+[
+  {
+    "id": "W09-L45-Q001",
+    "version": 2,
+    "stem": "A robot needs detailed3D surface inspection and economical route planning. Which map choice best matches the lecture’s representation trade-offs?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use the full point cloud as the smallest possible map, because millions of dense points require less storage than a sparse landmark list."
+      },
+      {
+        "id": "o2",
+        "text": "Use a topological room graph as the complete geometric inspection record, because its edges retain full metric surface detail."
+      },
+      {
+        "id": "o3",
+        "text": "Keep a rich LiDAR/RGB-D point cloud or mesh for inspection and a coarser grid for planning; a compact landmark map is a different useful representation."
+      },
+      {
+        "id": "o4",
+        "text": "Use a sparse landmark list as a dense surface model, because every unobserved surface point is implicit in each landmark coordinate."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1407",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1407,
+        "kind": "statement",
+        "locator": "Lecture 45, physical PDF page 1407, printed slide 3: Purpose of a map.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1408",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1408,
+        "kind": "statement",
+        "locator": "Lecture L45, physical PDF page 1408, printed footer 4: Four map representations, storage/detail trade-offs, LiDAR/RGB-D inspection use, and two-map combination.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q002",
+    "version": 2,
+    "stem": "What does a cell value in the described occupancy grid represent?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "The probability that the cell is free, with larger values meaning stronger free-space belief."
+      },
+      {
+        "id": "o3",
+        "text": "The confidence that the cell has been observed, regardless of whether it is occupied."
+      },
+      {
+        "id": "o4",
+        "text": "The probability that an obstacle occupies that cell."
+      },
+      {
+        "id": "o1",
+        "text": "The probability that the robot itself is located in that cell."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1408",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1408,
+        "kind": "statement",
+        "locator": "Lecture 45, physical PDF page 1408, printed slide 4: Occupancy-grid meaning.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q009",
+    "version": 2,
+    "stem": "A known robot pose is (2 m, 3 m, 90°); a landmark is measured at range 4 m and bearing −90° relative to the robot; where is it in world coordinates?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "(6 m, 3 m)"
+      },
+      {
+        "id": "o2",
+        "text": "(2 m, −1 m)"
+      },
+      {
+        "id": "o3",
+        "text": "(2 m, 7 m)"
+      },
+      {
+        "id": "o4",
+        "text": "(−2 m, 3 m)"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1410",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1410,
+        "kind": "equation",
+        "locator": "Lecture 45, physical PDF page 1410, printed slide 6: Converting a range-bearing observation.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q010",
+    "version": 2,
+    "stem": "For a map-only estimator with M2D landmarks, let the old map covariance beΣ and a new independent range-bearing measurement have covarianceW. The robot pose is known exactly, and the new landmark is g(pose,z). With Gz=∂g/∂z, which insertion Jacobian with respect to[old map;z] and augmented covariance is dimensionally correct?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "J=diag(I_2M,I_2), Σ′=diag(Σ,W), so range-bearing covariance can be appended without transformation."
+      },
+      {
+        "id": "o3",
+        "text": "J=diag(I_2M,Gz), Σ′=diag(Σ,GzWGzᵀ), with size(2M+2)×(2M+2)."
+      },
+      {
+        "id": "o4",
+        "text": "J=diag(I_2M,Gz), Σ′=diag(0_2M,GzWGzᵀ), because adding a landmark resets old-map uncertainty."
+      },
+      {
+        "id": "o1",
+        "text": "J=diag(I_M,Gz), Σ′=diag(Σ,GzWGzᵀ), so its size is(M+2)×(M+2)."
+      }
+    ],
+    "assumptions": [
+      "Exactly known robot pose; map-only state has2M scalar coordinates.",
+      "New measurement noise is independent of old-map errors; no uncertain shared robot pose is inserted into this map-only state."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1409",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1409,
+        "kind": "equation",
+        "locator": "Lecture L45, physical PDF page 1409, printed footer 5: Map-only state stacks M planar landmark coordinates.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1410",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1410,
+        "kind": "equation",
+        "locator": "Lecture L45, physical PDF page 1410, printed footer 6: State augmentation and covariance/insertion-Jacobian blocks use inconsistent M dimensions; the stem defines corrected2M-coordinate blocks.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1411",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1411,
+        "kind": "equation",
+        "locator": "Lecture L45, physical PDF page 1411, printed footer 7: Inverse measurement g and range-bearing Jacobian Gz.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q011",
+    "version": 2,
+    "stem": "For g=(x_v+r cos(theta+beta), y_v+r sin(theta+beta)), what does a perfectly known robot pose imply?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "The measurement covariance is zero because the pose is known"
+      },
+      {
+        "id": "o4",
+        "text": "Its covariance contribution is zero, but the derivative of g with respect to pose is generally nonzero"
+      },
+      {
+        "id": "o1",
+        "text": "All derivatives of g with respect to pose are zero because the pose is known"
+      },
+      {
+        "id": "o2",
+        "text": "The landmark coordinates do not depend on the robot translation"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1410",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1410,
+        "kind": "equation",
+        "locator": "Lecture L45, physical PDF page 1410, printed footer 6: Inverse measurement equation g(pose,z).",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1411",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1411,
+        "kind": "equation",
+        "locator": "Lecture L45, physical PDF page 1411, printed footer 7: Displayed Gx=∂g/∂pose zero matrix, contrasted with the actual derivative of the displayed inverse model.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q012",
+    "version": 2,
+    "stem": "At world bearing theta+beta=0 and range r=4 m, what is Gz=∂g/∂(r,beta), using radians for beta?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "[[0,−4],[1,0]]"
+      },
+      {
+        "id": "o1",
+        "text": "[[4,0],[0,1]]"
+      },
+      {
+        "id": "o2",
+        "text": "[[1,0],[0,1]]"
+      },
+      {
+        "id": "o3",
+        "text": "[[1,0],[0,4]]"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1411",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1411,
+        "kind": "equation",
+        "locator": "Lecture 45, physical PDF page 1411, printed slide 7: Inverse-observation uncertainty directions.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q014",
+    "version": 2,
+    "stem": "A robot at (0,0) faces world +x and sees a landmark at (−1,1); which bearing function gives the correct 135° quadrant?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "atan(1/−1)"
+      },
+      {
+        "id": "o3",
+        "text": "atan2(−1,−1)"
+      },
+      {
+        "id": "o4",
+        "text": "atan2(−1,1)"
+      },
+      {
+        "id": "o1",
+        "text": "atan2(1,−1)"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1411",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1411,
+        "kind": "equation",
+        "locator": "Lecture 45, physical PDF page 1411, printed slide 7: Correct bearing quadrant.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q015",
+    "version": 2,
+    "stem": "Predicted bearing is 179° and observed bearing is −179°; what is the shortest signed observed-minus-predicted innovation in (−180°,180°]?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "+358°"
+      },
+      {
+        "id": "o4",
+        "text": "−2°"
+      },
+      {
+        "id": "o1",
+        "text": "+2°"
+      },
+      {
+        "id": "o2",
+        "text": "−358°"
+      }
+    ],
+    "assumptions": [
+      "Angles represent the same circular bearing variable."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1411",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1411,
+        "kind": "equation",
+        "locator": "Lecture 45, physical PDF page 1411, printed slide 7: Wrapping an angular innovation.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q018",
+    "version": 2,
+    "stem": "What quantity is multiplied by the Kalman gain in the EKF correction?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Observed measurement minus predicted measurement"
+      },
+      {
+        "id": "o3",
+        "text": "Predicted measurement minus observed measurement"
+      },
+      {
+        "id": "o4",
+        "text": "The raw observed measurement without subtracting a prediction"
+      },
+      {
+        "id": "o1",
+        "text": "Observed state coordinates minus predicted measurement coordinates"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1411",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1411,
+        "kind": "equation",
+        "locator": "Lecture L45, physical PDF page 1411, printed footer 7: Blue EKF mean-correction equation containing innovation z−h.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q019",
+    "version": 2,
+    "stem": "In the mapping screenshot, RangeBearingSensor receives map, but EKF is constructed without a map argument; what does this distinction mean?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "The EKF is automatically given every landmark coordinate through its map argument"
+      },
+      {
+        "id": "o4",
+        "text": "The estimator must use no range-bearing observations"
+      },
+      {
+        "id": "o1",
+        "text": "The simulator knows the world to generate observations while the estimator builds an unknown map"
+      },
+      {
+        "id": "o2",
+        "text": "The sensor measures robot odometry instead of landmarks"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1412",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1412,
+        "kind": "code",
+        "locator": "Lecture L45, physical PDF page 1412, printed footer 8: Code screenshot lines8–11: sensor receives the true map; EKF constructor does not receive a map.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q020",
+    "version": 2,
+    "stem": "The code sets W=np.diag([0.1, np.deg2rad(1)])**2; what is the range variance?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "1 m²"
+      },
+      {
+        "id": "o1",
+        "text": "0.1 m²"
+      },
+      {
+        "id": "o2",
+        "text": "0.2 m²"
+      },
+      {
+        "id": "o3",
+        "text": "0.01 m²"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1412",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1412,
+        "kind": "code",
+        "locator": "Lecture L45, physical PDF page 1412, printed footer 8: Code screenshot line7: W=np.diag([0.1,np.deg2rad(1)])**2.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q021",
+    "version": 2,
+    "stem": "With sensor range 4 m and bearing interval [−π/2,π/2], which landmark is inside both limits?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Range 3 m, bearing 60°"
+      },
+      {
+        "id": "o2",
+        "text": "Range 5 m, bearing 120°"
+      },
+      {
+        "id": "o3",
+        "text": "Range 5 m, bearing 60°"
+      },
+      {
+        "id": "o4",
+        "text": "Range 3 m, bearing 120°"
+      }
+    ],
+    "assumptions": [
+      "No additional occlusion or sampling restrictions are applied in this question."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1412",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1412,
+        "kind": "code",
+        "locator": "Lecture L45, physical PDF page 1412, printed footer 8: Code screenshot sensor-constructor range4 and bearing-limit parameters; literal source syntax is not claimed executed unchanged.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q022",
+    "version": 2,
+    "stem": "Why can a simulation with twenty true landmarks finish with fewer than twenty estimated landmarks?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "The estimator preallocates twenty landmarks and never changes their coordinates"
+      },
+      {
+        "id": "o3",
+        "text": "Only observed landmarks are added, and the robot may not observe every landmark"
+      },
+      {
+        "id": "o4",
+        "text": "Every newly observed landmark replaces one older landmark rather than extending the map"
+      },
+      {
+        "id": "o1",
+        "text": "Unobserved landmarks are initialized directly from the simulator’s true coordinates"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1413",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1413,
+        "kind": "figure",
+        "locator": "Lecture L45, physical PDF page 1413, printed footer 9: Estimated-map plot and caption showing detected landmark estimates.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1412",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1412,
+        "kind": "statement",
+        "locator": "Lecture L45, physical PDF page 1412, printed footer 8: Prose says newly observed features append landmark states; simulation code omits a known estimator map.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q024",
+    "version": 2,
+    "stem": "In joint SLAM estimation, which dependency makes robot pose and map construction a coupled problem?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "The map determines pose uncertainty, but pose uncertainty never affects landmark placement"
+      },
+      {
+        "id": "o1",
+        "text": "Pose can be inferred only after a complete error-free map is finished"
+      },
+      {
+        "id": "o2",
+        "text": "A map helps estimate pose, while pose helps place observations in the map"
+      },
+      {
+        "id": "o3",
+        "text": "The pose and map estimates must be statistically independent because they use different state entries"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1415",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1415,
+        "kind": "statement",
+        "locator": "Lecture 45, physical PDF page 1415, printed slide 11: Why localization and mapping are coupled.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q026",
+    "version": 2,
+    "stem": "For M 2D landmarks, what is the size of the covariance block from robot pose to map coordinates?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "2M×3"
+      },
+      {
+        "id": "o3",
+        "text": "3×3"
+      },
+      {
+        "id": "o4",
+        "text": "M×M"
+      },
+      {
+        "id": "o1",
+        "text": "3×2M"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1416",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1416,
+        "kind": "equation",
+        "locator": "Lecture L45, physical PDF page 1416, printed footer 12: Joint state and block covariance equations: robot-map cross block.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q028",
+    "version": 2,
+    "stem": "Which derivative pair describes the heading column of the inverse-observation pose Jacobian?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "(0,0)ᵀ for every heading and range"
+      },
+      {
+        "id": "o1",
+        "text": "(1,1)ᵀ"
+      },
+      {
+        "id": "o2",
+        "text": "(−r sin(theta+beta), r cos(theta+beta))ᵀ"
+      },
+      {
+        "id": "o3",
+        "text": "(r cos(theta+beta), r sin(theta+beta))ᵀ"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1417",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1417,
+        "kind": "equation",
+        "locator": "Lecture 45, physical PDF page 1417, printed slide 13: Pose uncertainty in new-landmark placement.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q030",
+    "version": 2,
+    "stem": "Starting with mean (2,5) m and covariance diag(0.25,1) m², add robot odometry +1 m with independent variance 0.25 m² and keep the landmark static; what is predicted?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Mean (3,5) m and covariance diag(0.25,1) m²"
+      },
+      {
+        "id": "o3",
+        "text": "Mean (3,6) m and covariance diag(0.5,1.25) m²"
+      },
+      {
+        "id": "o4",
+        "text": "Mean (3,5) m and covariance diag(0.5,1) m²"
+      },
+      {
+        "id": "o1",
+        "text": "Mean (2,5) m and covariance diag(0.5,1) m²"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1418",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1418,
+        "kind": "equation",
+        "locator": "Lecture 45, physical PDF page 1418, printed slide 14: Predicting the 1D SLAM state.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1419",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1419,
+        "kind": "equation",
+        "locator": "Lecture 45, physical PDF page 1419, printed slide 15: Predicting the 1D SLAM state.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q031",
+    "version": 2,
+    "stem": "For the example’s signed measurement h=x_landmark−x_robot, what is H with state order (x_robot,x_landmark)?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "[−1,1]"
+      },
+      {
+        "id": "o4",
+        "text": "[1,−1]"
+      },
+      {
+        "id": "o1",
+        "text": "[0,1]"
+      },
+      {
+        "id": "o2",
+        "text": "[1,1]"
+      }
+    ],
+    "assumptions": [
+      "This is signed separation, with the landmark ahead in the example; an absolute-range model needs sign handling."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1419",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1419,
+        "kind": "equation",
+        "locator": "Lecture L45, physical PDF page 1419, printed footer 15: Range measurement h=x_landmark−x_robot and Jacobian H=[−1,1].",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q032",
+    "version": 2,
+    "stem": "Given P=diag(0.5,1), H=[−1,1] and scalar measurement variance R=0.25, what is S=H P Hᵀ+R?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "1.75"
+      },
+      {
+        "id": "o1",
+        "text": "1.5"
+      },
+      {
+        "id": "o2",
+        "text": "1.25"
+      },
+      {
+        "id": "o3",
+        "text": "0.75"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1419",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1419,
+        "kind": "equation",
+        "locator": "Lecture 45, physical PDF page 1419, printed slide 15: Innovation variance in the 1D update.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1420",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1420,
+        "kind": "equation",
+        "locator": "Lecture 45, physical PDF page 1420, printed slide 16: Innovation variance in the 1D update.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q033",
+    "version": 2,
+    "stem": "With P=diag(0.5,1), H=[−1,1] and innovation variance S=1.75, what is K=P Hᵀ/S?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "(−4/7,2/7)ᵀ"
+      },
+      {
+        "id": "o2",
+        "text": "(−2/7,4/7)ᵀ"
+      },
+      {
+        "id": "o3",
+        "text": "(−1/2,1)ᵀ"
+      },
+      {
+        "id": "o4",
+        "text": "(2/7,4/7)ᵀ"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1420",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1420,
+        "kind": "equation",
+        "locator": "Lecture 45, physical PDF page 1420, printed slide 16: Kalman gain for the 1D measurement.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q039",
+    "version": 2,
+    "stem": "In planar EKF-SLAM with M2D landmarks and a three-coordinate robot pose, which combination correctly describes dense storage growth and retained historical information?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "The state and dense covariance both have(3+2M)² entries; each new measurement replaces all earlier information."
+      },
+      {
+        "id": "o4",
+        "text": "The state has3+2M entries and full covariance has only2M entries, because correlated coordinates need no additional storage."
+      },
+      {
+        "id": "o1",
+        "text": "The joint state grows as3+2M and the dense covariance as3+2M entries; filtering keeps a separate raw record of each earlier observation."
+      },
+      {
+        "id": "o2",
+        "text": "The joint state has3+2M entries and a stored full covariance has(3+2M)² entries; the current estimate summarizes past evidence, while a pose graph explicitly retains multiple-pose constraints."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1423",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1423,
+        "kind": "statement",
+        "locator": "Lecture L45, physical PDF page 1423, printed footer 19: Growing state/covariance storage motivates the pose-graph comparison.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1416",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1416,
+        "kind": "equation",
+        "locator": "Lecture L45, physical PDF page 1416, printed footer 12: Stacked three-coordinate robot pose and2M-coordinate map state with block covariance.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q041",
+    "version": 2,
+    "stem": "Under the standard counterclockwise convention, which matrix represents a rotation by angle a?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "[[cos a,sin a],[sin a,cos a]]"
+      },
+      {
+        "id": "o2",
+        "text": "[[cos a,−sin a],[−sin a,cos a]]"
+      },
+      {
+        "id": "o3",
+        "text": "[[sin a,−cos a],[cos a,sin a]]"
+      },
+      {
+        "id": "o4",
+        "text": "[[cos a,−sin a],[sin a,cos a]]"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1424",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1424,
+        "kind": "equation",
+        "locator": "Lecture L45, physical PDF page 1424, printed footer 20: Planar homogeneous transform matrix has the conflicting positive upper-right sine entry.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q043",
+    "version": 2,
+    "stem": "If measured relative transform T_z exactly equals T_i⁻¹ T_j, what is the transform residual T_z⁻¹ T_i⁻¹ T_j?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "The identity transform"
+      },
+      {
+        "id": "o4",
+        "text": "T_z²."
+      },
+      {
+        "id": "o1",
+        "text": "T_z⁻¹."
+      },
+      {
+        "id": "o2",
+        "text": "The all-zero 3×3 matrix"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1424",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1424,
+        "kind": "equation",
+        "locator": "Lecture 45, physical PDF page 1424, printed slide 20: Zero geometric residual.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q044",
+    "version": 2,
+    "stem": "A planar transform residual is a 3×3 matrix; what must be specified before treating fᵀ Ω f as a scalar least-squares edge cost?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Flatten all nine matrix entries but still use a 3×3 information matrix"
+      },
+      {
+        "id": "o1",
+        "text": "Treat the transform identity matrix as the zero residual vector without a coordinate mapping"
+      },
+      {
+        "id": "o2",
+        "text": "Multiply the 3×3 transform matrix by a scalar weight and call the resulting matrix a scalar cost"
+      },
+      {
+        "id": "o3",
+        "text": "A consistent minimal residual vector and matching information-matrix dimensions"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1424",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1424,
+        "kind": "equation",
+        "locator": "Lecture L45, physical PDF page 1424, printed footer 20: Transform residual T_z⁻¹T_i⁻¹T_j is a group element, not yet a coordinate error vector.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1426",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1426,
+        "kind": "equation",
+        "locator": "Lecture L45, physical PDF page 1426, printed footer 22: Quadratic cost eᵀΩe requires a vector residual with compatible dimensions.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q045",
+    "version": 2,
+    "stem": "In the source loop-closure diagram, the initial pose is known, landmarkA is observed from that pose, and A is observed again after travel to a drifted pose. Which comparison of the two reconstruction paths is correct?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Both landmark reconstructions contain only sensor error because the same landmark is observed."
+      },
+      {
+        "id": "o2",
+        "text": "The initial direct path contains accumulated odometry error, while the later path contains only sensor error."
+      },
+      {
+        "id": "o3",
+        "text": "The discrepancy identifies the latest pose as the unique vertex that must be moved, regardless of edge uncertainty."
+      },
+      {
+        "id": "o4",
+        "text": "The anchored initial observation contains sensor error, while the later reconstruction also includes accumulated odometry error; their disagreement constrains the graph but does not alone select one vertex to adjust."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1425",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1425,
+        "kind": "figure",
+        "locator": "Lecture L45, physical PDF page 1425, printed footer 21: Two colored paths from anchored initial pose to landmarkA and drifted-pose discrepancy.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q050",
+    "version": 2,
+    "stem": "Why can the pose-graph least-squares system exploit sparsity?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "A sparse information or Hessian matrix implies that its inverse covariance must have the identical zero pattern."
+      },
+      {
+        "id": "o3",
+        "text": "Sparse structure follows from using fewer residual values than state variables, regardless of which variables each residual depends on."
+      },
+      {
+        "id": "o4",
+        "text": "The matrix becomes sparse only after every loop-closure edge is removed from the graph."
+      },
+      {
+        "id": "o1",
+        "text": "Each measurement usually relates a limited subset of state variables."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1427",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1427,
+        "kind": "statement",
+        "locator": "Lecture 45, physical PDF page 1427, printed slide 23: Why graph structure can be sparse.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q051",
+    "version": 2,
+    "stem": "A resource-constrained domestic robot is being considered for lightweight navigation. Which comparison preserves the lecture’s stated alternatives without overstating SLAM requirements?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "A lightweight method is appropriate only if it reconstructs the same complete metric map as the more expensive method."
+      },
+      {
+        "id": "o4",
+        "text": "Replacing a depth sensor with a monocular camera fixes computation and navigation performance independently of scene features."
+      },
+      {
+        "id": "o1",
+        "text": "Pseudo-random navigation reduces computation and should therefore have the same goal-directed efficiency as a map-based planner."
+      },
+      {
+        "id": "o2",
+        "text": "Task-specific lightweight methods can reduce resource demands; pseudo-random navigation is cheap but may reach chosen goals inefficiently, and SLAM requirements depend on the chosen system."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1429",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1429,
+        "kind": "statement",
+        "locator": "Lecture 45, physical PDF page 1429, printed slide 25: Qualifying the resource argument.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q052",
+    "version": 2,
+    "stem": "Why can a feature-poor scene be difficult for the described Structure from Motion approach?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Increasing image brightness can replace missing baseline parallax in a two-view geometric reconstruction."
+      },
+      {
+        "id": "o1",
+        "text": "Reliable correspondences and motion parallax can be insufficient for reconstructing scene geometry."
+      },
+      {
+        "id": "o2",
+        "text": "Sufficient camera translation alone resolves depth even when no stable cross-image correspondences can be found."
+      },
+      {
+        "id": "o3",
+        "text": "Perfectly matching repeated-looking patches is enough to determine geometry without checking whether they are the same physical features."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1429",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1429,
+        "kind": "statement",
+        "locator": "Lecture 45, physical PDF page 1429, printed slide 25: Structure from Motion limitation.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q053",
+    "version": 2,
+    "stem": "In the Floor Finder figures, how should the red-outlined foreground triangle, green/red binary mask, and bottom-center rays be interpreted?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The red-outlined foreground triangle marks unsafe pixels, and ray scanning should begin from the top-center horizon."
+      },
+      {
+        "id": "o2",
+        "text": "The red-outlined triangle supplies the reference sample, but rays continue through red mask pixels until any later green region is reached."
+      },
+      {
+        "id": "o3",
+        "text": "The red-outlined foreground triangle supplies an assumed clear floor reference; bottom-center rays follow green classified floor until the first red non-floor pixel."
+      },
+      {
+        "id": "o4",
+        "text": "Green mask pixels are the reference-sampling region only, while red pixels are the traversable area used for ray tracing."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1430",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1430,
+        "kind": "statement",
+        "locator": "Lecture 45, physical PDF page 1430, printed slide 26: The immediate-floor assumption.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1432",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1432,
+        "kind": "figure",
+        "locator": "Lecture L45, physical PDF page 1432, printed footer 28: Red-outlined immediate-foreground reference region and green/red classification mask.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1433",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1433,
+        "kind": "statement",
+        "locator": "Lecture L45, physical PDF page 1433, printed footer 29: Bottom-center ray origin and stop-at-first-red rule.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1435",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1435,
+        "kind": "figure",
+        "locator": "Lecture L45, physical PDF page 1435, printed footer 31: Legend labels green floor and red non-floor; ray origin is the bottom-center robot/camera marker.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q054",
+    "version": 2,
+    "stem": "Which feature combination matches the lecture’s floor characterization?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Hue, saturation, luminosity and roughness."
+      },
+      {
+        "id": "o3",
+        "text": "Hue, saturation, temporal brightness change and stereo disparity."
+      },
+      {
+        "id": "o4",
+        "text": "Channel means, optical-flow direction, saturation and inter-frame displacement."
+      },
+      {
+        "id": "o1",
+        "text": "Hue, saturation, luminosity and gradient orientation only, without a texture roughness measure."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1430",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1430,
+        "kind": "statement",
+        "locator": "Lecture 45, physical PDF page 1430, printed slide 26: Visual attributes used by Floor Finder.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q057",
+    "version": 2,
+    "stem": "How many times fewer pixels are processed when a 640×480 image is downsampled to 320×240?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "4 times fewer"
+      },
+      {
+        "id": "o2",
+        "text": "2 times fewer"
+      },
+      {
+        "id": "o3",
+        "text": "8 times fewer"
+      },
+      {
+        "id": "o4",
+        "text": "16 times fewer"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1431",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1431,
+        "kind": "statement",
+        "locator": "Lecture L45, physical PDF page 1431, printed footer 27: Paragraph listing high and reduced image resolutions; pixel-count arithmetic is an added derivation.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q058",
+    "version": 2,
+    "stem": "What trade-off accompanies reducing image resolution before floor classification?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Less processing, while a feature narrower than one output pixel necessarily retains its original visibility."
+      },
+      {
+        "id": "o3",
+        "text": "The same number of pixel samples after resizing, but fewer classification features per unchanged pixel."
+      },
+      {
+        "id": "o4",
+        "text": "Lower transfer cost, but an unchanged effective pixel calibration even when both image dimensions change."
+      },
+      {
+        "id": "o1",
+        "text": "Less processing and transfer data, but potentially less detail for small obstacles."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1431",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1431,
+        "kind": "statement",
+        "locator": "Lecture 45, physical PDF page 1431, printed slide 27: Downsampling trade-off.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q061",
+    "version": 2,
+    "stem": "Ignoring image borders, three successive one-dimensional convolutions with full five-tap kernels have what maximum input support width?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "125 pixels"
+      },
+      {
+        "id": "o2",
+        "text": "15 pixels"
+      },
+      {
+        "id": "o3",
+        "text": "13 pixels"
+      },
+      {
+        "id": "o4",
+        "text": "5 pixels"
+      }
+    ],
+    "assumptions": [
+      "This is an author-added support calculation for the slide’s three-pass example.",
+      "Kernels have nonzero coefficients at all five positions; ignore borders."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1431",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1431,
+        "kind": "statement",
+        "locator": "Lecture L45, physical PDF page 1431, printed footer 27: Prose specifies5×5 Gaussian smoothing repeated three times; support-width arithmetic is added.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q062",
+    "version": 2,
+    "stem": "For an added scalar example, a reference intensity is 100 and classification accepts absolute differences at most 15; which intensity is accepted?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "116"
+      },
+      {
+        "id": "o3",
+        "text": "84"
+      },
+      {
+        "id": "o4",
+        "text": "115"
+      },
+      {
+        "id": "o1",
+        "text": "130"
+      }
+    ],
+    "assumptions": [
+      "The source’s ±15 is an example; this question explicitly defines an inclusive scalar rule."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1432",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1432,
+        "kind": "statement",
+        "locator": "Lecture L45, physical PDF page 1432, printed footer 28: Pixel-classification paragraph gives an example±15 intensity tolerance.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q063",
+    "version": 2,
+    "stem": "With floor encoded as 1, a full 3×3 erosion keeps a center pixel as floor only when which condition holds?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "At least one of the nine pixels is floor"
+      },
+      {
+        "id": "o4",
+        "text": "Only the center pixel is floor"
+      },
+      {
+        "id": "o1",
+        "text": "A majority of the nine pixels are floor"
+      },
+      {
+        "id": "o2",
+        "text": "All nine pixels in its 3×3 neighborhood are floor"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1432",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1432,
+        "kind": "statement",
+        "locator": "Lecture L45, physical PDF page 1432, printed footer 28: Mask-generation paragraph introduces generic erosion, not the complete3×3 retention rule.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1433",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1433,
+        "kind": "statement",
+        "locator": "Lecture L45, physical PDF page 1433, printed footer 29: Boundary-refinement paragraph states the complete3×3 floor-neighborhood retention rule.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q064",
+    "version": 2,
+    "stem": "A 7×5 all-floor rectangle is surrounded by non-floor pixels; after one full 3×3 erosion, how many floor pixels remain?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "24"
+      },
+      {
+        "id": "o1",
+        "text": "3"
+      },
+      {
+        "id": "o2",
+        "text": "15"
+      },
+      {
+        "id": "o3",
+        "text": "35"
+      }
+    ],
+    "assumptions": [
+      "One erosion pass, full 3×3 kernel, zeros outside the stated rectangle."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1433",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1433,
+        "kind": "statement",
+        "locator": "Lecture L45, physical PDF page 1433, printed footer 29: Prose3×3 erosion rule supplies the premise for the added rectangular-area calculation.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q068",
+    "version": 2,
+    "stem": "For a level pinhole camera 0.4 m above a flat floor, fy=500 pixels, v0=200 and a floor-contact boundary at v=250, what forward depth is z=fy h/(v−v0)?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "0.004 m"
+      },
+      {
+        "id": "o1",
+        "text": "10 m"
+      },
+      {
+        "id": "o2",
+        "text": "2 m"
+      },
+      {
+        "id": "o3",
+        "text": "4 m"
+      }
+    ],
+    "assumptions": [
+      "The point is a floor-contact point, not an arbitrary upper point on an obstacle."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1435",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1435,
+        "kind": "equation",
+        "locator": "Lecture 45, physical PDF page 1435, printed slide 31: Worked floor-distance calculation.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q069",
+    "version": 2,
+    "stem": "Under v=v0+fy h/z with v0=200, what row does a flat-ground point approach as z tends to infinity?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "v=0"
+      },
+      {
+        "id": "o2",
+        "text": "v=300"
+      },
+      {
+        "id": "o3",
+        "text": "v=200"
+      },
+      {
+        "id": "o4",
+        "text": "v=400"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1435",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1435,
+        "kind": "equation",
+        "locator": "Lecture 45, physical PDF page 1435, printed slide 31: Equation horizon versus diagram label.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q073",
+    "version": 2,
+    "stem": "For z=fy h/(v−v0), with fy,h>0 and rows increasing downward, how does sensitivity to a fixed row error behave as v approaches v0 from larger row values?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "|dz/dv|=fy h/(v−v0), so sensitivity grows with the reciprocal first power."
+      },
+      {
+        "id": "o2",
+        "text": "|dz/dv|=fy h, so sensitivity is constant with image row."
+      },
+      {
+        "id": "o3",
+        "text": "The magnitude of depth sensitivity grows because |dz/dv|=fy h/(v−v0)²."
+      },
+      {
+        "id": "o4",
+        "text": "|dz/dv|=(v−v0)²/(fy h), so sensitivity tends to zero near the horizon."
+      }
+    ],
+    "assumptions": [
+      "Below means v>v0 under the image’s downward-positive row convention.",
+      "The model is valid and v is not exactly v0."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1435",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1435,
+        "kind": "equation",
+        "locator": "Lecture 45, physical PDF page 1435, printed slide 31: Distance sensitivity near the horizon.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q074",
+    "version": 2,
+    "stem": "How is Floor Finder used when another navigation algorithm commands motion into a region classified as unsafe?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Modify or override that command using the local floor assessment."
+      },
+      {
+        "id": "o3",
+        "text": "Allow the higher-rate planner to take precedence whenever its update arrives after the floor result."
+      },
+      {
+        "id": "o4",
+        "text": "Apply the floor boundary only to the global destination while leaving the immediate commanded motion unconstrained."
+      },
+      {
+        "id": "o1",
+        "text": "Average the planner command and the unsafe-direction command without checking whether the result enters the classified region."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1436",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1436,
+        "kind": "statement",
+        "locator": "Lecture 45, physical PDF page 1436, printed slide 32: Integrating Floor Finder with another planner.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q075",
+    "version": 2,
+    "stem": "Why does a floor mask alone not establish guaranteed collision-free physical motion?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "The mask is sufficient once the robot footprint is accounted for, even if the floor classification can be wrong."
+      },
+      {
+        "id": "o4",
+        "text": "The mask is sufficient once appearance classification is accurate, even if hazards are outside the image and the robot cannot stop before the boundary."
+      },
+      {
+        "id": "o1",
+        "text": "The mask is sufficient once camera calibration is accurate, even if body width and stopping distance are omitted."
+      },
+      {
+        "id": "o2",
+        "text": "Errors, camera calibration, robot footprint, stopping distance and unobserved hazards still matter."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1430",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1430,
+        "kind": "statement",
+        "locator": "Lecture 45, physical PDF page 1430, printed slide 26: Limits of the mapless safety claim.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1436",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1436,
+        "kind": "statement",
+        "locator": "Lecture 45, physical PDF page 1436, printed slide 32: Limits of the mapless safety claim.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q076",
+    "version": 2,
+    "stem": "Which sequence best matches the described use of a monocular image for local navigation?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Downsample/smooth → classify against no reference → calibrate after motion → sample floor"
+      },
+      {
+        "id": "o1",
+        "text": "Sample floor → treat pixel counts as meters → skip mask refinement → execute commands"
+      },
+      {
+        "id": "o2",
+        "text": "Downsample/smooth → sample floor → classify/refine mask → join disconnected green regions across red boundaries → execute commands"
+      },
+      {
+        "id": "o3",
+        "text": "Downsample/smooth → sample foreground floor → classify/refine mask → find first unsafe boundaries → apply calibrated distances → constrain motion"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1432",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1432,
+        "kind": "statement",
+        "locator": "Lecture L45, physical PDF page 1432, printed footer 28: Reference sampling and pixel-classification stages.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1433",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1433,
+        "kind": "statement",
+        "locator": "Lecture L45, physical PDF page 1433, printed footer 29: Erosion and first-unsafe-boundary ray stages.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1434",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1434,
+        "kind": "statement",
+        "locator": "Lecture L45, physical PDF page 1434, printed footer 30: Camera-calibrated interpretation of safe-zone extent.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1435",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1435,
+        "kind": "equation",
+        "locator": "Lecture L45, physical PDF page 1435, printed footer 31: Flat-floor projection equation and numerical boundary-depth example.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1436",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1436,
+        "kind": "statement",
+        "locator": "Lecture L45, physical PDF page 1436, printed footer 32: Local Floor Finder modifies or overrides navigation commands.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1431",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1431,
+        "kind": "statement",
+        "locator": "Lecture L45, physical PDF page 1431, printed footer 27: Downsampling and Gaussian-smoothing stages.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q077",
+    "version": 1,
+    "stem": "In the right-hand aligned comparison plot, which reading correctly identifies the compared trajectories and endpoint markers without overclaiming what alignment proves?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Solid blue is estimated and dashed red is true; the green point is finish and yellow star is start."
+      },
+      {
+        "id": "o2",
+        "text": "Solid blue is true and dashed red is estimated; green marks start and yellow star finish; close aligned traces support this comparison but do not prove exact estimates."
+      },
+      {
+        "id": "o3",
+        "text": "Solid blue and dashed red are the same estimated trajectory before and after sensor noise is removed; alignment makes all landmark errors zero."
+      },
+      {
+        "id": "o4",
+        "text": "Red crosses are true landmarks and black crosses estimated landmarks; the trajectories are plotted in unrelated frames after alignment."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1422",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1422,
+        "kind": "figure",
+        "locator": "Lecture L45, physical PDF page 1422, printed footer 18: Right-hand aligned true-versus-estimated map plot and its legend.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q078",
+    "version": 1,
+    "stem": "Which information flow matches the depicted asynchronous front-end/back-end design?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The front end adds vertices and constraints in real time; the back end periodically optimizes the current graph and returns updated estimates to that graph."
+      },
+      {
+        "id": "o2",
+        "text": "The back end creates every sensor observation in real time; the front end periodically solves the full nonlinear least-squares problem."
+      },
+      {
+        "id": "o3",
+        "text": "The front end must stop processing all new observations until a full back-end optimization finishes after every sensor sample."
+      },
+      {
+        "id": "o4",
+        "text": "The graph sends data to the back end once, and the optimized estimates have no route back to the represented graph."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1427",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1427,
+        "kind": "figure",
+        "locator": "Lecture L45, physical PDF page 1427, printed footer 23: Asynchronous subsystem descriptions and graph↔back-end arrow.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L45-Q079",
+    "version": 1,
+    "stem": "Use joint state[x_v,y_v,θ_v,x_1,y_1,x_2,y_2]. Landmark1 has relative displacement(3,4), so range r=5; landmark2 is unobserved. For h=[r,atan2(y_1−y_v,x_1−x_v)−θ_v], which2×7 Jacobian is correct?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o1",
+        "text": "[[0,0,0,0.6,0.8,0,0],[0,0,0,−0.16,0.12,0,0]]"
+      },
+      {
+        "id": "o2",
+        "text": "[[−0.6,−0.8,0,0.6,0.8,0,0],[−0.16,0.12,−1,−0.16,0.12,0,0]]"
+      },
+      {
+        "id": "o3",
+        "text": "[[−0.6,−0.8,0,0.6,0.8,0.6,0.8],[0.16,−0.12,−1,−0.16,0.12,−0.16,0.12]]"
+      },
+      {
+        "id": "o4",
+        "text": "[[−0.6,−0.8,0,0.6,0.8,0,0],[0.16,−0.12,−1,−0.16,0.12,0,0]]"
+      }
+    ],
+    "assumptions": [
+      "Planar range-bearing measurement, radians for angles, r>0, and state order exactly as stated.",
+      "The numerical displacement is an added source-derived example, not a claimed source-run output."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1411",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1411,
+        "kind": "equation",
+        "locator": "Lecture L45, physical PDF page 1411, printed footer 7: Range-bearing h and observed-landmark derivative H_pi.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1417",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1417,
+        "kind": "equation",
+        "locator": "Lecture L45, physical PDF page 1417, printed footer 13: Joint SLAM H contains robot-pose block followed by landmark blocks.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  }
+]

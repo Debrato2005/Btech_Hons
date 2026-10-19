@@ -1,0 +1,1414 @@
+[
+  {
+    "id": "W01-L03-P0100-Q04",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "For compatible transformation matrices A,B,C, which change is always allowed without changing ABC?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "cognitiveSkill": "application",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "Order and grouping of transforms",
+    "tags": [
+      "mathematics",
+      "Order and grouping of transforms"
+    ],
+    "conceptIds": [
+      "W01-L03-P0100-C04"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o4",
+        "text": "Replace AB with A+B"
+      },
+      {
+        "id": "o1",
+        "text": "Replace(AB)C with A(BC)"
+      },
+      {
+        "id": "o2",
+        "text": "Replace ABC with BAC"
+      },
+      {
+        "id": "o3",
+        "text": "Replace ABC with CBA"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0100",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 100,
+        "kind": "statement",
+        "locator": "Lecture 3 printed slide 6: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "A skew-symmetric matrix satisfies S=-S^T and has zero diagonal. For Omega=(Omega_x,Omega_y,Omega_z)^T, S=[[0,-Omega_z,Omega_y],[Omega_z,0,-Omega_x],[-Omega_y,Omega_x,0]], and Omega×P=SP. AB is defined when columns(A)=rows(B). Multiplication is associative but not commutative in general. Transformation matrices compound to obtain end-effector position/orientation from the base.",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The base-to-tip chain can be grouped for computation, but its order carries physical meaning.",
+      "optionExplanations": {
+        "o1": "Associativity permits changing parentheses while retaining order.",
+        "o2": "Interchanging A and B requires a special commutation property not assumed here.",
+        "o3": "Reversal changes the transformation chain in general.",
+        "o4": "Addition is not composition by matrix multiplication."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The base-to-tip chain can be grouped for computation, but its order carries physical meaning.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Interpreting noncommutative as forbidding associativity; some special matrix pairs do commute."
+      ],
+      "examTraps": [
+        "Interpreting noncommutative as forbidding associativity; some special matrix pairs do commute."
+      ],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W01-L03-P0101-Q03",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "Which situation matches the lecture definition of a robot kinematic singularity?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "cognitiveSkill": "application",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "Rank and robot singularity",
+    "tags": [
+      "mathematics",
+      "Rank and robot singularity"
+    ],
+    "conceptIds": [
+      "W01-L03-P0101-C02"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o2",
+        "text": "Every matrix describing the robot becomes symmetric"
+      },
+      {
+        "id": "o3",
+        "text": "The robot changes its coordinate labels"
+      },
+      {
+        "id": "o4",
+        "text": "A nonzero vector changes length"
+      },
+      {
+        "id": "o1",
+        "text": "The Jacobian loses rank"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0101",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 101,
+        "kind": "statement",
+        "locator": "Lecture 3 printed slide 7: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "The determinant is a scalar calculated from a square matrix; it indicates invertibility and acts as a scaling factor for linear transformations. Rank is the maximum number of linearly independent rows or columns. A^-1 exists if det(A)≠0 and AA^-1=I; A^-1=adj(A)/det(A). Loss of Jacobian rank is a singularity; the slide writes det(J)=0.",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Singularity concerns lost independent directions, not merely large or small numerical entries.",
+      "optionExplanations": {
+        "o1": "This removes an independent velocity-mapping direction; the slide connects it to failure of inversion.",
+        "o2": "Symmetry is unrelated to the rank-loss definition.",
+        "o3": "Renaming coordinates alone is not a rank loss.",
+        "o4": "Scaling alone need not make a mapping singular."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "Singularity concerns lost independent directions, not merely large or small numerical entries.",
+      "memoryAid": null,
+      "misconceptions": [],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W01-L03-P0102-Q02",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "Why does the definition explicitly exclude x=0 from being an eigenvector?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "cognitiveSkill": "conceptual",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "Eigenpair and characteristic equation",
+    "tags": [
+      "mathematics",
+      "Eigenpair and characteristic equation"
+    ],
+    "conceptIds": [
+      "W01-L03-P0102-C01"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o2",
+        "text": "A0 is undefined"
+      },
+      {
+        "id": "o3",
+        "text": "Zero vectors have infinite norm"
+      },
+      {
+        "id": "o4",
+        "text": "All eigenvalues must be nonzero"
+      },
+      {
+        "id": "o1",
+        "text": "A0=lambda 0 holds for every lambda and cannot identify an eigen-direction"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0102",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 102,
+        "kind": "statement",
+        "locator": "Lecture 3 printed slide 8: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "For square A, an eigenvector x is nonzero and satisfies Ax=lambda x. The characteristic equation is det(lambda I-A)=0. Eigenvectors/eigenvalues represent principal directions and scaling factors. The slide states asymptotic stability when real parts of all system-matrix eigenvalues are negative.",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The equation is informative only when the vector supplies a genuine direction.",
+      "optionExplanations": {
+        "o1": "The zero vector supplies no direction and would make the equation vacuous.",
+        "o2": "Any finite matrix can multiply the compatible zero vector.",
+        "o3": "Their norm is 0, not infinity.",
+        "o4": "A singular square matrix can have a zero eigenvalue with a nonzero eigenvector."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The equation is informative only when the vector supplies a genuine direction.",
+      "memoryAid": null,
+      "misconceptions": [],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W01-L03-P0106-Q02",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "For the displayed Bayes formula, which condition is necessary to divide by P(B)?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "Bayes rule and conditional reversal",
+    "tags": [
+      "mathematics",
+      "Bayes rule and conditional reversal"
+    ],
+    "conceptIds": [
+      "W01-L03-P0106-C01"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o1",
+        "text": "P(B)>0"
+      },
+      {
+        "id": "o2",
+        "text": "P(B)=0"
+      },
+      {
+        "id": "o3",
+        "text": "P(A)=P(B)"
+      },
+      {
+        "id": "o4",
+        "text": "A and B must be independent"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0106",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 106,
+        "kind": "statement",
+        "locator": "Lecture 3 printed slide 12: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "Conditional probability updates event A given B. Bayes formula: P(A|B)=P(B|A)P(A)/P(B). Prior means before evidence; posterior means after new evidence. Localization estimates P(x|z) for state x and measurement z. Speech decoding uses P(i|o)=P(o|i)P(i)/P(o).",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The denominator must be nonzero; independence is not a prerequisite.",
+      "optionExplanations": {
+        "o1": "Conditioning by this elementary formula requires positive evidence probability.",
+        "o2": "That would produce division by zero.",
+        "o3": "Equal event probabilities are not required.",
+        "o4": "Bayes rule is useful precisely when they may be dependent."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The denominator must be nonzero; independence is not a prerequisite.",
+      "memoryAid": null,
+      "misconceptions": [],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W01-L03-P0106-Q03",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "A robot updates its state estimate after observing noisy sensor data z. Which quantity is its posterior state belief?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "cognitiveSkill": "application",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "Prior, posterior and localization",
+    "tags": [
+      "mathematics",
+      "Prior, posterior and localization"
+    ],
+    "conceptIds": [
+      "W01-L03-P0106-C02"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o4",
+        "text": "P(z)"
+      },
+      {
+        "id": "o1",
+        "text": "P(x|z)"
+      },
+      {
+        "id": "o2",
+        "text": "P(z|x)"
+      },
+      {
+        "id": "o3",
+        "text": "P(x)"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0106",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 106,
+        "kind": "statement",
+        "locator": "Lecture 3 printed slide 12: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "Conditional probability updates event A given B. Bayes formula: P(A|B)=P(B|A)P(A)/P(B). Prior means before evidence; posterior means after new evidence. Localization estimates P(x|z) for state x and measurement z. Speech decoding uses P(i|o)=P(o|i)P(i)/P(o).",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "State given observation is the posterior; observation given state is the likelihood.",
+      "optionExplanations": {
+        "o1": "This conditions the robot statex on the observation z.",
+        "o2": "This is a measurement likelihood given a hypothesized state.",
+        "o3": "This is the prior before incorporatingz.",
+        "o4": "This is the marginal probability of the observation."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "State given observation is the posterior; observation given state is the likelihood.",
+      "memoryAid": "Posterior asks: which state, given what I saw?",
+      "misconceptions": [],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W01-L03-P0107-Q03",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "Which expression is the mean of a continuous variable with density f_X?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "medium",
+    "cognitiveSkill": "recall",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "PMF versus PDF and continuous expectation",
+    "tags": [
+      "mathematics",
+      "PMF versus PDF and continuous expectation"
+    ],
+    "conceptIds": [
+      "W01-L03-P0107-C03"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o1",
+        "text": "Integral over realx of x f_X(x) dx"
+      },
+      {
+        "id": "o2",
+        "text": "Integral over realx of f_X(x) dx"
+      },
+      {
+        "id": "o3",
+        "text": "The largest value of f_X(x)"
+      },
+      {
+        "id": "o4",
+        "text": "Sum of all valuesx without probability weighting"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0107",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 107,
+        "kind": "statement",
+        "locator": "Lecture 3 printed slide 13: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "A random variable is a function X:Omega→R mapping experimental outcomes to real numbers. Discrete mean E(X)=sum_i x_i P(X=x_i); continuous mean E(X)=integral from -infinity to infinity of x f_X(x) dx. Discrete variables use PMFs; continuous variables use PDFs. Expected robot reward is a probability-weighted average.",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The factorx changes normalization into an average value.",
+      "optionExplanations": {
+        "o1": "The slide weights each continuous value by its density and integrates.",
+        "o2": "For a normalized PDF this is 1, not the mean.",
+        "o3": "A peak density is not a mean.",
+        "o4": "This ignores the probability law and is not the displayed expectation."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "E(X)=integral_{-infinity}^{infinity} x f_X(x) dx",
+          "variables": {
+            "X": "continuous random variable",
+            "f_X": "density"
+          },
+          "units": {},
+          "assumptions": []
+        }
+      ],
+      "simpleExplanation": "The factorx changes normalization into an average value.",
+      "memoryAid": null,
+      "misconceptions": [],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W01-L03-P0109-Q02",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "If all candidate models have the same positive prior probability and the likelihood has a unique maximizer, how do MLE and MAP compare?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "cognitiveSkill": "conceptual",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "MLE versus MAP",
+    "tags": [
+      "mathematics",
+      "MLE versus MAP"
+    ],
+    "conceptIds": [
+      "W01-L03-P0109-C01"
+    ],
+    "assumptions": [
+      "Finite candidate set, equal positive priors, fixed data with positive evidence, and unique likelihood maximum."
+    ],
+    "options": [
+      {
+        "id": "o3",
+        "text": "MLE becomes undefined"
+      },
+      {
+        "id": "o4",
+        "text": "MAP ignores the likelihood completely"
+      },
+      {
+        "id": "o1",
+        "text": "They select the same model"
+      },
+      {
+        "id": "o2",
+        "text": "MAP must select a different model"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0109",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 109,
+        "kind": "statement",
+        "locator": "Lecture 3 printed slide 15: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "MLE finds parameter values that best explain observed data only. MAP incorporates prior knowledge. Posterior P(mu_m|s), likelihood P(s|mu_m), prior P(mu_m), and evidence P(s) are distinguished. The displayed formula writes MAP=arg max P(mu_m|s)=P(s|mu_m)P(mu_m)/P(s), conflating an argmax with a probability.",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "A uniform prior adds no preference among the candidates.",
+      "optionExplanations": {
+        "o1": "Multiplying every likelihood by the same positive constant leaves its ordering unchanged.",
+        "o2": "A prior affects ordering only when its relative values differ.",
+        "o3": "Likelihood maximization is still defined.",
+        "o4": "The posterior still includes the likelihood factor."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "A uniform prior adds no preference among the candidates.",
+      "memoryAid": null,
+      "misconceptions": [],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W01-L03-P0110-Q02",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "Which wall-distance estimator uses the extra information associated with MAP in the lecture example?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "cognitiveSkill": "application",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "Sequential Bayesian update",
+    "tags": [
+      "mathematics",
+      "Sequential Bayesian update"
+    ],
+    "conceptIds": [
+      "W01-L03-P0110-C01"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o4",
+        "text": "One assuming extra data guarantees zero error"
+      },
+      {
+        "id": "o1",
+        "text": "One combining new range data with prior map knowledge"
+      },
+      {
+        "id": "o2",
+        "text": "One using sensor data but no prior model information"
+      },
+      {
+        "id": "o3",
+        "text": "One ignoring both sensor readings and the map"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0110",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 110,
+        "kind": "statement",
+        "locator": "Lecture 3 printed slide 16: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "Bayesian updating begins with a prior; a new observation updates the belief; the posterior becomes the next prior. Wall-distance example: MLE uses measurements, MAP combines measurements with prior map knowledge. The slide says further sensor data makes estimates more accurate/stable, without specifying noise/model assumptions.",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Prior knowledge contributes another source of information; it does not magically remove all noise.",
+      "optionExplanations": {
+        "o1": "That combination is the stated contrast with data-only estimation.",
+        "o2": "This reflects the example’s MLE side.",
+        "o3": "That is not estimation from either source.",
+        "o4": "The example offers no such exact finite-data guarantee."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "Prior knowledge contributes another source of information; it does not magically remove all noise.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Treating the slide’s qualitative accuracy statement as an unconditional guarantee under biased sensors or a wrong model."
+      ],
+      "examTraps": [
+        "Treating the slide’s qualitative accuracy statement as an unconditional guarantee under biased sensors or a wrong model."
+      ],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W01-L03-P0112-Q04",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "Given q_ddot+3q_dot+2q=u, choose x1=q and x2=q_dot. Which first-order pair is equivalent?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "hard",
+    "cognitiveSkill": "numerical",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "Higher-order to first-order conversion",
+    "tags": [
+      "mathematics",
+      "Higher-order to first-order conversion"
+    ],
+    "conceptIds": [
+      "W01-L03-P0112-C02"
+    ],
+    "assumptions": [
+      "The second-order equation and state definitions are stipulated in the question."
+    ],
+    "options": [
+      {
+        "id": "o3",
+        "text": "x1_dot=x2; x2_dot=2x1+3x2+u"
+      },
+      {
+        "id": "o4",
+        "text": "x1_dot=u; x2_dot=x1"
+      },
+      {
+        "id": "o1",
+        "text": "x1_dot=x2; x2_dot=−2x1−3x2+u"
+      },
+      {
+        "id": "o2",
+        "text": "x1_dot=x1; x2_dot=−2x1−3x2+u"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0112",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 112,
+        "kind": "equation",
+        "locator": "Lecture 3 printed slide 18: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "Continuous-time LTI state-space models use first-order differential equations. State equation x_dot(t)=Ax(t)+Bu(t), output equation y(t)=Cx(t). A higher-order equation can be broken into a vector of first-order equations. A robot-arm state can include position and velocity.",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Introducing a velocity state lowers equation order without removing the dynamics.",
+      "optionExplanations": {
+        "o1": "The first equation defines velocity; the second rearranges the given dynamics.",
+        "o2": "The first derivative ofq isq_dot=x2, notq=x1.",
+        "o3": "Moving restoring and damping terms to the right gives negative signs.",
+        "o4": "This discards the given second-order relationship."
+      },
+      "steps": [
+        "x1_dot=q_dot=x2.",
+        "x2_dot=q_ddot=u−3q_dot−2q.",
+        "Substituteq=x1 andq_dot=x2."
+      ],
+      "formulas": [
+        {
+          "expression": "x=(q,q_dot)^T",
+          "variables": {
+            "q": "position",
+            "q_dot": "velocity",
+            "x": "state vector"
+          },
+          "units": {},
+          "assumptions": []
+        }
+      ],
+      "simpleExplanation": "Introducing a velocity state lowers equation order without removing the dynamics.",
+      "memoryAid": null,
+      "misconceptions": [],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W01-L03-P0113-Q03",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "Under the rooted directed-tree convention used in this lecture, which feature is ruled out?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "Path, cycle and rooted-tree convention",
+    "tags": [
+      "mathematics",
+      "Path, cycle and rooted-tree convention"
+    ],
+    "conceptIds": [
+      "W01-L03-P0113-C02"
+    ],
+    "assumptions": [
+      "Use the specific rooted, directed convention of printed slide 19."
+    ],
+    "options": [
+      {
+        "id": "o4",
+        "text": "More than one node"
+      },
+      {
+        "id": "o1",
+        "text": "A directed cycle"
+      },
+      {
+        "id": "o2",
+        "text": "A root node"
+      },
+      {
+        "id": "o3",
+        "text": "Connections between nodes"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0113",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 113,
+        "kind": "statement",
+        "locator": "Lecture 3 printed slide 19: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "A graph G=(V,E) consists of nodes and edges. Edges may be directed (one-way) or undirected. A path is a sequence of edges; a cycle returns to its starting node. The slide describes a tree as connected, directed, rooted and without cycles. Path cost is the sum of edge weights.",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The question uses the lecture’s rooted-tree convention, not a claim that every mathematical tree must be directed.",
+      "optionExplanations": {
+        "o1": "The slide explicitly requires the tree to contain no cycles.",
+        "o2": "A root is part of the convention being used.",
+        "o3": "A tree remains a connected graph.",
+        "o4": "The slide does not limit a tree to a single node."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The question uses the lecture’s rooted-tree convention, not a claim that every mathematical tree must be directed.",
+      "memoryAid": null,
+      "misconceptions": [
+        "General graph theory also uses undirected trees; do not universalize the lecture wording."
+      ],
+      "examTraps": [
+        "General graph theory also uses undirected trees; do not universalize the lecture wording."
+      ],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W01-L03-P0118-Q03",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "Using the displayed grasping tree, select every fully specified observation that leads to Low Force.",
+    "selectionMode": "multi",
+    "type": "diagram",
+    "difficulty": "hard",
+    "cognitiveSkill": "application",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "Grasp-force decision diagram",
+    "tags": [
+      "mathematics",
+      "Grasp-force decision diagram"
+    ],
+    "conceptIds": [
+      "W01-L03-P0118-C02"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o4",
+        "text": "No surface or thickness observation at all"
+      },
+      {
+        "id": "o1",
+        "text": "Glass surface, even if thick"
+      },
+      {
+        "id": "o2",
+        "text": "Non-glass surface and thick"
+      },
+      {
+        "id": "o3",
+        "text": "Non-glass surface and thin"
+      }
+    ],
+    "correctOptionIds": [
+      "o1",
+      "o3"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0118",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 118,
+        "kind": "figure",
+        "locator": "Lecture 3 printed slide 24: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "Information gain=H(Parent)-sum_child P(Child)H(Child); choose the attribute with largest entropy reduction. The grasping diagram tests Surface=Glass? Yes→Fragile→Low Force. No→Thickness? Thick→High Force; Thin→Low Force. Explicit logic supports safety, interpretability and control.",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Tree evaluation follows branches in order; a condition on a branch not visited is irrelevant.",
+      "optionExplanations": {
+        "o1": "The Yes branch reaches Fragile then Low Force before a thickness test.",
+        "o2": "The No branch reaches Thickness, and Thick selects High Force.",
+        "o3": "The No/Thin branch selects Low Force.",
+        "o4": "The figure does not specify a default action for missing inputs."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "Tree evaluation follows branches in order; a condition on a branch not visited is irrelevant.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Applying the thickness rule to a glass object even though the tree stops on the glass branch."
+      ],
+      "examTraps": [
+        "Applying the thickness rule to a glass object even though the tree stops on the glass branch."
+      ],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W01-L03-P0118-Q04",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "What makes the displayed grasping decision tree interpretable?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "Grasp-force decision diagram",
+    "tags": [
+      "mathematics",
+      "Grasp-force decision diagram"
+    ],
+    "conceptIds": [
+      "W01-L03-P0118-C02"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o3",
+        "text": "Its output is chosen randomly after every observation"
+      },
+      {
+        "id": "o4",
+        "text": "It guarantees every object is physically safe under every circumstance"
+      },
+      {
+        "id": "o1",
+        "text": "Its sequence of explicit tests and outcomes explains the selected force"
+      },
+      {
+        "id": "o2",
+        "text": "It has no intermediate conditions"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0118",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 118,
+        "kind": "statement",
+        "locator": "Lecture 3 printed slide 24: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "Information gain=H(Parent)-sum_child P(Child)H(Child); choose the attribute with largest entropy reduction. The grasping diagram tests Surface=Glass? Yes→Fragile→Low Force. No→Thickness? Thick→High Force; Thin→Low Force. Explicit logic supports safety, interpretability and control.",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "A person can trace why a particular low/high-force decision was reached.",
+      "optionExplanations": {
+        "o1": "The path can be traced from observed attributes to the action.",
+        "o2": "It visibly contains surface and thickness tests.",
+        "o3": "The figure shows deterministic rules for the listed inputs.",
+        "o4": "The pedagogical rule does not establish such a universal engineering guarantee."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "A person can trace why a particular low/high-force decision was reached.",
+      "memoryAid": null,
+      "misconceptions": [],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W01-L03-P0120-Q03",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "Which distinction between BFS and A* is directly supported without treating every efficiency claim as a universal guarantee?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "cognitiveSkill": "conceptual",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "Informed versus uninformed search",
+    "tags": [
+      "mathematics",
+      "Informed versus uninformed search"
+    ],
+    "conceptIds": [
+      "W01-L03-P0120-C02"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o3",
+        "text": "A* can never move temporarily away from the goal"
+      },
+      {
+        "id": "o4",
+        "text": "BFS optimizes every possible unequal-cost graph"
+      },
+      {
+        "id": "o1",
+        "text": "A* uses a heuristic; ordinary BFS does not use a goal-location heuristic"
+      },
+      {
+        "id": "o2",
+        "text": "A* always has a smaller Big-O class than BFS on every graph"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0120",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 120,
+        "kind": "statement",
+        "locator": "Lecture 3 printed slide 26: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "Running time counts operations and may use worst- or average-case analysis. Common classes:O(log n),O(n),O(n^2). BFS is uninformed and minimizes edge count; A* uses a heuristic. The slide claims Euclidean A* expands fewer nodes, reduces O in practice and ignores away-from-goal directions; these are not stated with sufficient universal conditions.",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The safe distinction is the information used to order search, not a blanket statement that one algorithm always does less work.",
+      "optionExplanations": {
+        "o1": "This is the explicit methodological contrast.",
+        "o2": "The slide supplies no conditions that justify such a universal conclusion.",
+        "o3": "Obstacles and path costs can require such movement; the simplified wording is not a general rule.",
+        "o4": "BFS’s stated guarantee is minimum edge count."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The safe distinction is the information used to order search, not a blanket statement that one algorithm always does less work.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Conflating a favorable practical example with a universal complexity guarantee."
+      ],
+      "examTraps": [
+        "Conflating a favorable practical example with a universal complexity guarantee."
+      ],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W01-L03-P0121-Q02",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "Which statement describes resolution completeness as presented?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "cognitiveSkill": "application",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "Resolution completeness",
+    "tags": [
+      "mathematics",
+      "Resolution completeness"
+    ],
+    "conceptIds": [
+      "W01-L03-P0121-C02"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o3",
+        "text": "Its success probability must equal 1 after exactly one random sample"
+      },
+      {
+        "id": "o4",
+        "text": "It always finds the least-cost route regardless of representation"
+      },
+      {
+        "id": "o1",
+        "text": "The planner can find a solution when the discretization is fine enough"
+      },
+      {
+        "id": "o2",
+        "text": "It finds every continuous-space solution on every coarse grid"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0121",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 121,
+        "kind": "statement",
+        "locator": "Lecture 3 printed slide 27: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "Completeness concerns finding a solution if one exists. The slide distinguishes complete, resolution complete (fine enough discretization), and probabilistically complete (success probability tends to 1 as time tends to infinity). It says genetic algorithms may find near-optimal paths but do not guarantee the absolute shortest path in finitely many steps. Unqualified claims about A* and genetic algorithms require assumptions.",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "A discretized map must be fine enough to represent the relevant route.",
+      "optionExplanations": {
+        "o1": "This is the slide’s grid-resolution qualification.",
+        "o2": "A coarse grid may fail to represent a narrow feasible passage.",
+        "o3": "This is neither the resolution criterion nor the probabilistic limit criterion.",
+        "o4": "Resolution completeness alone is not an optimality guarantee."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "A discretized map must be fine enough to represent the relevant route.",
+      "memoryAid": null,
+      "misconceptions": [],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W01-L03-P0121-Q03",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "Which statement expresses probabilistic completeness?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "medium",
+    "cognitiveSkill": "recall",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "Probabilistic completeness",
+    "tags": [
+      "mathematics",
+      "Probabilistic completeness"
+    ],
+    "conceptIds": [
+      "W01-L03-P0121-C03"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o4",
+        "text": "The probability of success decreases to 0 with more time"
+      },
+      {
+        "id": "o1",
+        "text": "The probability of finding a solution tends to 1 as time tends to infinity"
+      },
+      {
+        "id": "o2",
+        "text": "Every finite run is certain to find a solution"
+      },
+      {
+        "id": "o3",
+        "text": "Every found path is necessarily the shortest"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0121",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 121,
+        "kind": "statement",
+        "locator": "Lecture 3 printed slide 27: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "Completeness concerns finding a solution if one exists. The slide distinguishes complete, resolution complete (fine enough discretization), and probabilistically complete (success probability tends to 1 as time tends to infinity). It says genetic algorithms may find near-optimal paths but do not guarantee the absolute shortest path in finitely many steps. Unqualified claims about A* and genetic algorithms require assumptions.",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Asymptotic success probability does not supply a fixed deadline for guaranteed success.",
+      "optionExplanations": {
+        "o1": "This is the limit statement in the slide.",
+        "o2": "A limiting probability is not certainty at each finite time.",
+        "o3": "The property concerns finding a solution, not its optimality.",
+        "o4": "This reverses the stated limit."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "Asymptotic success probability does not supply a fixed deadline for guaranteed success.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Reading an infinite-time limit as a finite-time promise."
+      ],
+      "examTraps": [
+        "Reading an infinite-time limit as a finite-time promise."
+      ],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W01-L03-P0121-Q04",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "What finite-step guarantee does the lecture explicitly deny for genetic-algorithm path planning?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "Probabilistic completeness",
+    "tags": [
+      "mathematics",
+      "Probabilistic completeness"
+    ],
+    "conceptIds": [
+      "W01-L03-P0121-C03"
+    ],
+    "assumptions": [
+      "This asks what the identified slide states; no universal probabilistic-completeness theorem for all genetic algorithms is assumed."
+    ],
+    "options": [
+      {
+        "id": "o4",
+        "text": "The possibility of a high-quality result quickly"
+      },
+      {
+        "id": "o1",
+        "text": "Guaranteed discovery of the absolute shortest path"
+      },
+      {
+        "id": "o2",
+        "text": "The possibility of finding any useful path"
+      },
+      {
+        "id": "o3",
+        "text": "The use of random mutations"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0121",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 121,
+        "kind": "statement",
+        "locator": "Lecture 3 printed slide 27: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "Completeness concerns finding a solution if one exists. The slide distinguishes complete, resolution complete (fine enough discretization), and probabilistically complete (success probability tends to 1 as time tends to infinity). It says genetic algorithms may find near-optimal paths but do not guarantee the absolute shortest path in finitely many steps. Unqualified claims about A* and genetic algorithms require assumptions.",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "A method may be useful and often effective without providing a finite-time optimality theorem.",
+      "optionExplanations": {
+        "o1": "The slide says a near-optimal path may be found but no finite-step shortest-path guarantee is given.",
+        "o2": "The slide explicitly allows finding near-optimal paths.",
+        "o3": "Random mutations are cited as part of the method.",
+        "o4": "The slide says this may happen, not that it is impossible."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "A method may be useful and often effective without providing a finite-time optimality theorem.",
+      "memoryAid": null,
+      "misconceptions": [],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W01-L03-P0122-Q01",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "Which pairing matches the lecture summary?",
+    "selectionMode": "single",
+    "type": "synthesis",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "Mathematical tools and robotics roles",
+    "tags": [
+      "mathematics",
+      "Mathematical tools and robotics roles"
+    ],
+    "conceptIds": [
+      "W01-L03-P0122-C01"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o1",
+        "text": "Probability/statistics: perception and decisions under uncertainty"
+      },
+      {
+        "id": "o2",
+        "text": "Graph search: replacing every rigid-body inertia tensor"
+      },
+      {
+        "id": "o3",
+        "text": "Big-O notation: directly computing a robot end-effector pose"
+      },
+      {
+        "id": "o4",
+        "text": "State-space models: counting transitive verbs in independent sentences"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0122",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 122,
+        "kind": "statement",
+        "locator": "Lecture 3 printed slide 28: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "Summary associates linear algebra with kinematics/dynamics/control; calculus with motion/velocity/dynamics; probability/statistics with uncertainty; state-space models with control; graph search with navigation; complexity/completeness with algorithm selection. SVD and chain rule are named here but not developed in this lecture.",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Choose mathematical tools by the kind of problem: uncertainty, geometry, dynamics, search, or scaling.",
+      "optionExplanations": {
+        "o1": "This is the role stated in the summary.",
+        "o2": "Graph search concerns navigation/decision structure, not inertia representation.",
+        "o3": "Complexity evaluates algorithm scaling, not a geometric pose.",
+        "o4": "That is the distribution example, not the state-space role."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "Choose mathematical tools by the kind of problem: uncertainty, geometry, dynamics, search, or scaling.",
+      "memoryAid": null,
+      "misconceptions": [],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W01-L03-P0100-Q05",
+    "version": 1,
+    "status": "draft",
+    "authorId": "ingest_robotics_sources-L03-author",
+    "stem": "Does having a zero diagonal alone prove that a real square matrix is skew-symmetric?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "cognitiveSkill": "conceptual",
+    "week": 1,
+    "lectureId": "L03",
+    "topic": "Mathematical Background",
+    "subtopic": "Skew-symmetry sufficiency trap",
+    "tags": [
+      "mathematics",
+      "Skew-symmetry sufficiency trap"
+    ],
+    "conceptIds": [
+      "W01-L03-P0100-C05"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o4",
+        "text": "Yes; every zero-diagonal matrix is also the zero matrix"
+      },
+      {
+        "id": "o1",
+        "text": "No; opposite off-diagonal entries are also required"
+      },
+      {
+        "id": "o2",
+        "text": "Yes; off-diagonal entries are unrestricted"
+      },
+      {
+        "id": "o3",
+        "text": "No; a skew-symmetric matrix must instead have diagonal 1"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0100",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 100,
+        "kind": "statement",
+        "locator": "Lecture 3 printed slide 6: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+        "evidenceText": "A skew-symmetric matrix satisfies S=-S^T and has zero diagonal. For Omega=(Omega_x,Omega_y,Omega_z)^T, S=[[0,-Omega_z,Omega_y],[Omega_z,0,-Omega_x],[-Omega_y,Omega_x,0]], and Omega×P=SP. AB is defined when columns(A)=rows(B). Multiplication is associative but not commutative in general. Transformation matrices compound to obtain end-effector position/orientation from the base.",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "A necessary condition is not automatically sufficient.",
+      "optionExplanations": {
+        "o1": "For example[[0,1],[1,0]] has zero diagonal but does not equal its negative transpose.",
+        "o2": "Skew-symmetry also requires S_ij=−S_ji.",
+        "o3": "Its real diagonal must be 0, not 1.",
+        "o4": "Off-diagonal entries can be nonzero."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "A necessary condition is not automatically sufficient.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Checking only the diagonal and ignoring opposite-pair signs."
+      ],
+      "examTraps": [
+        "Checking only the diagonal and ignoring opposite-pair signs."
+      ],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  }
+]

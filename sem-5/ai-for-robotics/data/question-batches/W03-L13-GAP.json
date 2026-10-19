@@ -1,0 +1,228 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "W03-L13-GAP",
+  "authorId": "robotics-integration-author-L13-gap",
+  "questions": [
+    {
+      "id": "W03-L13-GAP-Q001",
+      "version": 1,
+      "status": "draft",
+      "authorId": "robotics-integration-author-L13-gap",
+      "stem": "In the two-link diagram, which assignment matches the frame origins and x-axis directions?",
+      "selectionMode": "single",
+      "type": "diagram",
+      "difficulty": "medium",
+      "cognitiveSkill": "application",
+      "week": 3,
+      "lectureId": "L13",
+      "topic": "Two-link Newton–Euler derivation",
+      "subtopic": "Read the complete frame assignment",
+      "tags": [
+        "frame-origin-orientation"
+      ],
+      "conceptIds": [
+        "W03-L13-GAP-C-frame-origin-orientation"
+      ],
+      "assumptions": [
+        "Use the frame assignment drawn in this source example, not an arbitrary alternative convention."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Frames0 and1 originate at the base, with x0 horizontal and x1 along link1; frame2 originates at the elbow with x2 along link2, and frame3 is at the tip aligned with frame2"
+        },
+        {
+          "id": "o2",
+          "text": "Frame1 originates at the elbow along link1; frame2 is at the tip along link2; frame3 is at the base"
+        },
+        {
+          "id": "o3",
+          "text": "Frames0,1,2 and3 all originate at the base; only their labels change"
+        },
+        {
+          "id": "o4",
+          "text": "Frame1 originates at the base along link1; frame2 is at the elbow but its x2 remains horizontal, and frame3 points along link1"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0408",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 408,
+          "kind": "figure",
+          "locator": "Lecture 13, physical PDF page 408, printed slide 5: relevant text, equations and associated figures",
+          "evidenceText": "Solution:\n•  Known information:\n       = 𝑙1 ෠𝑋1  ➢  1𝑃𝐶1\n       = 𝑙2 ෠𝑋2  ➢  2𝑃𝐶2\n•  Point-mass assumption, the inertia tensor written at the\n   center of mass for each link is the zero matrix.\n   ➢𝐶1𝐼1 = 0 ,𝐶2𝐼2 = 0\n•   No external force acting so,\n   ➢𝑓3 = 0, 𝑛3 = 0\n•   Base of the robot is not rotating so,\n  ➢𝜔0 = 0, ሶ𝜔0 = 0\n•  To include gravity force we take, 0ሶ𝑣0 = 𝑔෠𝑌0\n\n\n\n                                                                                                           5",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The drawn axes and the offsets P_C1=l1 x1 and P_C2=l2 x2 locate the link-attached frames at the proximal joints, with the terminal frame at the second tip.",
+        "optionExplanations": {
+          "o1": "This matches the complete geometry and both center-of-mass offsets.",
+          "o2": "This shifts the link frames to their distal ends, contradicting the stated offsets.",
+          "o3": "The diagram shows elbow and tip origins distinct from the base.",
+          "o4": "The second-link frame is aligned with link2 rather than remaining base-horizontal."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The drawn axes and the offsets P_C1=l1 x1 and P_C2=l2 x2 locate the link-attached frames at the proximal joints, with the terminal frame at the second tip.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This shifts the link frames to their distal ends, contradicting the stated offsets.",
+          "The diagram shows elbow and tip origins distinct from the base.",
+          "The second-link frame is aligned with link2 rather than remaining base-horizontal."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": []
+    },
+    {
+      "id": "W03-L13-GAP-Q002",
+      "version": 2,
+      "status": "draft",
+      "authorId": "robotics-integration-author-L13-gap",
+      "stem": "The source notes that even a2-DOF closed-form torque equation is lengthy; why can the recursive method still be useful for a6-DOF robot?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 3,
+      "lectureId": "L13",
+      "topic": "Two-link Newton–Euler derivation",
+      "subtopic": "Long symbolic equations do not prevent recursive evaluation",
+      "tags": [
+        "closed-form-versus-recursion"
+      ],
+      "conceptIds": [
+        "W03-L13-GAP-C-closed-form-versus-recursion"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o2",
+          "text": "It first requires every joint torque to be expanded into a closed-form symbolic expression before any numerical evaluation"
+        },
+        {
+          "id": "o3",
+          "text": "It shortens the computation by treating each link as dynamically uncoupled from its neighbours"
+        },
+        {
+          "id": "o4",
+          "text": "It avoids the long expressions by dropping velocity-product terms while retaining only acceleration and gravity terms"
+        },
+        {
+          "id": "o1",
+          "text": "It evaluates linkwise motion and force recursions without requiring a fully expanded symbolic torque formula"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0424",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 424,
+          "kind": "statement",
+          "locator": "Lecture 13, physical PDF page 424, printed slide 21: relevant text, equations and associated figures",
+          "evidenceText": "•  Expressions for the torque at the actuators 𝜏1 and 𝜏2 are function\n   of joint position, velocity, and acceleration.\n•  Note that these complex expressions are for one of the simplest\n   manipulators imaginable (2 DOF planar).\n•  Obviously, the closed-form equations for a manipulator with 6\n  DOF will be quite complex.\n\n\n\n\n\n                                                                                                          21",
+          "role": "explicit",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p0425",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 425,
+          "kind": "statement",
+          "locator": "Lecture 13, physical PDF page 425, printed slide 22: relevant text, equations and associated figures",
+          "evidenceText": "Summary\n\n•  The complete algorithm for computing joint\n   torques from the motion of the joints is\n  composed of two parts.\n•  First, link velocities and accelerations are\n   iteratively computed from link 1 out to link 𝑛\n  and the Newton—Euler equations are applied\n   to each link.\n•  Second, for given forces and torques of\n   interaction at EE, joint actuator torques are\n  computed recursively from link 𝑛 back to link 1.\n\n\n\n\n                                                                                                          22",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The warning concerns the size of explicitly expanded expressions; the two-pass algorithm can evaluate the same dynamics through local intermediate quantities.",
+        "optionExplanations": {
+          "o1": "This distinguishes symbolic expression size from recursive numerical evaluation.",
+          "o2": "The linkwise numerical recursions do not require full symbolic expansion first.",
+          "o3": "Outward motion propagation and inward force propagation retain coupling between links.",
+          "o4": "The exact recursions include velocity-product effects; neglecting them would be an additional approximation."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The warning concerns the size of explicitly expanded expressions; the two-pass algorithm can evaluate the same dynamics through local intermediate quantities.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The linkwise numerical recursions do not require full symbolic expansion first.",
+          "Outward motion propagation and inward force propagation retain coupling between links.",
+          "The exact recursions include velocity-product effects; neglecting them would be an additional approximation."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L13-gap-v2-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L13-gap-v2-revision-author",
+          "priorQuestionSha256": "1a18a9b16ea05a450d4ce9164890b9070018a36328aeca3646809bd4f46af48e",
+          "reason": "Replace implausible distractors with common misconceptions about numerical recursion.",
+          "revisedAt": "2026-10-19T17:32:03.106940+00:00"
+        }
+      ]
+    }
+  ],
+  "concepts": [
+    {
+      "id": "W03-L13-GAP-C-frame-origin-orientation",
+      "title": "Read the complete frame assignment",
+      "description": "The drawn axes and the offsets P_C1=l1 x1 and P_C2=l2 x2 locate the link-attached frames at the proximal joints, with the terminal frame at the second tip.",
+      "slideIds": [
+        "lectures-p0408"
+      ],
+      "questionIds": [
+        "W03-L13-GAP-Q001"
+      ],
+      "status": "drafted",
+      "topic": "Two-link Newton–Euler derivation",
+      "subtopic": "Read the complete frame assignment",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "diagram"
+      ]
+    },
+    {
+      "id": "W03-L13-GAP-C-closed-form-versus-recursion",
+      "title": "Long symbolic equations do not prevent recursive evaluation",
+      "description": "The warning concerns the size of explicitly expanded expressions; the two-pass algorithm can evaluate the same dynamics through local intermediate quantities.",
+      "slideIds": [
+        "lectures-p0424",
+        "lectures-p0425"
+      ],
+      "questionIds": [
+        "W03-L13-GAP-Q002"
+      ],
+      "status": "drafted",
+      "topic": "Two-link Newton–Euler derivation",
+      "subtopic": "Long symbolic equations do not prevent recursive evaluation",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "conceptual"
+      ]
+    }
+  ],
+  "coverageNote": "Hand-authored drafts after actual source-page inspection; independent answer review and complete-coverage challenge remain required."
+}

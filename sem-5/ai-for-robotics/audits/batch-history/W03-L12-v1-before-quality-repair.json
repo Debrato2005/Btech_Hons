@@ -1,0 +1,1631 @@
+[
+  {
+    "id": "W03-L12-Q004",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "If each link requires a fixed-size calculation in one outward and one inward pass, how does runtime scale with n links?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "synthesis",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "Linear-time recursive dynamics",
+    "tags": [
+      "recursive-complexity"
+    ],
+    "conceptIds": [
+      "W03-L12-C-recursive-complexity"
+    ],
+    "assumptions": [
+      "A serial kinematic chain with fixed-size spatial vector/matrix operations per link."
+    ],
+    "options": [
+      {
+        "id": "o4",
+        "text": "O(2ⁿ), because the two directions create a binary branch at every link"
+      },
+      {
+        "id": "o1",
+        "text": "O(n), since two linear passes remain linear"
+      },
+      {
+        "id": "o2",
+        "text": "O(n²), because multiplying the two pass counts gives n²"
+      },
+      {
+        "id": "o3",
+        "text": "O(1), because the recursion uses the same equations at every link"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0385",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 385,
+        "kind": "equation",
+        "locator": "Lecture 12, physical PDF page 385, printed slide 7: relevant text, equations and associated figures",
+        "evidenceText": "Why Newton-Euler for Robotics?\n\n\n\n\n       Computational Efficiency                  Recursive Structure\n    O(n) complexity — ideal for real-        Naturally handles kinematic chains;\n    time control of multi-DOF robots          propagates forces link by link\n\n\n\n\n         Complete Dynamics                        AI Integration\n       Captures inertial, Coriolis,           Serves as physics prior for learning-\n   centrifugal, and gravitational effects      based and model-predictive control\n\n\n\n                                                                                                           7",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Each pass visits each link once, so the work is c1 n+c2 n rather than a nested n-by-n calculation.",
+      "optionExplanations": {
+        "o1": "The sum of two linear costs is linear.",
+        "o2": "The passes are sequential rather than nested.",
+        "o3": "Repeated equations still require work for each link.",
+        "o4": "Changing traversal direction does not create a branching search tree."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "Each pass visits each link once, so the work is c1 n+c2 n rather than a nested n-by-n calculation.",
+      "memoryAid": "Two passes add; they do not multiply.",
+      "misconceptions": [
+        "The passes are sequential rather than nested.",
+        "Repeated equations still require work for each link.",
+        "Changing traversal direction does not create a branching search tree."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L12-Q005",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "Select all effects explicitly listed for the Newton–Euler rigid-body model.",
+    "selectionMode": "multi",
+    "type": "statement",
+    "difficulty": "easy",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "Terms represented by the model",
+    "tags": [
+      "dynamics-terms"
+    ],
+    "conceptIds": [
+      "W03-L12-C-dynamics-terms"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o1",
+        "text": "Inertial effects"
+      },
+      {
+        "id": "o2",
+        "text": "Coriolis and centrifugal effects"
+      },
+      {
+        "id": "o3",
+        "text": "Gravitational effects"
+      },
+      {
+        "id": "o4",
+        "text": "Material fatigue life inferred without an additional material model"
+      }
+    ],
+    "correctOptionIds": [
+      "o1",
+      "o2",
+      "o3"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0385",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 385,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 385, printed slide 7: relevant text, equations and associated figures",
+        "evidenceText": "Why Newton-Euler for Robotics?\n\n\n\n\n       Computational Efficiency                  Recursive Structure\n    O(n) complexity — ideal for real-        Naturally handles kinematic chains;\n    time control of multi-DOF robots          propagates forces link by link\n\n\n\n\n         Complete Dynamics                        AI Integration\n       Captures inertial, Coriolis,           Serves as physics prior for learning-\n   centrifugal, and gravitational effects      based and model-predictive control\n\n\n\n                                                                                                           7",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The slide lists inertial, Coriolis, centrifugal and gravitational effects; fatigue behavior is not supplied by those rigid-body equations.",
+      "optionExplanations": {
+        "o1": "Acceleration and inertia contribute directly.",
+        "o2": "Velocity-dependent terms arise in rotating-link kinematics.",
+        "o3": "Gravity is included through the model.",
+        "o4": "Fatigue requires additional material and loading-history information."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The slide lists inertial, Coriolis, centrifugal and gravitational effects; fatigue behavior is not supplied by those rigid-body equations.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Fatigue requires additional material and loading-history information."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L12-Q007",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "In the Newton-law sketch, the force and acceleration arrows are attached to the marked center of mass; which interpretation is correct?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "cognitiveSkill": "application",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "Reading the force sketch",
+    "tags": [
+      "newton-force"
+    ],
+    "conceptIds": [
+      "W03-L12-C-newton-force"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o3",
+        "text": "v̇_C is the velocity of the endpoint rather than a time derivative"
+      },
+      {
+        "id": "o4",
+        "text": "The marker shows the proximal joint axis rather than the center of mass"
+      },
+      {
+        "id": "o1",
+        "text": "F is the net force and v̇_C is the acceleration of that center of mass"
+      },
+      {
+        "id": "o2",
+        "text": "F is the joint position and v̇_C is its angular velocity"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0386",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 386,
+        "kind": "figure",
+        "locator": "Lecture 12, physical PDF page 386, printed slide 8: relevant text, equations and associated figures",
+        "evidenceText": "Newton – Euler Equation\n\nNewton's equation\n•  The force, 𝐹, acting at the center\n   of mass and causing acceleration\n   ሶ𝑣𝐶 is given by Newton's\n  equation\n  ➢𝐹= 𝑚ሶ𝑣𝐶,\n   ➢where 𝑚 is the total mass of the\n      body.\n\n\n\n\n\n                                                                                                           8",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The slide places the mass-center marker on the link and labels its acceleration v̇_C, linked to net force by F=m v̇_C.",
+      "optionExplanations": {
+        "o1": "This matches both the diagram and equation.",
+        "o2": "Force, position and angular velocity are different quantities.",
+        "o3": "The dot indicates acceleration, and C denotes the center of mass.",
+        "o4": "The center marker lies within the link, not at the proximal joint."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The slide places the mass-center marker on the link and labels its acceleration v̇_C, linked to net force by F=m v̇_C.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Force, position and angular velocity are different quantities.",
+        "The dot indicates acceleration, and C denotes the center of mass.",
+        "The center marker lies within the link, not at the proximal joint."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L12-Q008",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "Which pair correctly identifies angular momentum about the mass center and the required moment?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "medium",
+    "cognitiveSkill": "recall",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "Euler moment and angular momentum",
+    "tags": [
+      "euler-moment"
+    ],
+    "conceptIds": [
+      "W03-L12-C-euler-moment"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o4",
+        "text": "H_C=ω×I_Cω; N_C=H_C×α"
+      },
+      {
+        "id": "o1",
+        "text": "H_C=I_Cω; N_C=I_Cα+ω×H_C"
+      },
+      {
+        "id": "o2",
+        "text": "H_C=I_Cα; N_C=I_Cω+ω×H_C"
+      },
+      {
+        "id": "o3",
+        "text": "H_C=m v_C; N_C=I_Cα only for every rotation"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0387",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 387,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 387, printed slide 9: relevant text, equations and associated figures",
+        "evidenceText": "Newton – Euler Equation\n\nEuler's equation\n•   In a rigid body rotating with angular velocity 𝜔 and with\n   angula acceleration ሶ𝜔, the moment 𝑁, which must be\n   acting on the body to cause this motion, is given by\n   Euler's equation\n  ➢𝑁= 𝐶𝐼ሶ𝜔+ 𝜔× 𝐶𝐼𝜔,\n•  where 𝐶𝐼 is the inertia tensor of the body written in a\n   frame, {C}, whose origin is located at the center of mass.\n•  𝐶𝐼𝜔 angular momentum of body.\n•  Unlike F = ma, Euler's equation has an extra term ω × Iω\n   that captures the gyroscopic effect — crucial for spinning\n   robot joints and fast manipulation.\n\n\n                                                                                                           9",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "I_Cω is angular momentum, and its inertial rate includes the transport term ω×I_Cω.",
+      "optionExplanations": {
+        "o1": "This is the source Euler equation.",
+        "o2": "This interchanges angular velocity and acceleration.",
+        "o3": "m v_C is linear momentum; the gyroscopic term need not vanish.",
+        "o4": "The cross term contributes to the moment, not the definition of H_C."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "N_C=I_C α+ω×(I_C ω)",
+          "variables": {
+            "N_C": "net external moment about the center of mass",
+            "I_C": "inertia tensor about the center of mass in body-aligned axes",
+            "α": "angular acceleration",
+            "ω": "angular velocity"
+          },
+          "units": {
+            "N_C": "N·m",
+            "I_C": "kg·m²",
+            "α": "rad/s²",
+            "ω": "rad/s"
+          },
+          "assumptions": [
+            "Rigid body; all terms use the same coordinate basis."
+          ]
+        }
+      ],
+      "simpleExplanation": "I_Cω is angular momentum, and its inertial rate includes the transport term ω×I_Cω.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This interchanges angular velocity and acceleration.",
+        "m v_C is linear momentum; the gyroscopic term need not vanish.",
+        "The cross term contributes to the moment, not the definition of H_C."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L12-Q012",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "Which sequence follows the recursive inverse-dynamics algorithm?",
+    "selectionMode": "single",
+    "type": "sequence",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "Outward and inward passes",
+    "tags": [
+      "pass-order"
+    ],
+    "conceptIds": [
+      "W03-L12-C-pass-order"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o4",
+        "text": "Alternate outward force and inward velocity passes without respecting their boundary data"
+      },
+      {
+        "id": "o1",
+        "text": "Propagate motion from base to tip, compute each inertial resultant, then propagate loads from tip to base"
+      },
+      {
+        "id": "o2",
+        "text": "Propagate joint torques outward before any link acceleration is known"
+      },
+      {
+        "id": "o3",
+        "text": "Compute only end-link acceleration and apply the same inertial force to every link"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0389",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 389,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 389, printed slide 11: relevant text, equations and associated figures",
+        "evidenceText": "Outward iterations to compute velocities and accelerations\n\n•  Calculate for each link of the manipulator at\n  any given instant\n   – rotational velocity,\n   – linear acceleration and\n   – rotational acceleration of the center of mass\n •  Computations will be done in an iterative way,\n   starting with link 1 and moving successively,\n    link by link, outward to link 𝑛\n\n\n\n\n\n                                                                                                          11",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0396",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 396,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 396, printed slide 18: relevant text, equations and associated figures",
+        "evidenceText": "The iterative Newton—Euler dynamics algorithm\n\n    Outward iterations: 𝑖∶ 0 → 5\n   ➢𝑖+1𝜔𝑖+1 = 𝑖+1𝑅𝑖𝜔𝑖+𝑖          ሶ𝜃𝑖+1 𝑖+1 መ𝑍𝑖+1\n   ➢𝑖+1           ሶ𝜔𝑖+1 = 𝑖+1𝑅𝑖ሶ𝜔𝑖+𝑖      𝑖+1𝑅𝑖𝜔𝑖×𝑖          ሶ𝜃𝑖+1 𝑖+1 መ𝑍𝑖+1+ሷ𝜃𝑖+1 𝑖+1 መ𝑍𝑖+1\n   ➢𝑖+1                    + 𝑖𝜔𝑖×  𝑖𝜔𝑖×  𝑖𝑃𝑖+1 +  𝑖ሶ𝑣𝑖)            ሶ𝑣𝑖+1 = 𝑖+1𝑅(𝑖   𝑖ሶ𝜔𝑖×  𝑖𝑃𝑖+1\n                  𝑖+1   ➢𝑖+1             ሶ𝑣𝐶𝑖+1 =                       ሶ𝜔𝑖+1 × 𝑖+1𝑃𝐶𝑖+1                     + 𝑖+1𝜔𝑖+1 × (𝑖+1𝜔𝑖+1 × 𝑖+1𝑃𝐶𝑖+1) +𝑖+1 ሶ𝑣𝑖+1\n   ➢𝑖+1𝐹𝑖+1 = 𝑚𝑖+1 𝑖+1 ሶ𝑣𝐶𝑖+1\n   ➢𝑖+1𝑁𝑖+1 = 𝐶𝑖+1𝐼𝑖+1 𝑖+1 ሶ𝜔𝑖+1 + 𝑖+1𝜔𝑖+1 × 𝐶𝑖+1𝐼𝑖+1 𝑖+1𝜔𝑖+1\n\n\n\n\n\n                                                                                                          18",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0397",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 397,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 397, printed slide 19: relevant text, equations and associated figures",
+        "evidenceText": "Inward iterations: 𝑖∶6 →1\n              +  𝑖𝐹𝑖  ➢ 𝑖𝑓𝑖= 𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1\n                   +                                 ×  ➢ 𝑖𝑛𝑖= 𝑖𝑁𝑖+ 𝑖+1𝑖𝑅𝑖+1𝑛𝑖+1                                                           𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1                               𝑖𝑃𝐶𝑖× 𝑖𝐹𝑖+  𝑖𝑃𝑖+1\n  ➢𝜏𝑖=  𝑖𝑛𝑖𝑇𝑖መ𝑍𝑖\n\n\n\n\n\n                                                                                                          19",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The outward pass provides link accelerations and inertial loads; the inward pass then accumulates transmitted forces and moments.",
+      "optionExplanations": {
+        "o1": "This respects the dependencies and directions.",
+        "o2": "Each link’s inertial load depends on its acceleration.",
+        "o3": "Links have different masses and accelerations.",
+        "o4": "The recursions have distinct inputs and traversal directions."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The outward pass provides link accelerations and inertial loads; the inward pass then accumulates transmitted forces and moments.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Each link’s inertial load depends on its acceleration.",
+        "Links have different masses and accelerations.",
+        "The recursions have distinct inputs and traversal directions."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L12-Q021",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "In the link diagram, what distinguishes F_i,N_i from f_i,n_i?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "cognitiveSkill": "application",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "Resultant and transmitted loads",
+    "tags": [
+      "resultant-versus-transmitted"
+    ],
+    "conceptIds": [
+      "W03-L12-C-resultant-versus-transmitted"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o1",
+        "text": "F_i,N_i are net inertial resultants at/about the mass center; f_i,n_i are the proximal loads exerted by link i−1 on link i"
+      },
+      {
+        "id": "o2",
+        "text": "Both pairs are identical joint-axis scalar efforts"
+      },
+      {
+        "id": "o3",
+        "text": "F_i,N_i are distal-only loads while f_i,n_i are mass and inertia parameters"
+      },
+      {
+        "id": "o4",
+        "text": "Uppercase denotes global coordinates and lowercase denotes a different physical law"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0389",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 389,
+        "kind": "figure",
+        "locator": "Lecture 12, physical PDF page 389, printed slide 11: relevant text, equations and associated figures",
+        "evidenceText": "Outward iterations to compute velocities and accelerations\n\n•  Calculate for each link of the manipulator at\n  any given instant\n   – rotational velocity,\n   – linear acceleration and\n   – rotational acceleration of the center of mass\n •  Computations will be done in an iterative way,\n   starting with link 1 and moving successively,\n    link by link, outward to link 𝑛\n\n\n\n\n\n                                                                                                          11",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0392",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 392,
+        "kind": "figure",
+        "locator": "Lecture 12, physical PDF page 392, printed slide 14: relevant text, equations and associated figures",
+        "evidenceText": "•  The force and torque acting\n  on a link\n  ➢𝐹𝑖= 𝑚ሶ𝑣𝐶𝑖,\n  ➢𝑁𝑖= 𝐶𝑖𝐼ሶ𝜔𝑖+ 𝜔𝑖× 𝐶𝑖𝐼𝜔𝑖,\n   Where {𝐶𝑖} has its origin at the\n    center of mass of the link and has\n    orientation same as frame 𝑖.\n\n\n\n\n\n                                                                                                          14",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0393",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 393,
+        "kind": "figure",
+        "locator": "Lecture 12, physical PDF page 393, printed slide 15: relevant text, equations and associated figures",
+        "evidenceText": "Inward iterations to compute forces and torques\n\n   ➢𝑓𝑖= force exerted on link 𝑖 by link 𝑖−1,\n  ➢𝑛𝑖= torqe exerted on link 𝑖 by link 𝑖−1,\n     Force-balance:\n     𝑖𝐹𝑖= 𝑖𝑓𝑖−𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1\n     Torque-balance about CM:\n     𝑖𝑁𝑖= 𝑖𝑛𝑖−  𝑖𝑛𝑖+1 + −𝑖𝑃𝐶𝑖× 𝑖𝑓𝑖−\n            ×  𝑖𝑓𝑖+1     ( 𝑖𝑃𝑖+1 −  𝑖𝑃𝐶𝑖)\n\n\n\n\n\n                                                                                                          15",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The uppercase quantities follow Newton/Euler for the whole link; the lowercase quantities describe interlink transmission at the joint.",
+      "optionExplanations": {
+        "o1": "This preserves the physical roles and reference points.",
+        "o2": "They are vectors, and the net resultant need not equal one joint’s contribution.",
+        "o3": "The lowercase symbols are forces/moments, not inertial parameters.",
+        "o4": "Capitalization distinguishes physical quantities here, not coordinate frames."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The uppercase quantities follow Newton/Euler for the whole link; the lowercase quantities describe interlink transmission at the joint.",
+      "memoryAid": null,
+      "misconceptions": [
+        "They are vectors, and the net resultant need not equal one joint’s contribution.",
+        "The lowercase symbols are forces/moments, not inertial parameters.",
+        "Capitalization distinguishes physical quantities here, not coordinate frames."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L12-Q025",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "After inserting f_i=F_i+R f_next into the mass-center moment balance, which pair cancels?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "synthesis",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "Cancellation in the moment derivation",
+    "tags": [
+      "inward-recursion"
+    ],
+    "conceptIds": [
+      "W03-L12-C-inward-recursion"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o1",
+        "text": "−r_C×(R f_next) and +r_C×(R f_next)"
+      },
+      {
+        "id": "o2",
+        "text": "−r_C×F_i and +r_C×(R f_next) for every link"
+      },
+      {
+        "id": "o3",
+        "text": "N_i and R n_next for every motion"
+      },
+      {
+        "id": "o4",
+        "text": "p×(R f_next) and r_C×F_i for every mass distribution"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0394",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 394,
+        "kind": "equation",
+        "locator": "Lecture 12, physical PDF page 394, printed slide 16: relevant text, equations and associated figures",
+        "evidenceText": "−                                   ×  𝑖𝑓𝑖+1➢ 𝑖𝑁𝑖= 𝑖𝑛𝑖−  𝑖𝑛𝑖+1 + −𝑖𝑃𝐶𝑖× 𝑖𝑓𝑖−( 𝑖𝑃𝑖+1                                                          𝑖𝑃𝐶𝑖)\nSubstituting for 𝑖𝑓𝑖= 𝑖𝐹𝑖+ 𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1\n                +                                      −( 𝑖𝑃𝑖+1 −➢ 𝑖𝑁𝑖= 𝑖𝑛𝑖−𝑖+1𝑖𝑅𝑖+1𝑛𝑖+1                    −𝑖𝑃𝐶𝑖×  𝑖𝐹𝑖+ 𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1\n     ×  𝑖𝑓𝑖+1    𝑖𝑃𝐶𝑖)\n                −                              ×➢ 𝑖𝑁𝑖= 𝑖𝑛𝑖−𝑖+1𝑖𝑅𝑖+1𝑛𝑖+1                                                       𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1                            𝑖𝑃𝐶𝑖× 𝑖𝐹𝑖−  𝑖𝑃𝑖+1\nFinally, rearranging\n➢ 𝑖𝑓𝑖= 𝑖𝐹𝑖+ 𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1\n                +➢ 𝑖𝑛𝑖= 𝑖𝑁𝑖+ 𝑖+1𝑖𝑅𝑖+1𝑛𝑖+1                            𝑖𝑃𝐶𝑖× 𝑖𝐹𝑖+\n                         𝑖𝑃𝑖+1 × 𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1\n\n\n                                                                                                    16",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Expanding −(p−r_C)×(R f_next) creates a positive r_C cross distal-force term that cancels the negative one from the proximal force substitution.",
+      "optionExplanations": {
+        "o1": "They are equal and opposite copies of the same vector cross product.",
+        "o2": "F_i and the distal force are different quantities.",
+        "o3": "The inertial and transmitted moments do not generally match.",
+        "o4": "Distinct moment arms and loads need not cancel."
+      },
+      "steps": [
+        "Expand −r_C×(F_i+R f_next).",
+        "Expand −(p−r_C)×R f_next.",
+        "Cancel the opposite r_C×R f_next terms."
+      ],
+      "formulas": [
+        {
+          "expression": "f_i=F_i+R f_next; n_i=N_i+R n_next+r_C×F_i+p×(R f_next)",
+          "variables": {
+            "f_i,n_i": "proximal force and moment exerted on link i",
+            "F_i,N_i": "net inertial resultant force and center-of-mass moment",
+            "f_next,n_next": "distal transmitted force and moment in next-link coordinates",
+            "R": "rotation from next-link to current-link coordinates",
+            "r_C": "current-origin to center-of-mass vector in current coordinates",
+            "p": "current-origin to next-origin vector in current coordinates"
+          },
+          "units": {
+            "f_i,F_i,f_next": "N",
+            "n_i,N_i,n_next": "N·m",
+            "r_C,p": "m",
+            "R": "dimensionless"
+          },
+          "assumptions": [
+            "Use the lecture interlink-force convention; all sums/cross products are in current-link coordinates."
+          ]
+        }
+      ],
+      "simpleExplanation": "Expanding −(p−r_C)×(R f_next) creates a positive r_C cross distal-force term that cancels the negative one from the proximal force substitution.",
+      "memoryAid": null,
+      "misconceptions": [
+        "F_i and the distal force are different quantities.",
+        "The inertial and transmitted moments do not generally match.",
+        "Distinct moment arms and loads need not cancel."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L12-Q026",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "All vectors are in frame i and R=I: F_i=(0,2,0) N, N_i=(0,0,1) N·m, f_next=(0,3,0) N, n_next=(0,0,2) N·m, r_C=(0.5,0,0) m and p=(1,0,0) m; what are (f_i,n_i)?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "cognitiveSkill": "numerical",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "Numerical force and moment accumulation",
+    "tags": [
+      "inward-recursion"
+    ],
+    "conceptIds": [
+      "W03-L12-C-inward-recursion"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o2",
+        "text": "((0,5,0) N, (0,0,3) N·m)"
+      },
+      {
+        "id": "o3",
+        "text": "((0,-1,0) N, (0,0,-1) N·m)"
+      },
+      {
+        "id": "o4",
+        "text": "((0,5,0) N, (0,0,6) N·m)"
+      },
+      {
+        "id": "o1",
+        "text": "((0,5,0) N, (0,0,7) N·m)"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0394",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 394,
+        "kind": "equation",
+        "locator": "Lecture 12, physical PDF page 394, printed slide 16: relevant text, equations and associated figures",
+        "evidenceText": "−                                   ×  𝑖𝑓𝑖+1➢ 𝑖𝑁𝑖= 𝑖𝑛𝑖−  𝑖𝑛𝑖+1 + −𝑖𝑃𝐶𝑖× 𝑖𝑓𝑖−( 𝑖𝑃𝑖+1                                                          𝑖𝑃𝐶𝑖)\nSubstituting for 𝑖𝑓𝑖= 𝑖𝐹𝑖+ 𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1\n                +                                      −( 𝑖𝑃𝑖+1 −➢ 𝑖𝑁𝑖= 𝑖𝑛𝑖−𝑖+1𝑖𝑅𝑖+1𝑛𝑖+1                    −𝑖𝑃𝐶𝑖×  𝑖𝐹𝑖+ 𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1\n     ×  𝑖𝑓𝑖+1    𝑖𝑃𝐶𝑖)\n                −                              ×➢ 𝑖𝑁𝑖= 𝑖𝑛𝑖−𝑖+1𝑖𝑅𝑖+1𝑛𝑖+1                                                       𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1                            𝑖𝑃𝐶𝑖× 𝑖𝐹𝑖−  𝑖𝑃𝑖+1\nFinally, rearranging\n➢ 𝑖𝑓𝑖= 𝑖𝐹𝑖+ 𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1\n                +➢ 𝑖𝑛𝑖= 𝑖𝑁𝑖+ 𝑖+1𝑖𝑅𝑖+1𝑛𝑖+1                            𝑖𝑃𝐶𝑖× 𝑖𝐹𝑖+\n                         𝑖𝑃𝑖+1 × 𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1\n\n\n                                                                                                    16",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Forces add to (0,5,0); the z moments are 1+2+0.5×2+1×3=7 N·m.",
+      "optionExplanations": {
+        "o1": "Both force and all four moment terms are included.",
+        "o2": "This omits both moment-arm contributions.",
+        "o3": "This subtracts the distal load after the recursion has already been rearranged.",
+        "o4": "This omits the center-of-mass force moment."
+      },
+      "steps": [
+        "Add F_i and f_next to obtain (0,5,0) N.",
+        "Compute r_C×F_i=(0,0,1) N·m and p×f_next=(0,0,3) N·m.",
+        "Add N_i,z+n_next,z+1+3=1+2+1+3=7 N·m."
+      ],
+      "formulas": [
+        {
+          "expression": "f_i=F_i+R f_next; n_i=N_i+R n_next+r_C×F_i+p×(R f_next)",
+          "variables": {
+            "f_i,n_i": "proximal force and moment exerted on link i",
+            "F_i,N_i": "net inertial resultant force and center-of-mass moment",
+            "f_next,n_next": "distal transmitted force and moment in next-link coordinates",
+            "R": "rotation from next-link to current-link coordinates",
+            "r_C": "current-origin to center-of-mass vector in current coordinates",
+            "p": "current-origin to next-origin vector in current coordinates"
+          },
+          "units": {
+            "f_i,F_i,f_next": "N",
+            "n_i,N_i,n_next": "N·m",
+            "r_C,p": "m",
+            "R": "dimensionless"
+          },
+          "assumptions": [
+            "Use the lecture interlink-force convention; all sums/cross products are in current-link coordinates."
+          ]
+        }
+      ],
+      "simpleExplanation": "Forces add to (0,5,0); the z moments are 1+2+0.5×2+1×3=7 N·m.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This omits both moment-arm contributions.",
+        "This subtracts the distal load after the recursion has already been rearranged.",
+        "This omits the center-of-mass force moment."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L12-Q035",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "A stationary 2 kg link has center-of-mass offset r_C=(0.5,0,0) m from a z-axis revolute joint; physical gravity is (0,-9.81,0) m/s² in the same basis; what holding torque does the gravity-initialized recursion give?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "cognitiveSkill": "numerical",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "Single-link gravity moment",
+    "tags": [
+      "gravity-initialization"
+    ],
+    "conceptIds": [
+      "W03-L12-C-gravity-initialization"
+    ],
+    "assumptions": [
+      "No terminal wrench; no other loads; positive joint direction is +z."
+    ],
+    "options": [
+      {
+        "id": "o3",
+        "text": "+19.62 N·m about z"
+      },
+      {
+        "id": "o4",
+        "text": "0 N·m because angular acceleration is zero"
+      },
+      {
+        "id": "o1",
+        "text": "+9.81 N·m about z"
+      },
+      {
+        "id": "o2",
+        "text": "-9.81 N·m about z"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0398",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 398,
+        "kind": "equation",
+        "locator": "Lecture 12, physical PDF page 398, printed slide 20: relevant text, equations and associated figures",
+        "evidenceText": "Inclusion of gravity forces in the dynamics algorithm\n\n•  The effect of gravity loading on the links can be included quite simply by setting\n   0\n      ሶ𝑣0  = G, where G has the magnitude of the gravity vector but points in the\n   opposite direction.\n•  This is equivalent to saying that the base of the robot is accelerating upward\n   with 1 g acceleration.\n•  This fictitious upward acceleration causes exactly the same effect on the links as\n   gravity would.\n•  So, with no extra computational expense, the gravity\n   effect is calculated.\n\n\n\n\n\n                                                                                                          20",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The fictitious acceleration is (0,+9.81,0), producing F=(0,19.62,0) N and r_C×F=(0,0,9.81) N·m.",
+      "optionExplanations": {
+        "o1": "This balances the negative gravitational moment.",
+        "o2": "This is the gravitational-load moment, not the opposing holding torque.",
+        "o3": "This omits the 0.5 m lever arm.",
+        "o4": "Gravity can require static torque despite zero actual angular acceleration."
+      },
+      "steps": [
+        "Set effective acceleration to -g_phys=(0,+9.81,0) m/s².",
+        "Compute F=m a_C=(0,19.62,0) N.",
+        "Compute r_C×F=(0,0,9.81) N·m.",
+        "Project onto positive z to obtain +9.81 N·m."
+      ],
+      "formulas": [
+        {
+          "expression": "F=m a_C",
+          "variables": {
+            "F": "net external force on the link",
+            "m": "link mass",
+            "a_C": "center-of-mass acceleration"
+          },
+          "units": {
+            "F": "N",
+            "m": "kg",
+            "a_C": "m/s²"
+          },
+          "assumptions": [
+            "Constant-mass rigid link; all vector components share a basis."
+          ]
+        },
+        {
+          "expression": "f_i=F_i+R f_next; n_i=N_i+R n_next+r_C×F_i+p×(R f_next)",
+          "variables": {
+            "f_i,n_i": "proximal force and moment exerted on link i",
+            "F_i,N_i": "net inertial resultant force and center-of-mass moment",
+            "f_next,n_next": "distal transmitted force and moment in next-link coordinates",
+            "R": "rotation from next-link to current-link coordinates",
+            "r_C": "current-origin to center-of-mass vector in current coordinates",
+            "p": "current-origin to next-origin vector in current coordinates"
+          },
+          "units": {
+            "f_i,F_i,f_next": "N",
+            "n_i,N_i,n_next": "N·m",
+            "r_C,p": "m",
+            "R": "dimensionless"
+          },
+          "assumptions": [
+            "Use the lecture interlink-force convention; all sums/cross products are in current-link coordinates."
+          ]
+        }
+      ],
+      "simpleExplanation": "The fictitious acceleration is (0,+9.81,0), producing F=(0,19.62,0) N and r_C×F=(0,0,9.81) N·m.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This is the gravitational-load moment, not the opposing holding torque.",
+        "This omits the 0.5 m lever arm.",
+        "Gravity can require static torque despite zero actual angular acceleration."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L12-Q036",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "Which pairing matches the slide’s AI integration ideas?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "medium",
+    "cognitiveSkill": "recall",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "Physics prior and residual learning",
+    "tags": [
+      "ai-physics-prior"
+    ],
+    "conceptIds": [
+      "W03-L12-C-ai-physics-prior"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o4",
+        "text": "Embedding mechanics proves every learned controller is safe without testing"
+      },
+      {
+        "id": "o1",
+        "text": "A physics-informed model incorporates Newton–Euler structure; residual learning models what the nominal dynamics misses"
+      },
+      {
+        "id": "o2",
+        "text": "A physics prior means ignoring mechanics until all data are collected"
+      },
+      {
+        "id": "o3",
+        "text": "Residual learning requires discarding the nominal model and learning every force from scratch"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0399",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 399,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 399, printed slide 21: relevant text, equations and associated figures",
+        "evidenceText": "AI Applications of Newton-Euler Dynamics\n\n Physics-Informed Neural Networks         Model-Based RL\n N-E structure embedded as physics prior      N-E dynamics model used for planning in\n in NN architecture — reduces data needs    MPC or Dyna-style RL. Agent learns\n by 10-100×.                                    residual errors, not full dynamics.\n\nParameter Identification                      Safe HRI\n\nUse N-E with linear parameterization: τ =      N-E-based impedance control: τ = g(q) +\nW(Θ, ሶΘ, ሷΘ)·φ. Regressor W known, φ        𝐽𝑇·(𝐾𝑠(𝑥𝑑−𝑥)+ 𝐵𝑠(ሶ𝑥𝑑−ሶ𝑥)). AI tunes 𝐾𝑠,\n(mass, inertia) learned from data.            𝐵𝑠 online.\n\n  Sim-to-Real Transfer                      Learned Inverse Dynamics\n N-E simulators provide accurate dynamics    DNN maps (Θ, ሶΘ, ሷΘ ̈) → τ. Trained on N-E\n for training. Domain randomization over        data. Used for real-time feedforward\n mass/inertia parameters.                    without symbolic model.\n\n                                                                                                          21",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The slide distinguishes using physical structure from learning residual errors, both of which can complement a nominal dynamics model.",
+      "optionExplanations": {
+        "o1": "This captures the two stated roles.",
+        "o2": "A physics prior deliberately uses mechanics.",
+        "o3": "The slide’s residual approach retains the model.",
+        "o4": "A model structure alone is not a safety proof."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The slide distinguishes using physical structure from learning residual errors, both of which can complement a nominal dynamics model.",
+      "memoryAid": null,
+      "misconceptions": [
+        "A physics prior deliberately uses mechanics.",
+        "The slide’s residual approach retains the model.",
+        "A model structure alone is not a safety proof."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L12-Q038",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "In τ=W(q,qdot,qddot)φ, which quantity is learned in the slide’s parameter-identification description?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "medium",
+    "cognitiveSkill": "recall",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "Known regressor and unknown parameters",
+    "tags": [
+      "parameter-identification"
+    ],
+    "conceptIds": [
+      "W03-L12-C-parameter-identification"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o2",
+        "text": "The joint coordinate q, while τ and W are discarded"
+      },
+      {
+        "id": "o3",
+        "text": "Only the sign of gravity, with all mass and inertia already known"
+      },
+      {
+        "id": "o4",
+        "text": "A new Jacobian J that replaces the torque measurements"
+      },
+      {
+        "id": "o1",
+        "text": "The inertial parameter vector φ, using the known regressor W built from measured motion"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0399",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 399,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 399, printed slide 21: relevant text, equations and associated figures",
+        "evidenceText": "AI Applications of Newton-Euler Dynamics\n\n Physics-Informed Neural Networks         Model-Based RL\n N-E structure embedded as physics prior      N-E dynamics model used for planning in\n in NN architecture — reduces data needs    MPC or Dyna-style RL. Agent learns\n by 10-100×.                                    residual errors, not full dynamics.\n\nParameter Identification                      Safe HRI\n\nUse N-E with linear parameterization: τ =      N-E-based impedance control: τ = g(q) +\nW(Θ, ሶΘ, ሷΘ)·φ. Regressor W known, φ        𝐽𝑇·(𝐾𝑠(𝑥𝑑−𝑥)+ 𝐵𝑠(ሶ𝑥𝑑−ሶ𝑥)). AI tunes 𝐾𝑠,\n(mass, inertia) learned from data.            𝐵𝑠 online.\n\n  Sim-to-Real Transfer                      Learned Inverse Dynamics\n N-E simulators provide accurate dynamics    DNN maps (Θ, ሶΘ, ሷΘ ̈) → τ. Trained on N-E\n for training. Domain randomization over        data. Used for real-time feedforward\n mass/inertia parameters.                    without symbolic model.\n\n                                                                                                          21",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "W depends on known motion variables and φ contains unknown inertial parameters to be estimated from data.",
+      "optionExplanations": {
+        "o1": "This is the stated known-regressor/unknown-parameter split.",
+        "o2": "Motion data form the regressor rather than being the unknown inertial vector.",
+        "o3": "The described unknowns include mass/inertia parameters.",
+        "o4": "The equation is a dynamics regressor, not a Jacobian replacement."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "τ=W(q,qdot,qddot)φ",
+          "variables": {
+            "τ": "joint-effort observations",
+            "W": "known dynamics regressor for the observed motion",
+            "φ": "unknown inertial parameter vector",
+            "q,qdot,qddot": "joint position, velocity and acceleration"
+          },
+          "units": {
+            "τ": "N·m for revolute joints; N for prismatic joints",
+            "φ": "mixed inertial-parameter units",
+            "W": "units matched columnwise to φ",
+            "q,qdot,qddot": "joint-type-specific position/rate/acceleration units"
+          },
+          "assumptions": []
+        }
+      ],
+      "simpleExplanation": "W depends on known motion variables and φ contains unknown inertial parameters to be estimated from data.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Motion data form the regressor rather than being the unknown inertial vector.",
+        "The described unknowns include mass/inertia parameters.",
+        "The equation is a dynamics regressor, not a Jacobian replacement."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L12-Q039",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "For τ=g(q)+Jᵀ[K_s(x_d−x)+B_s(v_d−v)], what roles do K_s and B_s play?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "medium",
+    "cognitiveSkill": "recall",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "Interpreting the impedance terms",
+    "tags": [
+      "impedance-control"
+    ],
+    "conceptIds": [
+      "W03-L12-C-impedance-control"
+    ],
+    "assumptions": [
+      "Use consistent task-coordinate units and the slide’s idealized control expression; the label “Safe HRI” alone is not a safety guarantee."
+    ],
+    "options": [
+      {
+        "id": "o3",
+        "text": "A rotation matrix and a translation vector"
+      },
+      {
+        "id": "o4",
+        "text": "Two identical gains that both multiply acceleration error"
+      },
+      {
+        "id": "o1",
+        "text": "Stiffness-like gain on position error and damping-like gain on velocity error"
+      },
+      {
+        "id": "o2",
+        "text": "Mass gain on position error and inertia tensor on velocity error"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0399",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 399,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 399, printed slide 21: relevant text, equations and associated figures",
+        "evidenceText": "AI Applications of Newton-Euler Dynamics\n\n Physics-Informed Neural Networks         Model-Based RL\n N-E structure embedded as physics prior      N-E dynamics model used for planning in\n in NN architecture — reduces data needs    MPC or Dyna-style RL. Agent learns\n by 10-100×.                                    residual errors, not full dynamics.\n\nParameter Identification                      Safe HRI\n\nUse N-E with linear parameterization: τ =      N-E-based impedance control: τ = g(q) +\nW(Θ, ሶΘ, ሷΘ)·φ. Regressor W known, φ        𝐽𝑇·(𝐾𝑠(𝑥𝑑−𝑥)+ 𝐵𝑠(ሶ𝑥𝑑−ሶ𝑥)). AI tunes 𝐾𝑠,\n(mass, inertia) learned from data.            𝐵𝑠 online.\n\n  Sim-to-Real Transfer                      Learned Inverse Dynamics\n N-E simulators provide accurate dynamics    DNN maps (Θ, ሶΘ, ሷΘ ̈) → τ. Trained on N-E\n for training. Domain randomization over        data. Used for real-time feedforward\n mass/inertia parameters.                    without symbolic model.\n\n                                                                                                          21",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The source pairs K_s with displacement error and B_s with velocity error inside a task-space force term.",
+      "optionExplanations": {
+        "o1": "This follows the two error terms.",
+        "o2": "The formula is not multiplying acceleration by mass.",
+        "o3": "These are control gains rather than a pose transform.",
+        "o4": "The two errors and gain roles differ."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The source pairs K_s with displacement error and B_s with velocity error inside a task-space force term.",
+      "memoryAid": null,
+      "misconceptions": [
+        "The formula is not multiplying acceleration by mass.",
+        "These are control gains rather than a pose transform.",
+        "The two errors and gain roles differ."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L12-Q041",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "Which statement matches the two distinct training ideas?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "medium",
+    "cognitiveSkill": "recall",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "Domain randomization versus learned inverse dynamics",
+    "tags": [
+      "sim-to-real"
+    ],
+    "conceptIds": [
+      "W03-L12-C-sim-to-real"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o1",
+        "text": "Randomize mass/inertia for sim-to-real training; train an inverse model to map (q,qdot,qddot) to τ"
+      },
+      {
+        "id": "o2",
+        "text": "Peter Corke Robotics Toolbox: KDL integration in ROS2; MoveIt row: MATLAB-only DH teaching"
+      },
+      {
+        "id": "o3",
+        "text": "Peter Corke Robotics Toolbox: differentiable Python/JAX dynamics; MoveIt row: domain-randomized simulator training"
+      },
+      {
+        "id": "o4",
+        "text": "Peter Corke Robotics Toolbox: ABA/CRBA-focused C++ library; MoveIt row: multibody MPC research toolkit"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0399",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 399,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 399, printed slide 21: relevant text, equations and associated figures",
+        "evidenceText": "AI Applications of Newton-Euler Dynamics\n\n Physics-Informed Neural Networks         Model-Based RL\n N-E structure embedded as physics prior      N-E dynamics model used for planning in\n in NN architecture — reduces data needs    MPC or Dyna-style RL. Agent learns\n by 10-100×.                                    residual errors, not full dynamics.\n\nParameter Identification                      Safe HRI\n\nUse N-E with linear parameterization: τ =      N-E-based impedance control: τ = g(q) +\nW(Θ, ሶΘ, ሷΘ)·φ. Regressor W known, φ        𝐽𝑇·(𝐾𝑠(𝑥𝑑−𝑥)+ 𝐵𝑠(ሶ𝑥𝑑−ሶ𝑥)). AI tunes 𝐾𝑠,\n(mass, inertia) learned from data.            𝐵𝑠 online.\n\n  Sim-to-Real Transfer                      Learned Inverse Dynamics\n N-E simulators provide accurate dynamics    DNN maps (Θ, ሶΘ, ሷΘ ̈) → τ. Trained on N-E\n for training. Domain randomization over        data. Used for real-time feedforward\n mass/inertia parameters.                    without symbolic model.\n\n                                                                                                          21",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The slide associates sim-to-real with inertial-parameter variation and learned inverse dynamics with a motion-state-to-effort mapping.",
+      "optionExplanations": {
+        "o1": "This preserves both stated roles.",
+        "o2": "This swaps the KDL/ROS association and incorrectly narrows the displayed language tags.",
+        "o3": "These descriptions belong to other rows, not the two named rows.",
+        "o4": "These are the Pinocchio and Drake row associations rather than the requested pair."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The slide associates sim-to-real with inertial-parameter variation and learned inverse dynamics with a motion-state-to-effort mapping.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This swaps the KDL/ROS association and incorrectly narrows the displayed language tags.",
+        "These descriptions belong to other rows, not the two named rows.",
+        "These are the Pinocchio and Drake row associations rather than the requested pair."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L12-Q042",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "According to the software slide, which pair of associations is stated?",
+    "selectionMode": "single",
+    "type": "table",
+    "difficulty": "easy",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "Toolbox and KDL slide associations",
+    "tags": [
+      "software-associations"
+    ],
+    "conceptIds": [
+      "W03-L12-C-software-associations"
+    ],
+    "assumptions": [
+      "Answer the source table’s associations; no claim of current version support or comparative superiority is made."
+    ],
+    "options": [
+      {
+        "id": "o2",
+        "text": "Pinocchio emphasizes Python/JAX differentiability; Brax lists the educational MATLAB/Python DH toolbox"
+      },
+      {
+        "id": "o3",
+        "text": "Pinocchio is paired with KDL in ROS2; Brax is paired with multibody MPC research in C++/Python"
+      },
+      {
+        "id": "o4",
+        "text": "Pinocchio is described as a physics simulator for RL environments; Brax is described as the MATLAB/Python teaching toolbox"
+      },
+      {
+        "id": "o1",
+        "text": "Peter Corke Robotics Toolbox: MATLAB/Python and DH-oriented educational simulation; ROS2 + MoveIt row: KDL recursive Newton–Euler"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0400",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 400,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 400, printed slide 22: relevant text, equations and associated figures",
+        "evidenceText": "Software Tools & Libraries\n  Peter Corke Robotics\n                   MATLAB/Python   ROS2 + MoveIt         C++/Python  Toolbox\n   Full N-E implementation, DH               Industrial standard. KDL library\n  convention, simulation. Ideal for        implements recursive N-E for real\n  education.                               robots.\n\n  PyBullet / MuJoCo          Python    Pinocchio              C++/Python\n   Physics simulators using N-E\n                                              State-of-the-art rigid body dynamics\n   internally. Key for RL environment\n                                                     library. Supports N-E, ABA, CRBA.\n   training.\n\n Drake                  C++/Python    JAX Robotics (Brax)      Python/JAX\n\n  Multibody dynamics + MPC. Used in       Differentiable N-E for gradient-based\n  bipedal and manipulation research.       optimization and meta-learning.\n\n                                                                                                          22",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "These are associations printed in the source software table, not a current-version feature audit.",
+      "optionExplanations": {
+        "o1": "This reproduces the two labeled rows.",
+        "o2": "This mixes the Brax and Corke row descriptions with the requested tools.",
+        "o3": "Those are the ROS2/MoveIt and Drake row associations.",
+        "o4": "This substitutes the PyBullet/MuJoCo and Corke row descriptions."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "These are associations printed in the source software table, not a current-version feature audit.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This mixes the Brax and Corke row descriptions with the requested tools.",
+        "Those are the ROS2/MoveIt and Drake row associations.",
+        "This substitutes the PyBullet/MuJoCo and Corke row descriptions."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L12-Q043",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "Which source-table pairing is correct?",
+    "selectionMode": "single",
+    "type": "table",
+    "difficulty": "easy",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "Pinocchio and differentiable dynamics rows",
+    "tags": [
+      "software-associations"
+    ],
+    "conceptIds": [
+      "W03-L12-C-software-associations"
+    ],
+    "assumptions": [
+      "These are slide-attributed descriptions, not independently checked current implementation claims."
+    ],
+    "options": [
+      {
+        "id": "o3",
+        "text": "KDL recursive dynamics in ROS2; a library listing Newton–Euler, ABA and CRBA"
+      },
+      {
+        "id": "o4",
+        "text": "A C++/Python library listing ABA and CRBA; a MATLAB/Python teaching toolbox"
+      },
+      {
+        "id": "o1",
+        "text": "Pinocchio lists Newton–Euler, ABA and CRBA; the Brax row emphasizes differentiable dynamics for gradient-based optimization"
+      },
+      {
+        "id": "o2",
+        "text": "MATLAB/Python DH educational toolbox; Python/JAX differentiable optimization library"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0400",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 400,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 400, printed slide 22: relevant text, equations and associated figures",
+        "evidenceText": "Software Tools & Libraries\n  Peter Corke Robotics\n                   MATLAB/Python   ROS2 + MoveIt         C++/Python  Toolbox\n   Full N-E implementation, DH               Industrial standard. KDL library\n  convention, simulation. Ideal for        implements recursive N-E for real\n  education.                               robots.\n\n  PyBullet / MuJoCo          Python    Pinocchio              C++/Python\n   Physics simulators using N-E\n                                              State-of-the-art rigid body dynamics\n   internally. Key for RL environment\n                                                     library. Supports N-E, ABA, CRBA.\n   training.\n\n Drake                  C++/Python    JAX Robotics (Brax)      Python/JAX\n\n  Multibody dynamics + MPC. Used in       Differentiable N-E for gradient-based\n  bipedal and manipulation research.       optimization and meta-learning.\n\n                                                                                                          22",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The Pinocchio row lists three rigid-body algorithms, while the Python/JAX Brax row emphasizes differentiability.",
+      "optionExplanations": {
+        "o1": "This matches both source rows.",
+        "o2": "These associations belong to Corke and Brax, not the requested pair.",
+        "o3": "These are the ROS2/MoveIt and Pinocchio descriptions.",
+        "o4": "This mixes the Pinocchio and Corke descriptions."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The Pinocchio row lists three rigid-body algorithms, while the Python/JAX Brax row emphasizes differentiability.",
+      "memoryAid": null,
+      "misconceptions": [
+        "These associations belong to Corke and Brax, not the requested pair.",
+        "These are the ROS2/MoveIt and Pinocchio descriptions.",
+        "This mixes the Pinocchio and Corke descriptions."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L12-Q044",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "Which descriptions does the source associate with PyBullet/MuJoCo and Drake, respectively?",
+    "selectionMode": "single",
+    "type": "table",
+    "difficulty": "easy",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "Simulation and multibody-control rows",
+    "tags": [
+      "software-associations"
+    ],
+    "conceptIds": [
+      "W03-L12-C-software-associations"
+    ],
+    "assumptions": [
+      "Source-table association only; broad internal-algorithm and superiority claims are not treated as externally verified."
+    ],
+    "options": [
+      {
+        "id": "o4",
+        "text": "A messaging protocol; a robot operating-system distribution"
+      },
+      {
+        "id": "o1",
+        "text": "Physics simulators for RL environments; multibody dynamics and model-predictive control"
+      },
+      {
+        "id": "o2",
+        "text": "Symbolic-only algebra tools; a sensor-calibration spreadsheet"
+      },
+      {
+        "id": "o3",
+        "text": "Only path-planning graph search; only neural-network image labeling"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0400",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 400,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 400, printed slide 22: relevant text, equations and associated figures",
+        "evidenceText": "Software Tools & Libraries\n  Peter Corke Robotics\n                   MATLAB/Python   ROS2 + MoveIt         C++/Python  Toolbox\n   Full N-E implementation, DH               Industrial standard. KDL library\n  convention, simulation. Ideal for        implements recursive N-E for real\n  education.                               robots.\n\n  PyBullet / MuJoCo          Python    Pinocchio              C++/Python\n   Physics simulators using N-E\n                                              State-of-the-art rigid body dynamics\n   internally. Key for RL environment\n                                                     library. Supports N-E, ABA, CRBA.\n   training.\n\n Drake                  C++/Python    JAX Robotics (Brax)      Python/JAX\n\n  Multibody dynamics + MPC. Used in       Differentiable N-E for gradient-based\n  bipedal and manipulation research.       optimization and meta-learning.\n\n                                                                                                          22",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The source pairs the simulators with RL training and Drake with multibody dynamics plus MPC research.",
+      "optionExplanations": {
+        "o1": "This matches the two stated roles.",
+        "o2": "The rows do not describe those limited roles.",
+        "o3": "These are not the functions listed.",
+        "o4": "Neither row is labeled as that infrastructure."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The source pairs the simulators with RL training and Drake with multibody dynamics plus MPC research.",
+      "memoryAid": null,
+      "misconceptions": [
+        "The rows do not describe those limited roles.",
+        "These are not the functions listed.",
+        "Neither row is labeled as that infrastructure."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L12-Q045",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "For τ=M(q)qddot+C(q,qdot)qdot+g(q), which interpretation is correct?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "medium",
+    "cognitiveSkill": "recall",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "Meaning of the matrix dynamics form",
+    "tags": [
+      "matrix-dynamics"
+    ],
+    "conceptIds": [
+      "W03-L12-C-matrix-dynamics"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o1",
+        "text": "M multiplies acceleration, Cqdot collects velocity-dependent effects, and g gives gravity loading"
+      },
+      {
+        "id": "o2",
+        "text": "M multiplies position directly, while g is the geometric Jacobian"
+      },
+      {
+        "id": "o3",
+        "text": "Cqdot is the joint-position vector and contains no velocity effect"
+      },
+      {
+        "id": "o4",
+        "text": "The equation omits gravity because recursive methods cannot include it"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0401",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 401,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 401, printed slide 23: relevant text, equations and associated figures",
+        "evidenceText": "Summary\n\n     Dual Equations: F = ma (linear); τ = Iα + ω×Iω (rotational) describe  1\n                   complete rigid body dynamics\n      Recursive                    O(n) outward kinematics pass + inward force pass =\n  2   Algorithm:                     industry-standard inverse dynamics\n     Matrix Form:   τ = M(Θ) ሷΘ + C(Θ, ሶΘ)q̇ + g(Θ) enables structured control  3\n                     design and analysis\n\n      AI Synergy:    N-E provides physics structure; AI learns residuals,  4\n                 unknown parameters, or speedups\n\n      Applications:   Inverse dynamics, Model Predictive Control (MPC), gravity  5\n                    compensation, parameter ID, sim-to-real, safe HRI\n\n\n\n                                                                                                          23",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The matrix form organizes inertial, velocity-dependent and gravitational contributions to generalized effort.",
+      "optionExplanations": {
+        "o1": "This matches the variables and their roles.",
+        "o2": "The first input is acceleration, and g is gravity loading.",
+        "o3": "The term explicitly depends on joint velocity.",
+        "o4": "Gravity appears in g(q) and can also be included recursively."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "τ=M(q)qddot+C(q,qdot)qdot+g(q)",
+          "variables": {
+            "τ": "generalized joint effort",
+            "M": "joint-space inertia matrix",
+            "Cqdot": "velocity-dependent generalized effort",
+            "g": "gravity generalized effort",
+            "q,qdot,qddot": "joint position, velocity and acceleration"
+          },
+          "units": {
+            "τ,Cqdot,g": "N·m for revolute joints; N for prismatic joints",
+            "M": "inertia units appropriate to its joint-coordinate pair",
+            "q,qdot,qddot": "joint-type-specific position/rate/acceleration units"
+          },
+          "assumptions": [
+            "Ideal rigid-body model shown; extra friction/contact terms require their own specified modeling."
+          ]
+        }
+      ],
+      "simpleExplanation": "The matrix form organizes inertial, velocity-dependent and gravitational contributions to generalized effort.",
+      "memoryAid": null,
+      "misconceptions": [
+        "The first input is acceleration, and g is gravity loading.",
+        "The term explicitly depends on joint velocity.",
+        "Gravity appears in g(q) and can also be included recursively."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W03-L12-Q047",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L12",
+    "stem": "Select all source-supported ways to combine Newton–Euler mechanics with learning.",
+    "selectionMode": "multi",
+    "type": "statement",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 3,
+    "lectureId": "L12",
+    "topic": "Recursive Newton–Euler dynamics",
+    "subtopic": "What mechanics contributes to AI",
+    "tags": [
+      "ai-model-role"
+    ],
+    "conceptIds": [
+      "W03-L12-C-ai-model-role"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o3",
+        "text": "Use the model to generate training data for a learned inverse map"
+      },
+      {
+        "id": "o4",
+        "text": "Treat a physics model as proof that no validation is needed after deployment"
+      },
+      {
+        "id": "o1",
+        "text": "Learn residual dynamics beyond a nominal model"
+      },
+      {
+        "id": "o2",
+        "text": "Estimate unknown inertial parameters from motion and effort data"
+      }
+    ],
+    "correctOptionIds": [
+      "o1",
+      "o2",
+      "o3"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0385",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 385,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 385, printed slide 7: relevant text, equations and associated figures",
+        "evidenceText": "Why Newton-Euler for Robotics?\n\n\n\n\n       Computational Efficiency                  Recursive Structure\n    O(n) complexity — ideal for real-        Naturally handles kinematic chains;\n    time control of multi-DOF robots          propagates forces link by link\n\n\n\n\n         Complete Dynamics                        AI Integration\n       Captures inertial, Coriolis,           Serves as physics prior for learning-\n   centrifugal, and gravitational effects      based and model-predictive control\n\n\n\n                                                                                                           7",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0399",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 399,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 399, printed slide 21: relevant text, equations and associated figures",
+        "evidenceText": "AI Applications of Newton-Euler Dynamics\n\n Physics-Informed Neural Networks         Model-Based RL\n N-E structure embedded as physics prior      N-E dynamics model used for planning in\n in NN architecture — reduces data needs    MPC or Dyna-style RL. Agent learns\n by 10-100×.                                    residual errors, not full dynamics.\n\nParameter Identification                      Safe HRI\n\nUse N-E with linear parameterization: τ =      N-E-based impedance control: τ = g(q) +\nW(Θ, ሶΘ, ሷΘ)·φ. Regressor W known, φ        𝐽𝑇·(𝐾𝑠(𝑥𝑑−𝑥)+ 𝐵𝑠(ሶ𝑥𝑑−ሶ𝑥)). AI tunes 𝐾𝑠,\n(mass, inertia) learned from data.            𝐵𝑠 online.\n\n  Sim-to-Real Transfer                      Learned Inverse Dynamics\n N-E simulators provide accurate dynamics    DNN maps (Θ, ሶΘ, ሷΘ ̈) → τ. Trained on N-E\n for training. Domain randomization over        data. Used for real-time feedforward\n mass/inertia parameters.                    without symbolic model.\n\n                                                                                                          21",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0401",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 401,
+        "kind": "statement",
+        "locator": "Lecture 12, physical PDF page 401, printed slide 23: relevant text, equations and associated figures",
+        "evidenceText": "Summary\n\n     Dual Equations: F = ma (linear); τ = Iα + ω×Iω (rotational) describe  1\n                   complete rigid body dynamics\n      Recursive                    O(n) outward kinematics pass + inward force pass =\n  2   Algorithm:                     industry-standard inverse dynamics\n     Matrix Form:   τ = M(Θ) ሷΘ + C(Θ, ሶΘ)q̇ + g(Θ) enables structured control  3\n                     design and analysis\n\n      AI Synergy:    N-E provides physics structure; AI learns residuals,  4\n                 unknown parameters, or speedups\n\n      Applications:   Inverse dynamics, Model Predictive Control (MPC), gravity  5\n                    compensation, parameter ID, sim-to-real, safe HRI\n\n\n\n                                                                                                          23",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The source lists residual learning, parameter identification and learned inverse dynamics; none removes the need to validate the resulting system.",
+      "optionExplanations": {
+        "o1": "This preserves known mechanics and learns mismatch.",
+        "o2": "This is the regressor-based identification idea.",
+        "o3": "The slide describes a neural inverse model trained on Newton–Euler data.",
+        "o4": "A physical model can still be incomplete or mismatched to the real system."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The source lists residual learning, parameter identification and learned inverse dynamics; none removes the need to validate the resulting system.",
+      "memoryAid": null,
+      "misconceptions": [
+        "A physical model can still be incomplete or mismatched to the real system."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  }
+]

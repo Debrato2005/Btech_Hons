@@ -6,6 +6,7 @@ coverage. The observation records describe actual visual inspection separately.
 from __future__ import annotations
 
 import heapq
+import hashlib
 import json
 from pathlib import Path
 import sys
@@ -47,7 +48,14 @@ class SourceLinkedLearningChecks(unittest.TestCase):
         # Current records supersede only their own version. The original blind
         # packet remains immutable evidence rather than being rewritten to fit.
         versions.update({(q["id"], q["version"]): q for q in self.batch["questions"]})
-        paths = ["audits/blind-search-foundations.json", "audits/blind-search-foundations-v2.json", "audits/blind-search-frontier-v3.json"]
+        paths = [
+            "audits/blind-search-foundations.json",
+            "audits/blind-search-foundations-v2.json",
+            "audits/blind-search-frontier-v3.json",
+            "audits/blind-W08-L36-legacy-v2.json",
+            "audits/blind-W08-L36-P1120-Q02-v3.json",
+            "audits/blind-W08-L37-P1135-Q03-v2.json",
+        ]
         latest = {}
         for path in paths:
             packet = read(path)
@@ -86,7 +94,21 @@ class SourceLinkedLearningChecks(unittest.TestCase):
             self.assertTrue(row["inspectorId"])
             if row["disposition"] == "excluded":
                 self.assertTrue(row["exclusionReason"])
-        self.assertEqual(self.observations[1135]["disposition"], "unresolved")
+        # The printed typo remains, but the bounded zero-entry-cost exercise
+        # now has a hash-bound independent qualification review.
+        row = self.observations[1135]
+        self.assertEqual(row["previousDisposition"], "unresolved")
+        self.assertEqual(row["disposition"], "examinable")
+        self.assertTrue(row["sourceConflictRemains"])
+        qualification = row["qualificationReview"]
+        review_path = ROOT / qualification["reviewFile"]
+        self.assertEqual(hashlib.sha256(review_path.read_bytes()).hexdigest(), qualification["reviewSha256"])
+        review = next(r for r in read(qualification["reviewFile"])
+                      if r["questionId"] == qualification["questionId"]
+                      and r["questionVersion"] == qualification["questionVersion"])
+        self.assertEqual(review["decision"], "verified")
+        question = next(q for q in self.batch["questions"] if q["id"] == review["questionId"])
+        self.assertEqual(validate.question_hash(question), review["questionSha256"])
 
     def test_all_19_grid_cost_and_heuristic_entries(self):
         """Use independent Python, not the JavaScript search implementation."""

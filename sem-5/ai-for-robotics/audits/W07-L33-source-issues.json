@@ -1,0 +1,244 @@
+{
+  "batchId": "W07-L33",
+  "sourceId": "lectures",
+  "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+  "questionBoundQualifications": [
+    {
+      "questionId": "W07-L33-Q002",
+      "physicalPages": [
+        990,
+        1007
+      ],
+      "sourceClaim": "Page 990 categorically says a robot cannot plan, navigate or grasp using raw pixels directly; page 1007 introduces learned detection.",
+      "qualification": "The lecture motivates extracting informative representations. It does not establish that explicit hand-engineered feature extraction is a universal prerequisite for every pixel-input model.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q012",
+      "physicalPages": [
+        996
+      ],
+      "sourceClaim": "Caption calls h=15 a window size of 15, while preceding slide shows μ−kσ; official API defines half-width and mean-minus-C.",
+      "qualification": "With h=15, 2h+1=31. The documented default API uses a neighborhood mean minus C, so the caption and preceding generic formula must not be treated as literal API semantics.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q017",
+      "physicalPages": [
+        997
+      ],
+      "sourceClaim": "The displayed matrix expression retains L(λ) but directly equates its result to color-matching functions without stating stimulus normalization.",
+      "qualification": "The printed final equality suppresses the stimulus normalization. Unit-stimulus matching functions must be distinguished from coefficients for an arbitrarily scaled stimulus.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q018",
+      "physicalPages": [
+        997
+      ],
+      "sourceClaim": "Source attributes all three primary choices to mercury vapor emission lines; this historical attribution is not established here and is excluded from the tested claim.",
+      "qualification": "The page lists the three wavelength values and depicts illuminant, reflecting object and eye. The separate attribution of all three wavelengths to mercury lines is not used as a factual premise.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q021",
+      "physicalPages": [
+        999
+      ],
+      "sourceClaim": "The color-constancy motivation can be read as full illumination invariance; the tested workflow only omits the lightness coordinate.",
+      "qualification": "L* represents lightness and a*,b* the opponent chromatic coordinates. Removing L* changes the metric used for clustering but does not make k-means parameter-free or universally illumination-invariant.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q027",
+      "physicalPages": [
+        1001
+      ],
+      "sourceClaim": "Source prose describes m as object count with labels 0,…,m, but the API returns the number of all labels N with range 0,…,N−1.",
+      "qualification": "The returned N includes the background. Four foreground objects occupy labels 1–4, while N=5.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q035",
+      "physicalPages": [
+        1003
+      ],
+      "sourceClaim": "The source uses atan(v_y/v_x) without quadrant, zero-denominator or equal-eigenvalue qualifications.",
+      "qualification": "A robust interpretation uses atan2(v_y,v_x), treats opposite vectors as the same axis and recognizes isotropic degeneracy.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q036",
+      "physicalPages": [
+        1003
+      ],
+      "sourceClaim": "The slide attributes invariance to seven scalars from central moments without explicitly stating the scale normalization.",
+      "qualification": "Hu invariants use normalized central moments, not merely arbitrary unnormalized moments. Sampling and numerical precision affect practical invariance.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q037",
+      "physicalPages": [
+        1004
+      ],
+      "sourceClaim": "The displayed J3 array references u11 and u02 without defining them in the excerpt.",
+      "qualification": "The excerpt needs, for example, u11=blobs[3].moments.mu11 and u02=blobs[3].moments.mu02. Those are added context, not lines already present in the slide.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q040",
+      "physicalPages": [
+        1004
+      ],
+      "sourceClaim": "The area-as-pixel-count discussion and fractional blob contour area use different conventions without an explicit distinction.",
+      "qualification": "The blob API derives shape measurements from contours. Its continuous polygon area can have half-unit values, unlike a direct integer pixel sum.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q044",
+      "physicalPages": [
+        1005
+      ],
+      "sourceClaim": "The slide suggests radius signatures distinguish shapes regardless of orientation without stating phase alignment.",
+      "qualification": "Centroid-to-boundary distances can support rotation-robust matching, but their ordering must be aligned or handled invariantly.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q045",
+      "physicalPages": [
+        1006
+      ],
+      "sourceClaim": "The polar call uses blobs[0], but the associated caption says radius and theta of blob 3.",
+      "qualification": "The source code/caption mismatch must be preserved rather than silently replacing the index.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q048",
+      "physicalPages": [
+        1007
+      ],
+      "sourceClaim": "The slide describes Faster R-CNN in pixel-classification/instance-segmentation terms while showing detector boxes.",
+      "qualification": "Standard Faster R-CNN detection must not be conflated with mask prediction. The inspected street figure supports boxes and labels, not complete pixel masks.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q061",
+      "physicalPages": [
+        1009,
+        1013
+      ],
+      "sourceClaim": "The theory slide uses Euclidean gradient magnitude, while the shown Canny call leaves its default L1 magnitude option unchanged.",
+      "qualification": "The mathematical presentation and the displayed API defaults are not identical. State the norm explicitly when reproducing numerical behavior.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q062",
+      "physicalPages": [
+        1014
+      ],
+      "sourceClaim": "The source calls I_u and I_v derivatives of a Gaussian; in the matrix they must be image gradients obtained using suitable derivative filters.",
+      "qualification": "Image derivatives may be computed by derivative-of-Gaussian filtering, but the structure matrix is built from the resulting image-gradient products.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q065",
+      "physicalPages": [
+        1014,
+        1018
+      ],
+      "sourceClaim": "The summary jointly describes Harris and SIFT as robust to scale changes without distinguishing fixed-scale Harris.",
+      "qualification": "Harris corners at a fixed scale can disappear or change character when the image scale changes. SIFT incorporates characteristic-scale selection.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q066",
+      "physicalPages": [
+        1015
+      ],
+      "sourceClaim": "The slide calls DoG an approximation to LoG without explicitly stating the scale-normalized proportional relationship.",
+      "qualification": "Subtracting nearby Gaussian scale levels approximates a proportional scale-normalized LoG response, which motivates efficient scale-space extrema detection.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q072",
+      "physicalPages": [
+        1017
+      ],
+      "sourceClaim": "The slide comment suggests top 50% of keypoints, but percentstrength uses a fraction of maximum response, not a count percentile.",
+      "qualification": "The strength threshold is 5; A,B,C pass it, then B is removed for scale 4. This is not selecting half of the feature count.",
+      "status": "explicitly qualified; not globally resolved"
+    },
+    {
+      "questionId": "W07-L33-Q077",
+      "physicalPages": [
+        1004
+      ],
+      "sourceClaim": "The figure shows an ellipse on each blob while the excerpt explicitly constructs and plots only J3 at the blob3 centroid.",
+      "qualification": "The actual slide figure contains multiple ellipses, but the displayed excerpt explicitly issues only one ellipse call. Additional plotting context would be needed to reproduce all four.",
+      "status": "explicitly qualified; not globally resolved"
+    }
+  ],
+  "additionalPreservedQualifications": [
+    {
+      "physicalPage": 1003,
+      "issue": "Displayed J is a coordinate scatter matrix, not an unqualified mechanical inertia tensor.",
+      "handling": "Questions explicitly specify the displayed convention."
+    },
+    {
+      "physicalPage": 996,
+      "issue": "Installed Otsu result0.603799 differs slightly from displayed0.6039.",
+      "handling": "Record exact package result; source-value questions do not assert identical cross-version output."
+    },
+    {
+      "physicalPage": 1004,
+      "issue": "Installed eigenvector orientations differ from printed values by π.",
+      "handling": "They describe the same unoriented axes; checked moduloπ, not called a source defect."
+    },
+    {
+      "physicalPage": 1012,
+      "issue": "h.lines(2) comment minimum3 initially required checking.",
+      "handling": "Execution confirms strict threshold, so the comment is consistent and not marked conflicting."
+    },
+    {
+      "physicalPage": 997,
+      "issue": "All-primary mercury attribution is not established by the consulted sources.",
+      "handling": "Numeric source primary list is tested separately; historical attribution remains unresolved."
+    }
+  ],
+  "officialDocumentationChecked": [
+    {
+      "url": "https://petercorke.github.io/machinevision-toolbox-python/stubs/machinevisiontoolbox.Image.threshold_adaptive.html",
+      "purpose": "Half-width h and mean-minus-C API."
+    },
+    {
+      "url": "https://petercorke.github.io/machinevision-toolbox-python/stubs/machinevisiontoolbox.Image.labels_binary.html",
+      "purpose": "Returned label count includes background; range 0 to N−1."
+    },
+    {
+      "url": "https://petercorke.github.io/machinevision-toolbox-python/_modules/machinevisiontoolbox/ImagePointFeatures.html",
+      "purpose": "Strength filter uses fraction of maximum response; minimum scale includes equality."
+    },
+    {
+      "url": "https://petercorke.github.io/machinevision-toolbox-python/_modules/machinevisiontoolbox/ImageBlobs.html",
+      "purpose": "Contour measurements, radius profiles and polar cross-correlation."
+    },
+    {
+      "url": "https://docs.opencv.org/4.12.0/dd/d1a/group__imgproc__feature.html",
+      "purpose": "Canny gradient-norm option and Hough threshold semantics."
+    },
+    {
+      "url": "https://docs.opencv.org/4.13.0/da/df5/tutorial_py_sift_intro.html",
+      "purpose": "Harris scale limitation and SIFT scale/orientation/descriptor construction."
+    },
+    {
+      "url": "https://docs.pytorch.org/vision/stable/models/faster_rcnn",
+      "purpose": "Detection model scope."
+    },
+    {
+      "url": "https://docs.pytorch.org/vision/master/_modules/torchvision/models/detection/mask_rcnn.html",
+      "purpose": "Mask branch distinguishes instance-mask prediction."
+    }
+  ],
+  "documentationCheckedAt": "2026-10-19",
+  "note": "External documentation clarifies API/math scope; it is not additional lecture-slide coverage. Author tests are not independent review."
+}

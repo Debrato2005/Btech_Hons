@@ -1,0 +1,7 @@
+# L23 authoring handoff
+
+All32 physical pages695–726 actually inspected at1800px, with five explicit nontechnical/repeated exclusions. No question batch yet. Page-by-page observations and scientific qualifications saved in data/inspection-batches/W05-L23.json. Next: transcribe code with explicit supplied context, reproduce analytic pendulum and compensation checks, author every distinct concept, freeze blind packet. Source conflicts include p698 actuator/external-torque conflation, p707 zero-speed graph versus printed sign law, p715 missing derivative dot, and absent snippet initialization/plotting. Author calculations are not independent verification.
+
+Frozen62 drafts and62 concepts; all27 examinable pages are cited. Author computations passed26 checks and1000 varied cancellation cases. Blind packet audits/blind-W05-L23.json SHA256 f56e2f063061709785a6c31d1fc6309759a2f8d2a2de080cc12c51d426381671. No independent review yet. Added reconstruction context: imports,0..8s,801samples,rest at−20degrees; no animation code claim. Use the exact frozen JSON; do not rerun author script after repairs.
+
+18 revisions plus2gaps frozen for review;44accepted hashes unchanged. Q035false-source-typo premise removed after4×PDFre-render; bothp711/p715actuallyhave2dots. Corrective reviewerwithdrawal saved. Packet audits/blind-W05-L23-quality-repairs.json SHA929714f577cda2c32da0fc59393b636cee25a6fdf86f37e7697e1fa84f51e2b7.

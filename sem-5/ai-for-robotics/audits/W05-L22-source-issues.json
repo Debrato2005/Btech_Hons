@@ -1,0 +1,96 @@
+{
+  "batchId": "W05-L22",
+  "role": "Author-observed source qualifications; independent review pending",
+  "issues": [
+    {
+      "physicalPage": 672,
+      "kind": "scope",
+      "sourceObservation": "The lecture models rotary DC-motor joints, not every robot joint or a universal second-order full robot.",
+      "qualification": "The bank preserves the model scope and distinguishes added electrical and flexible states."
+    },
+    {
+      "physicalPage": 673,
+      "kind": "ambiguous-label",
+      "sourceObservation": "The stator heading contains ironless winding while the armature description concerns a rotating current-carrying winding.",
+      "qualification": "Component-role questions avoid silently endorsing this questionable placement."
+    },
+    {
+      "physicalPage": 677,
+      "kind": "approximation",
+      "sourceObservation": "A high ratio reduces relative inertia variation only when the reflected motor term is significant; it does not erase the absolute load variation.",
+      "qualification": "Exact interval 11–15 retains its 4 kg·m² span."
+    },
+    {
+      "physicalPage": 678,
+      "kind": "approximation",
+      "sourceObservation": "Unmodeled resonances are described as very high and negligible.",
+      "qualification": "This is conditional on frequency separation and avoiding excitation, not universal for real mechanisms."
+    },
+    {
+      "physicalPage": 679,
+      "kind": "heuristic",
+      "sourceObservation": "The half-resonance gain-selection rule is not a general proof of closed-loop stability.",
+      "qualification": "Questions explicitly label the design rule a heuristic."
+    },
+    {
+      "physicalPage": 682,
+      "kind": "arithmetic-conflict",
+      "sourceObservation": "The slide converts 60 rad/s to 9.7 Hz.",
+      "qualification": "The given mass/stiffness values imply about 60.0057 rad/s and 9.5502 Hz; even 60 rad/s gives about 9.55 Hz."
+    },
+    {
+      "physicalPage": 682,
+      "kind": "model-scope",
+      "sourceObservation": "Equivalent factors 0.23m and 0.33I depend on the illustrated deformation assumptions.",
+      "qualification": "They are not universal constants for all robot links."
+    },
+    {
+      "physicalPage": 683,
+      "kind": "model-mismatch",
+      "sourceObservation": "The controller uses maximum inertia then presents unit-coefficient error dynamics without explicit actual-inertia mismatch.",
+      "qualification": "Questions derive the ratio-dependent equation or explicitly assume matched inertia."
+    },
+    {
+      "physicalPage": 683,
+      "kind": "units-and-sign",
+      "sourceObservation": "The normalized error equation labels the right side tau_dist without distinguishing torque from angular-acceleration disturbance.",
+      "qualification": "For an opposing torque d and desired-minus-actual error, the matched-model term is d/J."
+    },
+    {
+      "physicalPage": 684,
+      "kind": "implementation-scope",
+      "sourceObservation": "The diagram labels a PID controller, while the later examples simulate specified torque rather than a demonstrated PID loop.",
+      "qualification": "No PID implementation or physical encoder test is inferred."
+    },
+    {
+      "physicalPage": 685,
+      "kind": "missing-program-context",
+      "sourceObservation": "Imports, t_span, theta_dot_0, t_eval and plotting commands are absent from the shown code.",
+      "qualification": "The author reconstruction explicitly supplies imports, [0] initial speed and 0–5 s with 501 samples; these are not claimed as printed source values."
+    },
+    {
+      "physicalPage": 686,
+      "kind": "numeric-derivative",
+      "sourceObservation": "The plotted acceleration is formed with np.gradient, not exact analytic differentiation.",
+      "qualification": "The first endpoint estimate depends on the omitted time grid and need not equal the exact initial 200 rad/s²."
+    },
+    {
+      "physicalPage": 687,
+      "kind": "operating-point-conflict",
+      "sourceObservation": "The gear example rescales a no-load speed and full electromagnetic torque without resolving a loaded operating point.",
+      "qualification": "Literal code output and ideal transmitted-port arithmetic are kept separate from physical load capability in the presence of motor friction."
+    },
+    {
+      "physicalPage": 688,
+      "kind": "finite-window",
+      "sourceObservation": "The eta-one curve is about 7 rad/s at 5 s while its legend gives the long-time 13.3 rad/s asymptote.",
+      "qualification": "This is consistent with the 6.733 s time constant, not a contradiction."
+    },
+    {
+      "physicalPage": 689,
+      "kind": "parameter-reset",
+      "sourceObservation": "The final example changes damping and load parameters from the previous sweep.",
+      "qualification": "Its arrays use b_m=0.05, I=2 and b=0.2; tau_m=3 is assigned but unused in those array expressions."
+    }
+  ]
+}

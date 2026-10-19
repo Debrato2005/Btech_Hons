@@ -1,0 +1,118 @@
+{
+  "authorId": "L39-repair-author-20261019",
+  "independentReview": false,
+  "originalQualificationFile": "audits/W08-L39-source-qualifications.json",
+  "originalQualificationSha256": "ea56edb130d34685c451182a2e1d2b1aaf301975ef737058bdd8a275a73cf6dd",
+  "originalTenRecordsPreserved": true,
+  "currentQuestionAmendments": [
+    {
+      "questionId": "W08-L39-Q019",
+      "questionVersion": 2,
+      "conflictResolution": {
+        "status": "explicit-qualification-awaiting-independent-review",
+        "sourceClaim": "Physical page 1207 says GNSS satellites calculate positions in a global 3D reference frame; page 1208 says satellites compute positions in ECEF. Neither sentence literally says each user position.",
+        "basis": "Distinguish the quoted shorthand from the receiver’s own positioning calculation, using the receiver statement on page 1208 and the linked SPS equations.",
+        "method": "Read the exact wording without inserting user into the quotation; identify receiver coordinates and clock bias as the unknowns in the primary SPS measurement model.",
+        "questionVersion": 2,
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1207
+      },
+      "primaryEvidence": [
+        {
+          "title": "Code Based Positioning (SPS)",
+          "url": "https://gssc.esa.int/navipedia/index.php/Code_Based_Positioning_(SPS)",
+          "locator": "Navipedia Code Based Positioning (SPS), opening paragraphs and equations (2), (6): broadcast satellite data and receiver-state estimation, oldid=12251.",
+          "checkedAt": "2026-10-19T21:32:18Z"
+        }
+      ]
+    },
+    {
+      "questionId": "W08-L39-Q029",
+      "questionVersion": 2,
+      "conflictResolution": {
+        "status": "explicit-qualification-awaiting-independent-review",
+        "sourceClaim": "The written low and moderate intervals both include 3.",
+        "basis": "Retain the source’s bands as heuristics and do not invent a rule at their overlapping boundary.",
+        "method": "Compare each supplied value with the actual bulleted intervals, leaving the shared endpoint 3 unresolved.",
+        "questionVersion": 2
+      },
+      "primaryEvidence": []
+    },
+    {
+      "questionId": "W08-L39-Q050",
+      "questionVersion": 2,
+      "conflictResolution": {
+        "status": "explicit-qualification-awaiting-independent-review",
+        "sourceClaim": "Physical page 1216 stores round(euclidean(a,b),2), while page 1223 sets heuristic(a,b) to euclidean(a,b) without rounding.",
+        "basis": "The source mixes rounded graph costs with an unrounded heuristic; test results cannot restore a universal guarantee.",
+        "method": "Evaluate the N2–N3 coordinate difference in the unrounded heuristic and compare it with the direct rounded edge cost; this exhibits a concrete admissibility counterexample rather than a claim that every search fails.",
+        "questionVersion": 2
+      },
+      "primaryEvidence": [
+        {
+          "title": "Official Lecture39 notebook",
+          "url": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week08/week8_lecture39.ipynb",
+          "locator": "Original notebook code cell 0 (zero-based): build_adjacency rounds each edge to two decimals; heuristic returns unrounded euclidean. N2/N3 coordinates are in NODES.",
+          "checkedAt": "2026-10-19T21:32:18Z",
+          "savedEvidence": "sources/supplemental/L39-official-notebook.ipynb",
+          "savedEvidenceSha256": "77577033081f535374682f37df140f08c3f86cb60ba26ae18df75e6e614ab852",
+          "executionEvidence": "audits/W08-L39-v2-author-computations.json"
+        }
+      ]
+    },
+    {
+      "questionId": "W08-L39-Q059",
+      "questionVersion": 2,
+      "conflictResolution": {
+        "status": "explicit-qualification-awaiting-independent-review",
+        "sourceClaim": "The slide’s feedback narrative is more complete than the linked distance-threshold demonstration.",
+        "basis": "The tracking step is an instructional snapshot, not an implemented physical closed-loop controller.",
+        "method": "Contrast the actual feedback narrative and screenshot with the official current_waypoint threshold loop and run_pipeline supplied progress fraction; no repeated sensor read or motion-command computation exists in those functions.",
+        "questionVersion": 2
+      },
+      "primaryEvidence": [
+        {
+          "title": "Official Lecture39 notebook",
+          "url": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week08/week8_lecture39.ipynb",
+          "locator": "Original notebook code cell 0 (zero-based): current_waypoint and run_pipeline: supplied travelled-distance fraction, with no live position feedback or motion-command law.",
+          "checkedAt": "2026-10-19T21:32:18Z",
+          "savedEvidence": "sources/supplemental/L39-official-notebook.ipynb",
+          "savedEvidenceSha256": "77577033081f535374682f37df140f08c3f86cb60ba26ae18df75e6e614ab852",
+          "executionEvidence": "audits/W08-L39-v2-author-computations.json"
+        }
+      ]
+    },
+    {
+      "questionId": "W08-L39-Q066",
+      "questionVersion": 1,
+      "conflictResolution": {
+        "status": "derived-qualification-pending-independent-review",
+        "questionVersion": 1,
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1203,
+        "sourceClaim": "The page says simultaneous solution of three planar circle equations will give a unique point.",
+        "basis": "Uniqueness needs suitable geometry and consistent ranges; exact collinear references can retain mirror ambiguity and inconsistent ranges can yield no common point.",
+        "method": "Subtract pairs of the explicitly supplied circle equations and substitute the resulting coordinates into all original equations.",
+        "scope": "The supplied planar cases only; independent review required."
+      },
+      "primaryEvidence": []
+    }
+  ],
+  "additionalSourceAnnotations": [
+    {
+      "physicalPage": 1203,
+      "printedSlideNumber": "7",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "region": "Lower-left three-circle figure versus three matched-index equations",
+      "finding": "Upper P1 is labeled R3 and lower-left P3 is labeled R1 in the drawing; equations pair i with r_i. Equation-scoped questions preserve matched indices and do not ask students to memorize the label swap."
+    },
+    {
+      "physicalPage": 1226,
+      "region": "Official notebook current_waypoint docstring versus comparison",
+      "finding": "The next not-yet-reached docstring is loose at exact equality: executable >= with 1e-6 returns the reached threshold. This is a notebook boundary qualification, not code printed on the PDF page."
+    }
+  ],
+  "roundingStatus": "Graph sum of rounded edges 9.07 and rounded raw waypoint sum 9.08 are different specified operations, not a mathematical defect."
+}

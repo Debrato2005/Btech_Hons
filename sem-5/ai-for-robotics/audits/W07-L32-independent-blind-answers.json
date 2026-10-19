@@ -1,0 +1,1005 @@
+{
+  "reviewerId": "build_offline_study_interface:L32-independent-reviewer",
+  "frozenAt": "2026-10-19T20:18:17.188527+00:00",
+  "answerKeysRead": false,
+  "authorChecksRead": false,
+  "blindPacketPath": "audits/blind-W07-L32.json",
+  "blindPacketSha256": "a9d402848abddb2aad32c25fca6ff0a219624267bc500a97a081d387eedebe8a",
+  "actualPagesInspected": [
+    954,
+    955,
+    956,
+    957,
+    958,
+    959,
+    960,
+    961,
+    962,
+    963,
+    964,
+    965,
+    966,
+    967,
+    968,
+    969,
+    970,
+    971,
+    972,
+    973,
+    974,
+    975,
+    976,
+    977,
+    978,
+    979,
+    980,
+    981,
+    982,
+    983,
+    984,
+    985,
+    986
+  ],
+  "pageObservationsPath": "audits/W07-L32-independent-page-observations.json",
+  "independentComputationsPath": "audits/W07-L32-independent-computations.json",
+  "independentComputationsSha256": "79989d16cfe052adfe5f813f959854f6fca1a42bbcaa9975f5ace89a542d3138",
+  "answers": [
+    {
+      "questionId": "W07-L32-Q001",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Capture precedes processing, feature extraction and decision in the displayed simplified pipeline.",
+      "inspectedPhysicalPages": [
+        957
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q002",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Denoising produces another image; object identity and action choice are semantic outputs.",
+      "inspectedPhysicalPages": [
+        957
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q003",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Illumination, shadows, reflectance and sensor noise change measured pixel values without changing scene identity.",
+      "inspectedPhysicalPages": [
+        957
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q004",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "NumPy dimensions are height, width, channels, hence 480 rows, 640 columns and three channels.",
+      "inspectedPhysicalPages": [
+        958
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q005",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "uint8 is unsigned 0–255; float32 is a representational type, not an enforced 0–1 interval.",
+      "inspectedPhysicalPages": [
+        958
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q006",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Boolean images contain False/True. Display intensity is separate from logical storage.",
+      "inspectedPhysicalPages": [
+        958
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q007",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Coordinates (u,v)=(3,2) map to A[v,u]=A[2,3], third row and fourth column.",
+      "inspectedPhysicalPages": [
+        959
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q008",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Rows increase downward, so one row below is (u,v+1).",
+      "inspectedPhysicalPages": [
+        959
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q009",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The explicitly RGB array has red in channel zero; [:,:,0] retains every spatial position.",
+      "inspectedPhysicalPages": [
+        960
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q010",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The source pixel is at row400,column100, hence (u,v)=(100,400), and [253,23,1] is RGB.",
+      "inspectedPhysicalPages": [
+        960
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q011",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Rows250:400 give150 entries; all requested columns450:600 exceed width426, giving zero columns and shape(150,0,3). NumPy slicing does not raise for this empty interval.",
+      "inspectedPhysicalPages": [
+        960
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q012",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Correct NumPy order is A[450:600,250:400,:]; current Image uses I[250:400,450:600,:]. Both return the same150×150×3 values in the independent runtime.",
+      "inspectedPhysicalPages": [
+        960
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q013",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Extrema bound the mean but do not determine the frequency of other values or the mean itself.",
+      "inspectedPhysicalPages": [
+        960
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q014",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Horizontal integer coordinate u ranges0 toW−1 and vertical v ranges0 toH−1; source dimension order is inconsistent.",
+      "inspectedPhysicalPages": [
+        961
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q015",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The five H rows contain2+2+3+2+2=11 foreground pixels.",
+      "inspectedPhysicalPages": [
+        961
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q016",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Equal raw count histograms preserve value counts and total population but not spatial arrangement.",
+      "inspectedPhysicalPages": [
+        962
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q017",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A histogram bin at30 counts all pixels whose intensity is30, not a location or geometry.",
+      "inspectedPhysicalPages": [
+        962
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q018",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The mean averages the values; standard deviation measures dispersion around it, not image dimensions or edge orientation.",
+      "inspectedPhysicalPages": [
+        963
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q019",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A low-valued histogram supports mostly dark measurements but scene content is needed to diagnose underexposure.",
+      "inspectedPhysicalPages": [
+        963
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q020",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Separate RGB marginals do not retain which channel values co-occurred at each pixel.",
+      "inspectedPhysicalPages": [
+        963
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q021",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A local3×3 mean uses neighboring pixels; fixed negative, threshold and gamma mappings do not.",
+      "inspectedPhysicalPages": [
+        964
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q022",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Retained uint8 gives300 modulo256=44, not saturation or a signed result.",
+      "inspectedPhysicalPages": [
+        964
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q023",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Plain astype changes storage dtype while preserving255; explicit division by255 gives1.",
+      "inspectedPhysicalPages": [
+        964
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q024",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Installed toolbox2.4.1 and official documentation confirm a new float32 Image and uint8 full-range scaling to0–1; the input remains uint8.",
+      "inspectedPhysicalPages": [
+        964
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q025",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A fixed point map computes output at the same coordinate and preserves spatial dimensions, without guaranteeing better quality.",
+      "inspectedPhysicalPages": [
+        965
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q026",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Histogram estimation is global even though its resulting lookup table is applied pointwise.",
+      "inspectedPhysicalPages": [
+        965
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q027",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "255−96=159.",
+      "inspectedPhysicalPages": [
+        966
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q028",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The negative map relabels intensity bin k to255−k and preserves its count; it does not reflect the image spatially.",
+      "inspectedPhysicalPages": [
+        966
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q029",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Without clipping or overflow96+100=196.",
+      "inspectedPhysicalPages": [
+        967
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q030",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Adding to intensities changes brightness at existing coordinates, not dimensions, positions or channel count.",
+      "inspectedPhysicalPages": [
+        967
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q031",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "99>=100 isFalse;100>=100 and101>=100 areTrue.",
+      "inspectedPhysicalPages": [
+        967
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q032",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A display maps logical values to black/white without making storage uint8 0/255.",
+      "inspectedPhysicalPages": [
+        967
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q033",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "With default vectorize=False, the callback receives the full NumPy array once. Independent runtime verified one callback and a new Image wrapper.",
+      "inspectedPhysicalPages": [
+        967
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q034",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "255*(118−91)/(138−91)=6885/47=146.4893617. The displayed235 is inconsistent with these operands.",
+      "inspectedPhysicalPages": [
+        968
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q035",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "At I_min the numerator is0; at I_max numerator equals denominator, giving0 and255 for a nonconstant image.",
+      "inspectedPhysicalPages": [
+        968
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q036",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A constant image has equal extrema, making the displayed denominator zero.",
+      "inspectedPhysicalPages": [
+        968
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q037",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For0<x<1 andγ>1, x^γ<x; multiplying by255 preserves the darker ordering.",
+      "inspectedPhysicalPages": [
+        968
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q038",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "255*(118/255)^7.5=0.78814093, about0.788 before integer rounding.",
+      "inspectedPhysicalPages": [
+        968
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q039",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A deterministic map cannot split identical input levels, so finite counts and collisions can leave gaps and spikes.",
+      "inspectedPhysicalPages": [
+        969
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q040",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Contrast enhancement can magnify unwanted small intensity differences as well as useful detail.",
+      "inspectedPhysicalPages": [
+        969
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q041",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Cumulative counts are[1,3,4,4]; dividing by4 gives[.25,.75,1,1].",
+      "inspectedPhysicalPages": [
+        970
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q042",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Nonnegative increments make a CDF nondecreasing; after all observations have been included its value is1.",
+      "inspectedPhysicalPages": [
+        970
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q043",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "255*.32=81.6, which rounds to82 under the explicitly given rule.",
+      "inspectedPhysicalPages": [
+        970
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q044",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Selecting red discards other planes; grayscale conversion may combine them, so they are not generally equivalent.",
+      "inspectedPhysicalPages": [
+        971
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q045",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A valley threshold can separate two task-relevant intensity populations, but no histogram alone guarantees object boundaries.",
+      "inspectedPhysicalPages": [
+        971
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q046",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The simple power law is an illustrative model; standard sRGB uses a linear segment near zero and a power segment elsewhere.",
+      "inspectedPhysicalPages": [
+        971
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q047",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Half-width2 gives width2*2+1=5 and25 sample positions.",
+      "inspectedPhysicalPages": [
+        972
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q048",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The nine values sum9; unit weights produce9 and normalized equal weights produce9/9=1.",
+      "inspectedPhysicalPages": [
+        972
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q049",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For constant c, the weighted sum is c*sum(K)=c when sum(K)=1.",
+      "inspectedPhysicalPages": [
+        972
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q050",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The positive offsets pair the stored kernel directly with matching neighborhood offsets; convolution reverses both axes.",
+      "inspectedPhysicalPages": [
+        973
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q051",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Four values255 total1020; divide by all nine weights to get113.3333333.",
+      "inspectedPhysicalPages": [
+        973
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q052",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Seven values255 total1785; divide by9 to get198.3333333.",
+      "inspectedPhysicalPages": [
+        973
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q053",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The normalized continuous isotropic2D Gaussian has varianceσ² on each coordinate, exponent denominator2σ² and prefactor1/(2πσ²). The slide's top formula is missing2.",
+      "inspectedPhysicalPages": [
+        974
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q054",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Continuous integral normalization does not force a finite grid sample sum to equal1; rescale the finite weights if constant preservation is desired.",
+      "inspectedPhysicalPages": [
+        974
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q055",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Printed weights total16 before division and center4/16=.25; independently sampled normalizedσ=.85 weights differ, so the binomial is approximate.",
+      "inspectedPhysicalPages": [
+        974
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q056",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Bright cells receive weights2+4+2+1=9, yielding255*9/16=143.4375.",
+      "inspectedPhysicalPages": [
+        974
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q057",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Bright cells receive total weight10, yielding255*10/16=159.375.",
+      "inspectedPhysicalPages": [
+        974
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q058",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Convolution reverses both offset axes, equivalent to a180-degree rotation, not merely a transpose.",
+      "inspectedPhysicalPages": [
+        975
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q059",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Centrosymmetry K(i,j)=K(−i,−j) makes the required flip leave weights unchanged; transpose symmetry alone is insufficient.",
+      "inspectedPhysicalPages": [
+        975
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q060",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The convolution theorem equates compatible spatial convolution to frequency multiplication. Finite DFT boundary and padding conventions must agree.",
+      "inspectedPhysicalPages": [
+        975
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q061",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Both h15 kernels have31×31 support; sigma5 changes Gaussian weighting, not the explicit half-width.",
+      "inspectedPhysicalPages": [
+        976
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q062",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Smoothing combines nearby values and can reduce local variation while also mixing fine structures across boundaries.",
+      "inspectedPhysicalPages": [
+        976
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q063",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Python slice560:600 has40 entries, and np.diff of length40 has39 consecutive differences.",
+      "inspectedPhysicalPages": [
+        977
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q064",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "With unit spacing the backward difference is80−20=+60.",
+      "inspectedPhysicalPages": [
+        977
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q065",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A shadow or material-reflectance change can cause an intensity edge on a continuous surface.",
+      "inspectedPhysicalPages": [
+        977
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q066",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A dark-going signed difference should be negative; uint8 retention can wrap it to a large positive value.",
+      "inspectedPhysicalPages": [
+        977
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q067",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Central derivative is(7−3)/2=2.",
+      "inspectedPhysicalPages": [
+        978
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q068",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Correlation requires left coefficient−1/2 and right coefficient+1/2 to implement the stated central difference.",
+      "inspectedPhysicalPages": [
+        978
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q069",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Convolution flips the source Sobel kernel; on I(u,v)=u the normalized horizontal derivative is+1. Independent scipy and toolbox runs agree.",
+      "inspectedPhysicalPages": [
+        978
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q070",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A vertical edge is crossed by moving horizontally, producing a horizontal brightness gradient.",
+      "inspectedPhysicalPages": [
+        978
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q071",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Transposition exchanges the spatial axes, changing the derivative direction rather than directly calculating magnitude.",
+      "inspectedPhysicalPages": [
+        978
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q072",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A3×3 valid kernel removes one border position on each side, giving(9−2,11−2)=(7,9).",
+      "inspectedPhysicalPages": [
+        979
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q073",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "At the border, zero extension introduces values below the positive constant, reducing the normalized sum.",
+      "inspectedPhysicalPages": [
+        979
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q074",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Replicate extends the nearest edge value; reflection mirrors interior samples, with endpoint inclusion depending on the API.",
+      "inspectedPhysicalPages": [
+        979
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q075",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Only two bright cells enter the zero-padded3×3 neighborhood, so the sum510 is divided by9, giving56.6666667.",
+      "inspectedPhysicalPages": [
+        979
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q076",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For an odd neighborhood, the median is the middle order statistic, not the arithmetic mean or central spatial sample.",
+      "inspectedPhysicalPages": [
+        980
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q077",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The provided counterexample violates additivity: median(x+y)=1 but median(x)+median(y)=0, so the operator is nonlinear.",
+      "inspectedPhysicalPages": [
+        980
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q078",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Signed derivative kernels sum to zero and are linear without being normalized nonnegative averaging kernels.",
+      "inspectedPhysicalPages": [
+        980
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q079",
+      "questionVersion": 2,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Sorting either row-major or column-major enumeration yields[9,9,10,10,10,10,10,11,11], whose middle value is10.",
+      "inspectedPhysicalPages": [
+        981
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q080",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Sorting gives[0,2,9,9,9,10,10,11,99]; the fifth entry is9, not the mean159/9 or extreme99.",
+      "inspectedPhysicalPages": [
+        981
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q081",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Enumeration does not change the multiset; sorting gives the same middle rank. This overlaps the second part of Q079.",
+      "inspectedPhysicalPages": [
+        981
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q082",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Nine ordered values have middle zero-based index4.",
+      "inspectedPhysicalPages": [
+        982
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q083",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Twenty-five ordered values have middle zero-based index12.",
+      "inspectedPhysicalPages": [
+        982
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q084",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A few isolated extreme values do not generally displace the middle rank, but most corrupted samples or thin legitimate features can defeat this behavior.",
+      "inspectedPhysicalPages": [
+        982
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q085",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Box and Gaussian smooth; median can suppress isolated impulses; Sobel estimates directional intensity gradients.",
+      "inspectedPhysicalPages": [
+        983
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q086",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Raw correlation sums weighted products and can increase with brightness or contrast; it is neither an automatic probability nor semantic identity guarantee.",
+      "inspectedPhysicalPages": [
+        983
+      ]
+    },
+    {
+      "questionId": "W07-L32-Q087",
+      "questionVersion": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A mean spreads an impulse through overlapping neighborhoods; a median may reject isolated extremes but also remove fine structures.",
+      "inspectedPhysicalPages": [
+        983
+      ]
+    }
+  ]
+}

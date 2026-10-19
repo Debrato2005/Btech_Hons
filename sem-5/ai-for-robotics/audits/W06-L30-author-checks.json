@@ -1,0 +1,63 @@
+{
+  "status": "author checks passed; independent source/answer review pending",
+  "assertionCount": 38,
+  "checks": [
+    "finite return extension",
+    "discounted return extension",
+    "constant infinite reward extension",
+    "Bellman expectation extension",
+    "Bellman max versus expectation",
+    "Q update positive extension",
+    "Q update negative first sample",
+    "Q update negative subsequent sample",
+    "terminal distinction extension",
+    "source table dimensions and storage",
+    "source action vectors",
+    "source negative-z action",
+    "source zero-error state",
+    "source interior state bins",
+    "source clipping",
+    "source relative error sign",
+    "source argmax tie convention",
+    "source greedy action under negative values",
+    "epsilon greedy total greedy probability",
+    "epsilon exploration can choose greedy",
+    "epsilon first update",
+    "epsilon floor episode",
+    "epsilon printed checkpoints",
+    "source logging episode indices",
+    "source convolution length",
+    "source convolution first/last windows",
+    "logging last100 mean extension",
+    "grid resolution cost",
+    "hardcoded clip leaves added bins unreachable",
+    "dense reward zero distance is zero",
+    "environment action space",
+    "environment observation goals",
+    "FetchReach blocks gripper",
+    "FetchReach success does not terminate",
+    "FetchReach zero-distance reward",
+    "FetchReach default limit",
+    "FetchReach truncates at step50",
+    "opposite gripper commands have same FetchReach outcome"
+  ],
+  "randomUpdateIdentities": 1000,
+  "randomGridComparisons": 1000,
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "gymnasium": "1.4.0",
+    "gymnasium_robotics": "1.4.2",
+    "mujoco": "3.3.7"
+  },
+  "observations": {
+    "epsilonFloorFirstCompletedEpisode": 1151,
+    "installedSources": {
+      "compute_reward": "        def compute_reward(self, achieved_goal, goal, info):\n            # Compute distance between goal and the achieved goal.\n            d = goal_distance(achieved_goal, goal)\n            if self.reward_type == \"sparse\":\n                return -(d > self.distance_threshold).astype(np.float32)\n            else:\n                return -d\n",
+      "compute_terminated": "    def compute_terminated(self, achieved_goal, desired_goal, info):\n        \"\"\"All the available environments are currently continuing tasks and non-time dependent. The objective is to reach the goal for an indefinite period of time.\"\"\"\n        return False\n",
+      "_set_action": "    def _set_action(self, action):\n        action = super()._set_action(action)\n\n        # Apply action to simulation.\n        self._utils.ctrl_set_action(self.model, self.data, action)\n        self._utils.mocap_set_action(self.model, self.data, action)\n"
+    },
+    "registerEnvSource": "def register_envs(env_module: ModuleType) -> None:\n    \"\"\"A No-op function such that it can appear to IDEs that a module is used.\"\"\"\n    pass\n"
+  },
+  "addedContext": "Controlled environment seeds, explicit arithmetic examples and comparison implementations are author tests, not source code or independent verification."
+}

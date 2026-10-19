@@ -1,0 +1,280 @@
+{
+  "1021": {
+    "physicalPage": 1021,
+    "printed": "1",
+    "title": "Fundamentals of Neural Networks",
+    "notes": "Actual title confirms Lecture Number 34, instructor and institution.",
+    "inspectedAt": "2026-10-19T20:03:46.476607+00:00",
+    "excluded": "Title and attribution only."
+  },
+  "1022": {
+    "physicalPage": 1022,
+    "printed": "2",
+    "title": "Learning Objective",
+    "notes": "Lists biological history, perceptron, activations, architecture, forward/loss/backprop/descent/training, common architectures and robotics applications.",
+    "inspectedAt": "2026-10-19T20:03:46.476618+00:00",
+    "excluded": "Objectives only; detailed substantive treatment follows."
+  },
+  "1023": {
+    "physicalPage": 1023,
+    "printed": "3",
+    "title": "History — Neural Networks Meet Robotics",
+    "notes": "Timeline pairs 1958 Perceptron with first industrial arm Unimate; 1986 backprop with grippers; 1998 LeNet with vision pick/place; 2012 AlexNet/deep learning with Boston Dynamics/DARPA; 2016 policy gradient RL with DeepMind robot hand dexterity; 2020 Transformers with RT-1 Google; 2023+ LLM+vision with ChatGPT-driven manipulation. Several pairings conflate eras/invention/application dates and possible institution attribution. Do not teach these as verified chronology; verify primary sources or explicitly attribute broad associations without exact dates.",
+    "inspectedAt": "2026-10-19T20:03:46.476622+00:00"
+  },
+  "1024": {
+    "physicalPage": 1024,
+    "printed": "4",
+    "title": "The Biological Neuron vs Robot Sensor Node",
+    "notes": "Four sensor inputs Touch Sensor, Camera Pixel, IMU Data, Mic Input with weights w1–w4 → sum w·x+b → f(z) → Action Output. Analogy column dendrite: robot sensor; cell body: microcontroller; synapse: wire/CAN bus; axon: motor signal; threshold: trigger voltage. Biological neuron diagram labels nucleus, dendrites, axon/tips and synapse. Weight importance is scale-dependent; analogy not biological equivalence.",
+    "inspectedAt": "2026-10-19T20:03:46.476623+00:00"
+  },
+  "1025": {
+    "physicalPage": 1025,
+    "printed": "5",
+    "title": "McCulloh-Pitts (MP) Neurons",
+    "notes": "1943 McCulloh/Pitts historical attribution; binary input/output. Diagram bottom x1,x2,x3→aggregation g→decision f→y. g=sum xi, manually chosen threshold theta, y=1 when g>=theta including equality, else0. This simplified non-inhibitory unit-weight model is not all historical variants.",
+    "inspectedAt": "2026-10-19T20:03:46.476625+00:00"
+  },
+  "1026": {
+    "physicalPage": 1026,
+    "printed": "6",
+    "title": "MP Neurons",
+    "notes": "Toy patient example defines x1 looking fine,x2 normal voice,x3 verbally confirmed; y1 fine,y0 unwell, all binary. No threshold specified on this page until next. Must frame as fictional logic example, not clinically validated diagnosis or actual medical advice.",
+    "inspectedAt": "2026-10-19T20:03:46.476627+00:00"
+  },
+  "1027": {
+    "physicalPage": 1027,
+    "printed": "7",
+    "title": "McCulloh Pitts Neurons",
+    "notes": "Worked unit-weight toy threshold: theta2, inputs(1,1,1), sum3>=2 gives y1. Text first says no weights/equal treatment, then calls sum weighted; interpret implicit unit weights, not learned coefficients. Box explicitly logic gates, not trainable neurons. Equality must fire. Toy patient label is not a diagnostic claim.",
+    "inspectedAt": "2026-10-19T20:03:46.477033+00:00"
+  },
+  "1028": {
+    "physicalPage": 1028,
+    "printed": "8",
+    "title": "Limitations",
+    "notes": "Printed inference cannot process real-valued inputs; hence cannot solve nonlinearly separable problems is misleading: binary XOR already nonseparable, and accepting real inputs does not remove a single affine-threshold boundary. Claims no learning in MP, Rosenblatt1958 perceptron, then a refined perceptron invented by Minsky/Papert1969; verify historical attribution and do not treat their1969 analysis as an invented learning model without support.",
+    "inspectedAt": "2026-10-19T20:03:46.477038+00:00"
+  },
+  "1029": {
+    "physicalPage": 1029,
+    "printed": "9",
+    "title": "The perceptron model",
+    "notes": "Learnable weights plus bias w0; diagram x0=1,w0=-theta and x1–x3 with w1–w3 enter step node, y exits. Formula sum i=0..n wi xi >=0 fires, <0 off. Bullet lists x1,x2,...x3 and w1,w2,...w3 despite general n, so distinguish illustrated three inputs from arbitrary n. Bias is included exactly once.",
+    "inspectedAt": "2026-10-19T20:03:46.477039+00:00"
+  },
+  "1030": {
+    "physicalPage": 1030,
+    "printed": "10",
+    "title": "The concept of bias",
+    "notes": "Derivation moves theta to left and sets x0=1,w0=-theta, allowing sum from0 and threshold0. Bias is learned; fixed constant input means its contribution does not scale with a measured feature. Last statement solely determines shift should be scoped with other weights fixed; boundary offset depends on w normalization as well.",
+    "inspectedAt": "2026-10-19T20:03:46.477041+00:00"
+  },
+  "1031": {
+    "physicalPage": 1031,
+    "printed": "11",
+    "title": "Perceptron model v/s MP Neurons",
+    "notes": "Side-by-side equations unit-weight threshold MP versus weighted sum with bias perceptron. Learning mechanism emphasized; both single scalar step units binary. Do not overextend to networks/collections that can represent multiclass or nonlinear decision regions.",
+    "inspectedAt": "2026-10-19T20:03:46.477042+00:00"
+  },
+  "1032": {
+    "physicalPage": 1032,
+    "printed": "12",
+    "title": "Perceptron Learning Algorithm",
+    "notes": "P label1,N label0; explicit linear-separability assumption; seek weights w0..wn; correct classification leaves parameters unchanged. The next page main prose discusses positive errors, but its actual pseudocode inset includes both positive and negative updates. Convergence depends on the full algorithm and stated separability.",
+    "inspectedAt": "2026-10-19T20:03:46.477044+00:00"
+  },
+  "1033": {
+    "physicalPage": 1033,
+    "printed": "13",
+    "title": "Perceptron Learning Algorithm",
+    "notes": "Actual pseudocode inset contains BOTH updates: positive example with w·x<0 adds x; negative example with w·x>=0 subtracts x. Thus equality is correctly positive. Inset explicitly samples P union N until convergence. Main prose discusses only positive errors, and falsely suggests one addition yields a positive dot product. It increases the dot product by ||x||² but may remain negative; adding x also need not increase every weight component. Angle formula needs nonzero vectors. Treat bias consistently through explicit augmented input.",
+    "inspectedAt": "2026-10-19T20:03:46.477622+00:00"
+  },
+  "1034": {
+    "physicalPage": 1034,
+    "printed": "14",
+    "title": "Activation Function",
+    "notes": "Step function is already nonlinear: y1 for z>=0,0 otherwise. The claimed need to introduce nonlinearity should instead distinguish differentiability/useful gradients for ordinary backpropagation. Tanh formula and curve pass through(0,0), saturate toward±1; sigmoid formula/curve pass through(0,0.5), approach0 and1. Both formula plots visually confirmed.",
+    "inspectedAt": "2026-10-19T20:03:46.477627+00:00"
+  },
+  "1035": {
+    "physicalPage": 1035,
+    "printed": "15",
+    "title": "Activation Function",
+    "notes": "Table prints closed sigmoid[0,1] and tanh[-1,1] ranges although finite real inputs attain open ranges; endpoints are limits. Tanh is zero-centered, not universally preferred. Both may saturate. Softmax formula exp(xi)/sum_j exp(xj) shown, classes>=2 wording does not require switching binary sigmoid to softmax. Two-class softmax equals sigmoid of logit difference. Mutually exclusive classes versus independent multilabel outputs must be specified.",
+    "inspectedAt": "2026-10-19T20:03:46.477629+00:00"
+  },
+  "1036": {
+    "physicalPage": 1036,
+    "printed": "16",
+    "title": "Vanishing Gradient Problem",
+    "notes": "Products of small gradients can attenuate early-layer signal. Printed shared example max derivative0.25 is sigmoid-specific: tanh maximum is1. Weight Jacobians also matter, so multiplying only activation maxima does not prove every network vanishes. ReLU, LeakyReLU and GELU can mitigate but do not universally eliminate gradient pathologies.",
+    "inspectedAt": "2026-10-19T20:03:46.477631+00:00"
+  },
+  "1037": {
+    "physicalPage": 1037,
+    "printed": "17",
+    "title": "Better Alternatives",
+    "notes": "Table and plots: ReLU=max(0,x), range[0,infinity), derivative1 for positive input; LeakyReLU=max(0.01x,x), rangeR, nonzero negative slope; GELU=x Phi(x), approximate range[-0.17,infinity), small negative dip. Define Phi as standard normal CDF if used. ReLU/Leaky derivatives undefined at0 unless a computational convention is supplied. GELU negative minimum approximately-0.16997, so displayed-0.17 is rounded, not exact. Nonzero leaky negative slope mitigates inactive units, not universal training success.",
+    "inspectedAt": "2026-10-19T20:03:46.477632+00:00"
+  },
+  "1038": {
+    "physicalPage": 1038,
+    "printed": "18",
+    "title": "Anatomy of a Neural Network",
+    "notes": "Fully connected diagram has3 input nodes,4 hidden nodes,1 output:16 edge weights and5 biases if each noninput neuron has one,21 totalparameters. One hidden layer called shallow, multiple deep. Equation a^(1)=ReLU(W^(1)x+b^(1)) is vector layer output with W1 shape4x3,b1 shape4x1. Prose first-neuron wording requires a row/scalar version, not the whole layer matrix.",
+    "inspectedAt": "2026-10-19T20:03:46.477633+00:00"
+  },
+  "1039": {
+    "physicalPage": 1039,
+    "printed": "19",
+    "title": "Architecture of a Multi-Layer Perceptron",
+    "notes": "Output equation y_pred=Sigmoid(W2 a1+b2), final output count matches chosen representation, not necessarily number of classes (one sigmoid suffices for binary). Hidden activations support complex patterns; output activations format predictions. Blank bordered lower-right region contains no recoverable visible diagram.",
+    "inspectedAt": "2026-10-19T20:03:46.478493+00:00"
+  },
+  "1040": {
+    "physicalPage": 1040,
+    "printed": "20",
+    "title": "Neural Network Training Stages",
+    "notes": "Actual 3-input/4-hidden/1-output figure labels stages:1 forward pass rightward,2 loss at output,3 backpropagation leftward,4 gradient descent parameter update pointing to connections. Backpropagation computes gradients, optimizer applies updates; loss may evaluate held-out examples too. Figure materially repeats anatomy but unique process directions/order.",
+    "inspectedAt": "2026-10-19T20:03:46.478499+00:00"
+  },
+  "1041": {
+    "physicalPage": 1041,
+    "printed": "21",
+    "title": "Forward Pass",
+    "notes": "Explicit sum i1..n wi xi+b; bias notation switches from w0 to b. z then activation y=f(z). Forward pass alone predicts, does not update learned weights in the stated feedforward training model. Include bias once and distinguish stored state from gradient update.",
+    "inspectedAt": "2026-10-19T20:03:46.478500+00:00"
+  },
+  "1042": {
+    "physicalPage": 1042,
+    "printed": "22",
+    "title": "Loss Functions",
+    "notes": "Loss compares predicted output to actual labels, common cross-entropy for classification and MSE regression. Printed used during training only is false if labelled validation/test loss is computed without updates; ordinary unlabelled inference need not compute supervised loss.",
+    "inspectedAt": "2026-10-19T20:03:46.478502+00:00"
+  },
+  "1043": {
+    "physicalPage": 1043,
+    "printed": "23",
+    "title": "Loss Functions",
+    "notes": "Actual displayed binary and multiclass cross-entropy sums BOTH lack leading minus signs. Printed binary p_true label is ambiguous; define p as predicted probability of class1. Multiclass formula is average log-likelihood, not softmax itself; softmax maps logits to probabilities, cross-entropy compares to targets. Indices i sample,j class,K number classes. MSE1/n sum squared errors is correct. Preserve printed expressions separately from explicit repaired losses.",
+    "inspectedAt": "2026-10-19T20:03:46.478503+00:00"
+  },
+  "1044": {
+    "physicalPage": 1044,
+    "printed": "24",
+    "title": "Back Propagation",
+    "notes": "Training adjusts weights/biases to minimize loss. Lists gradient calculation, backward error propagation, gradient descent opposite gradient. Distinguish chain-rule gradient computation (backprop) from chosen optimizer update; neither alone implies global minimum.",
+    "inspectedAt": "2026-10-19T20:03:46.478504+00:00"
+  },
+  "1045": {
+    "physicalPage": 1045,
+    "printed": "25",
+    "title": "Gradient Descent",
+    "notes": "Weights/biases are parameters, eta hyperparameter; random initialization followed by loss. Displays MSE1/n then single-sample half-squared error. Substituting n1 does not generate half: explicit normalization change introduced to cancel derivative factor2, not improve differentiability. Positive rescaling preserves minimizers but rescales gradients and effective learning rate.",
+    "inspectedAt": "2026-10-19T20:03:46.478506+00:00"
+  },
+  "1046": {
+    "physicalPage": 1046,
+    "printed": "26",
+    "title": "Gradient Descent",
+    "notes": "Chain-rule derivative for half squared error with identity-output prediction wx+b: dL/dy_pred=y_pred-y_true; dy_pred/dw=x; gradients residual*x and residual for bias. These formulas are not general nonlinear-output gradients without activation derivative. All signs visually confirmed.",
+    "inspectedAt": "2026-10-19T20:03:46.478507+00:00"
+  },
+  "1047": {
+    "physicalPage": 1047,
+    "printed": "27",
+    "title": "Gradient Descent",
+    "notes": "w_new=w_old-eta dL/dw,b_new=b_old-eta dL/db. Hyperparameter scales signed gradient step; learning rate alone not total displacement. Iterate until loss stops decreasing is practical wording, not global-minimum certificate; excessive rates may oscillate/diverge. Visible hyperlink LINK invites neural-network visualization; extract actual PDF URI rather than guessing.",
+    "inspectedAt": "2026-10-19T20:03:46.478508+00:00"
+  },
+  "1048": {
+    "physicalPage": 1048,
+    "printed": "28",
+    "title": "Example",
+    "notes": "Toy braking regression: distance2m,target10Nm,w3,b1,eta0.1. These numbers illustrate fitting, not a validated collision-avoidance controller. Raw physical units imply wNm/m,bNm and different coordinate learning-rate units; numerical training questions explicitly normalize x by1m and torque by1Nm. One distance/torque pair cannot identify a unique affine map or prove safety/generalization.",
+    "inspectedAt": "2026-10-19T20:03:46.478800+00:00"
+  },
+  "1049": {
+    "physicalPage": 1049,
+    "printed": "29",
+    "title": "Example",
+    "notes": "Forward identity-output y=3*2+1=7; half-squared error0.5*(10-7)^2=4.5. Slide calls it MSE but uses half-squared normalization. Distinguish residualsign, ordinarysingle-sampleMSE9,half-squared4.5 and output7.",
+    "inspectedAt": "2026-10-19T20:03:46.478805+00:00"
+  },
+  "1050": {
+    "physicalPage": 1050,
+    "printed": "30",
+    "title": "Example",
+    "notes": "Half-squared linear gradient dL/dw=-(10-7)*2=-6,dL/db=-(10-7)=-3. Negative gradients mean positive-coordinate updates under descent for positive eta, not gradient ascent. Both gradients computed at same original parameterstate.",
+    "inspectedAt": "2026-10-19T20:03:46.478806+00:00"
+  },
+  "1051": {
+    "physicalPage": 1051,
+    "printed": "31",
+    "title": "Example",
+    "notes": "eta0.1 gives w3.6,b1.3, nextforwardprediction8.5, half-squaredloss1.125. Source calls check Epoch2; explicitly index initial epoch1/preupdate and nextforwardafteroneupdate. One-sample epoch is onepass; secondforward alone is not a second parameterupdate.",
+    "inspectedAt": "2026-10-19T20:03:46.478808+00:00"
+  },
+  "1052": {
+    "physicalPage": 1052,
+    "printed": "32",
+    "title": "Conclusion",
+    "notes": "Actual plots show initial line y=3x+1, target(2,10), epoch1of5 and only one initial loss4.5point, not all fiveepochvalues. Leftyaxis says Motor Speed(y), conflicting with torque in p1048; rightaxis calls MSE although4.5is half-squared. Source statement says prediction7→8.5 andloss4.5→1.125afteroneupdate. Completecode hyperlink resolves official course GitHub repository; inspectlinkednotebook separately. Single static snapshot does not display completedfive-epochtrend.",
+    "inspectedAt": "2026-10-19T20:03:46.478809+00:00"
+  },
+  "1053": {
+    "physicalPage": 1053,
+    "printed": "33",
+    "title": "Modern ANN Architectures — CNN",
+    "notes": "CNN for grid images/depth maps; convolution extracts spatial edges/textures/shapes; applications visual detection,face recognition,navigationobstacles. Diagram input28x28 digit7→conv1→maxpool1 12x12→conv2 8x8→maxpool2 4x4→flatten→fullyconnected10neurons→output7. Conv1 size/filter/padding/channelcount not printed; derive24x24 or5x5 kernels ONLY with supplied validstride1 and2x2stride2pool assumptions. Flatten4x4 gives16 perchannel, not total unless channelcountgiven.",
+    "inspectedAt": "2026-10-19T20:03:46.478810+00:00"
+  },
+  "1054": {
+    "physicalPage": 1054,
+    "printed": "34",
+    "title": "Modern ANN Architectures — RNN and LSTM",
+    "notes": "RNN/LSTM for sequential/time-series data; persistence via internal state, not perfect unlimitedmemory. Figure x_t input,h_(t-1) feedback,h_t outgoingstate,y_t output; h intermediarylabel present. Applications trajectoryprediction,speechrecognition,time-indexedIMU. NoLSTMgatesorequationsprinted; do notinventrequirementtocoverunshowninternals.",
+    "inspectedAt": "2026-10-19T20:03:46.478812+00:00"
+  },
+  "1055": {
+    "physicalPage": 1055,
+    "printed": "35",
+    "title": "Modern ANN Architectures — Transformers",
+    "notes": "Text selfattention weights inputparts, multimodalcontext, VLAcommand-to-action. Figure is encoder-decoder Transformer: input/outputembeddings pluspositionalencoding; encoder multiheadattention/feedforward eachAdd&Norm; decoder maskedselfattention,crossattention,feedforward,Add&Norm; outputLinear→Softmax→probabilities; outputs shiftedright; repeatedNx. Text regardlessoforder mustnotmeanorderirrelevant: positionalencodingexplicitly suppliesorder, maskpreventsfuturetokenleakage. Figurecrossattentionarrows encoder→decoder. GenericTransformerdiagramnotproofallVLAarchitecturesidentical.",
+    "inspectedAt": "2026-10-19T20:03:46.478813+00:00"
+  },
+  "1056": {
+    "physicalPage": 1056,
+    "printed": "36",
+    "title": "Real-world Applications in Robotics",
+    "notes": "Two word clouds are source-attributed applications versus aims, not dated exhaustive capability assessment. Left:industrialautomation,grasping/manipulation,objectdetection,HRI,autonomousnavigation,surgicalrobotics,warehouselogistics,precisionagriculture,search/rescue,aerialsurveys,gesturerecognition,predictivemaintenance,pathplanning,sensorfusion,CV,RL,embodiedAI,deeplearning,NN,transformers,edgecomputing. Right:dexterousmanipulation,zeroshot,XAI,human-robotsymbiosis,sim-to-real,continuouslearning,VLA,dynamictaskscheduling,softrobotics,advancedsurgicalrobots,foldinglaundry,swarmintelligence,cognitiverobotics,embodiedAI,edgereinforcementlearning,neuromorphiccomputing,seamlessHRI,microrobotics,autonomousethics,multiagentsystems. EmbodiedAI appearsboth; categoriesnotmutuallyexclusive deploymentclaims.",
+    "inspectedAt": "2026-10-19T20:03:46.478814+00:00"
+  },
+  "1057": {
+    "physicalPage": 1057,
+    "printed": "37",
+    "title": "Summary",
+    "notes": "Repeats biologicalinspiration,MP/perceptron,MLParchitecture,activations,trainingcycle,CNN/RNN/transformerroles andapplications. No newequation/example.",
+    "inspectedAt": "2026-10-19T20:03:46.478815+00:00",
+    "excluded": "Summary is mapped to existing concept questions rather than duplicate question inflation."
+  },
+  "1058": {
+    "physicalPage": 1058,
+    "printed": "38",
+    "title": "References",
+    "notes": "References DeepLearning,PratiharSoftComputing,VaswaniAttentionIsAllYouNeed2017,Szeliski2022. Reference2017Transformerdate conflicts with timeline2020ifreadasinvention. Bibliographicdetailsnotadditionaltestabletechnicalconcepts.",
+    "inspectedAt": "2026-10-19T20:03:46.478817+00:00",
+    "excluded": "References only; preserve provenance, do not quiz citation formatting."
+  },
+  "1059": {
+    "physicalPage": 1059,
+    "printed": "39",
+    "title": "Thank You",
+    "notes": "Actual closing slide ThankYou andinstitutionlogos; no other substantivecontent.",
+    "inspectedAt": "2026-10-19T20:03:46.478819+00:00",
+    "excluded": "Closing page only."
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "sourceId": "lectures",
+  "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+  "issues": [
+    {
+      "physicalPage": 890,
+      "description": "RL is called the third branch.",
+      "qualification": "A pedagogical comparison, not a universal exhaustive taxonomy.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 891,
+      "description": "Critic feedback is described as scarce and delayed.",
+      "qualification": "This is common, not necessary; the lecture later uses dense per-step rewards.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 897,
+      "description": "Off-policy learning works regardless of exploration strategy.",
+      "qualification": "Its target can differ from the behavior policy, but learning guarantees still need adequate state-action coverage and other assumptions.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 898,
+      "description": "Discounting is motivated by a hard time limit.",
+      "qualification": "Discounted infinite-horizon return is well defined for bounded rewards and 0≤gamma<1; a hard cutoff is not required.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 899,
+      "description": "The source explicitly defines optimal policy and Q* in terms of expected cumulative reward.",
+      "qualification": "A poor individual realization does not refute optimal expected return. This is an interpretation of the source, not a correction of an omitted expectation.",
+      "status": "Earlier author conflict allegation withdrawn after independent review and renewed pixel inspection; no global source-resolution claim.",
+      "priorAnnotation": {
+        "physicalPage": 899,
+        "description": "Optimal wording may suggest guaranteed return.",
+        "qualification": "Values optimize expected cumulative return; individual stochastic outcomes can differ and actions can tie.",
+        "status": "preserved with explicit scope; not globally resolved"
+      }
+    },
+    {
+      "physicalPage": 902,
+      "description": "Exploitation chooses highest immediate reward.",
+      "qualification": "Q-based exploitation chooses greatest estimated cumulative return, which need not maximize immediate reward.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 903,
+      "description": "Model-based learning requires perfect prior knowledge and no exploration.",
+      "qualification": "The slide contrasts known-model planning with model-free learning; model-based methods can instead learn models and need exploration.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 904,
+      "description": "Target is labeled actually happened and convergence is attributed only to decaying learning rate.",
+      "qualification": "The reward and transition are sampled but next Q is estimated. Classical guarantees require finite/tabular assumptions, sufficient visits and suitable step sizes; fixed alpha in the example does not establish that theorem.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 905,
+      "description": "Terminal update convention is unstated.",
+      "qualification": "A genuine terminal successor has no continuing return; an external time-limit truncation of a continuing task is different.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 906,
+      "description": "Any arbitrary target and subsequent grasping are suggested.",
+      "qualification": "Targets must be reachable under task constraints. FetchReach trains reaching, not object grasping.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 909,
+      "description": "Dense reward is called always negative and fourth action is described as gripper control.",
+      "qualification": "Negative distance is zero at exact coincidence. FetchReach blocks the fourth gripper command; its inclusion in the API does not make it effective.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 910,
+      "description": "register_envs is described as loading all robot models.",
+      "qualification": "In tested Gymnasium 1.4.0 it is a compatibility no-op; importing gymnasium_robotics registers environments, and make constructs the selected environment.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 911,
+      "description": "The action example implies a unit command is a physical displacement.",
+      "qualification": "Actions are normalized controls; achieved movement is governed by the simulator and is not guaranteed one metre or one discretization bin.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 912,
+      "description": "State is described as current position.",
+      "qualification": "The code bins desired minus achieved goal, clips tails and omits other observation components; this compressed relative state can alias different physical conditions.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 913,
+      "description": "terminated means won.",
+      "qualification": "Termination indicates a task-defined terminal state, not necessarily success. FetchReach is continuing and its default time limit truncates after 50 steps.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 914,
+      "description": "Unconditional bootstrap precedes both termination and truncation.",
+      "qualification": "Appropriate for continuing FetchReach truncation; not a generic true-terminal update with a nonzero next-state estimate.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 915,
+      "description": "One printed stochastic training trace may look guaranteed or monotonic.",
+      "qualification": "No seed is supplied, and even the displayed checkpoints worsen between episodes 1000 and 1500.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 916,
+      "description": "Plot caption/prose implies convergence near zero.",
+      "qualification": "The displayed curve fluctuates around negative totals and does not prove convergence, zero error or optimality.",
+      "status": "preserved with explicit scope; not globally resolved"
+    },
+    {
+      "physicalPage": 917,
+      "description": "Larger grid, deep RL and gripper extension are suggested as simple changes.",
+      "qualification": "Update hard-coded bounds/offsets together with shape, account for sample/storage costs, and use an actual grasp-capable task rather than changing an ignored FetchReach channel.",
+      "status": "preserved with explicit scope; not globally resolved"
+    }
+  ],
+  "officialDocumentationChecked": [
+    {
+      "url": "https://robotics.farama.org/envs/fetch/reach/",
+      "purpose": "Negative distance reward, continuing task, ignored gripper and default 50-step truncation."
+    },
+    {
+      "url": "https://gymnasium.farama.org/tutorials/gymnasium_basics/handling_time_limits/",
+      "purpose": "True termination versus time-limit truncation and bootstrapping."
+    },
+    {
+      "url": "https://gymnasium.farama.org/api/registry/",
+      "purpose": "Registration and environment construction."
+    },
+    {
+      "url": "https://www.gatsby.ucl.ac.uk/~dayan/papers/cjch.pdf",
+      "purpose": "Classical tabular Q-learning convergence assumptions."
+    }
+  ],
+  "documentationNote": "Primary documentation checked on 2026-10-19. External clarification is not lecture coverage. Actual installed source and runtime tests are separately captured.",
+  "runtimeQualification": "The literal unpinned installation initially selected MuJoCo 3.16.0 and environment construction failed. An explicitly added MuJoCo 3.3.7 pin in an isolated temporary environment made the source loop executable; see initial-runtime-attempt and author-simulation artifacts."
+}

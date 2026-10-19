@@ -1,0 +1,659 @@
+{
+  "1440": {
+    "footer": "1",
+    "disposition": "excluded",
+    "exclusionReason": "Lecture title, instructor and institution attribution; no substantive NLP concept.",
+    "notes": "Complete title page actually viewed: Lecture Number 46, Natural Language Processing, Pushparaj Mani Pathak, IIT Roorkee, footer 1.",
+    "inspectedAt": "2026-10-19T21:59:50Z"
+  },
+  "1441": {
+    "footer": "2",
+    "disposition": "excluded",
+    "exclusionReason": "Learning-objective roadmap; substantive definitions, representations, tasks and multimodal diagrams appear on later pages.",
+    "notes": "All objective bullets viewed, including final multimodal language/vision/planning/action goal; no unique substantive derivation beyond roadmap.",
+    "inspectedAt": "2026-10-19T21:59:50Z"
+  },
+  "1442": {
+    "footer": "3",
+    "disposition": "excluded",
+    "exclusionReason": "Contents roadmap only; individual listed topics are covered on substantive pages.",
+    "notes": "Contents hierarchy viewed: NLP introduction/robotics/challenges/pipeline/core tasks/traditional limits/transformers/LLMs/VLM/VLA.",
+    "inspectedAt": "2026-10-19T21:59:50Z"
+  },
+  "1443": {
+    "footer": "4",
+    "disposition": "examinable",
+    "notes": "NLP definition and human-human versus HRI diagram actually viewed. Speech Recognition leads down to Language Understanding inside dashed box; response arrow on upper box edge leads to robot greeting Mary. Do not infer separate algorithm timings from this stylized schematic.",
+    "concepts": {
+      "nlp-hri": {
+        "title": "NLP scope and human–robot language interface",
+        "description": "NLP addresses linguistic structure, meaning and context in written/spoken input and generated responses.",
+        "angles": [
+          "Definition versus acoustic transcription alone",
+          "Diagram roles: speech recognition, language understanding and response generation",
+          "Written and spoken forms, not only speech"
+        ]
+      }
+    },
+    "inspectedAt": "2026-10-19T21:59:50Z"
+  },
+  "1444": {
+    "footer": "5",
+    "disposition": "examinable",
+    "notes": "Command Pick up the red ball near the chair decomposed into action pick up, target ball, attribute red and spatial relation near chair. Right list HRI/voice/navigation/planning. Planning and execution follow extraction, not identical to token recognition.",
+    "concepts": {
+      "semantic-slots": {
+        "title": "Command slots and action grounding",
+        "description": "Extract action, object, properties and relational location before planning and execution.",
+        "angles": [
+          "Full four-slot mapping of example",
+          "Target object versus spatial reference object",
+          "Language extraction versus physical task planning/execution"
+        ]
+      }
+    },
+    "inspectedAt": "2026-10-19T21:59:50Z"
+  },
+  "1445": {
+    "footer": "6",
+    "disposition": "examinable",
+    "notes": "Four challenge examples actually viewed: light lightweight/illuminated ambiguity; ball/bowl accent-related misrecognition; fetch/pick/take contextual synonyms; Great job genuine praise or frustration. Both senses of light shown here can be adjectives, unlike later POS noun/adjective example; do not conflate the two.",
+    "concepts": {
+      "language-challenges": {
+        "title": "Lexical, acoustic and contextual ambiguity",
+        "description": "Different language challenges require distinguishing word meaning, recognition variation, paraphrase and pragmatic context.",
+        "angles": [
+          "Ambiguity versus accent confusion",
+          "Contextual synonyms versus identical strings",
+          "Sarcasm/praise requires context",
+          "Do not assume a synonym is interchangeable in every instruction"
+        ]
+      }
+    },
+    "inspectedAt": "2026-10-19T21:59:50Z"
+  },
+  "1446": {
+    "footer": "7",
+    "disposition": "examinable",
+    "notes": "Diagram sequence is Human Speech/Text → Pre-Processing → Numerical Representation/Vectorization → Language Understanding → Robot Planning → Robot Action. The text explicitly calls stages conceptual and allows joint internal processing. Listed preprocessing order lowercasing, punctuation removal, tokenization, stopwords, stemming/lemmatization. NLTK full name shown.",
+    "inspectedAt": "2026-10-19T22:01:00Z",
+    "concepts": {
+      "pipeline": {
+        "title": "Conceptual NLP and preprocessing pipeline",
+        "description": "Ordered teaching pipeline and implementation flexibility.",
+        "angles": [
+          "Full six-stage figure order",
+          "Five preprocessing-step order",
+          "NLTK name and role",
+          "Conceptual stages need not be isolated modules"
+        ]
+      }
+    }
+  },
+  "1447": {
+    "footer": "8",
+    "disposition": "examinable",
+    "notes": "Tokenization and list displayed. Vocabulary explicitly unique, but the indented example repeats the; it is an eight-token sequence with seven unique types. Corpus is collection of texts used for training/vocabulary. Dictionary/library analogy is mnemonic, not a storage-type specification. Tokenization alone does not mean the machine has learned semantics.",
+    "inspectedAt": "2026-10-19T22:01:00Z",
+    "concepts": {
+      "tokens-vocabulary-corpus": {
+        "title": "Tokens, vocabulary and corpus",
+        "description": "Distinguish occurrences, unique types and collections of documents.",
+        "angles": [
+          "Eight token occurrences versus seven unique types",
+          "Vocabulary uniqueness versus repeated the in source example",
+          "Corpus versus vocabulary",
+          "Tokenization does not by itself establish semantic learning"
+        ]
+      }
+    }
+  },
+  "1448": {
+    "footer": "9",
+    "disposition": "examinable",
+    "notes": "Stopwords is/a/the, stemming plays/played/playing→play, table studies→studi versus study. Claims faster processing/easier action recognition/lower complexity are task-dependent; removing words can remove relevant relations or negation. Stemming may give nonword; lemma meaningful base.",
+    "inspectedAt": "2026-10-19T22:01:00Z",
+    "concepts": {
+      "normalization": {
+        "title": "Stopwords, stemming and lemmatization",
+        "description": "Meaning-preserving normalization is task- and POS-dependent.",
+        "angles": [
+          "Mechanical stem versus lexical lemma",
+          "All table entries",
+          "Task-specific benefit and information-loss boundary"
+        ]
+      }
+    }
+  },
+  "1449": {
+    "footer": "10",
+    "disposition": "examinable",
+    "notes": "All 22 code lines and all six right output stages read. Imports nltk/string/word_tokenize/stopwords/WordNetLemmatizer; lower; translate(str.maketrans(empty,empty,string.punctuation)); word_tokenize; set English stopwords; list comprehension preserving order; default noun lemmatize. Output tokens include up and two the; filtered and lemma lists pick/red/ball/near/chair. Displayed code has no print calls, so right report requires a harness. Resource setup not shown.",
+    "inspectedAt": "2026-10-19T22:01:00Z",
+    "concepts": {
+      "preprocess-code": {
+        "title": "NLTK preprocessing code and intermediate state",
+        "description": "Trace exact source operations, data shapes and omitted reporting/resource setup.",
+        "angles": [
+          "Lowercase and punctuation-removal strings",
+          "Token/filtered/lemma output sequence",
+          "set membership with ordered list output",
+          "Default lemma POS and context limits",
+          "Code excerpt has no printed reporting loop",
+          "Stopword removal loses up in pick up"
+        ]
+      }
+    }
+  },
+  "1450": {
+    "footer": "11",
+    "disposition": "examinable",
+    "notes": "Code imports PorterStemmer,WordNetLemmatizer; nltk.download(wordnet) relies on earlier import nltk; instantiates both, word=studies, prints Stemmed: studi and Lemmatized: study. Caption Why Lemmatization is better is too broad unless criterion is meaningful lexical base in this example. Corpus download setup side effect is not the mathematical algorithm itself.",
+    "inspectedAt": "2026-10-19T22:01:00Z",
+    "concepts": {
+      "normalization": {
+        "title": "Stopwords, stemming and lemmatization",
+        "description": "Meaning-preserving normalization is task- and POS-dependent.",
+        "angles": [
+          "PorterStemmer versus WordNetLemmatizer executed example",
+          "Prior nltk import dependency",
+          "No universal superiority claim from one lexical output"
+        ]
+      }
+    }
+  },
+  "1451": {
+    "footer": "12",
+    "disposition": "examinable",
+    "notes": "Vectorization motivation, pixel analogy, and four methods one-hot/BoW/TF-IDF/Word2Vec-GloVe viewed. Humans understand context clearly is pedagogical contrast, not guarantee all humans resolve ambiguity. Numerical encoding is necessary for computation but not equivalent to semantic correctness.",
+    "inspectedAt": "2026-10-19T22:01:00Z",
+    "concepts": {
+      "vectorization": {
+        "title": "Numerical representations and their granularity",
+        "description": "Different encodings provide different information and sparsity.",
+        "angles": [
+          "Motivation for numerical encoding",
+          "Four representation families",
+          "Encoding is not guaranteed understanding"
+        ]
+      }
+    }
+  },
+  "1452": {
+    "footer": "13",
+    "disposition": "examinable",
+    "notes": "One-hot and BoW conceptual descriptions actually viewed. Token-level one-hot distinguishes identity, command-level unigram counts discard order/context. Both sparse and high-dimensional; most common is a temporal generalization, not a timeless fact. Count representation is not restricted to binary values.",
+    "inspectedAt": "2026-10-19T22:03:00Z",
+    "concepts": {
+      "one-hot-bow": {
+        "title": "One-hot versus bag-of-words",
+        "description": "One-hot versus bag-of-words.",
+        "angles": [
+          "Token versus document representation",
+          "Sparse storage versus sparse mathematical pattern",
+          "Unigram order loss and repeated-token counts"
+        ]
+      }
+    }
+  },
+  "1453": {
+    "footer": "14",
+    "disposition": "examinable",
+    "notes": "All OneHotEncoder code and output table viewed. Nested five input rows pick/red/ball/near/chair; sparse_output=False. Alphabetically sorted output columns ball/chair/near/pick/red; row order stays input order. Red annotations distinguish row index 1 from red column index 4. Displayed table is not created by shown fit_transform alone.",
+    "inspectedAt": "2026-10-19T22:03:00Z",
+    "concepts": {
+      "one-hot-code": {
+        "title": "OneHotEncoder code and labeled axes",
+        "description": "OneHotEncoder code and labeled axes.",
+        "angles": [
+          "Exact 5 by 5 matrix",
+          "Alphabetical category columns versus input row order",
+          "Dense storage still has many zeros",
+          "Nested input shape and omitted display harness"
+        ]
+      }
+    }
+  },
+  "1454": {
+    "footer": "15",
+    "disposition": "examinable",
+    "notes": "CountVectorizer excerpt and complete 3 by 8 table actually viewed. Alphabetical columns ball/blue/box/chair/grab/near/pick/red; rows correspond to three commands. grab and pick have separate columns despite contextual synonym example. fit_transform yields sparse matrix; table formatting not shown.",
+    "inspectedAt": "2026-10-19T22:03:00Z",
+    "concepts": {
+      "bow-code": {
+        "title": "CountVectorizer code and vocabulary",
+        "description": "CountVectorizer code and vocabulary.",
+        "angles": [
+          "Complete shared vocabulary and matrix",
+          "Repeated-token and word-order variants",
+          "Contextual synonyms remain distinct string features",
+          "Sparse output versus report formatting"
+        ]
+      }
+    }
+  },
+  "1455": {
+    "footer": "16",
+    "disposition": "examinable",
+    "notes": "Normalized term-frequency fraction viewed: term count divided by total terms in document. Documents may be single command or explicitly grouped commands; numerical work must fix boundaries and tokenization. Rarer terms are emphasized only relative to TF and corpus.",
+    "inspectedAt": "2026-10-19T22:03:00Z",
+    "concepts": {
+      "tfidf-math": {
+        "title": "TF, document frequency and TF-IDF",
+        "description": "TF, document frequency and TF-IDF.",
+        "angles": [
+          "Normalized TF calculation",
+          "Document boundary and nonempty-document assumptions",
+          "Rare-versus-common comparison conditional on TF"
+        ]
+      }
+    }
+  },
+  "1456": {
+    "footer": "17",
+    "disposition": "examinable",
+    "notes": "IDF=log(total documents/documents containing term), followed by TF-IDF product, actually viewed. Log base unspecified. Document frequency counts presence, not repeated occurrences; zero document frequency makes unsmoothed formula undefined. Ubiquitous terms have zero IDF under this formula.",
+    "inspectedAt": "2026-10-19T22:03:00Z",
+    "concepts": {
+      "tfidf-math": {
+        "title": "TF, document frequency and TF-IDF",
+        "description": "TF, document frequency and TF-IDF.",
+        "angles": [
+          "Document frequency versus token count",
+          "Explicit logarithm base",
+          "Product and ubiquitous-term zero",
+          "Unsmoothed domain conditions"
+        ]
+      }
+    }
+  },
+  "1457": {
+    "footer": "18",
+    "disposition": "examinable",
+    "notes": "All TfidfVectorizer code and rounded output table viewed. Same corpus and eight columns; first row .49 ball/chair/near and .37 pick/red; second .68 blue and .52 box/pick; third .68 grab and .52 box/red. These outputs use default smoothed IDF and L2 normalization, not the literal preceding unsmoothed normalized-TF equations. Exact execution and a precise convention qualification are required.",
+    "inspectedAt": "2026-10-19T22:03:00Z",
+    "concepts": {
+      "tfidf-code": {
+        "title": "TfidfVectorizer conventions and output",
+        "description": "TfidfVectorizer conventions and output.",
+        "angles": [
+          "Default smoothed IDF plus raw counts plus L2 normalization",
+          "Exact and rounded output distinction",
+          "Contrast with printed normalized-TF unsmoothed equations",
+          "Integrated count/df/weight/norm computation"
+        ]
+      }
+    }
+  },
+  "1458": {
+    "footer": "19",
+    "disposition": "examinable",
+    "notes": "All bullets, cosine equation and 3D schematic viewed. Axes pedagogically named Action/Intention/Context, with pick and fetch rays; no calibrated numerical coordinates. Dense continuous vectors and smaller angle imply higher cosine for nonzero vectors. Most modern, both methods neural networks, cosine used to place words, and more identical meanings are oversimplifications needing exact qualification. GloVe learning objective must not be silently conflated with cosine evaluation.",
+    "inspectedAt": "2026-10-19T22:05:30Z",
+    "concepts": {
+      "embeddings": {
+        "title": "Embeddings and cosine similarity",
+        "description": "Embeddings and cosine similarity.",
+        "angles": [
+          "Dense learned representation versus sparse identity/counts",
+          "Nonzero-domain cosine formula and angle ordering",
+          "Positive rescaling invariance and zero-vector boundary",
+          "Schematic axes not guaranteed interpretable learned coordinates",
+          "GloVe/Word2Vec training versus similarity measurement"
+        ]
+      }
+    }
+  },
+  "1459": {
+    "footer": "20",
+    "disposition": "examinable",
+    "notes": "Language understanding slide viewed; POS and NER named; explicit conceptual separation of vectorization versus meaning extraction, often performed together. Traditional POS-before-NER example versus joint modern modeling does not mandate all architectures.",
+    "inspectedAt": "2026-10-19T22:05:30Z",
+    "concepts": {
+      "understanding": {
+        "title": "POS and NER as language-understanding tasks",
+        "description": "POS and NER as language-understanding tasks.",
+        "angles": [
+          "Representation versus downstream task",
+          "Traditional sequential versus possible joint modeling"
+        ]
+      }
+    }
+  },
+  "1460": {
+    "footer": "21",
+    "disposition": "examinable",
+    "notes": "Exact POS code viewed: download averaged_perceptron_tagger_eng; command capital Pick; word_tokenize(command.lower()); nltk.pos_tag(tokens). Displayed tags pick VB, up RP, the DT, red JJ, ball NN, near IN, the DT, chair NN. Right legend contains DT twice matching repeated tokens, not two distinct classes. Prior imports/resources and report display omitted. No stopword deletion in this code.",
+    "inspectedAt": "2026-10-19T22:05:30Z",
+    "concepts": {
+      "pos-code": {
+        "title": "POS tagging code, labels and limitations",
+        "description": "POS tagging code, labels and limitations.",
+        "angles": [
+          "All tag labels and token pairing",
+          "Lowercasing and retention of stopwords",
+          "POS action/object/property/spatial hints are not a complete plan",
+          "Dependency and exact runtime output checks"
+        ]
+      }
+    }
+  },
+  "1461": {
+    "footer": "22",
+    "disposition": "examinable",
+    "notes": "Code and output discrepancy actually visible: command2 begins capital Pick and word_tokenize(command2) has no .lower(), while displayed first token is lowercase pick. Both source prose and output label light NN, with intended lightweight reading requiring adjective JJ. Alternative lamp noun interpretation and model dependence must be distinguished; do not claim current runtime reproduces the screenshot before executing.",
+    "inspectedAt": "2026-10-19T22:05:30Z",
+    "concepts": {
+      "pos-ambiguity": {
+        "title": "POS ambiguity and source output provenance",
+        "description": "POS ambiguity and source output provenance.",
+        "angles": [
+          "Capitalized code versus lowercased displayed token",
+          "Intended adjective versus noun prediction",
+          "POS cannot guarantee intended sense",
+          "Model/resource-version dependence"
+        ]
+      }
+    }
+  },
+  "1462": {
+    "footer": "23",
+    "disposition": "examinable",
+    "notes": "Entire NER code and tree read: word_tokenize then pos_tag then ne_chunk on Go to Lab3 and meet Mary.; printed tree GPE Lab3/NNP and PERSON Mary/NNP. Right legend S/VB/TO/GPE/NNP/CC/PERSON/punctuation. Source says GPE closest location category; a lab is not necessarily geopolitical and prediction does not establish ontology or physical coordinates. Linked full-code URL resolves only repository root.",
+    "inspectedAt": "2026-10-19T22:05:30Z",
+    "concepts": {
+      "ner-code": {
+        "title": "NER entity tree and robotic grounding",
+        "description": "NER entity tree and robotic grounding.",
+        "angles": [
+          "Exact token/POS/chunk pipeline",
+          "POS NN/NNP versus entity PERSON/GPE distinctions",
+          "Reported Lab3/Mary labels versus version-dependent predictions",
+          "Category recognition versus coordinate grounding",
+          "Displayed GPE label is not a geographical fact"
+        ]
+      }
+    }
+  },
+  "1463": {
+    "footer": "24",
+    "disposition": "examinable",
+    "notes": "Text classification assigns predefined category to entire text; robotics intent classification triggers task class. Examples charger→Navigation, stop immediately→Emergency, lift small crate→Manipulation are task taxonomy, not universal unique labels.",
+    "inspectedAt": "2026-10-19T22:05:30Z",
+    "concepts": {
+      "intent": {
+        "title": "Intent classification and command-level categories",
+        "description": "Intent classification and command-level categories.",
+        "angles": [
+          "Classification unit versus POS/NER units",
+          "All three example mappings",
+          "Recognizing words versus selecting task intent"
+        ]
+      }
+    }
+  },
+  "1464": {
+    "footer": "25",
+    "disposition": "examinable",
+    "notes": "All three task definitions and application examples viewed: sentiment with sarcastic Great job after failure; machine translation for multilingual airports; question answering from a knowledge base with robot mobile interface. Not all QA must be extractive; source example is explicitly knowledge-base answering.",
+    "inspectedAt": "2026-10-19T22:06:30Z",
+    "concepts": {
+      "core-tasks": {
+        "title": "Sentiment, translation and question answering",
+        "description": "Sentiment, translation and question answering.",
+        "angles": [
+          "Task/output distinctions",
+          "Contextual negative sentiment despite positive surface words",
+          "Airport translation versus answering known information"
+        ]
+      }
+    }
+  },
+  "1465": {
+    "footer": "26",
+    "disposition": "examinable",
+    "notes": "All ASR bullets and five-box diagram viewed. Human speech→ASR speech-to-text→NLP extraction→robot planning→execution. NLP includes preprocessing/vectorization/intent/context. Whisper listed as STT example. ASR task output is a transcript, not by itself a grounded executable plan; source claim no language understanding is task-level simplification, not proof models use no context.",
+    "inspectedAt": "2026-10-19T22:06:30Z",
+    "concepts": {
+      "asr": {
+        "title": "ASR and end-to-end HRI stages",
+        "description": "ASR and end-to-end HRI stages.",
+        "angles": [
+          "Transcription versus translation versus synthesis",
+          "Diagram stage order and NLP substeps",
+          "Transcript correctness versus safe grounded execution",
+          "Whisper as lecture example, not API usage"
+        ]
+      }
+    }
+  },
+  "1466": {
+    "footer": "27",
+    "disposition": "examinable",
+    "notes": "Traditional NLP limitations and cluttered-shelf pronoun example viewed. Listed long instructions, multiple objects, pronouns/references and complex planning. Broad word-by-word and forgetting characterizations must be bounded to systems with limited contextual modeling, not every historical model.",
+    "inspectedAt": "2026-10-19T22:06:30Z",
+    "concepts": {
+      "context-limits": {
+        "title": "Context and reference limitations",
+        "description": "Context and reference limitations.",
+        "angles": [
+          "Object relationships, context and instruction sequence",
+          "Pronoun ambiguity is not a tokenization failure",
+          "Traditional-versus-transformer teaching comparison is not universal"
+        ]
+      }
+    }
+  },
+  "1467": {
+    "footer": "28",
+    "disposition": "examinable",
+    "notes": "Both attention diagrams actually viewed. Bold strongest schematic arrow links shelf to it in cluttered sentence, robot to it in low-battery sentence. Pale arrows do not provide numerical normalized weights. Text describes surrounding context and attention; common-sense referents are intended examples, not guaranteed inference for every possible world.",
+    "inspectedAt": "2026-10-19T22:06:30Z",
+    "concepts": {
+      "attention": {
+        "title": "Attention and context-dependent reference",
+        "description": "Attention and context-dependent reference.",
+        "angles": [
+          "Paired pronoun antecedents",
+          "Arrow boldness as qualitative relation strength",
+          "No exact numerical weights from schematic",
+          "Context versus fixed nearest-noun rule"
+        ]
+      }
+    }
+  },
+  "1468": {
+    "footer": "29",
+    "disposition": "examinable",
+    "notes": "Attention can learn importance/relations/focus; C1 slots move action, robot moved object, shelf spatial context. Linking words tracks references and relations. Text-data and parameter scaling described as path to LLMs; not a necessary-and-sufficient threshold definition.",
+    "inspectedAt": "2026-10-19T22:06:30Z",
+    "concepts": {
+      "attention": {
+        "title": "Attention and context-dependent reference",
+        "description": "Attention and context-dependent reference.",
+        "angles": [
+          "Action/object/spatial-context role mapping",
+          "Transformer architecture versus model scale/training data"
+        ]
+      }
+    }
+  },
+  "1469": {
+    "footer": "30",
+    "disposition": "examinable",
+    "notes": "Entire LLM slide and probability table viewed. Definition/tasks/examples, transformer architecture and context→next-token→token-by-token generation. Diagram input pick, candidate up .57, and .35, your .15, it .07 with ellipsis; these four labeled probabilities already sum to 1.14, impossible for mutually exclusive next-token distribution. Preserve as-printed ranking, distinguish explicitly renormalized supplied weight exercise; ellipsis cannot fix excess mass.",
+    "inspectedAt": "2026-10-19T22:06:30Z",
+    "concepts": {
+      "llm-generation": {
+        "title": "LLM generation and probability consistency",
+        "description": "LLM generation and probability consistency.",
+        "angles": [
+          "Word/subword token versus full word only",
+          "Context-conditioned next-token process",
+          "Highest printed score versus sampled choice",
+          "As-printed four probabilities sum to 1.14",
+          "Repair requires explicit assumption, not silent normalization"
+        ]
+      }
+    }
+  },
+  "1470": {
+    "footer": "31",
+    "disposition": "examinable",
+    "notes": "All LLM capability/risk bullets and four-box diagram viewed. Flexible commands, conversation, multi-step plans, explanations and clarification. Human command→LLM→robot planning→robot action. Hallucinated information and misunderstood instructions can create unsafe physical actions. Do not turn contested truly understand phrase into objective consciousness claim.",
+    "inspectedAt": "2026-10-19T22:07:00Z",
+    "concepts": {
+      "llm-robotics": {
+        "title": "LLM robotic assistance and limits",
+        "description": "LLM robotic assistance and limits.",
+        "angles": [
+          "Five assistance roles",
+          "Language output versus plan and physical action",
+          "Clarification and validation versus unsupported execution",
+          "Hallucination and instruction misinterpretation"
+        ]
+      }
+    }
+  },
+  "1471": {
+    "footer": "32",
+    "disposition": "examinable",
+    "notes": "VLM image+text diagram and all bullets viewed. Illustrated ViT produces mapped visual tokens for language processing; not every VLM must have this exact backbone. Mug image plus red-object question; labels mug .78,cup .15,desk .04,pencil .02 with ellipsis (sum .99, possible .01 omitted mass). Listed model names are source examples not current benchmark/ranking.",
+    "inspectedAt": "2026-10-19T22:07:00Z",
+    "concepts": {
+      "vlm": {
+        "title": "Vision-language input and illustrated architecture",
+        "description": "Vision-language input and illustrated architecture.",
+        "angles": [
+          "Image plus text conditioning",
+          "ViT/visual-token mapping in depicted design",
+          "Highest printed candidate versus full distribution residual",
+          "Vision-language answer versus robotic action",
+          "Examples are lecture-version examples"
+        ]
+      }
+    }
+  },
+  "1472": {
+    "footer": "33",
+    "disposition": "examinable",
+    "notes": "VLA diagram and text actually viewed. Mug image and pick up instruction; VLM Encoder and Action Prediction Head inside VLA; next embodied state after execution and visual update. Joint angles/end-effector positions discretized in many designs, not universal necessity; movement like a word is representation analogy, not equivalence of safety/semantics. Figure object-label probabilities .65,.10,.04,.02 with ellipses are not calibrated joint coordinates. Examples RT-2 and OpenVLA.",
+    "inspectedAt": "2026-10-19T22:07:00Z",
+    "concepts": {
+      "vla": {
+        "title": "Vision-language-action and embodied state",
+        "description": "Vision-language-action and embodied state.",
+        "angles": [
+          "VLM versus VLA outputs",
+          "Encoder/action head/next-state diagram",
+          "Continuous action discretization with supplied explicit units and bins",
+          "Representation analogy versus actuator execution/safety",
+          "RT-2 and OpenVLA source examples"
+        ]
+      }
+    }
+  },
+  "1473": {
+    "footer": "34",
+    "disposition": "repeated",
+    "incrementalChangesChecked": true,
+    "repeatsSlideIds": [
+      "lectures-p1443",
+      "lectures-p1446",
+      "lectures-p1466",
+      "lectures-p1467",
+      "lectures-p1469",
+      "lectures-p1471",
+      "lectures-p1472"
+    ],
+    "notes": "All summary bullets viewed and compared. Listed pipeline components not explicitly ordered and must not override earlier arrow diagram. Context and transformer broad claims repeat prior simplifications. No new code, equation, worked example or unique concept.",
+    "inspectedAt": "2026-10-19T22:07:00Z",
+    "concepts": {
+      "nlp-hri": {
+        "title": "NLP scope and human–robot language interface",
+        "description": "NLP addresses linguistic structure, meaning and context in written/spoken input and generated responses.",
+        "angles": [
+          "Definition versus acoustic transcription alone",
+          "Diagram roles: speech recognition, language understanding and response generation",
+          "Written and spoken forms, not only speech"
+        ]
+      },
+      "pipeline": {
+        "title": "Conceptual NLP and preprocessing pipeline",
+        "description": "Ordered teaching pipeline and implementation flexibility.",
+        "angles": [
+          "Full six-stage figure order",
+          "Five preprocessing-step order",
+          "NLTK name and role",
+          "Conceptual stages need not be isolated modules"
+        ]
+      },
+      "context-limits": {
+        "title": "Context and reference limitations",
+        "description": "Context and reference limitations.",
+        "angles": [
+          "Object relationships, context and instruction sequence",
+          "Pronoun ambiguity is not a tokenization failure",
+          "Traditional-versus-transformer teaching comparison is not universal"
+        ]
+      },
+      "attention": {
+        "title": "Attention and context-dependent reference",
+        "description": "Attention and context-dependent reference.",
+        "angles": [
+          "Paired pronoun antecedents",
+          "Arrow boldness as qualitative relation strength",
+          "No exact numerical weights from schematic",
+          "Context versus fixed nearest-noun rule"
+        ]
+      },
+      "llm-generation": {
+        "title": "LLM generation and probability consistency",
+        "description": "LLM generation and probability consistency.",
+        "angles": [
+          "Word/subword token versus full word only",
+          "Context-conditioned next-token process",
+          "Highest printed score versus sampled choice",
+          "As-printed four probabilities sum to 1.14",
+          "Repair requires explicit assumption, not silent normalization"
+        ]
+      },
+      "vlm": {
+        "title": "Vision-language input and illustrated architecture",
+        "description": "Vision-language input and illustrated architecture.",
+        "angles": [
+          "Image plus text conditioning",
+          "ViT/visual-token mapping in depicted design",
+          "Highest printed candidate versus full distribution residual",
+          "Vision-language answer versus robotic action",
+          "Examples are lecture-version examples"
+        ]
+      },
+      "vla": {
+        "title": "Vision-language-action and embodied state",
+        "description": "Vision-language-action and embodied state.",
+        "angles": [
+          "VLM versus VLA outputs",
+          "Encoder/action head/next-state diagram",
+          "Continuous action discretization with supplied explicit units and bins",
+          "Representation analogy versus actuator execution/safety",
+          "RT-2 and OpenVLA source examples"
+        ]
+      }
+    }
+  },
+  "1474": {
+    "footer": "35",
+    "disposition": "excluded",
+    "exclusionReason": "Reference-only page, no independent examinable course claim.",
+    "notes": "Full reference viewed: Jurafsky and Martin, 2026, Speech and Language Processing 3rd edition, online manuscript January 6 2026, Stanford URL.",
+    "inspectedAt": "2026-10-19T22:07:00Z"
+  },
+  "1475": {
+    "footer": "36",
+    "disposition": "excluded",
+    "exclusionReason": "Closing page, no substantive content.",
+    "notes": "Thank You closing page and footer actually viewed.",
+    "inspectedAt": "2026-10-19T22:07:00Z"
+  }
+}

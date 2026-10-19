@@ -1,0 +1,980 @@
+{
+  "reviewerId": "independent-reviewer-robotics-batches-v2",
+  "frozenAt": "2026-10-19T21:53:03.028099+00:00",
+  "packet": "audits/blind-W09-L43.json",
+  "packetSha256": "3d34c35ed518834082d8f8f443b4c941633fe6f3f4ab91e0d397da06b92e1f71",
+  "keyedAuthorBatchOpened": false,
+  "authorChecksOpened": false,
+  "sourceCodeRead": "sources/supplemental/L43-official-code.py",
+  "sourcePages": [
+    {
+      "physicalPage": 1340,
+      "printedSlideNumber": "1",
+      "preview": "sources/previews/lectures/page-1340.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Title Implementing Neural Networks for Navigation, Lecture43, printed1."
+    },
+    {
+      "physicalPage": 1341,
+      "printedSlideNumber": "2",
+      "preview": "sources/previews/lectures/page-1341.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Contents/roadmap, printed2, not standalone concepts."
+    },
+    {
+      "physicalPage": 1342,
+      "printedSlideNumber": "3",
+      "preview": "sources/previews/lectures/page-1342.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Six-row schematic evolution timeline: rules/maps1980s,ANN1990s,CNN2012,Transformers2017,VLM2021,foundation2023+."
+    },
+    {
+      "physicalPage": 1343,
+      "printedSlideNumber": "4",
+      "preview": "sources/previews/lectures/page-1343.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Navigation examples and perceive/locate/plan/execute responsibilities; photos illustrative."
+    },
+    {
+      "physicalPage": 1344,
+      "printedSlideNumber": "5",
+      "preview": "sources/previews/lectures/page-1344.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Hand rules versus data learning, maps/adaptation claims qualitative; nonlinear mapping and parallel processing listed."
+    },
+    {
+      "physicalPage": 1345,
+      "printedSlideNumber": "6",
+      "preview": "sources/previews/lectures/page-1345.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Closed loop Environment→Perception→Localization/map→Cognition/path→Motioncontrol→Environment; localmap,position/map,path labels; task arrow."
+    },
+    {
+      "physicalPage": 1346,
+      "printedSlideNumber": "7",
+      "preview": "sources/previews/lectures/page-1346.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Two-branch taxonomy; classical four leaves and heuristic ANN/Fuzzy/NatureInspired/Hybrid; ANN supports perception,planning,decisions."
+    },
+    {
+      "physicalPage": 1347,
+      "printedSlideNumber": "8",
+      "preview": "sources/previews/lectures/page-1347.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Six sensor categories;2-3-1network; discrete classes versus continuous angle/speed."
+    },
+    {
+      "physicalPage": 1348,
+      "printedSlideNumber": "9",
+      "preview": "sources/previews/lectures/page-1348.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Same2-3-1diagram, added input/hidden/output roles and complex decisions from combined simple neurons."
+    },
+    {
+      "physicalPage": 1349,
+      "printedSlideNumber": "10",
+      "preview": "sources/previews/lectures/page-1349.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "4-10-3-1steeringnetwork;LOD/FOD/ROD/TA;TA heading-to-goal;10red3blueunits."
+    },
+    {
+      "physicalPage": 1350,
+      "printedSlideNumber": "11",
+      "preview": "sources/previews/lectures/page-1350.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Three labeled rows .3/.1/.8Right→Right;.7/1.2/.6Forward→Forward;.2/.2/.2Forward→Stop; supervised training."
+    },
+    {
+      "physicalPage": 1351,
+      "printedSlideNumber": "12",
+      "preview": "sources/previews/lectures/page-1351.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Collect→Predict→Error→Update cycle, repetition returns to prediction."
+    },
+    {
+      "physicalPage": 1352,
+      "printedSlideNumber": "13",
+      "preview": "sources/previews/lectures/page-1352.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "MLP,CNN,RNN/LSTM,Transformer input/application table; conditional architecture choice."
+    },
+    {
+      "physicalPage": 1353,
+      "printedSlideNumber": "14",
+      "preview": "sources/previews/lectures/page-1353.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "CNN diagram256x256x3input,8/16/32/64channels,512/128dense,32Softmax;W1Right/Up...W8Down;coloredlegend;scene feature list."
+    },
+    {
+      "physicalPage": 1354,
+      "printedSlideNumber": "15",
+      "preview": "sources/previews/lectures/page-1354.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Pseudocode localteacher,6-16-4network,supervisedtraining,legal-scoredeployment;linkofficialcode."
+    },
+    {
+      "physicalPage": 1355,
+      "printedSlideNumber": "16",
+      "preview": "sources/previews/lectures/page-1355.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "4x5maze,START0,0 GOAL3,4 walls0,1/2,3/3,0; coordinatesy,x;feature/actionordering."
+    },
+    {
+      "physicalPage": 1356,
+      "printedSlideNumber": "17",
+      "preview": "sources/previews/lectures/page-1356.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "16 explicit vectors/one-hot labels;Manhattan teacher and R,D,L,U preference; shortestrouteproseoverbroad."
+    },
+    {
+      "physicalPage": 1357,
+      "printedSlideNumber": "18",
+      "preview": "sources/previews/lectures/page-1357.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Eight-positionpath,7steps;validactionselection; changes of start/goal/walls notguaranteedtransfer."
+    },
+    {
+      "physicalPage": 1358,
+      "printedSlideNumber": "19",
+      "preview": "sources/previews/lectures/page-1358.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Five benefit/challenge rows: data,complexity,noise,features,moredata versus dataset/compute/explainability/quality/unseen."
+    },
+    {
+      "physicalPage": 1359,
+      "printedSlideNumber": "20",
+      "preview": "sources/previews/lectures/page-1359.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Classical-neuralqualitativecomparison;no universalbest;hybridcomponents."
+    },
+    {
+      "physicalPage": 1360,
+      "printedSlideNumber": "21",
+      "preview": "sources/previews/lectures/page-1360.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Driving perception and steering tasks;Tesla/Waymo/Cruise sourceexamples notcurrentstatusclaims;illustrativephoto."
+    },
+    {
+      "physicalPage": 1361,
+      "printedSlideNumber": "22",
+      "preview": "sources/previews/lectures/page-1361.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Camera/LiDAR/Ultrasonic/IMU/GPS table;bluecamera,purpleRadar/LiDAR,orangeUltrasound coverage diagram; severalqualitativefunctions."
+    },
+    {
+      "physicalPage": 1362,
+      "printedSlideNumber": "23",
+      "preview": "sources/previews/lectures/page-1362.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Indoor delivery/warehouse/service/hospital examples;Camera→CNN→Detection→Safeplanning;corridor,obstacle,human,follow,door tasks."
+    },
+    {
+      "physicalPage": 1363,
+      "printedSlideNumber": "24",
+      "preview": "sources/previews/lectures/page-1363.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Crowd/collision/human/safeapproach/fusion;Pepper,Figure,UnitreeG1 illustrativeexamples."
+    },
+    {
+      "physicalPage": 1364,
+      "printedSlideNumber": "25",
+      "preview": "sources/previews/lectures/page-1364.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Dynamicobstacles,lighting,weather,noise,compute,realtime constraints."
+    },
+    {
+      "physicalPage": 1365,
+      "printedSlideNumber": "26",
+      "preview": "sources/previews/lectures/page-1365.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "ViT,VLM,foundationmultitask,multimodal,embodiedfuturelist."
+    },
+    {
+      "physicalPage": 1366,
+      "printedSlideNumber": "27",
+      "preview": "sources/previews/lectures/page-1366.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Summary repeats navigationstages,NNmapping,architectureroles,applications,hybrid and future directions; no unique increment."
+    },
+    {
+      "physicalPage": 1367,
+      "printedSlideNumber": "28",
+      "preview": "sources/previews/lectures/page-1367.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "References1–5 only."
+    },
+    {
+      "physicalPage": 1368,
+      "printedSlideNumber": "29",
+      "preview": "sources/previews/lectures/page-1368.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Reference6 only."
+    },
+    {
+      "physicalPage": 1369,
+      "printedSlideNumber": "30",
+      "preview": "sources/previews/lectures/page-1369.webp",
+      "dimensions": [
+        1800,
+        1013
+      ],
+      "observation": "Thankyou only."
+    }
+  ],
+  "answers": [
+    {
+      "questionId": "W09-L43-Q001",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "Schematic timeline pairs CNN with visual feature learning and VLM with image-language understanding, not strict invention dates.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q002",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "Localization estimates position; perception extracts information, planning chooses a route, control executes it.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q003",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "The comparison is qualitative, not a universal theorem about maps, compute, or generalization.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": "Distractors: three categorical proofs versus sole qualified answer cue."
+    },
+    {
+      "questionId": "W09-L43-Q004",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "Arrow from cognition/planning to motion control is labeled Path.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q005",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "Task/Mission arrow enters cognition and path planning.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q006",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "ANN sits under heuristic-based algorithms; classical branch has cell decomposition, potential field, sampling and subgoal networks.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q007",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "Count two sensor inputs, three orange intermediate nodes and one command output.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q008",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "Weights are 2*3+3*1=9 without biases.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": "Difficulty: direct2*3+3*1count is easy."
+    },
+    {
+      "questionId": "W09-L43-Q009",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A real-valued steering angle is regression; named movement actions are classes.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q010",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "TA is heading-to-goal direction angle, not sensor separation or obstacle distance.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": "Distractors mix time/distance with an angle definition; retain plausible angular-reference alternatives."
+    },
+    {
+      "questionId": "W09-L43-Q011",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "Weights 4*10+10*3+3*1=73; biases10+3+1=14; total87.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q012",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "The specified table row explicitly carries Turn Right.",
+      "solvedBeforeAnswerSeen": false,
+      "exposure": "Source table explicitly displays this row label.",
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q013",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "Three labeled rows constrain only these examples and do not uniquely define a complete function or prove generalization.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q014",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "Prediction precedes error calculation, gradients and weight update.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q015",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "MLP accepts sensor features, CNN images, and RNN/LSTM temporal sequences in this table.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q016",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Read 128x128x16 immediately following 256x256x8; later stages64x64x32 and32x32x64.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q017",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "W1-Right/W1-Up through W8-Down are waypoint-direction classes, not continuous wheel or position coordinates.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": "Distractors all continuous unrelated vectors against literally named directionclasses."
+    },
+    {
+      "questionId": "W09-L43-Q018",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "Red max-pooling stages reduce spatial grids; ReLU is pointwise and Softmax is at the output.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q019",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "4*5-3-1=16 free non-goal training cells.",
+      "solvedBeforeAnswerSeen": false,
+      "exposure": "Source p1356 prints16samples.",
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q020",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "featurize concatenates r/ROWS,c/COLS then wall bits in ACTIONS order Up,Down,Left,Right.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q021",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "At start, r=c=0, Up and Left off-grid and Right wall; [0,0,1,0,1,1].",
+      "solvedBeforeAnswerSeen": false,
+      "exposure": "Source p1356 prints this complete feature vector.",
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q022",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "3/4=.75 and4/5=.8; normalization is by counts, not largest valid index.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q023",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "Action index order U,D,L,R differs from preference indices[3,1,2,0]=R,D,L,U.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q024",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "Right is the first preferred legal distance-reducing neighbor at(1,1).",
+      "solvedBeforeAnswerSeen": false,
+      "exposure": "Source p1356 prints this cell label.",
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q025",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Right is blocked at(2,2); Down reduces distance and is next preferred.",
+      "solvedBeforeAnswerSeen": false,
+      "exposure": "Source p1356 prints this cell label.",
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q026",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "The teacher inspects adjacent legal distance-reducing cells in preference order; it has no search frontier or global route computation.",
+      "solvedBeforeAnswerSeen": false,
+      "exposure": "Parent handoff disclosed local-greedy-not-search distinction.",
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q027",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "At(0,0), Right is blocked and Down changes Manhattan2 to3. Teacher returnsNone although Down,Right,Right,Up reaches the goal in4 moves.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q028",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "Changing one integer coordinate by1 changes its absolute goal offset by exactly+1 or-1; the other offset is constant, so equality cannot occur.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q029",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "Only Right and Down appear as training labels; matching this set alone supplies no direct test of correct Up/Left classification.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": "Distractors outputwidth/reachablecells/balancedclaim are weak given explicit classcounts."
+    },
+    {
+      "questionId": "W09-L43-Q030",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Read Linear6to16,ReLU,Linear16to4 in NavNet.",
+      "solvedBeforeAnswerSeen": false,
+      "exposure": "Parent handoff disclosed exact6to16to4architecture.",
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q031",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "Weights96+64=160; biases16+4=20; total180.",
+      "solvedBeforeAnswerSeen": false,
+      "exposure": "Parent handoff disclosed180parameters.",
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q032",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "ReLU is max(0,x), producing[0,0,3].",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q033",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The last layer is Linear without softmax; its four outputs are logits.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q034",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "y_t=torch.from_numpy(y).long() is supplied to CrossEntropyLoss; displayed one-hot vectors are not these targets.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q035",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "The loop clears gradients then computes logits/loss, backpropagates, and performs the optimizer step.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q036",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "A teacher supplies action labels and loss fits those labels; grid movement alone does not imply reinforcement learning.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": "Distractors hiddenlayer/grid/fouractions are not competing learning mechanisms."
+    },
+    {
+      "questionId": "W09-L43-Q037",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "The decorator disables autograd recording for the function; it is not eval(), zero_grad() or permanent requires_grad mutation.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q038",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "At start only Down is legal, so score9 for blocked Right is excluded and Down3 is chosen.",
+      "solvedBeforeAnswerSeen": false,
+      "exposure": "Parent handoff disclosed legal-actionmask; independently computed new scores.",
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q039",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "Navigation only computes scores and changes coordinates; it has no optimizer step or parameter assignment.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q040",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "Eight positions define seven transitions; the printed result independently agrees.",
+      "solvedBeforeAnswerSeen": false,
+      "exposure": "Parent handoff and source disclose7steps.",
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q041",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "Any four-neighbor route needs at least3 vertical and4 horizontal moves; the shown legal7-move route attains7, proving optimality for this maze only.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": "Distractors16units/accuracy/stepcap are unrelated optimality proofs; also short lower-bound check may be easy."
+    },
+    {
+      "questionId": "W09-L43-Q042",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "featurize reads row,col,dimensions and wall occupancy, not GOAL; holding these fixed preserves its vector.",
+      "solvedBeforeAnswerSeen": false,
+      "exposure": "Parent handoff disclosed no goal input features.",
+      "preKeyQualityConcern": "Distractors automaticfeaturelengthchange and wallbitconversion are implausible."
+    },
+    {
+      "questionId": "W09-L43-Q043",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "100% training accuracy means predictions agree with this training label set, not new maps, goals or physical safety.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": "Three unqualified newmaze/safety/newgoal guarantees versus narrowly bounded answer."
+    },
+    {
+      "questionId": "W09-L43-Q044",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "An empty list passed to max without default raisesValueError; code has no empty-valid handler.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q045",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "range(max_steps) caps attempted moves; goal check can terminate early and the cap is no success or shortest-path proof.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q046",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "TRAIN_FRAMES30+len(path)8=38 animationframes; pathincludesstart, so neither38 nor8 is robot move count.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": "Distractors maze-size/route-count unrelated to clear frame arithmetic."
+    },
+    {
+      "questionId": "W09-L43-Q047",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "Learning nonlinear maps from data is a possible benefit, while noise immunity and universal interpretability/generalization are not assured.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": "Three unqualified interpretability/noevaluation/noiseimmunity promises against qualified canlearn."
+    },
+    {
+      "questionId": "W09-L43-Q048",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "Changed lighting/crowding require representative deployment testing, not substitution of old training accuracy.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": "Wrong options discard sensors or substitute metadata/oldtrainingaccuracy, no plausible evaluation choices."
+    },
+    {
+      "questionId": "W09-L43-Q049",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Learned perception supplying a conventional planner is hybrid; fully learned end-to-end and fully classical designs are different.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q050",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "Pedestrian detection is perception, unlike executing steering/braking/speed commands.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q051",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Camera visualappearance, LiDAR range, ultrasound nearbyobstacles, GPS outdoorposition match the table.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q052",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "IMU inertial measurements support modeled orientation/motion estimation; absolute drift-free orientation is not a raw guaranteed measurement.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q053",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "The legend maps bluecamera,purpleRadar/LiDAR,orangeultrasound regions; no numerical range/calibration/weather probabilities shown.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": "No real legend trace: asks what canberead, contrasted with unshown calibration/range/probability."
+    },
+    {
+      "questionId": "W09-L43-Q054",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "Diagram chain is Camera,CNN,ObjectDetection,NavigateSafely.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q055",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "Fusion combines complementary sensor information, rather than selecting one or merely displaying independent streams.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q056",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "x=x0+v*dt=2+1*.5=2.5m in the explicitly added fixed-frame constantvelocityexample.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q057",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "Vision transformers learn scene/image-region relationships; not a nonvisual motor-current-only model or fixed threshold/graphsearch.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": "Wrong options exclude vision/use fixed thresholds/graphfrontier, not close learned-vision alternatives."
+    },
+    {
+      "questionId": "W09-L43-Q058",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "Using an image together with a natural-language goal is vision-language conditioning.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q059",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "Embodied learning includes actions and resulting environmental interaction, not only static stored-data labeling.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    },
+    {
+      "questionId": "W09-L43-Q060",
+      "version": 1,
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "Representative accuracy,latency,resources and failure behavior all matter; isolated training accuracy or unrelated-hardware speed is insufficient.",
+      "solvedBeforeAnswerSeen": true,
+      "exposure": null,
+      "preKeyQualityConcern": null
+    }
+  ],
+  "coverageCandidates": [
+    "Foundation-model multitask role in1342/1365 not tested; extendexistingfutureitem.",
+    "CNN remaining stage labels/denseSoftmax32 and allcoloredlegend not tested; extendexistingdiagram ratherthan redundantone-sizeitems.",
+    "Sensorcoverageactualcolor/functiontrace nottestedQ53; scope qualitative not numericalrange.",
+    "Network roles/input-hidden-output may require explicit mapping ratherthan onlywidth count; inspectsolutions beforefinalgap.",
+    "Weather/noise/interpretability/perceptionfeatures may be covered in explanations; inspectbeforedeclaringgap."
+  ]
+}

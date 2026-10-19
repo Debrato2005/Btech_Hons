@@ -1,0 +1,138 @@
+[
+  {
+    "id": "L46-ISSUE-vocabulary",
+    "physicalPage": 1447,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The vocabulary is defined as unique words but its displayed example repeats the.",
+    "handling": "Treat the list as eight token occurrences and deduplicate to seven types for vocabulary.",
+    "method": "Count the displayed occurrences and distinct strings directly.",
+    "status": "explicitly_scoped_pending_independent_review",
+    "primaryReferences": []
+  },
+  {
+    "id": "L46-ISSUE-normalization-scope",
+    "physicalPage": 1448,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "Stopword removal and normalization are described as making action recognition easier.",
+    "handling": "This is task dependent; dropping meaningful particles or negation can discard command information.",
+    "method": "Trace the stated transformation and compare the retained information, without claiming universal performance gains.",
+    "status": "explicitly_scoped_pending_independent_review",
+    "primaryReferences": []
+  },
+  {
+    "id": "L46-ISSUE-lemma-criterion",
+    "physicalPage": 1450,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The heading says lemmatization is better than stemming.",
+    "handling": "For studies the lexical lemma is study while the Porter stem is studi; superiority depends on the task and criterion.",
+    "method": "Compare the exact reported output strings and distinguish lexical validity from a universal accuracy claim.",
+    "status": "explicitly_scoped_pending_independent_review",
+    "primaryReferences": []
+  },
+  {
+    "id": "L46-ISSUE-tfidf-conventions",
+    "physicalPage": 1457,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The preceding normalized-TF and unsmoothed-IDF equations do not directly produce the displayed default TfidfVectorizer table.",
+    "handling": "Use explicit separate conventions: printed count/length times ln(N/df), or sklearn raw count times [ln((1+N)/(1+df))+1], followed by L2 normalization.",
+    "method": "Execute sklearn 1.8.0 and independently reconstruct its weights from counts and document frequencies.",
+    "status": "explicitly_scoped_pending_independent_review",
+    "primaryReferences": [
+      "https://scikit-learn.org/1.8/modules/feature_extraction.html#tfidf-term-weighting"
+    ]
+  },
+  {
+    "id": "L46-ISSUE-embedding-training",
+    "physicalPage": 1458,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The slide groups Word2Vec and GloVe as neural networks that use cosine similarity to place words and calls them the most modern approach.",
+    "handling": "Treat dense embeddings and cosine comparison as the course concepts. GloVe is a global log-bilinear co-occurrence model, and cosine comparison is not its full training rule; no timeless newest-method claim.",
+    "method": "Compare the source bullet with the original GloVe abstract and learning objective, and separately analyze the printed cosine definition.",
+    "status": "explicitly_scoped_pending_independent_review",
+    "primaryReferences": [
+      "https://nlp.stanford.edu/pubs/glove.pdf"
+    ]
+  },
+  {
+    "id": "L46-ISSUE-pos-output-case",
+    "physicalPage": 1461,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The code tokenizes capitalized Pick without lowercasing, but its displayed output begins lowercase pick.",
+    "handling": "Distinguish as-printed code from as-displayed output. The intended adjective and reported NN prediction are discussed without asserting fresh model reproduction.",
+    "method": "Trace string case through tokenization; inspect original notebook cell 24, which uses different examples. No corpus-dependent execution claimed.",
+    "status": "explicitly_scoped_pending_independent_review",
+    "primaryReferences": []
+  },
+  {
+    "id": "L46-ISSUE-ner-label-scope",
+    "physicalPage": 1462,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "Lab3 is displayed as GPE and described as the closest category to location.",
+    "handling": "This is a reported model label, not proof that the laboratory is a geopolitical entity or that all locations map to GPE.",
+    "method": "Read the printed tree and original notebook cell 27, which explicitly notes Lab3 is not exactly a GPE.",
+    "status": "explicitly_scoped_pending_independent_review",
+    "primaryReferences": []
+  },
+  {
+    "id": "L46-ISSUE-traditional-scope",
+    "physicalPage": 1466,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "Traditional NLP is broadly described as word-by-word and forgetting earlier context.",
+    "handling": "Use a limited-context system as the stated scenario; do not assert every pre-transformer method ignores context.",
+    "method": "Qualify the class of systems in the question rather than treating a pedagogical contrast as an exhaustive historical theorem.",
+    "status": "explicitly_scoped_pending_independent_review",
+    "primaryReferences": []
+  },
+  {
+    "id": "L46-ISSUE-probability-sum",
+    "physicalPage": 1469,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The next-token diagram labels up .57, and .35, your .15 and it .07 as probabilities for one context.",
+    "handling": "Their sum is 1.14, invalid even as a partial mutually exclusive distribution. Ranking is readable; any normalized four-weight example must be explicitly supplied as a repair.",
+    "method": "Add the four printed numbers exactly as rational values and use nonnegative probability mass constraints.",
+    "status": "explicitly_scoped_pending_independent_review",
+    "primaryReferences": []
+  },
+  {
+    "id": "L46-ISSUE-understanding-wording",
+    "physicalPage": 1470,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The slide says LLMs do not truly understand human language.",
+    "handling": "Assess operational capabilities and hallucination/misinterpretation risks; do not turn an undefined philosophical phrase into a theorem about consciousness.",
+    "method": "Use the explicit capability/risk bullets and separate model output from planning and physical validation.",
+    "status": "explicitly_scoped_pending_independent_review",
+    "primaryReferences": []
+  },
+  {
+    "id": "L46-ISSUE-vlm-architecture-scope",
+    "physicalPage": 1471,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The VLM description presents a ViT backbone and mapped visual tokens as its architecture.",
+    "handling": "Describe the illustrated design, not a universal requirement for every VLM or every listed proprietary model.",
+    "method": "Limit the question to the displayed image/text diagram and stated architectural example.",
+    "status": "explicitly_scoped_pending_independent_review",
+    "primaryReferences": []
+  },
+  {
+    "id": "L46-ISSUE-action-token-analogy",
+    "physicalPage": 1472,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "finding": "The text compares discrete action tokens to words and says VLAs often tokenize continuous actions.",
+    "handling": "This is a representation analogy and a common design choice, not a proof that all VLAs are discrete or physical movement equals language generation.",
+    "method": "Preserve often, interpret the action-head and next-state diagram, and supply explicit bins and units only for generated numerical variants.",
+    "status": "explicitly_scoped_pending_independent_review",
+    "primaryReferences": []
+  }
+]

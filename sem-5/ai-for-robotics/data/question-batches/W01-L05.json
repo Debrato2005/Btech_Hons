@@ -100,13 +100,13 @@
     },
     {
       "id": "W01-L05-Q-002",
-      "version": 1,
+      "version": 3,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
-      "stem": "The ecosystem card advertises package/user counts and the cross-platform card names ROS 2 host platforms. Which conclusion is justified by that slide alone?",
+      "stem": "Which interpretation matches the ecosystem and cross-platform cards as course feature descriptions, rather than a current inventory or universal compatibility certificate?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "conceptual",
       "week": 1,
       "lectureId": "L05",
@@ -124,19 +124,19 @@
       "options": [
         {
           "id": "o3",
-          "text": "Every third-party package has one identical license and works on every platform"
+          "text": "Ecosystem counts certify every package on every host; cross-platform guarantees identical drivers on those hosts"
         },
         {
           "id": "o4",
-          "text": "A package count proves that an arbitrary robot meets its safety requirements"
+          "text": "Ecosystem means every package is maintained by the core ROS team; cross-platform means the same compiled executable runs unchanged on every host"
         },
         {
           "id": "o1",
-          "text": "Every listed count is a verified measurement of the ecosystem today"
+          "text": "Ecosystem refers only to packages shipped inside the core installation; cross-platform means those packages need no platform-specific dependencies"
         },
         {
           "id": "o2",
-          "text": "The course presents reuse and multiple host platforms as ecosystem advantages"
+          "text": "Ecosystem highlights reusable packages and users; cross-platform names Linux, macOS and Windows as ROS 2 hosts"
         }
       ],
       "correctOptionIds": [
@@ -156,19 +156,21 @@
         }
       ],
       "solution": {
-        "justification": "Use the slide as evidence of the advertised ecosystem advantages, not as an up-to-date quantitative inventory or a guarantee for every package.",
+        "justification": "The cards describe a reusable software/community ecosystem and named host operating systems; they do not certify every package, dependency, driver or binary combination.",
         "optionExplanations": {
-          "o1": "The slide is a dated source, not a live ecosystem census.",
-          "o2": "These are the advantages explicitly communicated by the cards.",
-          "o3": "The broad licensing/platform cards are not a per-package compatibility or licensing audit.",
-          "o4": "The number of packages says nothing decisive about a particular safety case."
+          "o1": "An ecosystem extends beyond the core installation, and platform support does not remove platform-specific dependencies.",
+          "o2": "This matches the two source feature categories without overstating their guarantee.",
+          "o3": "Naming supported hosts is not certification of every package and driver combination.",
+          "o4": "A community ecosystem does not imply one maintainer for every package or universal compiled-binary portability."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Use the slide as evidence of the advertised ecosystem advantages, not as an up-to-date quantitative inventory or a guarantee for every package.",
+        "simpleExplanation": "The cards describe a reusable software/community ecosystem and named host operating systems; they do not certify every package, dependency, driver or binary combination.",
         "memoryAid": null,
         "misconceptions": [
-          "Historical source metrics are not current measurements."
+          "An ecosystem extends beyond the core installation, and platform support does not remove platform-specific dependencies.",
+          "Naming supported hosts is not certification of every package and driver combination.",
+          "A community ecosystem does not imply one maintainer for every package or universal compiled-binary portability."
         ],
         "examTraps": [
           "Historical source metrics are not current measurements."
@@ -176,18 +178,38 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author",
+        "robotics-integration-L05-final-quality-revision"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "a9ccd9a2e5168f56acee6008b6c19cf40b18503f4f39cb515a4589ca7b21cb4c",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.865523+00:00"
+        },
+        {
+          "version": 3,
+          "authorId": "robotics-integration-L05-final-quality-revision",
+          "priorQuestionSha256": "b92e2050427091f0e2d869c3ce15d7f3b9b33a30357743c5e0e2451d8d21fbe1",
+          "reason": "Five exact remaining independent-review findings; preserve all accepted objects and open source issues.",
+          "revisedAt": "2026-10-19T18:25:50.161812+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-003",
-      "version": 2,
+      "version": 3,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "Select every pairing that matches the ROS 2 feature cards, without treating a capability as an automatic guarantee.",
       "selectionMode": "multi",
       "type": "conceptual",
-      "difficulty": "medium",
-      "cognitiveSkill": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "recall",
       "week": 1,
       "lectureId": "L05",
       "topic": "Robot Operating System",
@@ -198,7 +220,8 @@
         "source-bounded"
       ],
       "conceptIds": [
-        "W01-L05-C-capabilities"
+        "W01-L05-C-capabilities",
+        "W01-L05-C-production-readiness"
       ],
       "assumptions": [],
       "options": [
@@ -217,12 +240,17 @@
         {
           "id": "o3",
           "text": "Vendor-neutral DDS: application interfaces restricted to one middleware supplier"
+        },
+        {
+          "id": "o5",
+          "text": "Production Ready: the card associates mature reliability with commercial and industrial deployment"
         }
       ],
       "correctOptionIds": [
         "o1",
         "o2",
-        "o4"
+        "o4",
+        "o5"
       ],
       "citations": [
         {
@@ -238,16 +266,17 @@
         }
       ],
       "solution": {
-        "justification": "The cards map security to protection mechanisms, embedded use to constrained devices, and multi-robot use to distributed robots. DDS is a communication technology.",
+        "justification": "The cards map security to protection mechanisms, embedded use to constrained devices, and multi-robot use to distributed robots. DDS is a communication technology. The Production Ready card adds mature reliability for commercial and industrial deployment, not an automatic validation result.",
         "optionExplanations": {
           "o1": "The security card names these mechanisms; configuration still matters.",
           "o2": "The embedded card describes a lightweight constrained-device use case.",
           "o3": "Vendor-neutral support concerns communication middleware without requiring a single supplier; it is not an interface lock-in requirement.",
-          "o4": "The multi-robot card concerns distributed cooperation."
+          "o4": "The multi-robot card concerns distributed cooperation.",
+          "o5": "Correct as a description of the card’s claimed application; it does not certify this robot’s reliability or deadlines."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The cards map security to protection mechanisms, embedded use to constrained devices, and multi-robot use to distributed robots. DDS is a communication technology.",
+        "simpleExplanation": "The cards map security to protection mechanisms, embedded use to constrained devices, and multi-robot use to distributed robots. DDS is a communication technology. The Production Ready card adds mature reliability for commercial and industrial deployment, not an automatic validation result.",
         "memoryAid": null,
         "misconceptions": [
           "A listed security or real-time capability is not a proof of configured security or deadlines."
@@ -260,7 +289,17 @@
       "origin": "generated",
       "reviewIds": [],
       "revisionAuthors": [
-        "robotics-integration-revision-author"
+        "robotics-integration-revision-author",
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 3,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "d080ddef86392e8c929cc496693244dc5d1f45f25d20e20e440a9a51aba28674",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.865569+00:00"
+        }
       ]
     },
     {
@@ -660,10 +699,10 @@
     },
     {
       "id": "W01-L05-Q-009",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
-      "stem": "For the course’s Jetson-plus-microcontroller example, which allocation matches the stated roles?",
+      "stem": "Which allocation matches both the course’s Jetson/microcontroller example and its within-Jetson CPU/GPU illustration?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -678,25 +717,28 @@
         "source-bounded"
       ],
       "conceptIds": [
-        "W01-L05-C-jetson"
+        "W01-L05-C-jetson",
+        "W01-L05-C-heterogeneous-allocation"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "This is the course’s illustrated allocation, not a requirement for every robot or an automatic scheduling guarantee."
+      ],
       "options": [
         {
           "id": "o2",
-          "text": "Jetson handles only fixed-rate PWM, while the microcontroller performs the full camera CNN workload"
+          "text": "Jetson vision uses the CPU, path planning uses the GPU, and the microcontroller handles low-level motor control"
         },
         {
           "id": "o3",
-          "text": "Jetson is mandatory in every ROS robot"
+          "text": "The microcontroller performs vision and path planning, while Jetson supplies only low-level PWM timing"
         },
         {
           "id": "o4",
-          "text": "Both components must execute identical complete AI and motor-control software"
+          "text": "Jetson vision uses the GPU, the microcontroller performs path planning, and the CPU supplies the pictured low-level motor controller"
         },
         {
           "id": "o1",
-          "text": "Jetson performs GPU-assisted perception/high-level coordination; the microcontroller handles simpler motor control"
+          "text": "Jetson vision uses GPU assistance, path planning uses the CPU, and the microcontroller handles low-level motor control"
         }
       ],
       "correctOptionIds": [
@@ -713,26 +755,53 @@
           "evidenceText": "Printed 11. The course uses a Jetson Orin Nano host for GPU-assisted vision and middleware coordination, alongside a simpler Arduino motor-control role. Centralization is the example architecture, not a universal requirement.",
           "role": "explicit",
           "region": null
+        },
+        {
+          "slideId": "lectures-p0184",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 184,
+          "kind": "figure",
+          "locator": "Lecture 5, physical PDF page 184, printed slide 14: stated example",
+          "evidenceText": "ROS Node: (Cont.)\n\n   – Isolation and Reliability:\n           • Because each node runs as a separate process, if “AI detection node” crashes\n          due to a software bug, it does not necessarily crash the “motor control node”.\n           •  This isolation is critical for robot safety.\n   – Node on Hardware:\n           • On Jetson Orin Nano, you can utilize the multi-core CPU and powerful GPU by\n           running different nodes on different cores.\n           • Offload a specific \"Vision Node\" to the GPU while the\n           “Path Planning Node” runs on the CPU.\n\n\n\n\n\n                                                                                                          14",
+          "role": "explicit",
+          "region": null
         }
       ],
       "solution": {
-        "justification": "The slide motivates Jetson for the example’s AI workload while distinguishing simpler actuator-facing computation. It does not require that hardware in all robots.",
+        "justification": "The illustrated allocation places vision on the GPU, planning on the CPU, and actuator-facing low-level control on the microcontroller.",
         "optionExplanations": {
-          "o1": "This preserves the example’s high-level and low-level division.",
-          "o2": "This reverses the workload allocation motivated by the slide.",
-          "o3": "A selected course platform is not a universal ROS requirement.",
-          "o4": "The example uses complementary responsibilities rather than mandatory duplication."
+          "o1": "Correct: this combines the two stated architectural levels.",
+          "o2": "This swaps the Vision Node GPU and Planning Node CPU labels in the illustration.",
+          "o3": "This reverses the high-level versus low-level allocation.",
+          "o4": "The example assigns the microcontroller the low-level motor role, not the planning role."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The slide motivates Jetson for the example’s AI workload while distinguishing simpler actuator-facing computation. It does not require that hardware in all robots.",
+        "simpleExplanation": "The illustrated allocation places vision on the GPU, planning on the CPU, and actuator-facing low-level control on the microcontroller.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "This swaps the Vision Node GPU and Planning Node CPU labels in the illustration.",
+          "This reverses the high-level versus low-level allocation.",
+          "The example assigns the microcontroller the low-level motor role, not the planning role."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "68a60a7bcc5463a91e698ba56bd44c868e382c821eae39d5a7521e7631db2e52",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.865711+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-010",
@@ -1054,14 +1123,14 @@
     },
     {
       "id": "W01-L05-Q-014",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
-      "stem": "According to the directed graph, which sequence carries information from camera acquisition to drive commands?",
+      "stem": "According to the directed graph, which full chain carries information from camera acquisition to drive commands?",
       "selectionMode": "single",
       "type": "diagram",
-      "difficulty": "medium",
-      "cognitiveSkill": "application",
+      "difficulty": "easy",
+      "cognitiveSkill": "recall",
       "week": 1,
       "lectureId": "L05",
       "topic": "Robot Operating System",
@@ -1080,19 +1149,19 @@
       "options": [
         {
           "id": "o3",
-          "text": "Drive — /detected_objects → Camera Node — /cmd_vel → AI Detection"
+          "text": "Camera → /detected_objects → AI Detection → /cmd_vel → Navigation → /camera/raw → Drive"
         },
         {
           "id": "o4",
-          "text": "Camera Node — /image_raw → Drive — /joint_states → Navigation"
+          "text": "Camera → /camera/raw → AI Detection → /cmd_vel → Drive → /detected_objects → Navigation"
         },
         {
           "id": "o1",
-          "text": "Camera Node — /camera/raw → AI Detection — /detected_objects → Navigation — /cmd_vel → Drive"
+          "text": "Camera → /camera/raw → AI Detection → /detected_objects → Navigation → /cmd_vel → Drive"
         },
         {
           "id": "o2",
-          "text": "Camera Node — /cmd_vel → Navigation — /camera/raw → Drive"
+          "text": "Camera → /camera/raw → Navigation → /detected_objects → AI Detection → /cmd_vel → Drive"
         }
       ],
       "correctOptionIds": [
@@ -1112,23 +1181,39 @@
         }
       ],
       "solution": {
-        "justification": "Trace the arrows in the actual figure: raw camera data feeds detection, detected objects feed navigation, and navigation supplies the drive command.",
+        "justification": "The arrows connect Camera to AI Detection through raw images, detection to navigation through objects, and navigation to Drive through velocity commands.",
         "optionExplanations": {
-          "o1": "Every topic and direction matches this particular figure.",
-          "o2": "This swaps image and command topic roles and omits the detector.",
-          "o3": "The arrows in the figure run in the opposite functional direction.",
-          "o4": "This imports names from other examples and invents links not shown here."
+          "o1": "Correct: all three directed edges and node roles match.",
+          "o2": "This exchanges the detection and navigation stages.",
+          "o3": "This assigns the three topic labels to the wrong data stages.",
+          "o4": "This routes velocity commands before navigation and puts navigation after Drive."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Trace the arrows in the actual figure: raw camera data feeds detection, detected objects feed navigation, and navigation supplies the drive command.",
+        "simpleExplanation": "The arrows connect Camera to AI Detection through raw images, detection to navigation through objects, and navigation to Drive through velocity commands.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "This exchanges the detection and navigation stages.",
+          "This assigns the three topic labels to the wrong data stages.",
+          "This routes velocity commands before navigation and puts navigation after Drive."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "e3d4b7f68b15ba4cbd4c999334e244b0d98ebfb1a29f2ca5d41b170f2ec9395f",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.865803+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-015",
@@ -1534,14 +1619,14 @@
     },
     {
       "id": "W01-L05-Q-020",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "Two programs agree on a topic name but disagree on the intended message type. What is the best conclusion from the radio/message-interface discussion?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "medium",
-      "cognitiveSkill": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "recall",
       "week": 1,
       "lectureId": "L05",
       "topic": "Robot Operating System",
@@ -1610,7 +1695,19 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "d87201e72e63c088ea423d17859c79d729fa240892e5d188cfc31d92c235ef17",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.865836+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-021",
@@ -2570,10 +2667,10 @@
     },
     {
       "id": "W01-L05-Q-031",
-      "version": 1,
+      "version": 3,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
-      "stem": "In the get_map() diagram, which direction belongs to the request and which to the response?",
+      "stem": "In the course’s get_map example, which request/response directions and client arrangement match its intended service model?",
       "selectionMode": "single",
       "type": "diagram",
       "difficulty": "easy",
@@ -2588,25 +2685,28 @@
         "source-bounded"
       ],
       "conceptIds": [
-        "W01-L05-C-client-server"
+        "W01-L05-C-client-server",
+        "W01-L05-C-service-client-fanin"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "Use the intended single named server in this course example; this is not an assertion that middleware enforces global uniqueness of server names."
+      ],
       "options": [
         {
           "id": "o4",
-          "text": "Both arrows are unrelated broadcasts with no client/server pairing"
+          "text": "Nav broadcasts OccupancyGrid to Map; Map returns get_map to Nav; the clients act as the intended map servers"
         },
         {
           "id": "o1",
-          "text": "Nav Node → Map Node sends get_map(); Map Node → Nav Node returns OccupancyGrid"
+          "text": "Nav sends get_map to Map; Map returns OccupancyGrid to Nav; several clients may call that intended Map service server"
         },
         {
           "id": "o2",
-          "text": "Map Node → Nav Node sends get_map(); Nav Node → Map Node returns OccupancyGrid"
+          "text": "Map sends get_map to Nav; Nav returns OccupancyGrid to Map; several clients may call that intended Nav service server"
         },
         {
           "id": "o3",
-          "text": "Both arrows are camera images from Nav Node"
+          "text": "Nav sends get_map to Map; Map returns OccupancyGrid to Nav; the service is restricted to one client for its lifetime"
         }
       ],
       "correctOptionIds": [
@@ -2618,8 +2718,8 @@
           "sourceId": "lectures",
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 194,
-          "kind": "figure",
-          "locator": "Lecture 5, printed slide 24; Printed 24. Client request and server response, phone-call analogy, typical waiting, multiple clients and one intended server. Reset-map and snapshot examples. One-server wording is treated as a design convention rather than a universal enforcement claim.",
+          "kind": "statement",
+          "locator": "Lecture 5, physical PDF page 194: service prose, including the intended multiple-client arrangement; not the diagram on page 195",
           "evidenceText": "Printed 24. Client request and server response, phone-call analogy, typical waiting, multiple clients and one intended server. Reset-map and snapshot examples. One-server wording is treated as a design convention rather than a universal enforcement claim.",
           "role": "explicit",
           "region": null
@@ -2637,23 +2737,53 @@
         }
       ],
       "solution": {
-        "justification": "The navigation client asks the map server for a map, and the server’s response travels back to the client.",
+        "justification": "The navigation client requests the map and receives the response; the source also allows multiple clients to call the intended server.",
         "optionExplanations": {
-          "o1": "This follows the labeled arrowheads and client/server roles.",
-          "o2": "This reverses both roles.",
-          "o3": "The labels are a map request and map response, not camera images.",
-          "o4": "The figure explicitly depicts a service interaction."
+          "o1": "Correct: this preserves direction and the course-described multiple-client arrangement.",
+          "o2": "This reverses the request/response roles.",
+          "o3": "The source explicitly permits multiple clients; it does not restrict lifetime use to one client.",
+          "o4": "This reverses request versus response content and server/client roles."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The navigation client asks the map server for a map, and the server’s response travels back to the client.",
+        "simpleExplanation": "The navigation client requests the map and receives the response; the source also allows multiple clients to call the intended server.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "This reverses the request/response roles.",
+          "The source explicitly permits multiple clients; it does not restrict lifetime use to one client.",
+          "This reverses request versus response content and server/client roles."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author",
+        "robotics-integration-L05-final-quality-revision"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "e5d91119def396c594a9d2be350bb0fb9df1f36a74ff52edbeaf7ef0cc0dbbb9",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.865869+00:00"
+        },
+        {
+          "version": 3,
+          "authorId": "robotics-integration-L05-final-quality-revision",
+          "priorQuestionSha256": "256d770391aab5f0b2d390472ee87cb864224fdfa4eb6fa38c8b1a4f97439dd2",
+          "reason": "Five exact remaining independent-review findings; preserve all accepted objects and open source issues.",
+          "revisedAt": "2026-10-19T18:25:50.161956+00:00"
+        }
+      ],
+      "conflictResolution": {
+        "status": "explicit-qualification-awaiting-independent-review",
+        "sourceClaim": "The slide says only one service server can exist at any time.",
+        "basis": "The question assesses the intended server with multiple clients, not an enforced global uniqueness theorem.",
+        "method": "Keep the source wording and restrict the assessed claim to the depicted intended arrangement."
+      }
     },
     {
       "id": "W01-L05-Q-032",
@@ -2759,10 +2889,10 @@
     },
     {
       "id": "W01-L05-Q-033",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
-      "stem": "A navigation task runs for several seconds and needs progress feedback and the ability to request cancellation. Which lecture primitive best matches?",
+      "stem": "A navigation task runs for several seconds and needs built-in progress feedback plus a cancellation-request mechanism. Which primitive best matches the lecture?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -2783,19 +2913,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "A single node parameter whose value automatically supplies progress and terminal-result channels"
+          "text": "A service carrying a request and its final response"
         },
         {
           "id": "o3",
-          "text": "A single immediate snapshot service chosen solely because every navigation task must complete before the call returns"
+          "text": "A topic carrying a stream of velocity commands"
         },
         {
           "id": "o4",
-          "text": "A camera topic chosen solely because every topic inherently accepts and rejects navigation goals"
+          "text": "A node parameter storing a desired navigation target"
         },
         {
           "id": "o1",
-          "text": "An action with a goal, feedback and eventual result"
+          "text": "An action carrying a goal, feedback and an eventual result"
         }
       ],
       "correctOptionIds": [
@@ -2815,34 +2945,50 @@
         }
       ],
       "solution": {
-        "justification": "navigate_to_pose illustrates a task whose lifecycle extends beyond a single immediate exchange and includes progress and cancellation interaction.",
+        "justification": "The action interface is presented for long-running goal-oriented tasks with feedback and cancellation requests.",
         "optionExplanations": {
-          "o1": "The slide presents long-running goal-oriented navigation as the action use case.",
-          "o2": "A parameter holds configuration; it does not by itself provide the goal lifecycle.",
-          "o3": "The described long-running task and progress/cancel requirements are exactly the action use case.",
-          "o4": "A raw sensor topic does not automatically supply the illustrated goal lifecycle."
+          "o1": "Correct: this primitive directly supplies the requested task lifecycle.",
+          "o2": "A request/response service alone does not provide the stated action feedback/cancel lifecycle.",
+          "o3": "A command stream alone does not define goal admission, progress and result semantics.",
+          "o4": "A configuration value alone does not supply those task interactions."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "navigate_to_pose illustrates a task whose lifecycle extends beyond a single immediate exchange and includes progress and cancellation interaction.",
+        "simpleExplanation": "The action interface is presented for long-running goal-oriented tasks with feedback and cancellation requests.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "A request/response service alone does not provide the stated action feedback/cancel lifecycle.",
+          "A command stream alone does not define goal admission, progress and result semantics.",
+          "A configuration value alone does not supply those task interactions."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "e6a787f0283b91eaef56ea63b340677abed859ec5ac3c830a4d0691c6a96e86a",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.865894+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-034",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "Select every interpretation that is safe to make from the action diagram and its stated capabilities.",
       "selectionMode": "multi",
       "type": "conceptual",
-      "difficulty": "medium",
-      "cognitiveSkill": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "recall",
       "week": 1,
       "lectureId": "L05",
       "topic": "Robot Operating System",
@@ -2914,18 +3060,30 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "acf19df622cfe278fc8499d9f615568571225bc53f555cf35294f2d7f71b206f",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866085+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-035",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "During navigate_to_pose, the server reports the robot’s remaining distance several times and later reports that the goal has completed. Which interpretation matches the action components?",
       "selectionMode": "single",
       "type": "application",
-      "difficulty": "medium",
-      "cognitiveSkill": "application",
+      "difficulty": "easy",
+      "cognitiveSkill": "recall",
       "week": 1,
       "lectureId": "L05",
       "topic": "Robot Operating System",
@@ -2994,7 +3152,19 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "94aeef16262f424965a0b9e4c23f72fd635cc88b6ac32e91a6424f073b741412",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866118+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-036",
@@ -3531,10 +3701,10 @@
     },
     {
       "id": "W01-L05-Q-042",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
-      "stem": "Which sequence matches the input/perception portion of the lecture’s robot loop?",
+      "stem": "Which hardware-interface and processing sequence matches the lecture’s sensing-to-decision example?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -3549,25 +3719,28 @@
         "source-bounded"
       ],
       "conceptIds": [
-        "W01-L05-C-sensing"
+        "W01-L05-C-sensing",
+        "W01-L05-C-sensor-ports"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "USB and CSI are example interfaces; do not assume that every camera or LiDAR supports both."
+      ],
       "options": [
         {
           "id": "o3",
-          "text": "Decision logic publishes raw images, and the camera driver consumes the chosen movement command"
+          "text": "Sensor connects through USB or CSI; its driver chooses movement; decision logic publishes raw data; perception detects"
         },
         {
           "id": "o4",
-          "text": "The GPU directly receives physical light without any sensor driver or image-data interface"
+          "text": "Sensor connects through USB or CSI; perception publishes the movement decision; the driver detects objects; decision logic acquires raw samples"
         },
         {
           "id": "o1",
-          "text": "Sensor driver publishes raw data → perception subscribes and detects → decision logic chooses movement"
+          "text": "Sensor connects through a suitable USB or CSI interface; its driver publishes raw data; perception detects; decision logic chooses movement"
         },
         {
           "id": "o2",
-          "text": "Sensor driver chooses final wheel commands; the detector only stores package metadata"
+          "text": "Sensor connects through a ROS topic as its physical port; its driver publishes raw data; perception detects; decision logic chooses movement"
         }
       ],
       "correctOptionIds": [
@@ -3587,30 +3760,46 @@
         }
       ],
       "solution": {
-        "justification": "Drivers expose sensor data, perception interprets it, and decision logic selects an action; these are distinct functional stages.",
+        "justification": "USB/CSI are the example physical interfaces; publication, perception and decision are separate software stages.",
         "optionExplanations": {
-          "o1": "This follows the sensing-to-computation description.",
-          "o2": "This removes or reassigns the distinct perception and decision stages in the example.",
-          "o3": "This reverses the acquisition-to-decision dataflow.",
-          "o4": "The described sensor and driver stage converts physical sensing into data for computation."
+          "o1": "Correct: this follows the named port examples and source processing order.",
+          "o2": "A ROS topic is a software communication channel, not a physical sensor connector.",
+          "o3": "This swaps acquisition and decision responsibilities.",
+          "o4": "This assigns the interpretation, decision and acquisition roles to the wrong stages."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Drivers expose sensor data, perception interprets it, and decision logic selects an action; these are distinct functional stages.",
+        "simpleExplanation": "USB/CSI are the example physical interfaces; publication, perception and decision are separate software stages.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "A ROS topic is a software communication channel, not a physical sensor connector.",
+          "This swaps acquisition and decision responsibilities.",
+          "This assigns the interpretation, decision and acquisition roles to the wrong stages."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "ac3a106f4fd8a0c47e75d8f74f769d56f1046e98bc9679af6e57841aa45c98d9",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866143+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-043",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
-      "stem": "Which component is assigned precise low-level PWM timing in the described Jetson-to-motor chain?",
+      "stem": "Which stage is explicitly assigned precise low-level PWM timing in the illustrated Jetson-to-motor chain?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -3632,7 +3821,7 @@
       "options": [
         {
           "id": "o4",
-          "text": "The RViz visualization render loop"
+          "text": "The motor-driver power stage downstream of the controller"
         },
         {
           "id": "o1",
@@ -3640,11 +3829,11 @@
         },
         {
           "id": "o2",
-          "text": "The high-level CNN inference callback, because inference completion defines every PWM edge"
+          "text": "The Jetson navigation process that chooses movement commands"
         },
         {
           "id": "o3",
-          "text": "The ROS image-message serialization routine"
+          "text": "The serial-transfer stage that carries the selected command"
         }
       ],
       "correctOptionIds": [
@@ -3664,23 +3853,39 @@
         }
       ],
       "solution": {
-        "justification": "The slide separates high-level Jetson AI/coordination from precise low-level microcontroller output.",
+        "justification": "The source assigns PWM timing to the low-level microcontroller, after high-level command selection and before the driver/motor stages.",
         "optionExplanations": {
-          "o1": "The prose assigns this actuator-facing timing role to the microcontroller.",
-          "o2": "The lecture separates high-level inference from precise low-level timing.",
-          "o3": "Image representation is not the microcontroller’s motor-timing role.",
-          "o4": "Rendering the scene is not assigned actuator-timing responsibility."
+          "o1": "Correct: this is the stage named in the text.",
+          "o2": "The navigation stage selects movement commands rather than being the illustrated PWM timing component.",
+          "o3": "Serial transfer carries the command; the source assigns the timing role to the receiving microcontroller.",
+          "o4": "The diagram separates the controller from the downstream driver stage."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The slide separates high-level Jetson AI/coordination from precise low-level microcontroller output.",
+        "simpleExplanation": "The source assigns PWM timing to the low-level microcontroller, after high-level command selection and before the driver/motor stages.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "The navigation stage selects movement commands rather than being the illustrated PWM timing component.",
+          "Serial transfer carries the command; the source assigns the timing role to the receiving microcontroller.",
+          "The diagram separates the controller from the downstream driver stage."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "415247a4e35190ed630aa6099482142215d9dc4e50f8f3427ff602d970090f88",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866167+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-044",
@@ -3760,14 +3965,14 @@
     },
     {
       "id": "W01-L05-Q-045",
-      "version": 1,
+      "version": 3,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
-      "stem": "A student proposes performing heavy CNN inference inside the precise motor-PWM timing loop. Which concern is most directly supported by the course architecture?",
+      "stem": "Consider a hypothetical single non-preemptive motor loop: the next PWM update is due at t=1 ms, but a synchronous CNN call runs from t=0 to t=8 ms before the loop can service it. With no other delay or hardware offload, how late is that first update?",
       "selectionMode": "single",
-      "type": "conceptual",
-      "difficulty": "medium",
-      "cognitiveSkill": "synthesis",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "application",
       "week": 1,
       "lectureId": "L05",
       "topic": "Robot Operating System",
@@ -3783,24 +3988,26 @@
         "W01-L05-C-sensing"
       ],
       "assumptions": [
-        "Evaluate the course’s illustrated architecture, not a universal claim that no other implementation is possible."
+        "The numerical timings are hypothetical givens, not measurements reported by the lecture.",
+        "The loop is single-threaded and non-preemptive, the CNN call blocks until t=8 ms, and no separate PWM hardware or task services the deadline.",
+        "Evaluate the first pending update only; ignore all other delays."
       ],
       "options": [
         {
           "id": "o2",
-          "text": "GPU acceleration automatically makes all perception tasks shorter than every PWM deadline"
+          "text": "0 ms late"
         },
         {
           "id": "o3",
-          "text": "Using separate processes means timing and stale commands never need further validation"
+          "text": "1 ms late"
         },
         {
           "id": "o4",
-          "text": "A motor-control loop becomes a sensor stream whenever it calls a detector"
+          "text": "8 ms late"
         },
         {
           "id": "o1",
-          "text": "Variable high-level perception workload can interfere with the separate low-level timing role the example assigns to the microcontroller"
+          "text": "7 ms late"
         }
       ],
       "correctOptionIds": [
@@ -3842,23 +4049,65 @@
         }
       ],
       "solution": {
-        "justification": "The architecture places perception and high-level decisions on Jetson and precise motor output on the microcontroller. Combining them carelessly defeats that separation.",
+        "justification": "The source separates high-level inference from low-level PWM timing. In this stated blocking-loop example, the earliest service time is 8 ms and the first deadline is 1 ms, giving 7 ms lateness.",
         "optionExplanations": {
-          "o1": "The illustrated division isolates different computational and timing responsibilities.",
-          "o2": "Acceleration does not establish worst-case execution time or deadline satisfaction.",
-          "o3": "Separate execution limits one form of coupling but does not prove timing or data validity.",
-          "o4": "Communication labels do not erase the loop’s actuator-timing responsibilities."
+          "o1": "The update can first run at 8 ms, so lateness is 8−1=7 ms.",
+          "o2": "A synchronous blocking call prevents service at the 1 ms deadline under these assumptions.",
+          "o3": "1 ms is the deadline time, not the delay beyond it.",
+          "o4": "8 ms is the call duration; lateness subtracts the 1 ms deadline."
         },
-        "steps": [],
-        "formulas": [],
-        "simpleExplanation": "The architecture places perception and high-level decisions on Jetson and precise motor output on the microcontroller. Combining them carelessly defeats that separation.",
+        "steps": [
+          "Identify the earliest service time: 8 ms.",
+          "Subtract the pending deadline: 8−1=7 ms."
+        ],
+        "formulas": [
+          {
+            "expression": "lateness=max(0,t_service−t_deadline)",
+            "variables": {
+              "lateness": "positive deadline miss",
+              "t_service": "earliest update service time",
+              "t_deadline": "required update time"
+            },
+            "units": {
+              "all times": "ms"
+            },
+            "assumptions": [
+              "Use the stated blocked-loop model, not a measured ROS scheduling guarantee."
+            ]
+          }
+        ],
+        "simpleExplanation": "The first update waits until 8 ms even though it was due at 1 ms.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "A synchronous blocking call prevents service at the 1 ms deadline under these assumptions.",
+          "1 ms is the deadline time, not the delay beyond it.",
+          "8 ms is the call duration; lateness subtracts the 1 ms deadline."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author",
+        "robotics-integration-L05-final-quality-revision"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "60069ce9214b1fb396555f787712625432775e5e8c8bd18b13d03c451bb0e0b8",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866199+00:00"
+        },
+        {
+          "version": 3,
+          "authorId": "robotics-integration-L05-final-quality-revision",
+          "priorQuestionSha256": "ad09675b6d06f4fc6252ae2338b199d06684088cd3cecf6238e17626a0f329ba",
+          "reason": "Five exact remaining independent-review findings; preserve all accepted objects and open source issues.",
+          "revisedAt": "2026-10-19T18:25:50.161917+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-046",
@@ -4101,14 +4350,14 @@
     },
     {
       "id": "W01-L05-Q-049",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "A rigid camera bracket is attached to the chassis without relative motion. Which model structure best follows the link/joint distinction?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "medium",
-      "cognitiveSkill": "application",
+      "difficulty": "easy",
+      "cognitiveSkill": "recall",
       "week": 1,
       "lectureId": "L05",
       "topic": "Robot Operating System",
@@ -4174,18 +4423,30 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "3ed533e6f198e6a7c902bdb3a4eeef43987ffdfe9e9d65a63ff259ceeebdf671",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866223+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-050",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
-      "stem": "A detector reports an object in camera coordinates, but navigation needs to reason relative to the chassis. Which lecture mechanism supplies the coordinate-frame relationship?",
+      "stem": "A detector reports an object in camera coordinates, but navigation needs chassis-relative coordinates. Which information supplies the required frame relationship?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "medium",
-      "cognitiveSkill": "application",
+      "difficulty": "easy",
+      "cognitiveSkill": "recall",
       "week": 1,
       "lectureId": "L05",
       "topic": "Robot Operating System",
@@ -4204,19 +4465,19 @@
       "options": [
         {
           "id": "o3",
-          "text": "The topic name alone, regardless of frame information"
+          "text": "The base-to-world pose alone, without any camera-to-base connection"
         },
         {
           "id": "o4",
-          "text": "The camera’s intrinsic pixel dimensions alone, without its mounting relation"
+          "text": "The camera visual mesh alone, without a coordinate transform to base_link"
         },
         {
           "id": "o1",
-          "text": "TF, using a valid relation between camera_link and base_link"
+          "text": "A valid TF relation connecting camera_link to base_link at the relevant time"
         },
         {
           "id": "o2",
-          "text": "The publication frequency alone, without a geometric relation"
+          "text": "The camera intrinsic calibration alone, without its pose relative to the chassis"
         }
       ],
       "correctOptionIds": [
@@ -4236,34 +4497,50 @@
         }
       ],
       "solution": {
-        "justification": "Frame relationships are needed to connect sensor-local information with robot-local geometry; valid and timely transform data remains a prerequisite.",
+        "justification": "The required relation is the extrinsic frame connection between the camera and chassis, supplied through valid transforms.",
         "optionExplanations": {
-          "o1": "TF represents relations between frames so quantities can be interpreted in another frame.",
-          "o2": "Rate describes timing, not the transform between coordinate frames.",
-          "o3": "A channel name alone does not encode the required geometric transform.",
-          "o4": "Image dimensions do not specify the camera-to-chassis spatial relation."
+          "o1": "Correct: this connects the two coordinate frames.",
+          "o2": "Intrinsics describe image formation but do not supply the camera’s chassis-relative mounting pose.",
+          "o3": "A base-to-world pose alone leaves the camera frame disconnected.",
+          "o4": "A rendered shape does not by itself specify the requested frame transform."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Frame relationships are needed to connect sensor-local information with robot-local geometry; valid and timely transform data remains a prerequisite.",
+        "simpleExplanation": "The required relation is the extrinsic frame connection between the camera and chassis, supplied through valid transforms.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "Intrinsics describe image formation but do not supply the camera’s chassis-relative mounting pose.",
+          "A base-to-world pose alone leaves the camera frame disconnected.",
+          "A rendered shape does not by itself specify the requested frame transform."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "c37cf97645c78ca7f597fe528ff4ec0896fd60552828989219ba2f2473e84a1a",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866247+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-051",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "For the tree model described, which statement correctly includes the root-frame exception?",
       "selectionMode": "single",
-      "type": "diagram",
-      "difficulty": "medium",
-      "cognitiveSkill": "conceptual",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "recall",
       "week": 1,
       "lectureId": "L05",
       "topic": "Robot Operating System",
@@ -4304,8 +4581,8 @@
           "sourceId": "lectures",
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 203,
-          "kind": "figure",
-          "locator": "Lecture 5, printed slide 33; Printed 33. TF represents mathematical relations between coordinate frames in 3D. The tree example places camera_link below base_link; non-root frames have one parent and may have children. URDF is the blueprint, while TF supplies changing frame relations. The /tf topic distributes transforms. Exactness and availability require valid, timely transforms, not merely subscription.",
+          "kind": "statement",
+          "locator": "Physical PDF page 203, printed slide 33: TF Tree prose and base_link/camera_link textual example",
           "evidenceText": "Printed 33. TF represents mathematical relations between coordinate frames in 3D. The tree example places camera_link below base_link; non-root frames have one parent and may have children. URDF is the blueprint, while TF supplies changing frame relations. The /tf topic distributes transforms. Exactness and availability require valid, timely transforms, not merely subscription.",
           "role": "explicit",
           "region": null
@@ -4317,14 +4594,16 @@
           "o1": "This is the intended hierarchical-tree structure without the slide’s overbroad every-link phrasing.",
           "o2": "A root has no parent in the tree, and two parents violates the stated tree model.",
           "o3": "A tree permits branching to several children.",
-          "o4": "The diagram gives a specific base_link/camera_link relationship, not a universal camera-root requirement."
+          "o4": "The text gives base_link as often the parent of camera_link; it does not state a universal camera-root requirement."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The example is a rooted hierarchy. The non-root qualification matters: the root is not required to have its own parent.",
         "memoryAid": null,
         "misconceptions": [
-          "Every non-root node has one parent does not mean every node has one child."
+          "A root has no parent in the tree, and two parents violates the stated tree model.",
+          "A tree permits branching to several children.",
+          "The text gives base_link as often the parent of camera_link; it does not state a universal camera-root requirement."
         ],
         "examTraps": [
           "Every non-root node has one parent does not mean every node has one child."
@@ -4332,7 +4611,19 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "a94b05e17382b7e806445aa7acf64ac893b8ee496346cfea7aae10382b2ea01d",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866270+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-052",
@@ -4516,10 +4807,10 @@
     },
     {
       "id": "W01-L05-Q-054",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
-      "stem": "Which two inputs are shown feeding robot_state_publisher?",
+      "stem": "Which pair of inputs feeds robot_state_publisher in the source illustration?",
       "selectionMode": "single",
       "type": "diagram",
       "difficulty": "easy",
@@ -4540,19 +4831,19 @@
       "options": [
         {
           "id": "o3",
-          "text": "Only robot_description, with no changing state for any articulated joint"
+          "text": "/joint_states containing current joint state, plus /camera/raw containing camera images"
         },
         {
           "id": "o4",
-          "text": "Only /joint_states, with no structure identifying how the links are connected"
+          "text": "/tf containing output transforms, plus /cmd_vel containing a requested base velocity"
         },
         {
           "id": "o1",
-          "text": "robot_description containing URDF structure and /joint_states containing current joint state"
+          "text": "robot_description containing URDF structure, plus /joint_states containing current joint state"
         },
         {
           "id": "o2",
-          "text": "/cmd_vel and the number of installed packages only"
+          "text": "robot_description containing URDF structure, plus /cmd_vel containing a requested base velocity"
         }
       ],
       "correctOptionIds": [
@@ -4572,23 +4863,39 @@
         }
       ],
       "solution": {
-        "justification": "The model provides relationships and the joint state provides the current configuration used to compute link transforms.",
+        "justification": "The illustrated inputs are the robot structure and current joint states; the transforms are the output.",
         "optionExplanations": {
-          "o1": "These are the two labeled inputs in the diagram.",
-          "o2": "A velocity command and package count are not the inputs shown.",
-          "o3": "The shown bridge also accepts current joint state for changing configurations.",
-          "o4": "The structural description is the other explicit input."
+          "o1": "Correct: these provide structural relations and live articulated configuration.",
+          "o2": "A commanded base velocity is not the shown joint-state input.",
+          "o3": "Images do not replace the structural description.",
+          "o4": "This treats the transform output as an input and omits both shown inputs."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The model provides relationships and the joint state provides the current configuration used to compute link transforms.",
+        "simpleExplanation": "The illustrated inputs are the robot structure and current joint states; the transforms are the output.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "A commanded base velocity is not the shown joint-state input.",
+          "Images do not replace the structural description.",
+          "This treats the transform output as an input and omits both shown inputs."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "38f211094b6e289ae312e8694dc957c71a0f85f4cd7a3c5ef4cec58604f7ec8d",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866293+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-055",
@@ -4672,14 +4979,14 @@
     },
     {
       "id": "W01-L05-Q-056",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "The robot model is unchanged, but an articulated joint changes position. Under the slide’s computation model, which update supplies the new configuration?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "medium",
-      "cognitiveSkill": "application",
+      "difficulty": "easy",
+      "cognitiveSkill": "recall",
       "week": 1,
       "lectureId": "L05",
       "topic": "Robot Operating System",
@@ -4744,7 +5051,19 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "af787e27e06c10561e17169117c86cf4fa709a235d2fdc0856062e974b63bd74",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866315+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-057",
@@ -4937,14 +5256,14 @@
     },
     {
       "id": "W01-L05-Q-059",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "A navigation algorithm consumes the same agreed interface in simulation and on hardware. Which change best follows the sim-to-real diagram?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "medium",
-      "cognitiveSkill": "application",
+      "difficulty": "easy",
+      "cognitiveSkill": "recall",
       "week": 1,
       "lectureId": "L05",
       "topic": "Robot Operating System",
@@ -5021,14 +5340,26 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "79e93b473a606db82a2ffd649085a05636a8f4b060d44a2d2fd7542a38efae95",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866342+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-060",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
-      "stem": "The diagram keeps /cmd_vel unchanged when switching from simulation to hardware. What remains to be checked before claiming equivalent behavior?",
+      "stem": "The simulation and hardware both use /cmd_vel. Which validation plan best addresses whether real behaviour matches the model?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "medium",
@@ -5050,19 +5381,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Real actuator response, timing, friction and other model-to-hardware differences"
+          "text": "Check the interface and measure real actuator response, timing and friction across relevant operating conditions"
         },
         {
           "id": "o2",
-          "text": "Only whether the topic spelling is unchanged, regardless of payload or timing"
+          "text": "Check the interface and run more simulated trajectories, treating the model’s actuator response as the real response"
         },
         {
           "id": "o3",
-          "text": "Nothing: identical topic names prove identical dynamics"
+          "text": "Check the interface and compare visual robot shapes, treating matched appearance as evidence of matched timing"
         },
         {
           "id": "o4",
-          "text": "Only whether the simulated robot mesh has the same display color"
+          "text": "Check the interface and one unloaded motor speed, treating that one point as evidence for loaded dynamics"
         }
       ],
       "correctOptionIds": [
@@ -5082,19 +5413,21 @@
         }
       ],
       "solution": {
-        "justification": "A command can have the same representation while the plant receiving it behaves differently. Sim-to-real transfer remains an empirical engineering claim.",
+        "justification": "Matching the interface does not validate physical response; real dynamics and timing must be checked under relevant conditions.",
         "optionExplanations": {
-          "o1": "The interface is one layer; actual physical response and timing are separate.",
-          "o2": "Even a stable name is weaker than a complete interface contract, and behavior needs additional validation.",
-          "o3": "A shared command contract does not establish physical identity.",
-          "o4": "Appearance alone does not establish physical response."
+          "o1": "Correct: this tests the model-to-hardware factors rather than assuming them.",
+          "o2": "Further simulation alone does not measure the actual actuator response.",
+          "o3": "Visual agreement does not establish matching physical timing.",
+          "o4": "An unloaded operating point does not validate the full loaded operating range."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "A command can have the same representation while the plant receiving it behaves differently. Sim-to-real transfer remains an empirical engineering claim.",
+        "simpleExplanation": "Matching the interface does not validate physical response; real dynamics and timing must be checked under relevant conditions.",
         "memoryAid": null,
         "misconceptions": [
-          "Same interface does not mean same dynamics."
+          "Further simulation alone does not measure the actual actuator response.",
+          "Visual agreement does not establish matching physical timing.",
+          "An unloaded operating point does not validate the full loaded operating range."
         ],
         "examTraps": [
           "Same interface does not mean same dynamics."
@@ -5102,7 +5435,19 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "1e880d700c2c111463fb0e40cabe997ab73cb237cf7132dbb74e29e3b860856c",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866362+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-061",
@@ -5182,14 +5527,14 @@
     },
     {
       "id": "W01-L05-Q-062",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "You want to inspect coordinate-frame relationships, the URDF robot shape and a planned route. Which ordered set of RViz displays matches these goals?",
       "selectionMode": "single",
       "type": "matching",
-      "difficulty": "medium",
-      "cognitiveSkill": "application",
+      "difficulty": "easy",
+      "cognitiveSkill": "recall",
       "week": 1,
       "lectureId": "L05",
       "topic": "Robot Operating System",
@@ -5254,7 +5599,19 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "2955471686918ea39c5d10a6767321b26e321cbc0133069ade15d3a6b51142b9",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866382+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-063",
@@ -5504,14 +5861,14 @@
     },
     {
       "id": "W01-L05-Q-066",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "Why does the lecture include a ros_gz bridge in a ROS 2/Gazebo system?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "medium",
-      "cognitiveSkill": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "recall",
       "week": 1,
       "lectureId": "L05",
       "topic": "Robot Operating System",
@@ -5576,7 +5933,19 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "ad70430c2b14721a17220532f0506df5f486bfc46095e1697e330d92d7395667",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866403+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-067",
@@ -6250,14 +6619,14 @@
     },
     {
       "id": "W01-L05-Q-074",
-      "version": 2,
+      "version": 4,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
-      "stem": "A simulation ignores a protruding robot part even though the rendered mesh shows it. Which model issue is most directly suggested by the lecture’s distinct visual/collision roles?",
+      "stem": "In a hypothetical URDF link, a visible fin is centered at x=+0.15 m, while the existing collision box spans x=−0.10 to +0.10 m; which change models fin contacts at the correct location while retaining the existing body collision and visual geometry?",
       "selectionMode": "single",
-      "type": "conceptual",
-      "difficulty": "medium",
-      "cognitiveSkill": "synthesis",
+      "type": "scenario",
+      "difficulty": "easy",
+      "cognitiveSkill": "application",
       "week": 1,
       "lectureId": "L05",
       "topic": "Robot Operating System",
@@ -6271,23 +6640,26 @@
         "W01-L05-C-links",
         "W01-L05-C-gazebo-physics"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "The dimensions are hypothetical and refer to one common link frame; other axes and fin dimensions are chosen correctly.",
+        "The task is model-geometry correction, not proof of numerical contact accuracy or physical validation."
+      ],
       "options": [
         {
           "id": "o3",
-          "text": "The protrusion must be irrelevant to contact whenever it is part of a rigid link"
+          "text": "Move the existing body collision box center to x=+0.15 m instead of retaining it and adding the fin"
         },
         {
           "id": "o4",
-          "text": "Increasing the RViz rendering frame rate automatically expands Gazebo collision geometry"
+          "text": "Keep collision geometry unchanged and increase only the fin’s contribution to the inertial mass"
         },
         {
           "id": "o1",
-          "text": "Collision geometry may omit the protrusion despite the visual geometry containing it"
+          "text": "Keep the body collision box and add a fin collision shape with its link-frame center at x=+0.15 m"
         },
         {
           "id": "o2",
-          "text": "The visual mesh guarantees that every collision model includes the protrusion"
+          "text": "Keep the body collision box and add the same fin collision shape with its link-frame center at x=−0.15 m"
         }
       ],
       "correctOptionIds": [
@@ -6329,25 +6701,51 @@
         }
       ],
       "solution": {
-        "justification": "A rendered surface is not sufficient evidence of the collision representation used by the simulator.",
+        "justification": "Contacts use the configured collision shapes and their link-frame placements; adding the fin shape at +0.15 m represents it without moving the body or changing the visual model.",
         "optionExplanations": {
-          "o1": "The properties serve different purposes and can disagree if modeled incorrectly.",
-          "o2": "The slide’s distinction means one representation does not automatically certify the other.",
-          "o3": "Being rigid does not remove a shape from possible contact; the collision model still matters.",
-          "o4": "Visualization update frequency does not edit the simulator’s collision representation."
+          "o1": "This satisfies the location, retained-body and unchanged-visual requirements.",
+          "o2": "This places the added collision fin on the wrong side of the link frame.",
+          "o3": "This moves the body’s contact representation rather than retaining it and adding the fin.",
+          "o4": "Changing inertial mass changes dynamics, not the geometric shape used for contact."
         },
-        "steps": [],
+        "steps": [
+          "Identify the fin’s required collision center as +0.15 m in the link frame.",
+          "Retain the existing body box and visual mesh.",
+          "Add a separate matching fin collision shape at the specified positive-x location."
+        ],
         "formulas": [],
-        "simpleExplanation": "A rendered surface is not sufficient evidence of the collision representation used by the simulator.",
+        "simpleExplanation": "Contacts use the configured collision shapes and their link-frame placements; adding the fin shape at +0.15 m represents it without moving the body or changing the visual model.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "This places the added collision fin on the wrong side of the link frame.",
+          "This moves the body’s contact representation rather than retaining it and adding the fin.",
+          "Changing inertial mass changes dynamics, not the geometric shape used for contact."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
       "revisionAuthors": [
-        "robotics-integration-revision-author"
+        "robotics-integration-revision-author",
+        "robotics-integration-L05-coverage-revision-author",
+        "robotics-integration-L05-final-quality-revision"
+      ],
+      "revisionHistory": [
+        {
+          "version": 3,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "fb8be7ce3864fa770292d181fe699d685552ef2b41efbf915395529d09c0b0df",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866436+00:00"
+        },
+        {
+          "version": 4,
+          "authorId": "robotics-integration-L05-final-quality-revision",
+          "priorQuestionSha256": "9d8432dba9b24b6b3f44a4ca5a08677644ef3757f7463ead52bced960d87338d",
+          "reason": "Five exact remaining independent-review findings; preserve all accepted objects and open source issues.",
+          "revisedAt": "2026-10-19T18:25:50.161865+00:00"
+        }
       ]
     },
     {
@@ -6619,14 +7017,14 @@
     },
     {
       "id": "W01-L05-Q-078",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "During navigation, a robot reports “40% of route completed.” Separately, its supported maximum-speed setting is changed. Which distinction is correct?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "medium",
-      "cognitiveSkill": "application",
+      "difficulty": "easy",
+      "cognitiveSkill": "recall",
       "week": 1,
       "lectureId": "L05",
       "topic": "Robot Operating System",
@@ -6705,18 +7103,30 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "e7f6c5df72e64c886b0e6da7ae2544f07e2ca4663417798e8689d0f684b5d8d1",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866463+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L05-Q-079",
-      "version": 2,
+      "version": 3,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
-      "stem": "A developer has copied the PubSubNode source into a package folder but has not launched any executable. Which conclusion is warranted?",
+      "stem": "A package contains the shown guarded MyNode module. With imports available, what does the final if __name__ == \"__main__\": main() do in two cases: direct script execution and importing under another module name?",
       "selectionMode": "single",
-      "type": "conceptual",
-      "difficulty": "medium",
-      "cognitiveSkill": "synthesis",
+      "type": "code_output",
+      "difficulty": "easy",
+      "cognitiveSkill": "recall",
       "week": 1,
       "lectureId": "L05",
       "topic": "Robot Operating System",
@@ -6729,25 +7139,29 @@
       "conceptIds": [
         "W01-L05-C-package",
         "W01-L05-C-rclpy-lifecycle",
-        "W01-L05-C-pubsub-code"
+        "W01-L05-C-pubsub-code",
+        "W01-L05-C-entry-guard"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "Compare only the final guard with __name__ equal to \"__main__\" or a different module name; assume imports succeed and no external caller invokes main.",
+        "This is Python control flow, not a claim that a ROS runtime was executed during validation."
+      ],
       "options": [
         {
           "id": "o4",
-          "text": "Every subscriber in the system must immediately receive Hello ROS"
+          "text": "It calls main in neither case because only a class definition can invoke ROS initialization"
         },
         {
           "id": "o1",
-          "text": "The files are organized, but the mere presence of source does not show a node is running or callbacks are being processed"
+          "text": "It calls main in direct execution; it does not call main merely from importing the module"
         },
         {
           "id": "o2",
-          "text": "The timer must already be publishing ten messages per second"
+          "text": "It does not call main in direct execution; it calls main when imported under another name"
         },
         {
           "id": "o3",
-          "text": "The package directory itself is spinning the node"
+          "text": "It calls main in both cases because defining the function executes its body"
         }
       ],
       "correctOptionIds": [
@@ -6770,7 +7184,7 @@
           "sourceId": "lectures",
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 187,
-          "kind": "statement",
+          "kind": "code",
           "locator": "Lecture 5, printed slide 17; Printed 17. Visually read code imports rclpy and Node, declares class MyNode(Node), calls super().__init__('my_node'), and uses main with init, node construction, spin and shutdown. Screenshot code was absent from extracted text.",
           "evidenceText": "Printed 17. Visually read code imports rclpy and Node, declares class MyNode(Node), calls super().__init__('my_node'), and uses main with init, node construction, spin and shutdown. Screenshot code was absent from extracted text.",
           "role": "premise",
@@ -6789,37 +7203,51 @@
         }
       ],
       "solution": {
-        "justification": "The package and lifecycle examples must be combined: stored source is necessary material for a program, not evidence that it has started.",
+        "justification": "The guard is true for direct execution and false when __name__ is another module name; storing/importing definitions is not the same as launching the shown lifecycle.",
         "optionExplanations": {
-          "o1": "Organization is distinct from runtime initialization and execution.",
-          "o2": "A source file does not execute its timer merely by being stored.",
-          "o3": "Spin is a runtime call in code, not an automatic directory property.",
-          "o4": "No executing publisher or delivery is established."
+          "o1": "Correct: the conditional distinguishes the two stated name values.",
+          "o2": "This reverses the guard’s equality test.",
+          "o3": "Defining a function does not execute its body.",
+          "o4": "The explicit main() call can invoke initialization when the guard is true."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The package and lifecycle examples must be combined: stored source is necessary material for a program, not evidence that it has started.",
+        "simpleExplanation": "The guard is true for direct execution and false when __name__ is another module name; storing/importing definitions is not the same as launching the shown lifecycle.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "This reverses the guard’s equality test.",
+          "Defining a function does not execute its body.",
+          "The explicit main() call can invoke initialization when the guard is true."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
       "revisionAuthors": [
-        "robotics-integration-revision-author"
+        "robotics-integration-revision-author",
+        "robotics-integration-L05-coverage-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 3,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "a830e1762acf6692626bf859f783c7e7f7a2420f9a0130247c2525d67ae02af2",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866494+00:00"
+        }
       ]
     },
     {
       "id": "W01-L05-Q-080",
-      "version": 2,
+      "version": 4,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
-      "stem": "A developer views sensor output from a mixed hardware/simulation experiment in RViz. Which statement distinguishes all three roles?",
+      "stem": "Which experiment most directly matches hardware-in-the-loop rather than an entirely simulated, entirely physical or playback-only setup?",
       "selectionMode": "single",
-      "type": "conceptual",
-      "difficulty": "medium",
-      "cognitiveSkill": "synthesis",
+      "type": "scenario",
+      "difficulty": "easy",
+      "cognitiveSkill": "application",
       "week": 1,
       "lectureId": "L05",
       "topic": "Robot Operating System",
@@ -6834,23 +7262,25 @@
         "W01-L05-C-rviz-vs-gazebo",
         "W01-L05-C-hil"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "Classify only the components explicitly described in each option; no additional hardware or simulation is implied."
+      ],
       "options": [
         {
           "id": "o1",
-          "text": "HIL describes the mixed setup; the simulator supplies modeled components; RViz displays the resulting data"
+          "text": "A physical controller exchanges live signals with a Gazebo-simulated plant, and RViz displays the resulting data"
         },
         {
           "id": "o2",
-          "text": "RViz being open proves every component is simulated"
+          "text": "A simulated controller exchanges live signals with a Gazebo-simulated plant, and RViz displays the resulting data"
         },
         {
           "id": "o3",
-          "text": "Using HIL means no real hardware can participate"
+          "text": "A physical controller operates a physical plant, and RViz displays the resulting data"
         },
         {
           "id": "o4",
-          "text": "A displayed image proves simulated and real sensor noise are identical"
+          "text": "RViz displays recorded sensor messages while neither a controller nor a simulated plant is actively coupled"
         }
       ],
       "correctOptionIds": [
@@ -6892,25 +7322,47 @@
         }
       ],
       "solution": {
-        "justification": "Do not infer the source or fidelity of data solely from the tool used to view it.",
+        "justification": "Hardware-in-the-loop couples real hardware with a simulated part of the active experiment; Gazebo supplies the simulated plant here and RViz remains a data-visualization tool.",
         "optionExplanations": {
-          "o1": "These labels refer to experiment composition, simulated behavior and visualization respectively.",
-          "o2": "A visualizer can display data from different origins.",
-          "o3": "Real hardware participation is the defining distinction of HIL.",
-          "o4": "A visible image does not establish a quantitative noise-model match."
+          "o1": "This explicitly couples real controller hardware to an active simulated plant.",
+          "o2": "This is a software-only simulation in the stated setup.",
+          "o3": "This is the stated all-physical experiment, despite using software for visualization.",
+          "o4": "Playback visualization alone does not form an active real-hardware/simulation loop."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Do not infer the source or fidelity of data solely from the tool used to view it.",
+        "simpleExplanation": "Hardware-in-the-loop couples real hardware with a simulated part of the active experiment; Gazebo supplies the simulated plant here and RViz remains a data-visualization tool.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "This is a software-only simulation in the stated setup.",
+          "This is the stated all-physical experiment, despite using software for visualization.",
+          "Playback visualization alone does not form an active real-hardware/simulation loop."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
       "revisionAuthors": [
-        "robotics-integration-revision-author"
+        "robotics-integration-revision-author",
+        "robotics-integration-L05-coverage-revision-author",
+        "robotics-integration-L05-final-quality-revision"
+      ],
+      "revisionHistory": [
+        {
+          "version": 3,
+          "authorId": "robotics-integration-L05-coverage-revision-author",
+          "priorQuestionSha256": "444bb223c9f401dcdd00440bb49e348b472e1fc49e5eecff5163344a3bbfed25",
+          "reason": "Targeted quality repairs and documented source-angle gap extensions after independent whole-lecture coverage challenge.",
+          "revisedAt": "2026-10-19T18:02:24.866600+00:00"
+        },
+        {
+          "version": 4,
+          "authorId": "robotics-integration-L05-final-quality-revision",
+          "priorQuestionSha256": "0125a7db2c01533ea8f53af1f5f4e6bb7703ba5ce0fa21928f75b09dced67d31",
+          "reason": "Five exact remaining independent-review findings; preserve all accepted objects and open source issues.",
+          "revisedAt": "2026-10-19T18:25:50.161760+00:00"
+        }
       ]
     }
   ],
@@ -7905,6 +8357,81 @@
       "status": "drafted",
       "topic": "Robot Operating System",
       "subtopic": "Robot dataflow",
+      "prerequisiteConceptIds": []
+    },
+    {
+      "id": "W01-L05-C-production-readiness",
+      "title": "Production-readiness feature claim",
+      "description": "The source associates maturity and reliability with commercial/industrial deployment; each actual system still requires validation.",
+      "slideIds": [
+        "lectures-p0176"
+      ],
+      "questionIds": [
+        "W01-L05-Q-003"
+      ],
+      "status": "drafted",
+      "topic": "Robot Operating System",
+      "subtopic": "Production-readiness feature claim",
+      "prerequisiteConceptIds": []
+    },
+    {
+      "id": "W01-L05-C-heterogeneous-allocation",
+      "title": "CPU/GPU node allocation",
+      "description": "The source illustrates GPU-assisted vision and CPU path planning; it does not demonstrate automatic pinning, optimal scheduling, or deadline guarantees.",
+      "slideIds": [
+        "lectures-p0184"
+      ],
+      "questionIds": [
+        "W01-L05-Q-009"
+      ],
+      "status": "drafted",
+      "topic": "Robot Operating System",
+      "subtopic": "CPU/GPU node allocation",
+      "prerequisiteConceptIds": []
+    },
+    {
+      "id": "W01-L05-C-service-client-fanin",
+      "title": "Multiple clients of an intended service server",
+      "description": "Several clients can call the intended named server in the course example; the slide’s global uniqueness wording is not treated as an enforced implementation theorem.",
+      "slideIds": [
+        "lectures-p0194"
+      ],
+      "questionIds": [
+        "W01-L05-Q-031"
+      ],
+      "status": "drafted",
+      "topic": "Robot Operating System",
+      "subtopic": "Multiple clients of an intended service server",
+      "prerequisiteConceptIds": []
+    },
+    {
+      "id": "W01-L05-C-sensor-ports",
+      "title": "Physical sensor ports versus ROS topics",
+      "description": "The source names USB/CSI sensor links before publication to software topics, without universal compatibility for every sensor.",
+      "slideIds": [
+        "lectures-p0200"
+      ],
+      "questionIds": [
+        "W01-L05-Q-042"
+      ],
+      "status": "drafted",
+      "topic": "Robot Operating System",
+      "subtopic": "Physical sensor ports versus ROS topics",
+      "prerequisiteConceptIds": []
+    },
+    {
+      "id": "W01-L05-C-entry-guard",
+      "title": "Direct execution versus module import",
+      "description": "The final __name__ guard invokes main for direct execution, but not merely for import under another name.",
+      "slideIds": [
+        "lectures-p0187"
+      ],
+      "questionIds": [
+        "W01-L05-Q-079"
+      ],
+      "status": "drafted",
+      "topic": "Robot Operating System",
+      "subtopic": "Direct execution versus module import",
       "prerequisiteConceptIds": []
     }
   ],

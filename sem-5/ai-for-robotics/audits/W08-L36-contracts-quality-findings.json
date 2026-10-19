@@ -1,0 +1,56 @@
+{
+  "completedAt": "2026-10-19T21:15:55.806367+00:00",
+  "reviewerId": "robotics-contracts-independent-reviewer",
+  "findings": {
+    "W08-L36-P1091-Q01": [
+      {
+        "criterion": "distractors",
+        "finding": "Option o4 makes an outside-map goal the only possible infeasibility condition, despite the stem already specifying a violated turning limit. This unrelated exclusivity claim is a giveaway rather than a plausible competing interpretation. Replace it with a same-domain confusion about curvature, swept-body clearance, or choosing a feasible alternate path."
+      }
+    ],
+    "W08-L36-P1091-Q02": [
+      {
+        "criterion": "distractors",
+        "finding": "Option o2 says labeled endpoints prove the shortest feasible route. Endpoint labels provide no optimization information, so this is an implausible proof mechanism. Use a realistic geometric misconception, such as mistaking the visually shortest centerline for a constrained optimum, without making labels themselves a proof."
+      }
+    ],
+    "W08-L36-P1096-Q02": [
+      {
+        "criterion": "distractors",
+        "finding": "Option o4 claims that displaying a decimal proves its last digit physically exact. This formatting-as-accuracy assertion is an obvious giveaway. Use a realistic estimation misconception concerning systematic sensor bias, map error, or fusion uncertainty. The source qualification itself is sound."
+      }
+    ],
+    "W08-L36-P1097-Q02": [
+      {
+        "criterion": "distractors",
+        "finding": "Options o3 and o4 claim that recomputation ceases to be planning or that a global planner must ignore a closure to remain global. They are not credible competing classifications. Retain the valid scope-versus-timing distinction but use parallel whole-route/local-reaction/map-update alternatives."
+      }
+    ],
+    "W08-L36-P1099-Q04": [
+      {
+        "criterion": "distractors",
+        "finding": "Options o3 and o4 assert that smaller cells physically widen a corridor or that changing to a graph removes robot width. These impossible representation-to-physics mechanisms weaken the item. Use realistic point-versus-footprint, inflated-obstacle, radius-versus-diameter or discretization-clearance mistakes without pretending a map changes physical geometry."
+      }
+    ],
+    "W08-L36-P1100-Q03": [
+      {
+        "criterion": "distractors",
+        "finding": "Every choice supplies its correctly summed route cost, so selecting the smallest supplied number answers the question without reading the graph or calculating any path cost. This bypasses the intended graph-to-minimum-route numerical angle. Remove the supplied totals or use plausible incorrect route/total pairings that require actual evaluation. All current arithmetic and the intended key are correct."
+      }
+    ],
+    "W08-L36-P1102-Q05": [
+      {
+        "criterion": "distractors",
+        "finding": "Option o4 claims that an irrational diagonal weight makes a goal unreachable by BFS. This conflates the representation of a number with topological reachability in an implausible way. Replace it with a credible confusion about equal per-move cost, FIFO ordering or diagonal hop count."
+      }
+    ],
+    "W08-L36-P1104-Q02": [
+      {
+        "criterion": "distractors",
+        "finding": "Options o3 and o4 call the last expanded vertex a cheapest route to an unreached goal, or declare success merely because processing finished. These unsupported success definitions are giveaways. Use realistic distinctions between graph disconnection, an incomplete map, finite cutoff, or successor-generation incompleteness while retaining the explicit exhaustive-search assumptions."
+      }
+    ]
+  },
+  "allCurrentKeysAgree": true,
+  "warning": "Eight item-quality flags, not mathematical disagreements. Keep the35newly accepted and39prior accepted hashes unchanged."
+}

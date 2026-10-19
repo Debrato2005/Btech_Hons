@@ -1,0 +1,122 @@
+{
+  "completedAt": "2026-10-19T20:08:35.425518+00:00",
+  "reviewerId": "define_robotics_data_contracts:L29-independent-reviewer",
+  "status": "five-bounded-gaps-closed-one-item-citation-residual",
+  "historicalFullSourceChallengePath": "audits/W06-L29-contracts-coverage-challenge.json",
+  "historicalFullSourceAnswerPath": "audits/blind-answers-W06-L29-v1-contracts-reviewer.json",
+  "historicalActualPagesInspected": 31,
+  "currentActualPagesReinspected": [
+    862,
+    863,
+    864,
+    865,
+    866,
+    868,
+    870,
+    871,
+    873,
+    874,
+    875,
+    876,
+    877,
+    880,
+    881,
+    882,
+    883,
+    884
+  ],
+  "currentAnswerEvidencePath": "audits/blind-answers-W06-L29-v2-contracts-reviewer.json",
+  "currentReviewPath": "data/reviews/W06-L29-v2-independent-contracts.json",
+  "gaps": [
+    {
+      "id": "L29-GAP-870-leaf-cap",
+      "pages": [
+        870
+      ],
+      "status": "closed-for-bounded-lecture-challenge",
+      "finding": "max_leaf_nodes limits total terminal nodes, distinct from max_depth and minimum child samples. No current question tests this explicitly printed growth control. Add a constrained topology or growth-choice item rather than another general pruning definition.",
+      "closingQuestionIds": [
+        "W06-L29-Q072"
+      ],
+      "closureEvidence": [
+        "Replacing one terminal node by two changes the count from 4 to 5. The leaf cap can block a split even if the depth cap permits it; the competing counts are explained."
+      ]
+    },
+    {
+      "id": "L29-GAP-870-reduced-error",
+      "pages": [
+        870
+      ],
+      "status": "closed-for-bounded-lecture-challenge",
+      "finding": "The actual source post-pruning rule replaces a subtree by a leaf when pruning-set error does not increase, including equality. Q027 only names timing and Q028 corrects the API claim; neither tests the stated error comparison. Add a small before/after pruning-set example, clearly distinguishing this reduced-error description from ccp_alpha cost-complexity pruning.",
+      "closingQuestionIds": [
+        "W06-L29-Q073"
+      ],
+      "closureEvidence": [
+        "The source nonincrease rule accepts 3-to-3 and rejects 3-to-4, with the candidates evaluated separately. It is not presented as the ccp_alpha objective."
+      ]
+    },
+    {
+      "id": "L29-GAP-862-865-split-objective",
+      "pages": [
+        862,
+        865
+      ],
+      "status": "closed-for-bounded-lecture-challenge",
+      "finding": "The best-split criterion is described, but Q012/Q013 evaluate one unsplit leaf and Q038 only root Gini. No item actually chooses between candidate splits using their child errors and sample weighting. Add a meaningful multi-step split comparison with all required criterion definitions supplied, retaining course-derived rather than printed-example attribution.",
+      "closingQuestionIds": [
+        "W06-L29-Q074"
+      ],
+      "closureEvidence": [
+        "The explicitly supplied weighted criterion gives 3.2 versus 2.0. Every alternative is independently computed or identified as ignoring weights/purity of the other child; formula variables and units are defined."
+      ]
+    },
+    {
+      "id": "L29-GAP-862-864-multivariate-region",
+      "pages": [
+        862,
+        864
+      ],
+      "status": "closed-for-bounded-lecture-challenge",
+      "finding": "The source explicitly contrasts polyhedral regions from multivariate linear tests with axis-aligned hyperrectangles. Q008 identifies one oblique boundary and Q016 only the univariate case; neither tests intersecting multivariate decisions or their resulting region. Add an explicit two-test routing/region application with stated inequalities.",
+      "closingQuestionIds": [
+        "W06-L29-Q075"
+      ],
+      "closureEvidence": [
+        "Both strictness and the oblique intersection are checked: only (3,1) satisfies both tests. The region need not be bounded."
+      ]
+    },
+    {
+      "id": "L29-GAP-868-full-generation-trace",
+      "pages": [
+        868,
+        871
+      ],
+      "status": "closed-for-bounded-lecture-challenge",
+      "finding": "Current questions cover shape, stable-class scale, label order and normal support but not the forward/backward means/spreads or the separate data-generation and split seeds. Add an integrated block-index/distribution/code-flow trace that distinguishes a sampled value from its generating mean and preserves source axis conventions.",
+      "closingQuestionIds": [
+        "W06-L29-Q071",
+        "W06-L29-Q076"
+      ],
+      "closureEvidence": [
+        "The replacement closes the fall-distribution/block-boundary trace: zero-based rows 150 and 300 start labels 1 and 2; means [4,150] and [4,-150], scales [2,30]. Seeded draws are not their means.",
+        "Changing the split seed can change allocation without changing already generated arrays, distribution parameters or class labels. Independent execution checks both stages separately."
+      ]
+    }
+  ],
+  "currentSubstantivePageCitationCount": 26,
+  "sourceQualifications": "The original source issues remain qualified, not globally resolved; current official API references are explicit for Q028 and Q061.",
+  "scope": "All five previously identified, bounded source-concept gaps now have independently verified current items. This closes those findings, not the entire course or every conceivable question angle. Q059 remains blocked for exact citation completeness. Prior full-page coverage evidence is preserved rather than relabeled as a fresh 31-page inspection.",
+  "difficultyCounts": {
+    "easy": 29,
+    "medium": 47,
+    "hard": 0,
+    "extremely-tricky": 0
+  },
+  "selectionModes": {
+    "single": 76,
+    "multiple": 0
+  },
+  "remainingCourseLevelEnrichment": "This lecture still has no hard or multiple-select items. Genuine harder and varied-format synthesis remains a course-level enrichment need; do not inflate difficulty labels.",
+  "answerPresentation": "All correct stable option IDs are o1 and the stored option arrays cycle. This alone is not treated as a current user-facing clue because the lead has separately implemented answer-independent display permutation; this review did not rerun browser QA."
+}

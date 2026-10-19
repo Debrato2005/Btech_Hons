@@ -1,0 +1,85 @@
+{
+  "id": "W02-L09-P0315-Q05",
+  "version": 2,
+  "status": "draft",
+  "authorId": "L09-author-20261019",
+  "stem": "For a small configuration increment δq, which statement connects the Jacobian to position changes?",
+  "selectionMode": "single",
+  "type": "conceptual",
+  "difficulty": "medium",
+  "cognitiveSkill": "conceptual",
+  "week": 2,
+  "lectureId": "L09",
+  "topic": "Jacobian, Singularity, and Workspace",
+  "subtopic": "Chain-rule Jacobian construction",
+  "tags": [
+    "jacobian-velocity",
+    "robotics",
+    "Chain-rule Jacobian construction"
+  ],
+  "conceptIds": [
+    "W02-L09-P0315-C01"
+  ],
+  "assumptions": [
+    "Differentiablemap; δqsmall; δxdenotesthecorrespondingoutputincrement."
+  ],
+  "options": [
+    {
+      "id": "o2",
+      "text": "δx=J (q)δq is exact for every finite increment of any nonlinear map"
+    },
+    {
+      "id": "o3",
+      "text": "The Jacobian multiplies only positions, never rates"
+    },
+    {
+      "id": "o4",
+      "text": "The Jacobian is independent of q for every map"
+    },
+    {
+      "id": "o1",
+      "text": "δx≈J (q)δq is a local first-order approximation; the velocity relation is instantaneous"
+    }
+  ],
+  "correctOptionIds": [
+    "o1"
+  ],
+  "citations": [
+    {
+      "slideId": "lectures-p0315",
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 315,
+      "kind": "equation",
+      "locator": "Printed slide 20: F/G chain-rule equations and 2×2 derivative matrix",
+      "evidenceText": "Jacobian\n\n• What is a Jacobian?\n                                  and y=•  Let's say we have a functions x=F(q1,q2)                                                   G(q1,q2)\n• We want to find the velocity  and                                   vx     vy\n• We use the chain rule to take the derivative\n\n                     𝜕𝑥  𝜕F( θ1, θ2)   𝜕𝐹       𝜕𝐹                  ሶ𝑥=          =    ⋅𝜕θ1      ⋅𝜕θ2                 𝜕𝑡=    𝜕𝑡      𝜕θ1 𝜕𝑡+ 𝜕θ2  𝜕𝑡\n                    𝜕𝑦   𝜕𝐺(θ1, θ2)  𝜕𝐺      𝜕𝐺                  ሶ𝑦=          =    ⋅𝜕θ1      ⋅𝜕θ2                𝜕𝑡=    𝜕𝑡      𝜕θ1 𝜕𝑡+ 𝜕θ2  𝜕𝑡\n•  Or in matrix format       𝜕𝐹  𝜕𝐹\n                                                           ሶ𝑥    𝜕θ1  𝜕θ2   ሶθ1           ሶθ1\n                        ሶ𝑦= 𝜕𝐺  𝜕𝐺    =  𝐽                                                                        ሶθ2          ሶθ2\n                                    𝜕θ1  𝜕θ2\n\n\n\n                                                                                                          20",
+      "role": "explicit",
+      "region": null
+    }
+  ],
+  "solution": {
+    "justification": "A derivative gives the local linear part; nonlinear maps have higher-order terms for finite changes.",
+    "optionExplanations": {
+      "o1": "Correct. A derivative gives the local linear part; nonlinear maps have higher-order terms for finite changes.",
+      "o2": "Incorrect. The omitted higher-order terms generally matter for finite increments.",
+      "o3": "Incorrect. The source uses J to map joint rates.",
+      "o4": "Incorrect. The partial derivatives can change with configuration."
+    },
+    "steps": [],
+    "formulas": [],
+    "simpleExplanation": "A derivative gives the local linear part; nonlinear maps have higher-order terms for finite changes.",
+    "memoryAid": null,
+    "misconceptions": [
+      "The omitted higher-order terms generally matter for finite increments.",
+      "The source uses J to map joint rates.",
+      "The partial derivatives can change with configuration."
+    ],
+    "examTraps": [],
+    "prerequisiteConceptIds": []
+  },
+  "origin": "generated",
+  "reviewIds": [],
+  "revisionAuthors": [
+    "L09-author-20261019"
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "reviewerId": "robotics-contracts-reviewer-L35-v2",
+  "executedAt": "2026-10-19T21:31:38.939799+00:00",
+  "exposure": "Supplemental check after frozen answers and current keyed reveal, not claimed as blind notebook execution. Initial printed-code inference was completed before keyed access.",
+  "url": "https://raw.githubusercontent.com/robotics-lab-iitr/nptel-ai-robotics/main/week07/week07_lecture35.ipynb",
+  "notebookPath": "audits/review-snapshots/W07-L35-official-notebook-contracts.ipynb",
+  "notebookSha256": "5f2680c5d1089be24f5b5cc17e1429761777af79e47b31ab62f381150485881c",
+  "executedCells": [
+    {
+      "cell": 5,
+      "originalCodeSha256": "ff10a78420c51292b0bc00cd09d97cebf796649168168e77da68d5d6131ec65b",
+      "executedCode": "from ultralytics import YOLO\nimport os\n\n\n# 1. Load the pre-trained YOLOv8 Nano model\nmodel = YOLO('/tmp/robotics-l35-runtime/yolov8n.pt') # The 'n' stands for Nano, which is the fastest and most lightweight version\n\n# 2. Define our image source\n# Ultralytics is smart enough to download and process an image directly from a URL\nimage_source = '/tmp/robotics-l35-runtime/bus.jpg'\n\n# Let's display 'bus.jpg' to see the image we are about to pass to our YOLO algorithm\nprint(\"Here is our input image:\")\n",
+      "changes": "Local cached asset paths and removed IPython-only input display/import"
+    },
+    {
+      "cell": 7,
+      "originalCodeSha256": "ee65fc037810ce7b712d752a7fb2ec5f2e1624fc9c4d08a16469833c89298af1",
+      "executedCode": "# 3. Run inference (prediction)\nprint(\"Running YOLOv8 inference...\")\n\n# 'save=True' tells YOLO to save a copy of the image with bounding boxes drawn on it\n# 'conf=0.25' tells the model to ignore any predictions it is less than 25% confident about\nresults = model.predict(source=image_source, conf=0.25)              \nresults",
+      "changes": "No code change; Matplotlib backend is noninteractive Agg"
+    },
+    {
+      "cell": 9,
+      "originalCodeSha256": "3ac39490bb9bd90ec0f611ecf35ba06fd09e86d6668b1a6bb80786aea624b5b5",
+      "executedCode": "# Since we only passed one image to the model, we look at the first result: results[0]\nboxes = results[0].boxes\n\n# Let's look at the raw PyTorch tensors the model generated for all detected objects!\n\nprint(\"1. CLASS IDs (Which of the 80 COCO objects did it find?):\")\nprint(boxes.cls)\nprint(\"*\" * 60)\n\nprint(\"2. CONFIDENCE SCORES (How sure is the model, from 0.0 to 1.0?):\")\nprint(boxes.conf)\nprint(\"*\" * 60)\n\nprint(\"3. BOUNDING BOX COORDINATES (Center X, Center Y, Width, Height):\")\nprint(boxes.xywh)",
+      "changes": "No code change; Matplotlib backend is noninteractive Agg"
+    },
+    {
+      "cell": 11,
+      "originalCodeSha256": "b03658533d299ebaf82b8f7fae71e8ae1d2c309921a53197161234fb3334ba85",
+      "executedCode": "print(f\"YOLO found {len(boxes)} objects in the image.\\n\")\n\n# Let's loop through every single detected object and make the data readable\nfor box in boxes:\n\n    # 1. Class ID & Name (What is it?)\n    # .item() pulls the single number out of the complex PyTorch tensor\n    class_id = int(box.cls[0].item())\n    class_name = results[0].names[class_id] # Look up the actual word using the ID\n\n    # 2. Confidence Score (How sure is the model?)\n    conf = box.conf[0].item()\n\n    # 3. Bounding Box Coordinates: Center X, Center Y, Width, Height\n    # .tolist() converts the PyTorch array into a standard Python list\n    coords = box.xywh[0].tolist()\n\n    # Format the coordinates to 2 decimal places for cleaner printing\n    formatted_coords = [round(num, 2) for num in coords]\n\n    # Print the decoded results!\n    print(f\"Object: {class_name.upper()}\")\n    print(f\"Confidence: {conf * 100:.1f}%\")\n    print(f\"Coordinates (x, y, w, h): {formatted_coords}\")\n    print(\"-\" * 30)",
+      "changes": "No code change; Matplotlib backend is noninteractive Agg"
+    },
+    {
+      "cell": 12,
+      "originalCodeSha256": "2e17d62125b8394ef8afdfe4e1ab73e509672a8bc32651117c8839c7b22b10b2",
+      "executedCode": "# To display the YOLO result\nplt.figure(figsize=(10, 7))\nplt.imshow(results[0].plot()[:, :, ::-1])\nplt.axis(\"off\")\nplt.show()",
+      "changes": "No code change; Matplotlib backend is noninteractive Agg"
+    }
+  ],
+  "notExecutedSetupCell": {
+    "index": 2,
+    "reason": "Optional Google Colab install/IPython display setup not applicable. IPython absent; already installed runtime and ordinary plotting imports supplied explicitly. No install performed."
+  },
+  "versions": {
+    "ultralytics": "8.4.182",
+    "torch": "2.14.1+cpu"
+  },
+  "sourceDiscrepancy": "Notebook cell7 omits save=True although its comment describes it. PDF p1083 explicitly supplies save=True and save_dir. These are distinct source variants, not identical programs.",
+  "notebookPredictionSaveFlag": false,
+  "report": "Here is our input image:\nRunning YOLOv8 inference...\n1. CLASS IDs (Which of the 80 COCO objects did it find?):\ntensor([ 5.,  0.,  0.,  0.,  0., 11.])\n************************************************************\n2. CONFIDENCE SCORES (How sure is the model, from 0.0 to 1.0?):\ntensor([0.8734, 0.8657, 0.8528, 0.8252, 0.2611, 0.2551])\n************************************************************\n3. BOUNDING BOX COORDINATES (Center X, Center Y, Width, Height):\ntensor([[413.9370, 494.0588, 782.1314, 525.5631],\n        [146.9480, 650.6274, 196.7951, 504.1505],\n        [739.5966, 634.6108, 140.2473, 484.8494],\n        [283.2440, 631.6676, 123.4533, 451.7380],\n        [ 31.5035, 711.9840,  63.0070, 322.9179],\n        [ 16.3078, 289.6668,  32.4992,  70.4147]])\nYOLO found 6 objects in the image.\n\nObject: BUS\nConfidence: 87.3%\nCoordinates (x, y, w, h): [413.94, 494.06, 782.13, 525.56]\n------------------------------\nObject: PERSON\nConfidence: 86.6%\nCoordinates (x, y, w, h): [146.95, 650.63, 196.8, 504.15]\n------------------------------\nObject: PERSON\nConfidence: 85.3%\nCoordinates (x, y, w, h): [739.6, 634.61, 140.25, 484.85]\n------------------------------\nObject: PERSON\nConfidence: 82.5%\nCoordinates (x, y, w, h): [283.24, 631.67, 123.45, 451.74]\n------------------------------\nObject: PERSON\nConfidence: 26.1%\nCoordinates (x, y, w, h): [31.5, 711.98, 63.01, 322.92]\n------------------------------\nObject: STOP SIGN\nConfidence: 25.5%\nCoordinates (x, y, w, h): [16.31, 289.67, 32.5, 70.41]\n------------------------------\n",
+  "displayObservation": "Cell12 reverses the BGR array from Results.plot to RGB for Matplotlib. This is not tested by the current98 questions.",
+  "thresholdBoundaryProbe": {
+    "inputScores": [
+      0.25,
+      0.2501,
+      0.2499
+    ],
+    "threshold": 0.25,
+    "keptScores": [
+      0.2500999867916107
+    ],
+    "comparisonLines": [
+      "mask = pred[:, 4] > conf_thres",
+      "xc = prediction[:, 4:mi].amax(1) > conf_thres  # candidates",
+      "i, j = torch.where(cls > conf_thres)",
+      "filt = conf.view(-1) > conf_thres"
+    ],
+    "result": "Strict greater-than filter; equality does not pass in8.4.182. Q088 general >=formula is inaccurate for this API, though its .255case remains correct."
+  },
+  "assertions": 4,
+  "renderPath": "/tmp/robotics-l35-contracts-notebook.png",
+  "renderSha256": "92f91c5dc69891876e5996f2382a31d37026ab9a0d12be5e242c6b5c79d5d122"
+}

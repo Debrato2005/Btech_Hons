@@ -1,0 +1,338 @@
+{
+  "reviewerId": "define_robotics_data_contracts:L21-independent-reviewer",
+  "completedAt": "2026-10-19T18:36:27.121543+00:00",
+  "questionsReviewed": 72,
+  "verified": 52,
+  "flagged": 20,
+  "criterionFindings": 22,
+  "keyDisagreements": 0,
+  "actualPagesInspected": 32,
+  "reviewFile": "data/reviews/W05-L21-v1-independent-contracts.json",
+  "reviewSha256": "d9d13f3ea5466e5070a4a2ca8c93c7fa644dd16550f8f86af2a8c79f49bf1ecb",
+  "blindAnswersSha256": "eb450b643eb129afe84362d3fa96c4df17fb235b782e753c147e2b25c17f7237",
+  "independentChecks": "audits/W05-L21-independent-checks.json",
+  "flaggedQuestionIds": [
+    "W05-L21-Q008",
+    "W05-L21-Q009",
+    "W05-L21-Q010",
+    "W05-L21-Q019",
+    "W05-L21-Q023",
+    "W05-L21-Q025",
+    "W05-L21-Q030",
+    "W05-L21-Q033",
+    "W05-L21-Q038",
+    "W05-L21-Q043",
+    "W05-L21-Q044",
+    "W05-L21-Q047",
+    "W05-L21-Q048",
+    "W05-L21-Q049",
+    "W05-L21-Q053",
+    "W05-L21-Q055",
+    "W05-L21-Q057",
+    "W05-L21-Q062",
+    "W05-L21-Q067",
+    "W05-L21-Q072"
+  ],
+  "findings": [
+    {
+      "questionId": "W05-L21-Q008",
+      "criteria": [
+        "explanation"
+      ],
+      "findings": [
+        "The solution discusses the full torque equation but its formula list is empty. Define desired joint position, velocity and acceleration, the torque vector, inertia matrix M, velocity-dependent torque V and gravity torque G with units and desired-state evaluation. Keep the important distinction between this feedforward equation and the feedback diagram."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q009",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "The desired-minus-actual convention is supplied explicitly and the only operations are two subtractions. Mark easy, or add a genuinely coupled control calculation if retaining medium. The signed numerical answer and all four rationales are correct."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q010",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "This is direct recognition that feedback presence is not a stability guarantee and bounded error is not necessarily zero. Mark easy, or use a specified closed-loop polynomial/gain choice to make the stability qualification a medium application."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q019",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The zero-settling-time alternative is an immediate physical impossibility, and the identical-response-for-all-initial-velocities alternative is similarly categorical. Replace these with plausible competing comparisons, such as changing natural frequency, allowing a specified overshoot, or comparing a fixed response criterion. Preserve the qualified correct answer."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q023",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The claim that removing a mode makes the other stable pole unstable and the claim that a zero homogeneous coefficient automatically becomes nonzero are weak alternatives. Use realistic dominance mistakes, such as applying the slow-pole approximation regardless of mode weight, estimating decay from the mean pole, or confusing a small nonzero slow coefficient with exactly zero."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q025",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The product/ratio coefficient pair is not a plausible result of collecting a linear combination of exponentials and is dimensionally incompatible with the amplitude mapping. Replace o4 with a credible sign or conjugate-coefficient mistake while retaining one uniquely correct mapping."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q030",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The assertion that every initial displacement vanishes immediately without friction is implausible. Replace o3 with a realistic confusion between undamped bounded free oscillation, asymptotic stability and forced resonant response; state clearly that this question concerns free response."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q033",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "The question asks only which sign of a makes a polynomial times exp(-at) decay, rather than requiring the displayed limit derivation. Mark easy, or ask for the actual limiting argument or a nontrivial repeated-pole initial-condition case to retain medium."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q038",
+      "criteria": [
+        "assumptions"
+      ],
+      "findings": [
+        "The pre-answer assumption says “In ROOT” without defining ROOT. This appears to be an internal formula-helper name rather than course notation. Remove it or replace it with the explicit characteristic polynomial ms^2+b_prime s+k_prime=0 and the intended substitution; retain the strict-versus-boundary distinction."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q043",
+      "criteria": [
+        "explanation"
+      ],
+      "findings": [
+        "The central model-mismatch equation has no formula metadata. Define true and estimated m, b and k, actual state and derivatives, physical force and normalized f_prime, with kg, N s/m, N/m, m, m/s, N and m/s^2 units. State that the same actual state is used in compensation and that mismatch leaves both input-scaling and residual state terms."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q044",
+      "criteria": [
+        "difficulty",
+        "explanation"
+      ],
+      "findings": [
+        "This is a direct substitution into kv=2 sqrt(kp), with the normalized model and critical condition explicitly stated. Mark easy, or require a non-unit physical-model conversion or pole-design comparison to retain medium.",
+        "The o1 rationale attributes 9 to subtracting a physical damping coefficient, but this question supplies no physical damping value. If retaining 9, explicitly explain that it incorrectly imports the earlier unit-damping example and subtracts its numerical value without the required force/acceleration normalization. Otherwise use a distractor derived only from the stated data."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q047",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "The question repeats the source's exact unit-coefficient example and only recalls alpha, beta and computes 2 sqrt(16). Mark easy, or use a different non-unit mass/damping/stiffness case requiring a genuine conversion between normalized and physical gains for medium."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q048",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Physically removing the spring/damper and freely exchanging position/velocity gain labels are weak explanations of the numerical equivalence. Replace at least these alternatives with plausible complete force expansions, such as omitting one compensation term, reversing a compensation sign or confusing the mass-scaled gain with the direct gain."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q049",
+      "criteria": [
+        "duplication"
+      ],
+      "findings": [
+        "This repeats Q002's same three-signal recognition: desired position, velocity and acceleration. Replacing the vector joint variable by scalar x and naming tracking does not add a new reasoning operation. Replace it with a source-bound differentiability/trajectory-signal application, such as evaluating the required derivatives of a specified smooth reference or reconstructing the full physical command."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q053",
+      "criteria": [
+        "explanation"
+      ],
+      "findings": [
+        "The numerical/derivation steps correctly obtain a forced error equation for the explicitly modified controller, but the sole formula record instead displays the full feedforward command and homogeneous error equation without labelling them as the contrasting nominal case. Add the modified f_prime=kv edot+kp e and eddot+kv edot+kp e=xddot_d record, or explicitly label both cases and their applicability so the revealed formula is not mistaken for this question's law."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q055",
+      "criteria": [
+        "difficulty",
+        "distractors"
+      ],
+      "findings": [
+        "Recognizing that an ideal model cannot override actuator, sensing and modeling limits is an easy qualification question. Use a concrete force-limit or desired-pole feasibility comparison if retaining medium.",
+        "Arbitrarily many poles in a second-order model and unlimited physical speed regardless of force/delay are weak alternatives. Use plausible finite pole-design or actuator-feasibility misconceptions, keeping the exact-compensation qualification."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q057",
+      "criteria": [
+        "explanation"
+      ],
+      "findings": [
+        "The additive-force derivation is correct, but the formula list is empty. Add this sign-specific error equation with definitions and units for F_ext, m, e and its derivatives, desired acceleration, f_prime and the two normalized gains. Do not reuse the resisting-force positive-sign formula without an explicit contrast."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q062",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "The equation and the stable-settled premise are given. Setting two derivatives to zero and dividing by kp is easy, not a medium derivation. A calculation that first normalizes a physical force or compares a changed controller could support medium, but avoid duplicating Q063."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q067",
+      "criteria": [
+        "difficulty"
+      ],
+      "findings": [
+        "With acceleration-command units and e in metres supplied, this only adds one time unit for integration and divides dimensions. Mark easy, consistently with the direct-versus-normalized gain-unit questions, or add a multi-signal scaling/conversion task for medium."
+      ]
+    },
+    {
+      "questionId": "W05-L21-Q072",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The alternative asserting that differentiation lowers the order and removes every initial condition is implausible for the displayed third-order equation. Replace it with a realistic initial-data mistake, such as independently assigning e(0), edot(0), eddot(0) and z(0) without checking their original-equation compatibility. Keep the useful disturbance-jump and stored-state distinctions."
+      ]
+    }
+  ],
+  "coverageChallenge": [
+    {
+      "id": "L21-COVERAGE-01",
+      "status": "open",
+      "sourcePages": [
+        649,
+        650,
+        651
+      ],
+      "finding": "The packet separately tests conjugate-to-trigonometric coefficients, amplitude/phase, damping parameters and pole components. It lacks a complete underdamped initial-condition response analogous to its full overdamped and critical examples. Add one integrated case from m,b,k and nontrivial initial displacement/velocity through lambda, mu, A, B and the actual time response (optionally amplitude/phase), with explicit units. This is a genuine new application, not several near-duplicate substitutions."
+    },
+    {
+      "id": "L21-COVERAGE-02",
+      "status": "repair_linked",
+      "sourcePages": [
+        641,
+        660
+      ],
+      "finding": "Q049 duplicates Q002's desired position/velocity/acceleration list. Repair it into a concrete smooth-reference derivative or physical-command application instead of adding another definition question."
+    },
+    {
+      "id": "L21-COVERAGE-03",
+      "status": "bounded_accounting_note",
+      "sourcePages": [
+        637,
+        638,
+        639,
+        640,
+        641,
+        642,
+        643,
+        644,
+        645,
+        646,
+        647,
+        648,
+        649,
+        650,
+        651,
+        652,
+        653,
+        654,
+        655,
+        656,
+        657,
+        658,
+        659,
+        660,
+        661,
+        662,
+        663,
+        664,
+        665,
+        666,
+        667,
+        668
+      ],
+      "finding": "All 32 actual pages were inspected. Pages 637–639 introduce the lecture, objectives and outline; 667–668 are references and closing. Every substantive or summary page 640–666 has question citations. The 44 concepts meaningfully distinguish major equations and caveats but are not an automatic completeness proof. All 12 source qualifications are preserved, including the visible dot on the differentiated disturbance at page 665; no OCR-derived typo was invented."
+    }
+  ],
+  "reviewerProvenanceCorrection": {
+    "questionId": "W05-L21-Q070",
+    "recordedAt": "2026-10-19T18:36:27.121543+00:00",
+    "priorBlindAnswersSha256": "eb450b643eb129afe84362d3fa96c4df17fb235b782e753c147e2b25c17f7237",
+    "authorKeysSeenAtCorrection": true,
+    "correction": "The frozen answer selects o4 and correctly uses z_ss=d/ki, but its numerical reasoning mistakenly transcribed the givens as 4/2 rather than the packet's 6/3. Both ratios equal 2. The exact question givens are d=6 m/s^2 and ki=3 s^-3, so z_ss=6/3=2 m s. This is a reviewer transcription error, not an author defect or a changed selected answer. The original frozen evidence is retained unmodified.",
+    "postRevealCalculation": {
+      "d": 6,
+      "ki": 3,
+      "z": 2.0
+    },
+    "classification": "Reviewer provenance clarification; numerical detail corrected after keyed access, selected option frozen before keyed access."
+  },
+  "validation": {
+    "valid": true,
+    "release": false,
+    "errors": [],
+    "warnings": [],
+    "counts": {
+      "sources": 2,
+      "sourcesReady": 2,
+      "pagesExpected": 2012,
+      "pagesInventoried": 2012,
+      "pagesVisuallyInspected": 364,
+      "pagesExcluded": 140,
+      "pagesRepeated": 0,
+      "concepts": 44,
+      "conceptsWithDraftQuestions": 44,
+      "conceptsWithVerifiedQuestions": 34,
+      "questions": 72,
+      "questionsByStatus": {
+        "verified": 52,
+        "flagged": 20
+      },
+      "currentlyVerifiedQuestions": 52,
+      "staleReviews": 0,
+      "numericalFamilies": 0,
+      "verifiedByWeek": {
+        "5": 52
+      },
+      "verifiedByDifficulty": {
+        "easy": 26,
+        "medium": 26
+      },
+      "verifiedByType": {
+        "diagram": 8,
+        "derivation": 9,
+        "conceptual": 11,
+        "numerical": 15,
+        "definition": 8,
+        "scenario": 1
+      }
+    }
+  },
+  "sourceQualifications": "All 12 author source issues agree with the bounded source review and remain preserved. Source pixels, not extraction alone, determined radicals, signs and disturbance derivatives.",
+  "mutations": "Reviewer audits, check scripts, review and handoff only. No authored question, canonical bank, source or Git changes."
+}

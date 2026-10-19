@@ -1,17 +1,11 @@
-# Robotics integration handoff
+# Integration handoff
 
-Last verified remote: 26c29295bd71bf99265d28503a6b3c0610d2f5df on main. New checkpoint being prepared; inspect remote before retrying an uncertain write.
+Read project-state.json for the last exact validated receipt and remote checkpoint. Current full corpus is2012physical pages. No complete-course or offline-browser claim is justified yet.
 
-Current counts: {"sourcePages": 2012, "visuallyInspectedPages": 623, "excludedPages": 172, "conceptRecords": 742, "questions": 1174, "draftQuestions": 266, "verifiedQuestions": 907, "flaggedQuestions": 1, "reviews": 1185}
+L42residual packet31repairs+3new closes4bounded gaps. L45residual packet42repairs+3new closes9bounded gaps. L43is65/65accepted. L47review is40accepted/32flagged, with4integrated gaps and missing formula metadata requiring versioned independent review. L48is77drafts, L49is84drafts, L50is65drafts, all frozen with source inspection. L51andL52are active authors; L53–L60remain forward coverage work.
 
-- integration: Own Git and integration; L12 frozen for independent review; fill L02/L03 source-coverage gaps.
-- define_robotics_data_contracts: L10 v2 and gap review complete except one repaired rationale recheck; generate L14 pages 428–449.
-- build_offline_study_interface: Independent L11 review, then L09 v2 repairs.
-- verify_robotics_answer_batches: Finish L03 coverage challenge, review L08 v3 and L02 gap/prose fixes, then independently review L12.
-- complete_robotics_python_coverage: Repair L09 48 quality findings and three source-coverage gaps; preserve 54 approved hashes.
+Review queues: contracts L46thenL50thenL42; answer-batches L44thenL45thenL48thenL49. Integration should repair L47andL44quality findings and ensure the formula-sheet audit does not silently change accepted hashes. Source first, exact locators and plausible parallel distractors are mandatory.
 
-All 77 Python and 49 Node tests passed after the latest completed build. Actual offline browser QA remains blocked; do not bypass the denied file URL, executor network access or unavailable unauthorized laptop.
+Actual downloaded-file browser QA remains blocked by verified environment restrictions. Do not try tunnels or alternate routes around denials. Source corpus/model download and L49notebook denials remain explicit. Unit tests and reconstructed computations are not original notebook execution or actual offline-browser QA.
 
-Sources total 2,012 physical pages. Generated text/previews are not evidence of inspection. L12 47 drafts are frozen with packet and content hashes; L13 46 drafts are frozen. Question author/revision-author independence and exact content hashes are mandatory. Only verified current reviews enter the default pool. Preserve human source caveats and historical review evidence.
-
-Lossless ZIP test: 101,493,323-byte HTML becomes 62,372,579 bytes and expands to the same hash. This is not an upload or browser test.
+The user approved validated main checkpoint pushes22:47UTC; remote writes require fresh remote-state inspection and expected-SHA protection. Preserve unrelated repository content and OncoSyn.

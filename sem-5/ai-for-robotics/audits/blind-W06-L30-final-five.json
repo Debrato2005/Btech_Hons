@@ -1,0 +1,281 @@
+[
+  {
+    "id": "W06-L30-Q017",
+    "version": 3,
+    "stem": "A policy has the greatest expected return, but one noisy episode gives a poor reward. Which conclusion is justified?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A poor realization alone does not refute optimality in expected return."
+      },
+      {
+        "id": "o2",
+        "text": "An optimal policy must maximize every possible realized trajectory simultaneously."
+      },
+      {
+        "id": "o3",
+        "text": "The single poor episode establishes a lower expected return than a competitor whose only observed episode was better."
+      },
+      {
+        "id": "o4",
+        "text": "Maximizing expected return also establishes that the policy minimizes outcome variance."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0899",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 899,
+        "kind": "statement",
+        "locator": "Lecture 30, physical PDF page 899, printed footer 13: first bullet defines an optimal policy using highest possible expected cumulative reward; the final Q* definition also explicitly says expected cumulative reward.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L30-Q052",
+    "version": 3,
+    "stem": "For FetchReachDense-v4 in the explicitly checked Gymnasium 1.4.0/Gymnasium-Robotics 1.4.2 setup with its default 50-step wrapper, which statement correctly qualifies the lecture’s termination wording?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terminated and truncated are aliases that always carry identical values."
+      },
+      {
+        "id": "o2",
+        "text": "A true terminal state is task-defined and need not mean success; default FetchReach instead reaches its time-limit truncation without success termination."
+      },
+      {
+        "id": "o3",
+        "text": "terminated includes the external 50-step collection limit, while truncated is reserved only for numerical simulation failures."
+      },
+      {
+        "id": "o4",
+        "text": "At the external 50-step limit, the Q-learning target must discard its successor-value term because any stopped rollout is a true terminal task state."
+      }
+    ],
+    "assumptions": [
+      "Use the dated, version-specific external API/implementation evidence linked in this item; do not treat the slide’s “won” gloss as the API definition."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0913",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 913,
+        "kind": "code",
+        "locator": "Lecture 30, physical PDF page 913, actual printed footer 27: Literal Python block and accompanying output/explanation for Terminated does not mean won.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L30-Q070",
+    "version": 3,
+    "stem": "In the explicitly checked FetchReachDense-v4 setup (Gymnasium-Robotics 1.4.2), why is changing only ACTION_MAP’s fourth component insufficient to turn the reaching task into grasping?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Once the action table contains opening and closing values, actuator availability and the task reward no longer matter."
+      },
+      {
+        "id": "o2",
+        "text": "A fourth-channel command is sufficient because an effective actuator alone guarantees that a reaching reward will teach stable grasping."
+      },
+      {
+        "id": "o3",
+        "text": "Matching achieved_goal to desired_goal already certifies a stable grasp, even without an object-contact reward."
+      },
+      {
+        "id": "o4",
+        "text": "FetchReach ignores the gripper command and lacks a grasping objective; a suitable task, object interaction and effective gripper control are needed."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0906",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 906,
+        "kind": "figure",
+        "locator": "Lecture 30, physical PDF page 906, actual printed footer 20: Labeled interaction arrows and application workflow diagram.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0909",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 909,
+        "kind": "statement",
+        "locator": "Lecture 30, physical PDF page 909, printed footer 23: FetchReachDense-v4 task-description bullets and the Action space section, a = [dx, dy, dz, gripper_open_close], each in [−1,1]. The separate installation command is not the evidence for this claim.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0917",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 917,
+        "kind": "code",
+        "locator": "Lecture 30, physical PDF page 917, actual printed footer 31: Relevant stated definition and associated explanation.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L30-Q074",
+    "version": 3,
+    "stem": "With nonpositive returns, why can an untried zero-initialized action appear preferable to an action already updated to a negative Q value?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Zero is a measured return for the untried action because initialization is equivalent to one neutral experience."
+      },
+      {
+        "id": "o2",
+        "text": "Optimism guarantees that every state-action pair is visited sufficiently often, even when some states are never reached."
+      },
+      {
+        "id": "o3",
+        "text": "A negative update makes the sampled action permanently undesirable because later estimates cannot revise its ranking."
+      },
+      {
+        "id": "o4",
+        "text": "Zero can be optimistic relative to the learned negative estimate, so the untried action may win the greedy comparison."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0909",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 909,
+        "kind": "equation",
+        "locator": "Lecture 30, physical PDF page 909, printed footer 23: bottom Reward bullet, r = −distance(end_effector, target) per step. Nonpositivity follows from nonnegative Euclidean distance; this is not the pip-installation block.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0912",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 912,
+        "kind": "code",
+        "locator": "Lecture 30, physical PDF page 912, actual printed footer 26: Literal Python block and accompanying output/explanation for Zero initialization with nonpositive reward.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0914",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 914,
+        "kind": "code",
+        "locator": "Lecture 30, physical PDF page 914, actual printed footer 28: Literal Python block and accompanying output/explanation for Zero initialization with nonpositive reward.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W06-L30-Q075",
+    "version": 2,
+    "stem": "A registered environment is constructed with a supported rendering mode. Which trace correctly distinguishes construction, reset, stepping, rendering and plotting a saved reward history?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "make constructs the instance; reset returns observation and info; step(action) advances the task; each render call then performs one additional physics step before displaying it; reward-history plotting is separate."
+      },
+      {
+        "id": "o4",
+        "text": "make constructs the instance; reset returns observation and info; step(action) advances the task; render plots the training loop’s saved reward history, so a separate Matplotlib history plot is unnecessary."
+      },
+      {
+        "id": "o1",
+        "text": "make constructs the instance; reset returns initial observation and info; step(action) advances the task and returns transition outputs; render visualizes the current task; plotting reward history is separate analysis."
+      },
+      {
+        "id": "o2",
+        "text": "make constructs the instance; reset returns only the initial observation; step(action) returns observation, reward, terminated, truncated and info; render displays the task; reward-history plotting is separate."
+      }
+    ],
+    "assumptions": [
+      "The environment supports the explicitly configured rendering mode; exact render output type depends on that mode."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0907",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 907,
+        "kind": "statement",
+        "locator": "Lecture 30, physical page 907, printed footer 21: API lifecycle calls or separate reward-history plotting.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0910",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 910,
+        "kind": "code",
+        "locator": "Lecture 30, physical page 910, printed footer 24: API lifecycle calls or separate reward-history plotting.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0912",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 912,
+        "kind": "code",
+        "locator": "Lecture 30, physical page 912, printed footer 26: API lifecycle calls or separate reward-history plotting.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0913",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 913,
+        "kind": "code",
+        "locator": "Lecture 30, physical page 913, printed footer 27: API lifecycle calls or separate reward-history plotting.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0916",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 916,
+        "kind": "code",
+        "locator": "Lecture 30, physical page 916, printed footer 30: API lifecycle calls or separate reward-history plotting.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  }
+]

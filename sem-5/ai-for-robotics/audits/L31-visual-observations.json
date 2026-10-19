@@ -1,0 +1,239 @@
+{
+  "921": {
+    "physicalPage": 921,
+    "printed": "1",
+    "title": "Introduction to Computer Vision",
+    "notes": "Actual title confirms Lecture Number31 and title, instructor and institution.",
+    "inspectedAt": "2026-10-19T19:39:01.406267+00:00",
+    "excluded": "Lecture title and attribution only."
+  },
+  "922": {
+    "physicalPage": 922,
+    "printed": "2",
+    "title": "Learning Outcome",
+    "notes": "Objectives: basic computer vision, human/digital differences and image formation.",
+    "inspectedAt": "2026-10-19T19:39:01.406281+00:00",
+    "excluded": "Learning objectives repeat the substantive material that follows."
+  },
+  "923": {
+    "physicalPage": 923,
+    "printed": "3",
+    "title": "Contents",
+    "notes": "Agenda divides introduction/history/applications; human/digital vision; photometric and geometric formation.",
+    "inspectedAt": "2026-10-19T19:39:01.406285+00:00",
+    "excluded": "Agenda only; no unique technical definition or procedure."
+  },
+  "924": {
+    "physicalPage": 924,
+    "printed": "4",
+    "title": "Why Does a Robot Need to See?",
+    "notes": "Six illustrated cards: perception identifies scene objects/people/obstacles/layout; localization estimates position and orientation from landmarks/odometry; manipulation uses visual feedback and force sensing; interaction recognizes gestures/expressions/intent; navigation plans collision-free paths in dynamic scenes; inspection detects defects/anomalies/wear. Do not conflate localization with path planning.",
+    "inspectedAt": "2026-10-19T19:39:01.406287+00:00"
+  },
+  "925": {
+    "physicalPage": 925,
+    "printed": "5",
+    "title": "Introduction to Computer Vision",
+    "notes": "Vision described as inverse of graphics: 2D observations infer 3D world properties, whereas graphics renders 3D models. Desired properties shape, illumination and color distributions. Inverse does not imply unique reconstruction.",
+    "inspectedAt": "2026-10-19T19:39:01.406289+00:00"
+  },
+  "926": {
+    "physicalPage": 926,
+    "printed": "6",
+    "title": "Introduction to Computer Vision (Cont.)",
+    "notes": "Camera-eye, algorithm-brain analogy. Figure camera sensor with lens and CCD/CMOS → processing with image processing, feature extraction and ML models → recognition, navigation/obstacle avoidance and manipulation. Read all box text and directed arrows.",
+    "inspectedAt": "2026-10-19T19:39:01.406291+00:00"
+  },
+  "927": {
+    "physicalPage": 927,
+    "printed": "7",
+    "title": "Introduction to Computer Vision (Cont.)",
+    "notes": "Projection loses depth; apparent size alone cannot distinguish size/distance. Figure contrasts human object labels Chair/Dog/Tree/Table with robot Feature extraction/Edge detection/Uncertainty and Object?; schematic is not a theorem that machines cannot recognize objects.",
+    "inspectedAt": "2026-10-19T19:39:01.406868+00:00"
+  },
+  "928": {
+    "physicalPage": 928,
+    "printed": "8",
+    "title": "Evolution and History",
+    "notes": "Diagram adds extracted-text-missing history: 1970s early scene understanding includes line labeling (3D from 2D line drawings), pictorial structures (flexible parts), Marr’s Paradigm with Computational Theory (Goal), Algorithm (Method), then a repeated Marr’s Paradigm bullet instead of a distinct third level. 1980s: pyramids/scale-space multi-resolution, regularization smoothness for ill-posed problems, MRF probabilistic global optimization. 1990s–Present: SfM reconstruction, computational photography HDR/panoramas/texture synthesis, deep learning. Preserve timeline as source attribution; do not silently repair incomplete Marr list.",
+    "inspectedAt": "2026-10-19T19:39:01.406873+00:00"
+  },
+  "929": {
+    "physicalPage": 929,
+    "printed": "9",
+    "title": "Real-World Applications",
+    "notes": "Eight named mappings: OCR documents/packages; mechanical inspection tolerances/defects; medical CT/MRI analysis; autonomous vehicles/drones and SLAM; image stitching panoramas; AR tracked reference points with virtual models in live feed; biometrics face/fingerprint authentication; visual effects morphing/stabilization.",
+    "inspectedAt": "2026-10-19T19:39:01.406875+00:00"
+  },
+  "930": {
+    "physicalPage": 930,
+    "printed": "10",
+    "title": "Fundamentals of Vision - Light",
+    "notes": "E(lambda) spectral intensity; medium absorption changes spectrum; slide attributes white-light dispersion to Newton in1670. Approximate visible range400–700nm. Plot normalized intensity versus wavelength300–1000nm: orange Sun5778K peaks around500nm; blue Lamp2600K rises across plotted interval, reaching its displayed maximum at1000nm. Independent normalization means no absolute emitted-power inference. Rainbow400–750nm. Do not infer lamp true peak is1000nm from plot boundary.",
+    "inspectedAt": "2026-10-19T19:39:01.406877+00:00"
+  },
+  "931": {
+    "physicalPage": 931,
+    "printed": "11",
+    "title": "Human Vision",
+    "notes": "Printed L(lambda)=E(lambda)R(lambda) W m^-2, R in[0,1], diagram illuminant→surface reflectance→eye spectral response M(lambda). Simplified spectral product omits geometric radiometry and spectral-density units; use declared relative/discrete-band conventions in numerical examples. Rods more sensitive, intensity/night; cones daylight/color. Response integrates product of received spectrum and sensitivity.",
+    "inspectedAt": "2026-10-19T19:39:01.406878+00:00"
+  },
+  "932": {
+    "physicalPage": 932,
+    "printed": "12",
+    "title": "Human Vision (Cont.)",
+    "notes": "Trichromatic compression into rho,gamma,beta with integrals L(lambda) times Mr,Mg,Mb. Upper normalized L/M/S curves overlap, peaks approximately570/545/445nm; L responds at medium as well as long wavelengths, not pure red-only channels. Lower plot shows three colored weighted spectral areas but no numbers defining exact integrals. Distinguish three responses from full spectrum.",
+    "inspectedAt": "2026-10-19T19:39:01.406880+00:00"
+  },
+  "933": {
+    "physicalPage": 933,
+    "printed": "13",
+    "title": "Human Vision (Cont.)",
+    "notes": "Tristimulus value is3-vector rho,gamma,beta. Red-brick weighted spectral areas repeat lower plot from932; integrates areas, not just peak heights. Dominant L-cone response in this illustrated example, not an illumination-independent universal property of every red material.",
+    "inspectedAt": "2026-10-19T19:39:01.407405+00:00"
+  },
+  "934": {
+    "physicalPage": 934,
+    "printed": "14",
+    "title": "Machine Vision - Digital Camera",
+    "notes": "Exact arrow pipeline: Real World → Optics (Lens/Aperture/shutter) → Sensor CCD/CMOS → Gain ISO → ADC → ISP Demosaic down to Denoise right to White balance up to Gamma right to Compress → RGB Image. Sensor chip encloses sensor/gain/ADC; photosites silicon regular array analogous to cones/retina. Ordering is the shown simplified pipeline, not a universal ISP sequence; sharpening/color correction added in later prose but not in diagram.",
+    "inspectedAt": "2026-10-19T19:39:01.407411+00:00"
+  },
+  "935": {
+    "physicalPage": 935,
+    "printed": "15",
+    "title": "Digital imaging sensors",
+    "notes": "Actual figure contrasts CCD photon-to-electron in array, shifted charge to common charge-voltage conversion/output amplifier, versus CMOS pixel-local conversion and addressing. Prose CCD Charge-Coupled Device correct; CMOS expansion printed Complementary Metal Oxide on Silicon differs from standard semiconductor wording and must not be silently accepted. Simplified per-pixel amplifier description is a readout contrast, not proof of every commercial layout.",
+    "inspectedAt": "2026-10-19T19:39:01.407413+00:00"
+  },
+  "936": {
+    "physicalPage": 936,
+    "printed": "16",
+    "title": "Machine Vision - Digital Camera (Cont.)",
+    "notes": "Color filter array above gray silicon photosites; colored Bayer grid has 2green/1red/1blue per2x2 tile, filters overlap spectrally. Gain ISO amplifies sensed signal before ADC; ADC converts analog voltage to discrete value. Gain does not collect extra incident photons; source exposure wording is simplified.",
+    "inspectedAt": "2026-10-19T19:39:01.407414+00:00"
+  },
+  "937": {
+    "physicalPage": 937,
+    "printed": "17",
+    "title": "Machine Vision - Image Signal Processor (ISP)",
+    "notes": "Demosaicing estimates two missing color values per CFA pixel via neighbors, producing three color planes. Shot noise identified as photon-count variance, dark current as thermal electrons. Denoising reduces graininess especially low light. Sharpening edge enhancement compensates lens/demosaic blur; cannot assume perfect detail recovery.",
+    "inspectedAt": "2026-10-19T19:39:01.407415+00:00"
+  },
+  "938": {
+    "physicalPage": 938,
+    "printed": "18",
+    "title": "Machine Vision - Image Signal Processor (ISP) (Cont.)",
+    "notes": "White balance channel gains aim for neutral equal RGB under illuminant changes. Color correction uses3x3 or3x4 C mapping camera responses toward CIE XYZ/sRGB because camera filters do not perfectly match cones. This color matrix C is not the later geometric3x4 camera projection matrix C. Gamma power-law encoding approximates perceptual/display response and is distinct from final JPEG compression; no exact gamma exponent or universal log law specified.",
+    "inspectedAt": "2026-10-19T19:39:01.407416+00:00"
+  },
+  "939": {
+    "physicalPage": 939,
+    "printed": "19",
+    "title": "Geometric Image Formation - Image models",
+    "notes": "Actual diagram: light source illuminates a surface with normal n-hat; scattered rays include green ray through optics O to rear sensor plane. A separate virtual image plane is in front. Image formation maps 3D to 2D with depth loss; do not confuse physical rear sensor with front virtual plane.",
+    "inspectedAt": "2026-10-19T19:39:01.407682+00:00"
+  },
+  "940": {
+    "physicalPage": 940,
+    "printed": "20",
+    "title": "Geometric Image Formation - Pinhole",
+    "notes": "Upright object left, small aperture middle, inverted smaller real image right. Ideal pinhole requires no focusing adjustment but transmits little light. Do not extend ideal ray model to unlimited sharpness or ignore diffraction when making physical claims.",
+    "inspectedAt": "2026-10-19T19:39:01.407687+00:00"
+  },
+  "941": {
+    "physicalPage": 941,
+    "printed": "21",
+    "title": "Geometric Image Formation - Lens",
+    "notes": "Thin convex lens collects more light; diagram real upright object left and inverted real image right with focal points and equivalent pinhole. Printed 1/|zo|+1/|zi|=1/f applies to illustrated real-object/real-image distances; virtual-image calculations need an explicitly supplied sign convention. Simplified eye single crystalline lens and camera compound glass/plastic lenses comparison does not establish that cornea has no optical role.",
+    "inspectedAt": "2026-10-19T19:39:01.407688+00:00"
+  },
+  "942": {
+    "physicalPage": 942,
+    "printed": "22",
+    "title": "Perspective Projection",
+    "notes": "Virtual image plane f in front of camera center C gives non-inverted x=fX/Z and y=fY/Z. Camera axes and principal point shown. Require Z nonzero, and Z positive for visible front points under supplied convention. Homogeneous map is linear before division, ordinary perspective projection is nonlinear. Scale of a 3D point along a viewing ray is lost.",
+    "inspectedAt": "2026-10-19T19:39:01.407690+00:00"
+  },
+  "943": {
+    "physicalPage": 943,
+    "printed": "23",
+    "title": "Perspective Projection - Camera Matrix",
+    "notes": "Homogeneous metric p=(fX,fY,Z), dehomogenized x=p1/p3, y=p2/p3. Homogeneous camera point (X,Y,Z,1); Cmetric=[[f,0,0,0],[0,f,0,0],[0,0,1,0]]. World point transformed into camera frame by inverse camera pose: CP=(OTC)^-1 OP. Actual diagram separates world O and camera C frames and point rays. Homogeneous scales and mixed units must be explained in calculations.",
+    "inspectedAt": "2026-10-19T19:39:01.407691+00:00"
+  },
+  "944": {
+    "physicalPage": 944,
+    "printed": "24",
+    "title": "Perspective Projection (Cont.)",
+    "notes": "Sensor W by H pixels, photosite physical side lengths w and h. Upper-left pixel origin(0,0), u right and v down, last indices W-1/H-1. Principal point is optical-axis intersection, not necessarily pixel origin or exact sensor center. Positive x/y directions in virtual plane align with u/v in shown convention.",
+    "inspectedAt": "2026-10-19T19:39:01.407692+00:00"
+  },
+  "945": {
+    "physicalPage": 945,
+    "printed": "25",
+    "title": "Central Perspective Imaging Model - Discrete Image Plane",
+    "notes": "Principal point(u0,v0) is optical-axis intersection; u=x/w+u0, v=y/h+v0. Homogeneous matrix[[1/w,0,u0],[0,1/h,v0],[0,0,1]] acts on metric homogeneous image; output third coordinate printed w-tilde is projective scale, not photosite width w. Figure repeats top-left origin and axes; empty lower-right outlined box contains no evidence.",
+    "inspectedAt": "2026-10-19T19:39:01.407943+00:00"
+  },
+  "946": {
+    "physicalPage": 946,
+    "printed": "26",
+    "title": "Central Perspective Imaging Model - Discrete Image Plane (Cont.)",
+    "notes": "K=[[f/w,0,u0],[0,f/h,v0],[0,0,1]], Q=[I3|0], C=KQ(OTC)^-1. Intrinsics versus world-to-camera extrinsics. Formula labels pixel homogeneous vector with metric-looking x/y/z tildes; distinguish by declared coordinates. Printed final-pixel rounding is an indexing convention, not a requirement to discard subpixel coordinates in all vision algorithms. Rigid pose inverse is crucial.",
+    "inspectedAt": "2026-10-19T19:39:01.407947+00:00"
+  },
+  "947": {
+    "physicalPage": 947,
+    "printed": "27",
+    "title": "Programming Example",
+    "notes": "Exact code: from machinevisiontoolbox import CentralCamera; camera=CentralCamera(f=0.015); P=[0.3,0.4,5.0]; p=camera.project_point(P). Printed output[[0.0009],[0.0012]] is followed by inconsistent arrow(1.5mm,2.0mm), whereas metres convert to(0.9mm,1.2mm). Move call p_moved=camera.project_point(P,pose=SE3.Tx(-0.5)), output[[0.0024],[0.0012]]; SE3 import absent on page, so not standalone. Right code reassigns camera=CentralCamera(f=0.015,rho=10e-6,imagesize=[1280,1024],pp=[640,512]); p_pixel=camera.project_point(P), output[[730.0],[632.0]]. Order/reassignment and imports must be explicit in repaired runnable examples.",
+    "inspectedAt": "2026-10-19T19:39:01.407948+00:00"
+  },
+  "948": {
+    "physicalPage": 948,
+    "printed": "28",
+    "title": "Projection of Group of Points/Primitives",
+    "notes": "Visibility tests sensor W×H boundaries; regular frontal grid versus distorted oblique view; says parallel world edges converge to a vanishing point without qualifying directions parallel to image plane. Add positive camera-depth condition for physical visibility and note no occlusion model. Cubes introduced as projectable primitives.",
+    "inspectedAt": "2026-10-19T19:39:01.407950+00:00"
+  },
+  "949": {
+    "physicalPage": 949,
+    "printed": "29",
+    "title": "Programming Example",
+    "notes": "Top code P_grid=mkgrid(n=3,side=0.2,pose=SE3.Tz(1.0)); p_pixel=camera.project_point(P_grid); camera.plot_point(P_grid); T_camera=SE3.Trans(-0.25,0,0); camera.plot_point(P_grid,pose=T_camera). Actual plots regular3x3 at u≈490,640,790 and v≈362,512,662, shifted right≈375px. Lower code imports mkgrid and numpy only after top first use; SE3 and camera context still required. P_points=np.column_stack([[0,0,10],[10,10,10],[0.3,0.4,5]]); p,visible=camera.project_point(P_points,visibility=True), printed p=[[640,2140,730],[512,2012,632]], visible[True,False,True]. Shape3x3 uses point columns, not rows; plot pose override should not be assumed to mutate camera pose.",
+    "inspectedAt": "2026-10-19T19:39:01.407952+00:00"
+  },
+  "950": {
+    "physicalPage": 950,
+    "printed": "30",
+    "title": "Programming Example",
+    "notes": "Exact wireframe code X,Y,Z=mkcube(0.2,pose=SE3.Tz(1),edge=True); camera.plot_wireframe(X,Y,Z); T_camera=SE3.Trans(-0.25,0,0); camera.plot_wireframe(X,Y,Z,pose=T_camera). Imports of mkcube/SE3 and camera setup not repeated. Figures show two depth faces and changed side-edge slopes after camera moves left. Text claim coplanar edges/lines remain parallel is overbroad/false: depth-directed parallel lines are also coplanar; directions parallel to image plane preserve parallelism, directions with nonzero depth component have finite vanishing point (nondegenerate projection). Near/far faces shift by different amounts under translation.",
+    "inspectedAt": "2026-10-19T19:39:01.407953+00:00"
+  },
+  "951": {
+    "physicalPage": 951,
+    "printed": "31",
+    "title": "Summary",
+    "notes": "Six recap bullets repeat inverse vision, eye/brain, depth loss, optics/electronics, pinhole/lens and camera intrinsic/extrinsic matrix. Pinhole/lens grouped as focus and project, but pinhole geometrically selects rays, not refractive focusing. No new unique formula or procedure beyond earlier pages.",
+    "inspectedAt": "2026-10-19T19:39:01.407954+00:00",
+    "excluded": "Recapitulates924–950; substantive earlier concepts retain links, no duplicate question count."
+  },
+  "952": {
+    "physicalPage": 952,
+    "printed": "32",
+    "title": "References",
+    "notes": "Bibliography: Szeliski2022 Computer vision; Corke2021 Robotics Vision and Control Python; Litwiller2005 CMOS vs CCD.",
+    "inspectedAt": "2026-10-19T19:39:01.407957+00:00",
+    "excluded": "Bibliographic references only; not factual quiz content."
+  },
+  "953": {
+    "physicalPage": 953,
+    "printed": "33",
+    "title": "Thank You",
+    "notes": "Closing Thank You with footer33.",
+    "inspectedAt": "2026-10-19T19:39:01.407961+00:00",
+    "excluded": "Closing slide; no examinable concept."
+  }
+}

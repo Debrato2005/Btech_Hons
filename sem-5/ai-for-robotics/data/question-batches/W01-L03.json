@@ -1007,13 +1007,13 @@
     },
     {
       "id": "W01-L03-P0100-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
       "stem": "For compatible transformation matrices A,B,C, which change is always allowed without changing ABC?",
       "selectionMode": "single",
       "type": "scenario",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "application",
       "week": 1,
       "lectureId": "L03",
@@ -1082,7 +1082,19 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "0615a715f1346af5525e1b12515c3c68fa5185cba1ca19656f52ad3717a666a7",
+          "revisedAt": "2026-10-19T17:09:54.850503+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        }
+      ]
     },
     {
       "id": "W01-L03-P0101-Q01",
@@ -1266,13 +1278,13 @@
     },
     {
       "id": "W01-L03-P0101-Q03",
-      "version": 1,
+      "version": 3,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
       "stem": "Which situation matches the lecture definition of a robot kinematic singularity?",
       "selectionMode": "single",
       "type": "scenario",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "application",
       "week": 1,
       "lectureId": "L03",
@@ -1289,15 +1301,15 @@
       "options": [
         {
           "id": "o2",
-          "text": "Every matrix describing the robot becomes symmetric"
+          "text": "The smallest singular value is small but strictly positive, with full rank retained"
         },
         {
           "id": "o3",
-          "text": "The robot changes its coordinate labels"
+          "text": "One entry of a square Jacobian is zero while its determinant remains nonzero"
         },
         {
           "id": "o4",
-          "text": "A nonzero vector changes length"
+          "text": "A square Jacobian has negative rather than positive determinant"
         },
         {
           "id": "o1",
@@ -1324,20 +1336,44 @@
         "justification": "Singularity concerns lost independent directions, not merely large or small numerical entries.",
         "optionExplanations": {
           "o1": "This removes an independent velocity-mapping direction; the slide connects it to failure of inversion.",
-          "o2": "Symmetry is unrelated to the rank-loss definition.",
-          "o3": "Renaming coordinates alone is not a rank loss.",
-          "o4": "Scaling alone need not make a mapping singular."
+          "o2": "This can indicate poor conditioning near a singularity, but is not itself rank loss.",
+          "o3": "An individual zero entry does not make an invertible matrix singular.",
+          "o4": "A negative nonzero determinant still describes an invertible local map."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Singularity concerns lost independent directions, not merely large or small numerical entries.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "This can indicate poor conditioning near a singularity, but is not itself rank loss.",
+          "An individual zero entry does not make an invertible matrix singular.",
+          "A negative nonzero determinant still describes an invertible local map."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author",
+        "robotics-integration-L03-v3-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "de7212cf1b1574b1d2395035534c05d0a5973e5b7f94af5643d9375063c2defc",
+          "revisedAt": "2026-10-19T17:09:54.850558+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        },
+        {
+          "version": 3,
+          "authorId": "robotics-integration-L03-v3-revision-author",
+          "priorQuestionSha256": "e3ae5aeb6db5f0471f50084cde994a45bde7293b55d92c769a58056bbcba1a59",
+          "reason": "Repair newly completed full independent review of distractors and standalone assumptions.",
+          "revisedAt": "2026-10-19T17:26:27.814590+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L03-P0102-Q01",
@@ -1430,13 +1466,13 @@
     },
     {
       "id": "W01-L03-P0102-Q02",
-      "version": 1,
+      "version": 3,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
       "stem": "Why does the definition explicitly exclude x=0 from being an eigenvector?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 1,
       "lectureId": "L03",
@@ -1453,15 +1489,15 @@
       "options": [
         {
           "id": "o2",
-          "text": "A0 is undefined"
+          "text": "Allowing a zero eigenvector would force every eigenvalue to be zero"
         },
         {
           "id": "o3",
-          "text": "Zero vectors have infinite norm"
+          "text": "Excluding the zero eigenvector makes every matrix invertible"
         },
         {
           "id": "o4",
-          "text": "All eigenvalues must be nonzero"
+          "text": "A zero eigenvalue can occur only when the eigenvector is also zero"
         },
         {
           "id": "o1",
@@ -1488,20 +1524,44 @@
         "justification": "The equation is informative only when the vector supplies a genuine direction.",
         "optionExplanations": {
           "o1": "The zero vector supplies no direction and would make the equation vacuous.",
-          "o2": "Any finite matrix can multiply the compatible zero vector.",
-          "o3": "Their norm is 0, not infinity.",
-          "o4": "A singular square matrix can have a zero eigenvalue with a nonzero eigenvector."
+          "o2": "The equation A0=λ0 holds for every λ, not only zero.",
+          "o3": "A singular matrix can have a nonzero eigenvector with eigenvalue zero.",
+          "o4": "A zero eigenvalue means a nonzero vector lies in the nullspace."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The equation is informative only when the vector supplies a genuine direction.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "The equation A0=λ0 holds for every λ, not only zero.",
+          "A singular matrix can have a nonzero eigenvector with eigenvalue zero.",
+          "A zero eigenvalue means a nonzero vector lies in the nullspace."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author",
+        "robotics-integration-L03-v3-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "381af36ee5d1cb443a5a9963065b22ff65b9af312eb117b5f7a63a8c9743e0c3",
+          "revisedAt": "2026-10-19T17:09:54.850585+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        },
+        {
+          "version": 3,
+          "authorId": "robotics-integration-L03-v3-revision-author",
+          "priorQuestionSha256": "77f297f4546b758a55f5ec97c96e798dc82e4a6f251e4b270e7cb851e4df2cb9",
+          "reason": "Repair newly completed full independent review of distractors and standalone assumptions.",
+          "revisedAt": "2026-10-19T17:26:27.814712+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L03-P0102-Q03",
@@ -2376,13 +2436,13 @@
     },
     {
       "id": "W01-L03-P0106-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
       "stem": "For the displayed Bayes formula, which condition is necessary to divide by P(B)?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "conceptual",
       "week": 1,
       "lectureId": "L03",
@@ -2447,17 +2507,29 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "972e605635de048d2bf63a8e0a46e31cd30d13652f3da7cb24959fa49de63ac2",
+          "revisedAt": "2026-10-19T17:09:54.850609+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        }
+      ]
     },
     {
       "id": "W01-L03-P0106-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
       "stem": "A robot updates its state estimate after observing noisy sensor data z. Which quantity is its posterior state belief?",
       "selectionMode": "single",
       "type": "scenario",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "application",
       "week": 1,
       "lectureId": "L03",
@@ -2522,7 +2594,19 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "cec93aedc7f443b09da3912ed616b6c5bf99938297c3262e317eeff2ed218c53",
+          "revisedAt": "2026-10-19T17:09:54.850630+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        }
+      ]
     },
     {
       "id": "W01-L03-P0106-Q04",
@@ -2771,13 +2855,13 @@
     },
     {
       "id": "W01-L03-P0107-Q03",
-      "version": 1,
+      "version": 3,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
-      "stem": "Which expression is the mean of a continuous variable with density f_X?",
+      "stem": "For a continuous random variable X with density f_X and finite mean, which expression gives E[X]?",
       "selectionMode": "single",
       "type": "definition",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "recall",
       "week": 1,
       "lectureId": "L03",
@@ -2790,7 +2874,9 @@
       "conceptIds": [
         "W01-L03-P0107-C03"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "The integral of |x| f_X(x) over the real line is finite."
+      ],
       "options": [
         {
           "id": "o1",
@@ -2826,7 +2912,7 @@
         }
       ],
       "solution": {
-        "justification": "The factorx changes normalization into an average value.",
+        "justification": "When the mean exists, integrating x weighted by its density gives the expected value; normalization alone does not ensure existence.",
         "optionExplanations": {
           "o1": "The slide weights each continuous value by its density and integrates.",
           "o2": "For a normalized PDF this is 1, not the mean.",
@@ -2841,18 +2927,47 @@
               "X": "continuous random variable",
               "f_X": "density"
             },
-            "units": {},
-            "assumptions": []
+            "units": {
+              "X,E(X)": "units of the measured variable",
+              "f_X": "inverse units of X"
+            },
+            "assumptions": [
+              "The integral of |x| f_X(x) is finite."
+            ]
           }
         ],
-        "simpleExplanation": "The factorx changes normalization into an average value.",
+        "simpleExplanation": "When the mean exists, integrating x weighted by its density gives the expected value; normalization alone does not ensure existence.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "For a normalized PDF this is 1, not the mean.",
+          "A peak density is not a mean.",
+          "This ignores the probability law and is not the displayed expectation."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author",
+        "robotics-integration-L03-v3-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "76a6ef7bf1b56dbeae6f06cebfff7fc774baa52bcfa30edcb75a6cd770d7bf29",
+          "revisedAt": "2026-10-19T17:09:54.850655+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        },
+        {
+          "version": 3,
+          "authorId": "robotics-integration-L03-v3-revision-author",
+          "priorQuestionSha256": "6ecfd1979353fe6222907b1a5e686830b19da07525de839352e6032b3b414d92",
+          "reason": "Repair newly completed full independent review of distractors and standalone assumptions.",
+          "revisedAt": "2026-10-19T17:26:27.814753+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L03-P0107-Q04",
@@ -3460,13 +3575,13 @@
     },
     {
       "id": "W01-L03-P0109-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
       "stem": "If all candidate models have the same positive prior probability and the likelihood has a unique maximizer, how do MLE and MAP compare?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 1,
       "lectureId": "L03",
@@ -3533,7 +3648,19 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "9e34c78e610c6f43e25cc61ef86cd689b022f13618a1c7a1a952d94c75949e6b",
+          "revisedAt": "2026-10-19T17:09:54.850676+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        }
+      ]
     },
     {
       "id": "W01-L03-P0109-Q03",
@@ -3687,13 +3814,13 @@
     },
     {
       "id": "W01-L03-P0110-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
       "stem": "Which wall-distance estimator uses the extra information associated with MAP in the lecture example?",
       "selectionMode": "single",
       "type": "scenario",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "application",
       "week": 1,
       "lectureId": "L03",
@@ -3762,7 +3889,19 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "b65506e9a37955a3cc7b8d7028d9eb46d0c523b93de71c469777bf0133a2154a",
+          "revisedAt": "2026-10-19T17:09:54.850699+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        }
+      ]
     },
     {
       "id": "W01-L03-P0111-Q01",
@@ -4258,13 +4397,13 @@
     },
     {
       "id": "W01-L03-P0112-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
       "stem": "Given q_ddot+3q_dot+2q=u, choose x1=q and x2=q_dot. Which first-order pair is equivalent?",
       "selectionMode": "single",
       "type": "numerical",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "numerical",
       "week": 1,
       "lectureId": "L03",
@@ -4346,7 +4485,19 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "fa010bc6db809e64d3cfa080865ff4e1f1061c0f233bd5a7b692c11e8ba288c6",
+          "revisedAt": "2026-10-19T17:09:54.850725+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        }
+      ]
     },
     {
       "id": "W01-L03-P0113-Q01",
@@ -4513,13 +4664,13 @@
     },
     {
       "id": "W01-L03-P0113-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
       "stem": "Under the rooted directed-tree convention used in this lecture, which feature is ruled out?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "conceptual",
       "week": 1,
       "lectureId": "L03",
@@ -4590,7 +4741,19 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "f90d29307b2c580e63438170a2154cff5ffbc6a91b5275074abc55003db5c61e",
+          "revisedAt": "2026-10-19T17:09:54.850751+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        }
+      ]
     },
     {
       "id": "W01-L03-P0113-Q04",
@@ -5814,13 +5977,13 @@
     },
     {
       "id": "W01-L03-P0118-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
       "stem": "Using the displayed grasping tree, select every fully specified observation that leads to Low Force.",
       "selectionMode": "multi",
       "type": "diagram",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "application",
       "week": 1,
       "lectureId": "L03",
@@ -5890,17 +6053,29 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "be5505fc4fb63e9431231e6556d2afc276d7ff49aac3a3747357bd9dde8ca244",
+          "revisedAt": "2026-10-19T17:09:54.850968+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        }
+      ]
     },
     {
       "id": "W01-L03-P0118-Q04",
-      "version": 1,
+      "version": 3,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
       "stem": "What makes the displayed grasping decision tree interpretable?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "conceptual",
       "week": 1,
       "lectureId": "L03",
@@ -5917,11 +6092,11 @@
       "options": [
         {
           "id": "o3",
-          "text": "Its output is chosen randomly after every observation"
+          "text": "The training split with largest information gain is itself the complete explanation of every later decision"
         },
         {
           "id": "o4",
-          "text": "It guarantees every object is physically safe under every circumstance"
+          "text": "Using low force on a glass example proves the decision rule has passed every physical safety test"
         },
         {
           "id": "o1",
@@ -5929,7 +6104,7 @@
         },
         {
           "id": "o2",
-          "text": "It has no intermediate conditions"
+          "text": "A high prediction-accuracy score by itself explains the force choice for this object"
         }
       ],
       "correctOptionIds": [
@@ -5952,20 +6127,44 @@
         "justification": "A person can trace why a particular low/high-force decision was reached.",
         "optionExplanations": {
           "o1": "The path can be traced from observed attributes to the action.",
-          "o2": "It visibly contains surface and thickness tests.",
-          "o3": "The figure shows deterministic rules for the listed inputs.",
-          "o4": "The pedagogical rule does not establish such a universal engineering guarantee."
+          "o2": "Accuracy measures performance; an explicit path of tests supplies the per-object explanation.",
+          "o3": "Information gain helps choose splits, but a particular prediction is explained by the tests followed for that input.",
+          "o4": "A traceable decision is not a substitute for physical safety validation."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "A person can trace why a particular low/high-force decision was reached.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "Accuracy measures performance; an explicit path of tests supplies the per-object explanation.",
+          "Information gain helps choose splits, but a particular prediction is explained by the tests followed for that input.",
+          "A traceable decision is not a substitute for physical safety validation."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author",
+        "robotics-integration-L03-v3-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "56f39406dd63370d9c70e205a922d0a7661585b07fde2175b2036d8612c8e555",
+          "revisedAt": "2026-10-19T17:09:54.851030+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        },
+        {
+          "version": 3,
+          "authorId": "robotics-integration-L03-v3-revision-author",
+          "priorQuestionSha256": "0f6111fb3bee15b798057986bb701a4591e1a1b268263a1a248ab1b32580f124",
+          "reason": "Repair newly completed full independent review of distractors and standalone assumptions.",
+          "revisedAt": "2026-10-19T17:26:27.814787+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L03-P0119-Q01",
@@ -6375,13 +6574,13 @@
     },
     {
       "id": "W01-L03-P0120-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
       "stem": "Which distinction between BFS and A* is directly supported without treating every efficiency claim as a universal guarantee?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 1,
       "lectureId": "L03",
@@ -6450,7 +6649,19 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "ccea1ff4ba07ad198643d939c140b0befa9a8ecca3892f41de02c825104fd013",
+          "revisedAt": "2026-10-19T17:09:54.851061+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        }
+      ]
     },
     {
       "id": "W01-L03-P0121-Q01",
@@ -6529,13 +6740,13 @@
     },
     {
       "id": "W01-L03-P0121-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
       "stem": "Which statement describes resolution completeness as presented?",
       "selectionMode": "single",
       "type": "scenario",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "application",
       "week": 1,
       "lectureId": "L03",
@@ -6600,17 +6811,29 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "5ab1ab6142cdca0ceb67e2ec93237e9f92be9971afeef45ed6ec2814f55f0e86",
+          "revisedAt": "2026-10-19T17:09:54.851084+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        }
+      ]
     },
     {
       "id": "W01-L03-P0121-Q03",
-      "version": 1,
+      "version": 3,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
-      "stem": "Which statement expresses probabilistic completeness?",
+      "stem": "For a feasible planning problem under the planner’s stated applicability assumptions, which statement expresses probabilistic completeness?",
       "selectionMode": "single",
       "type": "definition",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "recall",
       "week": 1,
       "lectureId": "L03",
@@ -6623,7 +6846,9 @@
       "conceptIds": [
         "W01-L03-P0121-C03"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "A solution exists and the instance satisfies the conditions under which probabilistic completeness is asserted."
+      ],
       "options": [
         {
           "id": "o4",
@@ -6631,7 +6856,7 @@
         },
         {
           "id": "o1",
-          "text": "The probability of finding a solution tends to 1 as time tends to infinity"
+          "text": "The probability of finding a solution tends to1 as search time tends to infinity"
         },
         {
           "id": "o2",
@@ -6659,19 +6884,21 @@
         }
       ],
       "solution": {
-        "justification": "Asymptotic success probability does not supply a fixed deadline for guaranteed success.",
+        "justification": "On a feasible instance within the planner’s assumptions, success probability approaches1 with unbounded search; infeasible instances cannot satisfy a success guarantee.",
         "optionExplanations": {
-          "o1": "This is the limit statement in the slide.",
+          "o1": "This is the limiting success property for a feasible instance, not a guarantee for every finite run.",
           "o2": "A limiting probability is not certainty at each finite time.",
           "o3": "The property concerns finding a solution, not its optimality.",
           "o4": "This reverses the stated limit."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Asymptotic success probability does not supply a fixed deadline for guaranteed success.",
+        "simpleExplanation": "On a feasible instance within the planner’s assumptions, success probability approaches1 with unbounded search; infeasible instances cannot satisfy a success guarantee.",
         "memoryAid": null,
         "misconceptions": [
-          "Reading an infinite-time limit as a finite-time promise."
+          "A limiting probability is not certainty at each finite time.",
+          "The property concerns finding a solution, not its optimality.",
+          "This reverses the stated limit."
         ],
         "examTraps": [
           "Reading an infinite-time limit as a finite-time promise."
@@ -6679,17 +6906,37 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author",
+        "robotics-integration-L03-v3-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "978f8a8e67bbdbcdd60eb87baf21807c1c52aaecb591bcc885f74e7ac0c85691",
+          "revisedAt": "2026-10-19T17:09:54.851104+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        },
+        {
+          "version": 3,
+          "authorId": "robotics-integration-L03-v3-revision-author",
+          "priorQuestionSha256": "84c075d3c8ebe8f4bfc70b27f076fc11c8c44283be7313f6816cc9d8b6d60515",
+          "reason": "Repair newly completed full independent review of distractors and standalone assumptions.",
+          "revisedAt": "2026-10-19T17:26:27.814817+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L03-P0121-Q04",
-      "version": 1,
+      "version": 3,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
-      "stem": "What finite-step guarantee does the lecture explicitly deny for genetic-algorithm path planning?",
+      "stem": "Which statement matches the lecture’s finite-step optimality caveat for genetic-algorithm path planning?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "conceptual",
       "week": 1,
       "lectureId": "L03",
@@ -6708,19 +6955,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "The possibility of a high-quality result quickly"
+          "text": "Probabilistic completeness means every finite run returns the shortest path rather than merely a feasible one"
         },
         {
           "id": "o1",
-          "text": "Guaranteed discovery of the absolute shortest path"
+          "text": "A near-optimal path may be found quickly, without a guarantee of finding the absolute shortest path in finite steps"
         },
         {
           "id": "o2",
-          "text": "The possibility of finding any useful path"
+          "text": "A near-optimal path found in one run proves that every later run reaches the absolute shortest path in finite steps"
         },
         {
           "id": "o3",
-          "text": "The use of random mutations"
+          "text": "Absence of a finite-step optimality guarantee means no finite run can ever find a feasible path"
         }
       ],
       "correctOptionIds": [
@@ -6742,31 +6989,55 @@
       "solution": {
         "justification": "A method may be useful and often effective without providing a finite-time optimality theorem.",
         "optionExplanations": {
-          "o1": "The slide says a near-optimal path may be found but no finite-step shortest-path guarantee is given.",
-          "o2": "The slide explicitly allows finding near-optimal paths.",
-          "o3": "Random mutations are cited as part of the method.",
-          "o4": "The slide says this may happen, not that it is impossible."
+          "o1": "This preserves the source distinction between useful empirical results and guaranteed finite-step optimality.",
+          "o2": "A successful or near-optimal run does not prove a universal finite-run guarantee.",
+          "o3": "A missing guarantee does not make successful finite runs impossible.",
+          "o4": "Completeness concerns finding a solution, while optimality concerns its cost; the finite-run claim also overstates the limiting definition."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "A method may be useful and often effective without providing a finite-time optimality theorem.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "A successful or near-optimal run does not prove a universal finite-run guarantee.",
+          "A missing guarantee does not make successful finite runs impossible.",
+          "Completeness concerns finding a solution, while optimality concerns its cost; the finite-run claim also overstates the limiting definition."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author",
+        "robotics-integration-L03-v3-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "00af6f3ecb068e068425f7b776ea200dcc0888a7ce09faf83b620cebb69290ac",
+          "revisedAt": "2026-10-19T17:09:54.851126+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        },
+        {
+          "version": 3,
+          "authorId": "robotics-integration-L03-v3-revision-author",
+          "priorQuestionSha256": "67e99d66ef8f5f8ac4f15a4412b96dacf2c9e202d1136cb9e06453fe2427f77d",
+          "reason": "Repair newly completed full independent review of distractors and standalone assumptions.",
+          "revisedAt": "2026-10-19T17:26:27.814843+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L03-P0122-Q01",
-      "version": 1,
+      "version": 3,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
-      "stem": "Which pairing matches the lecture summary?",
+      "stem": "Which mathematical-tool/application pairing is explicitly given in the lecture summary?",
       "selectionMode": "single",
       "type": "synthesis",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "conceptual",
       "week": 1,
       "lectureId": "L03",
@@ -6787,15 +7058,15 @@
         },
         {
           "id": "o2",
-          "text": "Graph search: replacing every rigid-body inertia tensor"
+          "text": "Graph theory and search: evaluating the eigenvalues of a rigid-body inertia matrix"
         },
         {
           "id": "o3",
-          "text": "Big-O notation: directly computing a robot end-effector pose"
+          "text": "Complexity analysis: Bayesian estimation of uncertain sensor measurements"
         },
         {
           "id": "o4",
-          "text": "State-space models: counting transitive verbs in independent sentences"
+          "text": "Transforms and control: selecting tree splits using entropy and information gain"
         }
       ],
       "correctOptionIds": [
@@ -6818,20 +7089,44 @@
         "justification": "Choose mathematical tools by the kind of problem: uncertainty, geometry, dynamics, search, or scaling.",
         "optionExplanations": {
           "o1": "This is the role stated in the summary.",
-          "o2": "Graph search concerns navigation/decision structure, not inertia representation.",
-          "o3": "Complexity evaluates algorithm scaling, not a geometric pose.",
-          "o4": "That is the distribution example, not the state-space role."
+          "o2": "The summary associates graph search with planning/navigation; eigenvalue methods appear under linear algebra.",
+          "o3": "The summary assigns Bayesian estimation to probability/statistics and algorithm-performance analysis to complexity.",
+          "o4": "The summary associates transforms/control with state-space models; entropy belongs to the uncertainty and decision-tree material."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Choose mathematical tools by the kind of problem: uncertainty, geometry, dynamics, search, or scaling.",
         "memoryAid": null,
-        "misconceptions": [],
+        "misconceptions": [
+          "The summary associates graph search with planning/navigation; eigenvalue methods appear under linear algebra.",
+          "The summary assigns Bayesian estimation to probability/statistics and algorithm-performance analysis to complexity.",
+          "The summary associates transforms/control with state-space models; entropy belongs to the uncertainty and decision-tree material."
+        ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author",
+        "robotics-integration-L03-v3-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "dcbe97906066e72718ee43035d005170f45bf2cc6c7e672f059d7ae1d459064a",
+          "revisedAt": "2026-10-19T17:09:54.851145+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        },
+        {
+          "version": 3,
+          "authorId": "robotics-integration-L03-v3-revision-author",
+          "priorQuestionSha256": "35594b9c76536aa0b21fc14d36681d501cd6ea73829c884e84db0f4af01dd7d2",
+          "reason": "Repair newly completed full independent review of distractors and standalone assumptions.",
+          "revisedAt": "2026-10-19T17:26:27.814869+00:00"
+        }
+      ]
     },
     {
       "id": "W01-L03-P0101-Q04",
@@ -7013,13 +7308,13 @@
     },
     {
       "id": "W01-L03-P0100-Q05",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "ingest_robotics_sources-L03-author",
       "stem": "Does having a zero diagonal alone prove that a real square matrix is skew-symmetric?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 1,
       "lectureId": "L03",
@@ -7088,7 +7383,19 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-L03-v2-revision-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-integration-L03-v2-revision-author",
+          "priorQuestionSha256": "df86eb6cd3f760c12ae85d664adae5ded40a2f06c4c1fc5c6ff1f9c54a2586e1",
+          "revisedAt": "2026-10-19T17:09:54.851168+00:00",
+          "reason": "Independent targeted coverage challenge found inflated difficulty; content and key unchanged."
+        }
+      ]
     },
     {
       "id": "W01-L03-P0122-Q02",

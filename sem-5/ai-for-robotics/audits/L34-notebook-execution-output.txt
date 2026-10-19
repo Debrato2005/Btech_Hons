@@ -1,0 +1,53 @@
+--- INITIAL STATE ---
+Input (x): 2.0, Target (y): 10.0
+Starting Weight: 3.00, Starting Bias: 1.00
+
+-- EQUATIONS ---
+Prediction (y_pred) = w * x + b
+Loss (MSE)          = 0.5 * (y_true - y_pred)^2
+Gradient w.r.t w (dw) = - (y_true - y_pred) * x
+Gradient w.r.t b (db) = - (y_true - y_pred) * 1
+
+--- EPOCH 1 ---
+Current Weight (w): 3.00, Current Bias (b): 1.00
+Prediction : (3.00 * 2.0) + 1.00 = 7.00
+Loss       : 0.5 * (10.0 - 7.00)^2 = 4.5000
+Gradients  : dw = -6.00, db = -3.00
+Updates    : w_new = 3.00 - (0.1 * -6.00) = 3.60
+             b_new = 1.00 - (0.1 * -3.00) = 1.30
+
+--- EPOCH 2 ---
+Current Weight (w): 3.60, Current Bias (b): 1.30
+Prediction : (3.60 * 2.0) + 1.30 = 8.50
+Loss       : 0.5 * (10.0 - 8.50)^2 = 1.1250
+Gradients  : dw = -3.00, db = -1.50
+Updates    : w_new = 3.60 - (0.1 * -3.00) = 3.90
+             b_new = 1.30 - (0.1 * -1.50) = 1.45
+
+--- EPOCH 3 ---
+Current Weight (w): 3.90, Current Bias (b): 1.45
+Prediction : (3.90 * 2.0) + 1.45 = 9.25
+Loss       : 0.5 * (10.0 - 9.25)^2 = 0.2812
+Gradients  : dw = -1.50, db = -0.75
+Updates    : w_new = 3.90 - (0.1 * -1.50) = 4.05
+             b_new = 1.45 - (0.1 * -0.75) = 1.53
+
+--- EPOCH 4 ---
+Current Weight (w): 4.05, Current Bias (b): 1.53
+Prediction : (4.05 * 2.0) + 1.53 = 9.63
+Loss       : 0.5 * (10.0 - 9.63)^2 = 0.0703
+Gradients  : dw = -0.75, db = -0.37
+Updates    : w_new = 4.05 - (0.1 * -0.75) = 4.12
+             b_new = 1.53 - (0.1 * -0.37) = 1.56
+
+--- EPOCH 5 ---
+Current Weight (w): 4.12, Current Bias (b): 1.56
+Prediction : (4.12 * 2.0) + 1.56 = 9.81
+Loss       : 0.5 * (10.0 - 9.81)^2 = 0.0176
+Gradients  : dw = -0.38, db = -0.19
+Updates    : w_new = 4.12 - (0.1 * -0.38) = 4.16
+             b_new = 1.56 - (0.1 * -0.19) = 1.58
+
+--- FINAL STATE AFTER 5 EPOCHS ---
+Final Weight: 4.16, Final Bias: 1.58
+Final Prediction: 9.91 (Target was 10.0)

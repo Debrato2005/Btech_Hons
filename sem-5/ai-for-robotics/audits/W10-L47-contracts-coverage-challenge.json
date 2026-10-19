@@ -1,0 +1,531 @@
+{
+  "completedAt": "2026-10-19T22:42:15.982675+00:00",
+  "reviewerId": "robotics-contracts-reviewer",
+  "pagesInspected": [
+    1476,
+    1477,
+    1478,
+    1479,
+    1480,
+    1481,
+    1482,
+    1483,
+    1484,
+    1485,
+    1486,
+    1487,
+    1488,
+    1489,
+    1490,
+    1491,
+    1492,
+    1493,
+    1494,
+    1495,
+    1496,
+    1497,
+    1498,
+    1499,
+    1500,
+    1501,
+    1502,
+    1503,
+    1504,
+    1505,
+    1506
+  ],
+  "substantivePages": [
+    1479,
+    1480,
+    1481,
+    1482,
+    1483,
+    1484,
+    1485,
+    1486,
+    1487,
+    1488,
+    1489,
+    1490,
+    1491,
+    1492,
+    1493,
+    1494,
+    1495,
+    1496,
+    1497,
+    1498,
+    1499,
+    1500,
+    1501,
+    1502,
+    1503
+  ],
+  "pageCoverage": [
+    {
+      "physicalPage": 1476,
+      "questionIds": [],
+      "conceptIds": [],
+      "notes": "Lecture 47 title, Transformers; institutional cover, footer 1."
+    },
+    {
+      "physicalPage": 1477,
+      "questionIds": [],
+      "conceptIds": [],
+      "notes": "Objective: next-word prediction. No separate technical derivation."
+    },
+    {
+      "physicalPage": 1478,
+      "questionIds": [],
+      "conceptIds": [],
+      "notes": "Agenda: decoder language models, components, attention, sampling, encoder-decoder."
+    },
+    {
+      "physicalPage": 1479,
+      "questionIds": [
+        "W10-L47-Q001",
+        "W10-L47-Q002"
+      ],
+      "conceptIds": [
+        "W10-L47-C-modalities",
+        "W10-L47-C-memory"
+      ],
+      "notes": "Timeline distinguishes external read/write memory, vision transformers, vision-language and vision-language-action tasks. Historical priority/dates require qualification, not universal priority claims."
+    },
+    {
+      "physicalPage": 1480,
+      "questionIds": [
+        "W10-L47-Q003"
+      ],
+      "conceptIds": [
+        "W10-L47-C-autoregression"
+      ],
+      "notes": "Autoregressive prefix extension; original encoder-decoder translation. Diagram maps input tokens through embeddings plus positions, stack and LM head into next-token predictions. Full encoder supplies global context."
+    },
+    {
+      "physicalPage": 1481,
+      "questionIds": [
+        "W10-L47-Q004",
+        "W10-L47-Q005"
+      ],
+      "conceptIds": [
+        "W10-L47-C-variants",
+        "W10-L47-C-three-parts"
+      ],
+      "notes": "Illustrated pre-layer-normalization residual block: normalization, attention, addition, normalization, feedforward, addition. GPT decoder-style causal; BERT/ViT encoder-style global; full encoder-decoder translation."
+    },
+    {
+      "physicalPage": 1482,
+      "questionIds": [
+        "W10-L47-Q006"
+      ],
+      "conceptIds": [
+        "W10-L47-C-static-context"
+      ],
+      "notes": "Static embedding of pronoun it is identical across shelf-clutter and robot-battery contexts; contextual representations evolve layer by layer."
+    },
+    {
+      "physicalPage": 1483,
+      "questionIds": [
+        "W10-L47-Q007"
+      ],
+      "conceptIds": [
+        "W10-L47-C-prefix-ambiguity"
+      ],
+      "notes": "Causal prefix ends at it; unseen is cluttered cannot be used. Earlier robot/shelf context is available, but a particular referent is not guaranteed without future information."
+    },
+    {
+      "physicalPage": 1484,
+      "questionIds": [
+        "W10-L47-Q008",
+        "W10-L47-Q009",
+        "W10-L47-Q010"
+      ],
+      "conceptIds": [
+        "W10-L47-C-self-included",
+        "W10-L47-C-simple-weighted",
+        "W10-L47-C-softmax-axis"
+      ],
+      "notes": "Inclusive causal attention uses j <= i, including the current token. The initial x-weighted sum is a simplified identity-value representation. Softmax normalizes eligible keys for each fixed query."
+    },
+    {
+      "physicalPage": 1485,
+      "questionIds": [
+        "W10-L47-Q011",
+        "W10-L47-Q012",
+        "W10-L47-Q013"
+      ],
+      "conceptIds": [
+        "W10-L47-C-qkv",
+        "W10-L47-C-projection-shapes",
+        "W10-L47-C-query-calculation"
+      ],
+      "notes": "Row projections q=xWQ, k=xWK, v=xWV have distinct matching and content roles. Queries and keys must share width for their dot product."
+    },
+    {
+      "physicalPage": 1486,
+      "questionIds": [
+        "W10-L47-Q014",
+        "W10-L47-Q015",
+        "W10-L47-Q016",
+        "W10-L47-Q017",
+        "W10-L47-Q018"
+      ],
+      "conceptIds": [
+        "W10-L47-C-scaled-score",
+        "W10-L47-C-scale-once",
+        "W10-L47-C-scale-variance",
+        "W10-L47-C-softmax-value",
+        "W10-L47-C-output-projection"
+      ],
+      "notes": "Step 2 already divides the dot product by sqrt(dk); Step 3 repeats the description and must not add a second division. Learned WO is a linear projection, not a value-preserving reshape. Weighted values follow score softmax."
+    },
+    {
+      "physicalPage": 1487,
+      "questionIds": [
+        "W10-L47-Q019",
+        "W10-L47-Q020"
+      ],
+      "conceptIds": [
+        "W10-L47-C-third-token-diagram",
+        "W10-L47-C-qk-dimensions"
+      ],
+      "notes": "The third output compares q3 with k1,k2,k3, includes its own value, combines normalized values, then projects. Some diagram labels use dv at query/key nodes; general dot-product compatibility requires dk, not forced equality with dv."
+    },
+    {
+      "physicalPage": 1488,
+      "questionIds": [
+        "W10-L47-Q021",
+        "W10-L47-Q024"
+      ],
+      "conceptIds": [
+        "W10-L47-C-head-specialization",
+        "W10-L47-C-projection-parameters"
+      ],
+      "notes": "Parallel heads at the same depth use separate learned Q/K/V projections. The architecture permits distinct patterns but does not guarantee learned specialization."
+    },
+    {
+      "physicalPage": 1489,
+      "questionIds": [
+        "W10-L47-Q022"
+      ],
+      "conceptIds": [
+        "W10-L47-C-concat"
+      ],
+      "notes": "Every head applies scaled attention, then outputs are concatenated and multiplied by WO. The context shorthand omits the current token in its bracket but the explicit sum includes j <= i."
+    },
+    {
+      "physicalPage": 1490,
+      "questionIds": [
+        "W10-L47-Q023",
+        "W10-L47-Q024"
+      ],
+      "conceptIds": [
+        "W10-L47-C-multihead-shape",
+        "W10-L47-C-projection-parameters"
+      ],
+      "notes": "Four illustrated heads concatenate to width A*dv, then WO has shape A*dv by d. With dv=d/A this is d by d. Head 4 visibly has WK3 rather than WK4: a reused label, not a shared-key constraint."
+    },
+    {
+      "physicalPage": 1491,
+      "questionIds": [
+        "W10-L47-Q025",
+        "W10-L47-Q026"
+      ],
+      "conceptIds": [
+        "W10-L47-C-residual-sum",
+        "W10-L47-C-stream-interaction"
+      ],
+      "notes": "Additive pre-norm residual streams accumulate the input and sublayer outputs. Each token has a stream; attention couples eligible token information between streams."
+    },
+    {
+      "physicalPage": 1492,
+      "questionIds": [
+        "W10-L47-Q027",
+        "W10-L47-Q028",
+        "W10-L47-Q029",
+        "W10-L47-Q030"
+      ],
+      "conceptIds": [
+        "W10-L47-C-block-order",
+        "W10-L47-C-ffn-form",
+        "W10-L47-C-ffn-numeric",
+        "W10-L47-C-ffn-size"
+      ],
+      "notes": "Explicit pre-norm order and residual branch states t1 through t5. FFN is ReLU(t4 W1+b1)W2+b2, a position-wise two-projection network."
+    },
+    {
+      "physicalPage": 1493,
+      "questionIds": [
+        "W10-L47-Q031",
+        "W10-L47-Q032",
+        "W10-L47-Q033",
+        "W10-L47-Q034",
+        "W10-L47-Q035",
+        "W10-L47-Q036"
+      ],
+      "conceptIds": [
+        "W10-L47-C-norm-axis",
+        "W10-L47-C-norm-numeric",
+        "W10-L47-C-norm-affine",
+        "W10-L47-C-norm-epsilon",
+        "W10-L47-C-prepost",
+        "W10-L47-C-block-numeric"
+      ],
+      "notes": "Per-token feature normalization has learned gain and offset; printed formula omits epsilon. Two pre-normalization stages and residual additions are shown. All-N attention argument requires the previously specified causal mask in decoder use."
+    },
+    {
+      "physicalPage": 1494,
+      "questionIds": [
+        "W10-L47-Q037",
+        "W10-L47-Q038",
+        "W10-L47-Q039"
+      ],
+      "conceptIds": [
+        "W10-L47-C-matrix-rows",
+        "W10-L47-C-matrix-shapes",
+        "W10-L47-C-parallel-limit"
+      ],
+      "notes": "Pack N row embeddings into N by d. Q,K are N by dk and V is N by dv. Row computations can be vectorized for known inputs, not independently generate unknown future token IDs."
+    },
+    {
+      "physicalPage": 1495,
+      "questionIds": [
+        "W10-L47-Q040",
+        "W10-L47-Q041",
+        "W10-L47-Q042",
+        "W10-L47-Q043",
+        "W10-L47-Q044"
+      ],
+      "conceptIds": [
+        "W10-L47-C-mask-rule",
+        "W10-L47-C-mask-count",
+        "W10-L47-C-mask-zero",
+        "W10-L47-C-matrix-attention",
+        "W10-L47-C-first-row"
+      ],
+      "notes": "Dense N by N score table masked strictly above the diagonal with negative infinity; zero additive entries elsewhere. Softmax makes forbidden weights zero. The current token remains eligible."
+    },
+    {
+      "physicalPage": 1496,
+      "questionIds": [
+        "W10-L47-Q043",
+        "W10-L47-Q045",
+        "W10-L47-Q046"
+      ],
+      "conceptIds": [
+        "W10-L47-C-matrix-attention",
+        "W10-L47-C-schematic-omission",
+        "W10-L47-C-quadratic-table"
+      ],
+      "notes": "Diagram shows projected Q/K/V and NxN scores. Its note explicitly omits scaling and softmax from the sketch; do not execute the displayed masked infinities times V literally."
+    },
+    {
+      "physicalPage": 1497,
+      "questionIds": [
+        "W10-L47-Q047",
+        "W10-L47-Q048"
+      ],
+      "conceptIds": [
+        "W10-L47-C-vectorized-heads",
+        "W10-L47-C-identity-branches"
+      ],
+      "notes": "Vectorized head index denotes a whole N by dv output matrix, not one token. Concat and WO precede the additive residual and second normalized FFN branch. H=X when both branch outputs vanish."
+    },
+    {
+      "physicalPage": 1498,
+      "questionIds": [
+        "W10-L47-Q049",
+        "W10-L47-Q050",
+        "W10-L47-Q051"
+      ],
+      "conceptIds": [
+        "W10-L47-C-onehot-shape",
+        "W10-L47-C-id-convention",
+        "W10-L47-C-token-not-word"
+      ],
+      "notes": "Word-level example Janet will back the bill has five IDs and five one-hot rows. ID5 with four preceding zeros is consistent with one-based indexing; not a universal tokenizer convention."
+    },
+    {
+      "physicalPage": 1499,
+      "questionIds": [
+        "W10-L47-Q052",
+        "W10-L47-Q053",
+        "W10-L47-Q054",
+        "W10-L47-Q055"
+      ],
+      "conceptIds": [
+        "W10-L47-C-lookup-example",
+        "W10-L47-C-position-add",
+        "W10-L47-C-position-purpose",
+        "W10-L47-C-position-variant"
+      ],
+      "notes": "One-hot W times vocabulary-by-d embedding E selects token rows. A learned absolute-position table is added elementwise in this design. Neither five positions nor learned absolute embeddings are universal requirements."
+    },
+    {
+      "physicalPage": 1500,
+      "questionIds": [
+        "W10-L47-Q056",
+        "W10-L47-Q057",
+        "W10-L47-Q058",
+        "W10-L47-Q059"
+      ],
+      "conceptIds": [
+        "W10-L47-C-unembedding-shape",
+        "W10-L47-C-weight-tying",
+        "W10-L47-C-logits",
+        "W10-L47-C-lm-softmax"
+      ],
+      "notes": "Tied unembedding uses E transpose; final context row gives raw vocabulary logits, then softmax. Tying is a design choice, not universal. Vocabulary softmax differs from attention-key softmax."
+    },
+    {
+      "physicalPage": 1501,
+      "questionIds": [
+        "W10-L47-Q060",
+        "W10-L47-Q061"
+      ],
+      "conceptIds": [
+        "W10-L47-C-last-position",
+        "W10-L47-C-greedy"
+      ],
+      "notes": "Final-layer last-position row h_N supplies the next-token head. Greedy decoding takes the argmax, not stochastic categorical sampling. PDF link points to the public Transformer Explainer, which documents a live GPT-2 model; its page was read but model inference was not executed."
+    },
+    {
+      "physicalPage": 1502,
+      "questionIds": [
+        "W10-L47-Q062",
+        "W10-L47-Q063",
+        "W10-L47-Q064",
+        "W10-L47-Q065",
+        "W10-L47-Q066",
+        "W10-L47-Q067",
+        "W10-L47-Q068"
+      ],
+      "conceptIds": [
+        "W10-L47-C-top-k-rule",
+        "W10-L47-C-top-k-numeric",
+        "W10-L47-C-nucleus-rule",
+        "W10-L47-C-nucleus-numeric",
+        "W10-L47-C-nucleus-adaptation",
+        "W10-L47-C-p-percent",
+        "W10-L47-C-truncation-not-uniform"
+      ],
+      "notes": "Top-k retains highest k then renormalizes. Top-p sorts descending and takes the shortest prefix reaching cumulative p. Printed percent prose and 0-to-1 inequality use different scales; p=.9 means 90 percent. The threshold is inclusive in the printed inequality."
+    },
+    {
+      "physicalPage": 1503,
+      "questionIds": [
+        "W10-L47-Q035",
+        "W10-L47-Q069",
+        "W10-L47-Q070",
+        "W10-L47-Q071",
+        "W10-L47-Q072"
+      ],
+      "conceptIds": [
+        "W10-L47-C-prepost",
+        "W10-L47-C-encoder-direction",
+        "W10-L47-C-cross-attention",
+        "W10-L47-C-decoder-three-sublayers",
+        "W10-L47-C-vision-patches"
+      ],
+      "notes": "Original encoder-decoder diagram has post-sublayer Add & Norm, contrasting earlier pre-norm equations. Decoder has masked self-attention and cross-attention; cross queries come from decoder, keys/values from encoder. Encoder can use all available input positions; ViT patch context is not autoregressive."
+    },
+    {
+      "physicalPage": 1504,
+      "questionIds": [],
+      "conceptIds": [],
+      "notes": "Summary repeats embedding, Q/K/V, multihead, block, causal generation, head/sampling and multimodal extensions; no additional independent technical proposition."
+    },
+    {
+      "physicalPage": 1505,
+      "questionIds": [],
+      "conceptIds": [],
+      "notes": "References to Jurafsky/Martin manuscript and Attention Is All You Need; no new course derivation."
+    },
+    {
+      "physicalPage": 1506,
+      "questionIds": [],
+      "conceptIds": [],
+      "notes": "Thank-you page only."
+    }
+  ],
+  "exclusions": {
+    "1476": "Title and decorative metadata.",
+    "1477": "Learning objective, covered by later next-token generation pages.",
+    "1478": "Agenda only.",
+    "1504": "Summary repeats the preceding technical content; all points cross-checked for increments.",
+    "1505": "Bibliography only.",
+    "1506": "Thank-you slide."
+  },
+  "remainingBoundedGaps": [
+    {
+      "id": "L47-G01",
+      "pages": [
+        1485,
+        1486,
+        1488,
+        1489,
+        1490,
+        1497
+      ],
+      "finding": "Current numerical items stop at isolated projections, score normalization, parameter counts or one identity-projection head. None executes nontrivial projected multi-head attention through concatenation and WO.",
+      "remedy": "Add a bounded hard exercise with small explicit X and distinct per-head projections, an inclusive mask, per-row softmax, value weighting, concatenation and non-identity WO. Include complete alternative calculations and shape checks."
+    },
+    {
+      "id": "L47-G02",
+      "pages": [
+        1492,
+        1493,
+        1497
+      ],
+      "finding": "Q025 and Q036 both add already-given branch outputs. No item computes the actual nonzero pre-norm block across both normalizations and FFN, or distinguishes it numerically from post-norm.",
+      "remedy": "Replace one additive variant or add a bounded integrated calculation with explicit epsilon/gain/offset, nonzero attention result, FFN weights and residuals. A supplied branch result may simplify attention, but normalization and both residual locations must actually be evaluated."
+    },
+    {
+      "id": "L47-G03",
+      "pages": [
+        1498,
+        1499,
+        1500,
+        1501,
+        1502
+      ],
+      "finding": "Lookup, position addition, tied logits and candidate filtering are each tested separately, but there is no generation-step trace tying these to the next appended token and updated prefix.",
+      "remedy": "Add a source-derived synthesis trace with a small vocabulary, explicit IDs/positions, supplied contextual output or simple stated block, tied head, one declared sampling rule/draw, and the next input prefix. Do not invent a GPT-2 live output."
+    },
+    {
+      "id": "L47-G04",
+      "pages": [
+        1503
+      ],
+      "finding": "The original diagram labels decoder outputs shifted right; no current question tests this label or distinguishes source length, target-prefix length and the cross-attention matrix dimensions.",
+      "remedy": "Add a diagram/application item with unequal encoder and decoder sequence lengths, shifted target inputs and causal masking. Require Q/K/V provenance, score-table shape and why the current prediction cannot read its target label."
+    }
+  ],
+  "learningToolGap": {
+    "finding": "Every one of the 72 solution.formulas arrays is empty. Concrete numerical workings often suffice to solve the current item, but the requested source-linked formula/variable/unit revision resource is absent for this strongly algebraic lecture.",
+    "requiredFamilies": [
+      "Row Q/K/V projection and shapes.",
+      "Scaled attention, masking and softmax axis.",
+      "Multi-head concatenation and output projection.",
+      "Two-affine-layer ReLU FFN and parameter count.",
+      "LayerNorm with gain, offset, population variance and epsilon convention.",
+      "Pre-norm residual equations.",
+      "One-hot lookup plus positional addition.",
+      "Tied unembedding and vocabulary softmax.",
+      "Top-k/top-p retained-mass normalization."
+    ],
+    "remedy": "Add independently reviewed formula-sheet entries or targeted item formula records. Define symbols, tensor shapes, dimensionless values/probabilities, and architecture/masking conventions. Do not silently rewrite already accepted hashes; version any accepted item changed."
+  },
+  "questionVsConcept": "Seventy-two one-question concept records are not seventy-two independent underlying concepts. Parameter/numeric variants and Q025/Q036 residual sums should share or link a parent concept while retaining meaningful examination angles.",
+  "difficultyMix": {
+    "easy": 66,
+    "medium": 6,
+    "hard": 0,
+    "extremelyTricky": 0,
+    "finding": "Current labels mostly reflect their shallow tasks, rather than needing arbitrary relabeling. Integrated gaps above support meaningful harder tasks and controlled multistatement/multiselect reasoning."
+  },
+  "sourceQualifications": "Keep the author scaling, reshape, query/key width, omitted epsilon, pre/post-norm, parallelization, tokenizer, weight-tying and sampling qualifications. Also record the independently observed p1490 head-4 WK3 label and the p1493 all-N shorthand requiring a causal mask. Do not turn label errors into invented universal architecture rules.",
+  "runtime": "No executable lecture program supplied. Reviewer ran 29 explicit algebra checks and 5,000 varied assertions over 1,000 cases. The linked Transformer Explainer page was read; its live GPT-2 model was not executed. No question in this batch claims an exact output of that live model.",
+  "releaseComplete": false
+}

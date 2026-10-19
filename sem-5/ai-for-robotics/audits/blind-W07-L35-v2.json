@@ -1,0 +1,3583 @@
+[
+  {
+    "id": "W07-L35-Q001",
+    "version": 2,
+    "stem": "A 28×28 grayscale image is flattened and connected to 100 dense neurons, each with a bias. How many trainable parameters are in this layer?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "78,500"
+      },
+      {
+        "id": "o2",
+        "text": "78,400"
+      },
+      {
+        "id": "o3",
+        "text": "785,000"
+      },
+      {
+        "id": "o4",
+        "text": "88,400"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1063",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1063,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1063, printed slide 4: Parameter Explosion bullet under the 28×28/784-pixel example",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q002",
+    "version": 2,
+    "stem": "What is a precise limitation of feeding a flattened image to an ordinary dense layer?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "It preserves convolutional weight sharing because adjacent pixels remain adjacent vector entries."
+      },
+      {
+        "id": "o3",
+        "text": "It enforces local receptive fields because each pixel becomes a separate input feature."
+      },
+      {
+        "id": "o4",
+        "text": "It removes positional order because a dense layer treats the flattened values as an unordered set."
+      },
+      {
+        "id": "o1",
+        "text": "It does not enforce local receptive fields or spatial weight sharing, although the values can be reshaped back."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1063",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1063,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1063, printed slide 4: Loss of spatial context bullet and CNN solution paragraph",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q003",
+    "version": 2,
+    "stem": "How should the lecture’s contrast between ANN and CNN be interpreted?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "CNN is a dense ANN whose connectivity changes only when the final output is reshaped."
+      },
+      {
+        "id": "o4",
+        "text": "CNN differs from the illustrated ANN only in using images instead of scalar-valued input features."
+      },
+      {
+        "id": "o1",
+        "text": "CNN is an ANN subtype; this comparison contrasts dense connections with local, shared convolutional connections."
+      },
+      {
+        "id": "o2",
+        "text": "CNN is outside the ANN family because its learned parameters are kernels rather than dense matrices."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1064",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1064,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1064, printed slide 5: Left fully connected network and right convolutional feature-map pipeline",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1066",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1066,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1066, printed slide 7: Opening definition",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q004",
+    "version": 2,
+    "stem": "What is justified when comparing a large dense image model with a parameter-sharing CNN?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Keeping the parameter count fixed removes the effect of dataset size on overfitting."
+      },
+      {
+        "id": "o1",
+        "text": "Shared parameters can reduce complexity, but test performance still depends on data, training and regularization."
+      },
+      {
+        "id": "o2",
+        "text": "The model with fewer parameters can be selected without evaluating held-out images."
+      },
+      {
+        "id": "o3",
+        "text": "Training accuracy can replace held-out accuracy when the convolutional weights are shared."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1063",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1063,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1063, printed slide 4: Parameter Explosion bullet under the 28×28/784-pixel example",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q005",
+    "version": 2,
+    "stem": "Which sequence matches the illustrated image-classification pipeline?",
+    "selectionMode": "single",
+    "type": "sequence",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Conv + activation → pool → conv + activation → pool → flatten → dense classification"
+      },
+      {
+        "id": "o2",
+        "text": "Conv + activation → conv + activation → pool → pool → flatten → dense classification"
+      },
+      {
+        "id": "o3",
+        "text": "Pool → conv + activation → pool → conv + activation → flatten → dense classification"
+      },
+      {
+        "id": "o4",
+        "text": "Conv + activation → pool → flatten → dense layer → reshape → conv + activation → classification"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1064",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1064,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1064, printed slide 5: Right image-classification pipeline and bottom arrow sequence",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q007",
+    "version": 2,
+    "stem": "Which architecture-to-technical-property mapping matches the four selected CNN milestones on the timeline?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "AlexNet: GPU/large data; VGG: uniform 3×3; ResNet: width/depth/resolution scaling; EfficientNet: skip connections"
+      },
+      {
+        "id": "o4",
+        "text": "AlexNet: GPU/large data; VGG: skip connections; ResNet: uniform 3×3; EfficientNet: width/depth/resolution scaling"
+      },
+      {
+        "id": "o1",
+        "text": "AlexNet: GPU/large data; VGG: uniform 3×3; ResNet: skip connections; EfficientNet: width/depth/resolution scaling"
+      },
+      {
+        "id": "o2",
+        "text": "AlexNet: uniform 3×3; VGG: GPU/large data; ResNet: skip connections; EfficientNet: width/depth/resolution scaling"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1065",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1065,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1065, printed slide 6: AlexNet, VGG, ResNet and EfficientNet timeline annotations",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q008",
+    "version": 2,
+    "stem": "Which qualification corrects the lecture’s grouped Fast R-CNN/Faster R-CNN entry?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Fast R-CNN predicts boxes without proposals; Faster R-CNN adds the first region-based recognition stage."
+      },
+      {
+        "id": "o1",
+        "text": "Fast R-CNN uses externally generated proposals; Faster R-CNN adds a learned region-proposal network."
+      },
+      {
+        "id": "o2",
+        "text": "Fast R-CNN adds the learned RPN; Faster R-CNN returns to externally generated proposals."
+      },
+      {
+        "id": "o3",
+        "text": "Both use the same learned RPN; their only difference is how class scores are normalized."
+      }
+    ],
+    "assumptions": [
+      "Use the original 2015 Fast R-CNN and Faster R-CNN descriptions, checked on 19 October 2026."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1065",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1065,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1065, printed slide 6: 2015 grouped Fast RCNN, Faster RCNN annotation",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q009",
+    "version": 2,
+    "stem": "How should a timeline entry naming LeNet-5 in 1998 be used?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A selected digit-recognition milestone, not enough evidence to date the invention of backpropagation"
+      },
+      {
+        "id": "o2",
+        "text": "A date for the invention of backpropagation, rather than a particular network milestone"
+      },
+      {
+        "id": "o3",
+        "text": "The milestone that the same timeline credits with uniform 3×3 convolutional filters"
+      },
+      {
+        "id": "o4",
+        "text": "The milestone that the same timeline credits with GPU acceleration on large datasets"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1065",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1065,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1065, printed slide 6: 1998 LeNet 5 annotation",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q010",
+    "version": 2,
+    "stem": "An image array is explicitly supplied as H×W×C. To feed the standard batched PyTorch Conv2d input convention, which axis arrangement is needed?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Add a leading batch axis only, leaving the tensor as N×H×W×C."
+      },
+      {
+        "id": "o3",
+        "text": "Swap height and width, then add a batch axis to obtain N×W×H×C."
+      },
+      {
+        "id": "o4",
+        "text": "Move channels first and append the batch axis, obtaining C×H×W×N."
+      },
+      {
+        "id": "o1",
+        "text": "Convert H×W×C to C×H×W, then add a leading batch axis to obtain N×C×H×W."
+      }
+    ],
+    "assumptions": [
+      "Use PyTorch 2.9 documented logical N×C×H×W axes; memory format is a separate storage-stride issue. H and W denote height and width, C channels and N batch size."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1066",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1066,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1066, printed slide 7: Input dimension and RGB/grayscale bullets",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q011",
+    "version": 2,
+    "stem": "Which pairing correctly distinguishes classification from regression for a CNN output?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Object category: classification; a distance-bin label: continuous regression"
+      },
+      {
+        "id": "o4",
+        "text": "An unbinned continuous angle: classification; estimated continuous distance: regression"
+      },
+      {
+        "id": "o1",
+        "text": "Object category: classification; estimated continuous distance: regression"
+      },
+      {
+        "id": "o2",
+        "text": "Object category: regression; estimated continuous distance: classification"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1066",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1066,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1066, printed slide 7: Final classification/regression bullet",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q012",
+    "version": 2,
+    "stem": "Which conclusion avoids overstating the lecture’s motivation?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Choose the same camera and CNN for tasks with different lighting and sensing requirements."
+      },
+      {
+        "id": "o1",
+        "text": "Choose sensors and the visual model for the robot’s task and operating conditions."
+      },
+      {
+        "id": "o2",
+        "text": "Choose a CNN whenever a camera is available, without comparing the task’s data needs."
+      },
+      {
+        "id": "o3",
+        "text": "Choose camera-only sensing whenever CNN training accuracy exceeds another model’s training accuracy."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1066",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1066,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1066, printed slide 7: Vision-motivation paragraph",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q013",
+    "version": 2,
+    "stem": "For the slide’s operation sum I(i+m,j+n)K(m,n), how is the kernel used?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Without a 180-degree flip; mathematically this is cross-correlation, commonly called convolution in CNN APIs."
+      },
+      {
+        "id": "o2",
+        "text": "It is always transposed before multiplication."
+      },
+      {
+        "id": "o3",
+        "text": "It is always rotated by 180 degrees before multiplication."
+      },
+      {
+        "id": "o4",
+        "text": "Its rows are reversed, but its columns keep their original order."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1067",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1067,
+        "kind": "equation",
+        "locator": "Lecture 35, physical page 1067, printed slide 8: Boxed plus-offset double sum and notation definitions",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q015",
+    "version": 2,
+    "stem": "Use the patch [[1,2],[3,4]] and kernel [[1,0],[0,−1]], with no bias or flip. What is the single cross-correlation output?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "−2"
+      },
+      {
+        "id": "o4",
+        "text": "10"
+      },
+      {
+        "id": "o1",
+        "text": "−3"
+      },
+      {
+        "id": "o2",
+        "text": "3"
+      }
+    ],
+    "assumptions": [
+      "This is an explicit toy application of the printed plus-offset formula, not a matrix quoted from the slide."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1067",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1067,
+        "kind": "equation",
+        "locator": "Lecture 35, physical page 1067, printed slide 8: Boxed plus-offset double sum",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q016",
+    "version": 2,
+    "stem": "When does symmetric padding preserve the input spatial size for an ordinary odd-sized kernel?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "With no padding for every kernel size."
+      },
+      {
+        "id": "o1",
+        "text": "With stride 1, dilation 1 and padding (K−1)/2 on each side."
+      },
+      {
+        "id": "o2",
+        "text": "With any stride as long as at least one zero is added."
+      },
+      {
+        "id": "o3",
+        "text": "With padding equal to the full kernel size on each side."
+      }
+    ],
+    "assumptions": [
+      "Square odd K, ordinary dilation 1 and symmetric integer padding."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1067",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1067,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1067, printed slide 8: Bottom padding bullet",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1068",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1068,
+        "kind": "equation",
+        "locator": "Lecture 35, physical page 1068, printed slide 9: Output dimension formula and definitions of I,K,P,S",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q017",
+    "version": 2,
+    "stem": "An input is 28×28×1. Apply 16 filters of size 5×5, stride 1, no padding and dilation 1. What is the output shape in H×W×C order?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "24×24×16"
+      },
+      {
+        "id": "o2",
+        "text": "28×28×16"
+      },
+      {
+        "id": "o3",
+        "text": "24×24×1"
+      },
+      {
+        "id": "o4",
+        "text": "5×5×16"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1068",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1068,
+        "kind": "equation",
+        "locator": "Lecture 35, physical page 1068, printed slide 9: Output dimension formula and definitions of I,K,P,S",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q018",
+    "version": 2,
+    "stem": "A 28×28×1 input is convolved with sixteen shared 5×5 filters, stride 1 and no padding, with one bias per filter. How many parameters are learned?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "400"
+      },
+      {
+        "id": "o3",
+        "text": "9,216"
+      },
+      {
+        "id": "o4",
+        "text": "432"
+      },
+      {
+        "id": "o1",
+        "text": "416"
+      }
+    ],
+    "assumptions": [
+      "Shared spatial weights; groups=1; one scalar bias per output filter; no learned activation parameters."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1068",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1068,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1068, printed slide 9: Bottom convolution settings and kernel-count note",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q019",
+    "version": 2,
+    "stem": "For I=8, K=3, P=0, S=2 and dilation 1, what is the output length?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "4"
+      },
+      {
+        "id": "o4",
+        "text": "6"
+      },
+      {
+        "id": "o1",
+        "text": "3"
+      },
+      {
+        "id": "o2",
+        "text": "3.5"
+      }
+    ],
+    "assumptions": [
+      "Use the stated valid convolution with no partial final window."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1068",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1068,
+        "kind": "equation",
+        "locator": "Lecture 35, physical page 1068, printed slide 9: Output dimension formula and definitions of I,K,P,S",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q020",
+    "version": 2,
+    "stem": "A later convolution receives 16 input channels. How many input-channel planes does each ordinary 5×5 output filter span?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "8, as if the sixteen channels were split into two groups"
+      },
+      {
+        "id": "o1",
+        "text": "16, with their weighted contributions summed to one output-channel value"
+      },
+      {
+        "id": "o2",
+        "text": "1, regardless of the input channel count"
+      },
+      {
+        "id": "o3",
+        "text": "5, because the spatial kernel width is 5"
+      }
+    ],
+    "assumptions": [
+      "Use a standard convolution with groups=1, not a grouped or depthwise layer."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1068",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1068,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1068, printed slide 9: Right two-stage CNN diagram: 16-channel input to the later convolution",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q021",
+    "version": 2,
+    "stem": "Apply nonoverlapping 2×2 max pooling with stride 2 to [[8,16,8,20],[13,3,14,6],[20,14,2,14],[6,32,6,22]]. What is the output?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "[[16,20],[32,22]]"
+      },
+      {
+        "id": "o2",
+        "text": "[[10,12],[18,11]]"
+      },
+      {
+        "id": "o3",
+        "text": "[[8,8],[20,2]]"
+      },
+      {
+        "id": "o4",
+        "text": "[[13,14],[32,22]]"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1069",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1069,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1069, printed slide 10: Right 4×4 input matrix and the two 2×2 outputs",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q022",
+    "version": 2,
+    "stem": "For the same displayed 4×4 matrix, what is the nonoverlapping 2×2 average-pooling output?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "[[40,48],[72,44]]"
+      },
+      {
+        "id": "o3",
+        "text": "[[16,20],[32,22]]"
+      },
+      {
+        "id": "o4",
+        "text": "[[20,24],[36,22]]"
+      },
+      {
+        "id": "o1",
+        "text": "[[10,12],[18,11]]"
+      }
+    ],
+    "assumptions": [
+      "The matrix is [[8,16,8,20],[13,3,14,6],[20,14,2,14],[6,32,6,22]]."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1069",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1069,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1069, printed slide 10: Right 4×4 input matrix and the two 2×2 outputs",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q023",
+    "version": 2,
+    "stem": "How many trainable parameters does standard fixed 2×2 max pooling introduce?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "One per output pixel"
+      },
+      {
+        "id": "o4",
+        "text": "One learned coefficient per input channel"
+      },
+      {
+        "id": "o1",
+        "text": "Zero"
+      },
+      {
+        "id": "o2",
+        "text": "Four per input channel"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1069",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1069,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1069, printed slide 10: How does Pooling work? first bullet",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q024",
+    "version": 2,
+    "stem": "Which statement is mathematically correct for fixed nonoverlapping windows?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Max pooling is linear and average pooling is nonlinear."
+      },
+      {
+        "id": "o1",
+        "text": "Average pooling is a linear map; max pooling is generally nonlinear."
+      },
+      {
+        "id": "o2",
+        "text": "Both are linear because both reduce dimensions."
+      },
+      {
+        "id": "o3",
+        "text": "Both are nonlinear because neither learns parameters."
+      }
+    ],
+    "assumptions": [
+      "Use fixed windows and no data-dependent resizing; linearity is assessed over real-valued inputs."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1069",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1069,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1069, printed slide 10: Pooling operator definitions, distinct from the activation paragraph",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q025",
+    "version": 2,
+    "stem": "Using the explicitly supplied definition ReLU(x)=max(0,x), what happens to inputs [−2,0,3]?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "[0,0,3]"
+      },
+      {
+        "id": "o2",
+        "text": "[−2,0,3]"
+      },
+      {
+        "id": "o3",
+        "text": "[2,0,3]"
+      },
+      {
+        "id": "o4",
+        "text": "[0,0,1]"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1069",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1069,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1069, printed slide 10: Activation-layer function-name list",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q026",
+    "version": 2,
+    "stem": "A 24×24×16 feature map is pooled with 2×2 windows, stride 2 and no padding. What shape results?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "12×12×8"
+      },
+      {
+        "id": "o3",
+        "text": "24×24×8"
+      },
+      {
+        "id": "o4",
+        "text": "22×22×16"
+      },
+      {
+        "id": "o1",
+        "text": "12×12×16"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1069",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1069,
+        "kind": "equation",
+        "locator": "Lecture 35, physical page 1069, printed slide 10: Bottom stride-2 pooling calculation and final shape",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q027",
+    "version": 2,
+    "stem": "Starting from 12×12×16, apply 32 filters of size 5×5, stride 1 and no padding. What is the output shape?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "12×12×32"
+      },
+      {
+        "id": "o4",
+        "text": "4×4×32"
+      },
+      {
+        "id": "o1",
+        "text": "8×8×32"
+      },
+      {
+        "id": "o2",
+        "text": "8×8×16"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1070",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1070,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1070, printed slide 11: Opening second-stage shape and kernel-count bullets",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1068",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1068,
+        "kind": "equation",
+        "locator": "Lecture 35, physical page 1068, printed slide 9: Output dimension formula and definitions of I,K,P,S",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q028",
+    "version": 2,
+    "stem": "For 32 ordinary 5×5 filters spanning 16 input channels, with one bias per output filter, what is the parameter count?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "204,832"
+      },
+      {
+        "id": "o1",
+        "text": "12,832"
+      },
+      {
+        "id": "o2",
+        "text": "832"
+      },
+      {
+        "id": "o3",
+        "text": "12,800"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1070",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1070,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1070, printed slide 11: Opening second-stage shapes and C=32 note",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q029",
+    "version": 2,
+    "stem": "After the second pooling step, a feature map has shape 4×4×32. How many values enter the flattened vector?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "512"
+      },
+      {
+        "id": "o2",
+        "text": "128"
+      },
+      {
+        "id": "o3",
+        "text": "16"
+      },
+      {
+        "id": "o4",
+        "text": "2,048"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1070",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1070,
+        "kind": "equation",
+        "locator": "Lecture 35, physical page 1070, printed slide 11: Flattening product",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q030",
+    "version": 2,
+    "stem": "Which output choice fits the stated label structure?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Separate sigmoids normalized to sum to one for simultaneous independent labels; softmax for mutually exclusive classes"
+      },
+      {
+        "id": "o3",
+        "text": "Softmax for simultaneous independent labels; a single sigmoid for any number of mutually exclusive classes"
+      },
+      {
+        "id": "o4",
+        "text": "Softmax for both cases, because each output can independently approach one in the same prediction"
+      },
+      {
+        "id": "o1",
+        "text": "Softmax for one mutually exclusive class; separate sigmoids for independent simultaneous labels"
+      }
+    ],
+    "assumptions": [
+      "This distinguishes standard multiclass and multilabel formulations, not a claim that a probability-like score is calibrated."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1070",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1070,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1070, printed slide 11: Output-layer activation paragraph",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q031",
+    "version": 2,
+    "stem": "A dense layer maps the flattened 512 inputs to 128 neurons, with one bias each. How many parameters does it contain?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "16,512"
+      },
+      {
+        "id": "o4",
+        "text": "65,546"
+      },
+      {
+        "id": "o1",
+        "text": "65,664"
+      },
+      {
+        "id": "o2",
+        "text": "65,536"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1071",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1071,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1071, printed slide 12: CNN-to-dense flow and enlarged fully connected diagram",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q032",
+    "version": 2,
+    "stem": "A 128-unit hidden layer feeds ten output neurons, with a bias per output. How many parameters are in this output layer?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "138"
+      },
+      {
+        "id": "o1",
+        "text": "1,290"
+      },
+      {
+        "id": "o2",
+        "text": "1,280"
+      },
+      {
+        "id": "o3",
+        "text": "1,408"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1071",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1071,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1071, printed slide 12: CNN-to-dense flow and enlarged fully connected diagram",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q033",
+    "version": 3,
+    "stem": "Using Conv1=416, Conv2=12,832, dense hidden=65,664 and dense output=1,290, what is the total trainable parameter count?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "80,202"
+      },
+      {
+        "id": "o2",
+        "text": "80,016"
+      },
+      {
+        "id": "o3",
+        "text": "79,690"
+      },
+      {
+        "id": "o4",
+        "text": "89,418"
+      }
+    ],
+    "assumptions": [
+      "Use only the four parameterized layers stated; no batch-normalization or extra layers are included."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1071",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1071,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1071, printed slide 12: CNN-to-dense flow and enlarged fully connected diagram",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q035",
+    "version": 2,
+    "stem": "Which output requires object detection rather than only whole-image classification?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Predict one category for each supplied object crop without locating crops in the image."
+      },
+      {
+        "id": "o4",
+        "text": "Predict whether each target category is present, without any instance locations."
+      },
+      {
+        "id": "o1",
+        "text": "Predict a category and bounding box for each target instance."
+      },
+      {
+        "id": "o2",
+        "text": "Predict one category for the complete image without object locations."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1072",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1072,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1072, printed slide 13: Detection definition and bounding-box paragraph",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q036",
+    "version": 2,
+    "stem": "What does an axis-aligned bounding box provide that differs from an object segmentation mask?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "A rotated minimum-area rectangle whose orientation follows the object"
+      },
+      {
+        "id": "o1",
+        "text": "A rectangular extent that can include background, rather than a per-pixel object outline"
+      },
+      {
+        "id": "o2",
+        "text": "A per-pixel membership map restricted to the rectangle"
+      },
+      {
+        "id": "o3",
+        "text": "A center point with no information about horizontal or vertical extent"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1072",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1072,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1072, printed slide 13: Detection definition and bounding-box paragraph",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q037",
+    "version": 2,
+    "stem": "The illustration labels a detected cat with 96%. What does that number alone establish?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The displayed model score for that detection, not 96% dataset accuracy or proof the detection is correct"
+      },
+      {
+        "id": "o2",
+        "text": "The detector is correct on exactly 96% of all future images"
+      },
+      {
+        "id": "o3",
+        "text": "Exactly 96% of the image pixels belong to the cat"
+      },
+      {
+        "id": "o4",
+        "text": "The bounding box overlaps the true box by exactly 96% IoU"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1072",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1072,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1072, printed slide 13: Upper-right cat/dog bounding-box illustration",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q038",
+    "version": 2,
+    "stem": "Why must a program specify whether four box numbers mean xyxy or xywh?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "The two formats always represent the same rectangle without conversion."
+      },
+      {
+        "id": "o3",
+        "text": "xywh always means the first two values are top-left coordinates in every library."
+      },
+      {
+        "id": "o4",
+        "text": "xyxy and xywh differ only in whether coordinates are normalized by image dimensions."
+      },
+      {
+        "id": "o1",
+        "text": "xyxy describes two corners, whereas xywh describes a position and size whose position convention must also be stated."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1072",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1072,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1072, printed slide 13: Detection definition and bounding-box paragraph",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q039",
+    "version": 2,
+    "stem": "What makes a region-proposal detector two-stage in this comparison?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "The image is resized first, then a shared network predicts boxes and classes together."
+      },
+      {
+        "id": "o4",
+        "text": "Class scores and box coordinates use separate branches from shared features, without proposals."
+      },
+      {
+        "id": "o1",
+        "text": "Candidate regions are proposed first, then region-specific recognition and box refinement follow."
+      },
+      {
+        "id": "o2",
+        "text": "Dense box and class predictions are produced together, then duplicate boxes are filtered."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1073",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1073,
+        "kind": "table",
+        "locator": "Lecture 35, physical page 1073, printed slide 14: Detection Process row, multi-stage versus single-stage columns",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q040",
+    "version": 2,
+    "stem": "Which statement avoids an inaccurate contrast with YOLO?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Feature sharing means that all proposals must receive the same pooled region features."
+      },
+      {
+        "id": "o1",
+        "text": "Two-stage detectors can share convolutional features; two-stage does not imply running a complete independent backbone for every proposal."
+      },
+      {
+        "id": "o2",
+        "text": "Every two-stage detector repeats all image feature extraction independently for every proposal."
+      },
+      {
+        "id": "o3",
+        "text": "If features are shared, the detector cannot contain region proposals."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1073",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1073,
+        "kind": "table",
+        "locator": "Lecture 35, physical page 1073, printed slide 14: Detection Process row, multi-stage versus single-stage columns",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q041",
+    "version": 2,
+    "stem": "What is the intended meaning of looking at the image once?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A single network forward pass predicts box and class-related outputs without a separate proposal pipeline."
+      },
+      {
+        "id": "o2",
+        "text": "A separate proposal network selects crops, then a shared classifier processes each selected crop."
+      },
+      {
+        "id": "o3",
+        "text": "Prediction is single-stage only if resizing and duplicate suppression are absent."
+      },
+      {
+        "id": "o4",
+        "text": "A class-only network runs once, then an independent localization model supplies the boxes."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1074",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1074,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1074, printed slide 15: Single CNN pass and regression-output bullet list",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q042",
+    "version": 2,
+    "stem": "Why does framing detection as regression not mean YOLO has no class prediction?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "The network predicts coordinates only, and a separate crop classifier supplies all category scores."
+      },
+      {
+        "id": "o3",
+        "text": "Box confidence alone determines category, so no class-related outputs are needed."
+      },
+      {
+        "id": "o4",
+        "text": "Class scores specify coordinates by assigning each image location its own class label."
+      },
+      {
+        "id": "o1",
+        "text": "The unified output contains numerical box coordinates and class-related scores."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1074",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1074,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1074, printed slide 15: Single CNN pass and regression-output bullet list",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q043",
+    "version": 2,
+    "stem": "What information is needed to interpret a real-time claim for a detector?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Hardware and input size, but omit whether timing includes preprocessing and NMS"
+      },
+      {
+        "id": "o4",
+        "text": "Hardware and model name, but compare arbitrary batch sizes and input resolutions"
+      },
+      {
+        "id": "o1",
+        "text": "Model variant, input size, hardware, and which preprocessing/inference/postprocessing stages are timed"
+      },
+      {
+        "id": "o2",
+        "text": "Model variant and input size, but hardware and precision need not be matched"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1074",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1074,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1074, printed slide 15: Opening real-time motivation",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q044",
+    "version": 2,
+    "stem": "In the original YOLO grid formulation, which cell is responsible for predicting an object?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "The cell with the greatest overlap area with the object’s bounding box"
+      },
+      {
+        "id": "o1",
+        "text": "The cell containing the object’s center"
+      },
+      {
+        "id": "o2",
+        "text": "Every cell touched by any part of the object box"
+      },
+      {
+        "id": "o3",
+        "text": "The cell containing the object’s top-left corner"
+      }
+    ],
+    "assumptions": [
+      "This question concerns the original YOLOv1 grid formulation, not every later YOLO version.",
+      "The center-containing-cell rule is supplied from the original YOLO paper, Section 2; the cited lecture page supplies the grid premise but does not state that responsibility rule."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1075",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1075,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1075, printed slide 16: Step 1 grid division; responsibility is supplied separately from original YOLO paper",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q045",
+    "version": 2,
+    "stem": "In YOLOv1, how are the predicted box center and size represented in the lecture’s formulation?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Center offsets are relative to the cell; width and height are relative to the image."
+      },
+      {
+        "id": "o2",
+        "text": "All four values are measured only relative to the cell dimensions."
+      },
+      {
+        "id": "o3",
+        "text": "The center is relative to the image but size is relative to the cell."
+      },
+      {
+        "id": "o4",
+        "text": "All four values are normalized relative to the whole image."
+      }
+    ],
+    "assumptions": [
+      "Use original YOLOv1 conventions, not the later Ultralytics Results pixel-coordinate representation."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1075",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1075,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1075, printed slide 16: Step 3 coordinate-reference bullets",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q046",
+    "version": 2,
+    "stem": "A 700×700 image uses a 7×7 grid. In zero-based cell column 2, row 3, the predicted center offsets are x=0.25 and y=0.5. What is the image center in pixels?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "(25,50)"
+      },
+      {
+        "id": "o3",
+        "text": "(175,350)"
+      },
+      {
+        "id": "o4",
+        "text": "(350,225)"
+      },
+      {
+        "id": "o1",
+        "text": "(225,350)"
+      }
+    ],
+    "assumptions": [
+      "The numerical image size, cell and offsets are explicit derived examples, not values printed on the slide."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1075",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1075,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1075, printed slide 16: Step 3 coordinate-reference bullets",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q048",
+    "version": 2,
+    "stem": "For two nondegenerate boxes, which pair of statements is correct?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Equal box areas force IoU 1 even when the boxes are far apart."
+      },
+      {
+        "id": "o1",
+        "text": "Disjoint boxes have IoU 0; identical boxes have IoU 1."
+      },
+      {
+        "id": "o2",
+        "text": "Disjoint boxes have IoU 1; identical boxes have IoU 0."
+      },
+      {
+        "id": "o3",
+        "text": "IoU can exceed 1 whenever one box is larger."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1075",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1075,
+        "kind": "equation",
+        "locator": "Lecture 35, physical page 1075, printed slide 16: Bottom intersection-over-union equation",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q049",
+    "version": 2,
+    "stem": "Under the lecture’s YOLOv1 formula, P(object)=0.8 and predicted overlap quality IoU=0.5. What confidence is formed?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "0.40"
+      },
+      {
+        "id": "o2",
+        "text": "0.80"
+      },
+      {
+        "id": "o3",
+        "text": "0.50"
+      },
+      {
+        "id": "o4",
+        "text": "1.30"
+      }
+    ],
+    "assumptions": [
+      "This is the original YOLOv1 pedagogical confidence formula, not a statement about YOLOv8’s head."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1075",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1075,
+        "kind": "equation",
+        "locator": "Lecture 35, physical page 1075, printed slide 16: Confidence-scores equation",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q050",
+    "version": 2,
+    "stem": "A YOLOv1 cell has P(cat|object)=0.7, and one box has confidence 0.4. What class-specific score follows from the original formulation?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "0.70"
+      },
+      {
+        "id": "o3",
+        "text": "0.40"
+      },
+      {
+        "id": "o4",
+        "text": "1.10"
+      },
+      {
+        "id": "o1",
+        "text": "0.28"
+      }
+    ],
+    "assumptions": [
+      "Use the original YOLOv1 combination rule; do not transfer it unchanged to a later architecture.",
+      "The conditional-class multiplication is from original YOLO Section 2; the slides separately supply box confidence and cell class probabilities."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1075",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1075,
+        "kind": "equation",
+        "locator": "Lecture 35, physical page 1075, printed slide 16: Confidence-scores equation",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1076",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1076,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1076, printed slide 17: Step 4 class-probability prediction",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q051",
+    "version": 2,
+    "stem": "For S=7, B=2 and C=20, what is the YOLOv1 output shape S×S×(5B+C)?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "7×7×25"
+      },
+      {
+        "id": "o4",
+        "text": "14×14×20"
+      },
+      {
+        "id": "o1",
+        "text": "7×7×30"
+      },
+      {
+        "id": "o2",
+        "text": "7×7×50"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1076",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1076,
+        "kind": "equation",
+        "locator": "Lecture 35, physical page 1076, printed slide 17: Step 5 output tensor",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q053",
+    "version": 2,
+    "stem": "With a 7×7 grid and two predicted boxes per cell, what does the number 98 describe?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "98 candidate box predictions before confidence filtering and duplicate suppression"
+      },
+      {
+        "id": "o2",
+        "text": "98 final detections after NMS, with one retained detection per candidate"
+      },
+      {
+        "id": "o3",
+        "text": "98 scalar outputs encoding all box coordinates and class probabilities"
+      },
+      {
+        "id": "o4",
+        "text": "98 grid cells, each producing one candidate box"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1076",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1076,
+        "kind": "equation",
+        "locator": "Lecture 35, physical page 1076, printed slide 17: Bottom original YOLO numerical note",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q055",
+    "version": 2,
+    "stem": "What is the purpose of NMS after candidate boxes are scored?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Retain the smallest box in each overlapping group regardless of confidence."
+      },
+      {
+        "id": "o4",
+        "text": "Retain only the highest-scoring box per class for the entire image."
+      },
+      {
+        "id": "o1",
+        "text": "Retain high-scoring boxes while suppressing lower-scoring overlaps under the specified class policy."
+      },
+      {
+        "id": "o2",
+        "text": "Retain every box above a confidence threshold without comparing overlap."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1076",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1076,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1076, printed slide 17: Step 6 NMS duplicate-object paragraph",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q057",
+    "version": 2,
+    "stem": "Two boxes have different predicted classes, unequal scores and IoU above the specified suppression threshold. Both pass confidence filtering. Under ordinary greedy NMS, which comparison of class policies is correct?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Class-aware NMS retains both; class-agnostic NMS suppresses the lower-scoring box."
+      },
+      {
+        "id": "o2",
+        "text": "Both policies suppress the lower-scoring box because geometry overrides class membership."
+      },
+      {
+        "id": "o3",
+        "text": "Both policies retain the pair because different classes can never compete."
+      },
+      {
+        "id": "o4",
+        "text": "Class-aware NMS suppresses the lower-scoring box; class-agnostic NMS retains both."
+      }
+    ],
+    "assumptions": [
+      "This is an explicit postprocessing-policy extension of the slide’s NMS premise, not a claim that all implementations share one default."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1076",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1076,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1076, printed slide 17: Step 6 NMS duplicate-object paragraph",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q058",
+    "version": 2,
+    "stem": "Which interpretation matches the illustrated grid-to-detection flow?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Shared image features feed NMS first, and surviving boxes are then assigned their initial confidence scores."
+      },
+      {
+        "id": "o3",
+        "text": "Class labels are predicted first, and their text is passed to the CNN to generate image features."
+      },
+      {
+        "id": "o4",
+        "text": "Each grid cell is independently classified, and its cell boundary is used unchanged as the final box."
+      },
+      {
+        "id": "o1",
+        "text": "Shared image features feed box and class predictions, which form a tensor before duplicate suppression."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1077",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1077,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1077, printed slide 18: Arrows from feature extraction through box/class branches to output tensor and NMS",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q059",
+    "version": 2,
+    "stem": "Which mapping matches the lecture’s YOLOv4, YOLOv5 and YOLOv7 rows and its CSPDarknet footnote?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "v4: CSPDarknet speed/accuracy balance; v5: optimized real-time performance; v7: practical training/deployment; CSP reduces repeated computation."
+      },
+      {
+        "id": "o4",
+        "text": "v4: CSPDarknet speed/accuracy balance; v5: practical training/deployment; v7: optimized real-time performance; CSP repeats identical feature computation in parallel."
+      },
+      {
+        "id": "o1",
+        "text": "v4: CSPDarknet speed/accuracy balance; v5: practical training/deployment; v7: optimized real-time performance; CSP reduces repeated computation."
+      },
+      {
+        "id": "o2",
+        "text": "v4: practical training/deployment; v5: CSPDarknet speed/accuracy balance; v7: optimized real-time performance; CSP reduces repeated computation."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1079",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1079,
+        "kind": "table",
+        "locator": "Lecture 35, physical page 1079, printed slide 20: YOLOv4, YOLOv5 and YOLOv7 rows",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1079",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1079,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1079, printed slide 20: Double-asterisk CSPDarknet footnote below table",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q060",
+    "version": 2,
+    "stem": "Which architecture description belongs to the original YOLO detector shown here?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "640×640×3 input; 24 convolutional layers; two fully connected layers"
+      },
+      {
+        "id": "o1",
+        "text": "448×448×3 input; 24 convolutional layers; two fully connected layers"
+      },
+      {
+        "id": "o2",
+        "text": "448×448×3 input; 24 convolutional layers; no fully connected layers"
+      },
+      {
+        "id": "o3",
+        "text": "448×448×3 input; 22 convolutional layers; two fully connected layers"
+      }
+    ],
+    "assumptions": [
+      "Use the original YOLOv1 model illustrated on this slide."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1078",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1078,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1078, printed slide 19: Input and backbone bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q061",
+    "version": 2,
+    "stem": "Why can a 1×1 convolution reduce the number of channels without necessarily reducing height and width?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It mixes channels at each location, and with stride 1 its spatial kernel does not downsample."
+      },
+      {
+        "id": "o2",
+        "text": "A 1×1 convolution pools the channel dimension by taking its maximum."
+      },
+      {
+        "id": "o3",
+        "text": "It can reduce height and width only, never the channel count."
+      },
+      {
+        "id": "o4",
+        "text": "It is equivalent to a 1×1 max pool regardless of learned coefficients."
+      }
+    ],
+    "assumptions": [
+      "Use ordinary groups=1 convolution with stride 1, no padding, dilation 1, and an explicitly chosen output-filter count."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1078",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1078,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1078, printed slide 19: Alternating Filters bullet",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q062",
+    "version": 2,
+    "stem": "Why can the original 1,470-value output be reshaped into 7×7×30 without losing values?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "The tensor has 49 values after reshape because its last axis only stores labels."
+      },
+      {
+        "id": "o3",
+        "text": "The reshape requires 7+7+30=44 input values because dimensions are added."
+      },
+      {
+        "id": "o4",
+        "text": "The reshape duplicates each of the 1,470 inputs 30 times to create the final axis."
+      },
+      {
+        "id": "o1",
+        "text": "The element count stays 1,470, with 49 cell positions and 30 indexed values at each."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1078",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1078,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1078, printed slide 19: Final vector reshape paragraph",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q063",
+    "version": 2,
+    "stem": "Why should the original 24-convolution/two-dense architecture not be copied as the definition of YOLOv8?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "The original 7×7×30 tensor is the standard return shape for every YOLOv8 detection image."
+      },
+      {
+        "id": "o4",
+        "text": "The two dense layers are retained by definition, while only the checkpoint name changes."
+      },
+      {
+        "id": "o1",
+        "text": "The original dense 7×7×30 output and the later multi-scale decoupled head are version-specific designs."
+      },
+      {
+        "id": "o2",
+        "text": "The later decoupled head is obtained only by reshaping the original fixed 1,470 dense outputs."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1078",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1078,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1078, printed slide 19: Original YOLO dense-output architecture",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1082",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1082,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1082, printed slide 23: YOLOv8 head paragraph",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q064",
+    "version": 2,
+    "stem": "Which pairing matches the lecture’s selected version highlights?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "YOLOv2: anchor boxes; YOLOv3: anchor-free split head; YOLOv8: multi-scale prediction only"
+      },
+      {
+        "id": "o1",
+        "text": "YOLOv2: anchor boxes; YOLOv3: multi-scale prediction; YOLOv8: anchor-free split head"
+      },
+      {
+        "id": "o2",
+        "text": "YOLOv2: multi-scale prediction; YOLOv3: anchor boxes; YOLOv8: anchor-free split head"
+      },
+      {
+        "id": "o3",
+        "text": "YOLOv2: anchor-free split head; YOLOv3: multi-scale prediction; YOLOv8: anchor boxes"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1079",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1079,
+        "kind": "table",
+        "locator": "Lecture 35, physical page 1079, printed slide 20: YOLOv2, YOLOv3 and YOLOv8 rows",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1080",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1080,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1080, printed slide 21: Decoupled Head bullet",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q066",
+    "version": 2,
+    "stem": "Which statement is justified by a selected YOLO-version table?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "The v8 accuracy claim ranks every v8 size above every v7 size on the same unseen task."
+      },
+      {
+        "id": "o3",
+        "text": "The real-time v7 entry establishes lower CPU latency than v5 at any input resolution."
+      },
+      {
+        "id": "o4",
+        "text": "The v5 deployment entry establishes smaller memory use than every later variant."
+      },
+      {
+        "id": "o1",
+        "text": "Named design changes are summarized, but metric rankings need matched evaluation conditions."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1079",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1079,
+        "kind": "table",
+        "locator": "Lecture 35, physical page 1079, printed slide 20: Selected version/improvement table",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q067",
+    "version": 2,
+    "stem": "Which identification is consistent with the source and official model documentation?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Ultralytics; 2020; YOLOv5 model family"
+      },
+      {
+        "id": "o4",
+        "text": "The original YOLOv1 authors; 2023; unchanged YOLOv1 architecture"
+      },
+      {
+        "id": "o1",
+        "text": "Ultralytics; 2023; YOLOv8 model family"
+      },
+      {
+        "id": "o2",
+        "text": "Ultralytics; 2016; original YOLOv1 model family"
+      }
+    ],
+    "assumptions": [
+      "This is a historical identity statement, not a current-state-of-the-art ranking."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1080",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1080,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1080, printed slide 21: Opening developer/year sentence",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q068",
+    "version": 2,
+    "stem": "What does anchor-free mean for the YOLOv8 detector discussed here?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Predict centers at feature locations, then reuse one fixed width and height for each class."
+      },
+      {
+        "id": "o1",
+        "text": "Remove preset anchor-box shapes, but retain feature locations and learned box extents."
+      },
+      {
+        "id": "o2",
+        "text": "Retain preset anchor-box shapes, but learn only their class scores rather than offsets."
+      },
+      {
+        "id": "o3",
+        "text": "Remove preset box shapes and also remove all feature-location reference coordinates."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1080",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1080,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1080, printed slide 21: Anchor-Free Detection bullet",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q069",
+    "version": 2,
+    "stem": "What is separated in a decoupled YOLOv8 head?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Classification and box regression use separate branches after shared feature processing."
+      },
+      {
+        "id": "o2",
+        "text": "Classification and box regression share one final branch, but use different loss weights."
+      },
+      {
+        "id": "o3",
+        "text": "Each object scale uses a separate branch, but class and box outputs remain coupled within it."
+      },
+      {
+        "id": "o4",
+        "text": "Classification uses the neck, while regression bypasses all extracted features and reads pixels directly."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1080",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1080,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1080, printed slide 21: Decoupled Head bullet",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q070",
+    "version": 2,
+    "stem": "Which relationship between earlier and deeper features is emphasized in the C2f note?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Discard earlier-layer detail once a deeper layer has produced its feature map."
+      },
+      {
+        "id": "o3",
+        "text": "Copy earlier features unchanged while preventing the block from learning deeper representations."
+      },
+      {
+        "id": "o4",
+        "text": "Fuse only final detection boxes from separate models after all feature learning is finished."
+      },
+      {
+        "id": "o1",
+        "text": "Retain useful earlier-layer detail while combining it with deeper learned features."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1080",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1080,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1080, printed slide 21: Right C2f note",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q071",
+    "version": 2,
+    "stem": "Why is describing the YOLOv8 box branch as predicting only a center insufficient?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "The reference point is already the top-left corner, so only right and bottom distances are needed."
+      },
+      {
+        "id": "o4",
+        "text": "The head outputs predefined width-height templates and changes only their centers."
+      },
+      {
+        "id": "o1",
+        "text": "A box also needs extent; the checked implementation decodes edge distances around reference points."
+      },
+      {
+        "id": "o2",
+        "text": "A center is sufficient because each class has one fixed width and height."
+      }
+    ],
+    "assumptions": [
+      "Use the installed Ultralytics 8.4.182 Detect.decode_bboxes and dist2bbox implementation checked on 19 October 2026; the lecture itself supplies only a simplified center-based description."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1080",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1080,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1080, printed slide 21: Anchor-Free Detection bullet; extent/decode supplied as versioned extension",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q072",
+    "version": 2,
+    "stem": "Which assignment of roles is correct?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Backbone: predict final boxes; neck: fuse scales; head: extract early edges"
+      },
+      {
+        "id": "o1",
+        "text": "Backbone: extract features; neck: fuse scales; head: predict classes and boxes"
+      },
+      {
+        "id": "o2",
+        "text": "Backbone: fuse scales; neck: predict boxes; head: extract initial image features"
+      },
+      {
+        "id": "o3",
+        "text": "Backbone: extract features; neck: predict final classes; head: fuse intermediate scales"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1081",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1081,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1081, printed slide 22: Backbone–neck–head labels in lower schematic",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1082",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1082,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1082, printed slide 23: Neck and Head paragraphs",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q073",
+    "version": 2,
+    "stem": "How do the cat feature-composition diagram and the later multi-scale fusion explanation complement one another?",
+    "selectionMode": "single",
+    "type": "synthesis",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Early local edges and fine detail are composed into deeper features; fusing levels combines spatial detail with object-level context."
+      },
+      {
+        "id": "o2",
+        "text": "Early layers supply object-level semantic context, while deeper layers recover the finest original-image edges."
+      },
+      {
+        "id": "o3",
+        "text": "Early and deep maps differ only in channel count, so resizing either one supplies all the same information."
+      },
+      {
+        "id": "o4",
+        "text": "Fusion can replace every shallow map with an enlarged deep map without losing the early-layer detail it was meant to preserve."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1067",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1067,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1067, printed slide 8: Upper-right cat diagram, directed edge-map to feature-combination progression",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1080",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1080,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1080, printed slide 21: Feature Fusion for Multi-Scale Detection paragraph",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1081",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1081,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1081, printed slide 22: Early versus deeper backbone feature bullets",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1082",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1082,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1082, printed slide 23: Neck fusion paragraph and object-scale bullet",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q074",
+    "version": 2,
+    "stem": "What can be counted directly in the reproduced backbone–neck–head schematic, without treating it as a complete layer specification?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Four feature/neck rows are drawn, and each has its own visible arrow into the head."
+      },
+      {
+        "id": "o3",
+        "text": "Three feature/neck rows are drawn, each with a separate classification and regression backbone."
+      },
+      {
+        "id": "o4",
+        "text": "Four feature/neck rows are drawn, with only the bottom two connected to the head."
+      },
+      {
+        "id": "o1",
+        "text": "Four feature/neck rows are drawn, but only three visible arrows feed the head."
+      }
+    ],
+    "assumptions": [
+      "Count visible feature/neck rows and arrows into the head, not decorative output images. This schematic does not specify every layer or a universal model configuration."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1081",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1081,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1081, printed slide 22: Lower schematic: four paired neck rows and three direct neck-to-head arrows",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q075",
+    "version": 2,
+    "stem": "For an explicitly square 640×640 input and feature strides 8,16,32, what are the corresponding spatial feature-map sizes?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "640×640 for all three"
+      },
+      {
+        "id": "o4",
+        "text": "320×320, 160×160 and 80×80"
+      },
+      {
+        "id": "o1",
+        "text": "80×80, 40×40 and 20×20"
+      },
+      {
+        "id": "o2",
+        "text": "8×8, 16×16 and 32×32"
+      }
+    ],
+    "assumptions": [
+      "This derived example explicitly uses a square padded input; actual rectangular letterboxed inference may have different map heights."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1081",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1081,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1081, printed slide 22: Multi-scale feature-map schematic; numerical strides explicitly supplied by question",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q076",
+    "version": 2,
+    "stem": "The page’s Neck (Feature Fusion) paragraph mentions deeper semantic features. What does that description alone establish?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "The neck fuses only final class probabilities and never combines intermediate feature maps."
+      },
+      {
+        "id": "o1",
+        "text": "The neck combines useful category-related features, but this alone does not specify a pixel-mask output."
+      },
+      {
+        "id": "o2",
+        "text": "The neck outputs a final semantic class label for every original-image pixel."
+      },
+      {
+        "id": "o3",
+        "text": "The neck replaces box regression with pixel-mask decoding because its features are called semantic."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1082",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1082,
+        "kind": "statement",
+        "locator": "Lecture 35, physical page 1082, printed slide 23: Neck (Feature Fusion), not classifier branch: second bullet",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q078",
+    "version": 2,
+    "stem": "What does model=YOLO(\"yolov8n.pt\") request in the source example?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Construct the nano architecture with random weights, ignoring all checkpoint parameters."
+      },
+      {
+        "id": "o3",
+        "text": "Load the nano segmentation checkpoint because all YOLOv8 variants return masks."
+      },
+      {
+        "id": "o4",
+        "text": "Resume optimizer updates from the checkpoint immediately without a separate training call."
+      },
+      {
+        "id": "o1",
+        "text": "Load the pretrained YOLOv8 nano detection checkpoint, retrieving the official asset if unavailable locally."
+      }
+    ],
+    "assumptions": [
+      "Use the official Ultralytics model asset behavior; internet access can be required for a first download."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1083",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1083,
+        "kind": "code",
+        "locator": "Lecture 35, physical page 1083, printed slide 24: Model load, line 4",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q079",
+    "version": 2,
+    "stem": "What operation does model.predict(source=image_source,save=True,conf=0.25) perform?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Save annotations only, without returning Results objects to the caller."
+      },
+      {
+        "id": "o4",
+        "text": "Return the unchanged input image and defer all detection until the saved file is opened."
+      },
+      {
+        "id": "o1",
+        "text": "Run inference, return prediction results, and save annotated outputs without training-weight updates."
+      },
+      {
+        "id": "o2",
+        "text": "Run inference and save a newly trained checkpoint containing pseudo-label updates."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1083",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1083,
+        "kind": "code",
+        "locator": "Lecture 35, physical page 1083, printed slide 24: Prediction call, line 10",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q080",
+    "version": 2,
+    "stem": "In the source call, what does conf=0.25 control?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "A retained fraction of 25% of the highest-scoring candidate boxes"
+      },
+      {
+        "id": "o1",
+        "text": "The minimum confidence used to filter prediction candidates"
+      },
+      {
+        "id": "o2",
+        "text": "The IoU threshold used to suppress overlapping boxes"
+      },
+      {
+        "id": "o3",
+        "text": "A target precision of 25% enforced on the returned detections"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1083",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1083,
+        "kind": "code",
+        "locator": "Lecture 35, physical page 1083, printed slide 24: conf argument, line 10",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q081",
+    "version": 2,
+    "stem": "With the source’s normal nonstreaming predict call on one image, what does results[0] represent?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "One Results object for the first input image, potentially containing many boxes"
+      },
+      {
+        "id": "o2",
+        "text": "One Boxes entry for the first detected object in the image"
+      },
+      {
+        "id": "o3",
+        "text": "The first row of the raw pre-NMS prediction tensor"
+      },
+      {
+        "id": "o4",
+        "text": "A list containing the first box from each image in the batch"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1083",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1083,
+        "kind": "code",
+        "locator": "Lecture 35, physical page 1083, printed slide 24: First Results indexing, line 13",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q082",
+    "version": 2,
+    "stem": "What is assigned by output_dir=results[0].save_dir in the source?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "The directory from which the input image was loaded"
+      },
+      {
+        "id": "o3",
+        "text": "The directory containing the loaded model checkpoint"
+      },
+      {
+        "id": "o4",
+        "text": "The full filename of the single annotated image, including its extension"
+      },
+      {
+        "id": "o1",
+        "text": "The directory where this prediction run saves its output artifacts"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1083",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1083,
+        "kind": "code",
+        "locator": "Lecture 35, physical page 1083, printed slide 24: Save-directory assignment, line 13",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q083",
+    "version": 2,
+    "stem": "Which preparation makes this image-inference demonstration independent of network retrieval during execution?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Install dependencies and cache the weights, but keep an uncached remote image URL."
+      },
+      {
+        "id": "o4",
+        "text": "Cache weights and image, but omit the Ultralytics and numerical-runtime dependencies."
+      },
+      {
+        "id": "o1",
+        "text": "Install dependencies, cache weights and image, and use local paths for both inputs."
+      },
+      {
+        "id": "o2",
+        "text": "Install dependencies and cache the image, but leave the checkpoint unavailable locally."
+      }
+    ],
+    "assumptions": [
+      "This concerns the separate model demonstration, not a requirement to run neural inference inside the offline MCQ app."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1083",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1083,
+        "kind": "code",
+        "locator": "Lecture 35, physical page 1083, printed slide 24: Model checkpoint and remote image input, lines 4 and 7",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q084",
+    "version": 2,
+    "stem": "Under the Results Boxes API used here, which properties supply box geometry, score and category index?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Geometry: boxes.cls; confidence: boxes.conf; category index: boxes.xywh"
+      },
+      {
+        "id": "o1",
+        "text": "Geometry: boxes.xywh; confidence: boxes.conf; category index: boxes.cls"
+      },
+      {
+        "id": "o2",
+        "text": "Geometry: boxes.conf; confidence: boxes.cls; category index: boxes.xywh"
+      },
+      {
+        "id": "o3",
+        "text": "Geometry: boxes.xywh; confidence: boxes.cls; category index: boxes.conf"
+      }
+    ],
+    "assumptions": [
+      "Use Ultralytics 8.4.182 Results/Boxes API, checked against installed source and runtime. xywh is center x, center y, width and height in original-image pixels. The slide does not print these property accesses."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1083",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1083,
+        "kind": "code",
+        "locator": "Lecture 35, physical page 1083, printed slide 24: Results return value, line 10; Boxes fields are an explicit API extension",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q087",
+    "version": 2,
+    "stem": "The printed center-format xywh bus box is [413.94,494.06,782.13,525.56]. What is its corner-format xyxy box using exactly these rounded values?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "[22.875,231.28,782.13,525.56]"
+      },
+      {
+        "id": "o4",
+        "text": "[231.28,22.875,756.84,805.005]"
+      },
+      {
+        "id": "o1",
+        "text": "[22.875,231.28,805.005,756.84]"
+      },
+      {
+        "id": "o2",
+        "text": "[413.94,494.06,1196.07,1019.62]"
+      }
+    ],
+    "assumptions": [
+      "Use the rounded numbers printed in the question; unrounded runtime coordinates can differ slightly."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1084",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1084,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1084, printed slide 25: Upper-right output report, first BUS coordinate row",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q088",
+    "version": 2,
+    "stem": "The stop-sign score is approximately 0.255 and the source threshold is 0.25. What is the justified interpretation?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "It passes and contributes 0.255 of a true positive to the measured precision count."
+      },
+      {
+        "id": "o1",
+        "text": "It passes the stated threshold; this is not independent evidence of correct recognition."
+      },
+      {
+        "id": "o2",
+        "text": "It fails the threshold because 0.255 rounds to 0.25 at two decimal places."
+      },
+      {
+        "id": "o3",
+        "text": "It passes and therefore establishes a calibrated 25.5% correctness probability for that individual box."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1084",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1084,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1084, printed slide 25: Right output report, final STOP SIGN confidence",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1083",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1083,
+        "kind": "code",
+        "locator": "Lecture 35, physical page 1083, printed slide 24: Prediction confidence cutoff, line 10",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q089",
+    "version": 2,
+    "stem": "The slide shows a per-detection printed list, but the preceding key-lines excerpt only loads, predicts and assigns save_dir. What should a code explanation say?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The report needs additional result iteration and formatting beyond the printed key lines."
+      },
+      {
+        "id": "o2",
+        "text": "The save_dir assignment itself formats and prints all class, score and coordinate rows."
+      },
+      {
+        "id": "o3",
+        "text": "save=True guarantees that the exact text report is the predict return value."
+      },
+      {
+        "id": "o4",
+        "text": "predict can return box data only if those boxes are printed by the same call."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1083",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1083,
+        "kind": "code",
+        "locator": "Lecture 35, physical page 1083, printed slide 24: Key lines 1–13: imports, load, input URL, prediction and directory assignment",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1084",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1084,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1084, printed slide 25: Right printed per-detection output report",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q090",
+    "version": 2,
+    "stem": "A new execution reproduces the slide’s detections to rounding precision using recorded versions and asset hashes. What does this establish?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Matching the six detections establishes precision and recall on the intended robotics workload."
+      },
+      {
+        "id": "o3",
+        "text": "Matching rounded coordinates establishes bit-identical intermediate feature tensors."
+      },
+      {
+        "id": "o4",
+        "text": "Matching this image establishes unchanged output for every package version using the same checkpoint."
+      },
+      {
+        "id": "o1",
+        "text": "The recorded setup reproduces this example to the stated precision, without establishing dataset-wide accuracy."
+      }
+    ],
+    "assumptions": [
+      "This is a hypothetical bounded reproducibility claim using the recorded versions/assets and stated rounding precision; it does not ask the learner to accept author checks as independent verification."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1084",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1084,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1084, printed slide 25: Recorded bus-image annotations and six-row report",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q091",
+    "version": 2,
+    "stem": "Which first block is actually labeled in the original YOLO architecture diagram?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "1×1 convolution, 512 filters; then a 4,096-unit dense layer"
+      },
+      {
+        "id": "o4",
+        "text": "7×7 convolution with 30 filters and no pooling"
+      },
+      {
+        "id": "o1",
+        "text": "7×7 convolution, 64 filters, stride 2; then 2×2 max pooling, stride 2"
+      },
+      {
+        "id": "o2",
+        "text": "3×3 convolution, 192 filters, stride 1; then 2×2 max pooling, stride 2"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1078",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1078,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1078, printed slide 19: Leftmost 7×7/64 stride-2 convolution and first pooling block",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q092",
+    "version": 2,
+    "stem": "After the first convolution/pooling block, which convolution and channel count are shown before the next pooling step?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "A fully connected layer with 4,096 units"
+      },
+      {
+        "id": "o1",
+        "text": "3×3 convolution with 192 filters"
+      },
+      {
+        "id": "o2",
+        "text": "7×7 convolution with 64 filters"
+      },
+      {
+        "id": "o3",
+        "text": "1×1 convolution with 30 filters"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1078",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1078,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1078, printed slide 19: Following 3×3/192 convolution label",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q093",
+    "version": 2,
+    "stem": "Which four-convolution sequence appears before the diagram’s pooling step that produces the 28×28 feature map?",
+    "selectionMode": "single",
+    "type": "sequence",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "1×1/128 → 3×3/256 → 1×1/256 → 3×3/512"
+      },
+      {
+        "id": "o2",
+        "text": "1×1/128 → 3×3/128 → 1×1/128 → 3×3/128"
+      },
+      {
+        "id": "o3",
+        "text": "7×7/64 → 3×3/192 → 1×1/30 → 3×3/30"
+      },
+      {
+        "id": "o4",
+        "text": "3×3/512 → 1×1/256 → 3×3/256 → 1×1/128"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1078",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1078,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1078, printed slide 19: Four-convolution 1×1/128,3×3/256,1×1/256,3×3/512 block",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q094",
+    "version": 2,
+    "stem": "The diagram labels [1×1/256 → 3×3/512] repeated four times, followed by 1×1/512 and 3×3/1024. How many convolutional layers are in that block?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "6"
+      },
+      {
+        "id": "o3",
+        "text": "8"
+      },
+      {
+        "id": "o4",
+        "text": "14"
+      },
+      {
+        "id": "o1",
+        "text": "10"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1078",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1078,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1078, printed slide 19: Four-repeat pair bracket and appended 1×1/512,3×3/1024",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q095",
+    "version": 2,
+    "stem": "A later block has [1×1/512 → 3×3/1024] repeated twice, then two further 3×3/1024 convolutions, the last with stride 2. What count and downsampling marker follow?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Six convolutions; every 1×1 convolution performs the marked downsampling."
+      },
+      {
+        "id": "o4",
+        "text": "Five convolutions; the repeated pair counts as three layers before the final two."
+      },
+      {
+        "id": "o1",
+        "text": "Six convolutions; the final convolution is the stride-2 downsampling step."
+      },
+      {
+        "id": "o2",
+        "text": "Four convolutions; the final layer of the repeated pair is the stride-2 step."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1078",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1078,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1078, printed slide 19: Two-repeat pair bracket followed by two 3×3/1024 layers, last stride 2",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q096",
+    "version": 2,
+    "stem": "The displayed groups contain 1,1,4,10,6 and 2 convolutional layers. How does this relate to the 24-layer claim?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "28 convolutions, obtained by counting the four max-pooling operations as convolutions"
+      },
+      {
+        "id": "o1",
+        "text": "24 convolutions, with two fully connected layers additional to that count"
+      },
+      {
+        "id": "o2",
+        "text": "22 convolutions plus two dense layers, giving 24 learned layers in the figure"
+      },
+      {
+        "id": "o3",
+        "text": "24 convolutions including the two fully connected layers"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1078",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1078,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1078, printed slide 19: All six convolutional groups, four pooling labels and two dense layers",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q097",
+    "version": 2,
+    "stem": "What overall pattern is visible in the architecture’s feature maps?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Spatial sides decrease through 112, 56, 28, 14 and 7, while feature depth reaches 1,024 channels."
+      },
+      {
+        "id": "o2",
+        "text": "Spatial sides decrease through 112, 56, 28, 14 and 7, while 1,024 denotes the number of object classes."
+      },
+      {
+        "id": "o3",
+        "text": "Spatial sides stay at 448 until the final reshape, while channel count increases to 1,024."
+      },
+      {
+        "id": "o4",
+        "text": "Each spatial halving must also halve the feature-channel count, so depth falls below the three input channels."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1078",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1078,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1078, printed slide 19: Spatial-side labels and channel-depth labels from input to final features",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W07-L35-Q098",
+    "version": 2,
+    "stem": "In the original YOLO diagram, what is the role of the number 4,096 near the output?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "It is the number of object categories in the shown 20-class example"
+      },
+      {
+        "id": "o3",
+        "text": "It is the side length of the resized input image"
+      },
+      {
+        "id": "o4",
+        "text": "It is the number of boxes predicted by the 7×7 grid with B=2"
+      },
+      {
+        "id": "o1",
+        "text": "It is the width of a fully connected hidden representation before the final detection output."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1078",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1078,
+        "kind": "figure",
+        "locator": "Lecture 35, physical page 1078, printed slide 19: 4,096 fully connected hidden-width label",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  }
+]

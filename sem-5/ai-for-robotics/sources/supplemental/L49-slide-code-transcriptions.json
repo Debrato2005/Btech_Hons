@@ -1,0 +1,11 @@
+{
+  "sourceId": "lectures",
+  "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+  "method": "Manual transcription from actual viewed rendered pixels, rechecked 2026-10-19T22:37:20Z",
+  "codeByPhysicalPage": {
+    "1549": "<category>\n<pattern>I PLAY *</pattern>\n<template>Is <set_it><person/></set_it> a game or a musical instrument?</template>\n</category>",
+    "1550": "<category>\n<pattern>I READ * BOOKS</pattern>\n<template>Name some books in that genre.\n<think><set_it><set_does><settopic>read <person/> books</settopic></set_does></set_it></think>\n<think><set_personality>critical</set_personality></think></template>\n</category>",
+    "1552": "import gradio                         # Frontend for user interaction\nfrom transformers import AutoTokenizer, AutoModelForCausalLM, pipeline\n# Load tokenizer (Text → Tokens)\ntokenizer = AutoTokenizer.from_pretrained(model_id)\n# Load pretrained LLM\nmodel = AutoModelForCausalLM.from_pretrained(model_id)\n# Create chatbot inference pipeline\npipe = pipeline(\n    \"text-generation\",\n    model=model,\n    tokenizer=tokenizer)\n# Format the user's question as a prompt\nprompt = f\"<|user|>\\n{question}\\n<|assistant|>\\n\"\n# Generate the chatbot's response\noutput = pipe(prompt)\n# Extract only the assistant's reply\nreply = output[0][\"generated_text\"]\n# Return/display the reply\nreturn reply\n"
+  },
+  "scope": "Preserves legacy-style tags and top-level return. No silent repairs; whitespace around comments is normalized, not language semantics. Original notebook unavailable."
+}

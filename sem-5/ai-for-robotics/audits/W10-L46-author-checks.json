@@ -1,0 +1,465 @@
+{
+  "role": "author checks, not independent review",
+  "runtime": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "sklearn": "1.8.0",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "nltk": "3.10.3"
+  },
+  "checks": [
+    {
+      "name": "one-hot exact matrix",
+      "passed": true,
+      "details": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "name": "one-hot names and dimensions",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "one-hot duplicate row does not add feature",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "default unseen category raises ValueError",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "BoW full matrix and alphabetic vocabulary",
+      "passed": true,
+      "details": {
+        "matrix": [
+          [
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1
+          ]
+        ],
+        "vocabulary": [
+          "ball",
+          "blue",
+          "box",
+          "chair",
+          "grab",
+          "near",
+          "pick",
+          "red"
+        ]
+      }
+    },
+    {
+      "name": "BoW repeat and order variants",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "BoW transform keeps learned features",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "TF-IDF exact independent reconstruction",
+      "passed": true,
+      "details": {
+        "idf": [
+          1.6931471805599454,
+          1.6931471805599454,
+          1.2876820724517808,
+          1.6931471805599454,
+          1.6931471805599454,
+          1.6931471805599454,
+          1.2876820724517808,
+          1.2876820724517808
+        ],
+        "matrix": [
+          [
+            0.49047908420610337,
+            0.0,
+            0.0,
+            0.49047908420610337,
+            0.0,
+            0.49047908420610337,
+            0.3730219858594306,
+            0.3730219858594306
+          ],
+          [
+            0.0,
+            0.680918560398684,
+            0.5178561161676974,
+            0.0,
+            0.0,
+            0.0,
+            0.5178561161676974,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.5178561161676974,
+            0.0,
+            0.680918560398684,
+            0.0,
+            0.0,
+            0.5178561161676974
+          ]
+        ],
+        "df": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "name": "TF-IDF printed two-decimal table",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "TF-IDF L2 norms not probability row sums",
+      "passed": true,
+      "details": [
+        2.2174812243371713,
+        1.7166307927340787,
+        1.7166307927340787
+      ]
+    },
+    {
+      "name": "printed formula differs from default code",
+      "passed": true,
+      "details": {
+        "printedUnsmoothedNaturalLog": [
+          [
+            0.21972245773362198,
+            0.0,
+            0.0,
+            0.21972245773362198,
+            0.0,
+            0.21972245773362198,
+            0.08109302162163289,
+            0.08109302162163289
+          ],
+          [
+            0.0,
+            0.3662040962227032,
+            0.13515503603605478,
+            0.0,
+            0.0,
+            0.0,
+            0.13515503603605478,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.13515503603605478,
+            0.0,
+            0.3662040962227032,
+            0.0,
+            0.0,
+            0.13515503603605478
+          ]
+        ],
+        "redFirst": 0.08109302162163287,
+        "ballFirst": 0.21972245773362195
+      }
+    },
+    {
+      "name": "ubiquitous unsmoothed IDF zero, default IDF one",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "default smooth_idf=False still adds one",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "cosine toy dot and norms",
+      "passed": true,
+      "details": {
+        "cosine": 0.8888888888888888,
+        "degrees": 27.266044450732828
+      }
+    },
+    {
+      "name": "cosine orthogonal/opposite/positive-scale",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "zero vector outside formula domain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "1000 random cosine scale and range cases",
+      "passed": true,
+      "details": {
+        "cases": 1000,
+        "assertions": 2000
+      }
+    },
+    {
+      "name": "p1469 invalid partial probabilities",
+      "passed": true,
+      "details": {
+        "sum": "57/50",
+        "excess": "7/50"
+      }
+    },
+    {
+      "name": "explicit exhaustive weight normalization",
+      "passed": true,
+      "details": [
+        "1/2",
+        "35/114",
+        "5/38",
+        "7/114"
+      ]
+    },
+    {
+      "name": "p1471 omitted probability mass",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "supplied action bins and midpoint error",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "exact lower and punctuation operations",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "single-line tokenizer variant",
+      "passed": true,
+      "details": {
+        "variant": "preserve_line=True supplied; sentence tokenizer not invoked",
+        "tokens": [
+          "pick",
+          "up",
+          "the",
+          "red",
+          "ball",
+          "near",
+          "the",
+          "chair"
+        ]
+      }
+    },
+    {
+      "name": "token occurrences versus unique types",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "supplied stopword membership preserves order",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "Porter exact stems without resource dependency",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "default WordNet lemma POS signature",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "capitalization retained by source p1461 tokenization input",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "original notebook cells 15 17 19 execute unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "notebook saved version is historical 3.9.1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "notebook p1461 variant differs from slide",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "as-printed code executes 1453",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "as-printed code executes 1454",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "as-printed code executes 1457",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all eight source code excerpts compile without semantic repair",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "TF-IDF L1 distractor arithmetic",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "printed TF-IDF alternative denominators",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "normalization distractor arithmetic",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "action-bin distractor arithmetic",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "passedGroups": 39,
+  "originalNotebookSha256": "d32019733e3d14c0b21c9bf5276ecceb8fa4b0a11757bb0b4ffef4b2fe2504c3",
+  "originalCellsExecuted": [
+    {
+      "cell": 15,
+      "sourceSha256": "49057f9cbfd7f7b8c8941a2c811805bd051579baa18ff0a94870aae7a48a64de",
+      "stdout": "\nInput words for One-Hot Encoding:\n[['pick'], ['red'], ['ball'], ['near'], ['chair']]\n\nOne-Hot Encoding Output (DataFrame):\n   x0_ball  x0_chair  x0_near  x0_pick  x0_red\n0      0.0       0.0      0.0      1.0     0.0\n1      0.0       0.0      0.0      0.0     1.0\n2      1.0       0.0      0.0      0.0     0.0\n3      0.0       0.0      1.0      0.0     0.0\n4      0.0       1.0      0.0      0.0     0.0\n",
+      "alterations": "None to cell; source-reported lemma list supplied for cell 15."
+    },
+    {
+      "cell": 17,
+      "sourceSha256": "1f807246c7575800f3f205da4ac088c31d4b3bdb17a7068256854c6c5935a152",
+      "stdout": "   ball  blue  box  chair  grab  near  pick  red\n0     1     0    0      1     0     1     1    1\n1     0     1    1      0     0     0     1    0\n2     0     0    1      0     1     0     0    1\n",
+      "alterations": "None to cell; source-reported lemma list supplied for cell 15."
+    },
+    {
+      "cell": 19,
+      "sourceSha256": "58048de065282ce00cc9ef0d812e2d9cb7076b8ef01b55f1a4099526ad4f7c35",
+      "stdout": "   ball  blue   box  chair  grab  near  pick   red\n0  0.49  0.00  0.00   0.49  0.00  0.49  0.37  0.37\n1  0.00  0.68  0.52   0.00  0.00  0.00  0.52  0.00\n2  0.00  0.00  0.52   0.00  0.68  0.00  0.00  0.52\n",
+      "alterations": "None to cell; source-reported lemma list supplied for cell 15."
+    }
+  ],
+  "installedSourceFiles": {
+    "OneHotEncoder": {
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py",
+      "sha256": "451b5163af3138f67f63bfd435254332a5c6a88ed5bb08ba09ade09a08ced161"
+    },
+    "CountVectorizer": {
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/feature_extraction/text.py",
+      "sha256": "a7a67a48b0856af50224f4548f3d2cae9f4a9d0af1e37730d4aea3da95d99d65"
+    },
+    "TfidfVectorizer": {
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/feature_extraction/text.py",
+      "sha256": "a7a67a48b0856af50224f4548f3d2cae9f4a9d0af1e37730d4aea3da95d99d65"
+    },
+    "TfidfTransformer": {
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/feature_extraction/text.py",
+      "sha256": "a7a67a48b0856af50224f4548f3d2cae9f4a9d0af1e37730d4aea3da95d99d65"
+    },
+    "PorterStemmer": {
+      "path": "/tmp/robotics-l46-deps/nltk/stem/porter.py",
+      "sha256": "ab16069c9db8f596b7fad2563118812d8b5cf84ccaebc4446a422bb0f3fd2d69"
+    },
+    "WordNetLemmatizer": {
+      "path": "/tmp/robotics-l46-deps/nltk/stem/wordnet.py",
+      "sha256": "e1eeec1ef6d3f1a50b45f6f6d84aee3d55d0be1335be2540567d6b9c0cfa927f"
+    }
+  },
+  "blockedChecks": {
+    "operation": "NLTK resource downloader",
+    "status": "blocked by library proxy/SSRF protection",
+    "resourceIndex": "https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/index.xml",
+    "notExecuted": [
+      "source default word_tokenize requiring punkt_tab",
+      "WordNet lemmatization",
+      "corpus stopword loading",
+      "POS tagging",
+      "NER chunking"
+    ],
+    "policy": "No proxy-security override, alternate download, or downgrade was attempted. Saved official notebook outputs are provenance evidence, not fresh execution."
+  }
+}

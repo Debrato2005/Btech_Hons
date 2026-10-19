@@ -1,0 +1,8 @@
+from pathlib import Path
+import sympy as s,json
+r=s.sqrt(3);M=s.Matrix([[23,15],[15,12]]);J=s.Matrix([[r/2,0],[s.Rational(5,2),2]]);Jd=s.Matrix([[1,0],[-r,0]]);qd=s.Matrix([1,2]);qdd=s.Matrix([s.Rational(1,2),-s.Rational(1,4)]);V=s.Matrix([-24*r,3*r]);G=s.Matrix([25*r,0]);Mx=s.simplify(J.inv().T*M*J.inv());Vx=s.simplify(J.inv().T*(V-M*J.inv()*Jd*qd));Gx=s.simplify(J.inv().T*G);a=s.simplify(J*qdd+Jd*qd);F=s.simplify(Mx*a+Vx+Gx);tau=s.simplify(J.T*F)
+assert Mx==s.diag(s.Rational(17,3),3);assert Vx==s.Matrix([-s.Rational(367,6),s.Rational(9,2)*r]);assert Gx==s.Matrix([50,0]);assert a==s.Matrix([1+r/4,s.Rational(3,4)-r]);assert s.simplify(tau-(M*qdd+V+G))==s.zeros(2,1);assert F==s.Matrix([-s.Rational(11,2)+s.Rational(17,12)*r,s.Rational(9,4)+s.Rational(3,2)*r]);assert tau==s.Matrix([s.Rational(31,4)+r,s.Rational(9,2)+3*r])
+F_omit=s.simplify(Mx*a+J.inv().T*V+Gx);F_cos=s.simplify(F+s.Matrix([s.Rational(43,6),0]));bad={'omit_Jdot':(F_omit,s.simplify(J.T*F_omit)),'omit_cos_terms':(F_cos,s.simplify(J.T*F_cos)),'use_J_not_Jtranspose':(F,s.simplify(J*F))}
+def arr(m):return [str(x) for x in m]
+res={'checksPassed':7,'M':str(M),'J':str(J),'Jdot':str(Jd),'componentDerivative':arr(a),'Mx':str(Mx),'Vx':arr(Vx),'Gx':arr(Gx),'F':arr(F),'tau':arr(tau),'distractors':{k:{'F':arr(v[0]),'tau':arr(v[1])} for k,v in bad.items()},'note':'Author checks, not independent review.'};root=Path(__file__).resolve().parents[1];(root/'audits/W03-L15-gap-author-checks.json').write_text(json.dumps(res,indent=2)+'\n')
+for k,(f,t) in {'correct':(F,tau),**bad}.items():print(k,[round(float(x),3) for x in f],[round(float(x),3) for x in t])

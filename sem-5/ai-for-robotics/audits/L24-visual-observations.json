@@ -1,0 +1,170 @@
+{
+  "727": {
+    "title": "The Control Problem for Manipulators",
+    "printed": "1",
+    "notes": "Actual title pixels confirm Lecture Number 24, course/instructor and printed footer 1.",
+    "excluded": "Title and attribution only; lecture boundary retained.",
+    "inspectedAt": "2026-10-19T18:33:55.137368+00:00"
+  },
+  "728": {
+    "title": "Contents",
+    "printed": "2",
+    "notes": "Agenda lists control problem, practical/feedforward/dual-rate/parameter issues, industrial control and Lyapunov. Footer 2.",
+    "excluded": "Agenda only; all substantive content covered on later pages.",
+    "inspectedAt": "2026-10-19T18:33:55.137379+00:00"
+  },
+  "729": {
+    "title": "Manipulator rigid-body dynamics",
+    "printed": "3",
+    "notes": "M(q) qddot + V(q,qdot)+G(q); inertia coupling, Coriolis/centrifugal, gravity, friction mentioned. Diagram two links l1,m1 and l2,m2, downward m1g,m2g,g, torque arrows tau1,tau2; theta2 marked relative dashed local horizontal, not infer complete DH convention. Footer 3.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:33:55.137382+00:00"
+  },
+  "730": {
+    "title": "Partitioned computed torque and friction",
+    "printed": "4",
+    "notes": "Adds F(q,qdot) friction/non-rigid effects; tau=alpha tauprime+beta with alpha=M and beta=V+G+F. Footer 4.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:33:55.137384+00:00"
+  },
+  "731": {
+    "title": "Servo law and error dynamics",
+    "printed": "5",
+    "notes": "tauprime=qddot_d+Kv Edot+Kp E, E=qd-q. Ideal error Eddot+Kv Edot+Kp E=0; joint scalar form implicitly requires diagonal gains. Diagram gains sum upstream of M(q), compensation added after; sensed q,qdot feed model and error subtraction. Footer 5.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:33:55.137385+00:00"
+  },
+  "732": {
+    "title": "Practical ideal-model assumptions",
+    "printed": "6",
+    "notes": "Continuous-time exact model zero sensing/actuation delay assumptions; compute cost and inaccurate load/wear/friction parameters. Footer 6.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:33:55.137387+00:00"
+  },
+  "733": {
+    "title": "Sampling and digital implementation",
+    "printed": "7",
+    "notes": "Sensors/commands at discrete instants, delay/approximation/performance loss, slow sampling can affect stability; fast sampling only makes continuous approximation more reasonable. No numeric sampling threshold. Footer 7.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:33:55.137388+00:00"
+  },
+  "734": {
+    "title": "Feedforward nonlinear control diagrams",
+    "printed": "8",
+    "notes": "Left exact-model loop uses sensed q,qdot in M,V,G,F; right model inputs are desired acceleration/velocity/position and directly adds torque-domain Kp E+Kv Edot. Output theta has prime-like mark on diagram, velocity theta dot. Feedback retained, model outside fast servo. Footer 8. Desired-state feedforward generally leaves model trajectory mismatch residual, requiring qualification of next-page homogeneous equation.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:33:55.137390+00:00"
+  },
+  "735": {
+    "title": "Feedforward error equation and configuration dependence",
+    "printed": "9",
+    "notes": "Printed Eddot+M(q)^−1 Kv Edot+M(q)^−1 Kp E=0. Faster separate/offline model for known trajectory; not completely decoupled; poles depend on configuration. Scope poles as frozen-configuration and homogeneous equation as additional cancellation/constant-model assumption, not exact desired-state feedforward generally. Footer 9.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:34:43.023891+00:00"
+  },
+  "736": {
+    "title": "Dual-rate computation split",
+    "printed": "10",
+    "notes": "Slow nonlinear dynamic model background process, fast servo/error feedback. No fixed frequency/ratio specified. Footer 10.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:34:43.023905+00:00"
+  },
+  "737": {
+    "title": "Dual-rate block diagram",
+    "printed": "11",
+    "notes": "Configuration-space diagram: desired acceleration+Kp position error+Kv velocity error pass through M(theta); additive B(theta)+C(theta) and G(theta) feed torque sum. Red ellipse encloses B+C and G, not M, arrow to Computed by background Process. Actual theta feeds M,B+C,G via dashed paths; actual theta dot feeds B+C. B/C individually undefined here; do not invent decomposition formula or assume all model blocks highlighted. Footer 11.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:34:43.023907+00:00"
+  },
+  "738": {
+    "title": "Disturbance error coupling and equilibrium",
+    "printed": "12",
+    "notes": "Diagram subtracts tau_d at arm input. Therefore positive M^-1 tau_d on E dynamics is consistent E=desired-actual. SSE Kp^-1 M^-1 tau_d assumes constant disturbance, equilibrium, invertibility. Non-diagonal inertia permits cross-joint effects; not necessarily every joint every configuration. Footer 12.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:34:43.023909+00:00"
+  },
+  "739": {
+    "title": "Estimated versus actual dynamic model",
+    "printed": "13",
+    "notes": "Hat M,V,G,F versus true values; controller alpha=hatM,beta=hatV+hatG+hatF. Exact displayed residual hatM^-1[(M-hatM)qddot+(V-hatV)+(G-hatG)+(F-hatF)] is algebraically consistent; contains actual acceleration, not desired. Perfect-model residual zero; generic mismatch loses decoupling, not universal failure. Footer 13.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:34:43.023911+00:00"
+  },
+  "740": {
+    "title": "Industrial joint-control rationale",
+    "printed": "14",
+    "notes": "Source claims many/most industrial arms use simple robust almost independent joints, compute/model knowledge/good-enough cost-benefit. Photo illustrative no model-dependent engineering data. Treat prevalence as course statement, not current market survey. Footer 14.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:34:43.023912+00:00"
+  },
+  "741": {
+    "title": "Individual-joint PID",
+    "printed": "15",
+    "notes": "Alpha=I,beta=0; displayed tauprime=qddot_d+Kv Edot+Kp E+Ki integralE, qddot_d often set0 because unavailable. Diagonal gains/no model compensation. Diagram parallel P,D,I branches plus encoder negative feedback. Dimensional omission: alpha=I maps torque command but unit coefficient desired angular acceleration cannot add to SI torque unless inertia/normalization supplied. Scope numeric tasks qddot_d=0 and torque-domain gains. Footer 15.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:34:43.023913+00:00"
+  },
+  "742": {
+    "title": "Joint-control limits and gravity compensation",
+    "printed": "16",
+    "notes": "No exact decoupling; interactions and imperfect disturbance rejection, posture-varying damping so average gains. Adds hatG to PID/desired acceleration law. Gravity creates SSE blanket claim requires qualification: ideal stable unsaturated integral action can supply constant gravity with zero final E; PD has finite E. Same acceleration-to-torque unit omission as741. Footer 16.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:34:43.023914+00:00"
+  },
+  "743": {
+    "title": "Lyapunov motivation and performance distinction",
+    "printed": "17",
+    "notes": "Energy-like positive function decreases along trajectories; stability without solving ODE. Stable not necessarily fast/good tracking. Wording will settle is too broad for mere Lyapunov stability; need asymptotic/invariance argument. Footer 17.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:35:31.166787+00:00"
+  },
+  "744": {
+    "title": "Linear mass-spring-damper energy",
+    "printed": "18",
+    "notes": "m xddot+b xdot+kx=0; v=1/2 m xdot²+1/2 kx²; derivative m xdot xddot+kx xdot=−b xdot²≤0. Rest kx=0 implies x=0 if k≠0. Require m,k>0 for positive definite energy and b>0 for dissipation. Derivative semidefinite in (x,xdot); asymptotic conclusion needs only invariant zero-derivative point, or positive-coefficient characteristic roots. Footer 18.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:35:31.166818+00:00"
+  },
+  "745": {
+    "title": "Direct method conditions and domain",
+    "printed": "19",
+    "notes": "Xdot=f(X), C1 positive-definite v with v(0)=0; vdot≤0 stability and <0 away from equilibrium asymptotic stability. Omitted equilibrium/regularity/local-domain qualification and compact-sublevel/properness for global boundedness. Cannot infer globally bounded state from arbitrary positive decreasing function alone. Footer 19.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:35:31.166821+00:00"
+  },
+  "746": {
+    "title": "Nonlinear spring-damper candidate",
+    "printed": "20",
+    "notes": "xddot+b(xdot)+k(x)=0 normalized mass. vdotnotation here v energy; nonlinear b and k functions NOT constant coefficients times arguments. Sign conditions xdot*b(xdot)>0 and x*k(x)>0 away0. Candidate v=.5 xdot²+integral0^x k(lambda)dlambda; negative x integral remains positive. Need b(0)=k(0)=0 and continuity/local-Lipschitz for usual equilibrium/invariance. Footer20.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:35:31.166822+00:00"
+  },
+  "747": {
+    "title": "Nonlinear derivative and invariant rest set",
+    "printed": "21",
+    "notes": "Derivative xdot[xddot+k(x)]=−xdot*b(xdot)≤0; zero when xdot0 need not imply x0 at instant. Right text erroneously For all trajectories xdot=0 and switches nonlinear k(x) to −kx; xddot=−kx also has nonzero moving solutions. Correct argument restrict trajectories remaining in zero-derivative set, then xdot identically0→xddot0 and b0=0→k(x)=0→x0. Footer21.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T18:35:31.166826+00:00"
+  },
+  "748": {
+    "title": "Summary",
+    "printed": "22",
+    "notes": "Recaps manipulator dynamics, practical implementation, industrial control, linear/nonlinear Lyapunov. No new equations/details. Footer22.",
+    "excluded": "Recap only; substantive equations and reasoning covered729–747.",
+    "inspectedAt": "2026-10-19T18:35:31.166828+00:00"
+  },
+  "749": {
+    "title": "References",
+    "printed": "23",
+    "notes": "Craig2004 Introduction to Robotics Mechanics and Control3rded Pearson; no new examinable content. Footer23.",
+    "excluded": "Bibliography only; no new technical claim.",
+    "inspectedAt": "2026-10-19T18:35:31.166829+00:00"
+  },
+  "750": {
+    "title": "Thank You",
+    "printed": "24",
+    "notes": "Closing slide only. Footer24.",
+    "excluded": "Closing courtesy only.",
+    "inspectedAt": "2026-10-19T18:35:31.166833+00:00"
+  }
+}

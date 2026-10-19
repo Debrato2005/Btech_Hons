@@ -1,0 +1,14 @@
+from transformers import WhisperProcessor, WhisperForConditionalGeneration
+import torch
+import torchaudio
+model_name = "openai/whisper-small"
+processor = WhisperProcessor.from_pretrained(model_name)
+model = WhisperForConditionalGeneration.from_pretrained(model_name)
+audio, sampling_rate = torchaudio.load("/content/sample_audio.mp3")
+if sampling_rate != 16000:
+    resampler = torchaudio.transforms.Resample(sampling_rate, 16000)
+    audio = resampler(audio)
+inputs = processor(audio.squeeze().numpy(), sampling_rate=16000, return_tensors="pt")
+with torch.no_grad():
+    predicted_ids = model.generate(inputs["input_features"])
+transcription = processor.batch_decode(predicted_ids, skip_special_tokens=True)[0]

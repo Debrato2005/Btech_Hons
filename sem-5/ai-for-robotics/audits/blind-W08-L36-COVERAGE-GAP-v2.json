@@ -1,0 +1,621 @@
+[
+  {
+    "id": "W08-L36-P1091-Q01",
+    "version": 2,
+    "stem": "A drawn route avoids every obstacle outline but requires a turn tighter than the robot can execute. Which conclusion follows from the lecture’s definition?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It is collision-free for the drawn point path but not feasible for the stated robot"
+      },
+      {
+        "id": "o2",
+        "text": "It is feasible because its geometric curve does not cross an obstacle"
+      },
+      {
+        "id": "o3",
+        "text": "It becomes feasible if it is shorter than the other routes"
+      },
+      {
+        "id": "o4",
+        "text": "It is feasible if collision checking uses the full swept body, even though the turning-radius limit is still violated"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1091",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1091,
+        "kind": "statement",
+        "locator": "Printed slide 4: Core Challenge lists size, speed limits and turning radius.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L36-P1091-Q02",
+    "version": 2,
+    "stem": "What can the dashed start-to-goal route around the three rectangles establish by itself?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "It proves the shortest feasible route because its centerline looks shorter than other ways around the rectangles"
+      },
+      {
+        "id": "o3",
+        "text": "It proves finite-body clearance because the centerline avoids the rectangles"
+      },
+      {
+        "id": "o4",
+        "text": "It proves dynamic feasibility because the curve is drawn smoothly"
+      },
+      {
+        "id": "o1",
+        "text": "It illustrates obstacle avoidance, but does not prove global optimality or clearance for a finite-size robot"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1091",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1091,
+        "kind": "figure",
+        "locator": "Printed slide 4: Dashed route from black start marker to goal flag around Obstacle 1, 2 and 3.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1091",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1091,
+        "kind": "statement",
+        "locator": "Printed slide 4: Core Challenge: physical constraints.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L36-P1096-Q02",
+    "version": 2,
+    "stem": "Which interpretation avoids treating the slide’s phrase “estimates its exact position” as a guarantee?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Every localization output is exact because a map gives a coordinate reference"
+      },
+      {
+        "id": "o3",
+        "text": "Combining GPS and encoders makes a confidence estimate unnecessary"
+      },
+      {
+        "id": "o4",
+        "text": "Agreement between fused sensors proves the pose is exact even if they share a systematic bias"
+      },
+      {
+        "id": "o1",
+        "text": "Localization estimates pose from measurements; an estimate can retain uncertainty"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1096",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1096,
+        "kind": "statement",
+        "locator": "Printed slide 9: Localization first bullet: estimates its exact position relative to the map.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L36-P1097-Q02",
+    "version": 2,
+    "stem": "Suppose a planner recomputes a whole-map route to the destination after a road closure while the robot is moving. How should the slide’s offline/global contrast be qualified?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It is still whole-route planning in this example, although it is recomputed online"
+      },
+      {
+        "id": "o2",
+        "text": "It is local planning because the computation happens online, regardless of the route’s spatial scope"
+      },
+      {
+        "id": "o3",
+        "text": "It is a map update only, because marking the closure and selecting a new destination route are the same operation"
+      },
+      {
+        "id": "o4",
+        "text": "It is local planning because it reacts to one changed road, even though it recomputes the complete destination route"
+      }
+    ],
+    "assumptions": [
+      "The planner searches the complete updated map and outputs a route to the original destination, not just an immediate steering command."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1097",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1097,
+        "kind": "statement",
+        "locator": "Printed slide 10: Global Planning bullet: complete pre-existing map and offline before movement.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L36-P1099-Q04",
+    "version": 2,
+    "stem": "A free-cell centerline passes through a corridor 0.8 m wide, but the robot is 1.0 m wide and cannot rotate to reduce that width. What additional issue must the planner handle?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "The robot fits because its half-width is 0.5 m, less than the corridor’s full 0.8 m width"
+      },
+      {
+        "id": "o4",
+        "text": "The robot fits if each wall is inflated by 0.1 m, because 0.1 m is half the width deficit"
+      },
+      {
+        "id": "o1",
+        "text": "The robot footprint does not fit; free centerline cells alone are insufficient"
+      },
+      {
+        "id": "o2",
+        "text": "The centerline’s free labels prove the robot fits"
+      }
+    ],
+    "assumptions": [
+      "Corridor and robot widths are exact illustrative values; no deformation or alternate orientation reduces the required width.",
+      "The binary free labels describe raw point occupancy, not an already footprint-inflated configuration-space map; the body travels centered and parallel to straight corridor walls."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1099",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1099,
+        "kind": "statement",
+        "locator": "Printed slide 12: Binary free-cell description.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1091",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1091,
+        "kind": "statement",
+        "locator": "Printed slide 4: Core Challenge: physical size constraint.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L36-P1100-Q03",
+    "version": 2,
+    "stem": "The directed map has edges A→B:3, A→C:1, C→B:7, B→E:1, B→D:5, C→D:2 and D→E:7. With additive edge costs, which A-to-E route has minimum total cost?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "A→C→D→E"
+      },
+      {
+        "id": "o3",
+        "text": "A→C→B→E"
+      },
+      {
+        "id": "o4",
+        "text": "A→B→D→E"
+      },
+      {
+        "id": "o1",
+        "text": "A→B→E"
+      }
+    ],
+    "assumptions": [
+      "Weights are abstract cost units because the figure does not label a physical unit. Only displayed directed edges are allowed."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1100",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1100,
+        "kind": "figure",
+        "locator": "Printed slide 13: All seven directed edges and weights in the A–E map.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L36-P1102-Q05",
+    "version": 2,
+    "stem": "Why does changing a free grid from unit-cost 4-connected moves to cardinal-cost 1 and diagonal-cost √2 affect the usual BFS cost-optimality argument?",
+    "selectionMode": "single",
+    "type": "synthesis",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "BFS still minimizes hops, but unequal step costs no longer make hop count equal total path cost"
+      },
+      {
+        "id": "o2",
+        "text": "BFS minimizes geometric cost because its FIFO queue automatically prefers the cheaper of two same-depth routes"
+      },
+      {
+        "id": "o3",
+        "text": "BFS must return a more expensive route on every grid containing a diagonal edge"
+      },
+      {
+        "id": "o4",
+        "text": "BFS remains cost-optimal because assigning one queue entry to each move makes all move costs equal"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1102",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1102,
+        "kind": "equation",
+        "locator": "Printed slide 15: 4-connected unit costs and 8-connected diagonal cost √2.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1107",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1107,
+        "kind": "statement",
+        "locator": "Printed slide 20: BFS uses FIFO and ignores actual edge weight.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L36-P1104-Q02",
+    "version": 2,
+    "stem": "After exhaustive search of a finite represented graph, the frontier is empty and the goal was never found. What conclusion is warranted?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "No route exists in that represented graph under its encoded transition rules"
+      },
+      {
+        "id": "o2",
+        "text": "No physically possible route exists, even if the map omitted a valid passage"
+      },
+      {
+        "id": "o3",
+        "text": "The same failure certificate would hold if the search had instead stopped at a fixed depth limit"
+      },
+      {
+        "id": "o4",
+        "text": "The same failure certificate would hold if the successor generator had skipped one permitted edge"
+      }
+    ],
+    "assumptions": [
+      "The graph is finite and fixed; every permitted successor of each expanded vertex is considered, with correct repeated-state handling."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1104",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1104,
+        "kind": "statement",
+        "locator": "Printed slide 17: Final condition: empty frontier without finding goal means no path exists.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L36-P1099-Q05",
+    "version": 1,
+    "stem": "A point robot moves in the fixed open corridor 0.3<y<0.9 m. The planning region is 0≤x≤4 m. Square grids share origin (0,0); a cell is free only if its entire closed square lies inside the open corridor. Compare cell sides 1.0 m and 0.2 m for start (0.5,0.5) m and goal (3.5,0.5) m, using 4-connected free cells. Which conclusion follows?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The coarse grid blocks the endpoints, while the fine grid represents a horizontal route; the physical corridor is unchanged"
+      },
+      {
+        "id": "o2",
+        "text": "Both grids represent a route because both endpoint coordinates lie physically inside the corridor"
+      },
+      {
+        "id": "o3",
+        "text": "Neither grid represents a route because the corridor width is smaller than the coarse cell side"
+      },
+      {
+        "id": "o4",
+        "text": "The coarse grid represents a route but the fine grid blocks it, because finer cells create more occupied cells"
+      }
+    ],
+    "assumptions": [
+      "All coordinates and cell sides are supplied illustrative values, not measurements from the slide figure.",
+      "Walls occupy y≤0.3 and y≥0.9 m; any boundary contact makes a cell occupied. The robot is a point, so no additional footprint inflation is needed.",
+      "Use grid cells contained in the stated x range; there are no obstacles or forbidden transitions along the interior horizontal row."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1099",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1099,
+        "kind": "statement",
+        "locator": "Printed slide 12: Occupancy-grid binary convention and precision limitation due to grid resolution",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1102",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1102,
+        "kind": "statement",
+        "locator": "Printed slide 15: Place vertices in cells and connect reachable neighbors",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L36-P1102-Q06",
+    "version": 1,
+    "stem": "In an obstacle-free square grid with cell side 0.4 m, the goal is five columns and three rows from the start. Cardinal moves cost one cell side, and diagonal moves cost sqrt(2) cell sides. What are the minimum geometric path lengths under 4-connected and 8-connected motion, respectively?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "3.2 m; (0.8+1.2 sqrt(2)) m"
+      },
+      {
+        "id": "o2",
+        "text": "3.2 m; 2.0 m"
+      },
+      {
+        "id": "o3",
+        "text": "(0.4 sqrt(34)) m; (0.4 sqrt(34)) m"
+      },
+      {
+        "id": "o4",
+        "text": "3.2 m; 3.2 m"
+      }
+    ],
+    "assumptions": [
+      "The endpoint displacement is supplied in integer cell indices; the grid has no obstacles or boundary restrictions.",
+      "Minimize sum of geometric edge lengths, not hop count. Diagonal moves are allowed without a corner constraint because the grid is obstacle-free."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1102",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1102,
+        "kind": "equation",
+        "locator": "Printed slide 15: Cardinal cost 1 and diagonal cost square root of 2",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1107",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1107,
+        "kind": "statement",
+        "locator": "Printed slide 20: BFS ignores actual edge weight",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1111",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1111,
+        "kind": "figure",
+        "locator": "Printed slide 24: Weighted routes distinguish geometric distance from hop count",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W08-L36-P1117-Q02",
+    "version": 1,
+    "stem": "Run UCS and A* from A to G on the undirected graph with edges AB=5, AC=2, BD=6, BE=3, CF=4, EF=1, ED=2, DG=6 and FG=3 km. For A*, use h(A,B,C,D,E,F,G)=(7,6,5,4,3,2,0) km. Each algorithm relaxes a vertex only for a strictly smaller g, breaks equal priorities alphabetically, and stops when G is popped. Count only non-goal expansions. Which complete record is correct?",
+    "selectionMode": "single",
+    "type": "algorithm_trace",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o1",
+        "text": "UCS expands A,C,B,F,E,D (6); A* expands A,C,F (3); both return A→C→F→G at 9 km"
+      },
+      {
+        "id": "o2",
+        "text": "UCS expands A,C,B,F (4); A* expands A,C,F (3); both return A→C→F→G at 9 km"
+      },
+      {
+        "id": "o3",
+        "text": "UCS expands A,C,B,F,E,D,G (7); A* expands A,C,F,G (4); both return A→C→F→G at 9 km"
+      },
+      {
+        "id": "o4",
+        "text": "UCS expands A,C,B,F,E,D (6) and returns A→C→F→E→D→G at 15 km; A* expands A,C,F (3) and returns A→C→F→G at 9 km"
+      }
+    ],
+    "assumptions": [
+      "Weights and heuristic labels are transcribed from the source graph; all distances use km. Both directions of each listed undirected edge are permitted.",
+      "Initialize g(A)=0 and all other g values to infinity. Use a minimum-priority frontier: g for UCS, g+h for A*. Update parent on every strictly cheaper route; do not overwrite on equal or worse routes.",
+      "Ignore stale priority entries and already-expanded vertices; the supplied heuristic is consistent on this graph, so no reopening is needed. Test the goal immediately after a valid pop, before expanding successors."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1112",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1112,
+        "kind": "figure",
+        "locator": "Printed slide 25: Original nine undirected edges and weights",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1112",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1112,
+        "kind": "statement",
+        "locator": "Printed slide 25: UCS lowest cumulative g priority",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1113",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1113,
+        "kind": "statement",
+        "locator": "Printed slide 26: Initial A expansion frontier",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1114",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1114,
+        "kind": "statement",
+        "locator": "Printed slide 27: C then B expansions",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1115",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1115,
+        "kind": "statement",
+        "locator": "Printed slide 28: E improvement through F",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1116",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1116,
+        "kind": "statement",
+        "locator": "Printed slide 29: D improvement and D/G priority tie",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1117",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1117,
+        "kind": "statement",
+        "locator": "Printed slide 30: Final reconstructed UCS path",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1119",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1119,
+        "kind": "equation",
+        "locator": "Printed slide 32: A-star priority f=g+h",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1119",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1119,
+        "kind": "figure",
+        "locator": "Printed slide 32: Seven heuristic labels",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1121",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1121,
+        "kind": "statement",
+        "locator": "Printed slide 34: A-star initial frontier",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1122",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1122,
+        "kind": "statement",
+        "locator": "Printed slide 35: A-star C and F updates",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1123",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1123,
+        "kind": "statement",
+        "locator": "Printed slide 36: Final reconstructed A-star path",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  }
+]

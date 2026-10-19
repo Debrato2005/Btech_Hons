@@ -1,0 +1,226 @@
+{
+  "473": {
+    "title": "Joint-Space Schemes",
+    "printed": "1",
+    "notes": "Lecture16 title, lecturer and institute; no examinable technical content.",
+    "excluded": "Title/attribution page; substantive content starts on p476.",
+    "inspectedAt": "2026-10-19T17:19:11Z"
+  },
+  "474": {
+    "title": "Learning Outcome",
+    "printed": "2",
+    "notes": "Eight outcome bullets: planning, joint/task comparison, boundary conditions, linear smoothing, cubic, profiles, higher order and Python.",
+    "excluded": "Learning objectives only; each promised technical topic is covered on subsequent substantive slides.",
+    "inspectedAt": "2026-10-19T17:19:11Z"
+  },
+  "475": {
+    "title": "Content",
+    "printed": "3",
+    "notes": "Agenda includes trajectory, path contrast, continuity, joint/task schemes, cubic, quintic and linear. Heading typo “Join Space” is cosmetic.",
+    "excluded": "Agenda only; no extra definition, equation or examinable example.",
+    "inspectedAt": "2026-10-19T17:19:11Z"
+  },
+  "476": {
+    "title": "Trajectory Planning",
+    "printed": "4",
+    "notes": "Read joint-time mapping theta_i(t), i=1..n,t in[0,tf]; initial/final configurations, feasibility, constraints, kinematic joint limits, bounded torque and derivative continuity.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:19:11Z"
+  },
+  "477": {
+    "title": "Path VS Trajectory",
+    "printed": "5",
+    "notes": "Path theta(s),s∈[0,1] lacks timing; trajectory theta(s(t)) includes time scaling. Diagram labels T=0,t1,t2,t3,t4,tf on solid route and dashed “Path” between same endpoints, but drawn routes differ geometrically: illustration must not override mathematical time-scaling preserving one specified path.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:19:11Z"
+  },
+  "478": {
+    "title": "Continuity requirements",
+    "printed": "6",
+    "notes": "C0/C1/C2 explicitly match position/velocity/acceleration left/right limits; nested smoothness presumed. Bottom asserts discontinuous acceleration gives infinite torque spikes, which conflicts with finite inertia dynamics and p479 finite discontinuity statement; preserve discrepancy.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:19:11Z"
+  },
+  "479": {
+    "title": "Continuity Requirements (Contd..)",
+    "printed": "7",
+    "notes": "Dynamics τ=M(Θ)Θddot+V(Θ,Θdot)+G(Θ); acceleration jump gives torque discontinuity; velocity jump requires ideal infinite/impulsive acceleration. Minimum C1, preferred C2. Must qualify finite model terms and distinguish jump from impulse.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:20:04Z"
+  },
+  "480": {
+    "title": "Joint Space Schemes Vs Cartesian Space Schemes",
+    "printed": "8",
+    "notes": "Read all six table rows: joint variables/configuration/no intermediate IK/simple/EE not explicit/generally nonlinear versus pose/task/IK/more complex/explicit path/Jacobian mapping. f inverse is schematic branch-solving notation, not proof of unique inverse.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:20:04Z"
+  },
+  "481": {
+    "title": "Joint Space Schemes",
+    "printed": "9",
+    "notes": "Joint trajectory vector theta1..thetan; independently interpolated cubic/quintic; specified position/velocity endpoints. Diagram has same endpoints t0/theta0 and tf/thetaf, blue overshoots then undershoots, red initially dips, green monotonic; positions alone do not select one shape.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:20:04Z"
+  },
+  "482": {
+    "title": "Joint Space Scheme (Continued)",
+    "printed": "10",
+    "notes": "Forward kinematics x(t)=f(theta(t)); printed “nonlinear and unpredictable” must mean not directly prescribed, since known f/theta determine motion. Smooth torque claim presumes continuous dynamics and no unmodeled jumps, not arbitrary actuator feasibility.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:20:04Z"
+  },
+  "483": {
+    "title": "Trajectory Problem Formulation",
+    "printed": "11",
+    "notes": "Initial/final joint angles and time, optional endpoint velocities, interval[0,tf], minimum C1/preferred C2, rest-to-rest sets both endpoint velocities zero.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:20:04Z"
+  },
+  "484": {
+    "title": "General Boundary Conditions and Polynomial Count",
+    "printed": "12",
+    "notes": "General endpoint velocities omega0/omegaf need not zero. Polynomial degree n has n+1 coefficients; 2/4/6 counts map linear/cubic/quintic. Printed count-equality statement requires independent compatible constraints for uniqueness, not merely equal raw number.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:20:04Z"
+  },
+  "485": {
+    "title": "Why Cubic?",
+    "printed": "13",
+    "notes": "Four endpoint position/velocity conditions require four independent coefficients generically; degrees1,2,3 give2,3,4. General cubic printed. Lower degree can satisfy special compatible data; uniqueness presumes tf>0.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:20:37Z"
+  },
+  "486": {
+    "title": "Cubic Polynomial Via Point",
+    "printed": "14",
+    "notes": "Via points theta_i at t_i, one cubic between consecutive points; via velocities not fixed by positions alone and must assigned/computed. Segment-local versus global time must be explicitly distinguished in using zero-time formulas.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:20:37Z"
+  },
+  "487": {
+    "title": "Cubic Boundary Equations",
+    "printed": "15",
+    "notes": "Read cubic and its first/second derivatives. Four numbered equations: a0=theta0,a1=v0, final position and final velocity. Final position coefficients tf,tf²,tf³; derivative2a2tf+3a3tf².",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:20:37Z"
+  },
+  "488": {
+    "title": "Cubic Coefficient Elimination",
+    "printed": "16",
+    "notes": "Defines residual Delta theta=thetaf−theta0−v0tf and Delta v=vf−v0; divided equations and subtract twice first yields a3=Delta v/tf²−2Delta theta/tf³. These are correct, but Delta theta is not plain displacement for nonzero v0.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:20:37Z"
+  },
+  "489": {
+    "title": "Derivation (Continued)",
+    "printed": "17",
+    "notes": "Back substitution gives correct a2=[3(thetaf−theta0)−(2v0+vf)tf]/tf² and a3=[−2(thetaf−theta0)+(v0+vf)tf]/tf³. Position-versus-time plot is monotonic S-shaped illustration, not guaranteed by arbitrary endpoint velocities.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:20:37Z"
+  },
+  "490": {
+    "title": "Rest-to-Rest Cubic and Velocity Profile",
+    "printed": "18",
+    "notes": "Zero endpoint velocities give a0=theta0,a1=0,a2=3Delta/tf²,a3=−2Delta/tf³; theta=theta0+3Delta(t/tf)²−2Delta(t/tf)³. Velocity6Delta t/tf²(1−t/tf), parabolic positive-displacement sketch; Delta now equals plain displacement because v0=0.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:20:37Z"
+  },
+  "491": {
+    "title": "Cubic Peak Velocity and Acceleration",
+    "printed": "19",
+    "notes": "Peak at tf/2 with3Delta/(2tf); acceleration6Delta/tf²(1−2t/tf), endpoints±6Delta/tf², midpoint0. Plot linear descending, deg/s². Maximum signed velocity assumes Delta>0; for negative move midpoint is minimum signed velocity but maximum speed.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:21:09Z"
+  },
+  "492": {
+    "title": "Methods of Joint Velocity Profile Generation",
+    "printed": "20",
+    "notes": "Three methods explicitly listed: user-specified Cartesian-to-joint velocities, heuristic assignment, acceleration-continuous spline. Four BCs for each cubic; multisegment joins need enforced continuity. Segment duration/local time must not be mistaken for global endpoint time.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:21:09Z"
+  },
+  "493": {
+    "title": "Higher-Order Polynomial Trajectories (Quintic)",
+    "printed": "21",
+    "notes": "Six coefficients a0..a5, endpoints position/velocity/acceleration, correct first and second derivatives (4,5 and12,20 coefficients); six linear equations unique for distinct endpoints tf>0, not from equation count alone.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:21:09Z"
+  },
+  "494": {
+    "title": "Derivation of Linear Trajectory",
+    "printed": "22",
+    "notes": "First-order interpolation a0=theta0,a1=(thetaf−theta0)/tf; constant slope and zero acceleration within segment. Diagram axes theta vs t with endpoint t0 but derivation fixes t0=0. Outside rest conditions introduced on next page.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:21:09Z"
+  },
+  "495": {
+    "title": "Critical Drawbacks",
+    "printed": "23",
+    "notes": "Rest-to-rest nonzero linear segment jumps from0 toDelta/tf and back; continuous position but notC1 at joins, impulsive acceleration/torque idealization. “Only C0” needs the stated rest extension; isolated linear polynomial is smooth. Blending named remedy.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:21:09Z"
+  },
+  "496": {
+    "title": "Numerical Example",
+    "printed": "24",
+    "notes": "Exact example 10 degrees to70 degrees in5 seconds with zero endpoint velocities, cubic ansatz. No extra acceleration boundary constraints given.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:21:09Z"
+  },
+  "497": {
+    "title": "Applying Example Boundary Conditions",
+    "printed": "25",
+    "notes": "Example a0=10,a1=0; final equations25a2+125a3=60 and10a2+75a3=0; a2=−7.5a3, with coefficients dimensional when degrees and seconds used.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:22:00Z"
+  },
+  "498": {
+    "title": "Numerical Example Continued",
+    "printed": "26",
+    "notes": "Correct elimination−62.5a3=60 gives a3−.96 and a2 7.2; theta10+7.2t²−.96t³, velocity14.4t−2.88t², acceleration14.4−5.76t.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:22:00Z"
+  },
+  "499": {
+    "title": "Trajectory Generation Using Python: Coefficients",
+    "printed": "27",
+    "notes": "Actual image code imports numpy/pyplot; inputs10,70,0,0,tf5; a0/a1 initial values; 2x2A=[[tf**2,tf**3],[2*tf,3*tf**2]], B=[theta_f−a0−a1*tf,theta_dot_f−a1]; [a2,a3]=np.linalg.solve(A,B); t=np.linspace(0,tf,100); vectorized position and analytical derivatives. Code is syntactically correct as printed. Even sample count omits midpoint2.5.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:22:00Z"
+  },
+  "500": {
+    "title": "Trajectory Generation Using Python: Plotting",
+    "printed": "28",
+    "notes": "Actual image code: figure figsize(10,6), subplot(3,1,1/2/3), plot t against theta/theta_dot/theta_ddot; raw Mathtext strings for titles/ylabels, last xlabel Time(s), tight_layout, show. No coefficient printing or finite-difference derivative call.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:22:00Z"
+  },
+  "501": {
+    "title": "Trajectory Generation Using Python: Output",
+    "printed": "29",
+    "notes": "Three vertically stacked output plots: position10→70 S-curve, velocity0→approximately18→0, acceleration14.4→−14.4 straight line crossing near2.5. Time0..5sec; ylabels symbols without explicit units but degree inputs establish deg/deg s−1/deg s−2.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:22:00Z"
+  },
+  "502": {
+    "title": "Summary",
+    "printed": "30",
+    "notes": "Repeats planning comparison/linear drawbacks; cubic continuous-acceleration wording needs within-segment versus joins qualification. Quintic supports prescribed endpoint acceleration and C2 joins only when adjacent position/velocity/acceleration values match.",
+    "excluded": null,
+    "inspectedAt": "2026-10-19T17:22:00Z"
+  },
+  "503": {
+    "title": "References",
+    "printed": "31",
+    "notes": "Only Craig Introduction to Robotics third edition2005 reference; no new technical proposition.",
+    "excluded": "Bibliographic reference only; no new examinable technical content.",
+    "inspectedAt": "2026-10-19T17:22:00Z"
+  },
+  "504": {
+    "title": "Thank You",
+    "printed": "32",
+    "notes": "Closing thanks only, no examinable content.",
+    "excluded": "Closing thanks only; no technical content.",
+    "inspectedAt": "2026-10-19T17:22:00Z"
+  }
+}

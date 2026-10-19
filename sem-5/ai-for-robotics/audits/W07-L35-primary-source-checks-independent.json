@@ -1,0 +1,125 @@
+{
+  "reviewerId": "independent-reviewer-robotics-batches-v2",
+  "checkedAt": "2026-10-19T20:37:16.971307+00:00",
+  "sources": [
+    {
+      "url": "https://arxiv.org/abs/1504.08083",
+      "supports": "Fast R-CNN uses externally generated proposals and shared convolutional feature computation.",
+      "questionIds": [
+        "W07-L35-Q008",
+        "W07-L35-Q040"
+      ],
+      "checkedAt": "2026-10-19T20:37:16.971307+00:00"
+    },
+    {
+      "url": "https://arxiv.org/abs/1506.01497",
+      "supports": "Faster R-CNN introduces a learned RPN sharing full-image convolutional features.",
+      "questionIds": [
+        "W07-L35-Q008",
+        "W07-L35-Q040"
+      ],
+      "checkedAt": "2026-10-19T20:37:16.971307+00:00"
+    },
+    {
+      "url": "https://arxiv.org/html/1506.02640",
+      "supports": "Original YOLO center-cell responsibility, mixed coordinate normalization, one conditional class vector per cell, class-score multiplication, 24-convolution/two-dense architecture.",
+      "questionIds": [
+        "W07-L35-Q044",
+        "W07-L35-Q045",
+        "W07-L35-Q046",
+        "W07-L35-Q049",
+        "W07-L35-Q050",
+        "W07-L35-Q051",
+        "W07-L35-Q054",
+        "W07-L35-Q060",
+        "W07-L35-Q061",
+        "W07-L35-Q063"
+      ],
+      "checkedAt": "2026-10-19T20:37:16.971307+00:00"
+    },
+    {
+      "url": "https://docs.ultralytics.com/models/yolov8",
+      "supports": "Ultralytics YOLOv8 was released in January 2023, uses an anchor-free split head, and has multiple size/task variants.",
+      "questionIds": [
+        "W07-L35-Q064",
+        "W07-L35-Q067",
+        "W07-L35-Q068",
+        "W07-L35-Q069",
+        "W07-L35-Q078"
+      ],
+      "checkedAt": "2026-10-19T20:37:16.971307+00:00"
+    },
+    {
+      "url": "https://docs.ultralytics.com/modes/predict",
+      "supports": "Nonstreaming prediction returns per-input Results; conf and iou have different roles; class-agnostic NMS, local source paths, saving and rectangle padding are distinct settings.",
+      "questionIds": [
+        "W07-L35-Q057",
+        "W07-L35-Q075",
+        "W07-L35-Q078",
+        "W07-L35-Q079",
+        "W07-L35-Q080",
+        "W07-L35-Q081",
+        "W07-L35-Q082",
+        "W07-L35-Q083"
+      ],
+      "checkedAt": "2026-10-19T20:37:16.971307+00:00"
+    },
+    {
+      "url": "https://docs.ultralytics.com/reference/engine/results",
+      "supports": "Boxes geometry, confidence and class IDs are separate; xywh uses center coordinates and pixel widths/heights.",
+      "questionIds": [
+        "W07-L35-Q038",
+        "W07-L35-Q084",
+        "W07-L35-Q087"
+      ],
+      "checkedAt": "2026-10-19T20:37:16.971307+00:00"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ultralytics/ultralytics/main/ultralytics/cfg/models/v8/yolov8.yaml",
+      "supports": "The standard Detect module receives P3/8, P4/16 and P5/32. This matches the actual independently executed head, not a claim that the lecture schematic shows four heads.",
+      "questionIds": [
+        "W07-L35-Q071",
+        "W07-L35-Q074",
+        "W07-L35-Q075",
+        "W07-L35-Q077"
+      ],
+      "checkedAt": "2026-10-19T20:37:16.971307+00:00"
+    },
+    {
+      "url": "https://docs.pytorch.org/docs/2.9/generated/torch.nn.Conv2d.html",
+      "supports": "Conv2d uses NCHW conventions, cross-correlation and all input planes at groups=1. Installed-version behavior was also executed.",
+      "questionIds": [
+        "W07-L35-Q010",
+        "W07-L35-Q013",
+        "W07-L35-Q016",
+        "W07-L35-Q018",
+        "W07-L35-Q019",
+        "W07-L35-Q020",
+        "W07-L35-Q028",
+        "W07-L35-Q061"
+      ],
+      "checkedAt": "2026-10-19T20:37:16.971307+00:00"
+    },
+    {
+      "url": "https://docs.pytorch.org/docs/2.9/generated/torch.nn.BatchNorm2d.html",
+      "supports": "Normalization plus learned affine scale/offset is not hard interval clipping; training and evaluation statistics can differ.",
+      "questionIds": [
+        "W07-L35-Q065"
+      ],
+      "checkedAt": "2026-10-19T20:37:16.971307+00:00"
+    }
+  ],
+  "webLimitation": "Unversioned PyTorch documentation URLs returned redirect placeholders; the official versioned 2.9 API documents were readable. No browser denial or bypass occurred.",
+  "runtimeVersions": {
+    "torch": "2.14.1+cpu",
+    "torchvision": "0.29.1+cpu",
+    "ultralytics": "8.4.182",
+    "numpy": "2.5.2"
+  },
+  "runtimeImageVisualCheck": {
+    "path": "audits/W07-L35-independent-inference/bus.jpg",
+    "sha256": "09c177b118223a02b63a7327be5a44cdc460060efb445b3a2aef1e5e6e3b8734",
+    "viewedAt": "2026-10-19T20:31:30+00:00",
+    "observation": "Six labeled boxes: bus, four persons and stop sign. Bus and person extents correspond to the source output; low-confidence left-edge detections remain visibly uncertain, not ground-truth verified."
+  }
+}

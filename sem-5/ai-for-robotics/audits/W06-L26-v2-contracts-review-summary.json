@@ -1,0 +1,278 @@
+{
+  "completedAt": "2026-10-19T19:22:32.904064+00:00",
+  "reviewerId": "define_robotics_data_contracts:L26-independent-reviewer",
+  "revisionAndGapItemsReviewed": 48,
+  "verified": 39,
+  "flagged": 9,
+  "totalCurrentVerified": 52,
+  "totalCurrentQuestions": 61,
+  "preservedAcceptedHashes": 13,
+  "keyDisagreements": 0,
+  "actualPagesInspected": 25,
+  "priorVersionExposure": false,
+  "independentAssertions": 31,
+  "randomTrials": 500,
+  "checksPerTrial": 2,
+  "reviewFile": "data/reviews/W06-L26-v2-independent-contracts.json",
+  "reviewSha256": "0a9328c1d0ddd70d2a88d87363ae2c2240acd819ad9e4cf81ecc67b1736c61a6",
+  "blindAnswersSha256": "bd1e5f581ce42791ff47cb8e3f5174bc8cf125d97c39912146bb0b3726b3d866",
+  "validation": {
+    "valid": true,
+    "release": false,
+    "errors": [],
+    "warnings": [],
+    "counts": {
+      "sources": 2,
+      "sourcesReady": 2,
+      "pagesExpected": 2012,
+      "pagesInventoried": 2012,
+      "pagesVisuallyInspected": 358,
+      "pagesExcluded": 139,
+      "pagesRepeated": 0,
+      "concepts": 55,
+      "conceptsWithDraftQuestions": 55,
+      "conceptsWithVerifiedQuestions": 47,
+      "questions": 61,
+      "questionsByStatus": {
+        "verified": 52,
+        "flagged": 9
+      },
+      "currentlyVerifiedQuestions": 52,
+      "staleReviews": 0,
+      "numericalFamilies": 0,
+      "verifiedByWeek": {
+        "6": 52
+      },
+      "verifiedByDifficulty": {
+        "easy": 52
+      },
+      "verifiedByType": {
+        "numerical": 7,
+        "code": 9,
+        "diagram": 5,
+        "conceptual": 14,
+        "derivation": 1,
+        "code_output": 7,
+        "match": 4,
+        "scenario": 5
+      }
+    }
+  },
+  "flaggedQuestionIds": [
+    "W06-L26-Q010",
+    "W06-L26-Q033",
+    "W06-L26-Q041",
+    "W06-L26-Q044",
+    "W06-L26-Q045",
+    "W06-L26-Q049",
+    "W06-L26-Q055",
+    "W06-L26-Q056",
+    "W06-L26-Q060"
+  ],
+  "findings": [
+    {
+      "questionId": "W06-L26-Q010",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The o4 claim that 0 and 255 are the number of rows and columns in every image is self-disqualifying, including a zero-row image, rather than a plausible grayscale endpoint confusion. Replace it with a realistic intensity/transparency, normalization or bit-depth misconception under the explicitly stated grayscale convention. The endpoint key itself is correct."
+      ]
+    },
+    {
+      "questionId": "W06-L26-Q033",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Requiring the query to lie exactly on a decision boundary before any class can be predicted is an implausible 1NN rule. Replace o4 with a credible nearest-neighbor mistake, such as choosing the farthest shown neighbor or voting across both shown neighbors under an explicit tie rule. Keep the nearest-point source interpretation unchanged."
+      ]
+    },
+    {
+      "questionId": "W06-L26-Q041",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The fourth option calls the measured vibration value 30 the number of terrain classes. This is not a credible row-to-target alignment mistake in a three-category table. Replace it with a plausible wrong pairing, such as a correct numeric target with an incorrect terrain name, and explain that distinct mapping error."
+      ]
+    },
+    {
+      "questionId": "W06-L26-Q044",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "All three wrong choices invent unrelated operations: two training passes, covariance-metric selection, or discarding a class. Replace at least two with realistic shape/indexing confusions, for example interpreting the input as two one-feature samples, treating [0] as selection of the first feature, or confusing a scalar predicted label with its one-element output array. Preserve the explicit one-sample/two-feature interface."
+      ]
+    },
+    {
+      "questionId": "W06-L26-Q045",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "Every wrong choice is an extreme inference: 100 percent accuracy merely from output, correctness in every future condition, or training data automatically becoming independent test data. Use credible competing interpretations of what is measured, such as a one-sample prediction versus a training score, held-out evaluation, or a confidence/probability output. The correct distinction between inference and accuracy is sound."
+      ]
+    },
+    {
+      "questionId": "W06-L26-Q049",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The row number and target class names are unrelated to the affine regression parameters and make two distractors implausible. Use distinct realistic parameter/input confusions, for example weights without the intercept, intercept plus input features, or output plus weights. Keep a unique complete learned-parameter set."
+      ]
+    },
+    {
+      "questionId": "W06-L26-Q055",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The alternative that the red regression line assigns binary classes according to its color is not a credible interpretation of the numeric regression plot. Replace it with a realistic fitting-objective confusion, such as minimizing horizontal rather than vertical squared residuals, subject to an unambiguous stated regression direction."
+      ]
+    },
+    {
+      "questionId": "W06-L26-Q056",
+      "criteria": [
+        "sourceSupport"
+      ],
+      "findings": [
+        "The sole cited slide depicts an iterative update loop; it does not state that a direct OLS solver exists. This correct additional claim needs a clear derivation from the cited squared-error premise, not only an assertion that objective and solver differ. For example, explicitly derive the quadratic normal equations with an augmented design matrix and state the full-column-rank condition for the inverse form, or narrow the question to the source-supported claim that the diagram does not specify every implementation. Do not claim a universal matrix inverse when rank is deficient."
+      ]
+    },
+    {
+      "questionId": "W06-L26-Q060",
+      "criteria": [
+        "distractors"
+      ],
+      "findings": [
+        "The claim that every raw image is already a two-column terrain matrix is an implausibly specific universal alternative. Replace o2 with a realistic representation confusion, for example treating pixel rows as independent samples without image-level labels or assuming a structured tensor cannot be converted into a feature representation. Avoid duplicating the existing eight-row sample misconception."
+      ]
+    }
+  ],
+  "coverageChallenge": [
+    {
+      "findingId": "L26-COVERAGE-01",
+      "status": "closed",
+      "questionId": "W06-L26-Q061",
+      "reason": "The new question explicitly tests the source similarity premise with representative coverage and no universal prediction guarantee. Its exact key and all nine quality checks pass."
+    },
+    {
+      "id": "L26-v2-COVERAGE-ACCOUNTING",
+      "status": "bounded_source_pass",
+      "sourcePages": [
+        774,
+        775,
+        776,
+        777,
+        778,
+        779,
+        780,
+        781,
+        782,
+        783,
+        784,
+        785,
+        786,
+        787,
+        788,
+        789,
+        790,
+        791,
+        792,
+        793,
+        794,
+        795,
+        796,
+        797,
+        798
+      ],
+      "finding": "All 25 actual pages inspected independently. All 21 substantive pages 777–797 have citations. Source pixels/code, grayscale row entries, strict branches, 1NN/5NN distinction, training versus test, feedback taxonomy, plotted queries, 3NN and boundary panels, six terrain rows, regression formula/indexing/objective and all five robotics table rows are represented. Title/objective/contents and closing pages are excluded; overfitting and underfitting are only roadmap terms here, not developed definitions. The repaired 48 objects are all appropriately easy immediate interpretations/calculations; no artificial hard label is imposed. This bounded pass adds no further compulsory source-concept gap, but is not a proof of all possible course-wide synthesis variants."
+    }
+  ],
+  "sourceQualifications": {
+    "status": "Explicit source qualifications and scope;not silent source correction",
+    "issues": [
+      {
+        "physicalPage": 775,
+        "qualification": "Objectives roadmap; overfitting/underfitting promised but not substantively developed in this lecture body, so track future coverage rather than invent it. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 777,
+        "qualification": "Motivation: novel/unstructured navigation, grasping, language and human collaboration; learning from data/experience versus enumerating every rule. ML is useful, not proof every robot requires it or safety follows automatically. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 778,
+        "qualification": "Expert systems encode human if-then-else knowledge; manually curated blacklist example. Complete knowledge of every variable is an overstatement; practical bounded rules may operate with partial information. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 779,
+        "qualification": "Actual spam code: BLACKLIST free money/click here/win prize/urgent, lowercase, substring membership, first list-order hit returns; four test messages produce SPAM free money then three NOT SPAM. Print expression truncates email to55chars, but rendered output prose appears longer in some cases; distinguish source illustrative output from literal formatting. Comments label unseen spam variants, not real email classification evidence. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 780,
+        "qualification": "Rule-based limits: domain specificity, expert dependency, cognitive/computational representation mismatch. Any domain change requiring entire rewrite is overstated; affected rules may be edited and reusable rules retained. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 781,
+        "qualification": "Actual8x8 grayscale grid and all64 cells viewed;0black255white,256levels for declared8-bit convention,256^64=2^512possible unrestricted arrays. Not every image format is8-bit, and not all arrays depict digits. Centerzero, intensity patterns support image-to-vector distinction. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 782,
+        "qualification": "Actual Iris sklearn imports/load/split(random_state0)/1NN fit/score with .0% prints97%. Caption says train/predict but code uses score, not an explicit predict call. Default split fraction is version-bound; reproduce installed package and record version. Train/test evaluation estimates not guarantees unseen accuracy. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 783,
+        "qualification": "Hand rule returns setosa if sepal_length<5 or elif petal_length<2.5, elseversicolor; no virginica output. ML code uses5neighbors, unlike preceding1. Importsnumpyunused in shown rule. Fit is local processing, not upload toremote; data/feature/model expertise still needed. Petal/sepal photos descriptive only, no morphological identification claim from image. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 784,
+        "qualification": "Supervised known input/target examples versus unlabeled structure; application names alone do not determine learning paradigm. SLAM can be geometric estimation, not intrinsically unsupervised ML; terrain/anomaly tasks may be formulated with labels or without. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 785,
+        "qualification": "Three major learning paradigms based on task andfeedback; introductory taxonomy not exhaustive, no detailed reinforcement-learning algorithm taught here. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 787,
+        "qualification": "Classification discrete labels inclbinary/multiclass versus regressionnumeric output; classifier algorithms kNN/trees/SVM/logisticregression; regressionlinear/ridge/SVR; metricsaccuracy/precision/recall versusMSE/MAE/R2. Somealgorithmfamilies supportboth tasks; numericdtypealone nottaskdefinition. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 789,
+        "qualification": "kNNpluralvotingdiagram:3NNtest1two class1=>1,test2threeclass0=>0. 1/3/9boundaryplots progressivelysmootherillustratively, notuniversal monotonicperformance. k≤trainingcountandtiesneedpolicy; kmeansnumberneighborsnotclasses. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 790,
+        "qualification": "Syntheticterraininputs speedm/s andvibrationfrequencyHz; label0smoothfloor(low),1gravel(high),2grass(medium). ClassIDsnotorderedfrequencyranks, specifictoyrelationnotphysicaluniversal. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 791,
+        "qualification": "Allsix actual rows checked X[[1,10],[1.2,12],[.8,60],[.5,65],[.9,30],[1,35]],y[0,0,1,1,2,2];6samples2features. NumPy,Matplotlib,ListedColormap,sklearnimports. No scaling shown despite mixedunits; frequencydimensionnumericallydominates distance here. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 792,
+        "qualification": "KNeighborsClassifier(n_neighbors1).fit;new_point[[.7,62]],predict()[0],terrain_names0blue/1red/2green. Actual nearest(.8,60)class1 rawdistance sqrt4.01; smalln notproof1optimal. Prediction without known testlabel notaccuracy measurement. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 793,
+        "qualification": "Printedpredcategory1gravel;plotstar(.7,62),topgravel1,middlegrass2,bottomfloor0. Displaypalette doesnotvisuallymatchnamecolors(redfloor/graygrass/purplegravel), use numericlabels/regiontext notcolornamealone. Plotgeneratingcode absent; almosthorizontal boundaries depend rawunscaledfeatureunits, notnecessarilyexactlyhorizontal. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 794,
+        "qualification": "Linear model yhat=sumwx+b; weights/interceptlearned. Displayx[0]throughx[p]contains p+1features despite labelPfeatures. OLSisonefittingcriterionforlinearregression, notsynonymforentirefamily. Singlefeatureaffinemodelincludesintercept. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 795,
+        "qualification": "Fit line minimizing squaredresiduals; diagramiterativeMSE/updateconceptual, OLSnotnecessarilyiterative. CaptioncallsMSEsum withoutdivisionn, whichactuallySSE; mean=SSE/n, sameargminfixedn, differentvalue/unitsquared. Plotline neednotpassallnoisypoints. Exactnumbersnotprinteddata. Actual1800px page and footer inspected."
+      },
+      {
+        "physicalPage": 797,
+        "qualification": "Summary repeatsparadigms butstatesrowssamples/columnsfeatures/labelsfortabularsuperviseddata; qualifyuniversalEveryMLdatasetbecauseimages/sequences/graphs mayusehigher-orderstructuredrepresentations. Actual1800px page and footer inspected."
+      }
+    ]
+  },
+  "answerPosition": "Every independently solved item has stable correct option ID o1, but option IDs are data identifiers, not displayed positions. The separate central fix uses answer-independent question-ID-seeded default display ordering. Do not mutate approved IDs or claim a user-facing cue without checking the actual current presentation. See audits/answer-position-presentation-fix.json; this reviewer did not personally run browser QA.",
+  "mutations": "Reviewer evidence, check/finalizer scripts, snapshot, review and handoff only. No author objects, canonical bank, sources or Git edited."
+}

@@ -1,0 +1,99 @@
+{
+  "checkedAt": "2026-10-19T20:07:30.949726+00:00",
+  "versions": {
+    "gymnasium": "1.4.0",
+    "gymnasium-robotics": "1.4.2",
+    "mujoco": "3.3.7",
+    "numpy": "2.3.5"
+  },
+  "sections": {
+    "registration": {
+      "primaryUrl": "https://gymnasium.farama.org/api/registry/",
+      "bindings": [
+        {
+          "packageRelativePath": "gymnasium/envs/registration.py",
+          "fileSha256": "6913c0a297ba30c2939a8934ec757101c2ae09ccb278a82b658cd5b8f68c4fdf",
+          "startLine": 548,
+          "symbol": "register_envs",
+          "observation": "Compatibility helper has no runtime registration body."
+        },
+        {
+          "packageRelativePath": "gymnasium/envs/registration.py",
+          "fileSha256": "6913c0a297ba30c2939a8934ec757101c2ae09ccb278a82b658cd5b8f68c4fdf",
+          "startLine": 640,
+          "symbol": "make",
+          "observation": "Constructs the selected registered environment."
+        }
+      ],
+      "observation": "Importing gymnasium_robotics installs registrations; gym.make constructs the selected instance. The register_envs helper is a no-op in Gymnasium 1.4.0."
+    },
+    "reachFlags": {
+      "primaryUrl": "https://robotics.farama.org/envs/fetch/reach/",
+      "bindings": [
+        {
+          "packageRelativePath": "gymnasium_robotics/envs/robot_env.py",
+          "fileSha256": "bbe6e2de4b325f6c0c090869526c7809bf8c43bc323a79f7f732ceb88d3eaaad",
+          "startLine": 106,
+          "symbol": "BaseRobotEnv.compute_terminated",
+          "observation": "Returns false for the continuing task."
+        }
+      ],
+      "observation": "FetchReachDense-v4 inherits the continuing-task termination behavior; its registration applies the default 50-step TimeLimit wrapper.",
+      "runtimeCheck": {
+        "seed": 30002,
+        "steps": 50,
+        "terminatedCount": 0,
+        "truncatedCount": 1,
+        "lastFlags": [
+          false,
+          true
+        ],
+        "envMaxEpisodeSteps": 50
+      }
+    },
+    "reachAction": {
+      "primaryUrl": "https://robotics.farama.org/envs/fetch/reach/",
+      "bindings": [
+        {
+          "packageRelativePath": "gymnasium_robotics/envs/fetch/reach.py",
+          "fileSha256": "5cdcdc9ad0c6e34a9e9ed33313f0eb98791383f8f31fa1e0a09e161ebceda8c3",
+          "startLine": 125,
+          "symbol": "MujocoFetchReachEnv.__init__",
+          "observation": "Constructs the reach task with block_gripper enabled."
+        },
+        {
+          "packageRelativePath": "gymnasium_robotics/envs/fetch/fetch_env.py",
+          "fileSha256": "de1f51690d0aa754ab99412ba3e23cebdc96351746b4d141e46260bbd21d1844",
+          "startLine": 305,
+          "symbol": "MujocoFetchEnv._set_action",
+          "observation": "The inherited action preparation zeroes blocked gripper control."
+        }
+      ],
+      "observation": "This reach task has no manipulated object and ignores the fourth action channel. Reaching is not a stable-grasp objective."
+    },
+    "denseReward": {
+      "primaryUrl": "https://robotics.farama.org/envs/fetch/reach/",
+      "bindings": [
+        {
+          "packageRelativePath": "gymnasium_robotics/envs/fetch/fetch_env.py",
+          "fileSha256": "de1f51690d0aa754ab99412ba3e23cebdc96351746b4d141e46260bbd21d1844",
+          "startLine": 74,
+          "symbol": "get_base_fetch_env.<locals>.BaseFetchEnv.compute_reward",
+          "observation": "Dense reward is negative Euclidean distance between achieved and desired goals."
+        }
+      ],
+      "observation": "Error (-0.03,0,0) metres therefore yields dense reward -0.03, not -0.1.",
+      "runtimeCheck": {
+        "suppliedDistance": 0.03,
+        "reward": -0.03
+      }
+    },
+    "timeLimits": {
+      "primaryUrl": "https://gymnasium.farama.org/tutorials/gymnasium_basics/handling_time_limits/",
+      "observation": "External collection truncation and a true finite-horizon task terminal condition are distinct; the continuing-task update retains successor bootstrap at the external limit."
+    }
+  },
+  "relatedRunPath": "audits/W06-L30-author-simulation.json",
+  "relatedRunSha256": "f681079c2e163c91722ba8a4ba59cc6c345eb64b0ff5c59574975fc68d234137",
+  "role": "Author qualification evidence, not independent verification; no lecture page silently corrected."
+}
