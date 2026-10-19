@@ -21,3 +21,23 @@ test('search covers solutions and filters respect verified-only plus learning st
 test('CSV handles quotes, newlines, Unicode, JSON, and spreadsheet formula injection',()=>{const csv=C.csv([['a,b','x"y','line\nline','α','=SUM(A1:A2)',{id:'q'}]]);assert.ok(csv.includes('"a,b"'));assert.ok(csv.includes('"x""y"'));assert.ok(csv.includes('"line\nline"'));assert.ok(csv.includes('"\'=SUM'));assert.ok(csv.includes('α'));});
 test('variants from one numerical family do not inflate mastery breadth',()=>{const a=C.normalizeQuestion({...base,id:'variant-a',variant:{familyId:'family-1'}}),b=C.normalizeQuestion({...base,id:'variant-b',variant:{familyId:'family-1'}});const p=C.freshProgress('v');C.record(p,a,['o2'],a.options.map(o=>o.id));C.record(p,b,['o2'],b.options.map(o=>o.id));const m=C.mastery(p,[a,b]);assert.equal(m[0].total,1);assert.equal(m[0].attempted,1);assert.equal(m[0].unique_concepts,1);});
 test('global shortcuts never hijack native Enter/Space activation or typing',()=>{const button={closest:selector=>selector.includes('button')?{}:null};const input={closest:selector=>selector.includes('input')?{}:null};const content={closest:()=>null};assert.equal(C.shortcutAllowed({key:'Enter',target:button}),false);assert.equal(C.shortcutAllowed({key:' ',target:button}),false);assert.equal(C.shortcutAllowed({key:'1',target:button}),true);assert.equal(C.shortcutAllowed({key:'Enter',target:input}),false);assert.equal(C.shortcutAllowed({key:'1',target:input}),false);assert.equal(C.shortcutAllowed({key:'Enter',target:content}),true);assert.equal(C.shortcutAllowed({key:'b',target:content,ctrlKey:true}),false);});
+test('algorithm selector is fail-closed on provenance and draft-gated',()=>{
+  const sha='a'.repeat(64);
+  const refs=[{sourceId:'test-source',slideId:'test-slide',sourceSha256:sha,physicalPage:1}];
+  const bank={sources:[{id:'test-source',sha256:sha,retrievalStatus:'ready',pageCount:1}],slides:[{id:'test-slide',sourceId:'test-source',sourceSha256:sha,physicalPage:1,visualInspection:{status:'complete'},disposition:'examinable'}]};
+  const records=[{id:'approved',status:'verified',sourceRefs:refs},{id:'draft',status:'draft',sourceRefs:refs},{id:'flagged',status:'flagged',sourceRefs:refs},{id:'unlinked',status:'verified',sourceRefs:[]},{id:'synthetic',status:'verified',sourceRefs:refs,synthetic:true},{id:'nested-synthetic',status:'verified',sourceRefs:refs,provenance:{synthetic:true}}];
+  assert.deepEqual(C.selectAlgorithmRecords(records,{bank}).map(r=>r.id),['approved']);
+  assert.deepEqual(C.selectAlgorithmRecords(records,{bank,includeUnverified:true}).map(r=>r.id),['approved','draft','flagged']);
+  assert.deepEqual(C.selectAlgorithmRecords(records,{bank,includeUnverified:false}).map(r=>r.id),['approved']);
+  assert.deepEqual(C.selectAlgorithmRecords(records),[]);
+  assert.deepEqual(C.selectAlgorithmRecords(undefined),[]);
+  assert.deepEqual(C.selectAlgorithmRecords([null,{}],{bank}),[]);
+  for(const mutate of [b=>b.sources=[],b=>b.slides=[],b=>b.sources[0].sha256='b'.repeat(64),b=>b.sources[0].retrievalStatus='pending',b=>b.slides[0].disposition='unresolved',b=>b.slides[0].disposition='unreviewed',b=>b.slides[0].visualInspection.status='pending',b=>b.slides[0].physicalPage=2]) {
+    const invalid=C.clone(bank);mutate(invalid);
+    assert.deepEqual(C.selectAlgorithmRecords(records,{bank:invalid}),[]);
+    assert.deepEqual(C.selectAlgorithmRecords(records,{bank:invalid,includeUnverified:true}),[]);
+  }
+  const conflict={...records[0],sourceRefs:[{...refs[0],role:'conflict'}]};
+  assert.deepEqual(C.selectAlgorithmRecords([conflict],{bank}),[]);
+  assert.equal(C.selectAlgorithmRecords([{...conflict,conflictResolution:{basis:'Documented resolution'}}],{bank}).length,1);
+});

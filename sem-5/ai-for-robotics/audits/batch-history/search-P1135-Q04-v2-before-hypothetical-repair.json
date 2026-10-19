@@ -1,0 +1,112 @@
+{
+  "id": "W08-L37-P1135-Q04",
+  "version": 2,
+  "status": "draft",
+  "authorId": "robotics-learning-tools-author",
+  "stem": "A diagram labels g and h for every free cell. Why is selecting the globally smallest labeled f over all cells NOT a valid replacement for an A* trace?",
+  "selectionMode": "single",
+  "type": "conceptual",
+  "difficulty": "hard",
+  "cognitiveSkill": "conceptual",
+  "week": 8,
+  "lectureId": "L37",
+  "topic": "Path planning and obstacle avoidance",
+  "subtopic": "Grid A* priority and route",
+  "tags": [
+    "conceptual",
+    "grid-f"
+  ],
+  "conceptIds": [
+    "search.grid-f"
+  ],
+  "assumptions": [
+    "Use the graph-search frontier convention demonstrated on physical pages 1121–1122.",
+    "The question concerns candidate eligibility, not the correctness of each numerical label on physical page 1135. Its inconsistent start g=1.0 label is not adopted as a rule."
+  ],
+  "options": [
+    {
+      "id": "o4",
+      "text": "The next expansion may be chosen from the explored set whenever one of its recorded f values is below all frontier values"
+    },
+    {
+      "id": "o1",
+      "text": "A* selects among current discovered frontier entries; a final cost map does not show which cells are available at the current step"
+    },
+    {
+      "id": "o2",
+      "text": "Every free cell with a printed heuristic is automatically a frontier entry, even before a route to it is generated"
+    },
+    {
+      "id": "o3",
+      "text": "Once a cell receives any g label, that label is its final search cost and never needs a lower-cost update"
+    }
+  ],
+  "correctOptionIds": [
+    "o1"
+  ],
+  "citations": [
+    {
+      "slideId": "lectures-p1121",
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 1121,
+      "kind": "statement",
+      "locator": "Physical PDF page 1121, printed slide 34; main text and labeled diagram as applicable",
+      "evidenceText": "3. A-Star\n\nStep-by-Step Execution\n•  Initialize:\n   – Frontier: [A(0 + 7 = 7)]\n   – Explored: []\n•  Step 1: Expand A.\n   – Neighbor B: g(B)=5,h(B)=6→f(B)=11\n   – Neighbor C: g(C)=2,h(C)=5→f(C)=7\n   – Frontier: [C(7), B(11)]\n   – Explored: [A]\n\n\n\n\n                                                                                                          34",
+      "role": "explicit",
+      "region": null
+    },
+    {
+      "slideId": "lectures-p1122",
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 1122,
+      "kind": "statement",
+      "locator": "Physical PDF page 1122, printed slide 35; main text and labeled diagram as applicable",
+      "evidenceText": "3. A-Star\n\nStep-by-Step Execution\n•  Step 2: Expand cheapest node, C(7).\n   – Neighbor F: g(F)=2+4=6,h(F)=2→f(F)=8\n   – Frontier: [F(8), B(11)]\n   – Explored: [A, C]\n•  Step 3: Expand cheapest node, F(8).\n   – Neighbor G:\n      g(G)=6+3=9,h(G)=0→f(G)=9\n   – Neighbor E:g(E)=6+1=7,h(E)=3→f(E)=10\n   – Frontier: [G(9), E(10), B(11)]\n   – Explored: [A, C, F]\n\n\n                                                                                                          35",
+      "role": "explicit",
+      "region": null
+    },
+    {
+      "slideId": "lectures-p1135",
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 1135,
+      "kind": "statement",
+      "locator": "Physical PDF page 1135, printed slide 9; main text and labeled diagram as applicable",
+      "evidenceText": "A* Algorithm: Example\n\n Apply A* Algorithm\n\n                                  g=4.4      g=4\n                                  h=3.8     h=4.8\n                                             Expands node with minimum\n   g=6.4      g=6.0                g=3.4      g=3.0\n                                                     f(n)=g(n)+h(n)   h=1.0     h=1.4                h=3.4     h=4.4\n\n   g=5.4      g=5.0                g=2.4      g=2.0\n   h=0.0     h=1.0                h=3.0     h=4.0\n\n   g=4.4      g=4.0                g=1.4      g=1.0\n   h=1.0     h=1.4                h=3.4     h=4.4\n\n   g=4.0      g=3.0     g=2.0      g=1.0      g=1.0\n   h=2.0     h=2.4     h=2.8     h=3.8     h=4.8\n\n\n\n\n\n                                                                                                           9",
+      "role": "explicit",
+      "region": null
+    }
+  ],
+  "solution": {
+    "justification": "A* minimizes f over its current frontier entries. A prelabelled map does not encode discovery, expansion or cost-update history and cannot replace the trace.",
+    "optionExplanations": {
+      "o1": "Eligibility depends on discovery and the current open set; a static table is not that changing set.",
+      "o2": "Knowing a heuristic is not the same as having generated a finite start-to-cell path and queued that state.",
+      "o3": "Search g values are best-known costs and may improve when a better path is found; a printed final map omits that history.",
+      "o4": "Already explored states are not chosen again merely because their old f is small; any reopening must follow the algorithm’s improved-path rule."
+    },
+    "steps": [],
+    "formulas": [],
+    "simpleExplanation": "A* minimizes f over its current frontier entries. A prelabelled map does not encode discovery, expansion or cost-update history and cannot replace the trace.",
+    "memoryAid": null,
+    "misconceptions": [
+      "Knowing a heuristic is not the same as having generated a finite start-to-cell path and queued that state.",
+      "Search g values are best-known costs and may improve when a better path is found; a printed final map omits that history.",
+      "Already explored states are not chosen again merely because their old f is small; any reopening must follow the algorithm’s improved-path rule."
+    ],
+    "examTraps": [
+      "A visible heuristic or final g label does not imply current frontier membership."
+    ],
+    "prerequisiteConceptIds": [
+      "search.grid-g",
+      "search.grid-h"
+    ]
+  },
+  "origin": "generated",
+  "reviewIds": [],
+  "revisionAuthors": [
+    "build_offline_study_interface-search-quality-reviser"
+  ]
+}

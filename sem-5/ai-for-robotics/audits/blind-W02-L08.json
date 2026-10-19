@@ -1,0 +1,5206 @@
+[
+  {
+    "id": "W02-L08-P0272-Q01",
+    "version": 1,
+    "stem": "Which ordered workflow matches the introduction when the supplied task is the tool pose relative to the station?",
+    "selectionMode": "single",
+    "type": "sequence",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Convert joint variables into tool pose only, without inversion"
+      },
+      {
+        "id": "o1",
+        "text": "Convert to wrist pose relative to base, then solve for joint variables"
+      },
+      {
+        "id": "o2",
+        "text": "Solve camera brightness, then rename the tool as the base"
+      },
+      {
+        "id": "o3",
+        "text": "Treat the station and base as always identical, then skip IK"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0272",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 272,
+        "kind": "statement",
+        "locator": "Printed slide 4: introductory two-step task and labeled frame figure",
+        "evidenceText": "Given desired position and orientation of tool {T} relative to station {S}, find joint angles. Split into: find wrist frame relative to base, then compute inverse kinematics. Figure labels Camera, Tool frame {T}, Wrist frame {W}, Base frame {B}, Station frame {S}, Goal frame.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0272-Q02",
+    "version": 1,
+    "stem": "What must IK determine from the desired tool position and orientation?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "The number of pixels in the camera image"
+      },
+      {
+        "id": "o1",
+        "text": "Joint variables that achieve the specified pose"
+      },
+      {
+        "id": "o2",
+        "text": "Only a rotation matrix with no joint variables"
+      },
+      {
+        "id": "o3",
+        "text": "Only the Cartesian pose already supplied"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0272",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 272,
+        "kind": "statement",
+        "locator": "Printed slide 4: introductory two-step task and labeled frame figure",
+        "evidenceText": "Given desired position and orientation of tool {T} relative to station {S}, find joint angles. Split into: find wrist frame relative to base, then compute inverse kinematics. Figure labels Camera, Tool frame {T}, Wrist frame {W}, Base frame {B}, Station frame {S}, Goal frame.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0272-Q03",
+    "version": 1,
+    "stem": "Which pair of distinctions is explicitly visible in the task-frame figure?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Tool versus wrist, and station versus base"
+      },
+      {
+        "id": "o2",
+        "text": "Tool and wrist are one label, while station and base are absent"
+      },
+      {
+        "id": "o3",
+        "text": "Camera and base are necessarily the same frame"
+      },
+      {
+        "id": "o4",
+        "text": "Goal and wrist are required to have identical orientations"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0272",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 272,
+        "kind": "figure",
+        "locator": "Printed slide 4: introductory two-step task and labeled frame figure",
+        "evidenceText": "Given desired position and orientation of tool {T} relative to station {S}, find joint angles. Split into: find wrist frame relative to base, then compute inverse kinematics. Figure labels Camera, Tool frame {T}, Wrist frame {W}, Base frame {B}, Station frame {S}, Goal frame.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0273-Q01",
+    "version": 1,
+    "stem": "In the lecture’s six-joint transform chain, which product gives ^0_6T?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "^5_6T ^4_5T ^3_4T ^2_3T ^1_2T ^0_1T"
+      },
+      {
+        "id": "o3",
+        "text": "^0_1T + ^1_2T + ^2_3T + ^3_4T + ^4_5T + ^5_6T"
+      },
+      {
+        "id": "o4",
+        "text": "^0_1T alone for every robot configuration"
+      },
+      {
+        "id": "o1",
+        "text": "^0_1T ^1_2T ^2_3T ^3_4T ^4_5T ^5_6T"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0273",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 273,
+        "kind": "statement",
+        "locator": "Printed slide 5: six-transform product and pose-constraint counting bullets",
+        "evidenceText": "^0_6 T = ^0_1 T ^1_2 T ^2_3 T … ^5_6 T = [R P; 0 0 0 1]. 16 elements:4 trivial,3 position,9 orientation of which3 independent;6 equations in6 unknowns. Nonlinear transcendental equations.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0273-Q02",
+    "version": 1,
+    "stem": "Why do the16 entries of a valid rigid homogeneous transform not represent16 independent pose constraints?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "The bottom row contains4 independent joint angles"
+      },
+      {
+        "id": "o4",
+        "text": "The9 rotation entries are9 independent orientation freedoms"
+      },
+      {
+        "id": "o1",
+        "text": "Four bottom-row entries are fixed; position gives3 independent values and rotation gives3"
+      },
+      {
+        "id": "o2",
+        "text": "All16 entries are free and independently settable"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0273",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 273,
+        "kind": "statement",
+        "locator": "Printed slide 5: six-transform product and pose-constraint counting bullets",
+        "evidenceText": "^0_6 T = ^0_1 T ^1_2 T ^2_3 T … ^5_6 T = [R P; 0 0 0 1]. 16 elements:4 trivial,3 position,9 orientation of which3 independent;6 equations in6 unknowns. Nonlinear transcendental equations.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0273-Q03",
+    "version": 1,
+    "stem": "Six independent pose constraints and six joint unknowns guarantee which conclusion?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o4",
+        "text": "That all equations are linear"
+      },
+      {
+        "id": "o1",
+        "text": "Only a matching local count, not existence or uniqueness for every target"
+      },
+      {
+        "id": "o2",
+        "text": "Exactly one solution at every target"
+      },
+      {
+        "id": "o3",
+        "text": "Exactly six solutions at every target"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0273",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 273,
+        "kind": "statement",
+        "locator": "Printed slide 5: six-transform product and pose-constraint counting bullets",
+        "evidenceText": "^0_6 T = ^0_1 T ^1_2 T ^2_3 T … ^5_6 T = [R P; 0 0 0 1]. 16 elements:4 trivial,3 position,9 orientation of which3 independent;6 equations in6 unknowns. Nonlinear transcendental equations.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0274",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 274,
+        "kind": "statement",
+        "locator": "Printed slide 6: three challenge bullets",
+        "evidenceText": "Challenges: Existence of Solution; Multiple Solution; Method of solution.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0276",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 276,
+        "kind": "statement",
+        "locator": "Printed slide 8: solution-selection bullets and obstacle/elbow figure",
+        "evidenceText": "Multiple solutions: find all possible solutions and choose one; prefer minimum joint rotation; obstacles may necessitate other configuration. PUMA560 can have8 solutions for a single goal. Figure shows solid/dashed elbow choices and obstacle.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0274-Q01",
+    "version": 1,
+    "stem": "Match the three questions to IK challenges: can the pose be reached; which branch should be chosen; how are joint values computed?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Existence; multiple solutions; method of solution"
+      },
+      {
+        "id": "o2",
+        "text": "Method; existence; multiple solutions"
+      },
+      {
+        "id": "o3",
+        "text": "Multiple solutions; method; existence"
+      },
+      {
+        "id": "o4",
+        "text": "Existence; method; number of transform entries"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0274",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 274,
+        "kind": "statement",
+        "locator": "Printed slide 6: three challenge bullets",
+        "evidenceText": "Challenges: Existence of Solution; Multiple Solution; Method of solution.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0275-Q01",
+    "version": 1,
+    "stem": "Which statement correctly relates reachable and dextrous workspaces?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "The two workspaces must be disjoint"
+      },
+      {
+        "id": "o4",
+        "text": "Reachable means every orientation and dextrous means one orientation"
+      },
+      {
+        "id": "o1",
+        "text": "Every dextrous position is reachable, but a reachable position need not allow every orientation"
+      },
+      {
+        "id": "o2",
+        "text": "Every reachable position is dextrous by definition"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0275",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 275,
+        "kind": "statement",
+        "locator": "Printed slide 7: workspace definitions and equal/unequal planar2R examples",
+        "evidenceText": "Dextrous workspace: positions reachable with all orientations. Reachable workspace: positions reachable with at least one orientation. Equal2R links: reachable disk radius2L; dextrous origin. Unequal links: annulus outer L1+L2, inner L1-L2; no dextrous workspace.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0275-Q02",
+    "version": 1,
+    "stem": "For the lecture’s ideal planar2R arm with equal positive lengths L and unrestricted joints, what is its reachable workspace?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Only the circle of radius2L"
+      },
+      {
+        "id": "o3",
+        "text": "The exterior of the circle of radius2L"
+      },
+      {
+        "id": "o4",
+        "text": "A disk of radiusL with the center removed"
+      },
+      {
+        "id": "o1",
+        "text": "The closed disk of radius2L centered at the base"
+      }
+    ],
+    "assumptions": [
+      "Planar2R endpoint; no joint limits, obstacles or tool offset; orientations are planar."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0275",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 275,
+        "kind": "statement",
+        "locator": "Printed slide 7: workspace definitions and equal/unequal planar2R examples",
+        "evidenceText": "Dextrous workspace: positions reachable with all orientations. Reachable workspace: positions reachable with at least one orientation. Equal2R links: reachable disk radius2L; dextrous origin. Unequal links: annulus outer L1+L2, inner L1-L2; no dextrous workspace.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0275-Q03",
+    "version": 1,
+    "stem": "Under those equal-link planar2R assumptions, why is the dextrous workspace only the origin?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o3",
+        "text": "The arm cannot reach the origin"
+      },
+      {
+        "id": "o4",
+        "text": "Only full extension permits every orientation"
+      },
+      {
+        "id": "o1",
+        "text": "Folded links cancel at the origin while rotating the folded pair permits every planar endpoint orientation"
+      },
+      {
+        "id": "o2",
+        "text": "Every point in the disk allows every orientation independently"
+      }
+    ],
+    "assumptions": [
+      "L>0; unrestricted planar2R joints; endpoint orientation=theta1+theta2, not a separate wrist joint."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0275",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 275,
+        "kind": "statement",
+        "locator": "Printed slide 7: workspace definitions and equal/unequal planar2R examples",
+        "evidenceText": "Dextrous workspace: positions reachable with all orientations. Reachable workspace: positions reachable with at least one orientation. Equal2R links: reachable disk radius2L; dextrous origin. Unequal links: annulus outer L1+L2, inner L1-L2; no dextrous workspace.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0275-Q04",
+    "version": 1,
+    "stem": "What is the correct radius interval for unequal positive lengths L1 and L2 when their ordering is not specified?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "0 ≤ radius ≤ max(L1,L2) for every unequal pair"
+      },
+      {
+        "id": "o4",
+        "text": "L1+L2 ≤ radius with no upper limit"
+      },
+      {
+        "id": "o1",
+        "text": "|L1−L2| ≤ radius ≤ L1+L2"
+      },
+      {
+        "id": "o2",
+        "text": "L1−L2 ≤ radius ≤ L1+L2 even if L1<L2"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar2R arm, positive lengths, unrestricted joints and no obstacles.",
+      "The slide’s L1−L2 shorthand is explicitly generalized to either length ordering."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0275",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 275,
+        "kind": "statement",
+        "locator": "Printed slide 7: workspace definitions and equal/unequal planar2R examples",
+        "evidenceText": "Dextrous workspace: positions reachable with all orientations. Reachable workspace: positions reachable with at least one orientation. Equal2R links: reachable disk radius2L; dextrous origin. Unequal links: annulus outer L1+L2, inner L1-L2; no dextrous workspace.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0275-Q05",
+    "version": 1,
+    "stem": "With L1=2m and L2=1m, which target radius is reachable under ideal unrestricted planar2R kinematics?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "0.5m"
+      },
+      {
+        "id": "o3",
+        "text": "3.5m"
+      },
+      {
+        "id": "o4",
+        "text": "0m"
+      },
+      {
+        "id": "o1",
+        "text": "2.5m"
+      }
+    ],
+    "assumptions": [
+      "No joint limits or obstacles."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0275",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 275,
+        "kind": "derivation",
+        "locator": "Printed slide 7: workspace definitions and equal/unequal planar2R examples",
+        "evidenceText": "Dextrous workspace: positions reachable with all orientations. Reachable workspace: positions reachable with at least one orientation. Equal2R links: reachable disk radius2L; dextrous origin. Unequal links: annulus outer L1+L2, inner L1-L2; no dextrous workspace.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0275-Q06",
+    "version": 1,
+    "stem": "Why must the claim “unequal2R links have no dextrous workspace” not be copied unchanged to the later planar3R wrist model?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o2",
+        "text": "A third revolute joint necessarily makes all positions reachable"
+      },
+      {
+        "id": "o3",
+        "text": "Unequal link lengths become equal when a wrist is added"
+      },
+      {
+        "id": "o4",
+        "text": "Adding a wrist removes every joint limit automatically"
+      },
+      {
+        "id": "o1",
+        "text": "The additional wrist angle can change orientation without moving the frame3 origin"
+      }
+    ],
+    "assumptions": [
+      "The later frame3 model has no added translational tool offset and its third angle is unrestricted."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0275",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 275,
+        "kind": "statement",
+        "locator": "Printed slide 7: workspace definitions and equal/unequal planar2R examples",
+        "evidenceText": "Dextrous workspace: positions reachable with all orientations. Reachable workspace: positions reachable with at least one orientation. Equal2R links: reachable disk radius2L; dextrous origin. Unequal links: annulus outer L1+L2, inner L1-L2; no dextrous workspace.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0282",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 282,
+        "kind": "equation",
+        "locator": "Printed slide 14: planar3R homogeneous matrix, DH table and pose equations",
+        "evidenceText": "^0_3 T = [[c123,-s123,0,L1*c1+L2*c12],[s123,c123,0,L1*s1+L2*s12],[0,0,1,0],[0,0,0,1]]. Desired pose has cphi,-sphi,x; sphi,cphi,y. DH rows(i,alpha_(i-1),a_(i-1),d_i,theta_i): (1,0,0,0,theta1),(2,0,L1,0,theta2),(3,0,L2,0,theta3). phi orientation of third link with respect to X0.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0276-Q01",
+    "version": 1,
+    "stem": "A short-joint-motion IK branch collides with an obstacle, while a longer-motion branch is collision-free. Which choice is consistent with the figure?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Average the two joint configurations and assume it reaches the target"
+      },
+      {
+        "id": "o1",
+        "text": "Use a collision-free admissible branch rather than blindly minimizing joint rotation"
+      },
+      {
+        "id": "o2",
+        "text": "Always choose the smallest joint-angle motion even when it collides"
+      },
+      {
+        "id": "o3",
+        "text": "Reject every multiple-solution robot as unsolvable"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0276",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 276,
+        "kind": "figure",
+        "locator": "Printed slide 8: solution-selection bullets and obstacle/elbow figure",
+        "evidenceText": "Multiple solutions: find all possible solutions and choose one; prefer minimum joint rotation; obstacles may necessitate other configuration. PUMA560 can have8 solutions for a single goal. Figure shows solid/dashed elbow choices and obstacle.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0276-Q02",
+    "version": 1,
+    "stem": "What does the lecture’s statement that PUMA560 can have8 solutions for one goal mean?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Multiple branches may exist; it does not promise8 distinct feasible solutions for every goal"
+      },
+      {
+        "id": "o2",
+        "text": "Every goal has exactly8 solutions including unreachable goals"
+      },
+      {
+        "id": "o3",
+        "text": "A PUMA560 has8 independent joint angles"
+      },
+      {
+        "id": "o4",
+        "text": "All8 branches must satisfy all possible obstacle and joint-limit constraints"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0276",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 276,
+        "kind": "statement",
+        "locator": "Printed slide 8: solution-selection bullets and obstacle/elbow figure",
+        "evidenceText": "Multiple solutions: find all possible solutions and choose one; prefer minimum joint rotation; obstacles may necessitate other configuration. PUMA560 can have8 solutions for a single goal. Figure shows solid/dashed elbow choices and obstacle.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0277-Q01",
+    "version": 1,
+    "stem": "According to the lecture’s6R table, which bound is printed in the row “a1=a3=a5=0”?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "at most4"
+      },
+      {
+        "id": "o2",
+        "text": "at most8"
+      },
+      {
+        "id": "o3",
+        "text": "at most16"
+      },
+      {
+        "id": "o4",
+        "text": "exactly32"
+      }
+    ],
+    "assumptions": [
+      "Recall this table’s row only; unspecified robot geometry is not being generalized."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0277",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 277,
+        "kind": "statement",
+        "locator": "Printed slide 9: 6R table: condition and maximum-solution columns",
+        "evidenceText": "Table: number of rotary joints6 in every row. Nonzero link lengths conditions: a1=a3=a5=0 -> number of solutions<=4; a3=a5=0 -><=8; a3=0 -><=16; all ai nonzero -><=16.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0277-Q02",
+    "version": 1,
+    "stem": "According to the lecture’s6R table, which bound is printed in the row “a3=a5=0”?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "at most4"
+      },
+      {
+        "id": "o3",
+        "text": "at most16"
+      },
+      {
+        "id": "o4",
+        "text": "exactly32"
+      },
+      {
+        "id": "o1",
+        "text": "at most8"
+      }
+    ],
+    "assumptions": [
+      "Recall this table’s row only; unspecified robot geometry is not being generalized."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0277",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 277,
+        "kind": "statement",
+        "locator": "Printed slide 9: 6R table: condition and maximum-solution columns",
+        "evidenceText": "Table: number of rotary joints6 in every row. Nonzero link lengths conditions: a1=a3=a5=0 -> number of solutions<=4; a3=a5=0 -><=8; a3=0 -><=16; all ai nonzero -><=16.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0277-Q03",
+    "version": 1,
+    "stem": "According to the lecture’s6R table, which bound is printed in the row “a3=0”?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "at most4"
+      },
+      {
+        "id": "o3",
+        "text": "at most8"
+      },
+      {
+        "id": "o4",
+        "text": "exactly32"
+      },
+      {
+        "id": "o1",
+        "text": "at most16"
+      }
+    ],
+    "assumptions": [
+      "Recall this table’s row only; unspecified robot geometry is not being generalized."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0277",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 277,
+        "kind": "statement",
+        "locator": "Printed slide 9: 6R table: condition and maximum-solution columns",
+        "evidenceText": "Table: number of rotary joints6 in every row. Nonzero link lengths conditions: a1=a3=a5=0 -> number of solutions<=4; a3=a5=0 -><=8; a3=0 -><=16; all ai nonzero -><=16.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0277-Q04",
+    "version": 1,
+    "stem": "According to the lecture’s6R table, which bound is printed in the row “all a_i are nonzero”?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "at most8"
+      },
+      {
+        "id": "o4",
+        "text": "exactly32"
+      },
+      {
+        "id": "o1",
+        "text": "at most16"
+      },
+      {
+        "id": "o2",
+        "text": "at most4"
+      }
+    ],
+    "assumptions": [
+      "Recall this table’s row only; unspecified robot geometry is not being generalized."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0277",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 277,
+        "kind": "statement",
+        "locator": "Printed slide 9: 6R table: condition and maximum-solution columns",
+        "evidenceText": "Table: number of rotary joints6 in every row. Nonzero link lengths conditions: a1=a3=a5=0 -> number of solutions<=4; a3=a5=0 -><=8; a3=0 -><=16; all ai nonzero -><=16.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0277-Q05",
+    "version": 1,
+    "stem": "Which conclusion is justified by the table’s final two rows, both bounded by16?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Every additional nonzero link strictly doubles the bound"
+      },
+      {
+        "id": "o3",
+        "text": "All16 solutions exist for every target"
+      },
+      {
+        "id": "o4",
+        "text": "The table proves a unique branch whenever all lengths are nonzero"
+      },
+      {
+        "id": "o1",
+        "text": "Removing the last listed zero-length condition does not increase the stated upper bound"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0277",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 277,
+        "kind": "statement",
+        "locator": "Printed slide 9: 6R table: condition and maximum-solution columns",
+        "evidenceText": "Table: number of rotary joints6 in every row. Nonzero link lengths conditions: a1=a3=a5=0 -> number of solutions<=4; a3=a5=0 -><=8; a3=0 -><=16; all ai nonzero -><=16.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0278-Q01",
+    "version": 1,
+    "stem": "Which equality states the additivity condition printed under linearity?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "f(x+y)=x+y for every f"
+      },
+      {
+        "id": "o4",
+        "text": "f(x+y)=f(x)−f(y)"
+      },
+      {
+        "id": "o1",
+        "text": "f(x+y)=f(x)+f(y)"
+      },
+      {
+        "id": "o2",
+        "text": "f(x+y)=f(x)f(y)"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0278",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 278,
+        "kind": "statement",
+        "locator": "Printed slide 10: displayed definition row relevant to the question, including literal typo where stated",
+        "evidenceText": "Linear: f(x+y)=f(x)+f(y); printed homogeneity f(alpha x)=alpha x. Solvable: Has a unique solution. Closed form: computed algebraically and provides all solutions. Numerical uses iterative computation; algebraic uses identities/substitution; geometric uses law of cosines. Sub-Space: Smaller Region; Circle in a plane, Sphere in XYZ.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0278-Q02",
+    "version": 1,
+    "stem": "The slide prints homogeneity as f(αx)=αx. Which explicit repair gives the standard scaling condition consistent with additivity?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "f(αx)=f(α)+x"
+      },
+      {
+        "id": "o3",
+        "text": "f(αx)=α+f(x)"
+      },
+      {
+        "id": "o4",
+        "text": "f(αx)=f(x) for all α"
+      },
+      {
+        "id": "o1",
+        "text": "f(αx)=αf(x)"
+      }
+    ],
+    "assumptions": [
+      "Treat the printed equality as a source typo; the question asks for an explicit mathematical repair, not the as-printed definition."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0278",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 278,
+        "kind": "statement",
+        "locator": "Printed slide 10: displayed definition row relevant to the question, including literal typo where stated",
+        "evidenceText": "Linear: f(x+y)=f(x)+f(y); printed homogeneity f(alpha x)=alpha x. Solvable: Has a unique solution. Closed form: computed algebraically and provides all solutions. Numerical uses iterative computation; algebraic uses identities/substitution; geometric uses law of cosines. Sub-Space: Smaller Region; Circle in a plane, Sphere in XYZ.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0278-Q03",
+    "version": 1,
+    "stem": "For f(x)=2x, α=3 and x=1, what demonstrates the slide’s missing f in the printed homogeneity right-hand side?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "f(αx)=3 and αf(x)=6, so the map is nonlinear"
+      },
+      {
+        "id": "o3",
+        "text": "Both printed sides equal3"
+      },
+      {
+        "id": "o4",
+        "text": "f(αx)=2 and αf(x)=3"
+      },
+      {
+        "id": "o1",
+        "text": "f(αx)=6 but printed αx=3; repaired αf(x)=6"
+      }
+    ],
+    "assumptions": [
+      "The test map f(x)=2x is supplied as a counterexample to the printed wording."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0278",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 278,
+        "kind": "derivation",
+        "locator": "Printed slide 10: displayed definition row relevant to the question, including literal typo where stated",
+        "evidenceText": "Linear: f(x+y)=f(x)+f(y); printed homogeneity f(alpha x)=alpha x. Solvable: Has a unique solution. Closed form: computed algebraically and provides all solutions. Numerical uses iterative computation; algebraic uses identities/substitution; geometric uses law of cosines. Sub-Space: Smaller Region; Circle in a plane, Sphere in XYZ.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0278-Q04",
+    "version": 1,
+    "stem": "The definitions slide says solvable means unique, but later discusses algorithms finding all possible solutions. Which interpretation avoids that contradiction?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o3",
+        "text": "An IK algorithm must discard all but one branch before existence is checked"
+      },
+      {
+        "id": "o4",
+        "text": "A closed form guarantees every target is reachable"
+      },
+      {
+        "id": "o1",
+        "text": "Solvability does not require uniqueness; a method may return several admissible branches"
+      },
+      {
+        "id": "o2",
+        "text": "Any second solution makes an IK problem mathematically impossible"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0278",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 278,
+        "kind": "statement",
+        "locator": "Printed slide 10: displayed definition row relevant to the question, including literal typo where stated",
+        "evidenceText": "Linear: f(x+y)=f(x)+f(y); printed homogeneity f(alpha x)=alpha x. Solvable: Has a unique solution. Closed form: computed algebraically and provides all solutions. Numerical uses iterative computation; algebraic uses identities/substitution; geometric uses law of cosines. Sub-Space: Smaller Region; Circle in a plane, Sphere in XYZ.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0279",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 279,
+        "kind": "statement",
+        "locator": "Printed slide 11: nonlinear-equation and algorithmic-solvability discussion",
+        "evidenceText": "Nonlinear and transcendental equations. A manipulator is solvable if an algorithm can find the joint variables for a desired position and orientation. Algorithm should find all possible solutions. Analytical methods exploit intersecting axes or alpha_i values0/90 degrees.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0276",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 276,
+        "kind": "statement",
+        "locator": "Printed slide 8: solution-selection bullets and obstacle/elbow figure",
+        "evidenceText": "Multiple solutions: find all possible solutions and choose one; prefer minimum joint rotation; obstacles may necessitate other configuration. PUMA560 can have8 solutions for a single goal. Figure shows solid/dashed elbow choices and obstacle.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0278-Q05",
+    "version": 1,
+    "stem": "Why should the slide’s “circle in a plane” not be taught as a general example of a linear vector subspace?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Every smaller subset of a plane is automatically a vector subspace"
+      },
+      {
+        "id": "o3",
+        "text": "A vector subspace must have a curved boundary"
+      },
+      {
+        "id": "o4",
+        "text": "A unit circle contains every scalar multiple of each point"
+      },
+      {
+        "id": "o1",
+        "text": "A unit circle fails closure under scalar multiplication:2(1,0) is not on it"
+      }
+    ],
+    "assumptions": [
+      "This question explicitly distinguishes the slide’s colloquial “smaller region” usage from a linear vector subspace."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0278",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 278,
+        "kind": "statement",
+        "locator": "Printed slide 10: displayed definition row relevant to the question, including literal typo where stated",
+        "evidenceText": "Linear: f(x+y)=f(x)+f(y); printed homogeneity f(alpha x)=alpha x. Solvable: Has a unique solution. Closed form: computed algebraically and provides all solutions. Numerical uses iterative computation; algebraic uses identities/substitution; geometric uses law of cosines. Sub-Space: Smaller Region; Circle in a plane, Sphere in XYZ.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0279-Q01",
+    "version": 1,
+    "stem": "Which structural features are stated as helping analytical IK?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Increasing all link lengths without changing any equations"
+      },
+      {
+        "id": "o1",
+        "text": "Intersecting joint axes and many zero/right-angle link twists"
+      },
+      {
+        "id": "o2",
+        "text": "An arbitrary nonzero translation in every direction guarantees uniqueness"
+      },
+      {
+        "id": "o3",
+        "text": "Removing all geometric information from the model"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0279",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 279,
+        "kind": "statement",
+        "locator": "Printed slide 11: nonlinear-equation and algorithmic-solvability discussion",
+        "evidenceText": "Nonlinear and transcendental equations. A manipulator is solvable if an algorithm can find the joint variables for a desired position and orientation. Algorithm should find all possible solutions. Analytical methods exploit intersecting axes or alpha_i values0/90 degrees.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0279-Q02",
+    "version": 1,
+    "stem": "Which qualification is necessary when reading the source’s broad claim that all6DOF serial R/P systems are solvable numerically?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A particular target may be unreachable, and an iterative method still needs convergence/validity checks"
+      },
+      {
+        "id": "o2",
+        "text": "Every target in space is reachable because the robot has6DOF"
+      },
+      {
+        "id": "o3",
+        "text": "Every initial numerical guess gives the same unique branch"
+      },
+      {
+        "id": "o4",
+        "text": "Numerical methods never need singularity handling"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0279",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 279,
+        "kind": "statement",
+        "locator": "Printed slide 11: nonlinear-equation and algorithmic-solvability discussion",
+        "evidenceText": "Nonlinear and transcendental equations. A manipulator is solvable if an algorithm can find the joint variables for a desired position and orientation. Algorithm should find all possible solutions. Analytical methods exploit intersecting axes or alpha_i values0/90 degrees.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0293",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 293,
+        "kind": "statement",
+        "locator": "Printed slide 25: four summary bullets, including numerical singularity handling",
+        "evidenceText": "IK finds joint configurations for desired end-effector pose. Analytical closed form fast but limited to specific geometries. Numerical Jacobian-based methods work generally but need singularity handling. Differential drive: individual wheel angular velocities from(v,omega).",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0280-Q01",
+    "version": 1,
+    "stem": "Which mapping matches the lecture’s method definitions?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Numerical: a closed expression requiring no iterations by definition"
+      },
+      {
+        "id": "o1",
+        "text": "Algebraic: identities/substitution; geometric: spatial relations/law of cosines; numerical: iteration"
+      },
+      {
+        "id": "o2",
+        "text": "Algebraic: random trial only; geometric: text parsing; numerical: no computation"
+      },
+      {
+        "id": "o3",
+        "text": "Algebraic: collision checking only; geometric: identical to all numerical iterations"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0278",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 278,
+        "kind": "statement",
+        "locator": "Printed slide 10: displayed definition row relevant to the question, including literal typo where stated",
+        "evidenceText": "Linear: f(x+y)=f(x)+f(y); printed homogeneity f(alpha x)=alpha x. Solvable: Has a unique solution. Closed form: computed algebraically and provides all solutions. Numerical uses iterative computation; algebraic uses identities/substitution; geometric uses law of cosines. Sub-Space: Smaller Region; Circle in a plane, Sphere in XYZ.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0280",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 280,
+        "kind": "statement",
+        "locator": "Printed slide 12: solution-method classification and sufficient intersection condition",
+        "evidenceText": "Numerical (iterative) versus closed-form (algebraic and geometric). Prefer analytical solutions for computation. Sufficient condition for6R closed-form solution: three neighboring joint axes intersect at a single point.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0280-Q02",
+    "version": 1,
+    "stem": "Which condition does the lecture present as sufficient for a6R closed-form IK solution?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "All six axes must be distinct parallel lines"
+      },
+      {
+        "id": "o4",
+        "text": "Every link length must be equal"
+      },
+      {
+        "id": "o1",
+        "text": "Three neighboring joint axes intersect at a single point"
+      },
+      {
+        "id": "o2",
+        "text": "Any three non-neighboring axes are merely nonparallel"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0280",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 280,
+        "kind": "statement",
+        "locator": "Printed slide 12: solution-method classification and sufficient intersection condition",
+        "evidenceText": "Numerical (iterative) versus closed-form (algebraic and geometric). Prefer analytical solutions for computation. Sufficient condition for6R closed-form solution: three neighboring joint axes intersect at a single point.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0280-Q03",
+    "version": 1,
+    "stem": "What does “sufficient” mean for that geometric condition?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Meeting it makes every Cartesian pose reachable"
+      },
+      {
+        "id": "o4",
+        "text": "Meeting it forces exactly one IK branch"
+      },
+      {
+        "id": "o1",
+        "text": "Meeting it supports the stated closed-form result, without saying it is necessary for every solvable design"
+      },
+      {
+        "id": "o2",
+        "text": "Failing it proves no closed-form solution can ever exist"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0280",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 280,
+        "kind": "statement",
+        "locator": "Printed slide 12: solution-method classification and sufficient intersection condition",
+        "evidenceText": "Numerical (iterative) versus closed-form (algebraic and geometric). Prefer analytical solutions for computation. Sufficient condition for6R closed-form solution: three neighboring joint axes intersect at a single point.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0280-Q04",
+    "version": 1,
+    "stem": "Which trade-off matches the lecture without treating speed claims as universal benchmarks?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Numerical IK never uses a Jacobian"
+      },
+      {
+        "id": "o1",
+        "text": "Closed form exploits suitable geometry and can reduce repeated computation; numerical methods are more general but require safeguards"
+      },
+      {
+        "id": "o2",
+        "text": "Numerical methods are always faster on every processor"
+      },
+      {
+        "id": "o3",
+        "text": "Closed form removes all physical constraints"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0280",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 280,
+        "kind": "statement",
+        "locator": "Printed slide 12: solution-method classification and sufficient intersection condition",
+        "evidenceText": "Numerical (iterative) versus closed-form (algebraic and geometric). Prefer analytical solutions for computation. Sufficient condition for6R closed-form solution: three neighboring joint axes intersect at a single point.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0293",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 293,
+        "kind": "statement",
+        "locator": "Printed slide 25: four summary bullets, including numerical singularity handling",
+        "evidenceText": "IK finds joint configurations for desired end-effector pose. Analytical closed form fast but limited to specific geometries. Numerical Jacobian-based methods work generally but need singularity handling. Differential drive: individual wheel angular velocities from(v,omega).",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0281-Q01",
+    "version": 1,
+    "stem": "Which feature defines the spherical wrist in this lecture?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Three wrist rotation axes intersect at a common point, typically joints4–6"
+      },
+      {
+        "id": "o2",
+        "text": "Three wrist links must have identical positive lengths"
+      },
+      {
+        "id": "o3",
+        "text": "All three wrist axes must be parallel and separate"
+      },
+      {
+        "id": "o4",
+        "text": "The whole robot must have only three joints"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0281",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 281,
+        "kind": "statement",
+        "locator": "Printed slide 13: spherical-wrist labels, Pieper reference and lookup-table bullets",
+        "evidenceText": "Simple industrial geometry reduces computational burden. Spherical wrist:3 intersecting axes, usually last3 joints; picture joint4 wrist rotation, joint5 wrist bend, joint6 flange rotation. Pieper solution. Sine/cosine lookup, store only one quarter table using symmetry.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0281-Q02",
+    "version": 1,
+    "stem": "Which order matches the labels in the wrist picture?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Joint4 wrist rotation; joint5 wrist bend; joint6 flange rotation"
+      },
+      {
+        "id": "o2",
+        "text": "Joint4 flange rotation; joint5 base translation; joint6 wrist bend"
+      },
+      {
+        "id": "o3",
+        "text": "Joint4 elbow extension; joint5 gripper opening; joint6 camera focus"
+      },
+      {
+        "id": "o4",
+        "text": "Joint4 wrist bend; joint5 flange rotation; joint6 base yaw"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0281",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 281,
+        "kind": "figure",
+        "locator": "Printed slide 13: spherical-wrist labels, Pieper reference and lookup-table bullets",
+        "evidenceText": "Simple industrial geometry reduces computational burden. Spherical wrist:3 intersecting axes, usually last3 joints; picture joint4 wrist rotation, joint5 wrist bend, joint6 flange rotation. Pieper solution. Sine/cosine lookup, store only one quarter table using symmetry.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0281-Q03",
+    "version": 1,
+    "stem": "Which named closed-form approach is associated with the spherical-wrist discussion?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Pieper’s solution"
+      },
+      {
+        "id": "o2",
+        "text": "Euler forward time integration"
+      },
+      {
+        "id": "o3",
+        "text": "Monte Carlo sampling"
+      },
+      {
+        "id": "o4",
+        "text": "Finite-element meshing"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0281",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 281,
+        "kind": "statement",
+        "locator": "Printed slide 13: spherical-wrist labels, Pieper reference and lookup-table bullets",
+        "evidenceText": "Simple industrial geometry reduces computational burden. Spherical wrist:3 intersecting axes, usually last3 joints; picture joint4 wrist rotation, joint5 wrist bend, joint6 flange rotation. Pieper solution. Sine/cosine lookup, store only one quarter table using symmetry.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0281-Q04",
+    "version": 1,
+    "stem": "Using first-quadrant trigonometric values and symmetry, what are sin150° and cos150°?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "−1/2 and √3/2"
+      },
+      {
+        "id": "o3",
+        "text": "1/2 and √3/2"
+      },
+      {
+        "id": "o4",
+        "text": "−√3/2 and1/2"
+      },
+      {
+        "id": "o1",
+        "text": "1/2 and −√3/2"
+      }
+    ],
+    "assumptions": [
+      "Angles in degrees; this is a generated illustration of the slide’s quarter-table symmetry."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0281",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 281,
+        "kind": "derivation",
+        "locator": "Printed slide 13: spherical-wrist labels, Pieper reference and lookup-table bullets",
+        "evidenceText": "Simple industrial geometry reduces computational burden. Spherical wrist:3 intersecting axes, usually last3 joints; picture joint4 wrist rotation, joint5 wrist bend, joint6 flange rotation. Pieper solution. Sine/cosine lookup, store only one quarter table using symmetry.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0281-Q05",
+    "version": 1,
+    "stem": "Why can sine and cosine share a quarter-wave lookup table?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Every quadrant has the same signs for both functions"
+      },
+      {
+        "id": "o4",
+        "text": "A table makes all interpolation errors impossible"
+      },
+      {
+        "id": "o1",
+        "text": "Their phase/complement and quadrant symmetries reconstruct the other values with index/sign changes"
+      },
+      {
+        "id": "o2",
+        "text": "Sine and cosine are equal at every angle"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0281",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 281,
+        "kind": "statement",
+        "locator": "Printed slide 13: spherical-wrist labels, Pieper reference and lookup-table bullets",
+        "evidenceText": "Simple industrial geometry reduces computational burden. Spherical wrist:3 intersecting axes, usually last3 joints; picture joint4 wrist rotation, joint5 wrist bend, joint6 flange rotation. Pieper solution. Sine/cosine lookup, store only one quarter table using symmetry.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0282-Q01",
+    "version": 1,
+    "stem": "Which expressions give the frame3 origin in the displayed planar3R transform?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "x=L1 cosθ1+L2 cosθ2, y=L1 sinθ1+L2 sinθ2"
+      },
+      {
+        "id": "o3",
+        "text": "x=L1 cosθ1+L2 cos(θ1+θ2)+L3 cosφ, y=L1 sinθ1+L2 sin(θ1+θ2)+L3 sinφ for a required nonzero L3"
+      },
+      {
+        "id": "o4",
+        "text": "x=L1 cos(θ1+θ2+θ3), y=L2 sin(θ1+θ2+θ3)"
+      },
+      {
+        "id": "o1",
+        "text": "x=L1 cosθ1+L2 cos(θ1+θ2), y=L1 sinθ1+L2 sin(θ1+θ2)"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0282",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 282,
+        "kind": "equation",
+        "locator": "Printed slide 14: planar3R homogeneous matrix, DH table and pose equations",
+        "evidenceText": "^0_3 T = [[c123,-s123,0,L1*c1+L2*c12],[s123,c123,0,L1*s1+L2*s12],[0,0,1,0],[0,0,0,1]]. Desired pose has cphi,-sphi,x; sphi,cphi,y. DH rows(i,alpha_(i-1),a_(i-1),d_i,theta_i): (1,0,0,0,theta1),(2,0,L1,0,theta2),(3,0,L2,0,theta3). phi orientation of third link with respect to X0.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0282-Q02",
+    "version": 1,
+    "stem": "Which quantity changes when only θ3 changes in that model?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "The base frame origin moves"
+      },
+      {
+        "id": "o1",
+        "text": "Frame3 orientation, but not its origin coordinates"
+      },
+      {
+        "id": "o2",
+        "text": "Both origin coordinates necessarily change"
+      },
+      {
+        "id": "o3",
+        "text": "Only L1 changes"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0282",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 282,
+        "kind": "equation",
+        "locator": "Printed slide 14: planar3R homogeneous matrix, DH table and pose equations",
+        "evidenceText": "^0_3 T = [[c123,-s123,0,L1*c1+L2*c12],[s123,c123,0,L1*s1+L2*s12],[0,0,1,0],[0,0,0,1]]. Desired pose has cphi,-sphi,x; sphi,cphi,y. DH rows(i,alpha_(i-1),a_(i-1),d_i,theta_i): (1,0,0,0,theta1),(2,0,L1,0,theta2),(3,0,L2,0,theta3). phi orientation of third link with respect to X0.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0282-Q03",
+    "version": 1,
+    "stem": "Which ordered a_(i−1) entries are shown in the three DH rows?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "L1,0,L2"
+      },
+      {
+        "id": "o4",
+        "text": "0,0,0"
+      },
+      {
+        "id": "o1",
+        "text": "0,L1,L2"
+      },
+      {
+        "id": "o2",
+        "text": "L1,L2,L3"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0282",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 282,
+        "kind": "figure",
+        "locator": "Printed slide 14: planar3R homogeneous matrix, DH table and pose equations",
+        "evidenceText": "^0_3 T = [[c123,-s123,0,L1*c1+L2*c12],[s123,c123,0,L1*s1+L2*s12],[0,0,1,0],[0,0,0,1]]. Desired pose has cphi,-sphi,x; sphi,cphi,y. DH rows(i,alpha_(i-1),a_(i-1),d_i,theta_i): (1,0,0,0,theta1),(2,0,L1,0,theta2),(3,0,L2,0,theta3). phi orientation of third link with respect to X0.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0282-Q04",
+    "version": 1,
+    "stem": "What are all three α_(i−1) and d_i values in that planar DH table?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "All d values are1 and α values areL1"
+      },
+      {
+        "id": "o1",
+        "text": "All are0"
+      },
+      {
+        "id": "o2",
+        "text": "All α values are90° and all d values areL1"
+      },
+      {
+        "id": "o3",
+        "text": "α values equalθ1,θ2,θ3 and d values are0"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0282",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 282,
+        "kind": "figure",
+        "locator": "Printed slide 14: planar3R homogeneous matrix, DH table and pose equations",
+        "evidenceText": "^0_3 T = [[c123,-s123,0,L1*c1+L2*c12],[s123,c123,0,L1*s1+L2*s12],[0,0,1,0],[0,0,0,1]]. Desired pose has cphi,-sphi,x; sphi,cphi,y. DH rows(i,alpha_(i-1),a_(i-1),d_i,theta_i): (1,0,0,0,theta1),(2,0,L1,0,theta2),(3,0,L2,0,theta3). phi orientation of third link with respect to X0.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0282-Q05",
+    "version": 1,
+    "stem": "Why do cφ=c123 and sφ=s123 not supply two independent orientation freedoms?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Sine and cosine describe the same one-dimensional planar angle and satisfy c²+s²=1"
+      },
+      {
+        "id": "o2",
+        "text": "Only cosine matters, so sine can be arbitrary"
+      },
+      {
+        "id": "o3",
+        "text": "A planar angle has three independent orientation freedoms"
+      },
+      {
+        "id": "o4",
+        "text": "The two equations make the position equations unnecessary"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0282",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 282,
+        "kind": "equation",
+        "locator": "Printed slide 14: planar3R homogeneous matrix, DH table and pose equations",
+        "evidenceText": "^0_3 T = [[c123,-s123,0,L1*c1+L2*c12],[s123,c123,0,L1*s1+L2*s12],[0,0,1,0],[0,0,0,1]]. Desired pose has cphi,-sphi,x; sphi,cphi,y. DH rows(i,alpha_(i-1),a_(i-1),d_i,theta_i): (1,0,0,0,theta1),(2,0,L1,0,theta2),(3,0,L2,0,theta3). phi orientation of third link with respect to X0.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0282-Q06",
+    "version": 1,
+    "stem": "For L1=L2=1m and (θ1,θ2,θ3)=(0°,90°,−90°), what pose follows?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Position(1,1)m and orientation90°"
+      },
+      {
+        "id": "o4",
+        "text": "Position(0,2)m and orientation−90°"
+      },
+      {
+        "id": "o1",
+        "text": "Position(1,1)m and orientation0°"
+      },
+      {
+        "id": "o2",
+        "text": "Position(2,0)m and orientation0°"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied.",
+      "Angles given in degrees."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0282",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 282,
+        "kind": "equation",
+        "locator": "Printed slide 14: planar3R homogeneous matrix, DH table and pose equations",
+        "evidenceText": "^0_3 T = [[c123,-s123,0,L1*c1+L2*c12],[s123,c123,0,L1*s1+L2*s12],[0,0,1,0],[0,0,0,1]]. Desired pose has cphi,-sphi,x; sphi,cphi,y. DH rows(i,alpha_(i-1),a_(i-1),d_i,theta_i): (1,0,0,0,theta1),(2,0,L1,0,theta2),(3,0,L2,0,theta3). phi orientation of third link with respect to X0.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0283-Q01",
+    "version": 1,
+    "stem": "Which identity simplifies the cross term when x²+y² is formed from the planar position equations?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "cosθ1 cos(θ1+θ2)+sinθ1 sin(θ1+θ2)=sinθ2"
+      },
+      {
+        "id": "o3",
+        "text": "cosθ1+sinθ1=1 for everyθ1"
+      },
+      {
+        "id": "o4",
+        "text": "cos(θ1+θ2)=cosθ1+cosθ2"
+      },
+      {
+        "id": "o1",
+        "text": "cosθ1 cos(θ1+θ2)+sinθ1 sin(θ1+θ2)=cosθ2"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0282",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 282,
+        "kind": "equation",
+        "locator": "Printed slide 14: planar3R homogeneous matrix, DH table and pose equations",
+        "evidenceText": "^0_3 T = [[c123,-s123,0,L1*c1+L2*c12],[s123,c123,0,L1*s1+L2*s12],[0,0,1,0],[0,0,0,1]]. Desired pose has cphi,-sphi,x; sphi,cphi,y. DH rows(i,alpha_(i-1),a_(i-1),d_i,theta_i): (1,0,0,0,theta1),(2,0,L1,0,theta2),(3,0,L2,0,theta3). phi orientation of third link with respect to X0.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0283",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 283,
+        "kind": "equation",
+        "locator": "Printed slide 15: squared-position derivation, cosine domain and signed-sine/atan2 equations",
+        "evidenceText": "x²+y²=L1²+L2²+2L1L2*cos(theta2). c2=(x²+y²-L1²-L2²)/(2L1L2); c2 must lie[-1,1]. s2=±sqrt(1-c2²); theta2=Atan2(s2,c2). Printed text says failure means goal too far away.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0283-Q02",
+    "version": 1,
+    "stem": "Which formula is obtained for cosθ2 after eliminating θ1?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "(x+y−L1−L2)/(2L1L2)"
+      },
+      {
+        "id": "o4",
+        "text": "(x²+y²)/(L1+L2)"
+      },
+      {
+        "id": "o1",
+        "text": "(x²+y²−L1²−L2²)/(2L1L2)"
+      },
+      {
+        "id": "o2",
+        "text": "(L1²+L2²−x²−y²)/(2L1L2)"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0283",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 283,
+        "kind": "equation",
+        "locator": "Printed slide 15: squared-position derivation, cosine domain and signed-sine/atan2 equations",
+        "evidenceText": "x²+y²=L1²+L2²+2L1L2*cos(theta2). c2=(x²+y²-L1²-L2²)/(2L1L2); c2 must lie[-1,1]. s2=±sqrt(1-c2²); theta2=Atan2(s2,c2). Printed text says failure means goal too far away.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0283-Q03",
+    "version": 1,
+    "stem": "Which pair of conditions is equivalent to −1≤cosθ2≤1 for positive link lengths?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Every x,y pair is allowed when a third wrist joint exists"
+      },
+      {
+        "id": "o1",
+        "text": "|L1−L2|≤√(x²+y²)≤L1+L2"
+      },
+      {
+        "id": "o2",
+        "text": "Only√(x²+y²)≤L1+L2"
+      },
+      {
+        "id": "o3",
+        "text": "Only√(x²+y²)≥|L1−L2|"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0275",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 275,
+        "kind": "statement",
+        "locator": "Printed slide 7: workspace definitions and equal/unequal planar2R examples",
+        "evidenceText": "Dextrous workspace: positions reachable with all orientations. Reachable workspace: positions reachable with at least one orientation. Equal2R links: reachable disk radius2L; dextrous origin. Unequal links: annulus outer L1+L2, inner L1-L2; no dextrous workspace.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0283",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 283,
+        "kind": "equation",
+        "locator": "Printed slide 15: squared-position derivation, cosine domain and signed-sine/atan2 equations",
+        "evidenceText": "x²+y²=L1²+L2²+2L1L2*cos(theta2). c2=(x²+y²-L1²-L2²)/(2L1L2); c2 must lie[-1,1]. s2=±sqrt(1-c2²); theta2=Atan2(s2,c2). Printed text says failure means goal too far away.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0287",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 287,
+        "kind": "equation",
+        "locator": "Printed slide 19: reachability/branch bullets and β/cosψ equations",
+        "evidenceText": "Triangle existence text gives sqrt(x²+y²)<=L1+L2; chooses theta2 between0 and-180 degrees, other solution theta2prime=-theta2. beta=Atan2(y,x); cos(psi)=(x²+y²+L1²-L2²)/(2L1*sqrt(x²+y²)).",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0283-Q04",
+    "version": 1,
+    "stem": "For L1=2,L2=1 and target(x,y)=(0.5,0), what is c2 and why is the pose unreachable?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "c2=0, so the elbow angle is±90°"
+      },
+      {
+        "id": "o1",
+        "text": "c2=−1.1875, so the target is too close to the base"
+      },
+      {
+        "id": "o2",
+        "text": "c2=1.1875, so the target is too far away"
+      },
+      {
+        "id": "o3",
+        "text": "c2=−0.1875, so two ordinary elbow branches exist"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied.",
+      "All lengths use a common unit."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0283",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 283,
+        "kind": "equation",
+        "locator": "Printed slide 15: squared-position derivation, cosine domain and signed-sine/atan2 equations",
+        "evidenceText": "x²+y²=L1²+L2²+2L1L2*cos(theta2). c2=(x²+y²-L1²-L2²)/(2L1L2); c2 must lie[-1,1]. s2=±sqrt(1-c2²); theta2=Atan2(s2,c2). Printed text says failure means goal too far away.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0275",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 275,
+        "kind": "derivation",
+        "locator": "Printed slide 7: workspace definitions and equal/unequal planar2R examples",
+        "evidenceText": "Dextrous workspace: positions reachable with all orientations. Reachable workspace: positions reachable with at least one orientation. Equal2R links: reachable disk radius2L; dextrous origin. Unequal links: annulus outer L1+L2, inner L1-L2; no dextrous workspace.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0283-Q05",
+    "version": 1,
+    "stem": "For L1=2,L2=1 and target radius3.5, what does c2 show?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "c2=0.8125; the target is reachable"
+      },
+      {
+        "id": "o4",
+        "text": "c2=1; the target is exactly at maximum extension"
+      },
+      {
+        "id": "o1",
+        "text": "c2=1.8125; the target exceeds maximum extension"
+      },
+      {
+        "id": "o2",
+        "text": "c2=−1.8125; the target lies in the inner hole"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied.",
+      "All lengths use a common unit."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0283",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 283,
+        "kind": "equation",
+        "locator": "Printed slide 15: squared-position derivation, cosine domain and signed-sine/atan2 equations",
+        "evidenceText": "x²+y²=L1²+L2²+2L1L2*cos(theta2). c2=(x²+y²-L1²-L2²)/(2L1L2); c2 must lie[-1,1]. s2=±sqrt(1-c2²); theta2=Atan2(s2,c2). Printed text says failure means goal too far away.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0283-Q06",
+    "version": 1,
+    "stem": "For −1<c2<1, how are both ordinary elbow-angle branches obtained?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "s2=√(1−c2²) only; the negative branch is always invalid"
+      },
+      {
+        "id": "o3",
+        "text": "θ2=atan2(c2,s2), with the arguments exchanged"
+      },
+      {
+        "id": "o4",
+        "text": "s2=1−c2², thenθ2=s2/c2"
+      },
+      {
+        "id": "o1",
+        "text": "s2=±√(1−c2²), then θ2=atan2(s2,c2)"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0283",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 283,
+        "kind": "equation",
+        "locator": "Printed slide 15: squared-position derivation, cosine domain and signed-sine/atan2 equations",
+        "evidenceText": "x²+y²=L1²+L2²+2L1L2*cos(theta2). c2=(x²+y²-L1²-L2²)/(2L1L2); c2 must lie[-1,1]. s2=±sqrt(1-c2²); theta2=Atan2(s2,c2). Printed text says failure means goal too far away.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0283-Q07",
+    "version": 1,
+    "stem": "For c2=−1/2 and s2=√3/2, which θ2 is returned by atan2(s2,c2) in(−180°,180°]?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "30°"
+      },
+      {
+        "id": "o4",
+        "text": "−120°"
+      },
+      {
+        "id": "o1",
+        "text": "120°"
+      },
+      {
+        "id": "o2",
+        "text": "−60°"
+      }
+    ],
+    "assumptions": [
+      "Degrees; standard atan2(y,x) argument order and stated principal interval."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0283",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 283,
+        "kind": "equation",
+        "locator": "Printed slide 15: squared-position derivation, cosine domain and signed-sine/atan2 equations",
+        "evidenceText": "x²+y²=L1²+L2²+2L1L2*cos(theta2). c2=(x²+y²-L1²-L2²)/(2L1L2); c2 must lie[-1,1]. s2=±sqrt(1-c2²); theta2=Atan2(s2,c2). Printed text says failure means goal too far away.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0283-Q08",
+    "version": 1,
+    "stem": "At c2=1 or c2=−1, what happens to the ±√(1−c2²) branches?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o4",
+        "text": "The arm has two distinct sine signs with nonzero magnitude"
+      },
+      {
+        "id": "o1",
+        "text": "The sine is0 and the elbow branches coincide modulo2π"
+      },
+      {
+        "id": "o2",
+        "text": "Four distinct nonzero sine branches appear"
+      },
+      {
+        "id": "o3",
+        "text": "The elbow becomes unreachable in every case"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0283",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 283,
+        "kind": "equation",
+        "locator": "Printed slide 15: squared-position derivation, cosine domain and signed-sine/atan2 equations",
+        "evidenceText": "x²+y²=L1²+L2²+2L1L2*cos(theta2). c2=(x²+y²-L1²-L2²)/(2L1L2); c2 must lie[-1,1]. s2=±sqrt(1-c2²); theta2=Atan2(s2,c2). Printed text says failure means goal too far away.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0284-Q01",
+    "version": 1,
+    "stem": "Which definitions lead to x=k1 cosθ1−k2 sinθ1 and y=k1 sinθ1+k2 cosθ1?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "k1=L1+L2 cosθ2, k2=L2 sinθ2"
+      },
+      {
+        "id": "o2",
+        "text": "k1=L1 cosθ2,k2=L2+sinθ2"
+      },
+      {
+        "id": "o3",
+        "text": "k1=L1+L2 sinθ2,k2=L2 cosθ2"
+      },
+      {
+        "id": "o4",
+        "text": "k1=x+y,k2=x−y"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0282",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 282,
+        "kind": "equation",
+        "locator": "Printed slide 14: planar3R homogeneous matrix, DH table and pose equations",
+        "evidenceText": "^0_3 T = [[c123,-s123,0,L1*c1+L2*c12],[s123,c123,0,L1*s1+L2*s12],[0,0,1,0],[0,0,0,1]]. Desired pose has cphi,-sphi,x; sphi,cphi,y. DH rows(i,alpha_(i-1),a_(i-1),d_i,theta_i): (1,0,0,0,theta1),(2,0,L1,0,theta2),(3,0,L2,0,theta3). phi orientation of third link with respect to X0.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0284",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 284,
+        "kind": "equation",
+        "locator": "Printed slide 16: k1/k2 definitions, polar triangle and shoulder derivation; middle printed line preserved",
+        "evidenceText": "x=k1*cos(theta1)-k2*sin(theta1); y=k1*sin(theta1)+k2*cos(theta1). k1=L1+L2*c2;k2=L2*s2;r=sqrt(k1²+k2²);gamma=Atan2(k2,k1). Printed middle x/r=cos(gamma)cos(theta1)-sin(gamma)cos(theta1). Later x/r=cos(gamma+theta1),y/r=sin(gamma+theta1),theta1=Atan2(y,x)-Atan2(k2,k1). Triangle legs k1,k2,hypotenuse r.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0284-Q02",
+    "version": 1,
+    "stem": "Which quantities correspond to the legs, hypotenuse and angle in the little k-triangle?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Legs x,y; hypotenuse θ1; γ=k1+k2"
+      },
+      {
+        "id": "o3",
+        "text": "Legs L1,L2; hypotenuse θ2; γ=atan2(k1,k2)"
+      },
+      {
+        "id": "o4",
+        "text": "Legs cosθ1,sinθ1; hypotenuse L1+L2 at every pose"
+      },
+      {
+        "id": "o1",
+        "text": "Legs k1,k2; hypotenuse r=√(k1²+k2²); γ=atan2(k2,k1)"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0284",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 284,
+        "kind": "figure",
+        "locator": "Printed slide 16: k1/k2 definitions, polar triangle and shoulder derivation; middle printed line preserved",
+        "evidenceText": "x=k1*cos(theta1)-k2*sin(theta1); y=k1*sin(theta1)+k2*cos(theta1). k1=L1+L2*c2;k2=L2*s2;r=sqrt(k1²+k2²);gamma=Atan2(k2,k1). Printed middle x/r=cos(gamma)cos(theta1)-sin(gamma)cos(theta1). Later x/r=cos(gamma+theta1),y/r=sin(gamma+theta1),theta1=Atan2(y,x)-Atan2(k2,k1). Triangle legs k1,k2,hypotenuse r.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0284-Q03",
+    "version": 1,
+    "stem": "Which explicit correction makes the slide’s middle x/r expansion consistent with x=k1 cosθ1−k2 sinθ1?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "x/r=cosγ sinθ1+sinγ sinθ1"
+      },
+      {
+        "id": "o4",
+        "text": "x/r=cos(γ−θ1) for allγ,θ1"
+      },
+      {
+        "id": "o1",
+        "text": "x/r=cosγ cosθ1−sinγ sinθ1"
+      },
+      {
+        "id": "o2",
+        "text": "x/r=cosγ cosθ1−sinγ cosθ1 as printed"
+      }
+    ],
+    "assumptions": [
+      "r>0; question asks for an explicit repair of the printed middle line, not silent endorsement."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0284",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 284,
+        "kind": "equation",
+        "locator": "Printed slide 16: k1/k2 definitions, polar triangle and shoulder derivation; middle printed line preserved",
+        "evidenceText": "x=k1*cos(theta1)-k2*sin(theta1); y=k1*sin(theta1)+k2*cos(theta1). k1=L1+L2*c2;k2=L2*s2;r=sqrt(k1²+k2²);gamma=Atan2(k2,k1). Printed middle x/r=cos(gamma)cos(theta1)-sin(gamma)cos(theta1). Later x/r=cos(gamma+theta1),y/r=sin(gamma+theta1),theta1=Atan2(y,x)-Atan2(k2,k1). Triangle legs k1,k2,hypotenuse r.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0284-Q04",
+    "version": 1,
+    "stem": "For r>0, which shoulder formula follows from the corrected equations?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "θ1=atan2(y,x)−atan2(k2,k1)"
+      },
+      {
+        "id": "o2",
+        "text": "θ1=atan2(y,x)+atan2(k2,k1) for both elbow branches"
+      },
+      {
+        "id": "o3",
+        "text": "θ1=atan2(x,y)−atan2(k1,k2)"
+      },
+      {
+        "id": "o4",
+        "text": "θ1=arccos(x/r) with no quadrant or sine check"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied.",
+      "r>0."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0284",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 284,
+        "kind": "equation",
+        "locator": "Printed slide 16: k1/k2 definitions, polar triangle and shoulder derivation; middle printed line preserved",
+        "evidenceText": "x=k1*cos(theta1)-k2*sin(theta1); y=k1*sin(theta1)+k2*cos(theta1). k1=L1+L2*c2;k2=L2*s2;r=sqrt(k1²+k2²);gamma=Atan2(k2,k1). Printed middle x/r=cos(gamma)cos(theta1)-sin(gamma)cos(theta1). Later x/r=cos(gamma+theta1),y/r=sin(gamma+theta1),theta1=Atan2(y,x)-Atan2(k2,k1). Triangle legs k1,k2,hypotenuse r.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0284-Q05",
+    "version": 1,
+    "stem": "For L1=L2=1 and target(1,1), choose the θ2=+90° branch. What is θ1?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "0°"
+      },
+      {
+        "id": "o2",
+        "text": "90°"
+      },
+      {
+        "id": "o3",
+        "text": "45°"
+      },
+      {
+        "id": "o4",
+        "text": "−90°"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied.",
+      "Degrees."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0283",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 283,
+        "kind": "equation",
+        "locator": "Printed slide 15: squared-position derivation, cosine domain and signed-sine/atan2 equations",
+        "evidenceText": "x²+y²=L1²+L2²+2L1L2*cos(theta2). c2=(x²+y²-L1²-L2²)/(2L1L2); c2 must lie[-1,1]. s2=±sqrt(1-c2²); theta2=Atan2(s2,c2). Printed text says failure means goal too far away.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0284",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 284,
+        "kind": "equation",
+        "locator": "Printed slide 16: k1/k2 definitions, polar triangle and shoulder derivation; middle printed line preserved",
+        "evidenceText": "x=k1*cos(theta1)-k2*sin(theta1); y=k1*sin(theta1)+k2*cos(theta1). k1=L1+L2*c2;k2=L2*s2;r=sqrt(k1²+k2²);gamma=Atan2(k2,k1). Printed middle x/r=cos(gamma)cos(theta1)-sin(gamma)cos(theta1). Later x/r=cos(gamma+theta1),y/r=sin(gamma+theta1),theta1=Atan2(y,x)-Atan2(k2,k1). Triangle legs k1,k2,hypotenuse r.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0284-Q06",
+    "version": 1,
+    "stem": "For the same target(1,1) and equal unit links, choose θ2=−90°. What is θ1?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "90°"
+      },
+      {
+        "id": "o2",
+        "text": "0°"
+      },
+      {
+        "id": "o3",
+        "text": "−45°"
+      },
+      {
+        "id": "o4",
+        "text": "180°"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied.",
+      "Degrees."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0283",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 283,
+        "kind": "equation",
+        "locator": "Printed slide 15: squared-position derivation, cosine domain and signed-sine/atan2 equations",
+        "evidenceText": "x²+y²=L1²+L2²+2L1L2*cos(theta2). c2=(x²+y²-L1²-L2²)/(2L1L2); c2 must lie[-1,1]. s2=±sqrt(1-c2²); theta2=Atan2(s2,c2). Printed text says failure means goal too far away.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0284",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 284,
+        "kind": "equation",
+        "locator": "Printed slide 16: k1/k2 definitions, polar triangle and shoulder derivation; middle printed line preserved",
+        "evidenceText": "x=k1*cos(theta1)-k2*sin(theta1); y=k1*sin(theta1)+k2*cos(theta1). k1=L1+L2*c2;k2=L2*s2;r=sqrt(k1²+k2²);gamma=Atan2(k2,k1). Printed middle x/r=cos(gamma)cos(theta1)-sin(gamma)cos(theta1). Later x/r=cos(gamma+theta1),y/r=sin(gamma+theta1),theta1=Atan2(y,x)-Atan2(k2,k1). Triangle legs k1,k2,hypotenuse r.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0284-Q07",
+    "version": 1,
+    "stem": "For equal unit links and target(−1,1), taking θ2=+90°, which θ1 correctly handles the target quadrant?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "135°"
+      },
+      {
+        "id": "o1",
+        "text": "90°"
+      },
+      {
+        "id": "o2",
+        "text": "−90°"
+      },
+      {
+        "id": "o3",
+        "text": "45°"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied.",
+      "Degrees."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0284",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 284,
+        "kind": "equation",
+        "locator": "Printed slide 16: k1/k2 definitions, polar triangle and shoulder derivation; middle printed line preserved",
+        "evidenceText": "x=k1*cos(theta1)-k2*sin(theta1); y=k1*sin(theta1)+k2*cos(theta1). k1=L1+L2*c2;k2=L2*s2;r=sqrt(k1²+k2²);gamma=Atan2(k2,k1). Printed middle x/r=cos(gamma)cos(theta1)-sin(gamma)cos(theta1). Later x/r=cos(gamma+theta1),y/r=sin(gamma+theta1),theta1=Atan2(y,x)-Atan2(k2,k1). Triangle legs k1,k2,hypotenuse r.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0285-Q01",
+    "version": 1,
+    "stem": "From θ1+θ2+θ3=φ, what is the explicitly derived wrist angle, correcting the final line on p288?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "θ3=φ−θ1+θ2"
+      },
+      {
+        "id": "o3",
+        "text": "θ3=φ+θ1+θ2"
+      },
+      {
+        "id": "o4",
+        "text": "θ3=θ1−θ2−φ"
+      },
+      {
+        "id": "o1",
+        "text": "θ3=φ−θ1−θ2"
+      }
+    ],
+    "assumptions": [
+      "Use the displayed angle-sum equation as the premise; the inconsistent final p288 line is explicitly being repaired."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0285",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 285,
+        "kind": "equation",
+        "locator": "Printed slide 17: origin exception and joint-angle-sum equation",
+        "evidenceText": "When x=y=0 theta1 is undefined/arbitrary. theta1+theta2+theta3=Atan2(sphi,cphi)=phi. Algebraic approach manipulates equations into a form with a known solution.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0288",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 288,
+        "kind": "equation",
+        "locator": "Printed slide 20: ψ interval, signed shoulder branch rule, angle sum and inconsistent last line",
+        "evidenceText": "0°<=psi<=180°. theta1=beta+psi for theta2<0; minus sign for theta2>0. theta1+theta2+theta3=phi. Final line printed theta3=phi-theta1+theta2.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0285-Q02",
+    "version": 1,
+    "stem": "For desired φ=0° and the two unit-link solutions to target(1,1), which complete joint triples are correct?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "(0°,90°,0°) and(90°,−90°,90°)"
+      },
+      {
+        "id": "o4",
+        "text": "(45°,90°,−135°) and(45°,−90°,45°)"
+      },
+      {
+        "id": "o1",
+        "text": "(0°,90°,−90°) and(90°,−90°,0°)"
+      },
+      {
+        "id": "o2",
+        "text": "(0°,90°,90°) and(90°,−90°,−180°)"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied.",
+      "Degrees."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0282",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 282,
+        "kind": "equation",
+        "locator": "Printed slide 14: planar3R homogeneous matrix, DH table and pose equations",
+        "evidenceText": "^0_3 T = [[c123,-s123,0,L1*c1+L2*c12],[s123,c123,0,L1*s1+L2*s12],[0,0,1,0],[0,0,0,1]]. Desired pose has cphi,-sphi,x; sphi,cphi,y. DH rows(i,alpha_(i-1),a_(i-1),d_i,theta_i): (1,0,0,0,theta1),(2,0,L1,0,theta2),(3,0,L2,0,theta3). phi orientation of third link with respect to X0.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0283",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 283,
+        "kind": "equation",
+        "locator": "Printed slide 15: squared-position derivation, cosine domain and signed-sine/atan2 equations",
+        "evidenceText": "x²+y²=L1²+L2²+2L1L2*cos(theta2). c2=(x²+y²-L1²-L2²)/(2L1L2); c2 must lie[-1,1]. s2=±sqrt(1-c2²); theta2=Atan2(s2,c2). Printed text says failure means goal too far away.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0284",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 284,
+        "kind": "equation",
+        "locator": "Printed slide 16: k1/k2 definitions, polar triangle and shoulder derivation; middle printed line preserved",
+        "evidenceText": "x=k1*cos(theta1)-k2*sin(theta1); y=k1*sin(theta1)+k2*cos(theta1). k1=L1+L2*c2;k2=L2*s2;r=sqrt(k1²+k2²);gamma=Atan2(k2,k1). Printed middle x/r=cos(gamma)cos(theta1)-sin(gamma)cos(theta1). Later x/r=cos(gamma+theta1),y/r=sin(gamma+theta1),theta1=Atan2(y,x)-Atan2(k2,k1). Triangle legs k1,k2,hypotenuse r.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0285",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 285,
+        "kind": "equation",
+        "locator": "Printed slide 17: origin exception and joint-angle-sum equation",
+        "evidenceText": "When x=y=0 theta1 is undefined/arbitrary. theta1+theta2+theta3=Atan2(sphi,cphi)=phi. Algebraic approach manipulates equations into a form with a known solution.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0288",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 288,
+        "kind": "equation",
+        "locator": "Printed slide 20: ψ interval, signed shoulder branch rule, angle sum and inconsistent last line",
+        "evidenceText": "0°<=psi<=180°. theta1=beta+psi for theta2<0; minus sign for theta2>0. theta1+theta2+theta3=phi. Final line printed theta3=phi-theta1+theta2.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0285-Q03",
+    "version": 1,
+    "stem": "The source says θ1 is arbitrary at x=y=0. Which condition is necessary for that origin to be reachable in the two-link position model?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Both links must point in the same direction"
+      },
+      {
+        "id": "o4",
+        "text": "The third wrist angle alone cancels all translation"
+      },
+      {
+        "id": "o1",
+        "text": "L1=L2 with the links folded oppositely"
+      },
+      {
+        "id": "o2",
+        "text": "L1 andL2 may be any unequal positive lengths"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0275",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 275,
+        "kind": "statement",
+        "locator": "Printed slide 7: workspace definitions and equal/unequal planar2R examples",
+        "evidenceText": "Dextrous workspace: positions reachable with all orientations. Reachable workspace: positions reachable with at least one orientation. Equal2R links: reachable disk radius2L; dextrous origin. Unequal links: annulus outer L1+L2, inner L1-L2; no dextrous workspace.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0282",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 282,
+        "kind": "equation",
+        "locator": "Printed slide 14: planar3R homogeneous matrix, DH table and pose equations",
+        "evidenceText": "^0_3 T = [[c123,-s123,0,L1*c1+L2*c12],[s123,c123,0,L1*s1+L2*s12],[0,0,1,0],[0,0,0,1]]. Desired pose has cphi,-sphi,x; sphi,cphi,y. DH rows(i,alpha_(i-1),a_(i-1),d_i,theta_i): (1,0,0,0,theta1),(2,0,L1,0,theta2),(3,0,L2,0,theta3). phi orientation of third link with respect to X0.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0285",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 285,
+        "kind": "equation",
+        "locator": "Printed slide 17: origin exception and joint-angle-sum equation",
+        "evidenceText": "When x=y=0 theta1 is undefined/arbitrary. theta1+theta2+theta3=Atan2(sphi,cphi)=phi. Algebraic approach manipulates equations into a form with a known solution.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0285-Q04",
+    "version": 1,
+    "stem": "At the reachable equal-link origin with a specified φ, what family of solutions exists?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "extremely_tricky",
+    "options": [
+      {
+        "id": "o1",
+        "text": "θ2=π, θ1 arbitrary, θ3=φ−θ1−π modulo2π"
+      },
+      {
+        "id": "o2",
+        "text": "Exactly two isolated θ1 values regardless ofφ"
+      },
+      {
+        "id": "o3",
+        "text": "θ1=0 is physically mandatory because atan2(0,0) returns0 in some software"
+      },
+      {
+        "id": "o4",
+        "text": "No solution because the ordinary shoulder formula divides byzero"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied.",
+      "Equal positive link lengths and unrestricted wrist angle."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0282",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 282,
+        "kind": "equation",
+        "locator": "Printed slide 14: planar3R homogeneous matrix, DH table and pose equations",
+        "evidenceText": "^0_3 T = [[c123,-s123,0,L1*c1+L2*c12],[s123,c123,0,L1*s1+L2*s12],[0,0,1,0],[0,0,0,1]]. Desired pose has cphi,-sphi,x; sphi,cphi,y. DH rows(i,alpha_(i-1),a_(i-1),d_i,theta_i): (1,0,0,0,theta1),(2,0,L1,0,theta2),(3,0,L2,0,theta3). phi orientation of third link with respect to X0.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0284",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 284,
+        "kind": "equation",
+        "locator": "Printed slide 16: k1/k2 definitions, polar triangle and shoulder derivation; middle printed line preserved",
+        "evidenceText": "x=k1*cos(theta1)-k2*sin(theta1); y=k1*sin(theta1)+k2*cos(theta1). k1=L1+L2*c2;k2=L2*s2;r=sqrt(k1²+k2²);gamma=Atan2(k2,k1). Printed middle x/r=cos(gamma)cos(theta1)-sin(gamma)cos(theta1). Later x/r=cos(gamma+theta1),y/r=sin(gamma+theta1),theta1=Atan2(y,x)-Atan2(k2,k1). Triangle legs k1,k2,hypotenuse r.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0285",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 285,
+        "kind": "equation",
+        "locator": "Printed slide 17: origin exception and joint-angle-sum equation",
+        "evidenceText": "When x=y=0 theta1 is undefined/arbitrary. theta1+theta2+theta3=Atan2(sphi,cphi)=phi. Algebraic approach manipulates equations into a form with a known solution.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0285-Q05",
+    "version": 1,
+    "stem": "When atan2(sφ,cφ) returns a principal angle, what must be remembered when reconstructing joint sums?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Only the raw principal number can ever describe the orientation"
+      },
+      {
+        "id": "o3",
+        "text": "Adding2π changes every rotation-matrix entry"
+      },
+      {
+        "id": "o4",
+        "text": "Every joint angle must itself equal that principal orientation"
+      },
+      {
+        "id": "o1",
+        "text": "Angles differing by2π represent the same planar orientation, though joint limits may distinguish usable representatives"
+      }
+    ],
+    "assumptions": [
+      "Planar revolute joints; choose admissible representatives when actual limits are supplied."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0282",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 282,
+        "kind": "equation",
+        "locator": "Printed slide 14: planar3R homogeneous matrix, DH table and pose equations",
+        "evidenceText": "^0_3 T = [[c123,-s123,0,L1*c1+L2*c12],[s123,c123,0,L1*s1+L2*s12],[0,0,1,0],[0,0,0,1]]. Desired pose has cphi,-sphi,x; sphi,cphi,y. DH rows(i,alpha_(i-1),a_(i-1),d_i,theta_i): (1,0,0,0,theta1),(2,0,L1,0,theta2),(3,0,L2,0,theta3). phi orientation of third link with respect to X0.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0285",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 285,
+        "kind": "equation",
+        "locator": "Printed slide 17: origin exception and joint-angle-sum equation",
+        "evidenceText": "When x=y=0 theta1 is undefined/arbitrary. theta1+theta2+theta3=Atan2(sphi,cphi)=phi. Algebraic approach manipulates equations into a form with a known solution.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0285-Q06",
+    "version": 1,
+    "stem": "Which algorithm order correctly solves a nondegenerate reachable planar3R pose?",
+    "selectionMode": "single",
+    "type": "sequence",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Compute only arccos(c2) → call all other angles zero"
+      },
+      {
+        "id": "o4",
+        "text": "Average the elbow branches → assume the average has the desired pose"
+      },
+      {
+        "id": "o1",
+        "text": "Compute c2 and check reachability → enumerate sine signs andθ2 → computeθ1 per branch → computeθ3 and check constraints"
+      },
+      {
+        "id": "o2",
+        "text": "Computeθ3 arbitrarily → discard negative sine → skip position verification"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied.",
+      "Nondegenerate target: radius>0 and−1<c2<1."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0283",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 283,
+        "kind": "equation",
+        "locator": "Printed slide 15: squared-position derivation, cosine domain and signed-sine/atan2 equations",
+        "evidenceText": "x²+y²=L1²+L2²+2L1L2*cos(theta2). c2=(x²+y²-L1²-L2²)/(2L1L2); c2 must lie[-1,1]. s2=±sqrt(1-c2²); theta2=Atan2(s2,c2). Printed text says failure means goal too far away.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0284",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 284,
+        "kind": "equation",
+        "locator": "Printed slide 16: k1/k2 definitions, polar triangle and shoulder derivation; middle printed line preserved",
+        "evidenceText": "x=k1*cos(theta1)-k2*sin(theta1); y=k1*sin(theta1)+k2*cos(theta1). k1=L1+L2*c2;k2=L2*s2;r=sqrt(k1²+k2²);gamma=Atan2(k2,k1). Printed middle x/r=cos(gamma)cos(theta1)-sin(gamma)cos(theta1). Later x/r=cos(gamma+theta1),y/r=sin(gamma+theta1),theta1=Atan2(y,x)-Atan2(k2,k1). Triangle legs k1,k2,hypotenuse r.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0285",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 285,
+        "kind": "equation",
+        "locator": "Printed slide 17: origin exception and joint-angle-sum equation",
+        "evidenceText": "When x=y=0 theta1 is undefined/arbitrary. theta1+theta2+theta3=Atan2(sphi,cphi)=phi. Algebraic approach manipulates equations into a form with a known solution.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0276",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 276,
+        "kind": "statement",
+        "locator": "Printed slide 8: solution-selection bullets and obstacle/elbow figure",
+        "evidenceText": "Multiple solutions: find all possible solutions and choose one; prefer minimum joint rotation; obstacles may necessitate other configuration. PUMA560 can have8 solutions for a single goal. Figure shows solid/dashed elbow choices and obstacle.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0285-Q07",
+    "version": 1,
+    "stem": "At target(1,1) with unit links and φ=0°, impose0°≤θ1≤45°. Which of the two ordinary branches remains admissible?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "(0°,90°,−90°) only"
+      },
+      {
+        "id": "o2",
+        "text": "(90°,−90°,0°) only"
+      },
+      {
+        "id": "o3",
+        "text": "Both branches"
+      },
+      {
+        "id": "o4",
+        "text": "Neither branch"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied.",
+      "Degrees; only the stated shoulder limit is imposed; other joints unrestricted."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0276",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 276,
+        "kind": "derivation",
+        "locator": "Printed slide 8: solution-selection bullets and obstacle/elbow figure",
+        "evidenceText": "Multiple solutions: find all possible solutions and choose one; prefer minimum joint rotation; obstacles may necessitate other configuration. PUMA560 can have8 solutions for a single goal. Figure shows solid/dashed elbow choices and obstacle.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0282",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 282,
+        "kind": "equation",
+        "locator": "Printed slide 14: planar3R homogeneous matrix, DH table and pose equations",
+        "evidenceText": "^0_3 T = [[c123,-s123,0,L1*c1+L2*c12],[s123,c123,0,L1*s1+L2*s12],[0,0,1,0],[0,0,0,1]]. Desired pose has cphi,-sphi,x; sphi,cphi,y. DH rows(i,alpha_(i-1),a_(i-1),d_i,theta_i): (1,0,0,0,theta1),(2,0,L1,0,theta2),(3,0,L2,0,theta3). phi orientation of third link with respect to X0.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0283",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 283,
+        "kind": "equation",
+        "locator": "Printed slide 15: squared-position derivation, cosine domain and signed-sine/atan2 equations",
+        "evidenceText": "x²+y²=L1²+L2²+2L1L2*cos(theta2). c2=(x²+y²-L1²-L2²)/(2L1L2); c2 must lie[-1,1]. s2=±sqrt(1-c2²); theta2=Atan2(s2,c2). Printed text says failure means goal too far away.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0284",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 284,
+        "kind": "equation",
+        "locator": "Printed slide 16: k1/k2 definitions, polar triangle and shoulder derivation; middle printed line preserved",
+        "evidenceText": "x=k1*cos(theta1)-k2*sin(theta1); y=k1*sin(theta1)+k2*cos(theta1). k1=L1+L2*c2;k2=L2*s2;r=sqrt(k1²+k2²);gamma=Atan2(k2,k1). Printed middle x/r=cos(gamma)cos(theta1)-sin(gamma)cos(theta1). Later x/r=cos(gamma+theta1),y/r=sin(gamma+theta1),theta1=Atan2(y,x)-Atan2(k2,k1). Triangle legs k1,k2,hypotenuse r.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0285",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 285,
+        "kind": "equation",
+        "locator": "Printed slide 17: origin exception and joint-angle-sum equation",
+        "evidenceText": "When x=y=0 theta1 is undefined/arbitrary. theta1+theta2+theta3=Atan2(sphi,cphi)=phi. Algebraic approach manipulates equations into a form with a known solution.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0286-Q01",
+    "version": 1,
+    "stem": "Why does the law-of-cosines expression with −2L1L2 cos(180°+θ2) become+2L1L2 cosθ2?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "The link lengths become negative"
+      },
+      {
+        "id": "o1",
+        "text": "cos(180°+θ2)=−cosθ2, so the two minus signs cancel"
+      },
+      {
+        "id": "o2",
+        "text": "cos(180°+θ2)=cosθ2 for everyθ2"
+      },
+      {
+        "id": "o3",
+        "text": "cos(180°+θ2)=sinθ2"
+      }
+    ],
+    "assumptions": [
+      "The source’s180 is interpreted in degrees; in radians the half-turn isπ."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0286",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 286,
+        "kind": "equation",
+        "locator": "Printed slide 18: law-of-cosines derivation and alternate-elbow figure",
+        "evidenceText": "Geometric figure: two elbow configurations, target(x,y), distance sqrt(x²+y²), bearing beta, offset psi. Law of cosines: x²+y²=L1²+L2²-2L1L2*cos(180+theta2). Thus cos(theta2)=(x²+y²-L1²-L2²)/(2L1L2).",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0287",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 287,
+        "kind": "equation",
+        "locator": "Printed slide 19: reachability/branch bullets and β/cosψ equations",
+        "evidenceText": "Triangle existence text gives sqrt(x²+y²)<=L1+L2; chooses theta2 between0 and-180 degrees, other solution theta2prime=-theta2. beta=Atan2(y,x); cos(psi)=(x²+y²+L1²-L2²)/(2L1*sqrt(x²+y²)).",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0286-Q02",
+    "version": 1,
+    "stem": "What is shared by the algebraic and geometric approaches to this planar arm?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "They give the same c2=(x²+y²−L1²−L2²)/(2L1L2)"
+      },
+      {
+        "id": "o2",
+        "text": "They give opposite c2 values for the same joint-angle convention"
+      },
+      {
+        "id": "o3",
+        "text": "The geometric approach ignores the target radius"
+      },
+      {
+        "id": "o4",
+        "text": "The algebraic approach cannot represent both elbow configurations"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0283",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 283,
+        "kind": "equation",
+        "locator": "Printed slide 15: squared-position derivation, cosine domain and signed-sine/atan2 equations",
+        "evidenceText": "x²+y²=L1²+L2²+2L1L2*cos(theta2). c2=(x²+y²-L1²-L2²)/(2L1L2); c2 must lie[-1,1]. s2=±sqrt(1-c2²); theta2=Atan2(s2,c2). Printed text says failure means goal too far away.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0286",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 286,
+        "kind": "equation",
+        "locator": "Printed slide 18: law-of-cosines derivation and alternate-elbow figure",
+        "evidenceText": "Geometric figure: two elbow configurations, target(x,y), distance sqrt(x²+y²), bearing beta, offset psi. Law of cosines: x²+y²=L1²+L2²-2L1L2*cos(180+theta2). Thus cos(theta2)=(x²+y²-L1²-L2²)/(2L1L2).",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0286-Q03",
+    "version": 1,
+    "stem": "In the geometric figure, what does β=atan2(y,x) represent?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The bearing of the base-to-target line from the positive base x-axis"
+      },
+      {
+        "id": "o2",
+        "text": "The relative elbow angle itself"
+      },
+      {
+        "id": "o3",
+        "text": "The wrist angle relative to link2"
+      },
+      {
+        "id": "o4",
+        "text": "The physical length of link1"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0286",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 286,
+        "kind": "figure",
+        "locator": "Printed slide 18: law-of-cosines derivation and alternate-elbow figure",
+        "evidenceText": "Geometric figure: two elbow configurations, target(x,y), distance sqrt(x²+y²), bearing beta, offset psi. Law of cosines: x²+y²=L1²+L2²-2L1L2*cos(180+theta2). Thus cos(theta2)=(x²+y²-L1²-L2²)/(2L1L2).",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0287",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 287,
+        "kind": "figure",
+        "locator": "Printed slide 19: reachability/branch bullets and β/cosψ equations",
+        "evidenceText": "Triangle existence text gives sqrt(x²+y²)<=L1+L2; chooses theta2 between0 and-180 degrees, other solution theta2prime=-theta2. beta=Atan2(y,x); cos(psi)=(x²+y²+L1²-L2²)/(2L1*sqrt(x²+y²)).",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0287-Q01",
+    "version": 1,
+    "stem": "Why is the slide’s testρ≤L1+L2 insufficient by itself for unequal links?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "It forcesρ to be negative"
+      },
+      {
+        "id": "o1",
+        "text": "It admits targets withρ<|L1−L2| even though no triangle can close"
+      },
+      {
+        "id": "o2",
+        "text": "It rejects every valid extended configuration"
+      },
+      {
+        "id": "o3",
+        "text": "It already guarantees any target orientation with a2R arm"
+      }
+    ],
+    "assumptions": [
+      "ρ=√(x²+y²),L1,L2>0."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0287",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 287,
+        "kind": "equation",
+        "locator": "Printed slide 19: reachability/branch bullets and β/cosψ equations",
+        "evidenceText": "Triangle existence text gives sqrt(x²+y²)<=L1+L2; chooses theta2 between0 and-180 degrees, other solution theta2prime=-theta2. beta=Atan2(y,x); cos(psi)=(x²+y²+L1²-L2²)/(2L1*sqrt(x²+y²)).",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0288",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 288,
+        "kind": "equation",
+        "locator": "Printed slide 20: ψ interval, signed shoulder branch rule, angle sum and inconsistent last line",
+        "evidenceText": "0°<=psi<=180°. theta1=beta+psi for theta2<0; minus sign for theta2>0. theta1+theta2+theta3=phi. Final line printed theta3=phi-theta1+theta2.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0287-Q02",
+    "version": 1,
+    "stem": "For a reachable nonzero target radiusρ, which formula gives the shoulder offset ψ in the diagram?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "cosψ=(L2²+L1²−ρ²)/(2L1ρ)"
+      },
+      {
+        "id": "o4",
+        "text": "cosψ=(ρ+L1−L2)/(2L1ρ)"
+      },
+      {
+        "id": "o1",
+        "text": "cosψ=(ρ²+L1²−L2²)/(2L1ρ)"
+      },
+      {
+        "id": "o2",
+        "text": "cosψ=(ρ²−L1²−L2²)/(2L1L2)"
+      }
+    ],
+    "assumptions": [
+      "ρ>0,L1,L2>0 and target satisfies the triangle inequalities."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0287",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 287,
+        "kind": "equation",
+        "locator": "Printed slide 19: reachability/branch bullets and β/cosψ equations",
+        "evidenceText": "Triangle existence text gives sqrt(x²+y²)<=L1+L2; chooses theta2 between0 and-180 degrees, other solution theta2prime=-theta2. beta=Atan2(y,x); cos(psi)=(x²+y²+L1²-L2²)/(2L1*sqrt(x²+y²)).",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0288",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 288,
+        "kind": "equation",
+        "locator": "Printed slide 20: ψ interval, signed shoulder branch rule, angle sum and inconsistent last line",
+        "evidenceText": "0°<=psi<=180°. theta1=beta+psi for theta2<0; minus sign for theta2>0. theta1+theta2+theta3=phi. Final line printed theta3=phi-theta1+theta2.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0287-Q03",
+    "version": 1,
+    "stem": "For equal unit links and target(1,1), what are β andψ?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "β=−45°,ψ=−45°"
+      },
+      {
+        "id": "o1",
+        "text": "β=45°,ψ=45°"
+      },
+      {
+        "id": "o2",
+        "text": "β=90°,ψ=45°"
+      },
+      {
+        "id": "o3",
+        "text": "β=45°,ψ=90°"
+      }
+    ],
+    "assumptions": [
+      "Degrees;0°≤ψ≤180°."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0287",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 287,
+        "kind": "equation",
+        "locator": "Printed slide 19: reachability/branch bullets and β/cosψ equations",
+        "evidenceText": "Triangle existence text gives sqrt(x²+y²)<=L1+L2; chooses theta2 between0 and-180 degrees, other solution theta2prime=-theta2. beta=Atan2(y,x); cos(psi)=(x²+y²+L1²-L2²)/(2L1*sqrt(x²+y²)).",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0288",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 288,
+        "kind": "equation",
+        "locator": "Printed slide 20: ψ interval, signed shoulder branch rule, angle sum and inconsistent last line",
+        "evidenceText": "0°<=psi<=180°. theta1=beta+psi for theta2<0; minus sign for theta2>0. theta1+theta2+theta3=phi. Final line printed theta3=phi-theta1+theta2.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0287-Q04",
+    "version": 1,
+    "stem": "With ψ chosen in[0°,180°], how do the geometric shoulder formulas depend on the elbow branch?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "θ1=β−ψ forθ2<0; θ1=β+ψ forθ2>0"
+      },
+      {
+        "id": "o3",
+        "text": "θ1=β+ψ for both branches"
+      },
+      {
+        "id": "o4",
+        "text": "θ1=ψ−β for both branches"
+      },
+      {
+        "id": "o1",
+        "text": "θ1=β+ψ forθ2<0; θ1=β−ψ forθ2>0"
+      }
+    ],
+    "assumptions": [
+      "Nondegenerate configuration and the signed joint-angle convention of the supplied figure."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0287",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 287,
+        "kind": "figure",
+        "locator": "Printed slide 19: reachability/branch bullets and β/cosψ equations",
+        "evidenceText": "Triangle existence text gives sqrt(x²+y²)<=L1+L2; chooses theta2 between0 and-180 degrees, other solution theta2prime=-theta2. beta=Atan2(y,x); cos(psi)=(x²+y²+L1²-L2²)/(2L1*sqrt(x²+y²)).",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0288",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 288,
+        "kind": "figure",
+        "locator": "Printed slide 20: ψ interval, signed shoulder branch rule, angle sum and inconsistent last line",
+        "evidenceText": "0°<=psi<=180°. theta1=beta+psi for theta2<0; minus sign for theta2>0. theta1+theta2+theta3=phi. Final line printed theta3=phi-theta1+theta2.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0287-Q05",
+    "version": 1,
+    "stem": "How should the slide’s θ2∈[−180°,0°] choice be read given its next statement θ2′=−θ2?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o2",
+        "text": "It proves every positive elbow angle is physically impossible"
+      },
+      {
+        "id": "o3",
+        "text": "It impliesθ2 andθ2′ are always the same distinct configuration"
+      },
+      {
+        "id": "o4",
+        "text": "It excludes both fully extended and fully folded boundary poses"
+      },
+      {
+        "id": "o1",
+        "text": "It chooses one elbow branch; the sign-reflected branch is also a solution when nondegenerate"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0287",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 287,
+        "kind": "equation",
+        "locator": "Printed slide 19: reachability/branch bullets and β/cosψ equations",
+        "evidenceText": "Triangle existence text gives sqrt(x²+y²)<=L1+L2; chooses theta2 between0 and-180 degrees, other solution theta2prime=-theta2. beta=Atan2(y,x); cos(psi)=(x²+y²+L1²-L2²)/(2L1*sqrt(x²+y²)).",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0288",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 288,
+        "kind": "equation",
+        "locator": "Printed slide 20: ψ interval, signed shoulder branch rule, angle sum and inconsistent last line",
+        "evidenceText": "0°<=psi<=180°. theta1=beta+psi for theta2<0; minus sign for theta2>0. theta1+theta2+theta3=phi. Final line printed theta3=phi-theta1+theta2.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0287-Q06",
+    "version": 1,
+    "stem": "Which special case prevents direct evaluation of cosψ=(ρ²+L1²−L2²)/(2L1ρ)?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "A target with both x andy positive"
+      },
+      {
+        "id": "o3",
+        "text": "θ2=90° at any nonzero radius"
+      },
+      {
+        "id": "o4",
+        "text": "L1=L2 at every target"
+      },
+      {
+        "id": "o1",
+        "text": "ρ=0, requiring separate origin analysis"
+      }
+    ],
+    "assumptions": [
+      "L1>0."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0285",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 285,
+        "kind": "equation",
+        "locator": "Printed slide 17: origin exception and joint-angle-sum equation",
+        "evidenceText": "When x=y=0 theta1 is undefined/arbitrary. theta1+theta2+theta3=Atan2(sphi,cphi)=phi. Algebraic approach manipulates equations into a form with a known solution.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0287",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 287,
+        "kind": "equation",
+        "locator": "Printed slide 19: reachability/branch bullets and β/cosψ equations",
+        "evidenceText": "Triangle existence text gives sqrt(x²+y²)<=L1+L2; chooses theta2 between0 and-180 degrees, other solution theta2prime=-theta2. beta=Atan2(y,x); cos(psi)=(x²+y²+L1²-L2²)/(2L1*sqrt(x²+y²)).",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0289-Q01",
+    "version": 1,
+    "stem": "Which description matches the differential-drive mechanism shown?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "One driven wheel and one compulsory steering axle define every differential drive"
+      },
+      {
+        "id": "o3",
+        "text": "Both wheels must always have equal angular rates"
+      },
+      {
+        "id": "o4",
+        "text": "Steering is produced only by changing the wheel radii"
+      },
+      {
+        "id": "o1",
+        "text": "Two independently driven wheels on opposite sides produce motion and steering"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0289",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 289,
+        "kind": "equation",
+        "locator": "Printed slide 21: wheel geometry diagram and3×2 velocity Jacobian",
+        "evidenceText": "Differential drive:2 independently driven wheels. vl=r*ul,vr=r*ur. d is center-to-wheel distance in figure. qdot=[phidot,xdot,ydot] = J*[ul,ur]; J=[[-r/(2d),r/(2d)],[(r/2)cos(phi),(r/2)cos(phi)],[(r/2)sin(phi),(r/2)sin(phi)]].",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0289-Q02",
+    "version": 1,
+    "stem": "What distinguishes u_l from v_l in the slide’s equation v_l=r u_l?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "u_l is body-center linear speed andv_l is yaw rate"
+      },
+      {
+        "id": "o4",
+        "text": "v_l is a link length andu_l is a homogeneous transform"
+      },
+      {
+        "id": "o1",
+        "text": "u_l is wheel angular velocity;v_l is wheel rim/rolling linear velocity"
+      },
+      {
+        "id": "o2",
+        "text": "Both are angles measured only in degrees"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0289",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 289,
+        "kind": "equation",
+        "locator": "Printed slide 21: wheel geometry diagram and3×2 velocity Jacobian",
+        "evidenceText": "Differential drive:2 independently driven wheels. vl=r*ul,vr=r*ur. d is center-to-wheel distance in figure. qdot=[phidot,xdot,ydot] = J*[ul,ur]; J=[[-r/(2d),r/(2d)],[(r/2)cos(phi),(r/2)cos(phi)],[(r/2)sin(phi),(r/2)sin(phi)]].",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0289-Q03",
+    "version": 1,
+    "stem": "In the vehicle diagram, what does d measure?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "The wheel radius"
+      },
+      {
+        "id": "o4",
+        "text": "Distance traveled in one second regardless of speed"
+      },
+      {
+        "id": "o1",
+        "text": "Distance from the body center to one wheel, so wheel-to-wheel separation is2d"
+      },
+      {
+        "id": "o2",
+        "text": "The complete wheel-to-wheel separation"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0289",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 289,
+        "kind": "figure",
+        "locator": "Printed slide 21: wheel geometry diagram and3×2 velocity Jacobian",
+        "evidenceText": "Differential drive:2 independently driven wheels. vl=r*ul,vr=r*ur. d is center-to-wheel distance in figure. qdot=[phidot,xdot,ydot] = J*[ul,ur]; J=[[-r/(2d),r/(2d)],[(r/2)cos(phi),(r/2)cos(phi)],[(r/2)sin(phi),(r/2)sin(phi)]].",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0289-Q04",
+    "version": 1,
+    "stem": "Which state-rate ordering is used in qdot=J[ul,ur]^T?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "[φdot,xdot,ydot]^T"
+      },
+      {
+        "id": "o2",
+        "text": "[xdot,ydot,φdot]^T"
+      },
+      {
+        "id": "o3",
+        "text": "[ul,ur,φdot]^T"
+      },
+      {
+        "id": "o4",
+        "text": "[x,y,φ]^T without derivatives"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0289",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 289,
+        "kind": "equation",
+        "locator": "Printed slide 21: wheel geometry diagram and3×2 velocity Jacobian",
+        "evidenceText": "Differential drive:2 independently driven wheels. vl=r*ul,vr=r*ur. d is center-to-wheel distance in figure. qdot=[phidot,xdot,ydot] = J*[ul,ur]; J=[[-r/(2d),r/(2d)],[(r/2)cos(phi),(r/2)cos(phi)],[(r/2)sin(phi),(r/2)sin(phi)]].",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0289-Q05",
+    "version": 1,
+    "stem": "What are the dimensions of the displayed differential-drive Jacobian?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "3×2, mapping two wheel rates to three listed body/world rates"
+      },
+      {
+        "id": "o2",
+        "text": "2×3, mapping three wheel rates to two body rates"
+      },
+      {
+        "id": "o3",
+        "text": "3×3, with three independently driven wheels"
+      },
+      {
+        "id": "o4",
+        "text": "2×2, because ydot is absent"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0289",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 289,
+        "kind": "equation",
+        "locator": "Printed slide 21: wheel geometry diagram and3×2 velocity Jacobian",
+        "evidenceText": "Differential drive:2 independently driven wheels. vl=r*ul,vr=r*ur. d is center-to-wheel distance in figure. qdot=[phidot,xdot,ydot] = J*[ul,ur]; J=[[-r/(2d),r/(2d)],[(r/2)cos(phi),(r/2)cos(phi)],[(r/2)sin(phi),(r/2)sin(phi)]].",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0289-Q06",
+    "version": 1,
+    "stem": "Why are the two columns identical in the xdot andydot rows but opposite in sign in theφdot row?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "The matrix represents an arbitrary lateral drive actuator"
+      },
+      {
+        "id": "o1",
+        "text": "Translation depends on the wheel-rate sum; yaw depends on their difference"
+      },
+      {
+        "id": "o2",
+        "text": "Translation depends only on the right wheel and yaw only on the left"
+      },
+      {
+        "id": "o3",
+        "text": "The two wheel rates cancel in every row"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0289",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 289,
+        "kind": "equation",
+        "locator": "Printed slide 21: wheel geometry diagram and3×2 velocity Jacobian",
+        "evidenceText": "Differential drive:2 independently driven wheels. vl=r*ul,vr=r*ur. d is center-to-wheel distance in figure. qdot=[phidot,xdot,ydot] = J*[ul,ur]; J=[[-r/(2d),r/(2d)],[(r/2)cos(phi),(r/2)cos(phi)],[(r/2)sin(phi),(r/2)sin(phi)]].",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0289-Q07",
+    "version": 1,
+    "stem": "For r=0.1m,d=0.2m,φ=90° and(ul,ur)=(3,7)rad/s, what is qdot in the source’s order?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "[−1rad/s,0.5m/s,0m/s]^T"
+      },
+      {
+        "id": "o4",
+        "text": "[1rad/s,0.5m/s,0.5m/s]^T"
+      },
+      {
+        "id": "o1",
+        "text": "[1rad/s,0m/s,0.5m/s]^T"
+      },
+      {
+        "id": "o2",
+        "text": "[0m/s,0.5m/s,1rad/s]^T"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity.",
+      "Exact cardinal-angle values; units as supplied."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0289",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 289,
+        "kind": "equation",
+        "locator": "Printed slide 21: wheel geometry diagram and3×2 velocity Jacobian",
+        "evidenceText": "Differential drive:2 independently driven wheels. vl=r*ul,vr=r*ur. d is center-to-wheel distance in figure. qdot=[phidot,xdot,ydot] = J*[ul,ur]; J=[[-r/(2d),r/(2d)],[(r/2)cos(phi),(r/2)cos(phi)],[(r/2)sin(phi),(r/2)sin(phi)]].",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0290-Q01",
+    "version": 1,
+    "stem": "What are the input and output of the differential-drive inverse-kinematics task described in words?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "A desired final pose alone in; a unique entire trajectory out"
+      },
+      {
+        "id": "o1",
+        "text": "Desired body motion(v,ω) in; individual wheel rates(ul,ur) out"
+      },
+      {
+        "id": "o2",
+        "text": "Wheel radii in; camera brightness out"
+      },
+      {
+        "id": "o3",
+        "text": "Wheel rates in; body motion out only"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0290",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 290,
+        "kind": "equation",
+        "locator": "Printed slide 22: inverse-task text, non-square inverse notation and flow-arrow variable labels",
+        "evidenceText": "IK: wheel angular velocities ul,ur from motion(v,omega). Main equation pdot=[ul,ur]=J^-1 qdot. Diagram labels forward qdot -> J -> pdot and inverse pdot -> J^-1 -> qdot.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0292",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 292,
+        "kind": "equation",
+        "locator": "Printed slide 24: body-speed sum/difference and individual wheel-rate formulas",
+        "evidenceText": "v=(vr+vl)/2=r(ur+ul)/2;2v/r=ur+ul. omega=(vr-vl)/(2d)=r(ur-ul)/(2d);2d*omega/r=ur-ul. ur=v/r+d*omega/r;ul=v/r-d*omega/r.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0290-Q02",
+    "version": 1,
+    "stem": "Why can the J^-1 symbol printed on p290 not mean an ordinary two-sided inverse of the preceding matrix?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Only negative matrix entries prevent inversion"
+      },
+      {
+        "id": "o4",
+        "text": "The wheel rates are scalars, so matrix dimensions never matter"
+      },
+      {
+        "id": "o1",
+        "text": "J is3×2 and non-square; p291 instead supplies a pseudoinverse"
+      },
+      {
+        "id": "o2",
+        "text": "Every3×2 matrix has a unique3×2 ordinary inverse"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0289",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 289,
+        "kind": "equation",
+        "locator": "Printed slide 21: wheel geometry diagram and3×2 velocity Jacobian",
+        "evidenceText": "Differential drive:2 independently driven wheels. vl=r*ul,vr=r*ur. d is center-to-wheel distance in figure. qdot=[phidot,xdot,ydot] = J*[ul,ur]; J=[[-r/(2d),r/(2d)],[(r/2)cos(phi),(r/2)cos(phi)],[(r/2)sin(phi),(r/2)sin(phi)]].",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0290",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 290,
+        "kind": "equation",
+        "locator": "Printed slide 22: inverse-task text, non-square inverse notation and flow-arrow variable labels",
+        "evidenceText": "IK: wheel angular velocities ul,ur from motion(v,omega). Main equation pdot=[ul,ur]=J^-1 qdot. Diagram labels forward qdot -> J -> pdot and inverse pdot -> J^-1 -> qdot.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0291",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 291,
+        "kind": "equation",
+        "locator": "Printed slide 23: full-rank tall/wide pseudoinverse formulas",
+        "evidenceText": "For full-rank J_mxn,rankJ=min(m,n). m>n: J+=(J^T J)^-1 J^T. m<n: J+=J^T(J J^T)^-1. Differential-drive J3x2: [ul,ur]=J+ qdot=(J^T J)^-1 J^T qdot.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0290-Q03",
+    "version": 1,
+    "stem": "Which corrected forward-flow diagram agrees with qdot=J pdot and pdot=[ul,ur]^T?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "pdot → J → qdot"
+      },
+      {
+        "id": "o2",
+        "text": "qdot → J → pdot as printed in the p290 diagram"
+      },
+      {
+        "id": "o3",
+        "text": "pdot → J^T → qdot for this3×2J"
+      },
+      {
+        "id": "o4",
+        "text": "qdot → J+ → qdot"
+      }
+    ],
+    "assumptions": [
+      "Explicitly correct the flow labels using the source equation rather than endorsing the inconsistent drawing."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0289",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 289,
+        "kind": "figure",
+        "locator": "Printed slide 21: wheel geometry diagram and3×2 velocity Jacobian",
+        "evidenceText": "Differential drive:2 independently driven wheels. vl=r*ul,vr=r*ur. d is center-to-wheel distance in figure. qdot=[phidot,xdot,ydot] = J*[ul,ur]; J=[[-r/(2d),r/(2d)],[(r/2)cos(phi),(r/2)cos(phi)],[(r/2)sin(phi),(r/2)sin(phi)]].",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0290",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 290,
+        "kind": "figure",
+        "locator": "Printed slide 22: inverse-task text, non-square inverse notation and flow-arrow variable labels",
+        "evidenceText": "IK: wheel angular velocities ul,ur from motion(v,omega). Main equation pdot=[ul,ur]=J^-1 qdot. Diagram labels forward qdot -> J -> pdot and inverse pdot -> J^-1 -> qdot.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0291",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 291,
+        "kind": "figure",
+        "locator": "Printed slide 23: full-rank tall/wide pseudoinverse formulas",
+        "evidenceText": "For full-rank J_mxn,rankJ=min(m,n). m>n: J+=(J^T J)^-1 J^T. m<n: J+=J^T(J J^T)^-1. Differential-drive J3x2: [ul,ur]=J+ qdot=(J^T J)^-1 J^T qdot.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0290-Q04",
+    "version": 1,
+    "stem": "For an admissible desired qdot, which inverse-flow statement is consistent with the next slide?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "qdot → J+ → pdot"
+      },
+      {
+        "id": "o2",
+        "text": "pdot → J+ → qdot"
+      },
+      {
+        "id": "o3",
+        "text": "qdot → J → pdot"
+      },
+      {
+        "id": "o4",
+        "text": "pdot → J → pdot"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0289",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 289,
+        "kind": "equation",
+        "locator": "Printed slide 21: wheel geometry diagram and3×2 velocity Jacobian",
+        "evidenceText": "Differential drive:2 independently driven wheels. vl=r*ul,vr=r*ur. d is center-to-wheel distance in figure. qdot=[phidot,xdot,ydot] = J*[ul,ur]; J=[[-r/(2d),r/(2d)],[(r/2)cos(phi),(r/2)cos(phi)],[(r/2)sin(phi),(r/2)sin(phi)]].",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0291",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 291,
+        "kind": "equation",
+        "locator": "Printed slide 23: full-rank tall/wide pseudoinverse formulas",
+        "evidenceText": "For full-rank J_mxn,rankJ=min(m,n). m>n: J+=(J^T J)^-1 J^T. m<n: J+=J^T(J J^T)^-1. Differential-drive J3x2: [ul,ur]=J+ qdot=(J^T J)^-1 J^T qdot.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0291-Q01",
+    "version": 1,
+    "stem": "For J of shape m×n, what does full rank mean in the slide?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "rank(J)=min(m,n)"
+      },
+      {
+        "id": "o2",
+        "text": "rank(J)=m+n"
+      },
+      {
+        "id": "o3",
+        "text": "rank(J)=mn"
+      },
+      {
+        "id": "o4",
+        "text": "rank(J)=max(m,n) even whenm≠n"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0291",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 291,
+        "kind": "equation",
+        "locator": "Printed slide 23: full-rank tall/wide pseudoinverse formulas",
+        "evidenceText": "For full-rank J_mxn,rankJ=min(m,n). m>n: J+=(J^T J)^-1 J^T. m<n: J+=J^T(J J^T)^-1. Differential-drive J3x2: [ul,ur]=J+ qdot=(J^T J)^-1 J^T qdot.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0291-Q02",
+    "version": 1,
+    "stem": "For a tall m×n matrix withm>n and full column rank, which pseudoinverse formula is valid?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o4",
+        "text": "J+=J^−1 for any rectangular shape"
+      },
+      {
+        "id": "o1",
+        "text": "J+=(J^T J)^−1 J^T"
+      },
+      {
+        "id": "o2",
+        "text": "J+=J^T(J J^T)^−1"
+      },
+      {
+        "id": "o3",
+        "text": "J+=J^T J without an inverse"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0291",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 291,
+        "kind": "equation",
+        "locator": "Printed slide 23: full-rank tall/wide pseudoinverse formulas",
+        "evidenceText": "For full-rank J_mxn,rankJ=min(m,n). m>n: J+=(J^T J)^-1 J^T. m<n: J+=J^T(J J^T)^-1. Differential-drive J3x2: [ul,ur]=J+ qdot=(J^T J)^-1 J^T qdot.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0291-Q03",
+    "version": 1,
+    "stem": "For a wide m×n matrix withm<n and full row rank, which formula is valid?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o1",
+        "text": "J+=J^T(J J^T)^−1"
+      },
+      {
+        "id": "o2",
+        "text": "J+=(J^T J)^−1 J^T"
+      },
+      {
+        "id": "o3",
+        "text": "J+=J J^T"
+      },
+      {
+        "id": "o4",
+        "text": "J+=J^T only for every full-row-rank matrix"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0291",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 291,
+        "kind": "equation",
+        "locator": "Printed slide 23: full-rank tall/wide pseudoinverse formulas",
+        "evidenceText": "For full-rank J_mxn,rankJ=min(m,n). m>n: J+=(J^T J)^-1 J^T. m<n: J+=J^T(J J^T)^-1. Differential-drive J3x2: [ul,ur]=J+ qdot=(J^T J)^-1 J^T qdot.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0291-Q04",
+    "version": 1,
+    "stem": "For the full-column-rank differential-drive J3×2, what are the shapes of J^TJ andJ+?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "2×2 and2×3"
+      },
+      {
+        "id": "o2",
+        "text": "3×3 and3×2"
+      },
+      {
+        "id": "o3",
+        "text": "2×3 and2×2"
+      },
+      {
+        "id": "o4",
+        "text": "3×2 and3×3"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0291",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 291,
+        "kind": "equation",
+        "locator": "Printed slide 23: full-rank tall/wide pseudoinverse formulas",
+        "evidenceText": "For full-rank J_mxn,rankJ=min(m,n). m>n: J+=(J^T J)^-1 J^T. m<n: J+=J^T(J J^T)^-1. Differential-drive J3x2: [ul,ur]=J+ qdot=(J^T J)^-1 J^T qdot.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0291-Q05",
+    "version": 1,
+    "stem": "If a tall J loses column rank, what happens to the displayed(J^T J)^−1 J^T formula?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o1",
+        "text": "J^TJ becomes singular, so that ordinary-inverse formula is unavailable"
+      },
+      {
+        "id": "o2",
+        "text": "The inverse remains valid becauseJ is still rectangular"
+      },
+      {
+        "id": "o3",
+        "text": "J^TJ automatically becomes an identity matrix"
+      },
+      {
+        "id": "o4",
+        "text": "Every Moore–Penrose pseudoinverse ceases to exist"
+      }
+    ],
+    "assumptions": [
+      "The question distinguishes the full-rank shortcut from the more general pseudoinverse concept."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0291",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 291,
+        "kind": "equation",
+        "locator": "Printed slide 23: full-rank tall/wide pseudoinverse formulas",
+        "evidenceText": "For full-rank J_mxn,rankJ=min(m,n). m>n: J+=(J^T J)^-1 J^T. m<n: J+=J^T(J J^T)^-1. Differential-drive J3x2: [ul,ur]=J+ qdot=(J^T J)^-1 J^T qdot.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0291-Q06",
+    "version": 1,
+    "stem": "For a tall full-column-rank J and an incompatible desired vectorb outside its column space, what doesJ+b provide?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o2",
+        "text": "An exact input satisfyingJu=b for everyb"
+      },
+      {
+        "id": "o3",
+        "text": "A proof that the robot gained an extra actuator"
+      },
+      {
+        "id": "o4",
+        "text": "An input whose residual must be larger than every alternative"
+      },
+      {
+        "id": "o1",
+        "text": "The least-squares input;J J+b is the achievable projection, not necessarilyb"
+      }
+    ],
+    "assumptions": [
+      "Euclidean least squares for the stated coordinate scaling; full column rank."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0291",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 291,
+        "kind": "equation",
+        "locator": "Printed slide 23: full-rank tall/wide pseudoinverse formulas",
+        "evidenceText": "For full-rank J_mxn,rankJ=min(m,n). m>n: J+=(J^T J)^-1 J^T. m<n: J+=J^T(J J^T)^-1. Differential-drive J3x2: [ul,ur]=J+ qdot=(J^T J)^-1 J^T qdot.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0291-Q07",
+    "version": 1,
+    "stem": "Use the tall matrixJ=[[1,0],[0,1],[0,0]] andb=[2,3,4]^T. What areu=J+b and the residualb−Ju?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "u=[6,7]^T; residual=[−4,−4,4]^T"
+      },
+      {
+        "id": "o4",
+        "text": "u=[2,3,4]^T; residual is undefined because every vector needs3 inputs"
+      },
+      {
+        "id": "o1",
+        "text": "u=[2,3]^T; residual=[0,0,4]^T"
+      },
+      {
+        "id": "o2",
+        "text": "u=[2,3]^T; residual=[0,0,0]^T"
+      }
+    ],
+    "assumptions": [
+      "Generated dimensionless example of the slide’s tall full-rank formula; unweighted Euclidean norm."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0291",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 291,
+        "kind": "equation",
+        "locator": "Printed slide 23: full-rank tall/wide pseudoinverse formulas",
+        "evidenceText": "For full-rank J_mxn,rankJ=min(m,n). m>n: J+=(J^T J)^-1 J^T. m<n: J+=J^T(J J^T)^-1. Differential-drive J3x2: [ul,ur]=J+ qdot=(J^T J)^-1 J^T qdot.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0291-Q08",
+    "version": 1,
+    "stem": "For the wide full-row-rank matrixJ=[1,1] andb=2, what does its pseudoinverse select?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o4",
+        "text": "u=[2,2]^T, because both components must equalb"
+      },
+      {
+        "id": "o1",
+        "text": "u=[1,1]^T, the minimum-Euclidean-norm exact solution"
+      },
+      {
+        "id": "o2",
+        "text": "u=[2,0]^T because it is the only exact solution"
+      },
+      {
+        "id": "o3",
+        "text": "u=[0,0]^T, which exactly satisfies the target"
+      }
+    ],
+    "assumptions": [
+      "Generated dimensionless example of the wide full-row-rank formula; Euclidean norm."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0291",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 291,
+        "kind": "equation",
+        "locator": "Printed slide 23: full-rank tall/wide pseudoinverse formulas",
+        "evidenceText": "For full-rank J_mxn,rankJ=min(m,n). m>n: J+=(J^T J)^-1 J^T. m<n: J+=J^T(J J^T)^-1. Differential-drive J3x2: [ul,ur]=J+ qdot=(J^T J)^-1 J^T qdot.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0291-Q09",
+    "version": 1,
+    "stem": "Which condition must a desired world translational velocity satisfy to be instantaneously feasible for this no-slip differential drive?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o3",
+        "text": "xdot=ydot for everyheading"
+      },
+      {
+        "id": "o4",
+        "text": "ω must always equal0"
+      },
+      {
+        "id": "o1",
+        "text": "−sinφ xdot+cosφ ydot=0"
+      },
+      {
+        "id": "o2",
+        "text": "cosφ xdot+sinφ ydot=0 for every forward motion"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0289",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 289,
+        "kind": "equation",
+        "locator": "Printed slide 21: wheel geometry diagram and3×2 velocity Jacobian",
+        "evidenceText": "Differential drive:2 independently driven wheels. vl=r*ul,vr=r*ur. d is center-to-wheel distance in figure. qdot=[phidot,xdot,ydot] = J*[ul,ur]; J=[[-r/(2d),r/(2d)],[(r/2)cos(phi),(r/2)cos(phi)],[(r/2)sin(phi),(r/2)sin(phi)]].",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0291",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 291,
+        "kind": "equation",
+        "locator": "Printed slide 23: full-rank tall/wide pseudoinverse formulas",
+        "evidenceText": "For full-rank J_mxn,rankJ=min(m,n). m>n: J+=(J^T J)^-1 J^T. m<n: J+=J^T(J J^T)^-1. Differential-drive J3x2: [ul,ur]=J+ qdot=(J^T J)^-1 J^T qdot.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0291-Q10",
+    "version": 1,
+    "stem": "Atφ=0°, a desired qdot=[0,0,1]^T asks for pure world+y motion with zero yaw. What does the differential-drive pseudoinverse achieve?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Wheel rates0,0 and achievedqdot=[0,0,0]^T; the lateral request remains a residual"
+      },
+      {
+        "id": "o2",
+        "text": "An exact sideways motion with equal positive wheel rates"
+      },
+      {
+        "id": "o3",
+        "text": "An exact sideways motion with equal opposite wheel rates"
+      },
+      {
+        "id": "o4",
+        "text": "A change in wheel separation that makes the request feasible"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity.",
+      "Unweighted Euclidean least squares in the given rate coordinates; instantaneous motion, not a maneuver over time."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0291",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 291,
+        "kind": "equation",
+        "locator": "Printed slide 23: full-rank tall/wide pseudoinverse formulas",
+        "evidenceText": "For full-rank J_mxn,rankJ=min(m,n). m>n: J+=(J^T J)^-1 J^T. m<n: J+=J^T(J J^T)^-1. Differential-drive J3x2: [ul,ur]=J+ qdot=(J^T J)^-1 J^T qdot.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0291-Q11",
+    "version": 1,
+    "stem": "Which pseudoinverse follows by deriving it from the displayed differential-drive J?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o4",
+        "text": "J+ is the3×3 identity"
+      },
+      {
+        "id": "o1",
+        "text": "J+=[[-d/r,cosφ/r,sinφ/r],[d/r,cosφ/r,sinφ/r]]"
+      },
+      {
+        "id": "o2",
+        "text": "J+=[[d/r,cosφ/r,sinφ/r],[−d/r,cosφ/r,sinφ/r]]"
+      },
+      {
+        "id": "o3",
+        "text": "J+=[[-r/d,r cosφ,r sinφ],[r/d,r cosφ,r sinφ]]"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0289",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 289,
+        "kind": "equation",
+        "locator": "Printed slide 21: wheel geometry diagram and3×2 velocity Jacobian",
+        "evidenceText": "Differential drive:2 independently driven wheels. vl=r*ul,vr=r*ur. d is center-to-wheel distance in figure. qdot=[phidot,xdot,ydot] = J*[ul,ur]; J=[[-r/(2d),r/(2d)],[(r/2)cos(phi),(r/2)cos(phi)],[(r/2)sin(phi),(r/2)sin(phi)]].",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0291",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 291,
+        "kind": "equation",
+        "locator": "Printed slide 23: full-rank tall/wide pseudoinverse formulas",
+        "evidenceText": "For full-rank J_mxn,rankJ=min(m,n). m>n: J+=(J^T J)^-1 J^T. m<n: J+=J^T(J J^T)^-1. Differential-drive J3x2: [ul,ur]=J+ qdot=(J^T J)^-1 J^T qdot.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0292",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 292,
+        "kind": "equation",
+        "locator": "Printed slide 24: body-speed sum/difference and individual wheel-rate formulas",
+        "evidenceText": "v=(vr+vl)/2=r(ur+ul)/2;2v/r=ur+ul. omega=(vr-vl)/(2d)=r(ur-ul)/(2d);2d*omega/r=ur-ul. ur=v/r+d*omega/r;ul=v/r-d*omega/r.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0291-Q12",
+    "version": 1,
+    "stem": "For this full-column-rank3×2J, which identity holds?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o3",
+        "text": "J+J=I3 andJJ+=I2"
+      },
+      {
+        "id": "o4",
+        "text": "Neither product is defined"
+      },
+      {
+        "id": "o1",
+        "text": "J+J=I2, whileJJ+ is a3×3 projection rather thanI3"
+      },
+      {
+        "id": "o2",
+        "text": "BothJ+J=I2 andJJ+=I3"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0289",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 289,
+        "kind": "equation",
+        "locator": "Printed slide 21: wheel geometry diagram and3×2 velocity Jacobian",
+        "evidenceText": "Differential drive:2 independently driven wheels. vl=r*ul,vr=r*ur. d is center-to-wheel distance in figure. qdot=[phidot,xdot,ydot] = J*[ul,ur]; J=[[-r/(2d),r/(2d)],[(r/2)cos(phi),(r/2)cos(phi)],[(r/2)sin(phi),(r/2)sin(phi)]].",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0291",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 291,
+        "kind": "equation",
+        "locator": "Printed slide 23: full-rank tall/wide pseudoinverse formulas",
+        "evidenceText": "For full-rank J_mxn,rankJ=min(m,n). m>n: J+=(J^T J)^-1 J^T. m<n: J+=J^T(J J^T)^-1. Differential-drive J3x2: [ul,ur]=J+ qdot=(J^T J)^-1 J^T qdot.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0292-Q01",
+    "version": 1,
+    "stem": "Which simultaneous equations are obtained before solving for individual wheel rates?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "ur+ul=2vr andur−ul=2dωr"
+      },
+      {
+        "id": "o1",
+        "text": "ur+ul=2v/r andur−ul=2dω/r"
+      },
+      {
+        "id": "o2",
+        "text": "ur+ul=v/r andur−ul=dω/r"
+      },
+      {
+        "id": "o3",
+        "text": "ur−ul=2v/r andur+ul=2dω/r"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0292",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 292,
+        "kind": "equation",
+        "locator": "Printed slide 24: body-speed sum/difference and individual wheel-rate formulas",
+        "evidenceText": "v=(vr+vl)/2=r(ur+ul)/2;2v/r=ur+ul. omega=(vr-vl)/(2d)=r(ur-ul)/(2d);2d*omega/r=ur-ul. ur=v/r+d*omega/r;ul=v/r-d*omega/r.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0292-Q02",
+    "version": 1,
+    "stem": "Which wheel-rate pair produces the requested signed motion(v,ω)?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "ul=(v−dω)/r, ur=(v+dω)/r"
+      },
+      {
+        "id": "o2",
+        "text": "ul=(v+dω)/r, ur=(v−dω)/r"
+      },
+      {
+        "id": "o3",
+        "text": "ul=v−dω, ur=v+dω without dividing byr"
+      },
+      {
+        "id": "o4",
+        "text": "ul=(v−2dω)/r, ur=(v+2dω)/r"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0292",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 292,
+        "kind": "equation",
+        "locator": "Printed slide 24: body-speed sum/difference and individual wheel-rate formulas",
+        "evidenceText": "v=(vr+vl)/2=r(ur+ul)/2;2v/r=ur+ul. omega=(vr-vl)/(2d)=r(ur-ul)/(2d);2d*omega/r=ur-ul. ur=v/r+d*omega/r;ul=v/r-d*omega/r.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0292-Q03",
+    "version": 1,
+    "stem": "For r=0.1m,full wheel separation0.4m,v=0.5m/s andω=1rad/s, what are(ul,ur)?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "(7,3)rad/s"
+      },
+      {
+        "id": "o4",
+        "text": "(0.3,0.7)rad/s"
+      },
+      {
+        "id": "o1",
+        "text": "(3,7)rad/s"
+      },
+      {
+        "id": "o2",
+        "text": "(1,9)rad/s"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0292",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 292,
+        "kind": "equation",
+        "locator": "Printed slide 24: body-speed sum/difference and individual wheel-rate formulas",
+        "evidenceText": "v=(vr+vl)/2=r(ur+ul)/2;2v/r=ur+ul. omega=(vr-vl)/(2d)=r(ur-ul)/(2d);2d*omega/r=ur-ul. ur=v/r+d*omega/r;ul=v/r-d*omega/r.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0292-Q04",
+    "version": 1,
+    "stem": "For the same r=0.1m,d=0.2m,what rates give pure positive yawω=1rad/s withv=0?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "ul=0,ur=2rad/s"
+      },
+      {
+        "id": "o1",
+        "text": "ul=−2,ur=2rad/s"
+      },
+      {
+        "id": "o2",
+        "text": "ul=2,ur=2rad/s"
+      },
+      {
+        "id": "o3",
+        "text": "ul=2,ur=−2rad/s"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0292",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 292,
+        "kind": "equation",
+        "locator": "Printed slide 24: body-speed sum/difference and individual wheel-rate formulas",
+        "evidenceText": "v=(vr+vl)/2=r(ur+ul)/2;2v/r=ur+ul. omega=(vr-vl)/(2d)=r(ur-ul)/(2d);2d*omega/r=ur-ul. ur=v/r+d*omega/r;ul=v/r-d*omega/r.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0292-Q05",
+    "version": 1,
+    "stem": "For r=0.1m and desired straight backward speedv=−0.4m/s withω=0,what rates are required?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "ul=−4,ur=4rad/s"
+      },
+      {
+        "id": "o3",
+        "text": "ul=ur=4rad/s"
+      },
+      {
+        "id": "o4",
+        "text": "ul=ur=−0.04rad/s"
+      },
+      {
+        "id": "o1",
+        "text": "ul=ur=−4rad/s"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0292",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 292,
+        "kind": "equation",
+        "locator": "Printed slide 24: body-speed sum/difference and individual wheel-rate formulas",
+        "evidenceText": "v=(vr+vl)/2=r(ur+ul)/2;2v/r=ur+ul. omega=(vr-vl)/(2d)=r(ur-ul)/(2d);2d*omega/r=ur-ul. ur=v/r+d*omega/r;ul=v/r-d*omega/r.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0292-Q06",
+    "version": 1,
+    "stem": "Ifv=dω withv>0,what happens to the wheel rates?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Both wheels are stationary"
+      },
+      {
+        "id": "o4",
+        "text": "Both wheel rates equalv/r"
+      },
+      {
+        "id": "o1",
+        "text": "The left wheel is stationary and the right rate is2v/r"
+      },
+      {
+        "id": "o2",
+        "text": "The right wheel is stationary and the left rate is2v/r"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0292",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 292,
+        "kind": "equation",
+        "locator": "Printed slide 24: body-speed sum/difference and individual wheel-rate formulas",
+        "evidenceText": "v=(vr+vl)/2=r(ur+ul)/2;2v/r=ur+ul. omega=(vr-vl)/(2d)=r(ur-ul)/(2d);2d*omega/r=ur-ul. ur=v/r+d*omega/r;ul=v/r-d*omega/r.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0292-Q07",
+    "version": 1,
+    "stem": "Keepv,ω andd fixed but double the wheel radius. How do the required wheel angular rates change?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Both rates halve"
+      },
+      {
+        "id": "o2",
+        "text": "Both rates double"
+      },
+      {
+        "id": "o3",
+        "text": "Only the right rate changes"
+      },
+      {
+        "id": "o4",
+        "text": "They are unchanged because radius appears only in forward kinematics"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0292",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 292,
+        "kind": "equation",
+        "locator": "Printed slide 24: body-speed sum/difference and individual wheel-rate formulas",
+        "evidenceText": "v=(vr+vl)/2=r(ur+ul)/2;2v/r=ur+ul. omega=(vr-vl)/(2d)=r(ur-ul)/(2d);2d*omega/r=ur-ul. ur=v/r+d*omega/r;ul=v/r-d*omega/r.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0292-Q08",
+    "version": 1,
+    "stem": "Keepv,ω>0 andr fixed but increase half-trackd. What happens algebraically?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Both rates increase by the same amount"
+      },
+      {
+        "id": "o3",
+        "text": "The rate difference decreases"
+      },
+      {
+        "id": "o4",
+        "text": "Neither rate depends ond"
+      },
+      {
+        "id": "o1",
+        "text": "The right rate increases and the left rate decreases, while their average staysv/r"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0292",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 292,
+        "kind": "equation",
+        "locator": "Printed slide 24: body-speed sum/difference and individual wheel-rate formulas",
+        "evidenceText": "v=(vr+vl)/2=r(ur+ul)/2;2v/r=ur+ul. omega=(vr-vl)/(2d)=r(ur-ul)/(2d);2d*omega/r=ur-ul. ur=v/r+d*omega/r;ul=v/r-d*omega/r.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0292-Q09",
+    "version": 1,
+    "stem": "Which assertion-reason relation is correct? Assertion: A wheel can reverse even when the body moves forward. Reason: Ifdω>v>0,thenul=(v−dω)/r<0 whileur>0.",
+    "selectionMode": "single",
+    "type": "assertion_reason",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Both are true and the reason explains the assertion"
+      },
+      {
+        "id": "o2",
+        "text": "Both are true but unrelated"
+      },
+      {
+        "id": "o3",
+        "text": "The assertion is false and the reason true"
+      },
+      {
+        "id": "o4",
+        "text": "The assertion is true but the reason false"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0292",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 292,
+        "kind": "equation",
+        "locator": "Printed slide 24: body-speed sum/difference and individual wheel-rate formulas",
+        "evidenceText": "v=(vr+vl)/2=r(ur+ul)/2;2v/r=ur+ul. omega=(vr-vl)/(2d)=r(ur-ul)/(2d);2d*omega/r=ur-ul. ur=v/r+d*omega/r;ul=v/r-d*omega/r.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0293-Q01",
+    "version": 1,
+    "stem": "Which caution is explicitly added in the summary about numerical Jacobian-based IK?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "It eliminates the need for the robot geometry"
+      },
+      {
+        "id": "o4",
+        "text": "It automatically satisfies every collision constraint"
+      },
+      {
+        "id": "o1",
+        "text": "It requires singularity handling"
+      },
+      {
+        "id": "o2",
+        "text": "It guarantees a unique solution for any target"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0293",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 293,
+        "kind": "statement",
+        "locator": "Printed slide 25: four summary bullets, including numerical singularity handling",
+        "evidenceText": "IK finds joint configurations for desired end-effector pose. Analytical closed form fast but limited to specific geometries. Numerical Jacobian-based methods work generally but need singularity handling. Differential drive: individual wheel angular velocities from(v,omega).",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0293-Q02",
+    "version": 1,
+    "stem": "Which synthesis correctly contrasts manipulator and differential-drive IK in this lecture?",
+    "selectionMode": "single",
+    "type": "synthesis",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Manipulator IK seeks joint configurations for a pose; differential-drive velocity IK seeks wheel rates for(v,ω)"
+      },
+      {
+        "id": "o2",
+        "text": "Both tasks always output a homogeneous4×4 matrix only"
+      },
+      {
+        "id": "o3",
+        "text": "Manipulator IK always has one solution and wheel IK always has infinitely many"
+      },
+      {
+        "id": "o4",
+        "text": "Both tasks must use an ordinary square matrix inverse"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p0272",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 272,
+        "kind": "statement",
+        "locator": "Printed slide 4: introductory two-step task and labeled frame figure",
+        "evidenceText": "Given desired position and orientation of tool {T} relative to station {S}, find joint angles. Split into: find wrist frame relative to base, then compute inverse kinematics. Figure labels Camera, Tool frame {T}, Wrist frame {W}, Base frame {B}, Station frame {S}, Goal frame.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0293",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 293,
+        "kind": "statement",
+        "locator": "Printed slide 25: four summary bullets, including numerical singularity handling",
+        "evidenceText": "IK finds joint configurations for desired end-effector pose. Analytical closed form fast but limited to specific geometries. Numerical Jacobian-based methods work generally but need singularity handling. Differential drive: individual wheel angular velocities from(v,omega).",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0291",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 291,
+        "kind": "equation",
+        "locator": "Printed slide 23: full-rank tall/wide pseudoinverse formulas",
+        "evidenceText": "For full-rank J_mxn,rankJ=min(m,n). m>n: J+=(J^T J)^-1 J^T. m<n: J+=J^T(J J^T)^-1. Differential-drive J3x2: [ul,ur]=J+ qdot=(J^T J)^-1 J^T qdot.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0292",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 292,
+        "kind": "equation",
+        "locator": "Printed slide 24: body-speed sum/difference and individual wheel-rate formulas",
+        "evidenceText": "v=(vr+vl)/2=r(ur+ul)/2;2v/r=ur+ul. omega=(vr-vl)/(2d)=r(ur-ul)/(2d);2d*omega/r=ur-ul. ur=v/r+d*omega/r;ul=v/r-d*omega/r.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0272-Q04",
+    "version": 1,
+    "stem": "Let ^A_B T map coordinates from frameB to frameA. Given ^S_B T,^S_T T and fixed ^W_T T,which expression obtains the wrist pose ^B_W T?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o3",
+        "text": "(^W_T T)^−1 ^S_T T (^S_B T)^−1"
+      },
+      {
+        "id": "o4",
+        "text": "^S_T T alone,with all calibration transforms ignored"
+      },
+      {
+        "id": "o1",
+        "text": "(^S_B T)^−1 ^S_T T (^W_T T)^−1"
+      },
+      {
+        "id": "o2",
+        "text": "^S_B T ^S_T T ^W_T T"
+      }
+    ],
+    "assumptions": [
+      "^A_B T maps frameB coordinates to frameA. All three given transforms are known rigid calibrations/task data.",
+      "This is an explicitly derived frame-chain application of the introduction,not an additional printed formula."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0272",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 272,
+        "kind": "statement",
+        "locator": "Printed slide 4: introductory two-step task and labeled frame figure",
+        "evidenceText": "Given desired position and orientation of tool {T} relative to station {S}, find joint angles. Split into: find wrist frame relative to base, then compute inverse kinematics. Figure labels Camera, Tool frame {T}, Wrist frame {W}, Base frame {B}, Station frame {S}, Goal frame.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0273",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 273,
+        "kind": "statement",
+        "locator": "Printed slide 5: six-transform product and pose-constraint counting bullets",
+        "evidenceText": "^0_6 T = ^0_1 T ^1_2 T ^2_3 T … ^5_6 T = [R P; 0 0 0 1]. 16 elements:4 trivial,3 position,9 orientation of which3 independent;6 equations in6 unknowns. Nonlinear transcendental equations.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0283-Q09",
+    "version": 1,
+    "stem": "For L1=2,L2=1,which elbow angles correspond to the outer and inner workspace boundaries respectively?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "θ2=90° at both boundaries"
+      },
+      {
+        "id": "o4",
+        "text": "Both boundaries are unreachable because|c2|=1"
+      },
+      {
+        "id": "o1",
+        "text": "θ2=0° atρ=3;θ2=180° atρ=1,modulo360°"
+      },
+      {
+        "id": "o2",
+        "text": "θ2=180° atρ=3;θ2=0° atρ=1"
+      }
+    ],
+    "assumptions": [
+      "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
+      "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied.",
+      "Degrees;common length unit."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0283",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 283,
+        "kind": "equation",
+        "locator": "Printed slide 15: squared-position derivation, cosine domain and signed-sine/atan2 equations",
+        "evidenceText": "x²+y²=L1²+L2²+2L1L2*cos(theta2). c2=(x²+y²-L1²-L2²)/(2L1L2); c2 must lie[-1,1]. s2=±sqrt(1-c2²); theta2=Atan2(s2,c2). Printed text says failure means goal too far away.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W02-L08-P0291-Q13",
+    "version": 1,
+    "stem": "At headingφ=90°,does the ideal differential-drive J lose rank merely because cosφ=0?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Yes;both translational rows vanish at90°"
+      },
+      {
+        "id": "o4",
+        "text": "No,because a3×2matrix always has rank3"
+      },
+      {
+        "id": "o1",
+        "text": "No;the yaw andydot rows still provide two independent input combinations"
+      },
+      {
+        "id": "o2",
+        "text": "Yes;every zero matrix entry makes a matrix singular"
+      }
+    ],
+    "assumptions": [
+      "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
+      "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0289",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 289,
+        "kind": "equation",
+        "locator": "Printed slide 21: wheel geometry diagram and3×2 velocity Jacobian",
+        "evidenceText": "Differential drive:2 independently driven wheels. vl=r*ul,vr=r*ur. d is center-to-wheel distance in figure. qdot=[phidot,xdot,ydot] = J*[ul,ur]; J=[[-r/(2d),r/(2d)],[(r/2)cos(phi),(r/2)cos(phi)],[(r/2)sin(phi),(r/2)sin(phi)]].",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0291",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 291,
+        "kind": "equation",
+        "locator": "Printed slide 23: full-rank tall/wide pseudoinverse formulas",
+        "evidenceText": "For full-rank J_mxn,rankJ=min(m,n). m>n: J+=(J^T J)^-1 J^T. m<n: J+=J^T(J J^T)^-1. Differential-drive J3x2: [ul,ur]=J+ qdot=(J^T J)^-1 J^T qdot.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  }
+]

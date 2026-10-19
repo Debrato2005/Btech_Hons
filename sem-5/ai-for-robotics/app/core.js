@@ -78,8 +78,25 @@
     if(out.active_exam&&attempts.has(out.active_exam.id))out.active_exam=null;
     out.bank_version=version;out.updated_at=new Date().toISOString();return {progress:out,addedEvents,bankChanged:incoming.bank_version!==version};
   }
+  function selectAlgorithmRecords(records, {includeUnverified=false, bank={}}={}) {
+    const sources = new Map(array(bank.sources).map(source => [source.id, source]));
+    const slides = new Map(array(bank.slides).map(slide => [slide.id, slide]));
+    return array(records).filter(record => record && !record.synthetic && !record.provenance?.synthetic
+      && Array.isArray(record.sourceRefs) && record.sourceRefs.length > 0
+      && (record.status === 'verified' || includeUnverified)
+      && record.sourceRefs.every(ref => {
+        if (!ref || typeof ref.sourceSha256 !== 'string' || !/^[a-f0-9]{64}$/.test(ref.sourceSha256)) return false;
+        const source = sources.get(ref.sourceId), slide = slides.get(ref.slideId);
+        return source?.retrievalStatus === 'ready' && source.sha256 === ref.sourceSha256
+          && slide?.sourceId === ref.sourceId && slide.sourceSha256 === ref.sourceSha256
+          && Number.isInteger(ref.physicalPage) && ref.physicalPage > 0 && ref.physicalPage <= source.pageCount
+          && slide.physicalPage === ref.physicalPage && slide.visualInspection?.status === 'complete'
+          && ['examinable','repeated','excluded'].includes(slide.disposition)
+          && (ref.role !== 'conflict' || !!record.conflictResolution);
+      }));
+  }
   function shortcutAllowed(event) { if(event.altKey||event.ctrlKey||event.metaKey||event.target?.closest?.('input,textarea,select,[contenteditable=true]'))return false;if((event.key==='Enter'||event.key===' ')&&event.target?.closest?.('button,a,summary,[role=button]'))return false;return true; }
   function csv(rows) { return rows.map(row=>row.map(cell=>{let s=cell==null?'':typeof cell==='object'?JSON.stringify(cell):String(cell);if(/^[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';}).join(',')).join('\r\n'); }
-  const api={SCHEMA,clone,array,unique,uid,hash,random,shuffle,normalizeQuestion,normalizeBank,searchable,isMulti,score,freshProgress,questionState,record,mastery,revisionScore,selectQuestions,createExam,finishExam,validateProgress,mergeProgress,shortcutAllowed,csv};
+  const api={SCHEMA,clone,array,unique,uid,hash,random,shuffle,normalizeQuestion,normalizeBank,searchable,isMulti,score,freshProgress,questionState,record,mastery,revisionScore,selectQuestions,createExam,finishExam,validateProgress,mergeProgress,selectAlgorithmRecords,shortcutAllowed,csv};
   if(typeof module==='object'&&module.exports)module.exports=api;root.RoboticsStudyCore=api;
 })(typeof window==='object'?window:globalThis);

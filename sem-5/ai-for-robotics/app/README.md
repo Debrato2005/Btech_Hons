@@ -10,6 +10,7 @@ The application is intentionally dependency-free. It runs from a `file://` URL w
 - `app.js`: interface, offline evidence viewer, study modes, exports, storage handling and learning-tool integration.
 - `learning-tools.js`: independently tested algorithm and numerical engines, maintained separately.
 - `core.test.js`: software-only fixtures and deterministic logic regressions, never embedded in the course bank.
+- `algorithm-selector.test.js`: isolated component/event regressions using minimal DOM doubles, not a substitute for browser QA.
 
 ## Build and test
 
@@ -17,7 +18,7 @@ From the project root:
 
 ```
 python scripts/validate.py
-node --test app/core.test.js
+node --test app/core.test.js app/algorithm-selector.test.js
 node --test tests/test_learning_tools.js
 python scripts/build.py
 python -m unittest discover -s tests -p 'test_app_offline.py' -v
@@ -37,6 +38,7 @@ The default build embeds each complete original source PDF and all required diag
 ## Study behavior
 
 - Practice, exams, revision and mastery use verified questions by default. Draft/flagged/rejected records remain in the audit view.
+- The algorithm laboratory lists only verified source-linked records by default, plus an explicitly labeled synthetic demonstration. An opt-in audit checkbox exposes unverified source examples. Missing, stale, unavailable, uninspected or unresolved source provenance remains excluded even in audit mode. Turning audit off or changing a configuration clears the prior trace. Leaving Learning tools resets audit mode.
 - Answer IDs survive every option shuffle. Single-select immediate feedback is optional; multi-select always requires submission.
 - Exams store immutable question snapshots, exact option order, scoring, selections, review flags and a fixed wall-clock end time. Reload/background time never restarts the timer. Solutions and answer exports are locked until completion. Changing the system clock is not supported.
 - Partial credit is opt-in and explicitly described before starting. A complete correct answer earns the positive mark; unanswered earns zero. Fractional multi-select subtracts the proportion of wrong options selected and floors at the selected negative penalty. Selecting every option does not yield full credit.

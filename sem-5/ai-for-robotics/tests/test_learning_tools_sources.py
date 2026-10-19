@@ -40,19 +40,40 @@ class SourceLinkedLearningChecks(unittest.TestCase):
         for concept in self.batch["concepts"]:
             self.assertEqual(validate.schema_errors(concept, concept_schema), [], concept["id"])
 
-    def test_blind_packet_has_no_author_answer_fields(self):
-        blind = read("audits/blind-search-foundations.json")
-        questions = {q["id"]: q for q in self.batch["questions"]}
-        self.assertEqual({q["id"] for q in blind}, set(questions))
-        for question in blind:
-            self.assertNotIn("solution", question)
-            self.assertNotIn("correctOptionIds", question)
-            self.assertEqual(question["options"], questions[question["id"]]["options"])
-            self.assertEqual(question["stem"], questions[question["id"]]["stem"])
+    def test_blind_packets_bind_exact_question_versions(self):
+        original = read("audits/batch-history/search-foundations-v1-before-quality-repair.json")
+        original_questions = original["questions"] if isinstance(original, dict) else original
+        versions = {(q["id"], q["version"]): q for q in original_questions}
+        # Current records supersede only their own version. The original blind
+        # packet remains immutable evidence rather than being rewritten to fit.
+        versions.update({(q["id"], q["version"]): q for q in self.batch["questions"]})
+        paths = ["audits/blind-search-foundations.json", "audits/blind-search-foundations-v2.json", "audits/blind-search-frontier-v3.json"]
+        latest = {}
+        for path in paths:
+            packet = read(path)
+            if isinstance(packet, dict):
+                packet = packet["questions"]
+            for question in packet:
+                self.assertNotIn("solution", question)
+                self.assertNotIn("correctOptionIds", question)
+                key = (question["id"], question["version"])
+                if key in versions:
+                    self.assertEqual(question["options"], versions[key]["options"])
+                    self.assertEqual(question["stem"], versions[key]["stem"])
+                previous = latest.get(question["id"])
+                if previous is None or question["version"] > previous["version"]:
+                    latest[question["id"]] = question
+        self.assertEqual(set(latest), {q["id"] for q in self.batch["questions"]})
+        for q in self.batch["questions"]:
+            self.assertEqual(latest[q["id"]]["version"], q["version"])
+            self.assertEqual(latest[q["id"]]["options"], q["options"])
+            self.assertEqual(latest[q["id"]]["stem"], q["stem"])
 
-    def test_frozen_question_hashes_are_current(self):
+    def test_original_frozen_hashes_bind_original_versions(self):
         hashes = read("audits/search-foundations-validation.json")["questionHashes"]
-        for question in self.batch["questions"]:
+        original = read("audits/batch-history/search-foundations-v1-before-quality-repair.json")
+        questions = original["questions"] if isinstance(original, dict) else original
+        for question in questions:
             self.assertEqual(validate.question_hash(question), hashes[question["id"]])
 
     def test_every_search_page_has_accountable_observation(self):

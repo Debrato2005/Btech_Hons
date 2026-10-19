@@ -3355,7 +3355,7 @@
     },
     {
       "id": "W02-L07-Q040",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "robotics-integration-author-L07",
       "stem": "The expanded RPR matrix prints −cosθ3 in row2,column3; multiplying its displayed factors requires which expression?",
@@ -3415,7 +3415,7 @@
         "optionExplanations": {
           "choice-1": "This is the factor-derived entry.",
           "choice-2": "This repeats the inconsistent expanded entry.",
-          "choice-3": "This belongs to a different product entry and does not describe column3.",
+          "choice-3": "This is the negative of row 2, column 2, not the required row 2, column 3 entry.",
           "choice-4": "This includes θ3 although the last z rotation leaves column3 unchanged."
         },
         "steps": [
@@ -3442,7 +3442,7 @@
         "memoryAid": null,
         "misconceptions": [
           "This repeats the inconsistent expanded entry.",
-          "This belongs to a different product entry and does not describe column3.",
+          "This is the negative of row 2, column 2, not the required row 2, column 3 entry.",
           "This includes θ3 although the last z rotation leaves column3 unchanged."
         ],
         "examTraps": [
@@ -3666,10 +3666,10 @@
     },
     {
       "id": "W02-L07-Q043",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "robotics-integration-author-L07",
-      "stem": "In the differential-drive figure, which interpretation of r and2d is correct?",
+      "stem": "In the differential-drive slide, how do the text definitions of r and 2d relate to the sketch?",
       "selectionMode": "single",
       "type": "diagram",
       "difficulty": "easy",
@@ -3713,14 +3713,14 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 262,
           "kind": "figure",
-          "locator": "Lecture7, physical PDF page262, printed slide20; relevant text, table or displayed equation/figure",
-          "evidenceText": "Differential-drive sketch: wheel radius r; axle center between left and right wheels; each center-to-wheel half-distance is d, giving total separation2d; headingφ is measured counterclockwise from+x.",
+          "locator": "Lecture 7, physical PDF page 262, printed slide 20: geometry definitions at left and differential-drive sketch at upper right",
+          "evidenceText": "The text defines wheel radius r and wheel separation 2d. The sketch shows one d segment between the axle midpoint and one wheel, plus heading φ and position (x,y). It does not label r or the full 2d distance.",
           "role": "explicit",
           "region": null
         }
       ],
       "solution": {
-        "justification": "The figure labels wheel radius r and two half-width segments d across the axle.",
+        "justification": "The text defines r as wheel radius and 2d as wheel separation; the sketch labels only one half-separation d.",
         "optionExplanations": {
           "choice-1": "This matches the physical geometry.",
           "choice-2": "This doubles the radius and halves the axle separation incorrectly.",
@@ -3729,7 +3729,7 @@
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The figure labels wheel radius r and two half-width segments d across the axle.",
+        "simpleExplanation": "The text defines r as wheel radius and 2d as wheel separation; the sketch labels only one half-separation d.",
         "memoryAid": null,
         "misconceptions": [
           "This doubles the radius and halves the axle separation incorrectly.",
@@ -4059,7 +4059,7 @@
     },
     {
       "id": "W02-L07-Q047",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "robotics-integration-author-L07",
       "stem": "The table labels v_r=−v_l as clockwise; which qualification is necessary under the displayed equations?",
@@ -4091,7 +4091,7 @@
         },
         {
           "id": "choice-1",
-          "text": "It is clockwise only when v_r<0; opposite speeds alone specify in-place rotation, not its sign"
+          "text": "It is clockwise when v_r<0, counterclockwise when v_r>0, and at rest when both wheel speeds are zero"
         },
         {
           "id": "choice-2",
@@ -4126,9 +4126,9 @@
         }
       ],
       "solution": {
-        "justification": "Opposite wheel speeds make v=0, but ω=v_r/d retains the sign of the right-wheel speed.",
+        "justification": "Substituting v_l=−v_r gives v=0 and ω=v_r/d: the sign sets rotation direction, while v_r=0 gives rest.",
         "optionExplanations": {
-          "choice-1": "This states the missing sign condition.",
+          "choice-1": "This includes both rotation directions and the zero-speed exception.",
           "choice-2": "Positive v_r gives positive counterclockwise yaw.",
           "choice-3": "The average speed vanishes, so there is no center translation.",
           "choice-4": "Zero average and nonzero difference can coexist."
@@ -4136,7 +4136,8 @@
         "steps": [
           "Substitute v_l=−v_r into the average: v=0.",
           "Substitute into the difference: ω=(2v_r)/(2d)=v_r/d.",
-          "Thus the sign depends on v_r; d is positive."
+          "Thus the sign depends on v_r; d is positive.",
+          "If v_r=v_l=0, both the center speed and yaw rate are zero."
         ],
         "formulas": [
           {
@@ -4159,7 +4160,7 @@
             ]
           }
         ],
-        "simpleExplanation": "Opposite wheel speeds make v=0, but ω=v_r/d retains the sign of the right-wheel speed.",
+        "simpleExplanation": "Substituting v_l=−v_r gives v=0 and ω=v_r/d: the sign sets rotation direction, while v_r=0 gives rest.",
         "memoryAid": null,
         "misconceptions": [
           "Positive v_r gives positive counterclockwise yaw.",
@@ -4175,7 +4176,7 @@
       "reviewIds": [],
       "conflictResolution": {
         "status": "derived-correction-pending-independent-review",
-        "basis": "Opposite wheel speeds make v=0, but ω=v_r/d retains the sign of the right-wheel speed.",
+        "basis": "Substituting v_l=−v_r gives v=0 and ω=v_r/d: the sign sets rotation direction, while v_r=0 gives rest.",
         "sourceClaim": "Motion table: v_r=v_l straight; v_r>v_l left; v_r<v_l right; v_r=−v_l labeled clockwise. The last label omits the sign of v_r.",
         "method": "Keep the printed inconsistency visible and derive the answer from the displayed factor matrices or signed kinematic equations."
       }

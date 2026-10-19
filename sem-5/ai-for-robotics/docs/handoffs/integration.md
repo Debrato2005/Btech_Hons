@@ -1,19 +1,39 @@
 # Integration handoff
 
-Full scope remains incomplete: 2,012 source pages, 12 weeks, 60 lectures. Preserve OncoSyn untouched. Latest verified remote main is 74bf905f6e5999d9398cb2f91769cba06564a8d7, including app builder and tests. Never retry uncertain branch writes without checking the remote.
+## Current status
 
-Repo: Debrato2005/Btech_Hons, project sem-5/ai-for-robotics. Exact source IDs/hashes and rebuild steps are in sources/manifest.json, RESUME.md and scripts/ingest_sources.py. Raw PDFs, all extracted text and all 2,012 readable WebP previews are available locally but excluded from Git. Rendering/extraction is not inspection.
+The full project remains in progress: 2,012 source pages, 12 weeks and 60 lectures. OncoSyn is unrelated and must remain untouched. User-authorized execution resumed on 19 October 2026 after the prior service-limit interruption. Do not create replacement workers to evade a future quota denial.
 
-Connected GitHub tree/commit/update_ref works; native push lacks login. Use bounded tree batches, expected_sha leases, prompt yields and remote verification. Native fetch followed by git reset --soft origin/main preserves working files; never hard-reset workers. Only integration writes Git. Avoid unrelated var/cache artifacts.
+The last verified remote main before this checkpoint is f8469e4b0c71dc5d58cf4f009af86cb5c27111a6. This document travels with the next checkpoint; fetch and inspect the current remote rather than treating that predecessor as the newest commit. Never retry uncertain branch writes without checking the remote.
 
-Current batches: L01 original66 independently accepted; supplement19 has11 accepted and8 v2 repairs awaiting re-review. L02 has105 reviewed,79 accepted and26 revisions being made by define_robotics_data_contracts. L03 has87 accepted. L04 has131 frozen drafts, reviewed by finish_robotics_ai_review. L05 has80 frozen drafts, next reviewer verify_robotics_answer_batches. L06 has77 reviewed,53 accepted originally;25 revisions plus new p234 question being authored by build_offline_study_interface. L07 has61 frozen drafts,43 concept records,26 inspected pages; reviewer pending. L08 physical269–295 author complete_robotics_python_coverage. Search68 has67 accepted and1 source-conflict flag. Learning auxiliary data still draft.
+Repo: Debrato2005/Btech_Hons, project sem-5/ai-for-robotics. Source IDs, hashes and recovery steps are in sources/manifest.json and RESUME.md. Both PDFs, extracted text and all 2,012 readable previews are local but excluded from Git. Rendering or extraction does not establish inspection.
 
-Run scripts/assemble_bank.py then scripts/validate.py. Report current unique page union and hash-current accepted reviews only. Last count471 inspected pages; active authoring means counts change. Full-bank validation recently flagged L06 P0238 Q01 missing explicit source-conflict resolution; author is fixing. Historical stale reviews are retained, never counted as current approval.
+At the latest assembly, 499 unique pages were visually inspected; 802 questions included 487 current independent approvals, 293 drafts and 22 flags. Counts can change during active work. Run assemble_bank.py and validate.py before reporting them. Historical reviews are retained but cannot approve revised questions.
 
-Browser QA remains blocked: local Chromium failed under supported execution constraints; cloud CUA denies file URLs and cannot reach the executor HTTP endpoint. Do not tunnel, bypass or call this a pass. Unit/static tests are distinct from browser evidence. Latest built single HTML includes both full PDFs and is approximately92MiB; rebuild after content integration, preserve source readability. Downloaded-file offline browser QA remains an explicit unmet requirement.
+## Active work
 
-Next: persist current reviews/content/maps in bounded checkpoints; re-review corrected questions; assign independent L07 reviewer; continue all remaining lecture/assignment coverage. Keep each worker handoff concise and on disk; stream disconnects require recovery, not restarting actual inspected work. Root owns user updates. Reserve the next completed worker briefly for separate OncoSyn maintenance, then use all useful capacity again.
+- Integration owns all Git writes, repairs L05 review findings, and checks merged results.
+- define_robotics_data_contracts continues the saved independent L04 review; preserve original solver attribution.
+- build_offline_study_interface reviews the 26 L02 revisions.
+- verify_robotics_answer_batches reviews 25 L06 revisions plus the new page 234 item, then three L07 repairs.
+- complete_robotics_python_coverage freezes L08 coverage and 107 drafts, then can continue L09.
 
-## Service-limit stop
+L07 original review accepted 58 of 61; three repairs now have version 2 and need independent review. The original batch is archived. L05 review accepted 59 of 80; 21 quality revisions remain. Search Q04 version 3 now uses a hypothetical diagram with consistent pages 1121–1122; the page 1135 source conflict remains unresolved.
 
-All five active content/review workers stopped at the service preview limit on2026-10-19 about14:05UTC; service returned retry date2026-11-18. Do not create replacements to evade the limit. Root delivered a separate incomplete recovery ZIP. This checkpoint preserves completed local work, not a complete app. Continue only when service access legitimately permits. Read current project-state.json and audit records; pending blind solves are not final approvals.
+L09 source text was read fully, but only pages 296–299 were visually inspected by integration. See docs/handoffs/L09-author.md; do not count remaining pages as inspected.
+
+## Integration and tests
+
+Assembly calls scripts/review_gate.py to keep stale approvals, source mismatches and unresolved provenance out of normal study pools. This gate changes only status and review links, not correctness hashes. Independent source review and the full validator remain required. Do not rerun historical author scripts over revised batches without explicitly restoring the documented repairs.
+
+The latest Python suite passed 69 tests; Node passed 49. The app algorithm selector now defaults to verified source records, labels synthetic demonstrations, and requires explicit draft audit mode. Browser evidence is separate.
+
+## Durable checkpoints
+
+Use connected GitHub tree/commit/update_ref with bounded payloads and expected_sha. Native push lacks authentication. Verify each remote commit with ls-remote/fetch. A mixed reset to the fetched remote preserves working files; never hard-reset active workers. Exclude unrelated var/cache artifacts.
+
+## Remaining requirements
+
+Continue every lecture and assignment page, concept-level independent coverage challenge, question generation and source-based review, auxiliary learning-tool review, app testing and final source-complete release checks. No partial question bank is a completed deliverable.
+
+Actual downloaded-file offline browser QA remains blocked: local Chromium failed under execution constraints; cloud CUA denies file URLs and cannot reach executor HTTP. Do not tunnel, bypass or call this a pass. The single HTML includes both full PDFs and is about 94 MiB; preserve source readability and reassess final artifact delivery size.

@@ -1,0 +1,213 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "W02-L07",
+  "reviewerId": "define_robotics_data_contracts:L07-independent-reviewer",
+  "checkedAt": "2026-10-19T16:06:00.625444+00:00",
+  "scope": "Independent SymPy matrix products, symbolic identities, exact rational and right-angle substitutions derived from actual source factors/equations and frozen blind questions before reading author solutions. Not physical-robot validation or a complete-coverage certificate.",
+  "checks": [
+    {
+      "name": "Q024 modified-DH translation",
+      "actual": "Matrix([[a], [-d*sin(alpha)], [d*cos(alpha)]])",
+      "expected": "Matrix([[a], [-d*sin(alpha)], [d*cos(alpha)]])",
+      "passed": true
+    },
+    {
+      "name": "Q025 corrected row3 column2",
+      "actual": "sin(alpha)*cos(theta)",
+      "expected": "sin(alpha)*cos(theta)",
+      "passed": true
+    },
+    {
+      "name": "Q026 right-angle translation",
+      "actual": "Matrix([[2], [-3], [0]])",
+      "expected": "Matrix([[2], [-3], [0]])",
+      "passed": true
+    },
+    {
+      "name": "modified-DH rotation orthonormal",
+      "actual": "Matrix([[sin(alpha)**2*sin(theta)**2 + sin(theta)**2*cos(alpha)**2 + cos(theta)**2, sin(alpha)**2*sin(theta)*cos(theta) + sin(theta)*cos(alpha)**2*cos(theta) - sin(theta)*cos(theta), 0], [sin(alpha)**2*sin(theta)*cos(theta) + sin(theta)*cos(alpha)**2*cos(theta) - sin(theta)*cos(theta), sin(alpha)**2*cos(theta)**2 + sin(theta)**2 + cos(alpha)**2*cos(theta)**2, 0], [0, 0, sin(alpha)**2 + cos(alpha)**2]])",
+      "expected": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "passed": true
+    },
+    {
+      "name": "modified-DH rotation determinant",
+      "actual": "sin(alpha)**2*sin(theta)**2 + sin(alpha)**2*cos(theta)**2 + sin(theta)**2*cos(alpha)**2 + cos(alpha)**2*cos(theta)**2",
+      "expected": "1",
+      "passed": true
+    },
+    {
+      "name": "Q033 planar translation",
+      "actual": "Matrix([[L1*cos(theta1) + L2*(-sin(theta1)*sin(theta2) + cos(theta1)*cos(theta2))], [L1*sin(theta1) + L2*(sin(theta1)*cos(theta2) + sin(theta2)*cos(theta1))], [0]])",
+      "expected": "Matrix([[L1*cos(theta1) + L2*cos(theta1 + theta2)], [L1*sin(theta1) + L2*sin(theta1 + theta2)], [0]])",
+      "passed": true
+    },
+    {
+      "name": "Q033 planar rotation",
+      "actual": "Matrix([[(-sin(theta1)*sin(theta2) + cos(theta1)*cos(theta2))*cos(theta3) + (-sin(theta1)*cos(theta2) - sin(theta2)*cos(theta1))*sin(theta3), -(-sin(theta1)*sin(theta2) + cos(theta1)*cos(theta2))*sin(theta3) + (-sin(theta1)*cos(theta2) - sin(theta2)*cos(theta1))*cos(theta3), 0], [(-sin(theta1)*sin(theta2) + cos(theta1)*cos(theta2))*sin(theta3) + (sin(theta1)*cos(theta2) + sin(theta2)*cos(theta1))*cos(theta3), (-sin(theta1)*sin(theta2) + cos(theta1)*cos(theta2))*cos(theta3) - (sin(theta1)*cos(theta2) + sin(theta2)*cos(theta1))*sin(theta3), 0], [0, 0, 1]])",
+      "expected": "Matrix([[cos(theta1 + theta2 + theta3), -sin(theta1 + theta2 + theta3), 0], [sin(theta1 + theta2 + theta3), cos(theta1 + theta2 + theta3), 0], [0, 0, 1]])",
+      "passed": true
+    },
+    {
+      "name": "Q034 third-joint origin-position derivative",
+      "actual": "Matrix([[0], [0], [0]])",
+      "expected": "Matrix([[0], [0], [0]])",
+      "passed": true
+    },
+    {
+      "name": "Q035 frame3 origin",
+      "actual": "Matrix([[1], [2], [0]])",
+      "expected": "Matrix([[1], [2], [0]])",
+      "passed": true
+    },
+    {
+      "name": "Q035 orientation",
+      "actual": "pi/6",
+      "expected": "pi/6",
+      "passed": true
+    },
+    {
+      "name": "Q036 rotated tool offset",
+      "actual": "Matrix([[3], [1], [0]])",
+      "expected": "Matrix([[3], [1], [0]])",
+      "passed": true
+    },
+    {
+      "name": "Q039 RPR position",
+      "actual": "Matrix([[L2*sin(theta1) + d2*sin(theta1)], [-L2*cos(theta1) - d2*cos(theta1)], [0]])",
+      "expected": "Matrix([[(L2 + d2)*sin(theta1)], [(-L2 - d2)*cos(theta1)], [0]])",
+      "passed": true
+    },
+    {
+      "name": "Q040 corrected RPR entry",
+      "actual": "-cos(theta1)",
+      "expected": "-cos(theta1)",
+      "passed": true
+    },
+    {
+      "name": "RPR rotation orthonormal",
+      "actual": "Matrix([[sin(theta1)**2*cos(theta3)**2 + sin(theta3)**2 + cos(theta1)**2*cos(theta3)**2, -sin(theta1)**2*sin(theta3)*cos(theta3) - sin(theta3)*cos(theta1)**2*cos(theta3) + sin(theta3)*cos(theta3), 0], [-sin(theta1)**2*sin(theta3)*cos(theta3) - sin(theta3)*cos(theta1)**2*cos(theta3) + sin(theta3)*cos(theta3), sin(theta1)**2*sin(theta3)**2 + sin(theta3)**2*cos(theta1)**2 + cos(theta3)**2, 0], [0, 0, sin(theta1)**2 + cos(theta1)**2]])",
+      "expected": "Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])",
+      "passed": true
+    },
+    {
+      "name": "RPR rotation determinant",
+      "actual": "sin(theta1)**2*sin(theta3)**2 + sin(theta1)**2*cos(theta3)**2 + sin(theta3)**2*cos(theta1)**2 + cos(theta1)**2*cos(theta3)**2",
+      "expected": "1",
+      "passed": true
+    },
+    {
+      "name": "Q041 erroneous column",
+      "actual": "Matrix([[0], [0], [0]])",
+      "expected": "Matrix([[0], [0], [0]])",
+      "passed": true
+    },
+    {
+      "name": "Q041 erroneous norm squared",
+      "actual": "0",
+      "expected": "0",
+      "passed": true
+    },
+    {
+      "name": "Q042 RPR numeric origin",
+      "actual": "Matrix([[1], [0], [0]])",
+      "expected": "Matrix([[1], [0], [0]])",
+      "passed": true
+    },
+    {
+      "name": "Q045 equal-speed yaw",
+      "actual": "0",
+      "expected": "0",
+      "passed": true
+    },
+    {
+      "name": "Q047 opposite-speed yaw",
+      "actual": "r*u_r/d",
+      "expected": "r*u_r/d",
+      "passed": true
+    },
+    {
+      "name": "Q051 forward speed",
+      "actual": "3/10",
+      "expected": "3/10",
+      "passed": true
+    },
+    {
+      "name": "Q051 yaw",
+      "actual": "2/5",
+      "expected": "2/5",
+      "passed": true
+    },
+    {
+      "name": "Q052 ordered pose rates",
+      "actual": "Matrix([[0], [3/10], [2/5]])",
+      "expected": "Matrix([[0], [3/10], [2/5]])",
+      "passed": true
+    },
+    {
+      "name": "Q053/054 ordered matrix product",
+      "actual": "Matrix([[-r*u_l/(2*d) + r*u_r/(2*d)], [r*u_l*cos(phi)/2 + r*u_r*cos(phi)/2], [r*u_l*sin(phi)/2 + r*u_r*sin(phi)/2]])",
+      "expected": "Matrix([[r*(-u_l + u_r)/(2*d)], [r*(u_l + u_r)*cos(phi)/2], [r*(u_l + u_r)*sin(phi)/2]])",
+      "passed": true
+    },
+    {
+      "name": "Q055 doubled track yaw",
+      "actual": "r*(-u_l + u_r)/(4*d)",
+      "expected": "r*(-u_l + u_r)/(4*d)",
+      "passed": true
+    },
+    {
+      "name": "Q056 doubled radius forward",
+      "actual": "r*(u_l + u_r)",
+      "expected": "r*(u_l + u_r)",
+      "passed": true
+    },
+    {
+      "name": "Q056 doubled radius yaw",
+      "actual": "r*(-u_l + u_r)/d",
+      "expected": "r*(-u_l + u_r)/d",
+      "passed": true
+    },
+    {
+      "name": "Q057 inverse commands forward",
+      "actual": "r*((-Omega*d + V)/r + (Omega*d + V)/r)/2",
+      "expected": "V",
+      "passed": true
+    },
+    {
+      "name": "Q057 inverse commands yaw",
+      "actual": "r*(-(-Omega*d + V)/r + (Omega*d + V)/r)/(2*d)",
+      "expected": "Omega",
+      "passed": true
+    },
+    {
+      "name": "Q058 left command",
+      "actual": "3",
+      "expected": "3",
+      "passed": true
+    },
+    {
+      "name": "Q058 right command",
+      "actual": "7",
+      "expected": "7",
+      "passed": true
+    },
+    {
+      "name": "Q059 in-place forward",
+      "actual": "0",
+      "expected": "0",
+      "passed": true
+    },
+    {
+      "name": "Q059 yaw sign and magnitude",
+      "actual": "6/5",
+      "expected": "6/5",
+      "passed": true
+    },
+    {
+      "name": "Q060 lateral constraint",
+      "actual": "0",
+      "expected": "0",
+      "passed": true
+    }
+  ]
+}

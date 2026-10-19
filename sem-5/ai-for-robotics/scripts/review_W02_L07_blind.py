@@ -20,4 +20,7 @@ def save():
  now=datetime.datetime.now(datetime.timezone.utc).isoformat()
  out={'schemaVersion':'1.0.0','batchId':'W02-L07','reviewerId':REVIEWER,'recordedAt':now,'status':'answers_persisted_before_author_reveal' if len(ANSWERS)==len(qs) else 'blind_review_in_progress','blindPacketPath':str(PACKET.relative_to(ROOT)),'blindPacketSha256':hashlib.sha256(PACKET.read_bytes()).hexdigest(),'exposureStatement':'Read only the frozen blind question/options/citations packet and actual source text/pixels; author batch and author scripts not opened. Independent answers and observations are persisted before revealing author keys.','sourceVersions':{'lectures':'2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c'},'sourceVisualObservations':[{'physicalPage':p,'slideId':f'lectures-p{p:04d}','previewPath':f'sources/previews/lectures/page-{p:04d}.webp','dimensions':[1800,1013],'method':'rendered_page','notes':n} for p,n in NOTES.items()],'answers':ANSWERS}
  (ROOT/'audits/blind-answers-W02-L07-v1.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n');print(len(NOTES),'pages and',len(ANSWERS),'blind answers saved')
-if __name__=='__main__':save()
+if __name__=='__main__':
+ if (ROOT/'audits/W02-L07-review-summary.json').exists():
+  raise SystemExit('Blind provenance is frozen after author reveal; do not regenerate its timestamp.')
+ save()

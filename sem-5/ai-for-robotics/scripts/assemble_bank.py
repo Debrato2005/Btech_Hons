@@ -50,16 +50,13 @@ def main():
  for slide in slides:
   if slide['disposition']=='examinable' and not slide['conceptIds']:
    slide['disposition']='unreviewed';slide['conceptLedgerPending']=True
- from validate import question_hash
+ from review_gate import apply_review_gate
+ quarantined=apply_review_gate(questions,reviews,slides,manifest['sources'])
  qmap={q['id']:q for q in questions}
- for q in questions:
-  current=[r for r in reviews if r['questionId']==q['id'] and r['questionVersion']==q['version'] and r['questionSha256']==question_hash(q)]
-  q['reviewIds']=[r['id'] for r in current]
-  if any(r['decision'] in ('flagged','rejected') for r in current):q['status']='flagged'
-  elif any(r['decision']=='verified' and r['reviewerId']!=q['authorId'] and all(r['checks'].values()) and set(r['independentAnswerOptionIds'])==set(q['correctOptionIds']) for r in current):q['status']='verified'
-  elif q['status']=='verified':q['status']='draft'
  for c in concepts:
   if any(qmap[qid]['status']=='verified' for qid in c['questionIds']):c['status']='verified'
+  elif c['status']=='verified':c['status']='drafted' if c['questionIds'] else 'identified'
+ dump(ROOT/'audits/assembly-gate.json',{'quarantined':quarantined,'note':'Metadata eligibility gate only; not a substitute for independent source review or full validation.'})
  tools={k:[] for k in ('formulaSheet','confusionPairs','traps','algorithmVisualizations','numericalFamilies')}
  for p in sorted((ROOT/'data').glob('learning-tools*.json')):
   d=read(p);d=d.get('learningTools',d)
