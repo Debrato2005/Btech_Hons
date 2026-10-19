@@ -2923,7 +2923,7 @@
     },
     {
       "id": "W01-L02-Q-035",
-      "version": 2,
+      "version": 3,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L02-author",
       "stem": "Which ordering correctly assigns the training roles described on the neural-network slide?",
@@ -2952,15 +2952,15 @@
         },
         {
           "id": "W01-L02-Q-035-o4",
-          "text": "Every neural network must have billions of parameters before forward prediction is possible"
+          "text": "Forward prediction → backpropagation gradients → optimizer weight update → loss evaluation"
         },
         {
           "id": "W01-L02-Q-035-o3",
-          "text": "Backpropagation is the loss itself and no optimizer is needed"
+          "text": "Loss evaluation → backpropagation gradients → forward prediction → optimizer weight update"
         },
         {
           "id": "W01-L02-Q-035-o2",
-          "text": "Forward pass updates weights directly; loss supplies gradients; backpropagation predicts the target"
+          "text": "Forward prediction → optimizer weight update → loss evaluation → backpropagation gradients"
         }
       ],
       "correctOptionIds": [
@@ -2983,9 +2983,9 @@
         "justification": "The slide’s shorthand “Backward: adjust weights” is clarified by its detailed box: backprop computes gradients and Adam/SGD performs updates.",
         "optionExplanations": {
           "W01-L02-Q-035-o1": "Correct: each stage matches the more detailed loss/optimization box.",
-          "W01-L02-Q-035-o2": "This swaps prediction, error measurement, gradient computation and parameter update roles.",
-          "W01-L02-Q-035-o3": "The slide separates error measurement, gradient computation and Adam/SGD updates.",
-          "W01-L02-Q-035-o4": "Billions is a large-model illustration, not a necessary condition for all networks."
+          "W01-L02-Q-035-o2": "This applies the optimizer before calculating the loss and its current gradients.",
+          "W01-L02-Q-035-o3": "The loss for the current example needs the forward prediction before differentiation.",
+          "W01-L02-Q-035-o4": "This places the loss after the gradients and update, instead of defining the error that is differentiated."
         },
         "steps": [],
         "formulas": [],
@@ -3000,7 +3000,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L02-Q-036",
@@ -5951,7 +5954,7 @@
     },
     {
       "id": "W01-L02-Q-071",
-      "version": 2,
+      "version": 3,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L02-author",
       "stem": "A simulator varies lighting, textures and friction across training runs; a second method explicitly aligns simulated and real feature distributions. Which names match, respectively?",
@@ -5980,7 +5983,7 @@
         },
         {
           "id": "W01-L02-Q-071-o4",
-          "text": "Both guarantee real-world success regardless of physics mismatch"
+          "text": "Domain randomization; meta-learning"
         },
         {
           "id": "W01-L02-Q-071-o2",
@@ -6013,7 +6016,7 @@
           "W01-L02-Q-071-o1": "Correct: varying simulation conditions and aligning distributions are the two stated strategies.",
           "W01-L02-Q-071-o2": "This swaps the source definitions.",
           "W01-L02-Q-071-o3": "Those concern learning actions versus rewards from demonstrations, not the two simulation-distribution strategies.",
-          "W01-L02-Q-071-o4": "The slide provides strategies, not unconditional transfer guarantees."
+          "W01-L02-Q-071-o4": "Varying simulation conditions matches randomization, but the second method explicitly aligns domains rather than learning how to adapt across tasks."
         },
         "steps": [],
         "formulas": [],
@@ -6024,7 +6027,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L02-Q-072",
@@ -6997,10 +7003,10 @@
     },
     {
       "id": "W01-L02-Q-084",
-      "version": 2,
+      "version": 4,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L02-author",
-      "stem": "A collaborative robot detects excess contact force, predicts a human’s next action and explains why it stopped. Which combination matches the HRI slide?",
+      "stem": "A collaborative robot detects excess contact force, predicts a human’s next action and explains why it stopped. Which HRI roles match these three operations in the same order?",
       "selectionMode": "single",
       "type": "scenario",
       "difficulty": "medium",
@@ -7027,15 +7033,15 @@
         },
         {
           "id": "W01-L02-Q-084-o4",
-          "text": "A reason to disable collision detection because prediction is available"
+          "text": "Gesture recognition; intent prediction; speech recognition"
         },
         {
           "id": "W01-L02-Q-084-o3",
-          "text": "Only speech recognition, because explaining why an action occurred is identical to transcribing words"
+          "text": "Safe physical interaction; explainability; intent prediction"
         },
         {
           "id": "W01-L02-Q-084-o2",
-          "text": "Only intent prediction, because predicting human action replaces force sensing and stopping"
+          "text": "Intent prediction; safe physical interaction; explainability"
         }
       ],
       "correctOptionIds": [
@@ -7058,9 +7064,9 @@
         "justification": "The HRI design combines safe contact, anticipatory assistance and understandable decisions. LIME, SHAP, attention maps and narration are named explanatory examples, not substitutes for safe control.",
         "optionExplanations": {
           "W01-L02-Q-084-o1": "Correct: force/stop, next-action prediction and why-did-it-act are the corresponding roles.",
-          "W01-L02-Q-084-o2": "The slide preserves force/torque sensing and collision stopping as separate physical-safety functions.",
-          "W01-L02-Q-084-o3": "Transcription recognizes speech; explanation concerns reasons for behavior.",
-          "W01-L02-Q-084-o4": "The slide lists collision detection/stopping as separate safety measures."
+          "W01-L02-Q-084-o2": "This swaps contact-force safety monitoring and prediction of a human’s next action.",
+          "W01-L02-Q-084-o3": "The second operation predicts an action; the third explains a past robot decision.",
+          "W01-L02-Q-084-o4": "Force monitoring is not hand/body gesture recognition, and explaining a decision is not merely transcribing speech."
         },
         "steps": [],
         "formulas": [],
@@ -7071,7 +7077,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L02-Q-085",
@@ -7399,7 +7408,7 @@
     },
     {
       "id": "W01-L02-Q-089",
-      "version": 2,
+      "version": 3,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L02-author",
       "stem": "Why does the lecture say ethics must be designed in from the start?",
@@ -7425,7 +7434,7 @@
       "options": [
         {
           "id": "W01-L02-Q-089-o4",
-          "text": "High benchmark accuracy automatically removes every fairness and safety concern"
+          "text": "Because a balanced training set supplies the main ethical safeguard, leaving runtime safety and human oversight to later deployment choices"
         },
         {
           "id": "W01-L02-Q-089-o1",
@@ -7433,11 +7442,11 @@
         },
         {
           "id": "W01-L02-Q-089-o3",
-          "text": "A robot’s physical embodiment makes bias impossible"
+          "text": "Because privacy protection is the central design task, while fairness and physical reliability belong outside ethical review"
         },
         {
           "id": "W01-L02-Q-089-o2",
-          "text": "Ethics applies only after all robot decisions are irreversible"
+          "text": "Because ethics mainly ranks accuracy after training, with design changes deferred until the benchmark audit"
         }
       ],
       "correctOptionIds": [
@@ -7471,9 +7480,9 @@
         "justification": "The ethical risk is connected to real actions and data. Biases in training can produce uneven performance, and physical deployment adds potential harm.",
         "optionExplanations": {
           "W01-L02-Q-089-o1": "Correct: the introductory statement and bias panel support this.",
-          "W01-L02-Q-089-o2": "The source explicitly calls for upfront design.",
-          "W01-L02-Q-089-o3": "The slide names both demographic disparities and common-object grasp bias.",
-          "W01-L02-Q-089-o4": "The source treats these as engineering requirements, not automatic consequences of accuracy."
+          "W01-L02-Q-089-o2": "The slide makes ethics a design concern from the outset, not chiefly a post-training accuracy ranking.",
+          "W01-L02-Q-089-o3": "The slide includes fairness, safety, reliability and autonomy as well as privacy.",
+          "W01-L02-Q-089-o4": "The source connects data bias with physical safety and human autonomy; balancing data does not replace those design responsibilities."
         },
         "steps": [],
         "formulas": [],
@@ -7484,7 +7493,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L02-Q-090",
@@ -8309,7 +8321,7 @@
     },
     {
       "id": "W01-L02-Q-100",
-      "version": 2,
+      "version": 3,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L02-author",
       "stem": "Which reading of the future-directions slide is most defensible?",
@@ -8334,7 +8346,7 @@
       "options": [
         {
           "id": "W01-L02-Q-100-o2",
-          "text": "Every robot must learn every task perfectly from exactly five demonstrations"
+          "text": "Meta-learning and imitation are listed as formal safety-verification methods, while uncertainty quantification is listed as a demonstration-reduction method"
         },
         {
           "id": "W01-L02-Q-100-o1",
@@ -8342,11 +8354,11 @@
         },
         {
           "id": "W01-L02-Q-100-o3",
-          "text": "Safety is optional once a model is data-efficient"
+          "text": "The 5–50 demonstration range supplies a general data-efficiency threshold, while formal verification is proposed for systems that exceed that range"
         },
         {
           "id": "W01-L02-Q-100-o4",
-          "text": "Meta-learning and transfer learning guarantee identical behavior before and after any task change"
+          "text": "Trustworthiness is framed mainly as preserving task accuracy after transfer, while data efficiency is framed mainly as reducing hardware power"
         }
       ],
       "correctOptionIds": [
@@ -8369,9 +8381,9 @@
         "justification": "The source motivates directions and names tools. Demonstration counts, safety and generalization depend on conditions not fully specified by this survey slide.",
         "optionExplanations": {
           "W01-L02-Q-100-o1": "Correct: this reflects the two panels without claiming guarantees.",
-          "W01-L02-Q-100-o2": "The slide gives illustrative small-demo ranges, not a universal exact guarantee.",
-          "W01-L02-Q-100-o3": "The source explicitly treats safety as a first-class constraint.",
-          "W01-L02-Q-100-o4": "The slide motivates adaptation/generalization, not an invariant-performance guarantee under all changes."
+          "W01-L02-Q-100-o2": "This exchanges the roles of the trustworthy-AI and data-efficiency panels.",
+          "W01-L02-Q-100-o3": "The survey range is not a universal threshold, and the slide does not condition safety methods on exceeding it.",
+          "W01-L02-Q-100-o4": "This conflates transfer performance, trustworthy design and the separate low-power edge-computing direction."
         },
         "steps": [],
         "formulas": [],
@@ -8386,7 +8398,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L02-Q-101",

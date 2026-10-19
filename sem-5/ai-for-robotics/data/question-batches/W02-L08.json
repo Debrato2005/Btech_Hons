@@ -5,7 +5,7 @@
   "questions": [
     {
       "id": "W02-L08-P0272-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "Which ordered workflow matches the introduction when the supplied task is the tool pose relative to the station?",
@@ -29,19 +29,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "Convert joint variables into tool pose only, without inversion"
+          "text": "Invert the desired tool-to-station pose matrix to obtain joint variables directly, without using the link model"
         },
         {
           "id": "o1",
-          "text": "Convert to wrist pose relative to base, then solve for joint variables"
+          "text": "Convert to wrist pose relative to the base, then solve for joint variables"
         },
         {
           "id": "o2",
-          "text": "Solve camera brightness, then rename the tool as the base"
+          "text": "Convert to tool pose relative to the base, then use that pose unchanged as the wrist target"
         },
         {
           "id": "o3",
-          "text": "Treat the station and base as always identical, then skip IK"
+          "text": "Convert to wrist pose relative to the station, then use it unchanged as a wrist-relative-to-base target"
         }
       ],
       "correctOptionIds": [
@@ -63,29 +63,32 @@
       "solution": {
         "justification": "The lecture explicitly splits IK into the wrist/base transformation and joint solution.",
         "optionExplanations": {
-          "o1": "Correct. The lecture explicitly splits IK into the wrist/base transformation and joint solution.",
-          "o2": "Incorrect. Camera brightness is not the stated coordinate-conversion task.",
-          "o3": "Incorrect. Distinct frames are drawn and need not coincide.",
-          "o4": "Incorrect. That describes the forward direction rather than solving desired-pose IK."
+          "o1": "Correct. The introduction first obtains the wrist pose in the base frame and then uses manipulator inverse kinematics to solve the joint variables.",
+          "o2": "This handles station/base conversion but omits the tool/wrist calibration; the tool and wrist are distinct frames in the figure.",
+          "o3": "This handles the tool/wrist distinction but omits station/base conversion; the link-model target must use the base frame.",
+          "o4": "Inverting a rigid pose matrix reverses a coordinate map. It does not invert the nonlinear mapping from joint variables to that pose."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The lecture explicitly splits IK into the wrist/base transformation and joint solution.",
         "memoryAid": null,
         "misconceptions": [
-          "Camera brightness is not the stated coordinate-conversion task.",
-          "Distinct frames are drawn and need not coincide.",
-          "That describes the forward direction rather than solving desired-pose IK."
+          "This handles station/base conversion but omits the tool/wrist calibration; the tool and wrist are distinct frames in the figure.",
+          "This handles the tool/wrist distinction but omits station/base conversion; the link-model target must use the base frame.",
+          "Inverting a rigid pose matrix reverses a coordinate map. It does not invert the nonlinear mapping from joint variables to that pose."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0272-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "What must IK determine from the desired tool position and orientation?",
@@ -109,7 +112,7 @@
       "options": [
         {
           "id": "o4",
-          "text": "The number of pixels in the camera image"
+          "text": "Joint rates corresponding to a supplied end-effector velocity"
         },
         {
           "id": "o1",
@@ -117,11 +120,11 @@
         },
         {
           "id": "o2",
-          "text": "Only a rotation matrix with no joint variables"
+          "text": "The manipulator link lengths and joint-axis geometry"
         },
         {
           "id": "o3",
-          "text": "Only the Cartesian pose already supplied"
+          "text": "The end-effector pose produced by a supplied joint configuration"
         }
       ],
       "correctOptionIds": [
@@ -143,25 +146,28 @@
       "solution": {
         "justification": "Joint variables are the unknowns in the stated inverse problem.",
         "optionExplanations": {
-          "o1": "Correct. Joint variables are the unknowns in the stated inverse problem.",
-          "o2": "Incorrect. A rotation matrix describes orientation but is not itself the joint solution.",
-          "o3": "Incorrect. That pose is input rather than the unknown.",
-          "o4": "Incorrect. Camera resolution is unrelated to these kinematic unknowns."
+          "o1": "Correct. The stated inverse position-kinematics problem supplies a desired pose and seeks a compatible joint configuration.",
+          "o2": "Link lengths and axis geometry specify the kinematic model; estimating them is calibration rather than this desired-pose inverse task.",
+          "o3": "This is the forward-kinematics output for given joints, reversing the input/output direction in the stem.",
+          "o4": "This is a velocity-level inverse problem. The stem supplies a pose and asks for a configuration, not a velocity and joint rates."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Joint variables are the unknowns in the stated inverse problem.",
         "memoryAid": null,
         "misconceptions": [
-          "A rotation matrix describes orientation but is not itself the joint solution.",
-          "That pose is input rather than the unknown.",
-          "Camera resolution is unrelated to these kinematic unknowns."
+          "Link lengths and axis geometry specify the kinematic model; estimating them is calibration rather than this desired-pose inverse task.",
+          "This is the forward-kinematics output for given joints, reversing the input/output direction in the stem.",
+          "This is a velocity-level inverse problem. The stem supplies a pose and asks for a configuration, not a velocity and joint rates."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0272-Q03",
@@ -405,13 +411,13 @@
     },
     {
       "id": "W02-L08-P0273-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "Six independent pose constraints and six joint unknowns guarantee which conclusion?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -503,7 +509,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0274-Q01",
@@ -1014,13 +1023,13 @@
     },
     {
       "id": "W02-L08-P0275-Q06",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
-      "stem": "Why must the claim “unequal2R links have no dextrous workspace” not be copied unchanged to the later planar3R wrist model?",
+      "stem": "Why must the claim “unequal 2R links have no dextrous workspace” not be copied unchanged to the later planar 3R wrist model?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -1035,24 +1044,24 @@
         "W02-L08-P0275-C01"
       ],
       "assumptions": [
-        "The later frame3 model has no added translational tool offset and its third angle is unrestricted."
+        "The later frame 3 model has no added translational tool offset and its third angle is unrestricted."
       ],
       "options": [
         {
           "id": "o2",
-          "text": "A third revolute joint necessarily makes all positions reachable"
+          "text": "The additional wrist angle enlarges the two-link position annulus even without a translational tool offset"
         },
         {
           "id": "o3",
-          "text": "Unequal link lengths become equal when a wrist is added"
+          "text": "Unequal first-two-link lengths keep the dextrous set empty even when the wrist can rotate independently"
         },
         {
           "id": "o4",
-          "text": "Adding a wrist removes every joint limit automatically"
+          "text": "The additional wrist angle changes the frame-3 origin coordinates but leaves its orientation fixed"
         },
         {
           "id": "o1",
-          "text": "The additional wrist angle can change orientation without moving the frame3 origin"
+          "text": "The additional wrist angle can change orientation without moving the frame-3 origin"
         }
       ],
       "correctOptionIds": [
@@ -1085,25 +1094,28 @@
       "solution": {
         "justification": "The later model separates wrist orientation from the two-link position, changing the orientation capability.",
         "optionExplanations": {
-          "o1": "Correct. The later model separates wrist orientation from the two-link position, changing the orientation capability.",
-          "o2": "Incorrect. Position reach is still limited by L1 andL2.",
-          "o3": "Incorrect. Adding a joint does not change the given lengths.",
-          "o4": "Incorrect. Limits remain physical constraints unless explicitly excluded."
+          "o1": "Correct. With no translated tool offset, the third angle changes only frame-3 orientation. Thus the 2R orientation restriction does not transfer unchanged.",
+          "o2": "The frame-3 translation still depends only on L1, L2, θ1 and θ2; changing θ3 does not enlarge the position annulus.",
+          "o3": "This carries the 2R limitation into a model with an independent orientation variable. The unrestricted wrist can supply the remaining planar orientation at reachable frame-3 positions.",
+          "o4": "This reverses the roles shown in the transform: θ3 enters the rotation angle sum, not the position column."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The later model separates wrist orientation from the two-link position, changing the orientation capability.",
         "memoryAid": null,
         "misconceptions": [
-          "Position reach is still limited by L1 andL2.",
-          "Adding a joint does not change the given lengths.",
-          "Limits remain physical constraints unless explicitly excluded."
+          "The frame-3 translation still depends only on L1, L2, θ1 and θ2; changing θ3 does not enlarge the position annulus.",
+          "This carries the 2R limitation into a model with an independent orientation variable. The unrestricted wrist can supply the remaining planar orientation at reachable frame-3 positions.",
+          "This reverses the roles shown in the transform: θ3 enters the rotation angle sum, not the position column."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0276-Q01",
@@ -1187,13 +1199,13 @@
     },
     {
       "id": "W02-L08-P0276-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
-      "stem": "What does the lecture’s statement that PUMA560 can have8 solutions for one goal mean?",
+      "stem": "What does the lecture’s statement that PUMA560 can have 8 solutions for one goal mean?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -1211,19 +1223,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Multiple branches may exist; it does not promise8 distinct feasible solutions for every goal"
+          "text": "Multiple branches may exist; it does not promise 8 distinct feasible solutions for every goal"
         },
         {
           "id": "o2",
-          "text": "Every goal has exactly8 solutions including unreachable goals"
+          "text": "Every goal has exactly 8 solutions including unreachable goals"
         },
         {
           "id": "o3",
-          "text": "A PUMA560 has8 independent joint angles"
+          "text": "A PUMA560 has 8 independent joint angles"
         },
         {
           "id": "o4",
-          "text": "All8 branches must satisfy all possible obstacle and joint-limit constraints"
+          "text": "All 8 branches must satisfy all possible obstacle and joint-limit constraints"
         }
       ],
       "correctOptionIds": [
@@ -1263,7 +1275,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0277-Q01",
@@ -1595,13 +1610,13 @@
     },
     {
       "id": "W02-L08-P0277-Q05",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
-      "stem": "Which conclusion is justified by the table’s final two rows, both bounded by16?",
+      "stem": "Which conclusion is justified by the table’s final two rows, both bounded by 16?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -1623,7 +1638,7 @@
         },
         {
           "id": "o3",
-          "text": "All16 solutions exist for every target"
+          "text": "All 16 solutions exist for every target"
         },
         {
           "id": "o4",
@@ -1671,7 +1686,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0278-Q01",
@@ -1755,7 +1773,7 @@
     },
     {
       "id": "W02-L08-P0278-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "The slide prints homogeneity as f(αx)=αx. Which explicit repair gives the standard scaling condition consistent with additivity?",
@@ -1833,11 +1851,20 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "conflictResolution": {
+        "status": "derived-correction-pending-independent-review",
+        "sourceClaim": "The homogeneity line on p278 prints f(αx)=αx, omitting f on the right.",
+        "basis": "For a general linear map, scaling the input scales the mapped output. The supplied counterexample f(x)=2x gives f(3)=6 while 3×1=3, and αf(x)=6.",
+        "method": "Preserve the literal source line as conflicting evidence; explicitly repair it to f(αx)=αf(x). This is not a claim that the source PDF was edited."
+      },
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0278-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "For f(x)=2x, α=3 and x=1, what demonstrates the slide’s missing f in the printed homogeneity right-hand side?",
@@ -1867,7 +1894,7 @@
         },
         {
           "id": "o3",
-          "text": "Both printed sides equal3"
+          "text": "Both printed sides equal 3"
         },
         {
           "id": "o4",
@@ -1895,17 +1922,17 @@
         }
       ],
       "solution": {
-        "justification": "Evaluate f(3)=6,3×1=3,and3f(1)=6.",
+        "justification": "Evaluate f(3)=6, 3×1=3, and 3f(1)=6.",
         "optionExplanations": {
-          "o1": "Correct. Evaluate f(3)=6,3×1=3,and3f(1)=6.",
-          "o2": "Incorrect. The left side is6, and2x is linear.",
-          "o3": "Incorrect. The function doubles its input, so the left side is6.",
+          "o1": "Correct. Evaluate f(3)=6, 3×1=3, and 3f(1)=6.",
+          "o2": "Incorrect. The left side is 6, and 2x is linear.",
+          "o3": "Incorrect. The function doubles its input, so the left side is 6.",
           "o4": "Incorrect. These values omit multiplication or evaluate the wrong input."
         },
         "steps": [
           "αx=3.",
           "f(3)=2×3=6.",
-          "αf(x)=3×2=6, while αx alone is3."
+          "αf(x)=3×2=6, while αx alone is 3."
         ],
         "formulas": [
           {
@@ -1923,28 +1950,37 @@
             ]
           }
         ],
-        "simpleExplanation": "Evaluate f(3)=6,3×1=3,and3f(1)=6.",
+        "simpleExplanation": "Evaluate f(3)=6, 3×1=3, and 3f(1)=6.",
         "memoryAid": null,
         "misconceptions": [
-          "The left side is6, and2x is linear.",
-          "The function doubles its input, so the left side is6.",
+          "The left side is 6, and 2x is linear.",
+          "The function doubles its input, so the left side is 6.",
           "These values omit multiplication or evaluate the wrong input."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "conflictResolution": {
+        "status": "derived-correction-pending-independent-review",
+        "sourceClaim": "The homogeneity line on p278 prints f(αx)=αx.",
+        "basis": "For the explicitly supplied f(x)=2x, α=3, x=1, direct substitution gives f(αx)=6, αx=3 and αf(x)=6.",
+        "method": "Use the exact counterexample to distinguish the printed expression from the corrected homogeneity law; retain both the source quotation and the worked calculation."
+      },
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0278-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "The definitions slide says solvable means unique, but later discusses algorithms finding all possible solutions. Which interpretation avoids that contradiction?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -2036,17 +2072,26 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "conflictResolution": {
+        "status": "derived-correction-pending-independent-review",
+        "sourceClaim": "p278 defines solvable as having a unique solution, while p276 discusses multiple IK solutions and p279 asks an algorithm to find all possible joint values.",
+        "basis": "The cited internal lecture statements explicitly allow several solution branches. Existence or algorithmic solution does not imply uniqueness.",
+        "method": "Read solvability as distinct from uniqueness in this question, retaining the contradictory definition as a documented source conflict rather than silently rewriting it."
+      },
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0278-Q05",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "Why should the slide’s “circle in a plane” not be taught as a general example of a linear vector subspace?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -2078,7 +2123,7 @@
         },
         {
           "id": "o1",
-          "text": "A unit circle fails closure under scalar multiplication:2(1,0) is not on it"
+          "text": "A unit circle fails closure under scalar multiplication:2(1, 0) is not on it"
         }
       ],
       "correctOptionIds": [
@@ -2103,7 +2148,7 @@
           "o1": "Correct. The explicit unit-circle counterexample shows that being a smaller region is insufficient.",
           "o2": "Incorrect. A subset must satisfy closure properties, not merely be smaller.",
           "o3": "Incorrect. Linear subspaces do not require curved boundaries.",
-          "o4": "Incorrect. Doubling(1,0) gives(2,0), which is outside the unit circle."
+          "o4": "Incorrect. Doubling (1, 0) gives (2, 0), which is outside the unit circle."
         },
         "steps": [],
         "formulas": [],
@@ -2112,17 +2157,26 @@
         "misconceptions": [
           "A subset must satisfy closure properties, not merely be smaller.",
           "Linear subspaces do not require curved boundaries.",
-          "Doubling(1,0) gives(2,0), which is outside the unit circle."
+          "Doubling (1, 0) gives (2, 0), which is outside the unit circle."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "conflictResolution": {
+        "status": "derived-correction-pending-independent-review",
+        "sourceClaim": "p278 gives circle in a plane and sphere in XYZ as informal examples of a smaller-region sub-space.",
+        "basis": "Under the explicitly stated linear-vector-subspace interpretation, the unit circle contains (1,0) but not 2(1,0)=(2,0), so scalar closure fails.",
+        "method": "Keep the source’s colloquial usage visible and limit the correction to linear vector subspaces. The counterexample is an explicit mathematical test, not a quotation of additional source text."
+      },
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0279-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "Which structural features are stated as helping analytical IK?",
@@ -2146,19 +2200,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "Increasing all link lengths without changing any equations"
+          "text": "Orthogonal translations of the base and tool frames, regardless of the joint-axis arrangement"
         },
         {
           "id": "o1",
-          "text": "Intersecting joint axes and many zero/right-angle link twists"
+          "text": "Intersecting joint axes and many zero or right-angle link twists"
         },
         {
           "id": "o2",
-          "text": "An arbitrary nonzero translation in every direction guarantees uniqueness"
+          "text": "Unequal link lengths and unrestricted non-right-angle link twists"
         },
         {
           "id": "o3",
-          "text": "Removing all geometric information from the model"
+          "text": "Equal link lengths and mutually skew joint axes"
         }
       ],
       "correctOptionIds": [
@@ -2178,37 +2232,40 @@
         }
       ],
       "solution": {
-        "justification": "The lecture highlights intersecting axes and alpha values0 or90degrees.",
+        "justification": "The lecture highlights intersecting axes and alpha values 0 or 90 degrees.",
         "optionExplanations": {
-          "o1": "Correct. The lecture highlights intersecting axes and alpha values0 or90degrees.",
-          "o2": "Incorrect. Neither generic offsets nor uniqueness follow from that claim.",
-          "o3": "Incorrect. Analytical manipulation depends on the robot geometry.",
-          "o4": "Incorrect. Changing lengths changes the model and does not establish a closed form."
+          "o1": "Correct. The source highlights intersecting axes and many α_i values of 0° or 90° as helpful analytical structure.",
+          "o2": "The source does not identify unequal lengths or unrestricted non-right-angle twists as its simplifying features; these do not reproduce the stated axis/twist pattern.",
+          "o3": "Equal lengths are not the condition listed, and mutually skew axes do not have the cited intersections. This does not assert that the source condition is necessary for every analytical design.",
+          "o4": "A change in base/tool coordinates is not the intrinsic joint-axis arrangement identified by the source; coordinate translations alone do not establish its stated simplifying condition."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The lecture highlights intersecting axes and alpha values0 or90degrees.",
+        "simpleExplanation": "The lecture highlights intersecting axes and alpha values 0 or 90 degrees.",
         "memoryAid": null,
         "misconceptions": [
-          "Neither generic offsets nor uniqueness follow from that claim.",
-          "Analytical manipulation depends on the robot geometry.",
-          "Changing lengths changes the model and does not establish a closed form."
+          "The source does not identify unequal lengths or unrestricted non-right-angle twists as its simplifying features; these do not reproduce the stated axis/twist pattern.",
+          "Equal lengths are not the condition listed, and mutually skew axes do not have the cited intersections. This does not assert that the source condition is necessary for every analytical design.",
+          "A change in base/tool coordinates is not the intrinsic joint-axis arrangement identified by the source; coordinate translations alone do not establish its stated simplifying condition."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0279-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
-      "stem": "Which qualification is necessary when reading the source’s broad claim that all6DOF serial R/P systems are solvable numerically?",
+      "stem": "Which qualification is necessary when reading the source’s broad claim that all 6-DOF serial R/P systems are solvable numerically?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -2230,7 +2287,7 @@
         },
         {
           "id": "o2",
-          "text": "Every target in space is reachable because the robot has6DOF"
+          "text": "Every target in space is reachable because the robot has 6-DOF"
         },
         {
           "id": "o3",
@@ -2289,11 +2346,14 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0280-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "Which mapping matches the lecture’s method definitions?",
@@ -2317,19 +2377,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "Numerical: a closed expression requiring no iterations by definition"
+          "text": "Algebraic: identities and substitution; geometric: iterative numerical updates; numerical: spatial triangle construction"
         },
         {
           "id": "o1",
-          "text": "Algebraic: identities/substitution; geometric: spatial relations/law of cosines; numerical: iteration"
+          "text": "Algebraic: identities and substitution; geometric: spatial relations and the law of cosines; numerical: iteration"
         },
         {
           "id": "o2",
-          "text": "Algebraic: random trial only; geometric: text parsing; numerical: no computation"
+          "text": "Algebraic: spatial triangle construction; geometric: equation substitution; numerical: iteration"
         },
         {
           "id": "o3",
-          "text": "Algebraic: collision checking only; geometric: identical to all numerical iterations"
+          "text": "Algebraic: iterative numerical updates; geometric: spatial triangle construction; numerical: direct closed-form substitution"
         }
       ],
       "correctOptionIds": [
@@ -2362,25 +2422,28 @@
       "solution": {
         "justification": "These are the roles explicitly contrasted.",
         "optionExplanations": {
-          "o1": "Correct. These are the roles explicitly contrasted.",
-          "o2": "Incorrect. These descriptions do not match the definitions.",
-          "o3": "Incorrect. Collision checking is not the defining algebraic operation, and geometric analysis is distinct.",
-          "o4": "Incorrect. Numerical in the lecture refers to iterative computation."
+          "o1": "Correct. These are the primary roles used in the lecture’s method taxonomy.",
+          "o2": "This swaps the lecture’s algebraic and geometric descriptions, although geometric reasoning can of course use algebra during a derivation.",
+          "o3": "This exchanges the iterative numerical method with direct algebraic substitution in the source taxonomy.",
+          "o4": "This exchanges the geometric spatial construction with numerical iteration in the source taxonomy."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "These are the roles explicitly contrasted.",
         "memoryAid": null,
         "misconceptions": [
-          "These descriptions do not match the definitions.",
-          "Collision checking is not the defining algebraic operation, and geometric analysis is distinct.",
-          "Numerical in the lecture refers to iterative computation."
+          "This swaps the lecture’s algebraic and geometric descriptions, although geometric reasoning can of course use algebra during a derivation.",
+          "This exchanges the iterative numerical method with direct algebraic substitution in the source taxonomy.",
+          "This exchanges the geometric spatial construction with numerical iteration in the source taxonomy."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0280-Q02",
@@ -2464,13 +2527,13 @@
     },
     {
       "id": "W02-L08-P0280-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "What does “sufficient” mean for that geometric condition?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -2540,11 +2603,14 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0280-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "Which trade-off matches the lecture without treating speed claims as universal benchmarks?",
@@ -2568,7 +2634,7 @@
       "options": [
         {
           "id": "o4",
-          "text": "Numerical IK never uses a Jacobian"
+          "text": "A numerical solution can be accepted solely because its joint-update step is small, without checking the remaining pose error"
         },
         {
           "id": "o1",
@@ -2576,11 +2642,11 @@
         },
         {
           "id": "o2",
-          "text": "Numerical methods are always faster on every processor"
+          "text": "Closed form applies without redesign to arbitrary robot geometry; numerical methods are restricted to intersecting-axis wrists"
         },
         {
           "id": "o3",
-          "text": "Closed form removes all physical constraints"
+          "text": "Closed form and numerical IK differ only in notation and use the same iterative convergence process"
         }
       ],
       "correctOptionIds": [
@@ -2613,25 +2679,28 @@
       "solution": {
         "justification": "The method comparison and summary emphasize geometry, computation and singularity handling.",
         "optionExplanations": {
-          "o1": "Correct. The method comparison and summary emphasize geometry, computation and singularity handling.",
-          "o2": "Incorrect. No universal hardware benchmark is established.",
-          "o3": "Incorrect. Analytical solutions still obey reachability and admissibility.",
-          "o4": "Incorrect. The summary specifically names Jacobian-based numerical methods."
+          "o1": "Correct. The lecture links analytical solutions to suitable geometry and contrasts their computational convenience with numerical iteration and singularity handling.",
+          "o2": "This reverses the stated scope: the summary limits analytical formulas to specific geometries and discusses numerical methods more generally.",
+          "o3": "A direct closed-form evaluation is not the same process as iterative numerical updates; their computational and convergence considerations differ.",
+          "o4": "A small update can reflect stagnation or poor conditioning rather than a solved target. The computed configuration still needs a pose-residual and feasibility check."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The method comparison and summary emphasize geometry, computation and singularity handling.",
         "memoryAid": null,
         "misconceptions": [
-          "No universal hardware benchmark is established.",
-          "Analytical solutions still obey reachability and admissibility.",
-          "The summary specifically names Jacobian-based numerical methods."
+          "This reverses the stated scope: the summary limits analytical formulas to specific geometries and discusses numerical methods more generally.",
+          "A direct closed-form evaluation is not the same process as iterative numerical updates; their computational and convergence considerations differ.",
+          "A small update can reflect stagnation or poor conditioning rather than a solved target. The computed configuration still needs a pose-residual and feasibility check."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0281-Q01",
@@ -2715,7 +2784,7 @@
     },
     {
       "id": "W02-L08-P0281-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "Which order matches the labels in the wrist picture?",
@@ -2739,19 +2808,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Joint4 wrist rotation; joint5 wrist bend; joint6 flange rotation"
+          "text": "Joint 4: wrist rotation; joint 5: wrist bend; joint 6: flange rotation"
         },
         {
           "id": "o2",
-          "text": "Joint4 flange rotation; joint5 base translation; joint6 wrist bend"
+          "text": "Joint 4: flange rotation; joint 5: wrist rotation; joint 6: wrist bend"
         },
         {
           "id": "o3",
-          "text": "Joint4 elbow extension; joint5 gripper opening; joint6 camera focus"
+          "text": "Joint 4: wrist bend; joint 5: wrist rotation; joint 6: flange rotation"
         },
         {
           "id": "o4",
-          "text": "Joint4 wrist bend; joint5 flange rotation; joint6 base yaw"
+          "text": "Joint 4: wrist rotation; joint 5: flange rotation; joint 6: wrist bend"
         }
       ],
       "correctOptionIds": [
@@ -2773,25 +2842,28 @@
       "solution": {
         "justification": "Those labels are printed beside the three wrist motions.",
         "optionExplanations": {
-          "o1": "Correct. Those labels are printed beside the three wrist motions.",
-          "o2": "Incorrect. Base translation is not one of the pictured wrist labels.",
-          "o3": "Incorrect. These are not the three labeled wrist motions.",
-          "o4": "Incorrect. The labels are shifted and base yaw is not joint6 in the figure."
+          "o1": "Correct. The actual figure assigns wrist rotation to joint 4, wrist bend to joint 5 and flange rotation to joint 6.",
+          "o2": "This cycles all three labels away from their printed joint numbers.",
+          "o3": "This swaps the joint-4 rotation and joint-5 bend labels while retaining the flange label.",
+          "o4": "This retains the joint-4 label but swaps the joint-5 bend and joint-6 flange labels."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Those labels are printed beside the three wrist motions.",
         "memoryAid": null,
         "misconceptions": [
-          "Base translation is not one of the pictured wrist labels.",
-          "These are not the three labeled wrist motions.",
-          "The labels are shifted and base yaw is not joint6 in the figure."
+          "This cycles all three labels away from their printed joint numbers.",
+          "This swaps the joint-4 rotation and joint-5 bend labels while retaining the flange label.",
+          "This retains the joint-4 label but swaps the joint-5 bend and joint-6 flange labels."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0281-Q03",
@@ -3138,7 +3210,7 @@
     },
     {
       "id": "W02-L08-P0282-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "Which quantity changes when only θ3 changes in that model?",
@@ -3159,25 +3231,25 @@
         "W02-L08-P0282-C01"
       ],
       "assumptions": [
-        "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
-        "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied."
+        "Ideal planar three-revolute-joint model shown on p282; L1, L2>0; frame 3 origin has no added L3/tool translation.",
+        "Angles are modulo 2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied."
       ],
       "options": [
         {
           "id": "o4",
-          "text": "The base frame origin moves"
+          "text": "Neither frame-3 orientation nor its origin coordinates changes"
         },
         {
           "id": "o1",
-          "text": "Frame3 orientation, but not its origin coordinates"
+          "text": "Frame-3 orientation changes, but its origin coordinates do not"
         },
         {
           "id": "o2",
-          "text": "Both origin coordinates necessarily change"
+          "text": "Both frame-3 orientation and its origin coordinates change"
         },
         {
           "id": "o3",
-          "text": "Only L1 changes"
+          "text": "Frame-3 origin coordinates change, but its orientation does not"
         }
       ],
       "correctOptionIds": [
@@ -3197,27 +3269,30 @@
         }
       ],
       "solution": {
-        "justification": "The rotation usesθ1+θ2+θ3, whereas translation containsθ1 andθ2 only.",
+        "justification": "The rotation uses θ1+θ2+θ3, whereas translation contains θ1 and θ2 only.",
         "optionExplanations": {
-          "o1": "Correct. The rotation usesθ1+θ2+θ3, whereas translation containsθ1 andθ2 only.",
-          "o2": "Incorrect. Noθ3 term occurs in the translation column.",
-          "o3": "Incorrect. A joint angle does not change a rigid link length.",
-          "o4": "Incorrect. The base is fixed under the given model."
+          "o1": "Correct. θ3 appears in the orientation sum θ1+θ2+θ3 but not in the frame-3 translation column.",
+          "o2": "This would require a translated tool point affected by wrist rotation. The stated frame-3 model explicitly has no added tool translation.",
+          "o3": "This reverses the dependencies in the displayed transform: θ3 changes orientation rather than the frame-3 origin.",
+          "o4": "The absence of θ3 from translation does not make it irrelevant to the transform; it remains in the rotation entries."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The rotation usesθ1+θ2+θ3, whereas translation containsθ1 andθ2 only.",
+        "simpleExplanation": "The rotation uses θ1+θ2+θ3, whereas translation contains θ1 and θ2 only.",
         "memoryAid": null,
         "misconceptions": [
-          "Noθ3 term occurs in the translation column.",
-          "A joint angle does not change a rigid link length.",
-          "The base is fixed under the given model."
+          "This would require a translated tool point affected by wrist rotation. The stated frame-3 model explicitly has no added tool translation.",
+          "This reverses the dependencies in the displayed transform: θ3 changes orientation rather than the frame-3 origin.",
+          "The absence of θ3 from translation does not make it irrelevant to the transform; it remains in the rotation entries."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0282-Q03",
@@ -3381,13 +3456,13 @@
     },
     {
       "id": "W02-L08-P0282-Q05",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "Why do cφ=c123 and sφ=s123 not supply two independent orientation freedoms?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -3457,7 +3532,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0282-Q06",
@@ -4316,13 +4394,13 @@
     },
     {
       "id": "W02-L08-P0283-Q08",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "At c2=1 or c2=−1, what happens to the ±√(1−c2²) branches?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -4337,8 +4415,8 @@
         "W02-L08-P0283-C01"
       ],
       "assumptions": [
-        "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
-        "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied."
+        "Ideal planar three-revolute-joint model shown on p282; L1, L2>0; frame 3 origin has no added L3/tool translation.",
+        "Angles are modulo 2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied."
       ],
       "options": [
         {
@@ -4347,7 +4425,7 @@
         },
         {
           "id": "o1",
-          "text": "The sine is0 and the elbow branches coincide modulo2π"
+          "text": "The sine is 0 and the elbow branches coincide modulo 2π"
         },
         {
           "id": "o2",
@@ -4375,16 +4453,16 @@
         }
       ],
       "solution": {
-        "justification": "The square root vanishes;θ2 is0 orπ modulo2π.",
+        "justification": "The square root vanishes; θ2 is 0 or π modulo 2π.",
         "optionExplanations": {
-          "o1": "Correct. The square root vanishes;θ2 is0 orπ modulo2π.",
+          "o1": "Correct. The square root vanishes; θ2 is 0 or π modulo 2π.",
           "o2": "Incorrect. A vanishing square root does not create new nonzero branches.",
           "o3": "Incorrect. These are reachable boundary configurations under the ideal model.",
           "o4": "Incorrect. The magnitude is exactly zero."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The square root vanishes;θ2 is0 orπ modulo2π.",
+        "simpleExplanation": "The square root vanishes; θ2 is 0 or π modulo 2π.",
         "memoryAid": null,
         "misconceptions": [
           "A vanishing square root does not create new nonzero branches.",
@@ -4395,7 +4473,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0284-Q01",
@@ -4490,7 +4571,7 @@
     },
     {
       "id": "W02-L08-P0284-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "Which quantities correspond to the legs, hypotenuse and angle in the little k-triangle?",
@@ -4514,19 +4595,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "Legs x,y; hypotenuse θ1; γ=k1+k2"
+          "text": "Legs k1 and k2; hypotenuse r=k1+k2; angle γ=atan2(k2, k1)"
         },
         {
           "id": "o3",
-          "text": "Legs L1,L2; hypotenuse θ2; γ=atan2(k1,k2)"
+          "text": "Legs k1 and k2; hypotenuse r=√(k1²+k2²); angle γ=atan2(k1, k2)"
         },
         {
           "id": "o4",
-          "text": "Legs cosθ1,sinθ1; hypotenuse L1+L2 at every pose"
+          "text": "Legs x and y; hypotenuse √(x²+y²); angle γ=atan2(y, x)"
         },
         {
           "id": "o1",
-          "text": "Legs k1,k2; hypotenuse r=√(k1²+k2²); γ=atan2(k2,k1)"
+          "text": "Legs k1 and k2; hypotenuse r=√(k1²+k2²); angle γ=atan2(k2, k1)"
         }
       ],
       "correctOptionIds": [
@@ -4548,29 +4629,32 @@
       "solution": {
         "justification": "Those are the labels and polar definitions shown.",
         "optionExplanations": {
-          "o1": "Correct. Those are the labels and polar definitions shown.",
-          "o2": "Incorrect. An angle is not a length hypotenuse, and these are not the k-triangle labels.",
-          "o3": "Incorrect. This substitutes link lengths and reverses the atan2 arguments.",
-          "o4": "Incorrect. The k-vector length varies with the elbow configuration."
+          "o1": "Correct. The little coefficient triangle labels its horizontal and vertical legs k1 and k2, with the stated norm and polar-angle definitions.",
+          "o2": "The hypotenuse is the Euclidean norm, not the sum of the two perpendicular leg lengths.",
+          "o3": "This reverses atan2’s vertical/horizontal argument order and therefore does not give the shown coefficient-vector bearing.",
+          "o4": "This describes the target-position triangle and its bearing β. The displayed little triangle is built from k1 and k2, and its angle is γ rather than β."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Those are the labels and polar definitions shown.",
         "memoryAid": null,
         "misconceptions": [
-          "An angle is not a length hypotenuse, and these are not the k-triangle labels.",
-          "This substitutes link lengths and reverses the atan2 arguments.",
-          "The k-vector length varies with the elbow configuration."
+          "The hypotenuse is the Euclidean norm, not the sum of the two perpendicular leg lengths.",
+          "This reverses atan2’s vertical/horizontal argument order and therefore does not give the shown coefficient-vector bearing.",
+          "This describes the target-position triangle and its bearing β. The displayed little triangle is built from k1 and k2, and its angle is γ rather than β."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0284-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "Which explicit correction makes the slide’s middle x/r expansion consistent with x=k1 cosθ1−k2 sinθ1?",
@@ -4600,7 +4684,7 @@
         },
         {
           "id": "o4",
-          "text": "x/r=cos(γ−θ1) for allγ,θ1"
+          "text": "x/r=cos(γ−θ1) for all γ, θ1"
         },
         {
           "id": "o1",
@@ -4648,7 +4732,16 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "conflictResolution": {
+        "status": "derived-correction-pending-independent-review",
+        "sourceClaim": "The middle p284 x/r expansion prints cosγ cosθ1−sinγ cosθ1, repeating the cosine factor.",
+        "basis": "The same page first states x=k1 cosθ1−k2 sinθ1 and k1/r=cosγ, k2/r=sinγ. Substitution therefore preserves sinθ1 in the second term, matching cos(γ+θ1).",
+        "method": "Correct only the final factor of that middle expression to sinθ1 and retain the defective printed expression as conflicting evidence."
+      },
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0284-Q04",
@@ -5136,7 +5229,7 @@
     },
     {
       "id": "W02-L08-P0285-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "From θ1+θ2+θ3=φ, what is the explicitly derived wrist angle, correcting the final line on p288?",
@@ -5205,27 +5298,36 @@
         }
       ],
       "solution": {
-        "justification": "Subtract bothθ1 andθ2 from the sum equation.",
+        "justification": "Subtract both θ1 and θ2 from the sum equation.",
         "optionExplanations": {
-          "o1": "Correct. Subtract bothθ1 andθ2 from the sum equation.",
-          "o2": "Incorrect. The printed final line has a wrong plus sign beforeθ2.",
-          "o3": "Incorrect. Adding both angles does not isolateθ3.",
-          "o4": "Incorrect. This changes the signs ofφ andθ1 incorrectly."
+          "o1": "Correct. Subtract both θ1 and θ2 from the sum equation.",
+          "o2": "Incorrect. The printed final line has a wrong plus sign before θ2.",
+          "o3": "Incorrect. Adding both angles does not isolate θ3.",
+          "o4": "Incorrect. This changes the signs of φ and θ1 incorrectly."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Subtract bothθ1 andθ2 from the sum equation.",
+        "simpleExplanation": "Subtract both θ1 and θ2 from the sum equation.",
         "memoryAid": null,
         "misconceptions": [
-          "The printed final line has a wrong plus sign beforeθ2.",
-          "Adding both angles does not isolateθ3.",
-          "This changes the signs ofφ andθ1 incorrectly."
+          "The printed final line has a wrong plus sign before θ2.",
+          "Adding both angles does not isolate θ3.",
+          "This changes the signs of φ and θ1 incorrectly."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "conflictResolution": {
+        "status": "derived-correction-pending-independent-review",
+        "sourceClaim": "The last line on p288 prints θ3=φ−θ1+θ2, inconsistent with θ1+θ2+θ3=φ on p285 and p288.",
+        "basis": "Subtracting θ1 and θ2 from the printed angle-sum premise yields θ3=φ−θ1−θ2. Both complete unit-link branches reconstruct the stated orientation with this sign.",
+        "method": "Use the angle-sum derivation and forward reconstruction as the basis; preserve the erroneous final source line rather than treating it as an alternative convention."
+      },
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0285-Q02",
@@ -5505,13 +5607,13 @@
     },
     {
       "id": "W02-L08-P0285-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "At the reachable equal-link origin with a specified φ, what family of solutions exists?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "extremely_tricky",
+      "difficulty": "hard",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -5526,26 +5628,26 @@
         "W02-L08-P0285-C01"
       ],
       "assumptions": [
-        "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
-        "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied.",
+        "Ideal planar three-revolute-joint model shown on p282; L1, L2>0; frame 3 origin has no added L3/tool translation.",
+        "Angles are modulo 2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied.",
         "Equal positive link lengths and unrestricted wrist angle."
       ],
       "options": [
         {
           "id": "o1",
-          "text": "θ2=π, θ1 arbitrary, θ3=φ−θ1−π modulo2π"
+          "text": "θ2=π, θ1 arbitrary, θ3=φ−θ1−π modulo 2π"
         },
         {
           "id": "o2",
-          "text": "Exactly two isolated θ1 values regardless ofφ"
+          "text": "Exactly two isolated θ1 values regardless of φ"
         },
         {
           "id": "o3",
-          "text": "θ1=0 is physically mandatory because atan2(0,0) returns0 in some software"
+          "text": "θ1=0 is physically mandatory because atan2(0, 0) returns 0 in some software"
         },
         {
           "id": "o4",
-          "text": "No solution because the ordinary shoulder formula divides byzero"
+          "text": "No solution because the ordinary shoulder formula divides by zero"
         }
       ],
       "correctOptionIds": [
@@ -5587,16 +5689,16 @@
         }
       ],
       "solution": {
-        "justification": "Folding cancels translation for every shoulder angle; the wrist then restoresφ.",
+        "justification": "Folding cancels translation for every shoulder angle; the wrist then restores φ.",
         "optionExplanations": {
-          "o1": "Correct. Folding cancels translation for every shoulder angle; the wrist then restoresφ.",
+          "o1": "Correct. Folding cancels translation for every shoulder angle; the wrist then restores φ.",
           "o2": "Incorrect. This is a degenerate continuous family, not the generic two-branch case.",
           "o3": "Incorrect. A software convention at an undefined bearing cannot impose a physical joint angle.",
           "o4": "Incorrect. The generic formula degenerates but the physical solutions still exist."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Folding cancels translation for every shoulder angle; the wrist then restoresφ.",
+        "simpleExplanation": "Folding cancels translation for every shoulder angle; the wrist then restores φ.",
         "memoryAid": null,
         "misconceptions": [
           "This is a degenerate continuous family, not the generic two-branch case.",
@@ -5607,17 +5709,20 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0285-Q05",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
-      "stem": "When atan2(sφ,cφ) returns a principal angle, what must be remembered when reconstructing joint sums?",
+      "stem": "When atan2(sφ, cφ) returns a principal angle, what must be remembered when reconstructing joint sums?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -5641,7 +5746,7 @@
         },
         {
           "id": "o3",
-          "text": "Adding2π changes every rotation-matrix entry"
+          "text": "Adding 2π changes every rotation-matrix entry"
         },
         {
           "id": "o4",
@@ -5649,7 +5754,7 @@
         },
         {
           "id": "o1",
-          "text": "Angles differing by2π represent the same planar orientation, though joint limits may distinguish usable representatives"
+          "text": "Angles differing by 2π represent the same planar orientation, though joint limits may distinguish usable representatives"
         }
       ],
       "correctOptionIds": [
@@ -5684,7 +5789,7 @@
         "optionExplanations": {
           "o1": "Correct. Sine/cosine are periodic, but actuator limits apply to selected joint coordinates.",
           "o2": "Incorrect. The physical rotation is unchanged by whole revolutions.",
-          "o3": "Incorrect. Rotation entries are periodic with2π.",
+          "o3": "Incorrect. Rotation entries are periodic with 2π.",
           "o4": "Incorrect. The orientation constrains the sum, not equality of each joint."
         },
         "steps": [],
@@ -5693,21 +5798,24 @@
         "memoryAid": null,
         "misconceptions": [
           "The physical rotation is unchanged by whole revolutions.",
-          "Rotation entries are periodic with2π.",
+          "Rotation entries are periodic with 2π.",
           "The orientation constrains the sum, not equality of each joint."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0285-Q06",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
-      "stem": "Which algorithm order correctly solves a nondegenerate reachable planar3R pose?",
+      "stem": "Which algorithm order correctly solves a nondegenerate reachable planar 3R pose?",
       "selectionMode": "single",
       "type": "sequence",
       "difficulty": "medium",
@@ -5725,26 +5833,26 @@
         "W02-L08-P0285-C01"
       ],
       "assumptions": [
-        "Ideal planar three-revolute-joint model shown on p282; L1,L2>0; frame3 origin has no added L3/tool translation.",
-        "Angles are modulo2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied.",
-        "Nondegenerate target: radius>0 and−1<c2<1."
+        "Ideal planar three-revolute-joint model shown on p282; L1, L2>0; frame 3 origin has no added L3/tool translation.",
+        "Angles are modulo 2π unless a degree interval is explicitly specified; no joint limits or obstacles unless supplied.",
+        "Nondegenerate target: radius>0 and −1<c2<1."
       ],
       "options": [
         {
           "id": "o3",
-          "text": "Compute only arccos(c2) → call all other angles zero"
+          "text": "Check c2 reachability → enumerate both sine signs and θ2 → compute one θ1 and reuse it for both branches → compute θ3 and check constraints"
         },
         {
           "id": "o4",
-          "text": "Average the elbow branches → assume the average has the desired pose"
+          "text": "Check c2 reachability → enumerate both θ2 branches and their θ1 values → set θ3=φ for both branches → check only the position coordinates"
         },
         {
           "id": "o1",
-          "text": "Compute c2 and check reachability → enumerate sine signs andθ2 → computeθ1 per branch → computeθ3 and check constraints"
+          "text": "Check c2 reachability → enumerate both sine signs and θ2 → compute θ1 separately for each branch → compute θ3 and check pose and constraints"
         },
         {
           "id": "o2",
-          "text": "Computeθ3 arbitrarily → discard negative sine → skip position verification"
+          "text": "Check c2 reachability → keep only principal arccos(c2) → compute its θ1 → compute θ3 and check pose and constraints"
         }
       ],
       "correctOptionIds": [
@@ -5799,25 +5907,33 @@
       "solution": {
         "justification": "This preserves both branches, uses dependencies correctly and then checks admissibility.",
         "optionExplanations": {
-          "o1": "Correct. This preserves both branches, uses dependencies correctly and then checks admissibility.",
-          "o2": "Incorrect. The wrist depends on the other angles and negative sine is a valid branch.",
-          "o3": "Incorrect. One elbow angle does not supply the full pose solution.",
-          "o4": "Incorrect. Nonlinear forward kinematics does not preserve the goal under averaging."
+          "o1": "Correct. This respects the dependencies, retains both nondegenerate elbow branches, closes the orientation and checks the complete pose and admissibility.",
+          "o2": "The principal arccos branch alone omits the opposite sine/elbow branch even though no joint constraint has excluded it.",
+          "o3": "The shoulder depends on k2=L2 sinθ2. Reversing the elbow sine generally changes the required shoulder, so it must be computed per branch.",
+          "o4": "The wrist must subtract the shoulder and elbow contributions: θ3=φ−θ1−θ2. Checking only position misses the resulting orientation error."
         },
-        "steps": [],
+        "steps": [
+          "Compute c2=(x²+y²−L1²−L2²)/(2L1L2) and reject values outside [−1, 1].",
+          "For the stated nondegenerate case, take both s2=±√(1−c2²) and compute θ2=atan2(s2, c2).",
+          "For each sign, compute θ1=atan2(y, x)−atan2(L2 s2, L1+L2 c2).",
+          "Set θ3=φ−θ1−θ2, reconstruct the full forward pose, and apply any stated joint or obstacle constraints."
+        ],
         "formulas": [],
         "simpleExplanation": "This preserves both branches, uses dependencies correctly and then checks admissibility.",
         "memoryAid": null,
         "misconceptions": [
-          "The wrist depends on the other angles and negative sine is a valid branch.",
-          "One elbow angle does not supply the full pose solution.",
-          "Nonlinear forward kinematics does not preserve the goal under averaging."
+          "The principal arccos branch alone omits the opposite sine/elbow branch even though no joint constraint has excluded it.",
+          "The shoulder depends on k2=L2 sinθ2. Reversing the elbow sine generally changes the required shoulder, so it must be computed per branch.",
+          "The wrist must subtract the shoulder and elbow contributions: θ3=φ−θ1−θ2. Checking only position misses the resulting orientation error."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0285-Q07",
@@ -6660,13 +6776,13 @@
     },
     {
       "id": "W02-L08-P0287-Q05",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
-      "stem": "How should the slide’s θ2∈[−180°,0°] choice be read given its next statement θ2′=−θ2?",
+      "stem": "How should the slide’s θ2∈[−180°, 0°] choice be read given its next statement θ2′=−θ2?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -6688,7 +6804,7 @@
         },
         {
           "id": "o3",
-          "text": "It impliesθ2 andθ2′ are always the same distinct configuration"
+          "text": "It implies θ2 and θ2′ are always the same distinct configuration"
         },
         {
           "id": "o4",
@@ -6731,7 +6847,7 @@
         "optionExplanations": {
           "o1": "Correct. The following line explicitly constructs the opposite branch.",
           "o2": "Incorrect. That would contradict the second branch on the same slide.",
-          "o3": "Incorrect. They differ generically and merge only at boundary angles modulo360°.",
+          "o3": "Incorrect. They differ generically and merge only at boundary angles modulo 360°.",
           "o4": "Incorrect. Both interval endpoints are included in the source."
         },
         "steps": [],
@@ -6740,14 +6856,17 @@
         "memoryAid": null,
         "misconceptions": [
           "That would contradict the second branch on the same slide.",
-          "They differ generically and merge only at boundary angles modulo360°.",
+          "They differ generically and merge only at boundary angles modulo 360°.",
           "Both interval endpoints are included in the source."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0287-Q06",
@@ -7445,7 +7564,7 @@
     },
     {
       "id": "W02-L08-P0290-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "What are the input and output of the differential-drive inverse-kinematics task described in words?",
@@ -7469,19 +7588,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "A desired final pose alone in; a unique entire trajectory out"
+          "text": "Wheel radius and track width in; individual wheel rates out without specifying a desired motion"
         },
         {
           "id": "o1",
-          "text": "Desired body motion(v,ω) in; individual wheel rates(ul,ur) out"
+          "text": "Desired body motion (v, ω) in; individual wheel rates (ul, ur) out"
         },
         {
           "id": "o2",
-          "text": "Wheel radii in; camera brightness out"
+          "text": "Desired final world pose (x, y, φ) in; a unique pair of instantaneous wheel rates out, without a motion controller"
         },
         {
           "id": "o3",
-          "text": "Wheel rates in; body motion out only"
+          "text": "Individual wheel rates (ul, ur) in; resulting body motion (v, ω) out"
         }
       ],
       "correctOptionIds": [
@@ -7514,35 +7633,38 @@
       "solution": {
         "justification": "IK computes the rates each wheel must have to realize the requested instantaneous motion.",
         "optionExplanations": {
-          "o1": "Correct. IK computes the rates each wheel must have to realize the requested instantaneous motion.",
-          "o2": "Incorrect. These quantities are outside the stated inverse task.",
-          "o3": "Incorrect. That is the forward velocity direction.",
-          "o4": "Incorrect. The source gives a velocity-level inverse, not a unique trajectory planner."
+          "o1": "Correct. The described inverse velocity task finds wheel angular rates for a requested instantaneous body-forward speed and yaw rate.",
+          "o2": "A final pose alone does not specify an instantaneous velocity command or a unique trajectory. A controller or planner must supply the desired motion first.",
+          "o3": "This is the forward velocity mapping, reversing the direction of the inverse task.",
+          "o4": "Geometry determines the coefficients of the mapping, but the desired motion is also needed to determine wheel rates."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "IK computes the rates each wheel must have to realize the requested instantaneous motion.",
         "memoryAid": null,
         "misconceptions": [
-          "These quantities are outside the stated inverse task.",
-          "That is the forward velocity direction.",
-          "The source gives a velocity-level inverse, not a unique trajectory planner."
+          "A final pose alone does not specify an instantaneous velocity command or a unique trajectory. A controller or planner must supply the desired motion first.",
+          "This is the forward velocity mapping, reversing the direction of the inverse task.",
+          "Geometry determines the coefficients of the mapping, but the desired motion is also needed to determine wheel rates."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0290-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
       "stem": "Why can the J^-1 symbol printed on p290 not mean an ordinary two-sided inverse of the preceding matrix?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -7568,11 +7690,11 @@
         },
         {
           "id": "o1",
-          "text": "J is3×2 and non-square; p291 instead supplies a pseudoinverse"
+          "text": "J is 3×2 and non-square; p291 instead supplies a pseudoinverse"
         },
         {
           "id": "o2",
-          "text": "Every3×2 matrix has a unique3×2 ordinary inverse"
+          "text": "Every 3×2 matrix has a unique 3×2 ordinary inverse"
         }
       ],
       "correctOptionIds": [
@@ -7614,16 +7736,16 @@
         }
       ],
       "solution": {
-        "justification": "A two-sided matrix inverse is square; the following slide explicitly usesJ+.",
+        "justification": "A two-sided matrix inverse is square; the following slide explicitly uses J+.",
         "optionExplanations": {
-          "o1": "Correct. A two-sided matrix inverse is square; the following slide explicitly usesJ+.",
+          "o1": "Correct. A two-sided matrix inverse is square; the following slide explicitly uses J+.",
           "o2": "Incorrect. A rectangular matrix cannot have both products equal to identities of different dimensions.",
           "o3": "Incorrect. Negative entries do not cause this dimensional issue.",
           "o4": "Incorrect. Matrix shape determines whether products and inverse operations are defined."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "A two-sided matrix inverse is square; the following slide explicitly usesJ+.",
+        "simpleExplanation": "A two-sided matrix inverse is square; the following slide explicitly uses J+.",
         "memoryAid": null,
         "misconceptions": [
           "A rectangular matrix cannot have both products equal to identities of different dimensions.",
@@ -7634,14 +7756,23 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "conflictResolution": {
+        "status": "derived-correction-pending-independent-review",
+        "sourceClaim": "p290 writes J^−1 for a differential-drive Jacobian displayed on p289 as 3×2.",
+        "basis": "A 3×2 matrix cannot have an ordinary two-sided inverse. The following p291 explicitly supplies the full-column-rank pseudoinverse J+=(J^T J)^−1J^T.",
+        "method": "Interpret the inverse task using the next-page pseudoinverse with its rank and feasibility conditions. Do not endorse an ordinary inverse of the non-square matrix."
+      },
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0290-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
-      "stem": "Which corrected forward-flow diagram agrees with qdot=J pdot and pdot=[ul,ur]^T?",
+      "stem": "Which corrected forward-flow diagram agrees with qdot=J pdot and pdot=[ul, ur]^T?",
       "selectionMode": "single",
       "type": "diagram",
       "difficulty": "medium",
@@ -7672,7 +7803,7 @@
         },
         {
           "id": "o3",
-          "text": "pdot → J^T → qdot for this3×2J"
+          "text": "pdot → J^T → qdot for this 3×2 J"
         },
         {
           "id": "o4",
@@ -7718,27 +7849,36 @@
         }
       ],
       "solution": {
-        "justification": "The3×2 matrix maps the2-vector wheel input to the3-vector output.",
+        "justification": "The 3×2 matrix maps the 2-vector wheel input to the 3-vector output.",
         "optionExplanations": {
-          "o1": "Correct. The3×2 matrix maps the2-vector wheel input to the3-vector output.",
+          "o1": "Correct. The 3×2 matrix maps the 2-vector wheel input to the 3-vector output.",
           "o2": "Incorrect. The printed diagram reverses the variable roles relative to the defining equation.",
-          "o3": "Incorrect. J^T is2×3 and cannot multiply a2-vector in this order.",
+          "o3": "Incorrect. J^T is 2×3 and cannot multiply a 2-vector in this order.",
           "o4": "Incorrect. The inverse map returns wheel rates, not anotherqdot."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The3×2 matrix maps the2-vector wheel input to the3-vector output.",
+        "simpleExplanation": "The 3×2 matrix maps the 2-vector wheel input to the 3-vector output.",
         "memoryAid": null,
         "misconceptions": [
           "The printed diagram reverses the variable roles relative to the defining equation.",
-          "J^T is2×3 and cannot multiply a2-vector in this order.",
+          "J^T is 2×3 and cannot multiply a 2-vector in this order.",
           "The inverse map returns wheel rates, not anotherqdot."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "conflictResolution": {
+        "status": "derived-correction-pending-independent-review",
+        "sourceClaim": "The p290 forward-flow drawing labels qdot→J→pdot, opposite to the defining qdot=J pdot equation and wheel-rate definition.",
+        "basis": "The displayed J is 3×2, pdot=[ul,ur]^T is a 2-vector and qdot=[φdot,xdot,ydot]^T is a 3-vector. Their dimensions and the equation require pdot→J→qdot.",
+        "method": "Correct the diagram’s variable roles in the question while retaining the original drawing as conflicting evidence. The source image itself remains unchanged."
+      },
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0290-Q04",
@@ -7916,13 +8056,13 @@
     },
     {
       "id": "W02-L08-P0291-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
-      "stem": "For a tall m×n matrix withm>n and full column rank, which pseudoinverse formula is valid?",
+      "stem": "For a tall m×n matrix with m>n and full column rank, which pseudoinverse formula is valid?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -7976,8 +8116,8 @@
         "optionExplanations": {
           "o1": "Correct. J^T J is n×n and invertible under full column rank.",
           "o2": "Incorrect. JJ^T is rank deficient whenm>n, so that ordinary inverse fails.",
-          "o3": "Incorrect. This has the wrongn×n shape and omits the required inverse.",
-          "o4": "Incorrect. The originalJ is non-square."
+          "o3": "Incorrect. This has the wrong n×n shape and omits the required inverse.",
+          "o4": "Incorrect. The original J is non-square."
         },
         "steps": [],
         "formulas": [],
@@ -7985,24 +8125,27 @@
         "memoryAid": null,
         "misconceptions": [
           "JJ^T is rank deficient whenm>n, so that ordinary inverse fails.",
-          "This has the wrongn×n shape and omits the required inverse.",
-          "The originalJ is non-square."
+          "This has the wrong n×n shape and omits the required inverse.",
+          "The original J is non-square."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0291-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
-      "stem": "For a wide m×n matrix withm<n and full row rank, which formula is valid?",
+      "stem": "For a wide m×n matrix with m<n and full row rank, which formula is valid?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -8056,7 +8199,7 @@
         "optionExplanations": {
           "o1": "Correct. JJ^T is m×m and invertible under full row rank.",
           "o2": "Incorrect. J^TJ is rank deficient in the wide case.",
-          "o3": "Incorrect. This hasm×m shape, notn×m.",
+          "o3": "Incorrect. This has m×m shape, notn×m.",
           "o4": "Incorrect. Transposition alone is not a general pseudoinverse."
         },
         "steps": [],
@@ -8065,14 +8208,17 @@
         "memoryAid": null,
         "misconceptions": [
           "J^TJ is rank deficient in the wide case.",
-          "This hasm×m shape, notn×m.",
+          "This has m×m shape, notn×m.",
           "Transposition alone is not a general pseudoinverse."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0291-Q04",
@@ -8156,13 +8302,13 @@
     },
     {
       "id": "W02-L08-P0291-Q05",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
-      "stem": "If a tall J loses column rank, what happens to the displayed(J^T J)^−1 J^T formula?",
+      "stem": "If a tall J loses column rank, what happens to the displayed (J^T J)^−1 J^T formula?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -8186,7 +8332,7 @@
         },
         {
           "id": "o2",
-          "text": "The inverse remains valid becauseJ is still rectangular"
+          "text": "The inverse remains valid because J is still rectangular"
         },
         {
           "id": "o3",
@@ -8234,7 +8380,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0291-Q06",
@@ -8423,13 +8572,13 @@
     },
     {
       "id": "W02-L08-P0291-Q08",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
-      "stem": "For the wide full-row-rank matrixJ=[1,1] andb=2, what does its pseudoinverse select?",
+      "stem": "For the wide full-row-rank matrix J=[1, 1] and b=2, what does its pseudoinverse select?",
       "selectionMode": "single",
       "type": "numerical",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "numerical",
       "week": 2,
       "lectureId": "L08",
@@ -8449,19 +8598,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "u=[2,2]^T, because both components must equalb"
+          "text": "u=[2, 2]^T, because both components must equalb"
         },
         {
           "id": "o1",
-          "text": "u=[1,1]^T, the minimum-Euclidean-norm exact solution"
+          "text": "u=[1, 1]^T, the minimum-Euclidean-norm exact solution"
         },
         {
           "id": "o2",
-          "text": "u=[2,0]^T because it is the only exact solution"
+          "text": "u=[2, 0]^T because it is the only exact solution"
         },
         {
           "id": "o3",
-          "text": "u=[0,0]^T, which exactly satisfies the target"
+          "text": "u=[0, 0]^T, which exactly satisfies the target"
         }
       ],
       "correctOptionIds": [
@@ -8481,18 +8630,18 @@
         }
       ],
       "solution": {
-        "justification": "J+=J^T/2, giving[1,1]; splitting equally minimizesu1²+u2² underu1+u2=2.",
+        "justification": "J+=J^T/2, giving [1, 1]; splitting equally minimizes u1²+u2² under u1+u2=2.",
         "optionExplanations": {
-          "o1": "Correct. J+=J^T/2, giving[1,1]; splitting equally minimizesu1²+u2² underu1+u2=2.",
-          "o2": "Incorrect. [2,0] is exact but not unique or minimum norm.",
-          "o3": "Incorrect. It produces0 rather than2.",
-          "o4": "Incorrect. It produces4 rather than2."
+          "o1": "Correct. J+=J^T/2, giving [1, 1]; splitting equally minimizes u1²+u2² under u1+u2=2.",
+          "o2": "Incorrect. [2, 0] is exact but not unique or minimum norm.",
+          "o3": "Incorrect. It produces 0 rather than 2.",
+          "o4": "Incorrect. It produces 4 rather than 2."
         },
         "steps": [
           "JJ^T=2.",
-          "J+=[1/2,1/2]^T.",
-          "Multiply byb=2 to obtain[1,1].",
-          "For any exact solution[1+t,1−t],squared norm=2+2t², minimized att=0."
+          "J+=[1/2, 1/2]^T.",
+          "Multiply byb=2 to obtain[1, 1].",
+          "For any exact solution[1+t, 1−t], squared norm=2+2t², minimized att=0."
         ],
         "formulas": [
           {
@@ -8511,18 +8660,21 @@
             ]
           }
         ],
-        "simpleExplanation": "J+=J^T/2, giving[1,1]; splitting equally minimizesu1²+u2² underu1+u2=2.",
+        "simpleExplanation": "J+=J^T/2, giving [1, 1]; splitting equally minimizes u1²+u2² under u1+u2=2.",
         "memoryAid": null,
         "misconceptions": [
-          "[2,0] is exact but not unique or minimum norm.",
-          "It produces0 rather than2.",
-          "It produces4 rather than2."
+          "[2, 0] is exact but not unique or minimum norm.",
+          "It produces 0 rather than 2.",
+          "It produces 4 rather than 2."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     },
     {
       "id": "W02-L08-P0291-Q09",
@@ -10164,13 +10316,13 @@
     },
     {
       "id": "W02-L08-P0291-Q13",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L08-author-20261019",
-      "stem": "At headingφ=90°,does the ideal differential-drive J lose rank merely because cosφ=0?",
+      "stem": "At heading φ=90°, does the ideal differential-drive J lose rank merely because cosφ=0?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L08",
@@ -10185,25 +10337,25 @@
         "W02-L08-P0291-C01"
       ],
       "assumptions": [
-        "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is2d.",
-        "u_l,u_r are signed left/right wheel angular rates;φ is counterclockwise heading from world+x;ω=φdot;v is signed body-forward velocity."
+        "Ideal no-slip differential drive with equal positive wheel radius r and positive half-track d; full wheel separation is 2d.",
+        "u_l, u_r are signed left/right wheel angular rates; φ is counterclockwise heading from world +x; ω=φdot; v is signed body-forward velocity."
       ],
       "options": [
         {
           "id": "o3",
-          "text": "Yes;both translational rows vanish at90°"
+          "text": "Yes; both translational rows vanish at 90°"
         },
         {
           "id": "o4",
-          "text": "No,because a3×2matrix always has rank3"
+          "text": "No, because a 3×2matrix always has rank 3"
         },
         {
           "id": "o1",
-          "text": "No;the yaw andydot rows still provide two independent input combinations"
+          "text": "No; the yaw andydot rows still provide two independent input combinations"
         },
         {
           "id": "o2",
-          "text": "Yes;every zero matrix entry makes a matrix singular"
+          "text": "Yes; every zero matrix entry makes a matrix singular"
         }
       ],
       "correctOptionIds": [
@@ -10234,27 +10386,30 @@
         }
       ],
       "solution": {
-        "justification": "The sine projection is nonzero,so wheel sum and difference remain independent forr,d>0.",
+        "justification": "The sine projection is nonzero, so wheel sum and difference remain independent for r, d>0.",
         "optionExplanations": {
-          "o1": "Correct. The sine projection is nonzero,so wheel sum and difference remain independent forr,d>0.",
+          "o1": "Correct. The sine projection is nonzero, so wheel sum and difference remain independent for r, d>0.",
           "o2": "Incorrect. Zero entries alone do not determine rank.",
-          "o3": "Incorrect. sin90°=1,so theydot row remains.",
+          "o3": "Incorrect. sin90°=1, so the ydot row remains.",
           "o4": "Incorrect. Rank cannot exceed the two columns."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The sine projection is nonzero,so wheel sum and difference remain independent forr,d>0.",
+        "simpleExplanation": "The sine projection is nonzero, so wheel sum and difference remain independent for r, d>0.",
         "memoryAid": null,
         "misconceptions": [
           "Zero entries alone do not determine rank.",
-          "sin90°=1,so theydot row remains.",
+          "sin90°=1, so the ydot row remains.",
           "Rank cannot exceed the two columns."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface-L08-independent"
+      ]
     }
   ],
   "concepts": [

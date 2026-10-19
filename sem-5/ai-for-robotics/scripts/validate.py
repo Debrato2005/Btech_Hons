@@ -343,6 +343,9 @@ def validate_bank(bank: dict, root: Path | str = PROJECT_ROOT, *, release: bool 
                 if citation['role'] == 'conflict' and not question.get('conflictResolution'):
                     errors.append(f'{qid}: conflicting source evidence needs explicit conflictResolution')
         accepted = []
+        # Every correctness-changing contributor is an author for independence.
+        # revisionAuthors is schema-checked as a unique array of nonblank IDs.
+        authors = {question['authorId'], *question.get('revisionAuthors', [])}
         for rid in question['reviewIds']:
             review = reviews.get(rid)
             if not review:
@@ -355,8 +358,8 @@ def validate_bank(bank: dict, root: Path | str = PROJECT_ROOT, *, release: bool 
             reasons = []
             if rid in stale_review_ids:
                 reasons.append('stale content/source binding')
-            if review['reviewerId'] == question['authorId']:
-                reasons.append('reviewer is the author')
+            if review['reviewerId'] in authors:
+                reasons.append('reviewer is the author or a revision author')
             if not all(review['checks'][key] for key in CHECK_KEYS):
                 reasons.append('failed review checks')
             if set(review['independentAnswerOptionIds']) != answers:

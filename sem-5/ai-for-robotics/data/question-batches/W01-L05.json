@@ -180,7 +180,7 @@
     },
     {
       "id": "W01-L05-Q-003",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "Select every pairing that matches the ROS 2 feature cards, without treating a capability as an automatic guarantee.",
@@ -216,7 +216,7 @@
         },
         {
           "id": "o3",
-          "text": "Vendor-neutral DDS: a particular camera mount geometry"
+          "text": "Vendor-neutral DDS: application interfaces restricted to one middleware supplier"
         }
       ],
       "correctOptionIds": [
@@ -242,7 +242,7 @@
         "optionExplanations": {
           "o1": "The security card names these mechanisms; configuration still matters.",
           "o2": "The embedded card describes a lightweight constrained-device use case.",
-          "o3": "DDS belongs to communication middleware, not mechanical geometry.",
+          "o3": "Vendor-neutral support concerns communication middleware without requiring a single supplier; it is not an interface lock-in requirement.",
           "o4": "The multi-robot card concerns distributed cooperation."
         },
         "steps": [],
@@ -258,7 +258,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-004",
@@ -1611,7 +1614,7 @@
     },
     {
       "id": "W01-L05-Q-021",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "Which pairing matches the message examples?",
@@ -1636,15 +1639,15 @@
       "options": [
         {
           "id": "o2",
-          "text": "sensor_msgs/Image for motor supply voltage; geometry_msgs/Twist for image pixels"
+          "text": "sensor_msgs/Image for camera calibration parameters; geometry_msgs/Twist for absolute robot position"
         },
         {
           "id": "o3",
-          "text": "geometry_msgs/Twist for a package directory; sensor_msgs/Image for a service name"
+          "text": "sensor_msgs/Image for camera pixels; geometry_msgs/Twist for joint positions"
         },
         {
           "id": "o4",
-          "text": "Both types are interchangeable unstructured text strings"
+          "text": "sensor_msgs/Image for camera pixels; geometry_msgs/Twist for force and torque commands"
         },
         {
           "id": "o1",
@@ -1671,9 +1674,9 @@
         "justification": "Images and velocity commands require different structured representations; the type names identify those distinct interfaces.",
         "optionExplanations": {
           "o1": "These are the specific examples on the slide.",
-          "o2": "This swaps the interface meanings and invents a voltage role.",
-          "o3": "Packages and names are not these message payloads.",
-          "o4": "The slide emphasizes strict structured message formats."
+          "o2": "This confuses pixel image data with calibration, and velocity with position.",
+          "o3": "The image pairing fits, but the slide uses Twist for linear and angular velocity, not joint positions.",
+          "o4": "The image pairing fits, but force and torque are not the velocity quantities in the slide’s Twist example."
         },
         "steps": [],
         "formulas": [],
@@ -1684,7 +1687,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-022",
@@ -2167,13 +2173,13 @@
     },
     {
       "id": "W01-L05-Q-027",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "A 30 Hz camera feeds one strictly serial detector taking exactly 0.1 s per frame. After startup, assume an unlimited queue, no dropped frames and continuous work. At what rate does the backlog grow?",
       "selectionMode": "single",
       "type": "numerical",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "numerical",
       "week": 1,
       "lectureId": "L05",
@@ -2280,7 +2286,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-028",
@@ -2465,13 +2474,13 @@
     },
     {
       "id": "W01-L05-Q-030",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "The prose calls services synchronous, but the later code uses future = self.client.call_async(req). Which reading is defensible?",
       "selectionMode": "single",
       "type": "source-reconciliation",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "synthesis",
       "week": 1,
       "lectureId": "L05",
@@ -2554,7 +2563,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-031",
@@ -3073,7 +3085,7 @@
     },
     {
       "id": "W01-L05-Q-037",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "Which sequence matches the parameter-related operations shown?",
@@ -3098,15 +3110,15 @@
       "options": [
         {
           "id": "o2",
-          "text": "Read a parameter name and infer that this automatically declared the shown default earlier"
+          "text": "Retrieve the parameter before declaration and treat that read as setting its default"
         },
         {
           "id": "o3",
-          "text": "Wait for a service and assume that step declares all parameters"
+          "text": "Declare a default and reuse that literal value instead of reading the current parameter"
         },
         {
           "id": "o4",
-          "text": "Treat the service name add as the current value of parameter speed"
+          "text": "Declare a default and treat each subsequent read as resetting a changed value to that default"
         },
         {
           "id": "o1",
@@ -3144,9 +3156,9 @@
         "justification": "The constructor establishes the parameter’s default; the later read obtains the currently configured value.",
         "optionExplanations": {
           "o1": "The lecture shows declaration/default setup and get_parameter in the logic.",
-          "o2": "A later read is not evidence of a prior default declaration; the code explicitly declares it.",
-          "o3": "Service availability and parameter declaration are separate operations.",
-          "o4": "The service name and the parameter value are separate code objects."
+          "o2": "A retrieval does not perform the explicit declaration and default setup shown.",
+          "o3": "The displayed later get_parameter call obtains the current value rather than simply reusing the initialization literal.",
+          "o4": "Reading the current value is not a reset to the original default."
         },
         "steps": [
           "Find declare_parameter in initialization.",
@@ -3161,7 +3173,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-038",
@@ -3345,13 +3360,13 @@
     },
     {
       "id": "W01-L05-Q-040",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "Which statement correctly separates the wait_for_service loop, call_async and the printed parameter?",
       "selectionMode": "single",
       "type": "code",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "algorithm",
       "week": 1,
       "lectureId": "L05",
@@ -3422,17 +3437,20 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-041",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "Assume the node accepts a speed update to 2.5 before the shown read. The service operands remain a = 2 and b = 3. Which pair is correct: printed speed value, handler sum if executed?",
       "selectionMode": "single",
       "type": "code",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "algorithm",
       "week": 1,
       "lectureId": "L05",
@@ -3506,7 +3524,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-042",
@@ -3917,7 +3938,7 @@
     },
     {
       "id": "W01-L05-Q-047",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "Select every link-property pairing that matches the slide.",
@@ -3941,7 +3962,7 @@
       "options": [
         {
           "id": "o4",
-          "text": "The link name alone: a guarantee of real-world collision safety"
+          "text": "Visual geometry: the mass and inertia values used by the physical model"
         },
         {
           "id": "o1",
@@ -3980,7 +4001,7 @@
           "o1": "Visual properties support rendered appearance.",
           "o2": "Collision properties describe the geometry relevant to interactions.",
           "o3": "The slide associates inertial information with mass and balance.",
-          "o4": "A name neither defines adequate geometry nor proves safe operation."
+          "o4": "Rendered geometry and mass-related inertial properties are separate fields in the slide."
         },
         "steps": [],
         "formulas": [],
@@ -3995,7 +4016,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-048",
@@ -4312,13 +4336,13 @@
     },
     {
       "id": "W01-L05-Q-052",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "A camera is fixed to the chassis, and the robot translates across the room without altering the mount. What can remain unchanged while the camera’s world pose changes?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "application",
       "week": 1,
       "lectureId": "L05",
@@ -4398,7 +4422,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-053",
@@ -4565,13 +4592,13 @@
     },
     {
       "id": "W01-L05-Q-055",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "What computation and output role does the slide assign to robot_state_publisher?",
       "selectionMode": "single",
       "type": "diagram",
-      "difficulty": "hard",
+      "difficulty": "easy",
       "cognitiveSkill": "application",
       "week": 1,
       "lectureId": "L05",
@@ -4638,7 +4665,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-056",
@@ -4718,13 +4748,13 @@
     },
     {
       "id": "W01-L05-Q-057",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "A subscriber has connected to /tf. Which further condition is necessary before it can rely on a transform for a particular sensor measurement?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "application",
       "week": 1,
       "lectureId": "L05",
@@ -4743,11 +4773,11 @@
       "options": [
         {
           "id": "o2",
-          "text": "Subscription alone makes every missing transform exact"
+          "text": "Any connected transform is sufficient even when its parent and child frames are reversed"
         },
         {
           "id": "o3",
-          "text": "The transform’s topic name must contain the sensor’s pixel resolution"
+          "text": "A transform with matching frame names is sufficient even when its values come from a different sensor calibration"
         },
         {
           "id": "o4",
@@ -4789,8 +4819,8 @@
         "justification": "A communication subscription is a way to obtain data, not proof that the particular relationship needed for a calculation exists and is current.",
         "optionExplanations": {
           "o1": "Spatial correctness depends on having the right valid relation for the measurement, not merely a connection.",
-          "o2": "The slide’s informal exact-at-any-time language is not an unconditional data-validity guarantee.",
-          "o3": "Pixel resolution is not a substitute for the required spatial relation.",
+          "o2": "Frame direction matters; the required relation may need inversion rather than direct use.",
+          "o3": "Matching names do not establish that the numerical relation is valid for the actual sensor mounting.",
           "o4": "For changing poses, time alignment matters; an arbitrary stale transform is not sufficient."
         },
         "steps": [],
@@ -4802,7 +4832,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-058",
@@ -5301,7 +5334,7 @@
     },
     {
       "id": "W01-L05-Q-064",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "A robot shape is visible in RViz, but a developer still needs simulated contact, gravity and friction. Which conclusion follows?",
@@ -5330,15 +5363,15 @@
         },
         {
           "id": "o2",
-          "text": "Showing RobotModel proves contacts and friction have already been simulated accurately"
+          "text": "Loading collision geometry into an RViz RobotModel also starts contact-force integration"
         },
         {
           "id": "o3",
-          "text": "A Path display changes the floor’s friction coefficient automatically"
+          "text": "Publishing changing transforms to RViz computes the forces that produced those motions"
         },
         {
           "id": "o4",
-          "text": "Adding more Image displays supplies the missing rigid-body dynamics"
+          "text": "Setting inertial values in the model makes RViz itself simulate gravity and friction"
         }
       ],
       "correctOptionIds": [
@@ -5372,9 +5405,9 @@
         "justification": "A visual scene can look plausible without physically simulating the robot. The tools’ responsibilities differ.",
         "optionExplanations": {
           "o1": "The lecture assigns physical effects to simulation rather than mere visualization.",
-          "o2": "A displayed shape is not evidence of a valid contact/dynamics model.",
-          "o3": "A trajectory display is not a friction-model configuration.",
-          "o4": "More images do not create a rigid-body physics model."
+          "o2": "Geometry describes shapes; loading a visualization is not starting a dynamics simulation.",
+          "o3": "Displaying supplied poses does not solve the forces or dynamics that would produce them.",
+          "o4": "Physical parameters are inputs a simulator can use; their presence does not turn visualization into a dynamics engine."
         },
         "steps": [],
         "formulas": [],
@@ -5385,7 +5418,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-065",
@@ -5796,13 +5832,13 @@
     },
     {
       "id": "W01-L05-Q-070",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "Choose the best ordered communication/configuration choices for: continuous camera frames; a one-off reset request with response; a long navigation goal with progress; a supported exposure setting.",
       "selectionMode": "single",
       "type": "matching",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "synthesis",
       "week": 1,
       "lectureId": "L05",
@@ -5904,17 +5940,20 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-071",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "One figure names its camera topic /camera/raw; another example names it /image_raw. If one publisher uses the former and a subscriber listens only to the latter, what can be concluded from these slides?",
       "selectionMode": "single",
       "type": "diagram",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "synthesis",
       "week": 1,
       "lectureId": "L05",
@@ -5994,17 +6033,20 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-072",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "A 30 Hz camera and a 10 Hz publisher from the code example run independently. Over a common ideal 1-second interval with first events one period after zero and both endpoints included, what are their event counts and ratio?",
       "selectionMode": "single",
       "type": "numerical",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "numerical",
       "week": 1,
       "lectureId": "L05",
@@ -6122,11 +6164,14 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-073",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "A robot model looks correct in RViz, but its simulation mass is badly wrong. Which omitted or incorrect property is the most direct suspect?",
@@ -6150,15 +6195,15 @@
       "options": [
         {
           "id": "o2",
-          "text": "The visual color, because identical color implies identical mass"
+          "text": "The visual mesh volume, without examining the separately assigned mass data"
         },
         {
           "id": "o3",
-          "text": "The joint’s display label, without changing any physical properties"
+          "text": "The joint damping value, rather than any mass-related model data"
         },
         {
           "id": "o4",
-          "text": "The camera topic’s publication rate"
+          "text": "The collision friction setting, rather than any mass-related model data"
         },
         {
           "id": "o1",
@@ -6185,9 +6230,9 @@
         "justification": "Visual correctness and physical parameter correctness are independent aspects of the robot model.",
         "optionExplanations": {
           "o1": "The slide separates mass-related inertial information from visual appearance.",
-          "o2": "Color is an appearance attribute, not the mass-related parameter.",
-          "o3": "Renaming a label does not correct inertial data.",
-          "o4": "Sensor-message timing is not the model’s mass definition."
+          "o2": "A visual mesh alone does not establish the model’s assigned mass.",
+          "o3": "Damping concerns motion resistance, not the direct mass value asked for.",
+          "o4": "Friction describes contact resistance, not the direct mass value asked for."
         },
         "steps": [],
         "formulas": [],
@@ -6198,17 +6243,20 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-074",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "A simulation ignores a protruding robot part even though the rendered mesh shows it. Which model issue is most directly suggested by the lecture’s distinct visual/collision roles?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "synthesis",
       "week": 1,
       "lectureId": "L05",
@@ -6297,17 +6345,20 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-075",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "A frame-tree design gives camera_link two different parents at the same time in the intended rooted tree. Which issue does this create?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "application",
       "week": 1,
       "lectureId": "L05",
@@ -6385,11 +6436,14 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-076",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "A system uses ROS 2 but has not configured security or measured worst-case execution timing. Which statement avoids overreading the feature slide?",
@@ -6417,15 +6471,15 @@
         },
         {
           "id": "o2",
-          "text": "The presence of ROS 2 proves every message is encrypted and every deadline is met"
+          "text": "Middleware selection alone establishes that security is enabled for this deployment"
         },
         {
           "id": "o3",
-          "text": "Multi-robot support prevents all node failures"
+          "text": "A successful average-rate test establishes that every worst-case deadline will be met"
         },
         {
           "id": "o4",
-          "text": "An embedded-system label proves unlimited processing capacity"
+          "text": "A reliable message-delivery setting establishes a bounded end-to-end execution time"
         }
       ],
       "correctOptionIds": [
@@ -6448,9 +6502,9 @@
         "justification": "The lecture’s feature cards motivate capabilities. They do not provide the configuration, timing analysis or tests needed to certify a particular deployment.",
         "optionExplanations": {
           "o1": "Features are not substitutes for deployment configuration and validation.",
-          "o2": "This treats capability labels as unconditional guarantees.",
-          "o3": "Distributed communication does not eliminate failures.",
-          "o4": "Resource-constrained deployment is not unlimited compute."
+          "o2": "Availability of security mechanisms does not show that this deployment configured them.",
+          "o3": "Average timing does not establish a worst-case deadline guarantee.",
+          "o4": "Delivery reliability and bounded processing latency are different properties."
         },
         "steps": [],
         "formulas": [],
@@ -6461,7 +6515,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-077",
@@ -6652,13 +6709,13 @@
     },
     {
       "id": "W01-L05-Q-079",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "A developer has copied the PubSubNode source into a package folder but has not launched any executable. Which conclusion is warranted?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "synthesis",
       "week": 1,
       "lectureId": "L05",
@@ -6748,17 +6805,20 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     },
     {
       "id": "W01-L05-Q-080",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "define_robotics_data_contracts:L05-author",
       "stem": "A developer views sensor output from a mixed hardware/simulation experiment in RViz. Which statement distinguishes all three roles?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "synthesis",
       "week": 1,
       "lectureId": "L05",
@@ -6848,7 +6908,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "robotics-integration-revision-author"
+      ]
     }
   ],
   "concepts": [

@@ -159,6 +159,61 @@ class IntegrityTests(unittest.TestCase):
         self.bank['reviews'][0]['reviewerId'] = 'synthetic-author'
         self.assertError('reviewer is the author')
 
+    def test_revision_author_self_review_rejected(self):
+        question = self.bank['questions'][0]
+        question['revisionAuthors'] = [self.bank['reviews'][0]['reviewerId']]
+        self.rebind()
+        self.assertError('reviewer is the author or a revision author')
+
+    def test_any_revision_author_self_review_rejected(self):
+        question = self.bank['questions'][0]
+        question['revisionAuthors'] = ['synthetic-reviser-1', self.bank['reviews'][0]['reviewerId'], 'synthetic-reviser-3']
+        self.rebind()
+        self.assertError('reviewer is the author or a revision author')
+
+    def test_distinct_reviewer_can_approve_revised_question(self):
+        self.bank['questions'][0]['revisionAuthors'] = ['synthetic-reviser-1', 'synthetic-reviser-2']
+        self.rebind()
+        result = self.result()
+        self.assertTrue(result['valid'], result)
+        self.assertEqual(result['counts']['currentlyVerifiedQuestions'], 1)
+
+    def test_empty_revision_authors_preserves_original_author_exclusion(self):
+        self.bank['questions'][0]['revisionAuthors'] = []
+        self.bank['reviews'][0]['reviewerId'] = 'synthetic-author'
+        self.rebind()
+        self.assertError('reviewer is the author or a revision author')
+
+    def test_revision_authors_are_correctness_hash_bound(self):
+        self.bank['questions'][0]['revisionAuthors'] = ['synthetic-new-reviser']
+        self.assertError('stale content/source binding')
+
+    def test_draft_with_revision_author_review_is_not_counted_verified(self):
+        question = self.bank['questions'][0]
+        question['revisionAuthors'] = [self.bank['reviews'][0]['reviewerId']]
+        question['status'] = 'draft'
+        self.bank['concepts'][0]['status'] = 'drafted'
+        self.rebind()
+        result = self.result()
+        self.assertTrue(result['valid'], result)
+        self.assertEqual(result['counts']['currentlyVerifiedQuestions'], 0)
+
+    def test_revision_authors_must_be_id_array(self):
+        for value in ['synthetic-reviewer', None, {'id': 'synthetic-reviewer'}, [None], [12]]:
+            with self.subTest(value=value):
+                self.bank['questions'][0]['revisionAuthors'] = value
+                result = self.result()
+                self.assertFalse(result['valid'], result)
+                self.assertTrue(any('revisionAuthors' in e for e in result['errors']), result)
+
+    def test_revision_author_ids_must_be_nonblank_unique(self):
+        for value in [['  '], ['synthetic-reviser', 'synthetic-reviser']]:
+            with self.subTest(value=value):
+                self.bank['questions'][0]['revisionAuthors'] = value
+                result = self.result()
+                self.assertFalse(result['valid'], result)
+                self.assertTrue(any('revisionAuthors' in e for e in result['errors']), result)
+
     def test_review_checks_must_pass(self):
         self.bank['reviews'][0]['checks']['answerSet'] = False
         self.assertError('failed review checks')

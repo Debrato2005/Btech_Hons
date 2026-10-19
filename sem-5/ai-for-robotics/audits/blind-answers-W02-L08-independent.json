@@ -1,0 +1,1637 @@
+{
+  "reviewerId": "build_offline_study_interface-L08-independent",
+  "method": "First source-pixel blind solve; no keyed batch or author dispute ledger opened before this artifact is frozen.",
+  "blindPacketSha256": "8a7950553999fa8d4f20522c0eac48a9dadf7441dcabc0e4a2c1fc69f7fdf056",
+  "keyedBatchOpened": false,
+  "sourcePagesInspected": [
+    269,
+    270,
+    271,
+    272,
+    273,
+    274,
+    275,
+    276,
+    277,
+    278,
+    279,
+    280,
+    281,
+    282,
+    283,
+    284,
+    285,
+    286,
+    287,
+    288,
+    289,
+    290,
+    291,
+    292,
+    293,
+    294,
+    295
+  ],
+  "answers": [
+    {
+      "questionId": "W02-L08-P0272-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "91c251db27098402d1285dc991e7d141cb30a362c548f32a543ed56511386523",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The source explicitly splits the tool-in-station task into determining wrist-in-base pose and then solving the manipulator joint angles. Forward kinematics alone or renaming/merging frames is not that workflow.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868528+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0272"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0272-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "644789dc735df307f3de35a8fed9bd744308af345ce2568d02af57e98a3b2145",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "IK seeks the joint variables realizing a supplied Cartesian pose. The desired pose is input rather than the requested output, and image dimensions are irrelevant.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868560+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0272"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0272-Q03",
+      "questionVersion": 1,
+      "blindItemSha256": "4043b4f1cf649856560c456ccf1e272129b39b23e0a4f929a821e31a0cf023bb",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Actual diagram labels separately identify Tool frame {T}, Wrist frame {W}, Station frame {S}, and Base frame {B}; camera and goal labels do not imply coincident or identically oriented frames.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868577+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0272"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0272-Q04",
+      "questionVersion": 1,
+      "blindItemSha256": "0efeec06bef253e4e16d2f1b7428c707fd6f858406042b5319ba6d776664e4d3",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Coordinate cancellation gives ^B_W T = ^B_S T ^S_T T ^T_W T. The two required inverse calibrations are (^S_B T)^−1 and (^W_T T)^−1, in that order around the desired task transform. This is an explicitly derived frame chain, not an additional quoted source equation.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868609+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0272",
+        "lectures-p0273"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0273-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "c74eab06584337b3c1149ff9bbaa2e09d3ba543dcc0aaad7b945177fce94b5a3",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Successive source/destination frame indices cancel only in the printed product ^0_1T ^1_2T ... ^5_6T. Matrix sum, reversed order, or a single proximal transform does not generally yield the final pose.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868625+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0273"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0273-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "a5268142e9dff20268e3ced3333a2e5b514fcb27bed17f8fb2a6a95bddcd1c93",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A rigid homogeneous transform has fixed last row (0,0,0,1), three independent translation components, and a rotation matrix with three independent orientation parameters, despite its nine entries.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868639+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0273"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0273-Q03",
+      "questionVersion": 1,
+      "blindItemSha256": "5d34254abb4e7055a8ae187a1f73cdedc076f3af380bdbf2ec456703a2ea86e5",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Six equations and six unknowns give a constraint count, not a nonlinear existence/uniqueness theorem. The source itself calls the equations nonlinear/transcendental and later discusses unreachable targets and multiple solutions.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868659+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0273",
+        "lectures-p0274",
+        "lectures-p0276"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0274-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "2f65e8edffa4cc5321aa677dba0ac6b22d0189d2d6dec242cd3c8380eecbac09",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The three printed challenges are existence, multiple solutions, and method of solution. These correspond to reachability, branch choice, and calculation, respectively.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868672+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0274"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0275-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "52b76599a5d21e8aa8ef2bc4692dedc2ec2edbbe8c80a990d7db8094c99589f6",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "All orientations implies at least one orientation, so dextrous workspace is a subset of reachable workspace. The reverse implication is not guaranteed.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868685+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0275"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0275-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "3f9afde5a2be302c3088dfff03c336c94fd56389b6c9e6580ca2596ad656b573",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The endpoint radius of two equal unrestricted positive links ranges from zero at full folding to 2L at full extension, with all azimuths available. Thus the full closed disk, not only its boundary, is reachable.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868698+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0275"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0275-Q03",
+      "questionVersion": 1,
+      "blindItemSha256": "00e1b83ded4a8cc1d60a97e8efa10ac70a8685e18a54b8ec42f5436e0a87f742",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For L1=L2=L and θ2=π, the two position vectors cancel for every θ1; the endpoint orientation θ1+π varies through all planar angles. Away from the origin a fixed position constrains this two-joint geometry, so not every orientation is available there.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868711+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0275"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0275-Q04",
+      "questionVersion": 1,
+      "blindItemSha256": "a9db40fc26c1d7f041f95688e6b32318060e67e5200cca4cd7e1dc0088e0abd8",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The triangle inequality gives outer radius L1+L2 and reverse triangle inequality gives nonnegative inner radius |L1−L2|. The source prints L1−L2 without specifying length ordering; the question explicitly generalizes the shorthand.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868725+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0275"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0275-Q05",
+      "questionVersion": 1,
+      "blindItemSha256": "c8ca97eb558e4533a163ab2bcd21b43f9fbece42ee973e96b6d4e9c89ae9c4de",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "With positive lengths 2 m and 1 m, reachable radii satisfy 1≤ρ≤3 m. Only the displayed 2.5 m option is inside this closed interval.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868737+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0275"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0275-Q06",
+      "questionVersion": 1,
+      "blindItemSha256": "ceae30139543804c0b24de736b07fa698d248a5099839389603b298ff21d0943",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A third revolute joint located at the same frame-3 origin adds independent orientation adjustment without changing the first two links’ endpoint position. It does not erase reach constraints, equalize lengths, or automatically remove joint limits.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868755+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0275",
+        "lectures-p0282"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0276-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "795197eca95f271e0a270e8239c771dbfdc45bd88d9562d031f93ed3d8609028",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The source figure and text allow a larger-joint-motion branch when an obstacle blocks the normally preferred small-motion branch. Collision admissibility takes priority over a blind motion-minimum preference.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868767+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0276"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0276-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "4a44b35756716757025d256aba6d34ea33af0ac260281d9993d42e3ca4c652d0",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The source says PUMA 560 can have eight solutions, a possibility/branch statement, not that every goal has eight distinct collision-free joint-limit-feasible solutions. Its six-joint model does not become eight-DOF.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868780+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0276"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0277-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "8016d6cbe47f54956708d33a4a523af93281299e2c08c63647a085ee8d790c99",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The actual table row a1=a3=a5=0 has upper bound ≤4, not an exact count.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868794+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0277"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0277-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "5e11413f3c01c8bb8e23e94bffc9759f8a596dd87592262c2e889569c15c0e6c",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The actual table row a3=a5=0 has upper bound ≤8, not an exact count.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868805+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0277"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0277-Q03",
+      "questionVersion": 1,
+      "blindItemSha256": "07a04a96bb3ad70a1846e58b9e7bfed8679b96e4081c6dfb6b52b43c6759c118",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The actual table row a3=0 has upper bound ≤16, not an exact count.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868816+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0277"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0277-Q04",
+      "questionVersion": 1,
+      "blindItemSha256": "2dc33b88811ea343ae185f063880d855019fc6185a8f041480d8084385661d75",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The actual table row all ai≠0 also has upper bound ≤16, not an exact count.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868827+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0277"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0277-Q05",
+      "questionVersion": 1,
+      "blindItemSha256": "109850df6b00881c7cf0ae13f94197d9c85b2f96fec651f1154fe49c99adc718",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The last two printed bounds are both sixteen. Removing the final listed zero-length condition does not increase that displayed bound, so the prose cannot be read as strict doubling at every change or a guarantee of sixteen feasible roots.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868839+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0277"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0278-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "94b35dcc9041f4935d938d5212ec231cd4420ef4c34b7847f7ae9c3124e346cb",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The additivity line visibly states f(x+y)=f(x)+f(y); multiplication, subtraction, or the identity function condition are different assertions.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868852+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0278"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0278-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "c1eba8f876721f6967b509f00a8d2d1a18d3f3597e58d7556c08f62cc3830bb7",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The printed homogeneity right side omits f. Applying a linear map to αx scales f(x), giving αf(x), not necessarily αx. The question openly identifies this as a repair rather than asking for the erroneous literal transcription.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.868872+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0278"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0278-Q03",
+      "questionVersion": 1,
+      "blindItemSha256": "d99b9f84954e8eb4b67c69df3ed5153a973bde4e570049913ac4703b98e3d6dc",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For the supplied map f(x)=2x, f(3*1)=6; the printed αx is 3, while repaired αf(x)=3*2=6. The map is a valid linear counterexample to the printed identity-only wording.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.869147+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0278"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0278-Q04",
+      "questionVersion": 1,
+      "blindItemSha256": "bfdb619bb4762e6d4404a6e9cf8017efd76c58ef8e636884b32d3df9f6d241b3",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The definitions slide equates solvability with uniqueness, while the later method slide asks an algorithm to find all possible joint values. Multiple solutions do not invalidate solvability; existence/computability and uniqueness are separate.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.869179+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0276",
+        "lectures-p0278",
+        "lectures-p0279"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0278-Q05",
+      "questionVersion": 1,
+      "blindItemSha256": "eff3a7eb10db8833f1dc088951aa3dc041461f8a0c3624b6d8bd0e1be2b1805b",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The point (1,0) lies on the unit circle, but its scalar multiple (2,0) does not. Thus that circle fails a vector subspace closure condition; the source’s informal smaller-region example is not a linear subspace definition.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.869202+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0278"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0279-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "f8c5c5dedfdede4e288e98144c8f7f40b87079e58d67b1fe9d887e649bbd3bbf",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The source specifically names intersecting joint axes and many link twists αi of 0° or 90° as helpful analytical structure. Removing geometry or arbitrarily changing lengths is not that criterion.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.869218+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0279"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0279-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "2605c6e39068979dc6df06283d2237f269ba6d0209e4f12a387674abf0f406f5",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The broad numerical-solvability statement cannot make unreachable targets attainable or guarantee convergence from every starting guess. Numerical results still require reachability, residual and convergence/singularity checks.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.869405+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0279",
+        "lectures-p0293"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0280-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "96a05d17558b69e96bd0ba0c20a3820acc89fe9a8525d1ac71f56ea3d481dc03",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The method taxonomy maps algebraic to identities/substitution, geometric to spatial relations/law of cosines, and numerical to iteration. It does not define geometric methods as text parsing or numerical methods as no computation.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.869436+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0278",
+        "lectures-p0280"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0280-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "1c8f49929cfcfe17e19b1d3f52f65b755eaded2a5594f5882d3168958fdafe07",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The sufficient 6R condition printed here is intersection of three neighboring joint axes at one point. Merely nonparallel non-neighboring axes, equal lengths, or parallel separate axes is not that stated condition.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.869454+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0280"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0280-Q03",
+      "questionVersion": 1,
+      "blindItemSha256": "5296a3f713a4df9a25a4edf48c9d5c86a300f12ec6afc443f595ac49e4c99121",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A sufficient condition establishes the stated implication when met, but failure of the condition does not prove no other closed-form design exists. It also says nothing about all targets being reachable or unique.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.869468+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0280"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0280-Q04",
+      "questionVersion": 1,
+      "blindItemSha256": "96d0e42089c0ad62b9f5f2c54567a11eb683f20e33645eaad6a4a4089f1b6c98",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The lecture prefers analytical solutions for computational reasons when geometry permits them and discusses numerical methods more generally. This is not a universal processor benchmark or removal of physical feasibility constraints.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.869484+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0280",
+        "lectures-p0293"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0281-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "c6cd60ceee4c12c15bfcd6bffa25e0877e4958c8eaf0cb6395ea729260933aa3",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The text and diagram define the spherical wrist by three rotational axes meeting at one common point, typically joints 4–6; equal positive link lengths, separate parallel axes and a three-joint whole robot are different properties.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.869801+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0281"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0281-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "97eac5f9083ee8a5231961d4db2d03289338a28d339b3d1dd389cf77ed57c30f",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The actual wrist raster labels joint 4 Wrist rotation, joint 5 Wrist bend, and joint 6 Flange rotation. Camera focusing, gripper opening, elbow extension and base translation are not these labels.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.869823+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0281"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0281-Q03",
+      "questionVersion": 1,
+      "blindItemSha256": "78bb875d3e5f989f467cac7c360994fe84d7ba0ec36849dde972f822fd36d96c",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Pieper’s solution is explicitly named under the intersecting-axis discussion. Time integration, sampling and finite-element meshing are not the named closed-form approach.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.869838+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0281"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0281-Q04",
+      "questionVersion": 1,
+      "blindItemSha256": "bb009f67119c2911aaef76a325ce87edae73c177f68dfa44fb2a28ccb9c45434",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "150° lies in quadrant II with reference angle 30°. Sine is positive 1/2 and cosine is negative √3/2; the generated example applies the source’s quarter-wave symmetry idea.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.869853+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0281"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0281-Q05",
+      "questionVersion": 1,
+      "blindItemSha256": "96ccdbd86784140c1c8d31b293b3ec75f98c3a8ac5ef84c98e08c85da8b2c96e",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Complement/phase relations connect sine and cosine, and quadrant symmetries determine signs and reflected indices. Sine and cosine are not identical everywhere, and a lookup table does not by itself eliminate interpolation error.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:18:27.869866+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0281"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0282-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "150aef76c4d57aebeb7af10de103cfa37d2ab5ddd42bb1331cd94e3db50a9cca",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Reading the translation column gives x=L1 cosθ1+L2 cos(θ1+θ2), y=L1 sinθ1+L2 sin(θ1+θ2). No translated third link appears in this frame-3 model; θ2 is relative to the first link, not an absolute second-link heading.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006198+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0282"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0282-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "a663dc05e7a343aa3dc0fc147b9aff79140d9740b200511943b2242d002a9dd1",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Only the rotation entries depend on θ1+θ2+θ3; the translation column contains θ1 and θ2 only. Varying θ3 changes orientation without moving the frame-3 origin or changing a link length.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006231+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0282"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0282-Q03",
+      "questionVersion": 1,
+      "blindItemSha256": "f1331126baad5609c9ff1f6e1f8c9bf6c3d329635bcec56b388206e5ab8aafed",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The three displayed DH a_(i−1) cells, read top to bottom, are 0, L1, L2.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006248+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0282"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0282-Q04",
+      "questionVersion": 1,
+      "blindItemSha256": "115f867525a55798ebfdfd944b043d4dca40cd74b200f12d1d83384cca1e88cd",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "All three DH α_(i−1) cells and all three d_i cells are zero. The joint-angle symbols belong in the θ_i column, not the twist column.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006264+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0282"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0282-Q05",
+      "questionVersion": 1,
+      "blindItemSha256": "aadcb4ae4ea9acbb127ef73d67e8e017d92175bfec59bfc19a0738a93d051b3b",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Both orientation equalities encode the same planar angle φ=θ1+θ2+θ3 modulo 2π. The sine/cosine pair lies on the unit circle, so it supplies one rotational freedom rather than two independent orientation parameters.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006278+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0282"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0282-Q06",
+      "questionVersion": 1,
+      "blindItemSha256": "7456d96cf8ffd4245211d236f244711ee8e9e00661f05fe1a012969efb986c8b",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The first link contributes (1,0), the second heading θ1+θ2=90° contributes (0,1), and the three-angle sum is 0°. Hence the pose is (1,1) m with orientation 0°.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006293+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0282"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0283-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "0cbe0e963d76b151ad358af905722dba24966a64853f1c5946be03319e61ce10",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The cosine-difference identity cos(a−b)=cos a cos b+sin a sin b gives cos(θ1−(θ1+θ2))=cos(−θ2)=cosθ2.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006309+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0282",
+        "lectures-p0283"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0283-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "03a0a21b0e40e9bfc8639a99c050bffcec5e846e201594764d722c07bf863eaa",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Squaring/adding cancels θ1 via unit-circle identities, yielding ρ²=L1²+L2²+2L1L2 cosθ2. Isolating the cosine gives (x²+y²−L1²−L2²)/(2L1L2).",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006322+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0283"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0283-Q03",
+      "questionVersion": 1,
+      "blindItemSha256": "47d54f44e193981dc50a278dee056c989a2dbc932284963ca0e2d4641db96373",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For positive lengths, −1≤c2≤1 becomes (L1−L2)²≤ρ²≤(L1+L2)² and therefore |L1−L2|≤ρ≤L1+L2. Both the inner and outer conditions are needed.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006343+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0275",
+        "lectures-p0283",
+        "lectures-p0287"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0283-Q04",
+      "questionVersion": 1,
+      "blindItemSha256": "e81bd77c35bd660cdbbbdcd9acc1c8ec6e00721576a3a58a9e90f8305e52ba3b",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The target radius is 0.5. Substitution gives c2=(0.25−4−1)/4=−4.75/4=−1.1875. This is inside the excluded inner hole of radius 1, not beyond the outer boundary. It demonstrates the limitation of the source phrase far away for every invalid cosine.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006378+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0275",
+        "lectures-p0283"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0283-Q05",
+      "questionVersion": 1,
+      "blindItemSha256": "6157eaa02aaa722ccc32a965ea3e1ff8b76e4a1cef63730043e229d80b370d9f",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For radius 3.5, c2=(12.25−4−1)/4=7.25/4=1.8125>1, indicating a target beyond the maximum extension 3.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006392+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0283"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0283-Q06",
+      "questionVersion": 1,
+      "blindItemSha256": "c2352c6cdec6cf59bffd615614443159cb437231302fe23e0f160b0644230ab3",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For an interior cosine value, both sine signs are possible: s2=±sqrt(1−c2²). atan2(s2,c2) retains the sine sign and quadrant; dropping a sign loses an elbow branch.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006405+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0283"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0283-Q07",
+      "questionVersion": 1,
+      "blindItemSha256": "bbc82ad940039a8b51177bc5288445adf7c2cdafea432b671ebaba9e6574adc3",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Negative cosine and positive sine place the angle in quadrant II. With reference angle 60°, the principal angle is +120°, not the one-argument arctangent value −60°.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006417+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0283"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0283-Q08",
+      "questionVersion": 1,
+      "blindItemSha256": "194ac24bfc11dbccddd7874a633e0a9c86acde5d1680b9ec520f6dba59b329c1",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "At c2=±1 the sine magnitude is zero. The plus/minus branches give the same straight or folded elbow configuration modulo 2π; signed-zero software representatives do not create distinct physical branches.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006433+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0283"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0283-Q09",
+      "questionVersion": 1,
+      "blindItemSha256": "2718b2c022103bc32de1f52049e00f545ec95dc6a1971b31e643c79a8e924b8a",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "At outer radius 3, c2=1 and θ2=0° modulo 360°. At inner radius 1, c2=−1 and θ2=180° modulo 360°. Equality at the boundaries is reachable under the stated unrestricted assumptions.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006445+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0283"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0284-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "5e2382c0f44ad865000fba8e28a703e7b16f43b7f80f4a3bf4f3c7df05103756",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Expanding the angle-sum terms groups the coefficients as k1=L1+L2 cosθ2 and k2=L2 sinθ2. These coefficients give x=k1 cosθ1−k2 sinθ1 and y=k1 sinθ1+k2 cosθ1.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006460+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0282",
+        "lectures-p0284"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0284-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "778dda11244cccd641b4624a1c720b4f107202367116cef6744c8645ed182831",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The drawn right triangle labels horizontal leg k1, vertical leg k2, hypotenuse r, and angle γ at the origin. Therefore r=sqrt(k1²+k2²) and γ=atan2(k2,k1); the local figure depicts the positive-leg illustration, not every branch sign.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006472+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0284"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0284-Q03",
+      "questionVersion": 1,
+      "blindItemSha256": "4d317e4d4616392566d9e35b597e34ccba5a1a500dd4eff2e345f4081dbf3918",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Substituting k1=r cosγ and k2=r sinγ into x=k1 cosθ1−k2 sinθ1 gives x/r=cosγ cosθ1−sinγ sinθ1. The printed middle line repeats cosθ1 in the second term; the final cosine-sum line confirms the missing sine factor.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006485+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0284"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0284-Q04",
+      "questionVersion": 1,
+      "blindItemSha256": "78562d9b168df3a9fdc8c88e863f108a9af6d947fd77640cc2391735bc90a2e4",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For r>0 the position direction is γ+θ1 modulo 2π. Subtracting γ=atan2(k2,k1) from atan2(y,x) gives θ1 with the required quadrant handling.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006497+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0284"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0284-Q05",
+      "questionVersion": 1,
+      "blindItemSha256": "a39a755559c3c6542d7b376532ddb059816162573a363426b023b1411f7e2794",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For the +90° elbow branch, k1=1 and k2=1, so θ1=atan2(1,1)−atan2(1,1)=45°−45°=0°.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006512+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0283",
+        "lectures-p0284"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0284-Q06",
+      "questionVersion": 1,
+      "blindItemSha256": "77e33e41c43cb58759a64ec913a1697edd4d107afbba34e02fb776d6536de0c3",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For the −90° elbow branch, k1=1 and k2=−1, so θ1=45°−(−45°)=90°.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006526+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0283",
+        "lectures-p0284"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0284-Q07",
+      "questionVersion": 1,
+      "blindItemSha256": "ddf0f941c7fba4e4e81e836da4f10442a32659343ea36b8e2837bbfe34530288",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For target (−1,1), atan2(y,x)=135°. With the +90° elbow, γ=45°, giving θ1=90°. A ratio-only arctangent would select the wrong target quadrant.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006537+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0284"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0285-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "c47bb760c16fbb93014be0af3173c2e474e198cc0515a8a59cebd50ab9e45606",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Rearranging the displayed orientation sum θ1+θ2+θ3=φ gives θ3=φ−θ1−θ2. The later inconsistent final line must not override this explicit premise.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006552+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0285",
+        "lectures-p0288"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0285-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "7927f761856da5cc6042b053bbdee3be4e327b394f7e756afe24b25330dce87b",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The two position solutions are (θ1,θ2)=(0°,90°) and (90°,−90°). For φ=0°, θ3 is respectively −90° and 0°, and both full triples reconstruct the target pose.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006580+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0282",
+        "lectures-p0283",
+        "lectures-p0284",
+        "lectures-p0285",
+        "lectures-p0288"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0285-Q03",
+      "questionVersion": 1,
+      "blindItemSha256": "c6b0772a5ca2a6f218f0affa2050d3037e6d6a5c14ec9d1800db4d6bb61d68e5",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Zero position requires L1 e^(iθ1)+L2 e^(i(θ1+θ2))=0. Equal vector magnitudes force L1=L2, and opposite headings force θ2=π modulo 2π. The wrist angle alone has no translational effect.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006600+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0275",
+        "lectures-p0282",
+        "lectures-p0285"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0285-Q04",
+      "questionVersion": 1,
+      "blindItemSha256": "9b6b5da82efd000c77e130c174e6b180978e87b55eed106bead6aae43d0cc137",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "With equal links folded at θ2=π, the position is zero for every θ1. The specified orientation is maintained by θ3=φ−θ1−π modulo 2π, giving a continuous one-parameter family rather than two isolated solutions. A library atan2(0,0) convention does not impose a physical shoulder angle.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006620+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0282",
+        "lectures-p0284",
+        "lectures-p0285"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0285-Q05",
+      "questionVersion": 1,
+      "blindItemSha256": "67e00a2c56063bdc967ce3a00ec190945494c526147d2079caafe592fee495dc",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The sine/cosine representation fixes orientation modulo 2π. Adding full turns leaves the rotation matrix unchanged, but actual joint-limit intervals can rule out some representatives; the principal angle is not the only physical representation.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006636+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0282",
+        "lectures-p0285"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0285-Q06",
+      "questionVersion": 1,
+      "blindItemSha256": "2f07b374fdf13b4ea0bdb54cf2fc49760d676737a4a3ecf41df75fb7c9944dd2",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A branch-complete nondegenerate solution first checks the cosine reachability domain, then enumerates both sine/elbow signs, computes each shoulder, and finally closes the orientation with the wrist and checks feasibility. Averaging branches or discarding one without a constraint is not equivalent.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006658+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0276",
+        "lectures-p0283",
+        "lectures-p0284",
+        "lectures-p0285"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0285-Q07",
+      "questionVersion": 1,
+      "blindItemSha256": "47d7cfd8e33ed082604321de2d2ad2a974172cf91d1a27bf5908d62f652e8fd0",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The ordinary branches have shoulder angles 0° and 90°. Only the first lies in [0°,45°], leaving (0°,90°,−90°). The wrist and elbow are otherwise unrestricted.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:19:37.006682+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0276",
+        "lectures-p0282",
+        "lectures-p0283",
+        "lectures-p0284",
+        "lectures-p0285"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0286-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "aced6dc766fe2f08f2ecb6d1e7165dd29b0e832456b12e854e5f8f2e8d806937",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Cosine changes sign after a half turn: cos(180°+θ2)=−cosθ2. The negative coefficient in the law of cosines therefore becomes positive after substitution, without changing the positive physical link lengths.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627508+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0286",
+        "lectures-p0287"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0286-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "bf4189b21e89cf62fbc52a9948b12d3fdb3c8692aaad52a64409d08a1ca17701",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Algebraic squaring/adding and the geometric cosine law both give ρ²=L1²+L2²+2L1L2 c2 under the same joint-angle convention; hence they give the identical c2 expression and both support two nondegenerate elbow branches.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627546+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0283",
+        "lectures-p0286"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0286-Q03",
+      "questionVersion": 1,
+      "blindItemSha256": "99b2ec3d504e3bb1e44da85f21338540de8a0f635a6675181b4508a8c3d769a6",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The diagram labels β between the positive base x-axis and the base-to-target radial line. atan2(y,x) is that bearing, not an elbow/wrist angle or a length.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627567+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0286",
+        "lectures-p0287"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0287-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "6c4cd3658f518ebf15798700fb7eb313905b7631cbe91a8ff5753b820608fcc6",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The outer-radius condition alone admits points inside the unequal-link inner hole. The reverse triangle inequality ρ≥|L1−L2| is also required for the two position vectors to close.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627585+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0287",
+        "lectures-p0288"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0287-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "720d4866bc2434355ec39208befa8a3ab8ba866b627e9a78e23aa144bd01a422",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Applying the cosine law at the base angle between the L1 side and the radius ρ gives L2²=L1²+ρ²−2L1ρ cosψ, hence the stated numerator ρ²+L1²−L2².",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627602+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0287",
+        "lectures-p0288"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0287-Q03",
+      "questionVersion": 1,
+      "blindItemSha256": "30d74ee0034a66f8d9e4b075c62f08e2964fe6cb1b1ec3c98a23df4e04748330",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The target bearing is atan2(1,1)=45°. Its radius is √2, so cosψ=(2+1−1)/(2√2)=1/√2 and ψ=45° in the specified range.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627617+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0287",
+        "lectures-p0288"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0287-Q04",
+      "questionVersion": 1,
+      "blindItemSha256": "0ef6a3a2868bbb87642c3f4995b0763ad88eda563a85ab393e3b2842a51fa85f",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The solid negative-elbow branch puts the first link above the radial line and uses θ1=β+ψ. The positive-elbow branch places it below and uses θ1=β−ψ, with the stated signed-angle convention.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627633+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0287",
+        "lectures-p0288"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0287-Q05",
+      "questionVersion": 1,
+      "blindItemSha256": "a6b75ecffe3672b59726b104a9a8b4a01c39bfe11d84e40e652d43ed0a20c81a",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The source first selects θ2 between −180° and 0° for its illustrated branch, then explicitly supplies θ2′=−θ2 for the other. Positive elbow angles are not globally impossible; the branches coincide only at degenerate boundaries.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627648+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0287",
+        "lectures-p0288"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0287-Q06",
+      "questionVersion": 1,
+      "blindItemSha256": "3edb6d9a0ad4e5d4b27965d985868326024968d5f7c59c361f8395956e248dd8",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The denominator 2L1ρ vanishes at ρ=0 with positive L1. Equal link lengths alone do not cause failure at nonzero radius, so origin configurations need separate analysis.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627665+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0285",
+        "lectures-p0287"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0289-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "94d79afa6c72277adee363120c24201e1a22801bcff93aeeb0eb7a803d66a8b9",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The mechanism is described as two independently driven wheels on opposite sides, with differential wheel motion producing steering. Equal rates are only a special straight-motion case.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627678+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0289"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0289-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "42095f49dcc96dbf60debd9d6cd68526cdb340998ec948cac221734effa6f280",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "In v_l=r u_l, u_l is angular wheel rate and multiplication by radius gives linear rim/rolling speed v_l under no slip. They are not both angles or body-yaw variables.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627693+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0289"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0289-Q03",
+      "questionVersion": 1,
+      "blindItemSha256": "adf29a7fec70d44c894edd3ae938bb7a83c6c7b4fe6ed929332fe82fbdea9d37",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The actual diagram draws d from the center point to a wheel; the yaw equation uses separation 2d. Thus d is the half-track, distinct from wheel radius r.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627706+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0289"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0289-Q04",
+      "questionVersion": 1,
+      "blindItemSha256": "330849c5cae22eadb5b9e2bd472a39a5048314b05657251bf46f9af2c49fd369",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The source column qdot is explicitly ordered yaw rate first, then xdot, then ydot. A common alternative coordinate order must not be silently substituted.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627720+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0289"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0289-Q05",
+      "questionVersion": 1,
+      "blindItemSha256": "6130e2df7922c81513a5b4dcef29c924d8a797ca3c76c862b3bd9b8ef7e19159",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The displayed matrix has three rows for φdot, xdot, ydot and two columns for left/right wheel rates, hence shape 3×2.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627734+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0289"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0289-Q06",
+      "questionVersion": 1,
+      "blindItemSha256": "7647fed9885d3f9a7bc01a236a36fbcda3e0f2a24cf2ef9bf7644092a6c11d63",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The translational coefficients add the wheel rates with common cosφ/sinφ factors, whereas the yaw row subtracts left from right. This represents forward translation and turning, not an independent lateral actuator.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627747+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0289"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0289-Q07",
+      "questionVersion": 1,
+      "blindItemSha256": "1dca484fe7e4f2a2e87c6c0cd371e144721045716208871c95b4626403d109db",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "v=0.1(3+7)/2=0.5 m/s and ω=0.1(7−3)/(2*0.2)=1 rad/s. At heading 90°, xdot=0 and ydot=0.5, giving [1,0,0.5] in the source order with corresponding units.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627760+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0289"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0290-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "dc7c308234ea175d6aa8fcb711069485ee0ba9b41b265e72f6c74df4d37b9449",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The prose supplies desired center linear/yaw motion (v,ω) and seeks each wheel’s angular rate. It is instantaneous velocity IK rather than a unique full trajectory from a final pose alone.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627776+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0290",
+        "lectures-p0292"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0290-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "3c9049af61c7122d6714e6d7a1e6a8b072cbd502ad731b1567b78d8ad085e1a1",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The preceding J has shape 3×2, so an ordinary two-sided inverse is impossible. The next page explicitly replaces the shorthand inverse by the full-column-rank pseudoinverse (J^T J)^−1J^T.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627793+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0289",
+        "lectures-p0290",
+        "lectures-p0291"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0290-Q03",
+      "questionVersion": 1,
+      "blindItemSha256": "23e03d71c041667281bad60e28bdac75dd08dd15ad78dbc7ee3a3029b403a0d4",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The equation qdot=J pdot maps the two-component wheel-rate input pdot through J to the three-component qdot output. Thus the printed forward diagram’s qdot/pdot labels are swapped.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627811+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0289",
+        "lectures-p0290",
+        "lectures-p0291"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0290-Q04",
+      "questionVersion": 1,
+      "blindItemSha256": "02deb84414b9dce7a0b83211152699cc28bf667a36bdc7ff5a54901371c28f42",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For a compatible desired qdot, the pseudoinverse maps the three output-rate coordinates back to two wheel rates: qdot→J+→pdot. Dimensions and the next page agree.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627826+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0289",
+        "lectures-p0291"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0291-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "cf4b4c911ab54e49eb2655ba7ce35173089a13b8b7205b4e92396c3801f55206",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The source defines full rank as rank(J)=min(m,n), the maximum possible number of independent rows/columns for the given rectangular shape.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627839+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0291"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0291-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "395df26860f77e5f949790bbeea5df00b7ea24c8977ce31cd6ea2cd1a4ff2921",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For m>n and independent columns, J^T J is n×n positive definite/invertible. The left pseudoinverse is (J^T J)^−1J^T; J J^T is singular in this tall full-column-rank case.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627850+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0291"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0291-Q03",
+      "questionVersion": 1,
+      "blindItemSha256": "db535d79f25ed7a6050c0ab402f070aece72f021f9090a48de24be816f30d9d6",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For m<n and independent rows, J J^T is m×m invertible, and J+=J^T(J J^T)^−1. The tall-matrix shortcut cannot invert the singular n×n Gram matrix in this case.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627862+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0291"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0291-Q04",
+      "questionVersion": 1,
+      "blindItemSha256": "6eb1c324c41f8ed6981a28b2e3519d71c52f516a8a7b41f20dd379b011bbdcc8",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "J is 3×2 and J^T is 2×3. Therefore J^T J is 2×2, and multiplying its inverse by J^T gives a 2×3 pseudoinverse.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627872+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0291"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0291-Q05",
+      "questionVersion": 1,
+      "blindItemSha256": "b020e98578ac1ea0e37d8640fc163201dd94edd1645e75f9d42a34ab762dab14",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "If columns become dependent, some nonzero z satisfies Jz=0, so J^T Jz=0 and the Gram matrix is singular. The full-rank ordinary-inverse shortcut fails; this does not mean the general Moore–Penrose pseudoinverse ceases to exist.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627885+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0291"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0291-Q06",
+      "questionVersion": 1,
+      "blindItemSha256": "76d711da6025c8090b449c1d028f9c481b1abd91cc65efde67764768d1326a30",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The normal-equation solution minimizes the squared Euclidean residual for full-column-rank J. When b lies outside the column space, J J+ b projects b into the achievable subspace rather than achieving every requested component exactly.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627898+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0291"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0291-Q07",
+      "questionVersion": 1,
+      "blindItemSha256": "6d132ab4b1a4b39174820b3e4d603902e2822fbd57279b0dbede8729345eba8d",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Here J^T J=I2, so J+=J^T and u=(2,3). Multiplication gives Ju=(2,3,0), leaving b−Ju=(0,0,4).",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627911+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0291"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0291-Q08",
+      "questionVersion": 1,
+      "blindItemSha256": "6ccd97a898764d9310b597f2fc652adcf1debeb7f50e5c70c93335d5607fa48b",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For J=[1,1], J J^T=2 and J+=[1/2,1/2]^T. Applying b=2 gives (1,1); among solutions u1+u2=2 this has minimum squared norm 2, unlike (2,0) with norm squared 4.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627922+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0291"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0291-Q09",
+      "questionVersion": 1,
+      "blindItemSha256": "0264f024a46a71ba00f8d8f6d7aaf2c3780fc1e3873befa2adf8620a4d95bd44",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Both translational Jacobian columns are proportional to (cosφ,sinφ). Their component along the perpendicular direction (−sinφ,cosφ) is therefore zero, giving the instantaneous no-side-slip constraint.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.627945+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0289",
+        "lectures-p0291"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0291-Q10",
+      "questionVersion": 1,
+      "blindItemSha256": "7a9f35bc09aafe58bcbf8d0891e178b60fdb46a4fb76409a7c50fc97aedae82d",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "At φ=0 the ydot row is identically zero, and the requested vector has no yaw or forward component. Its unweighted pseudoinverse input is (0,0), producing zero motion and leaving the full lateral unit residual. This does not rule out a multi-step maneuver.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.628058+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0291"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0291-Q11",
+      "questionVersion": 1,
+      "blindItemSha256": "8c0169a3131e6017099c3ed784806b3c689f63c62d9b5eaeeb2beda1e4584e51",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Recover v=cosφ xdot+sinφ ydot, then use ul=(v−dω)/r and ur=(v+dω)/r with qdot ordered (ω,xdot,ydot). This yields rows (−d/r,cosφ/r,sinφ/r) and (d/r,cosφ/r,sinφ/r).",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.628088+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0289",
+        "lectures-p0291",
+        "lectures-p0292"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0291-Q12",
+      "questionVersion": 1,
+      "blindItemSha256": "1c20202477b86514af563b5e7315d4e2586e28cae518f7f6b896cb6ad2913188",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The full-column-rank left inverse satisfies J+J=I2. In the three-dimensional output space, JJ+ has rank two and projects onto achievable rates, so it cannot equal I3.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.628107+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0289",
+        "lectures-p0291"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0291-Q13",
+      "questionVersion": 1,
+      "blindItemSha256": "1c6a33cbc81c18ad3fd0956cd1017ae2eafcb26884730920c0803351d939e7d1",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "At 90°, the xdot row is zero, but the yaw row is proportional to (−1,1) and the ydot row to (1,1). For positive r,d these remain independent; a single zero entry/row does not force rank loss below two.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.628124+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0289",
+        "lectures-p0291"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0292-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "f2c1538b132bd542da17854e06bc858df22851b37c3b45968f256f47de00ad79",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The printed center-speed equation gives ur+ul=2v/r. The printed yaw equation gives ur−ul=2dω/r. Both factors of two and radius divisions are required.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.628138+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0292"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0292-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "24a5de7a610c7ee9e02cf417cdd83e709ba152051b71bfd2a3bbc8a559e02e0b",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Adding and subtracting those simultaneous equations yields ur=(v+dω)/r and ul=(v−dω)/r. Reversing signs reverses yaw; omitting r gives wrong dimensions.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.628150+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0292"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0292-Q03",
+      "questionVersion": 1,
+      "blindItemSha256": "8d70d8a0a0d87a9ba62ff9610da3f7f95a8c7cdf2e063e25f5e1c13f03e3f64d",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The full track 0.4 m gives d=0.2 m. Thus ul=(0.5−0.2)/0.1=3 and ur=(0.5+0.2)/0.1=7 rad/s. Using full track as d would incorrectly give (1,9).",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.628162+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0292"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0292-Q04",
+      "questionVersion": 1,
+      "blindItemSha256": "420b00ff04ed3be151942d6f8fe08d5e8ed16cb7de5e8b0bd40ea60a9a3fdd3e",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "At v=0, ul=−dω/r=−2 and ur=+dω/r=2 rad/s. Equal opposed wheel rates cancel center translation and add positive yaw.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.628178+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0292"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0292-Q05",
+      "questionVersion": 1,
+      "blindItemSha256": "69b752398d5c25b339bce0712a47fb9d379b2e01a2bc1534ff6f9d05b6d7fb00",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "With zero yaw both wheel rates equal v/r=−0.4/0.1=−4 rad/s, producing straight backward translation rather than turning.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.628190+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0292"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0292-Q06",
+      "questionVersion": 1,
+      "blindItemSha256": "e9d138d4197cf935ffcc0db7fbf7eac5041a3077120390ca8093a7a2d7040cdf",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Substituting dω=v gives ul=0 and ur=2v/r. The robot pivots about the stationary left-wheel contact under the ideal model.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.628203+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0292"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0292-Q07",
+      "questionVersion": 1,
+      "blindItemSha256": "8a2e28047a5b02f9e119e88446b292d9694c3bf87d3be73ab63edb21d5ee11a3",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "With v,ω,d fixed, both numerators stay unchanged and doubling the denominator r halves both angular rates.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.628215+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0292"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0292-Q08",
+      "questionVersion": 1,
+      "blindItemSha256": "db941cafb5c5d3fc1db12794f99fd14e90d9838d8286fe948d75e06a4c392d11",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The average wheel rate is v/r and the half-difference is dω/r. Increasing d with ω>0 increases ur and decreases ul by equal amounts, keeping the average fixed.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.628228+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0292"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0292-Q09",
+      "questionVersion": 1,
+      "blindItemSha256": "b712a1ca21e5988451c40474f8ac4c809eb7b74b3e3600cf573782965863d08e",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For dω>v>0, the left numerator is negative while the right is positive, even though their average rim speed is the positive body-forward speed v. Both assertion and reason hold, and the inequality directly explains the reversal.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.628242+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0292"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0293-Q01",
+      "questionVersion": 1,
+      "blindItemSha256": "18c20baaa4a661c7f2269bca918aa5da532a1a7fa6c4aa3c7425be383a8f0325",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The summary explicitly says general Jacobian-based numerical IK needs singularity handling. It does not guarantee unique feasible targets or eliminate geometric/collision constraints.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.628254+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0293"
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0293-Q02",
+      "questionVersion": 1,
+      "blindItemSha256": "6f38156453250d16f5a2bfb15b2022d33dedace0b2ef0672f7385602868c2138",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The lecture contrasts manipulator position IK (joint configurations achieving a desired pose) with differential-drive instantaneous velocity IK (individual wheel rates for desired v,ω). These are different inputs/outputs, not universal square matrix inversion tasks.",
+      "solvedBeforeAnswerSeen": true,
+      "savedAt": "2026-10-19T16:21:30.628277+00:00",
+      "reviewedSlideIds": [
+        "lectures-p0272",
+        "lectures-p0291",
+        "lectures-p0292",
+        "lectures-p0293"
+      ]
+    }
+  ],
+  "complete": true,
+  "frozenAt": "2026-10-19T16:22:36.246750+00:00",
+  "computationsPath": "audits/W02-L08-independent-computations.json",
+  "computationsSha256": "23bc02e014142c3f37ad772843e4ff2e4bcd4ea93b4c160c58647181fb35c4de"
+}

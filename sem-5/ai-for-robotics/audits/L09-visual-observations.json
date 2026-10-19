@@ -1,0 +1,212 @@
+{
+  "296": {
+    "notes": "Lecture9 title: Jacobian, Singularity, and Workspace; author and institutional attribution; printed1. Individually viewed actual1800px source pixels, not extraction alone.",
+    "printedSlideNumber": "1",
+    "inspectorId": "robotics-integration-author-L09",
+    "inspectedAt": "2026-10-19T16:09:11.479102+00:00",
+    "previewSha256": "38cf02486cb4b97ba632d724d3e21ba7d8db0523e0ce43e528e95a43f8dc6ab2"
+  },
+  "297": {
+    "notes": "Objectives only: linear/angular velocity propagation and definition of Jacobian/singularities; printed2. Individually viewed actual1800px source pixels, not extraction alone.",
+    "printedSlideNumber": "2",
+    "inspectorId": "robotics-integration-author-L09",
+    "inspectedAt": "2026-10-19T16:09:11.479154+00:00",
+    "previewSha256": "78a0b1667203092991459be3cdff8035cc603d73227ccc46198279b5168eb57f"
+  },
+  "298": {
+    "notes": "Agenda only: introduction, changing-frame notation, rigid-body velocity, propagation, Jacobian, singularities, AI applications; printed3. Individually viewed actual1800px source pixels, not extraction alone.",
+    "printedSlideNumber": "3",
+    "inspectorId": "robotics-integration-author-L09",
+    "inspectedAt": "2026-10-19T16:09:11.479182+00:00",
+    "previewSha256": "e347ea362512ca3e1cfbadd9f685da59995f0569cf9d728759cd8e490d9d5c47"
+  },
+  "299": {
+    "notes": "Introductory bullets distinguish speed magnitude from velocity direction+magnitude, velocity relative to reference frame and position derivative; linearV versus angular\u03c9; printed4. Individually viewed actual1800px source pixels, not extraction alone.",
+    "printedSlideNumber": "4",
+    "inspectorId": "robotics-integration-author-L09",
+    "inspectedAt": "2026-10-19T16:09:11.479203+00:00",
+    "previewSha256": "92150775d81dcc75367f2de2614baae693ef3895639ee180d26a79c012e4b8c7"
+  },
+  "300": {
+    "notes": "Printed5. Derivative limit of BQ; point fixed inB has zero B-relative velocity. Two-link figure framesA/base andB/elbow,Qtip,\u03c9base. Outer A notation and derivative shown; need distinguish observation frame from expression frame using next-page prose.",
+    "printedSlideNumber": "5",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:14:19Z",
+    "previewSha256": "65e03e4f7f7e96f1e0eed2e90b3674f339cfcee38b6735336e066da83ff85d35"
+  },
+  "301": {
+    "notes": "Printed6. Two frames: differentiation reference versus coordinate expression. If A=B outer superscript omitted. Formula A(BVQ)=A_B R BVQ re-expresses the same relative velocity,not a change of physical observer.",
+    "printedSlideNumber": "6",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:14:19Z",
+    "previewSha256": "f74ae8d3c503b172342809070b8e732e38658f9feacead3a7955c5265c07de79"
+  },
+  "302": {
+    "notes": "Printed7. v_C=U V_CORG; A v_C=A_U R U V_CORG. Shorthand means frame-origin velocity relative universalU,expressed in A when superscriptgiven.",
+    "printedSlideNumber": "7",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:14:19Z",
+    "previewSha256": "f2266b94f851494c72f80dcd52461b99f7ef3d69436bbfb3013efdc12d745319"
+  },
+  "303": {
+    "notes": "Printed8. Linear velocity belongs to a point,angular to body/frame. A\u03a9_B bodyB relativeA; direction instantaneousaxis,magnitudeangularspeed. Red angular axis arrow not tiplinearvelocity.",
+    "printedSlideNumber": "8",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:14:19Z",
+    "previewSha256": "df4fe670402075329b43e80411bccbdb4fa9300e458b81cd6486e8363dd2b915"
+  },
+  "304": {
+    "notes": "Printed9. C(A\u03a9_B):BrelativeA expressedC;\u03c9_C=U\u03a9_C universalreference;A\u03c9_C expressionA stillrelativeU.",
+    "printedSlideNumber": "9",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:14:19Z",
+    "previewSha256": "5e3dbfe70de270fc39b83728c37658eb66cd6dce0641d072ff2650a114c2531e"
+  },
+  "305": {
+    "notes": "Printed10. Attach frames to rigid bodies. Three time-varying quantities:origintranslation A P_BORG,relativepoint BQ,orientation A_B R. Figure vectorchain Aorigin\u2192Borigin\u2192Q;A fixed.",
+    "printedSlideNumber": "10",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:14:19Z",
+    "previewSha256": "5fca946cef73b630ea2bcae305fd4164527c941a465bf7d17fd7831c1f7756b3"
+  },
+  "306": {
+    "notes": "Printed11. Blue explicit assumption A_B R time-constant. A VQ=A V_BORG +A_B R B VQ. Translatingorigin plus re-expressed relativevelocity;rotation contribution absent onlyunderassumption.",
+    "printedSlideNumber": "11",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:14:19Z",
+    "previewSha256": "ad9733dd866354a5fc06ee6ddee85cf330dceb470206b1a6fa205c16315aa324"
+  },
+  "307": {
+    "notes": "Printed12. BQ fixed in rotatingB implies B VQ=0 but can have A-relativevelocity. Shared-origin rotation diagram red\u03a9arrow,BQvector and rotatedbasis.",
+    "printedSlideNumber": "12",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:14:19Z",
+    "previewSha256": "9f31f063641d84aa2b703f5f0bf554cb6528ccaf52e638ca84561c2b9c301392"
+  },
+  "308": {
+    "notes": "Printed13. Diagram redB and blueBprime after smallDt,blackA fixed;Qtip displacement\u0394Q fromredoldtip tobluenewtip. Arrowvectorlabels BQ(t),BQ(t+Dt) conflict if read aschangingbodycomponents sinceQfixedinB; interpret geometricvectors seeninA,notdifferentB-relativecomponents.",
+    "printedSlideNumber": "13",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:15:13Z",
+    "previewSha256": "718b6d4c87bcfde24d70c19520847d82a0f76d1b9055259d841f28f4ba7cc1e2"
+  },
+  "309": {
+    "notes": "Printed14. Circularrotationdiagram axis\u03a9,angle\u03b8betweenQandaxis,radius|Q|sin\u03b8. Infinitesimal tangent\u0394Q perpendicular\u03a9andQ. Speed|\u03a9||Q|sin\u03b8. Vector velocity \u03a9\u00d7Q,then add rotated B-relativevelocity. Finite chord equalsarc only tofirstorder; lastcrossformula robust.",
+    "printedSlideNumber": "14",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:15:13Z",
+    "previewSha256": "a02118a3e761d2aa24d674a196ae31a091ce37350049f0f6487ae371088672cd"
+  },
+  "310": {
+    "notes": "Printed15. Combined AvQ=AvBORG + A_B R BVQ + A\u03a9B\u00d7(A_B R BQ). Threeboxes origintranslation,relativepointtranslation,framerotation. Allterms expressedA.",
+    "printedSlideNumber": "15",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:15:13Z",
+    "previewSha256": "dacbc40bebbb408f9272d4e70ef14fbe8ff37b6c2a4a24a0392596350d8c0618"
+  },
+  "311": {
+    "notes": "Printed16. Robotchainoflinks,referenceframe0. vi originlinearvelocity,\u03c9i linkangularvelocity relative0. Diagram axesXi,Yi,Zi and dashedjointaxis,linearvi andangular\u03c9i distinct.",
+    "printedSlideNumber": "16",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:15:13Z",
+    "previewSha256": "bf801faee98a510e5d4a7514a31e36c8b602ff9efad179fae963552a5eb22ade"
+  },
+  "312": {
+    "notes": "Printed17. Revoluteangular recurrence: i\u03c9(i+1)=i\u03c9i +i_(i+1)R \u03b8dot(i+1) (i+1)Zhat. Rotateintochild: (i+1)\u03c9(i+1)=(i+1)_i R i\u03c9i +[0,0,\u03b8dot]child. Basiscommonbeforeaddition;inverseRproductsidentity. Two-linkdiagram offsetP andaxisvectors.",
+    "printedSlideNumber": "17",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:15:13Z",
+    "previewSha256": "183052e19e3e0c7c592734603526316d1f3f563a005b7d8d481c4513f5de2d55"
+  },
+  "313": {
+    "notes": "Printed18. Revolutelinear recurrence i v(i+1)=i vi+i\u03c9i\u00d7iP(i+1); Pconstantinparent. Childrepresentation premultiplies whole sumby(i+1)_iR. Newjointrotationdoesnotaddorigintranslationunderthisframeplacement;derivativesrelativeuniversalframe.",
+    "printedSlideNumber": "18",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:15:13Z",
+    "previewSha256": "07a5d24edb521a9ab9a618919a72af17134bb309628bf44ece8db091a2c36808"
+  },
+  "314": {
+    "notes": "Printed19. Prismatic \u03c9child=R\u03c9parent only;vchild=R(vparent+\u03c9parent\u00d7P)+ddot zchild. Noaddedangularrate;translationtermalonglocalZ. 'transnational' is typo fortranslational.",
+    "printedSlideNumber": "19",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:15:13Z",
+    "previewSha256": "ba49d5e6d0f7dcc736c2878516bf28c6a264824ae377da9dbc6efd71385732bd"
+  },
+  "315": {
+    "notes": "Printed20. x=F(theta1,theta2),y=G(...);chainrule partialderivatives stackedJ2x2,rowsoutputcoordinate,columnsjoint. NoexplicitF/Gmodelorcode. Timepartialnotationusedinformallyfortotalderivativealongtrajectory.",
+    "printedSlideNumber": "20",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:15:13Z",
+    "previewSha256": "86a300335ed091036a11f841a70c99d924682cf7eeb38e92ee67654e3c175b24"
+  },
+  "316": {
+    "notes": "Printed21. v=J(theta)thetadot; instantaneous linear map,configurationdependentcanvaryintime;rowsCartesiancomponents,columnsjoints. Actual wording 'most general6x6' conflicts withnotnecessarily-square andsummary6xn;bound6x6tosixjointspatialcase.",
+    "printedSlideNumber": "21",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:16:45Z",
+    "previewSha256": "051be7c66172703380c090ecbe2ebe613d7b72730eccf7c77d982c5b58f8e047"
+  },
+  "317": {
+    "notes": "Printed22. Six-jointspatialcase J6x6,thetadot6x1,twist6x1 stacking3linearand3angular. Dimensiondoesnotguaranteefullrank.",
+    "printedSlideNumber": "22",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:16:45Z",
+    "previewSha256": "77cfb2e36150951c1e7c105621335a5c0a04ea41b26bb9fc823e755bd2e0e661"
+  },
+  "318": {
+    "notes": "Printed23. Jacobian re-expression J_A=diag(A_B R,A_B R)J_B with twistorder[v;omega]. Validfor samephysicalpoint/referenceobserver,onlycoordinatebasischange;notgeneraloriginshiftadjoint. Equationsvisuallyconsistent.",
+    "printedSlideNumber": "23",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:16:45Z",
+    "previewSha256": "8964b839bf7826d390005585daef8a0c6cf4a41e6480d97915af3244b00f8297"
+  },
+  "319": {
+    "notes": "Printed24. Actual equation thetadot=J^-1(theta)v (theta isJargument,notmultiplyingv). Singularranklosesdirections,notnecessarilychosenCartesianaxis. Infinitejointmotionclaimneedsdirection/limitqualification;at exactsingularityincompatibletwist hasnosolution,compatibletwist may finite. Examplesjointalignment/interior,boundary. 'Additionalnotpredicted' and 'singularityfree' requiretask/modelscope.",
+    "printedSlideNumber": "24",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:16:45Z",
+    "previewSha256": "1063c70680d7c03071a986db752006a466ec311d43a3f8468eebc17b4513bd3f"
+  },
+  "320": {
+    "notes": "Printed25. Applications section transition with only a question about learning/control/planning; no new technical proposition,excludeagenda.",
+    "printedSlideNumber": "25",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:16:45Z",
+    "previewSha256": "5c6bf3847bd7259afc5b44c7fa8c239c545af734869da4792b446b8c8ba43de2"
+  },
+  "321": {
+    "notes": "Printed26. RMRC Whitney1969;computerates,forwardEuler theta<-theta+thetadot Dt;singularity,drift,accuratemodellimitations;explicitJacobianinterpretabilityand'safetyguarantees'overclaim. Zoomed originalPDF glyphs: dots overlaptheta; extraction confirms combiningU+0307 onrate theta,so do NOT falsely label missing-dotcodeerror.",
+    "printedSlideNumber": "26",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:16:45Z",
+    "previewSha256": "276b3659cb782bc2f331ce9657473354bb182d2fec4010b81f288506721bacc8"
+  },
+  "322": {
+    "notes": "Printed27. Two-column table Traditional:analyticDH,RMRC/operational-space/impedance,exactmodelqualification,singularityavoidance,nullspaceredundancy,KUKA/ABB/UR. Learning:onlineBroyden/neuralestimation,model-freeRLgradientanalogy,sim-to-realdomainadaptation,learnedIKneuralinverse,differentiablekinematicsPyRobot/Drake,meta-learningmorphology. Claims are categoryexamples not universalAPIguarantees.",
+    "printedSlideNumber": "27",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:16:45Z",
+    "previewSha256": "faacd3b71241e58c4c739170195f3b3e48df194b376379bb6981550fd05467c5"
+  },
+  "323": {
+    "notes": "Printed28. Summary adds6xncorrection,columnunit-rateinterpretation,forcecontrolJtranspose;detJ=0onlysquare. Outwardrecursionsrepeated;revolute\u03b8dotglyphvisuallycollidesbutcombiningdotexistsinPDFtext,prismaticddotclear. Keep substantivefornewangles.",
+    "printedSlideNumber": "28",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:16:45Z",
+    "previewSha256": "7d27de4e71ad174783edf7f3bd025d497d7ed7bae6c05016b39a4e7aa8c0028b"
+  },
+  "324": {
+    "notes": "Printed29. Bibliographyonly Craig2005 andMerzouki2013.",
+    "printedSlideNumber": "29",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:16:45Z",
+    "previewSha256": "449b025f9a12a6ce9b1e59f77decb84b8d96f42260e0b19066e84b53b583c55f"
+  },
+  "325": {
+    "notes": "Printed30. ThankYouonly.",
+    "printedSlideNumber": "30",
+    "inspectorId": "L09-author-20261019",
+    "inspectedAt": "2026-10-19T16:16:45Z",
+    "previewSha256": "e32cbec02b165ee69ca311910524fb73052f1f3ac80f135a776f0a04457b1f67"
+  }
+}

@@ -41,7 +41,7 @@ Required:
 - `week` (integer or null), `lectureId` (string or null), `topic`, `subtopic`, `tags` (array), `conceptIds` (nonempty array), `assumptions` (array).
 - `options:[{id,text}]`, `correctOptionIds:[...]`. At least two options, unique texts and IDs. Single-select has exactly one correct option; multi-select has at least one. Fewer than four options requires nonempty optional `optionCountRationale`.
 - `citations:[...]` (nonempty), `solution`, `origin` (`generated`, `assignment_adapted`, `assignment_verbatim`), `reviewIds` (array).
-- Optional `assetIds`, `relatedQuestionIds`, `variant` (see below), `duplicateGroupId`, `notes`.
+- Optional `assetIds`, `relatedQuestionIds`, `variant` (see below), `duplicateGroupId`, `notes`, and `revisionAuthors` (a unique array of nonblank contributor IDs). Record every contributor who changes correctness-sensitive question content in `revisionAuthors`; retain the original `authorId`.
 
 Do not use option-relative wording such as “all of the above” if options can shuffle. Avoid answers containing a displayed letter instead of an option ID.
 
@@ -65,7 +65,7 @@ If present, `variant` contains `familyId`, `generatorVersion`, `seed` (string), 
 
 Required review fields: `id`, `questionId`, `questionVersion`, `questionSha256`, `reviewerId`, `decision` (`verified`, `flagged`, `rejected`), `reviewedAt`, `sourceVersions` (object: source ID → SHA-256), `reviewedSlideIds`, `independentAnswerOptionIds`, `solvedBeforeAnswerSeen` (boolean), `checks`, `reasoning`, `findings` (string array).
 
-`checks` requires boolean keys: `sourceSupport`, `assumptions`, `answerSet`, `distractors`, `calculations`, `figureFidelity`, `explanation`, `difficulty`, `duplication`. Nonapplicable checks may be true only when the review reasoning says why. A verified question requires at least one verified review by someone other than `authorId`, with all checks true, exact matching answer set, all cited slides reviewed, and all cited source hashes bound. A structurally valid record does not prove the reviewer really inspected evidence; preserve real review work.
+`checks` requires boolean keys: `sourceSupport`, `assumptions`, `answerSet`, `distractors`, `calculations`, `figureFidelity`, `explanation`, `difficulty`, `duplication`. Nonapplicable checks may be true only when the review reasoning says why. A verified question requires at least one verified review by someone other than `authorId` and every ID in `revisionAuthors`, with all checks true, exact matching answer set, all cited slides reviewed, and all cited source hashes bound. A structurally valid record does not prove the reviewer really inspected evidence; preserve real review work.
 
 `scripts/validate.py question-hash <question.json>` computes the binding: SHA-256 of canonical UTF-8 JSON of the entire question, excluding only `status` and `reviewIds`, using sorted object keys, separators `(',',':')`, `ensure_ascii=False`, and no NaN/Infinity. Whitespace within strings is significant. The question's `version` is part of the hash. Changes to stem, options, answers, solution, assumptions, citations, assets, variant, or classification invalidate an old review; increment `version` and re-review. Pure status/review-link changes do not. Source changes also invalidate reviews. A current flagged/rejected review blocks verified acceptance even if omitted from `reviewIds`. Preserve the dispute and adjudication notes; correct or clarify the question, increment its version, and obtain a new independent review. Historic reviews remain in the audit log.
 
