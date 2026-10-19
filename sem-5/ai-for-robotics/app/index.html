@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; object-src blob: data:; frame-src blob: data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>AI for Robotics · Study studio</title>
+<style>/*__STYLES__*/</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to study content</a>
+<header class="topbar">
+  <button id="sidebar-toggle" class="icon-button" aria-label="Toggle course sidebar" aria-expanded="true">☰</button>
+  <a class="brand" href="#practice" aria-label="AI for Robotics home"><span class="brand-mark" aria-hidden="true">R</span><span>AI for Robotics<small>SEMESTER 05 · STUDY STUDIO</small></span></a>
+  <span class="offline"><span aria-hidden="true">●</span> Offline ready</span>
+  <button id="theme" data-testid="theme" class="icon-button" aria-label="Change color theme">◐</button>
+  <button id="help" class="icon-button" aria-label="Keyboard shortcuts and help">?</button>
+</header>
+<div id="storage-warning" role="alert" class="notice warning" hidden></div>
+<div id="checkpoint-banner" class="notice" hidden></div>
+<div class="shell">
+<aside id="sidebar" class="sidebar" aria-label="Study navigation">
+  <p class="eyebrow">YOUR WORKSPACE</p>
+  <nav id="mode-nav" aria-label="Study modes">
+    <button data-view="practice" class="nav-button active"><span aria-hidden="true">◎</span> Practice</button>
+    <button data-view="exam" class="nav-button"><span aria-hidden="true">◷</span> Exam simulator <span id="exam-badge"></span></button>
+    <button data-view="revision" class="nav-button"><span aria-hidden="true">↺</span> Last-day revision</button>
+    <button data-view="tools" class="nav-button"><span aria-hidden="true">◇</span> Learning tools</button>
+    <button data-view="coverage" class="nav-button"><span aria-hidden="true">▦</span> Source coverage</button>
+    <button data-view="progress" class="nav-button"><span aria-hidden="true">▤</span> Progress & backups</button>
+    <button data-view="audit" class="nav-button"><span aria-hidden="true">⚑</span> Question audit</button>
+  </nav>
+  <div class="sidebar-rule"></div>
+  <details open><summary class="eyebrow">COURSE EXPLORER</summary><div id="course-tree"></div></details>
+  <div class="sidebar-foot"><span id="bank-version"></span><small>Private by design. Your answers stay in this browser. Export backups to move devices.</small></div>
+</aside>
+<main id="main" tabindex="-1">
+  <section id="view-header"><div><p id="view-eyebrow" class="eyebrow">BUILD UNDERSTANDING, ONE QUESTION AT A TIME</p><h1 id="view-title">Practice</h1><p id="view-description" class="muted">A little clarity, every session.</p></div><div id="header-actions"></div></section>
+  <section id="filters" class="filters" aria-label="Question filters">
+    <label class="search-field"><span class="sr-only">Search questions, explanations, concepts and formulas</span><span aria-hidden="true">⌕</span><input id="search" data-testid="search" type="search" placeholder="Search concepts, questions, formulas…" autocomplete="off"><kbd>/</kbd></label>
+    <div class="filter-row">
+      <label>Week<select id="filter-week" data-testid="filter-week"></select></label>
+      <label>Lecture<select id="filter-lecture" data-testid="filter-lecture"></select></label>
+      <label>Topic<select id="filter-topic" data-testid="filter-topic"></select></label>
+      <label>Subtopic<select id="filter-subtopic" data-testid="filter-subtopic"></select></label>
+      <label>Difficulty<select id="filter-difficulty" data-testid="filter-difficulty"></select></label>
+      <label>Type<select id="filter-type" data-testid="filter-type"></select></label>
+      <label>Learning status<select id="filter-learning" data-testid="filter-learning"><option value="">All progress</option><option value="unanswered">Unanswered</option><option value="incorrect">Needs practice</option><option value="correct">Last answer correct</option><option value="bookmarked">Bookmarked</option><option value="review">Marked for review</option></select></label>
+      <label id="audit-filter-label" hidden>Audit status<select id="filter-status" data-testid="filter-status"><option value="all">All audit states</option><option value="draft">Draft</option><option value="flagged">Flagged</option><option value="rejected">Rejected</option><option value="verified">Verified</option></select></label>
+      <button id="clear-filters" class="text-button">Clear filters</button>
+    </div>
+  </section>
+  <section id="workspace"></section>
+  <footer class="page-footer">Source-led learning. Verified answers are tied to independent reviews. <span id="footer-counts"></span></footer>
+</main>
+</div>
+<div id="announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+<div id="toast" class="toast" role="status" hidden></div>
+<dialog id="source-dialog" data-testid="source-dialog" class="source-dialog" aria-labelledby="source-title">
+  <div class="dialog-header"><h2 id="source-title">Source evidence</h2><button class="icon-button" data-close-dialog aria-label="Close source preview">✕</button></div>
+  <div id="source-meta" class="muted"></div>
+  <div class="toolbar"><button id="zoom-out" data-testid="zoom-out" aria-label="Zoom out">−</button><output id="zoom-level">100%</output><button id="zoom-in" data-testid="zoom-in" aria-label="Zoom in">+</button><button id="zoom-reset">Fit width</button><button id="source-download">Save source</button></div>
+  <div id="source-preview" class="source-preview"></div><div id="source-detail"></div>
+</dialog>
+<dialog id="help-dialog" aria-labelledby="help-title"><div class="dialog-header"><h2 id="help-title">Your offline study space</h2><button class="icon-button" data-close-dialog aria-label="Close help">✕</button></div><p>No account or connection is needed. Keep this HTML file together with a recent progress backup when moving computers.</p><ul><li>1–9: select an answer option.</li><li>Enter: submit a practice answer.</li><li>← / →: previous or next question.</li><li>B: bookmark. R: mark for review.</li><li>/: focus global search. Escape: close a dialog.</li></ul><p>Shortcuts pause while you type. Multi-select questions require Submit. Exams use a fixed end time and resume after reload; answers appear only after completion.</p><p>Math is displayed as accessible text or embedded figures, without external fonts or network scripts. Source pages and diagrams can be zoomed.</p><p>To save a PDF, use an export’s print view and choose “Save as PDF” in the browser’s print dialog. Question papers, answer keys and worked solutions are separate outputs.</p></dialog>
+<input type="file" id="backup-file" data-testid="backup-import" accept="application/json,.json" hidden>
+<section id="print-root" aria-hidden="true"></section>
+<script type="application/json" id="bank-data">/*__BANK__*/</script>
+<script type="application/json" id="asset-data">/*__ASSETS__*/</script>
+<script>/*__CORE__*/</script>
+<script>/*__LEARNING_TOOLS__*/</script>
+<script>/*__APP__*/</script>
+</body>
+</html>
