@@ -1,0 +1,84 @@
+{
+  "time": "2026-10-19T23:25:12.223070+00:00",
+  "before": {
+    "id": "W09-L44-Q091",
+    "version": 1,
+    "status": "draft",
+    "authorId": "build_robotics_study_app:L44-v2-author",
+    "stem": "Let H_t denote past states, controls and measurements in the lecture’s model. Which pair preserves both conditional-independence assumptions?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "cognitiveSkill": "conceptual",
+    "week": 9,
+    "lectureId": "L44",
+    "topic": "Understanding the Perception and Localization",
+    "subtopic": "Measurement conditional independence versus transition",
+    "tags": [
+      "gap-91"
+    ],
+    "conceptIds": [
+      "W09-L44-C-gap-91"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o1",
+        "text": "p(x_t | H_t) = p(x_t | x_(t−1)); p(z_t | H_t,x_t) = p(z_t | x_t), dropping the current control from motion."
+      },
+      {
+        "id": "o2",
+        "text": "p(x_t | H_t) = p(x_t | x_(t−1),u_t); p(z_t | H_t,x_t) = p(z_t), dropping dependence on the current state."
+      },
+      {
+        "id": "o3",
+        "text": "p(x_t | H_t) = p(x_t | x_(t−1),u_t); p(z_t | H_t,x_t) = p(z_t | x_t)."
+      },
+      {
+        "id": "o4",
+        "text": "p(x_t | H_t) = p(x_t | x_(t−1),u_t); p(z_t | H_t,x_t) = p(z_t | x_(t−1)), using only the previous state for sensing."
+      }
+    ],
+    "correctOptionIds": [
+      "o3"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1384",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1384,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1384, printed footer 15: Measurement conditional independence versus transition",
+        "evidenceText": "State Completeness & Markov Assumption\n\n•  A state 𝒙𝒕​ is complete if it fully describes the system at time 𝑡, so past states\n   𝒙𝟎:𝒕−𝟏, measurements 𝒛𝟏:𝒕−𝟏, or controls 𝒖𝟏:𝒕 provide no additional information\n   for predicting the future.\n•  Such temporal processes are known as Markov chains,\n   defined by the Markov property and its two key\n   conditional independence assumptions.\n   – State Transition model: Probability of present state 𝒙𝒕 ​depends only on the\n       previous state 𝒙𝒕−𝟏​ and current control 𝒖𝒕​.\n               𝑝𝒙𝒕𝒙𝟎:𝒕−𝟏, 𝒛𝟏:𝒕−𝟏, 𝒖𝟏:𝒕= 𝑝𝒙𝒕𝒙𝒕−𝟏, 𝒖𝒕\n   – Measurement model: Present measurement 𝒛𝒕\n      depends only on the current state.\n                   𝑝𝒛𝒕𝒙𝟎:𝒕, 𝒛𝟏:𝒕−𝟏, 𝒖𝟏:𝒕= 𝑝𝒛𝒕𝒙𝒕\n\n                                                                                                          15",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "A sufficient current state screens the present measurement from history; the transition instead uses the previous state together with the current control.",
+      "optionExplanations": {
+        "o1": "The controlled transition retains the current input u_t.",
+        "o2": "Conditional independence from history given x_t does not imply unconditional independence from x_t.",
+        "o3": "Motion is conditioned on the previous state and current control; sensing is conditioned on the current state.",
+        "o4": "The displayed measurement relation uses x_t, not x_(t−1)."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "A sufficient current state screens the present measurement from history; the transition instead uses the previous state together with the current control.",
+      "memoryAid": null,
+      "misconceptions": [
+        "The controlled transition retains the current input u_t.",
+        "Conditional independence from history given x_t does not imply unconditional independence from x_t.",
+        "The displayed measurement relation uses x_t, not x_(t−1)."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": [],
+    "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+  },
+  "afterHash": "47548332209ffcadd1db07c82b04e14dfa71c77574b4727d9c93fed3e00782b5",
+  "scope": "Stem explicitly defines H_t with current control; version/status/reviewIds updated; options/key/solution/citations unchanged."
+}

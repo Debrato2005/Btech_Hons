@@ -1,0 +1,41 @@
+"""Independent L51 arithmetic from source and answer-hidden assumptions; no author keys."""
+from pathlib import Path
+import math,random,json,hashlib,datetime
+R=Path(__file__).resolve().parents[1]; checks=[]
+def check(n,value,expected):
+ assert math.isclose(value,expected,rel_tol=1e-10,abs_tol=1e-12),(n,value,expected)
+ checks.append(dict(question=n,value=value,expected=expected))
+check('Q007 torque ratio',(2*.5*3)/(2*3),.5)
+check('Q012 torque',.12*2,.24)
+check('Q013 torque doubling',4/2,2);check('Q013 copper loss',4**2/2**2,4)
+check('Q027 LiDAR ms',1000/20,50);check('Q027 camera ms',1000/30,100/3)
+check('Q036 current A',2.5*3,7.5)
+check('Q037 power W',2*5+10+5,25)
+check('Q038 energy Wh',2.5*11.1,27.75);check('Q038 minutes',27.75/25*60,66.6)
+check('Q039 derated minutes',27.75*.8/25*60,53.28)
+check('Q040 minutes',27.75/(10+20+5)*60,333/7)
+check('Q041 kg',27.75/200,.13875)
+check('Q045 UART ms',100*(1+8+1)/115000*1000,200/23)
+check('Q048 Mbps',640*480*3*30*8/1e6,221.184)
+check('Q052 omega rad/s',(.75*12-2*.5)/.02,400)
+check('Q054 remaining ms',1000/100-8,2)
+check('Q055 serial ms',2+8+1,11);check('Q055 rate Hz',1000/11,90.9090909090909)
+a=math.radians(.088);check('Q056 radians',a,.00153588974175501)
+check('Q058 uniform sigma',math.sqrt(a*a/3),.000886746355843263)
+check('Q060 interval ratio',(1/100)/(1/500),5)
+p1,p2=1/4,1/1;check('Q065 fused mean',(p1*1+p2*3)/(p1+p2),2.6);check('Q065 fused variance',1/(p1+p2),.8)
+# Independent variance expansion: normalized weights .2,.8 and independent errors.
+check('Q065 variance expansion',(.2**2)*4+(.8**2)*1,.8)
+rng=random.Random(5101)
+for _ in range(1000):
+ E,P,u=rng.uniform(1,100),rng.uniform(1,100),rng.random()
+ assert math.isclose((E/P*60)*u,E*u/P*60)
+ assert math.isclose(E/(2*P),.5*E/P)
+ n,rate=rng.randrange(1,1000),rng.uniform(1000,1e7)
+ assert math.isclose(n*10/rate,(n*8/rate)*1.25)
+ v1,v2=rng.uniform(.001,20),rng.uniform(.001,20);w1=v2/(v1+v2);w2=v1/(v1+v2)
+ assert math.isclose(w1*w1*v1+w2*w2*v2,v1*v2/(v1+v2))
+ assert 0<v1*v2/(v1+v2)<min(v1,v2)
+p=R/'audits/W11-L51-contracts-independent-checks.json';assert not p.exists()
+p.write_text(json.dumps(dict(completedAt=datetime.datetime.now(datetime.timezone.utc).isoformat(),scriptSha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),explicitChecks=checks,explicitCount=len(checks),variedCases=1000,variedAssertions=5000,runtime='Default interpreter and standard library only; independently reconstructed numerical examples. The lecture has no executable program. No package, model, corpus or external runtime used; restricted L48 temporary environment not used.'),indent=2)+'\n')
+print(len(checks),'explicit checks and5000 varied assertions passed')

@@ -1,0 +1,1053 @@
+[
+  {
+    "id": "W09-L44-Q005",
+    "version": 2,
+    "stem": "Why does the source motivate alternatives to GPS in an indoor or urban-canyon setting?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Satellite signals can be blocked or degraded, so other information is needed for reliable localization."
+      },
+      {
+        "id": "o2",
+        "text": "The receiver may retain its last outdoor fix; treating that stale fix as a current position removes the indoor localization problem."
+      },
+      {
+        "id": "o3",
+        "text": "A correctly surveyed indoor map guarantees usable satellite reception, so only map calibration needs attention."
+      },
+      {
+        "id": "o4",
+        "text": "A higher requested GPS update frequency guarantees recovery of the obstructed satellite measurements."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1374",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1374,
+        "kind": "statement",
+        "locator": "Lecture L44, physical PDF page 1374, printed footer 5: GNSS/GPS bullet.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q013",
+    "version": 2,
+    "stem": "How should the slide’s pulse-time formula and model-unspecified RPLidar example be used together?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Apply d = ct/2 to the declared pulsed ToF model, while checking a particular product’s actual ranging principle and specifications."
+      },
+      {
+        "id": "o2",
+        "text": "Infer that every RPLIDAR model measures distance from a directly timed returning pulse."
+      },
+      {
+        "id": "o3",
+        "text": "Infer the ranging principle from the 5.5 Hz spin rate alone, because scan rotation uniquely distinguishes time-of-flight from triangulation."
+      },
+      {
+        "id": "o4",
+        "text": "Treat the roughly 12 m example range and 360 samples as guarantees for every device in the product family."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1378",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1378,
+        "kind": "statement",
+        "locator": "Lecture L44, physical PDF page 1378, printed footer 9: Left ToF explanation versus right RPLidar example.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q015",
+    "version": 2,
+    "stem": "A gyro reads a constant 30°/s for 2 s. What can be obtained without knowing the initial heading?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A heading change of 15°."
+      },
+      {
+        "id": "o2",
+        "text": "A heading change of 30°, by using the rate value as the accumulated angle."
+      },
+      {
+        "id": "o3",
+        "text": "A heading change of 60°, not the absolute final heading."
+      },
+      {
+        "id": "o4",
+        "text": "An absolute final heading of 60° for any initial heading."
+      }
+    ],
+    "assumptions": [
+      "Constant unbiased gyro rate over the stated interval."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1379",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1379,
+        "kind": "statement",
+        "locator": "Lecture L44, physical PDF page 1379, printed footer 10: IMU example box.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q019",
+    "version": 2,
+    "stem": "A robot has a known map but no useful initial-pose estimate. Which task is this, compared with starting near a known pose?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Both are global localization, because possessing a map is the defining condition in both cases."
+      },
+      {
+        "id": "o2",
+        "text": "Both are position tracking, because either task can use repeated measurements after motion starts."
+      },
+      {
+        "id": "o3",
+        "text": "Global localization, compared with position tracking."
+      },
+      {
+        "id": "o4",
+        "text": "Position tracking, compared with global localization."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1381",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1381,
+        "kind": "statement",
+        "locator": "Lecture L44, physical PDF page 1381, printed footer 12: Two definitions beneath “Where am I?”.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q023",
+    "version": 2,
+    "stem": "Two robots have the same position but different velocities, and their future positions depend on velocity. Is position alone a complete state for that model?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Yes; with a fixed future control, present velocity cannot change the next-position distribution."
+      },
+      {
+        "id": "o2",
+        "text": "No; adding the present control alone always makes position sufficient, even when velocity remains unknown."
+      },
+      {
+        "id": "o3",
+        "text": "No; velocity must be represented or otherwise accounted for to predict the future under the model."
+      },
+      {
+        "id": "o4",
+        "text": "Yes; declaring a first-order transition makes position sufficient without checking omitted velocity information."
+      }
+    ],
+    "assumptions": [
+      "Added position/velocity example; future motion depends on velocity."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1384",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1384,
+        "kind": "statement",
+        "locator": "Lecture L44, physical PDF page 1384, printed footer 15: Definition of state completeness.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q028",
+    "version": 2,
+    "stem": "If every likelihood-times-prediction weight is zero, what is the immediate issue with the normalized Bayes update?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The stated normalized update automatically returns the predicted prior unchanged."
+      },
+      {
+        "id": "o2",
+        "text": "Its normalizing denominator is zero; the stated model gives the event no support and cannot produce that normalized posterior directly."
+      },
+      {
+        "id": "o3",
+        "text": "The normalized posterior is automatically uniform."
+      },
+      {
+        "id": "o4",
+        "text": "The normalized posterior is the all-zero vector."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1385",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1385,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1385, printed footer 16: Normalization constant η and correction equation.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q033",
+    "version": 2,
+    "stem": "The slide allows positive-semidefinite covariance but writes an ordinary inverse and determinant in its density. What qualification is needed for that exact formula?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use positive-definite covariance for the ordinary inverse/determinant density; handle singular Gaussian support separately."
+      },
+      {
+        "id": "o2",
+        "text": "Use a pseudoinverse in the exponent but retain the ordinary zero determinant in the full-dimensional normalizer."
+      },
+      {
+        "id": "o3",
+        "text": "Add εI with ε > 0 and describe the resulting full-dimensional density as exactly the same singular distribution."
+      },
+      {
+        "id": "o4",
+        "text": "Use a pseudoinverse and pseudodeterminant, then interpret the resulting support density as an ordinary density over the entire original space."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1386",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1386,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1386, printed footer 17: Density formula and covariance bullet.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q038",
+    "version": 2,
+    "stem": "The slide introduces “LTI” systems but uses F_t, G_t and H_t. Must those matrices be constant for the displayed Kalman recursion to be used?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Yes; changing a known F_t requires nonlinear linearization even if the state equation remains linear."
+      },
+      {
+        "id": "o2",
+        "text": "No; matrices chosen as arbitrary nonlinear functions of the current unknown state preserve the exact linear-Gaussian recursion."
+      },
+      {
+        "id": "o3",
+        "text": "Yes; known time-varying matrices permit only steady-state gain, so the displayed time-indexed gain cannot be recomputed."
+      },
+      {
+        "id": "o4",
+        "text": "No; known time-varying linear matrices can be used with the corresponding time-indexed model and noise covariances."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1388",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1388,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1388, printed footer 19: Opening LTI sentence and F_t, G_t, H_t equations.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q045",
+    "version": 2,
+    "stem": "In the correction plot, why is the posterior peak between the predicted mean 4 and sensor-centered value 5, rather than exactly at either?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Both sources have finite uncertainty, and the gain forms a weighted correction toward the more precise measurement."
+      },
+      {
+        "id": "o2",
+        "text": "The filter always takes the arithmetic midpoint, regardless of variances."
+      },
+      {
+        "id": "o3",
+        "text": "The gain weights the measurement in direct proportion to its variance, so a noisier measurement would pull the posterior more strongly."
+      },
+      {
+        "id": "o4",
+        "text": "The sensor distribution represents a hard boundary that clips the state at 5."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1391",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1391,
+        "kind": "figure",
+        "locator": "Lecture L44, physical PDF page 1391, printed footer 22: Upper-right prediction, sensor and posterior curves.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q050",
+    "version": 2,
+    "stem": "Why does the EKF use F_v V F_vᵀ rather than adding V directly in every nonlinear motion model?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use F_vᵀ V F_v because transposing the Jacobian always converts noise coordinates into state coordinates."
+      },
+      {
+        "id": "o2",
+        "text": "Use F_x V F_xᵀ because the state Jacobian also maps any native process-noise coordinates correctly."
+      },
+      {
+        "id": "o3",
+        "text": "Direct addition is forbidden even when the noise already lies in state coordinates and F_v is the identity."
+      },
+      {
+        "id": "o4",
+        "text": "Noise may have different coordinates or dimension from the state, so F_v maps its covariance into state space."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1393",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1393,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1393, printed footer 24: Predicted covariance equation containing F_v V F_vᵀ.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q051",
+    "version": 2,
+    "stem": "For an added scalar f(x) = x², previous mean μ = 2, previous variance P = 0.25, and zero process-noise mean, what mean does the first-order EKF prediction use?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "8, from f′(μ)μ."
+      },
+      {
+        "id": "o2",
+        "text": "4.25, from μ² + P."
+      },
+      {
+        "id": "o3",
+        "text": "4, from f(μ)."
+      },
+      {
+        "id": "o4",
+        "text": "2, from retaining the previous mean."
+      }
+    ],
+    "assumptions": [
+      "Added f(x)=x² example with mean 2 and variance 0.25; the requested output is the EKF mean, not the exact transformed mean."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1393",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1393,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1393, printed footer 24: Predicted mean μ̄ = f(μ_previous, u, 0).",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q053",
+    "version": 2,
+    "stem": "The displayed product includes the previous pose’s world translation (x_(t−1), y_(t−1)). What does the completed product represent?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The new robot pose relative to the world frame; the relative increment alone is Trans_x(d) Rot(Δθ)."
+      },
+      {
+        "id": "o2",
+        "text": "Only the relative increment, independent of the previous world pose."
+      },
+      {
+        "id": "o3",
+        "text": "The inverse of the old world pose, regardless of d and Δθ."
+      },
+      {
+        "id": "o4",
+        "text": "The new world-to-robot coordinate transform, rather than the new robot-to-world pose."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1394",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1394,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1394, printed footer 25: Full old-pose times local-translation times local-rotation product.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1395",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1395,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1395, printed footer 26: Expanded matrix with updated world translation.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q055",
+    "version": 2,
+    "stem": "Differentiate the zero-noise motion f = (x + d cosθ, y + d sinθ, θ + Δθ) with respect to (x, y, θ). Which F_x follows?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "[[1, 0, 0], [0, 1, 0], [0, 0, 1]]."
+      },
+      {
+        "id": "o2",
+        "text": "[[cosθ, 0], [sinθ, 0], [0, 1]]."
+      },
+      {
+        "id": "o3",
+        "text": "[[1, 0, −d sinθ], [0, 1, d cosθ], [0, 0, 1]]."
+      },
+      {
+        "id": "o4",
+        "text": "[[1, 0, d sinθ], [0, 1, −d cosθ], [0, 0, 1]]."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1395",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1395,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1395, printed footer 26: Noisy motion vector and F_x matrix.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q056",
+    "version": 2,
+    "stem": "In the source noise vector v = (v_d, v_θ), why is F_v a 3×2 matrix?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The two columns are x and y state derivatives, while heading is omitted because odometry already contains an angle."
+      },
+      {
+        "id": "o2",
+        "text": "Two noise inputs affect a three-component pose output."
+      },
+      {
+        "id": "o3",
+        "text": "Three independent noise inputs affect two pose components."
+      },
+      {
+        "id": "o4",
+        "text": "It is the transpose of the derivative of the three pose outputs with respect to the two noise inputs."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1395",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1395,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1395, printed footer 26: Two-component v vector and 3×2 F_v matrix.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q057",
+    "version": 2,
+    "stem": "For θ = π/2 and d = 2 m, let P = diag(0.01, 0.04, 0.09) and V = diag(0.0025, 0.0004), using metres and radians. Under the displayed Jacobians, which predicted covariance follows?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "[[0.37, 0, −0.18], [0, 0.0425, 0], [−0.18, 0, 0.0904]]."
+      },
+      {
+        "id": "o2",
+        "text": "diag(0.0125, 0.04, 0.0904)."
+      },
+      {
+        "id": "o3",
+        "text": "[[0.37, 0, 0.18], [0, 0.0425, 0], [0.18, 0, 0.0904]]."
+      },
+      {
+        "id": "o4",
+        "text": "diag(0.37, 0.0425, 0.0904)."
+      }
+    ],
+    "assumptions": [
+      "Added diagonal covariances; independent noise; entries carry the corresponding products of metre/radian units."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1395",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1395,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1395, printed footer 26: F_x, F_v and diagonal odometry-noise model.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1393",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1393,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1393, printed footer 24: Prediction box: covariance propagation P̄ = F_x P F_xᵀ + F_v V F_vᵀ.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q058",
+    "version": 2,
+    "stem": "For a finite interval with simultaneous nonzero forward speed and turn rate, how should the displayed old-heading translation model be interpreted?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "As exact circular-arc integration for every finite heading change because it uses trigonometric functions."
+      },
+      {
+        "id": "o2",
+        "text": "As midpoint integration, because the use of θ in the displacement implicitly means θ + Δθ/2."
+      },
+      {
+        "id": "o3",
+        "text": "As a model that translates along the final heading before turning."
+      },
+      {
+        "id": "o4",
+        "text": "As the specified incremental/Euler-like model, not automatically an exact circular-arc integration over a large turn."
+      }
+    ],
+    "assumptions": [
+      "Compare the declared incremental model with continuous simultaneous turning; no new exact arc formula is assumed."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1394",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1394,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1394, printed footer 25: Translate-then-rotate factorization.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1395",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1395,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1395, printed footer 26: Previous-heading position update.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1396",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1396,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1396, printed footer 27: Continuous x-dot, y-dot and heading-rate equations.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q064",
+    "version": 2,
+    "stem": "What is E0 = diag([0.05, 0.05, deg2rad(0.5)]) ** 2 in the source EKF setup?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The initial 3×3 standard-deviation matrix, with diagonal entries still 0.05, 0.05 and deg2rad(0.5)."
+      },
+      {
+        "id": "o2",
+        "text": "The initial 3×3 covariance, not the initial pose vector."
+      },
+      {
+        "id": "o3",
+        "text": "The initial pose (0.05 m, 0.05 m, 0.5 rad)."
+      },
+      {
+        "id": "o4",
+        "text": "The 2×2 sensor range-bearing covariance."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1397",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1397,
+        "kind": "code",
+        "locator": "Lecture L44, physical PDF page 1397, printed footer 28: E0 construction and P0=E0 argument.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1398",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1398,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1398, printed footer 29: Initial-state covariance sentence.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1400",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1400,
+        "kind": "code",
+        "locator": "Lecture L44, physical PDF page 1400, printed footer 31: P0 covariance construction and the prose calling Σ0 an initial pose.",
+        "role": "conflict",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q074",
+    "version": 2,
+    "stem": "What happens to the range-bearing pose Jacobian when a landmark coincides with the robot position?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Every derivative becomes zero because the measured range is zero."
+      },
+      {
+        "id": "o2",
+        "text": "The bearing is uniquely equal to the robot heading."
+      },
+      {
+        "id": "o3",
+        "text": "Replace only r in the denominators by a small ε and call the result the exact derivative at coincidence."
+      },
+      {
+        "id": "o4",
+        "text": "r = 0 makes the bearing and the displayed divisions by r or r² undefined; the update needs special handling."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1399",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1399,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1399, printed footer 30: Range and bearing geometry.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1401",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1401,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1401, printed footer 32: Jacobians containing 1/r and 1/r².",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q078",
+    "version": 2,
+    "stem": "With the missing imports supplied, what actually happens to the printed RangeBearingSensor(..., animate=True) call in RTB 1.4.4?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It raises TypeError immediately because animate is an unknown keyword."
+      },
+      {
+        "id": "o2",
+        "text": "It accepts the keyword silently, with no deprecation warning, and treats it as the preferred current spelling."
+      },
+      {
+        "id": "o3",
+        "text": "It warns but ignores animate=True, leaving the plotting option false rather than mapping the legacy value."
+      },
+      {
+        "id": "o4",
+        "text": "It is accepted with a deprecation warning advising plot instead; the source landmark simulation can run."
+      }
+    ],
+    "assumptions": [
+      "Pinned RTB 1.4.4 and explicit numpy/Robotics Toolbox imports; no claim about all past or future versions."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1400",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1400,
+        "kind": "code",
+        "locator": "Lecture L44, physical PDF page 1400, printed footer 31: RangeBearingSensor constructor, animate=True keyword.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q080",
+    "version": 2,
+    "stem": "Which conclusion is justified by the odometry-only and landmark-corrected examples?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The close corrected trajectory shows that the measurement model dominates every update regardless of its assumed noise."
+      },
+      {
+        "id": "o2",
+        "text": "Motion-only uncertainty can accumulate; correctly associated known-landmark observations provide external constraints that can reduce drift under the stated model."
+      },
+      {
+        "id": "o3",
+        "text": "The examples show that a smaller estimated covariance guarantees smaller actual error even with incorrect landmark association."
+      },
+      {
+        "id": "o4",
+        "text": "The landmark-corrected run guarantees every covariance entry decreases after every prediction and correction step."
+      }
+    ],
+    "assumptions": [
+      "Correct association, suitable local model, and the stated sensor/noise assumptions; the plotted run is an illustration rather than an all-run guarantee."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1398",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1398,
+        "kind": "figure",
+        "locator": "Lecture L44, physical PDF page 1398, printed footer 29: Odometry-only true/estimated trajectories and ellipses.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1401",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1401,
+        "kind": "figure",
+        "locator": "Lecture L44, physical PDF page 1401, printed footer 32: Lower correction-of-path overlay.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1402",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1402,
+        "kind": "statement",
+        "locator": "Lecture L44, physical PDF page 1402, printed footer 33: Final two summary bullets.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q089",
+    "version": 2,
+    "stem": "Which mapping correctly combines the driver, vehicle methods and estimator in the source differential-drive example?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "RandomPath supplies controls; vehicle .step simulates odometry; .f predicts the mean; .Fx and .Fv support covariance prediction; EKF maintains the estimate."
+      },
+      {
+        "id": "o2",
+        "text": "RandomPath supplies controls; vehicle .step directly returns the posterior covariance; .f returns noisy odometry; .Fx and .Fv draw the uncertainty ellipse."
+      },
+      {
+        "id": "o3",
+        "text": "RandomPath estimates the mean; vehicle .step supplies controls; .f constructs the posterior covariance; EKF selects random waypoints."
+      },
+      {
+        "id": "o4",
+        "text": "RandomPath supplies controls; vehicle .step simulates odometry; .f predicts the covariance; .Fx and .Fv supply the predicted mean without a motion function."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1397",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1397,
+        "kind": "statement",
+        "locator": "Lecture L44, physical PDF page 1397, printed footer 28: Driver paragraph and bottom method-role bullets: .step, .f, .Fx and .Fv.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1400",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1400,
+        "kind": "code",
+        "locator": "Lecture L44, physical PDF page 1400, printed footer 31: RandomPath(workspace=map), sensor, map and EKF constructor arguments.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q090",
+    "version": 1,
+    "stem": "The position-uncertainty figure has horizontal axes x (m) and y (m), a probability-density axis, and contours projected below the surface. Which interpretation is supported?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The surface height is robot heading, so the plot directly displays a three-coordinate pose sample."
+      },
+      {
+        "id": "o2",
+        "text": "The surface represents density over two position coordinates; the lower contours project equal-density levels rather than negative probabilities."
+      },
+      {
+        "id": "o3",
+        "text": "The negative vertical position of the projected contours means some possible positions have negative probability."
+      },
+      {
+        "id": "o4",
+        "text": "The height at each plotted point is the probability of that exact continuous position, so the surface values must sum to one without an area factor."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1382",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1382,
+        "kind": "figure",
+        "locator": "Lecture L44, physical PDF page 1382, printed footer 13: Position-density surface and contour projection",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W09-L44-Q091",
+    "version": 1,
+    "stem": "Let H_t denote past states, controls and measurements in the lecture’s model. Which pair preserves both conditional-independence assumptions?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "p(x_t | H_t) = p(x_t | x_(t−1)); p(z_t | H_t,x_t) = p(z_t | x_t), dropping the current control from motion."
+      },
+      {
+        "id": "o2",
+        "text": "p(x_t | H_t) = p(x_t | x_(t−1),u_t); p(z_t | H_t,x_t) = p(z_t), dropping dependence on the current state."
+      },
+      {
+        "id": "o3",
+        "text": "p(x_t | H_t) = p(x_t | x_(t−1),u_t); p(z_t | H_t,x_t) = p(z_t | x_t)."
+      },
+      {
+        "id": "o4",
+        "text": "p(x_t | H_t) = p(x_t | x_(t−1),u_t); p(z_t | H_t,x_t) = p(z_t | x_(t−1)), using only the previous state for sensing."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1384",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1384,
+        "kind": "equation",
+        "locator": "Lecture L44, physical PDF page 1384, printed footer 15: Measurement conditional independence versus transition",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  }
+]

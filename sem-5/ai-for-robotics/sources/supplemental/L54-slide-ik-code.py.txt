@@ -1,0 +1,35 @@
+import numpy as np
+from sklearn.neural_network import MLPRegressor
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import train_test_split
+L1, L2 = 1.0, 1.0 # link lengths
+N = 40000
+t1 = np.random.uniform(-np.pi, np.pi, N)
+t2 = np.random.uniform(0, np.pi, N) # elbow-down
+# Forward kinematics → end-effector (x,y)
+x = L1*np.cos(t1) + L2*np.cos(t1+t2)
+y = L1*np.sin(t1) + L2*np.sin(t1+t2)
+X = np.column_stack([x, y])
+Y = np.column_stack([t1, t2])
+X_tr, X_te, Y_tr, Y_te = train_test_split(X, Y, test_size=0.1)
+model = Pipeline([
+    ('sc', StandardScaler()),
+    ('mlp', MLPRegressor(hidden_layer_sizes=(256,256,128),
+        activation='tanh', max_iter=300,
+        learning_rate_init=1e-3, random_state=42))
+])
+model.fit(X_tr, Y_tr)
+# Evaluate: re-apply FK and measure position error
+pred = model.predict(X_te)
+xp = L1*np.cos(pred[:,0]) + L2*np.cos(pred[:,0]+pred[:,1])
+yp = L1*np.sin(pred[:,0]) + L2*np.sin(pred[:,0]+pred[:,1])
+err = np.sqrt((xp-X_te[:,0])**2 + (yp-X_te[:,1])**2)
+print(f"Mean position error: {err.mean()*100:.2f} cm")
+prediction = model.predict([[-1.0, 1.0]])
+# joint angles (in radians)
+theta1_rad = prediction[0][0]
+theta2_rad = prediction[0][1]
+print(f"To reach X=-1.0, Y=1.0, the MLP predicted:")
+print(f"Theta 1: {theta1_rad:.4f} radians -> {np.degrees(theta1_rad):.2f} degrees")
+print(f"Theta 2: {theta2_rad:.4f} radians -> {np.degrees(theta2_rad):.2f} degrees")

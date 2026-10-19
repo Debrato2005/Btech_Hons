@@ -9,19 +9,19 @@
     "options": [
       {
         "id": "o1",
-        "text": "Sensors collect data → compute processes information → actuators create motion."
+        "text": "Sensors acquire measurements → compute interprets them and selects commands → actuators produce physical action."
       },
       {
         "id": "o2",
-        "text": "Actuators collect data → sensors process information → compute creates motion directly."
+        "text": "Compute produces physical motion → actuators acquire measurements → sensors select commands."
       },
       {
         "id": "o3",
-        "text": "Compute collects contact forces → actuators interpret images → sensors create motion."
+        "text": "Sensors acquire measurements → actuators select the policy command → compute directly exerts mechanical force."
       },
       {
         "id": "o4",
-        "text": "Sensors create motion → compute collects energy → actuators store the world model."
+        "text": "Actuators acquire measurements → compute interprets them → sensors produce commanded motion."
       }
     ],
     "assumptions": [],
@@ -53,15 +53,15 @@
     "options": [
       {
         "id": "o1",
-        "text": "Links/joints/chassis store learned weights; battery/PSU/wiring measure joint angles."
+        "text": "Links/joints/chassis supply energy; battery/PSU/wiring define mechanical joint geometry."
       },
       {
         "id": "o2",
-        "text": "Links/joints/chassis supply electrical energy; battery/PSU/wiring define joint geometry."
+        "text": "Links/joints/chassis directly measure world data; battery/PSU/wiring perform the policy inference."
       },
       {
         "id": "o3",
-        "text": "Links/joints/chassis decode messages; battery/PSU/wiring generate policy actions."
+        "text": "Links/joints/chassis are the communication transport; battery/PSU/wiring alone determines the robot’s number of joints."
       },
       {
         "id": "o4",
@@ -97,19 +97,19 @@
     "options": [
       {
         "id": "o1",
-        "text": "ROS is the battery connector, CAN is the motor torque constant, and Wi-Fi is the encoder resolution."
+        "text": "ROS, CAN and Wi-Fi all specify exactly the same physical signaling and frame format."
       },
       {
         "id": "o2",
-        "text": "Using ROS removes the need for any underlying data transport."
+        "text": "ROS replaces the physical/network transport, so ROS messages require no underlying communication implementation."
       },
       {
         "id": "o3",
-        "text": "They occupy different software/network roles; ROS is a robotics software framework while CAN and Wi-Fi describe different communication technologies."
+        "text": "ROS is a robotics software framework, while CAN and Wi-Fi denote different communication technologies at other system levels."
       },
       {
         "id": "o4",
-        "text": "They are all interchangeable cable pinouts with the same frame format."
+        "text": "Using CAN requires the complete application to use the Wi-Fi radio protocol as its physical layer."
       }
     ],
     "assumptions": [],
@@ -357,15 +357,15 @@
       },
       {
         "id": "o2",
-        "text": "Liquid incompressibility and brush commutator wear."
+        "text": "An incompressible air model and zero seal friction, which together create the cited difficulty."
       },
       {
         "id": "o3",
-        "text": "Digital encoder quantization and magnetic rotor commutation."
+        "text": "Only the density of the liquid reservoir and hydraulic pump displacement."
       },
       {
         "id": "o4",
-        "text": "Rigid gear teeth and electric winding overheating."
+        "text": "Only a fixed gear ratio, independent of air pressure or actuator seals."
       }
     ],
     "assumptions": [],
@@ -436,11 +436,11 @@
     "options": [
       {
         "id": "o1",
-        "text": "The commutator remains stationary while the brushes and motor case rotate together."
+        "text": "Rotating brushes contact a stationary commutator to energize stationary stator windings in the described motor."
       },
       {
         "id": "o2",
-        "text": "Compressed air switches winding current through a pneumatic valve."
+        "text": "Stationary windings are switched electronically using rotor-position feedback, with no brush contact."
       },
       {
         "id": "o3",
@@ -448,7 +448,7 @@
       },
       {
         "id": "o4",
-        "text": "Stationary rotor windings contact a rotating brushless sensor."
+        "text": "The rotating commutator supplies current without any electrical contact or external switching mechanism."
       }
     ],
     "assumptions": [],
@@ -557,19 +557,19 @@
     "options": [
       {
         "id": "o1",
-        "text": "Rotating windings switched only by stationary brushes and a mechanical commutator."
+        "text": "Rotating windings, stationary brushes and a revolving mechanical commutator."
       },
       {
         "id": "o2",
-        "text": "Stationary magnetic rotor and rotating motor case with no electric current."
+        "text": "Stationary windings and rotating magnetic rotor, but all commutation necessarily occurs through rotor brushes."
       },
       {
         "id": "o3",
-        "text": "Pneumatic switching of hydraulic fluid through the rotor windings."
+        "text": "Both the winding assembly and magnetic rotor remain stationary while electronic commutation alone rotates the output shaft mechanically."
       },
       {
         "id": "o4",
-        "text": "Stationary windings, a rotating magnetic rotor, and electronic commutation."
+        "text": "Stationary windings, a rotating magnetic rotor and electronic commutation."
       }
     ],
     "assumptions": [],
@@ -976,19 +976,19 @@
     "options": [
       {
         "id": "o1",
-        "text": "The unit ampere can be substituted for newton without a conversion model."
+        "text": "One scalar motor-current sample directly provides six independent end-effector force/moment components without a mechanical model."
       },
       {
         "id": "o2",
-        "text": "Current must be interpreted through a motor/transmission model; a contact wrench is a different measured quantity."
+        "text": "Current must be interpreted through a motor/transmission model; it is not the same as a direct six-component contact-wrench measurement."
       },
       {
         "id": "o3",
-        "text": "Motor current already contains three force and three moment channels in amperes."
+        "text": "A motor torque constant alone determines every end-effector force for every robot configuration."
       },
       {
         "id": "o4",
-        "text": "Force/torque sensors measure only encoder pulse counts."
+        "text": "Changing the load or transmission friction cannot affect current-based force interpretation."
       }
     ],
     "assumptions": [],
@@ -1020,19 +1020,19 @@
     "options": [
       {
         "id": "o1",
-        "text": "RGB-D: image plus depth for grasp pose; LiDAR: point-cloud data for SLAM and obstacle avoidance."
+        "text": "RGB-D: image plus depth for grasp pose; LiDAR: point-cloud data for SLAM and avoidance."
       },
       {
         "id": "o2",
-        "text": "RGB-D: only gyro rates for balance; LiDAR: encoder counts for joint RL state."
+        "text": "RGB-D: acceleration plus gyro for stabilization; LiDAR: encoder counts for joint state."
       },
       {
         "id": "o3",
-        "text": "RGB-D: point cloud only for battery charging; LiDAR: text tokens for grasp recognition."
+        "text": "RGB-D: encoder counts for joint state; LiDAR: acceleration plus gyro for stabilization."
       },
       {
         "id": "o4",
-        "text": "RGB-D: motor torque current; LiDAR: contact-pressure distribution."
+        "text": "RGB-D: point-cloud-only range scan; LiDAR: RGB image plus aligned depth frames in the table."
       }
     ],
     "assumptions": [],
@@ -1141,6 +1141,2089 @@
           "width": 0.98,
           "height": 0.87
         }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q028",
+    "version": 1,
+    "stem": "Which allocation best matches the lecture’s compute examples?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "MCU for the source’s 64 GB large-transformer workload; SBC solely for the kilobyte low-level-controller workload."
+      },
+      {
+        "id": "o2",
+        "text": "MCU for low-level sensor/control tasks; SBC for OpenCV and lightweight inference."
+      },
+      {
+        "id": "o3",
+        "text": "MCU and SBC must have identical memory capacity because both execute instructions."
+      },
+      {
+        "id": "o4",
+        "text": "SBC always replaces every timing-sensitive low-level controller regardless of operating-system latency."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1607",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1607,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1607, printed footer 13: MCU and Single-Board Computer bullets.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q029",
+    "version": 1,
+    "stem": "Why should the MCU’s “AI: Simple PID” entry not be read as proving that every PID controller is a machine-learning policy?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "PID is a classical feedback law; its placement under an AI heading does not imply learned parameters or a neural model."
+      },
+      {
+        "id": "o2",
+        "text": "Any feedback controller that uses an error signal is necessarily a learned policy."
+      },
+      {
+        "id": "o3",
+        "text": "A PID controller is reinforcement learning whenever its gains are held fixed during deployment."
+      },
+      {
+        "id": "o4",
+        "text": "Using a sensor makes classical PID equivalent to a neural-network controller."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1607",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1607,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1607, printed footer 13: MCU AI-use line listing PID, rule-based control and low-level reading.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q030",
+    "version": 1,
+    "stem": "Which combination is printed for the Jetson Nano example, not the AGX Orin example?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "2048 CUDA cores, 64 GB, 15–60 W."
+      },
+      {
+        "id": "o2",
+        "text": "1.8 GHz quad-core, 4 GB, 5 W, with no CUDA-core figure stated."
+      },
+      {
+        "id": "o3",
+        "text": "8–240 MHz, kB RAM, less than 1 W."
+      },
+      {
+        "id": "o4",
+        "text": "128 CUDA cores plus ARM CPU, 4 GB, 5–10 W."
+      }
+    ],
+    "assumptions": [
+      "Use only the listed example configuration."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1607",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1607,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1607, printed footer 13: Edge AI Board / NVIDIA Jetson Nano specification line.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q031",
+    "version": 1,
+    "stem": "Which workload is directly associated with the FPGA example?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The source’s cloud-hosted LLM planning and heavy training with robot-side offload."
+      },
+      {
+        "id": "o2",
+        "text": "Only the source’s microcontroller-style kilobyte memory and fixed 8–240 MHz class, with no configurable logic."
+      },
+      {
+        "id": "o3",
+        "text": "Custom parallel hardware acceleration and real-time control logic."
+      },
+      {
+        "id": "o4",
+        "text": "The source’s fixed 128-CUDA-core Jetson Nano GPU architecture."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1608",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1608,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1608, printed footer 14: FPGA / Xilinx Zynq bullet.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q032",
+    "version": 1,
+    "stem": "Why does a source headline of 275 TOPS not by itself prove that an arbitrary transformer policy meets a 10 ms deadline?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A GPU core count fixes identical latency for every model architecture."
+      },
+      {
+        "id": "o2",
+        "text": "Actual latency depends on model operations, precision/sparsity, memory traffic, implementation and power configuration."
+      },
+      {
+        "id": "o3",
+        "text": "TOPS directly means 275 complete arbitrary neural-network inferences every millisecond."
+      },
+      {
+        "id": "o4",
+        "text": "Memory capacity removes every computation and data-movement cost."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1608",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1608,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1608, printed footer 14: AGX Orin 275 TOPS, memory and power specification line.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q033",
+    "version": 1,
+    "stem": "What qualification is needed for the source’s “unlimited GPU” cloud/5G description?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Offload can provide more remote compute, but allocation, network delay, jitter and outages remain constraints."
+      },
+      {
+        "id": "o2",
+        "text": "Remote compute makes network latency exactly zero by definition."
+      },
+      {
+        "id": "o3",
+        "text": "A 5G link guarantees that every missed local deadline is recovered before it occurs."
+      },
+      {
+        "id": "o4",
+        "text": "The robot’s communication hardware consumes no energy when using the cloud."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1608",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1608,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1608, printed footer 14: Cloud + 5G Offload bullet.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q034",
+    "version": 1,
+    "stem": "According to the illustrative table, which association matches Li-Po and lead-acid?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Li-Po: heavy AGVs at 30–50 Wh/kg; lead-acid: drones at 150–250 Wh/kg."
+      },
+      {
+        "id": "o2",
+        "text": "Li-Po: older educational robots at 60–120 Wh/kg; lead-acid: mobile humanoids at 100–200 Wh/kg."
+      },
+      {
+        "id": "o3",
+        "text": "Both rows have the same specific-energy range and identical cycle-life numbers."
+      },
+      {
+        "id": "o4",
+        "text": "Li-Po: drones/racing with high specific energy and high listed discharge rate; lead-acid: heavy AGVs with much lower specific energy."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1609",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1609,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1609, printed footer 15: Li-Po and Lead-Acid rows.",
+        "role": "explicit",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q035",
+    "version": 1,
+    "stem": "Which pair matches the source’s NiMH and Li-ion (18650) rows?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "NiMH: 100–200 Wh/kg and humanoids; listed Li-ion: 60–120 Wh/kg and older education."
+      },
+      {
+        "id": "o2",
+        "text": "NiMH: 30–50 Wh/kg and heavy AGVs; listed Li-ion: 150–250 Wh/kg and racing drones."
+      },
+      {
+        "id": "o3",
+        "text": "NiMH: 60–120 Wh/kg and older educational robots; listed Li-ion: 100–200 Wh/kg and mobile robots/humanoids."
+      },
+      {
+        "id": "o4",
+        "text": "NiMH: 150–250 Wh/kg and racing drones; listed Li-ion: 30–50 Wh/kg and heavy AGVs."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1609",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1609,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1609, printed footer 15: NiMH and Li-ion (18650 cells) rows.",
+        "role": "explicit",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q036",
+    "version": 1,
+    "stem": "For a purely arithmetic example, a 2.5 Ah cell with an explicitly applicable 3C continuous-discharge rating corresponds to what rated current?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "27.75 A."
+      },
+      {
+        "id": "o2",
+        "text": "7.5 A."
+      },
+      {
+        "id": "o3",
+        "text": "0.833 A."
+      },
+      {
+        "id": "o4",
+        "text": "3 A."
+      }
+    ],
+    "assumptions": [
+      "Added 2.5 Ah capacity; explicit 3C rating and matching conditions."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1609",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1609,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1609, printed footer 15: Li-ion discharge-rate entry of 1–3C.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q037",
+    "version": 1,
+    "stem": "What total power follows from two 5 W motors, 10 W compute and 5 W sensors?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "25 W."
+      },
+      {
+        "id": "o2",
+        "text": "20 W."
+      },
+      {
+        "id": "o3",
+        "text": "15 W."
+      },
+      {
+        "id": "o4",
+        "text": "30 W."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1610",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1610,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1610, printed footer 16: Drive motors, compute and sensor load bullets.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q038",
+    "version": 1,
+    "stem": "Using the source’s 2.5 Ah, 11.1 V battery and constant 25 W load, what are the nominal energy and ideal runtime?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "27.75 W and 66.6 hours."
+      },
+      {
+        "id": "o2",
+        "text": "2.5 Wh and 6 minutes."
+      },
+      {
+        "id": "o3",
+        "text": "277.5 Wh and 666 minutes."
+      },
+      {
+        "id": "o4",
+        "text": "27.75 Wh and 66.6 minutes."
+      }
+    ],
+    "assumptions": [
+      "Full nominal energy available, constant load/voltage and no losses; real runtime can be lower."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1610",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1610,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1610, printed footer 16: Total, battery voltage/capacity, energy and runtime line.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q039",
+    "version": 1,
+    "stem": "With the same nominal 27.75 Wh battery and 25 W load, an added combined usable-energy fraction of 0.8 is specified. What runtime follows?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "66.6 minutes."
+      },
+      {
+        "id": "o2",
+        "text": "22.2 minutes."
+      },
+      {
+        "id": "o3",
+        "text": "53.28 minutes."
+      },
+      {
+        "id": "o4",
+        "text": "83.25 minutes."
+      }
+    ],
+    "assumptions": [
+      "Added combined usable-energy factor; it accounts for all modeled losses/reserve once, not twice."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1610",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1610,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1610, printed footer 16: Nominal battery-energy and total-load example.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q040",
+    "version": 1,
+    "stem": "In an added variant of the wheeled robot, compute rises from 10 W to 20 W while motor and sensor loads stay at 10 W and 5 W. With the same ideal 27.75 Wh battery, what runtime follows?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "33.3 minutes."
+      },
+      {
+        "id": "o2",
+        "text": "About 47.57 minutes."
+      },
+      {
+        "id": "o3",
+        "text": "66.6 minutes."
+      },
+      {
+        "id": "o4",
+        "text": "83.25 minutes."
+      }
+    ],
+    "assumptions": [
+      "Added 20 W compute value, not a claim about a particular board configuration; ideal constant-load estimate."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1608",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1608,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1608, printed footer 14: GPU compute board and configurable power discussion.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1610",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1610,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1610, printed footer 16: Original 10 W compute and other load values.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q041",
+    "version": 1,
+    "stem": "An added idealized pack requires 27.75 Wh and is assigned a pack-level specific energy of 200 Wh/kg. Ignoring additional hardware mass, what mass follows?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "0.13875 kg."
+      },
+      {
+        "id": "o2",
+        "text": "0.2775 kg."
+      },
+      {
+        "id": "o3",
+        "text": "1.3875 kg."
+      },
+      {
+        "id": "o4",
+        "text": "0.013875 kg."
+      }
+    ],
+    "assumptions": [
+      "Added required energy and explicit pack-level specific energy; exclude extra enclosure/electronics mass."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1609",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1609,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1609, printed footer 15: Energy-density column.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q042",
+    "version": 1,
+    "stem": "Which match follows the protocol examples?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "UART/serial: the listed IMU/ToF/OLED bus; I²C: the listed MCU–GPS and PC-debugging links."
+      },
+      {
+        "id": "o2",
+        "text": "UART/serial: the 100 Mbps deterministic cobot bus; I²C: the 1 Mbps industrial joint/ECU bus."
+      },
+      {
+        "id": "o3",
+        "text": "UART/serial: ROS 2 discovery and DDS middleware; I²C: the entire Wi-Fi network stack."
+      },
+      {
+        "id": "o4",
+        "text": "UART/serial: MCU–GPS and debugging; I²C: IMU/ToF/OLED peripheral links."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1611",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1611,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1611, printed footer 17: UART/Serial and I²C usage bullets.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q043",
+    "version": 1,
+    "stem": "Why must the source’s “CAN: 1 Mbps” entry be qualified when discussing the entire CAN family?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "All CAN variants must use the same bit rate in every frame phase and the same maximum payload."
+      },
+      {
+        "id": "o2",
+        "text": "CAN FD increases payload size but by definition cannot change the data-phase bit rate."
+      },
+      {
+        "id": "o3",
+        "text": "The 1 Mbps entry fits the Classical CAN context; CAN FD permits a faster data phase under suitable conditions."
+      },
+      {
+        "id": "o4",
+        "text": "CAN FD’s faster data phase means bus topology and transceiver timing can always be ignored."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1611",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1611,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1611, printed footer 17: CAN Bus speed and industrial-joint/ECU use lines.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q044",
+    "version": 1,
+    "stem": "The source lists I²C at 100 kbps–1 Mbps. Which interpretation agrees with the official mode definitions?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The table’s range guarantees any arbitrary bus wiring can use its highest speed."
+      },
+      {
+        "id": "o2",
+        "text": "It covers common listed modes but is not an exhaustive maximum for every I²C mode."
+      },
+      {
+        "id": "o3",
+        "text": "Every I²C device must operate at exactly 1 Mbps."
+      },
+      {
+        "id": "o4",
+        "text": "Changing the mode changes I²C into an analog voltage measurement rather than communication."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1611",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1611,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1611, printed footer 17: I²C speed-range line.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q045",
+    "version": 1,
+    "stem": "An added UART transfer uses 8N1 framing: one start bit, eight data bits and one stop bit per byte. At exactly 115000 bits/s, how long do 100 bytes take, ignoring idle gaps?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "About 8.70 ms."
+      },
+      {
+        "id": "o2",
+        "text": "About 6.96 ms."
+      },
+      {
+        "id": "o3",
+        "text": "About 0.87 ms."
+      },
+      {
+        "id": "o4",
+        "text": "About 86.96 ms."
+      }
+    ],
+    "assumptions": [
+      "Added 8N1 framing, decimal 115 kbps exactly, no parity and no idle gaps."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1611",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1611,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1611, printed footer 17: UART/Serial speed line.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q046",
+    "version": 1,
+    "stem": "Which association matches the source’s EtherCAT entry?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "1 Mbps with industrial joint and automotive ECU examples."
+      },
+      {
+        "id": "o2",
+        "text": "Network-dependent Wi-Fi middleware connecting sensor, planner and driver nodes."
+      },
+      {
+        "id": "o3",
+        "text": "100 kbps–1 Mbps peripheral links for IMU, ToF and OLED modules."
+      },
+      {
+        "id": "o4",
+        "text": "100 Mbps and deterministic communication for real-time motor control in cobots."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1612",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1612,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1612, printed footer 18: EtherCAT speed and use bullets.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q047",
+    "version": 1,
+    "stem": "Which statement correctly qualifies the “ROS 2 / DDS (Wi-Fi)” entry?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "ROS 2 nodes cannot communicate over a wired Ethernet network."
+      },
+      {
+        "id": "o2",
+        "text": "Selecting DDS alone guarantees a fixed end-to-end deadline on any network."
+      },
+      {
+        "id": "o3",
+        "text": "Wi-Fi is one deployment transport; ROS 2 middleware is not defined as a Wi-Fi-only protocol."
+      },
+      {
+        "id": "o4",
+        "text": "DDS and Wi-Fi specify the same protocol layer and can be substituted without a network implementation."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1612",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1612,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1612, printed footer 18: ROS 2 / DDS (Wi-Fi), network-dependent speed and node chain.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q048",
+    "version": 1,
+    "stem": "An added uncompressed RGB stream is 640×480 pixels, 3 bytes/pixel and 30 frames/s. Ignoring all headers, what payload rate is required, and can a 100 Mbps link carry it continuously?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "73.728 Mbps; yes."
+      },
+      {
+        "id": "o2",
+        "text": "221.184 Mbps; no."
+      },
+      {
+        "id": "o3",
+        "text": "27.648 Mbps; yes."
+      },
+      {
+        "id": "o4",
+        "text": "7.3728 Mbps; yes."
+      }
+    ],
+    "assumptions": [
+      "Added RGB-only format, not a complete RGB-D stream; no compression; decimal Mbps."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1606",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1606,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1606, printed footer 12: Camera image/depth output and frame-rate row.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1612",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1612,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1612, printed footer 18: 100 Mbps communication-rate example.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q049",
+    "version": 1,
+    "stem": "Which matching follows the hardware-to-AI table without confusing observation with command?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Encoder angles supply state information; PWM/valve commands implement actions; a designed success condition contributes reward."
+      },
+      {
+        "id": "o2",
+        "text": "Encoder angles are actions; PWM commands are state measurements; stable-grasp reward is the same as a measured joint angle."
+      },
+      {
+        "id": "o3",
+        "text": "Every raw sensor value is a reward, while every motor command is necessarily the complete state."
+      },
+      {
+        "id": "o4",
+        "text": "State and reward are identical to the actuator command vector in every learning problem."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1613",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1613,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1613, printed footer 19: State, Action and Reward rows.",
+        "role": "explicit",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q050",
+    "version": 1,
+    "stem": "The table gives q=[0.3,−0.1,1.2] rad from encoders. What should be checked before calling this vector the complete state of a dynamic manipulation task?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Whether every entry is in degrees even though the table explicitly labels radians."
+      },
+      {
+        "id": "o2",
+        "text": "Whether the three numbers are directly the PWM duties of the three motors."
+      },
+      {
+        "id": "o3",
+        "text": "Whether any negative joint angle is physically impossible."
+      },
+      {
+        "id": "o4",
+        "text": "Whether velocities, contact/object variables or other task-relevant hidden quantities are also needed."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1613",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1613,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1613, printed footer 19: State row and three-joint q example.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q051",
+    "version": 1,
+    "stem": "Why is “75% PWM duty → 75% motor speed” not a universal motor law?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A 75% duty fixes 75% of no-load speed for every load and supply voltage."
+      },
+      {
+        "id": "o2",
+        "text": "Duty changes only torque, so the steady speed can never depend on it."
+      },
+      {
+        "id": "o3",
+        "text": "Duty affects the drive waveform; speed also depends on voltage, load, motor constants and controller behavior."
+      },
+      {
+        "id": "o4",
+        "text": "The same duty-to-speed calibration applies to every motor and driver without measurement."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1613",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1613,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1613, printed footer 19: Action row: PWM duty = 75% → motor at 75% speed.",
+        "role": "conflict",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q052",
+    "version": 1,
+    "stem": "In an added ideal averaged-voltage model, V_avg = D V_s and V_avg = K_e ω + IR. Let D=0.75, V_s=12 V, I=2 A, R=0.5 Ω and K_e=0.02 V/(rad/s). What is ω?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "500 rad/s."
+      },
+      {
+        "id": "o2",
+        "text": "400 rad/s."
+      },
+      {
+        "id": "o3",
+        "text": "450 rad/s."
+      },
+      {
+        "id": "o4",
+        "text": "75 rad/s."
+      }
+    ],
+    "assumptions": [
+      "All numerical/model premises are author-added; no physical driver operation."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1613",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1613,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1613, printed footer 19: Action row motivating a qualified PWM-to-speed model.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q053",
+    "version": 1,
+    "stem": "A force sensor detects a stable grasp and the table assigns +10. Which statement is correct?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The sensor supplies evidence; the designer’s rule maps that condition to a reward value of +10."
+      },
+      {
+        "id": "o2",
+        "text": "The sensor necessarily outputs exactly +10 newtons whenever any grasp succeeds."
+      },
+      {
+        "id": "o3",
+        "text": "Changing the reward to +5 must physically halve the measured grasp force."
+      },
+      {
+        "id": "o4",
+        "text": "A stable force reading alone proves success for every possible manipulation task."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1613",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1613,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1613, printed footer 19: Reward row: +10 for stable grasp force.",
+        "role": "explicit",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q054",
+    "version": 1,
+    "stem": "A policy inference takes 8 ms. At a 100 Hz control rate, how much of each 10 ms period remains for all other serial work?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "8 ms."
+      },
+      {
+        "id": "o2",
+        "text": "12 ms."
+      },
+      {
+        "id": "o3",
+        "text": "0.8 ms."
+      },
+      {
+        "id": "o4",
+        "text": "2 ms."
+      }
+    ],
+    "assumptions": [
+      "Added serial per-period budget interpretation; no overlap."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1613",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1613,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1613, printed footer 19: Policy row with 8 ms inference and Sampling rate row with 100 Hz example.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q055",
+    "version": 1,
+    "stem": "An added serial loop uses 2 ms for sensing/preprocessing, 8 ms for inference and 1 ms for communication/command output. Can it complete every cycle at 100 Hz without overlap?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Yes; adding the stage rates gives more than 100 Hz."
+      },
+      {
+        "id": "o2",
+        "text": "No; the maximum rate is 11 Hz because there are 11 milliseconds."
+      },
+      {
+        "id": "o3",
+        "text": "No; 11 ms per cycle exceeds 10 ms, and the ideal serial rate bound is about 90.91 Hz."
+      },
+      {
+        "id": "o4",
+        "text": "Yes; inference alone is below 10 ms, so the other stages are irrelevant."
+      }
+    ],
+    "assumptions": [
+      "Added deterministic durations, no pipelining, no extra overhead."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1613",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1613,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1613, printed footer 19: Policy inference example.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1617",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1617,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1617, printed footer 23: Hardware latency constraints determine step frequency.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q056",
+    "version": 1,
+    "stem": "Treat the printed ±0.088° as an angular error bound, without assuming a probability distribution. What is the same bound in radians, approximately?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "±5.042 rad."
+      },
+      {
+        "id": "o2",
+        "text": "±0.001536 rad."
+      },
+      {
+        "id": "o3",
+        "text": "±0.088 rad."
+      },
+      {
+        "id": "o4",
+        "text": "±0.001 rad exactly."
+      }
+    ],
+    "assumptions": [
+      "Interpret ±0.088° literally as a symmetric half-width bound."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1613",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1613,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1613, printed footer 19: Observation-noise row with ±0.088° and Gaussian sigma example.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q057",
+    "version": 1,
+    "stem": "What is missing from the claimed mapping “encoder ±0.088° → Gaussian noise σ=0.001 rad”?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A justified distribution and interpretation of the bound/resolution are missing; the bound alone determines neither Gaussianity nor sigma."
+      },
+      {
+        "id": "o2",
+        "text": "Every bounded quantization error is exactly Gaussian once degrees are changed to radians."
+      },
+      {
+        "id": "o3",
+        "text": "The half-width is always one standard deviation, regardless of the error distribution."
+      },
+      {
+        "id": "o4",
+        "text": "The printed sigma follows exactly from multiplying 0.088 by π/180."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1613",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1613,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1613, printed footer 19: Observation noise row and encoder example.",
+        "role": "conflict",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q058",
+    "version": 1,
+    "stem": "If an added error model is uniform on [−a,a] with a=0.088° converted to radians, what is its standard deviation?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "About 0.001536 rad."
+      },
+      {
+        "id": "o2",
+        "text": "About 0.002660 rad."
+      },
+      {
+        "id": "o3",
+        "text": "Exactly 0.001 rad by the degree-to-radian conversion alone."
+      },
+      {
+        "id": "o4",
+        "text": "About 0.000887 rad."
+      }
+    ],
+    "assumptions": [
+      "Added independent uniform-error model on the specified interval, not a Gaussian and not empirical calibration."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1613",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1613,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1613, printed footer 19: Encoder quantization/noise example.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q059",
+    "version": 1,
+    "stem": "Why does a 100 Hz RL update rate not alone prove that the IMU “must run at least 200 Hz”?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A slower IMU always contains more high-frequency information because it reports fewer samples."
+      },
+      {
+        "id": "o2",
+        "text": "A faster IMU makes timestamp alignment and anti-alias filtering unnecessary."
+      },
+      {
+        "id": "o3",
+        "text": "Sampling requirements depend on sensed-signal bandwidth, filtering, latency and the estimation/control design, not just twice the policy rate."
+      },
+      {
+        "id": "o4",
+        "text": "Every IMU must instead run at exactly 100 Hz, regardless of dynamics."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1613",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1613,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1613, printed footer 19: Sampling rate row: RL 100 Hz → IMU at least 200 Hz.",
+        "role": "conflict",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q060",
+    "version": 1,
+    "stem": "Under an added synchronized idealization, an IMU runs at 500 Hz and the policy updates at 100 Hz. How many IMU sample intervals fit one policy interval?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "50000."
+      },
+      {
+        "id": "o2",
+        "text": "5."
+      },
+      {
+        "id": "o3",
+        "text": "0.2."
+      },
+      {
+        "id": "o4",
+        "text": "400."
+      }
+    ],
+    "assumptions": [
+      "Added 500 Hz sensor rate, aligned ideal periods and no dropped samples."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1613",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1613,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1613, printed footer 19: Sampling rate row.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q061",
+    "version": 1,
+    "stem": "Which mapping matches the four sensor-fusion motivations?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Redundancy: overlapping coverage; accuracy: reduced uncertainty; robustness: failure tolerance; completeness: complementary state information."
+      },
+      {
+        "id": "o2",
+        "text": "Redundancy: only complementary quantities with no overlap; completeness: only repeated identical measurements."
+      },
+      {
+        "id": "o3",
+        "text": "Accuracy: ignoring sensor error; robustness: trusting a failed sensor without fault detection."
+      },
+      {
+        "id": "o4",
+        "text": "All four terms mean every sensor has identical rates, frames and output units before any processing."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1614",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1614,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1614, printed footer 20: Why Sensor Fusion: four motivation bullets.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q062",
+    "version": 1,
+    "stem": "What does an end-effector six-component wrench contain?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Six translational force components with no moments."
+      },
+      {
+        "id": "o2",
+        "text": "Three position coordinates and three orientation angles."
+      },
+      {
+        "id": "o3",
+        "text": "Six motor PWM duty values, one for each assumed joint."
+      },
+      {
+        "id": "o4",
+        "text": "Three force components and three moment/torque components."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1614",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1614,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1614, printed footer 20: Force / Torque Sensors: end-effector wrench (6-DoF).",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q063",
+    "version": 1,
+    "stem": "For an object hidden from a camera after contact, which complementary measurement is particularly relevant to detecting local slip or contact distribution?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Joint encoder angle alone."
+      },
+      {
+        "id": "o2",
+        "text": "An IMU fixed to the manipulator base alone."
+      },
+      {
+        "id": "o3",
+        "text": "Tactile/skin sensor array."
+      },
+      {
+        "id": "o4",
+        "text": "A wrist force/torque sensor alone, interpreted as a full spatial pressure map."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1614",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1614,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1614, printed footer 20: Tactile/Skin Sensors and Vision rows.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q064",
+    "version": 1,
+    "stem": "Which set consists entirely of fusion methods named in the source?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Kalman filter, dynamic programming, A* search, genetic crossover and PID tuning."
+      },
+      {
+        "id": "o2",
+        "text": "Kalman filter, EKF, particle filter, CNN/LSTM fusion and Bayesian estimation."
+      },
+      {
+        "id": "o3",
+        "text": "EKF, proportional control, inverse kinematics, trajectory interpolation and friction compensation."
+      },
+      {
+        "id": "o4",
+        "text": "Particle filter, K-means alone, image thresholding alone, Fourier windowing and motor commutation."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1614",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1614,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1614, printed footer 20: Right-side Fusion Methods box.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q065",
+    "version": 1,
+    "stem": "Two unbiased independent scalar estimates of the same position are 1 m with variance 4 m² and 3 m with variance 1 m². Using the explicitly supplied inverse-variance rule, what are the fused mean and variance?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "(2.6 m, 0.8 m²)."
+      },
+      {
+        "id": "o2",
+        "text": "(2 m, 2.5 m²)."
+      },
+      {
+        "id": "o3",
+        "text": "(1.4 m, 0.8 m²)."
+      },
+      {
+        "id": "o4",
+        "text": "(2.6 m, 5 m²)."
+      }
+    ],
+    "assumptions": [
+      "Added scalar Gaussian example and supplied fusion rule; not a formula printed on the source page."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1614",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1614,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1614, printed footer 20: Accuracy motivation and probabilistic fusion-method list.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q066",
+    "version": 1,
+    "stem": "Why can blindly averaging two sensors fail to deliver the source’s hoped-for accuracy and robustness?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Every additional sensor automatically halves every error regardless of correlation."
+      },
+      {
+        "id": "o2",
+        "text": "Independent zero-mean errors are mathematically identical to one shared constant bias."
+      },
+      {
+        "id": "o3",
+        "text": "A failed sensor’s output becomes reliable solely because it is included in a larger vector."
+      },
+      {
+        "id": "o4",
+        "text": "Shared bias, correlated errors, bad calibration, stale timestamps or a failed sensor can corrupt the combination."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1614",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1614,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1614, printed footer 20: Accuracy and robustness motivation bullets.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q067",
+    "version": 1,
+    "stem": "Which ordered pair matches wheel odometry and GNSS in the source?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Wheel odometry: outdoor absolute-position reference; GNSS: accumulated wheel rotation."
+      },
+      {
+        "id": "o2",
+        "text": "Wheel odometry: camera depth/texture; GNSS: near-range ultrasound echoes."
+      },
+      {
+        "id": "o3",
+        "text": "Wheel odometry: dead-reckoning integration; GNSS: outdoor global-position information."
+      },
+      {
+        "id": "o4",
+        "text": "Wheel odometry: local tactile slip distribution; GNSS: joint-angle encoder counts."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1615",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1615,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1615, printed footer 21: Wheel Odometry and GPS/GNSS bullets.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q068",
+    "version": 1,
+    "stem": "Which sequence follows the displayed SLAM pipeline?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Estimation → raw data → loop closure → sensor calibration → data acquisition."
+      },
+      {
+        "id": "o2",
+        "text": "Raw sensor data → filtering/calibration/synchronization → feature extraction → estimation/loop closure → map and pose."
+      },
+      {
+        "id": "o3",
+        "text": "Map and pose → feature extraction → raw data → synchronization → estimation."
+      },
+      {
+        "id": "o4",
+        "text": "Raw data → map output → calibration → estimation → feature extraction."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1615",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1615,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1615, printed footer 21: Numbered right-hand SLAM PIPELINE list.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q069",
+    "version": 1,
+    "stem": "A LiDAR scan and IMU sample were taken at different times while the robot was turning. Why is synchronization or motion compensation important before treating them as one simultaneous observation?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "They may describe different robot poses; uncorrected timing mismatch can appear as inconsistent geometry or motion."
+      },
+      {
+        "id": "o2",
+        "text": "Timestamps matter only when the robot is stationary."
+      },
+      {
+        "id": "o3",
+        "text": "Equal file formats prove that two measurements were simultaneous."
+      },
+      {
+        "id": "o4",
+        "text": "A higher nominal LiDAR rate automatically removes every clock offset."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1615",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1615,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1615, printed footer 21: Preprocessing: filtering, calibration, sync.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q070",
+    "version": 1,
+    "stem": "What does recognizing a revisited place contribute to a SLAM system, under valid data association?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A new dead-reckoning increment that uses only the most recent wheel rotation."
+      },
+      {
+        "id": "o2",
+        "text": "Only a reduction in the sensor sampling interval, with no relationship between map locations."
+      },
+      {
+        "id": "o3",
+        "text": "An independent map reset that discards every earlier pose even when correspondence is valid."
+      },
+      {
+        "id": "o4",
+        "text": "A constraint that can help correct accumulated trajectory/map drift."
+      }
+    ],
+    "assumptions": [
+      "Interpretation of loop closure with a valid correspondence."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1615",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1615,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1615, printed footer 21: Estimation/loop-closure and global-consistent-map output stages.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q071",
+    "version": 1,
+    "stem": "Why should “six-DOF articulated arms are most flexible” not be treated as a guarantee that such an arm reaches every desired pose?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Any two six-joint arms have identical workspaces regardless of their link lengths."
+      },
+      {
+        "id": "o2",
+        "text": "Six joint variables ensure a nonsingular Jacobian at every configuration."
+      },
+      {
+        "id": "o3",
+        "text": "Geometry, joint limits and singularities constrain reachable poses and instantaneous dexterity."
+      },
+      {
+        "id": "o4",
+        "text": "A six-DOF arm can attain every position and orientation simultaneously without joint limits."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1616",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1616,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1616, printed footer 22: Robot Structure summary bullet.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q072",
+    "version": 1,
+    "stem": "Which statement qualifies the summary’s attribution of the sim-to-real gap to hardware imperfections?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Removing physical sensors from the simulation automatically eliminates the gap."
+      },
+      {
+        "id": "o2",
+        "text": "Hardware nonidealities contribute, but model, environment, timing and task-distribution mismatch can also contribute."
+      },
+      {
+        "id": "o3",
+        "text": "Only broken sensors can cause any sim-to-real mismatch."
+      },
+      {
+        "id": "o4",
+        "text": "An exact nominal part number makes every simulated contact and lighting condition identical to reality."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1617",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1617,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1617, printed footer 23: Final Hardware–AI Interface bullet.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q073",
+    "version": 1,
+    "stem": "Using only the table, which material matches both “very light” and “very low cost” for an educational robot example?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Engineering plastics."
+      },
+      {
+        "id": "o2",
+        "text": "Carbon fibre."
+      },
+      {
+        "id": "o3",
+        "text": "Aluminium alloy."
+      },
+      {
+        "id": "o4",
+        "text": "Titanium."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1600",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1600,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1600, printed footer 6: Engineering Plastics row and comparison with CFRP, aluminium and titanium.",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q074",
+    "version": 1,
+    "stem": "Which mapping agrees with the sensor descriptions?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "IMU: image color and depth; tactile array: satellite global coordinates."
+      },
+      {
+        "id": "o2",
+        "text": "IMU: motor winding current only; tactile array: joint encoder counts only."
+      },
+      {
+        "id": "o3",
+        "text": "IMU: spatial contact distribution; tactile array: acceleration and angular rate."
+      },
+      {
+        "id": "o4",
+        "text": "IMU: acceleration and angular rate; tactile array: spatial contact distribution."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1605",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1605,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1605, printed footer 11: IMU entry in the internal column and tactile-array entry in the external column.",
+        "role": "explicit",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q075",
+    "version": 1,
+    "stem": "Which pair matches the source’s listed cycle-life ranges for Li-ion (18650) and lead-acid?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "300–500 cycles and 500 cycles, respectively."
+      },
+      {
+        "id": "o2",
+        "text": "500 cycles and 300–500 cycles, respectively."
+      },
+      {
+        "id": "o3",
+        "text": "500–1000 cycles and 200–300 cycles, respectively."
+      },
+      {
+        "id": "o4",
+        "text": "200–300 cycles and 500–1000 cycles, respectively."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1609",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1609,
+        "kind": "table",
+        "locator": "Lecture L51, physical PDF page 1609, printed footer 15: Li-ion and Lead-Acid rows, Cycle Life column.",
+        "role": "explicit",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ]
+  },
+  {
+    "id": "W11-L51-Q076",
+    "version": 1,
+    "stem": "A manipulator must adjust its motion when contact force rises while following a path. Which feedback is most directly relevant to the summary’s compliant-control point?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Only an open-loop position target, with no contact feedback or interaction model."
+      },
+      {
+        "id": "o2",
+        "text": "Force/torque feedback combined with an appropriate interaction-control law."
+      },
+      {
+        "id": "o3",
+        "text": "Only the camera’s nominal frame rate, without any observed contact or force estimate."
+      },
+      {
+        "id": "o4",
+        "text": "Only the motor’s rated maximum torque, treated as the actual instantaneous contact wrench."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1614",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1614,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1614, printed footer 20: Force/torque end-effector wrench entry.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1616",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1616,
+        "kind": "statement",
+        "locator": "Lecture L51, physical PDF page 1616, printed footer 22: F/T sensor enables compliant control summary bullet.",
+        "role": "premise",
+        "region": null
       }
     ]
   }

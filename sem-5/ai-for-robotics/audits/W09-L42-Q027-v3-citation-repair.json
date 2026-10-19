@@ -1,0 +1,265 @@
+{
+  "time": "2026-10-19T23:13:18.363356+00:00",
+  "before": {
+    "id": "W09-L42-Q027",
+    "version": 2,
+    "status": "draft",
+    "authorId": "build_offline_study_interface:L42-author",
+    "stem": "Trace this declared six-slot GA generation. The selected parents are P1,P2,P3,P4,P4,P6, paired (P1,P3),(P4,P6),(P2,P4); swap the second waypoint in each pair, label children C1…C6 in that order, then change only C1 from [(0,3),(3,4)] to C1′=[(0,3),(3,5)]. Use the source grid and H-then-V decoder with C=L+10N_obs+N_turn and F=1/(1+C). Retain old elite P1 in one slot, then the five lowest-cost evaluated children, breaking equal costs by child number. Which child-cost vector, next population and best fitness result?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "hard",
+    "cognitiveSkill": "synthesis",
+    "week": 9,
+    "lectureId": "L42",
+    "topic": "Genetic Algorithms for Path Planning of Robots",
+    "subtopic": "Integrated evaluated generation with fixed-size elitism",
+    "tags": [
+      "crossover-pairs-two-three"
+    ],
+    "conceptIds": [
+      "W09-L42-C-crossover-pairs-two-three"
+    ],
+    "assumptions": [
+      "Source parents: P1=[(0,3),(4,5)],P2=[(2,1),(5,3)],P3=[(0,2),(3,4)],P4=[(3,0),(5,4)],P6=[(2,0),(5,2)].",
+      "Source grid S=(0,0),G=(5,5),occupied cells={(1,1),(1,2),(2,2),(2,4),(3,2),(4,3)}; count entered occupied visits and direction changes across the full decoded route.",
+      "Deterministic exercise policy: retain one evaluated old elite and the five lowest-cost children; no additional mutation; equal child costs break by child number."
+    ],
+    "options": [
+      {
+        "id": "o1",
+        "text": "Child costs (23,11,23,33,44,33); retain P1,C2,C1,C3,C4,C6; best fitness1/12."
+      },
+      {
+        "id": "o2",
+        "text": "Child costs (11,11,23,33,44,33); retain P1,C1′,C2,C3,C4,C5,C6; best fitness1/12."
+      },
+      {
+        "id": "o3",
+        "text": "Child costs (11,11,23,33,44,33); retain P1,C1′,C2,C3,C4,C6; best fitness1/12."
+      },
+      {
+        "id": "o4",
+        "text": "Child costs (11,11,23,33,44,33); retain P1,C5,C4,C6,C3,C1′; best fitness1/12."
+      }
+    ],
+    "correctOptionIds": [
+      "o3"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1319",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1319,
+        "kind": "table",
+        "locator": "Lecture L42, physical PDF page 1319, printed footer 23: Six draws and resulting mating pool; only P4 appears twice.",
+        "evidenceText": "Random r  Falls in     Selected Selection\n •  Select parents using roulette-wheel selection. 0.15       𝑃1 range   𝑃1\n •  Selection probability = fitness / 0.2568:                                                        0.35       𝑃2 range   𝑃2\nChrom\n        Fitness P(select)  Cumulative range               0.50       𝑃3range   𝑃3\nosome\n                                                        0.60       𝑃4 range   𝑃4              0.0833/\n  𝑃1   0.0833 0.2568=   0.0000 – 0.3244                0.72       𝑃4 range   𝑃4\n              0.3244\n                                                        0.90       𝑃6 range   𝑃6\n  𝑃2   0.0222 0.0865    0.3244 – 0.4109                                        Mating pool: 𝑃1,\n  𝑃3   0.0417 0.1624    0.4109 – 0.5733        𝑃2, 𝑃3, 𝑃4, 𝑃4,𝑃6 —\n                                                   notice 𝑃1 (fittest)  𝑃4   0.0417 0.1624    0.5733 – 0.7357\n                                          and 𝑃4 got picked\n  𝑃5   0.0385 0.1499    0.7357 – 0.8856      more than once,\n                                                  𝑃5 got dropped  𝑃6   0.0294 0.1145    0.8856 – 1.0000                                                          this round\n Sum  0.2568\n                                                                                                           23",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1306",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1306,
+        "kind": "figure",
+        "locator": "Lecture L42, physical PDF page 1306, printed footer 10: 6×6 obstacle grid and start/goal.",
+        "evidenceText": "Very Simple Map Example                    S\n\n                                               •  X   X\n • 6 x 6 grid world.\n                                                  X      X\n • S = start, G = goal, X = obstacle.\n                                                  X\n • A chromosome can store two\n                                                       •  X   intermediate waypoints,\n   Chromosome = [𝑊1, 𝑊2]                              G\n • Example chromosome: [(1,0), (4,2)]\n • The full path becomes\n        S → 𝑊1 → 𝑊2 → G\n\n\n\n                                                                                                          10",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1309",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1309,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1309, printed footer 13: H-then-V decoding convention.",
+        "evidenceText": "Path Decoding\n•  To evaluate a chromosome, decode it into a full path. On a grid,\n  the segment between two consecutive points can be generated in\n   either of these ways:\n   – Straight-line segment with collision checking on crossed grid cells.\n   – Manhattan routing, moving row/column steps between consecutive points.\n• We will use Manhattan segment decoding: move horizontally\n    first, then vertically.\n•  This turns waypoint chromosomes into explicit\n   grid paths that can be checked for obstacle\n   collision.\n\n\n                                                                                                          13",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1310",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1310,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1310, printed footer 14: Weighted route-cost expression.",
+        "evidenceText": "Fitness Function\n\n• A standard GA path-planning fitness is based on inverse path\n   length, often with penalties for infeasible paths. One practical\n   fitness is:\n•  Cost = 𝐿+    +           𝛼𝑁obs  𝛽𝑁turn\n•  where:\n• 𝐿 = total path length,\n•      = number of obstacle violations,  𝑁obs\n•       = number of turns, if smoothness matters,  𝑁turn\n•  𝛼, 𝛽 are penalty weights.\n\n\n                                                                                                          14",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1311",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1311,
+        "kind": "equation",
+        "locator": "Lecture L42, physical PDF page 1311, printed footer 15: Inverse cost-to-fitness transform.",
+        "evidenceText": "•  Then define fitness as,\n                             1\n                         Fitness =\n                          1 + Cost\n•  This keeps fitness positive and gives shorter, collision-free paths\n   higher fitness.\n•  Using inverse distance or inverse path cost is directly consistent\n  with standard GA formulations for path planning.\n•  For this example, let: 𝛼= 10; 𝛽= 1\n•  So, any collision makes the chromosome much\n  worse than a collision-free one.\n\n\n\n                                                                                                          15",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1312",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1312,
+        "kind": "table",
+        "locator": "Lecture L42, physical PDF page 1312, printed footer 16: Six original waypoint chromosomes.",
+        "evidenceText": "Evaluate the Initial Chromosomes            S               (0,3)\n\n•  Using Manhattan distance between consecutive        X   X\n   points: 𝑑((𝑟1, 𝑐1), (𝑟2, 𝑐2)) = |𝑟2 −𝑟1| + |𝑐2 −𝑐1|\n                                                  X      X\n•   (1) 𝑃1 = [(0,3), (4,5)]\n•  𝑑(𝑆, 𝑊1) = |0 −0| + |3 −0| = 3                      X\n•  𝑑(𝑊1, 𝑊2) = |4 −0| + |5 −3| = 6\n                                                     X         (4,5)•  𝑑(𝑊2, 𝐺) = |5 −4| + |5 −5| = 1\n•   Total 𝐿= 10.\n                                                    G\n•  A valid decoded route can avoid obstacles on these\n   segments, so take 𝑁obs = 0.\n   𝑁turn = 1.\n   Cost = 10 + 10(0) + 1(1) = 11.\n   Fitness = 1/(1 + 11) = 1/12 ≈0.0833.\n\n\n\n                                                                                                          16",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1320",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1320,
+        "kind": "table",
+        "locator": "Lecture L42, physical PDF page 1320, printed footer 24: Three pairings and six whole-waypoint crossover children.",
+        "evidenceText": "Crossover\n•  Single-point, cut between waypoint-1 and waypoint-2 genes\n• Random pairing of the pool → (𝑃1, 𝑃3), (𝑃4, 𝑃6), (𝑃2, 𝑃4)\n\n  Parents           Crossover         Children\n  𝑃1=[0,3|4,5],                 swap 2nd waypoint𝐶1=[0,3|3,4],\n  𝑃3=[0,2|3,4]                          𝐶2=[0,2|4,5]\n  𝑃4=[3,0|5,4],                 swap 2nd waypoint𝐶3=[3,0|5,2],\n  𝑃6=[2,0|5,2]                          𝐶4=[2,0|5,4]\n  𝑃2=[2,1|5,3],                 swap 2nd waypoint𝐶5=[2,1|5,4],\n  𝑃4=[3,0|5,4]                          𝐶6=[3,0|5,3]\n\n\n\n\n\n                                                                                                          24",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1321",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1321,
+        "kind": "statement",
+        "locator": "Lecture L42, physical PDF page 1321, printed footer 25: Single specified mutation of C1 second-waypoint column.",
+        "evidenceText": "Mutation\n\n•  Mutation randomly changes one gene to maintain diversity and\n   avoid premature convergence, which is a standard role of\n  mutation in GA\n• Too little mutation causes stagnation; too much makes the search\n  random\n•  Apply mutation with low probability — mutate one gene of 𝑪𝟏,\n  changing waypoint-2 column 4→5:\n                                ′\n   𝐶1=[0,3|3,4], → 𝑪𝟏 = [0,3 | 3,5]\n\n\n\n\n\n                                                                                                          25",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1322",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1322,
+        "kind": "table",
+        "locator": "Lecture L42, physical PDF page 1322, printed footer 26: Evaluation table for mutated children, with unmutated C1 as comparison row.",
+        "evidenceText": "Evaluate Generation 1\n\n• Same H-then-V decoding, α=10, β=1:\nChild        Path traced                    L     𝑵𝒐𝒃𝒔  𝑵𝒕𝒖𝒓𝒏Cost   Fitness\n            R×3→R,R,D,D,D→D,D (clean, col\nC1′ [0,3|3,5]                            10   0     1      11    0.0833\n            5 avoided all obstacles)\n\nC2 [0,2|4,5]  R,R→R,R,R,D,D,D,D→D        10   0     1      11    0.0833\n\nC1\n(unmutated)  hits (2,4)                   10   1     3      23    0.0417\n[0,3|3,4]\n\nC6 [3,0|5,3]   hits (3,2),(4,3)               10   2     3      33    0.0294\n\nC3 [3,0|5,2]   hits (3,2)                   10   1     3      23    0.0417\n\nC4 [2,0|5,4]   hits (2,2),(2,4)               10   2     3      33    0.0294\n\nC5 [2,1|5,4]   hits (1,1),(2,2),(2,4)           10   3     4      44    0.0222\n\n                                                                                                          26",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      },
+      {
+        "slideId": "lectures-p1326",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1326,
+        "kind": "code",
+        "locator": "Lecture L42, physical PDF page 1326, printed footer 30: Pseudocode evaluates candidates and retains an elite; exact fixed-size policy is supplied in this exercise.",
+        "evidenceText": "Pseudocode\nInput: 6x6 grid, start S, goal G, obstacle set Obs\nOutput: best path\nInitialize population P with N chromosomes\nEach chromosome = [W1, W2], where W1 and W2 are free cells\nFor gen = 1 to MaxGen:\n  For each chromosome C in P:\n    Decode path: S -> W1 -> W2 -> G\n   Compute path length L\n    Count obstacle violations Nobs\n    Count turns Nturn\n    Cost = L + alpha*Nobs + beta*Nturn\n     Fitness = 1 / (1 + Cost)\n  Keep best chromosome (elitism)\n  Select parent pairs from P based on fitness\n  For each pair:\n    Perform crossover to create children\n    Mutate waypoint genes with probability pm\n    Repair invalid waypoints if needed\n   Add children to new population\n  Replace old population with new population\nReturn chromosome with highest fitness\nDecode it into final path\n\n                                                                                                          30",
+        "role": "premise",
+        "region": {
+          "x": 0.01,
+          "y": 0.04,
+          "width": 0.98,
+          "height": 0.87
+        }
+      }
+    ],
+    "solution": {
+      "justification": "After the specified variation, the six child costs are11,11,23,33,44,33. The fixed-size elite policy retains P1 and all children except C5, so the best evaluated fitness remains1/12. The policy and deterministic tie-break are added exercise conventions, not an assertion that the source ran this exact implementation.",
+      "optionExplanations": {
+        "o1": "These costs omit the specified C1 mutation, leaving its cost23 instead of11; the selected set therefore refers to the wrong generation.",
+        "o2": "The costs are correct, but the elite plus all six children creates seven slots instead of the required six.",
+        "o3": "Evaluate after mutation, retain elite P1, and keep the five lowest-cost children; only C5 with cost44 is dropped.",
+        "o4": "The list retains the worst child C5 and omits one best child C2, violating the stated best-five-child policy."
+      },
+      "steps": [
+        "Pair and swap second waypoints to obtain C1=[(0,3),(3,4)],C2=[(0,2),(4,5)],C3=[(3,0),(5,2)],C4=[(2,0),(5,4)],C5=[(2,1),(5,4)],C6=[(3,0),(5,3)].",
+        "Apply only the declared C1 mutation.",
+        "Decoded (L,N_obs,N_turn) values are(10,0,1),(10,0,1),(10,1,3),(10,2,3),(10,3,4),(10,2,3).",
+        "Costs are11,11,23,33,44,33; descending fitness is equivalent to ascending cost.",
+        "Keep elite P1 plus C1′,C2,C3,C4,C6; best fitness is1/12."
+      ],
+      "formulas": [
+        {
+          "expression": "C=L+α N_obs+β N_turn; F=1/(1+C)",
+          "variables": {
+            "C": "dimensionless normalized path cost",
+            "L": "number of unit grid moves",
+            "α": "cost weight per obstacle-cell visit",
+            "N_obs": "number of entered occupied-cell visits",
+            "β": "cost weight per direction change",
+            "N_turn": "changes between consecutive unit-move directions across the whole decoded path",
+            "F": "maximized fitness"
+          },
+          "units": {
+            "C,L,α,N_obs,β,N_turn,F": "dimensionless normalized grid-example quantities"
+          },
+          "assumptions": [
+            "Horizontal then vertical decoding per segment; consecutive equal directions merge across waypoint boundaries; α=10 and β=1 unless explicitly changed."
+          ]
+        }
+      ],
+      "simpleExplanation": "After the specified variation, the six child costs are11,11,23,33,44,33. The fixed-size elite policy retains P1 and all children except C5, so the best evaluated fitness remains1/12. The policy and deterministic tie-break are added exercise conventions, not an assertion that the source ran this exact implementation.",
+      "memoryAid": null,
+      "misconceptions": [
+        "These costs omit the specified C1 mutation, leaving its cost23 instead of11; the selected set therefore refers to the wrong generation.",
+        "The costs are correct, but the elite plus all six children creates seven slots instead of the required six.",
+        "The list retains the worst child C5 and omits one best child C2, violating the stated best-five-child policy."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": [],
+    "difficultyRationale": "Integrates route decoding, multiple mathematical steps, or comparison of explicitly distinct conventions.",
+    "revisionAuthors": [
+      "build_robotics_study_app:L42-v2-author"
+    ]
+  },
+  "afterHash": "a9d0b5984aefec7170bb593c1abe5a5f5e4c1354af70e8bc7e7b22b135a52cae",
+  "scope": "Only version/status/reviewIds and page1312 locator plus page1308 citation changed; all mathematical content untouched."
+}

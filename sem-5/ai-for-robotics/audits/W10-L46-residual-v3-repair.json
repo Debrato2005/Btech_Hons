@@ -1,0 +1,191 @@
+{
+  "createdAt": "2026-10-19T23:34:55.996484+00:00",
+  "preservedAcceptedCount": 90,
+  "changes": {
+    "P1449-Q04": "Remove answer-leaking visible assumption; retain NLTK version in stem and API evidence in solution-only metadata.",
+    "P1468-Q01": "Replace duplicate role-swap distractor by noun-reference versus descriptive-property confusion."
+  },
+  "before": [
+    {
+      "id": "W10-L46-P1449-Q04",
+      "version": 2,
+      "status": "draft",
+      "authorId": "L46-author-20261019",
+      "stem": "What assumption is hidden when WordNetLemmatizer.lemmatize(word) is called without a POS argument?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 10,
+      "lectureId": "L46",
+      "topic": "Natural Language Processing",
+      "subtopic": "NLTK preprocessing code and intermediate state",
+      "tags": [
+        "nlp",
+        "preprocess-code"
+      ],
+      "conceptIds": [
+        "W10-L46-C-preprocess-code"
+      ],
+      "assumptions": [
+        "Supplemental premise: the inspected NLTK 3.10.3 signature defaults pos to n; no automatic sentence tagging is performed by this isolated call."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "It first calls the sentence POS tagger and uses all predicted tags automatically"
+        },
+        {
+          "id": "o3",
+          "text": "It always treats every token as a verb"
+        },
+        {
+          "id": "o4",
+          "text": "It inherits the grammatical tag returned by any earlier pos_tag call, even when that tag is not passed to lemmatize."
+        },
+        {
+          "id": "o1",
+          "text": "It uses the default noun POS rather than inferring every word’s grammatical role from the sentence"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1449",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1449,
+          "kind": "code",
+          "locator": "Printed slide 10: Step 5 default lemmatize(word) call",
+          "evidenceText": "import nltk\nimport string\nfrom nltk.tokenize import word_tokenize\nfrom nltk.corpus import stopwords\nfrom nltk.stem import WordNetLemmatizer\ntext = \"Pick up the red ball near the chair!\"\n# Step 1: Convert to lowercase\ntext = text.lower()\n# Step 2: Remove punctuation\ntext = text.translate(str.maketrans('', '', string.punctuation))\n# Step 3: Tokenization\ntokens = word_tokenize(text)\n# Step 4: Remove stopwords\nstop_words = set(stopwords.words('english'))\nfiltered_tokens = [\n    word for word in tokens\n    if word not in stop_words]\n# Step 5: Lemmatization\nlemmatizer = WordNetLemmatizer()\nlemmatized_tokens = [\n    lemmatizer.lemmatize(word)\n    for word in filtered_tokens]\n\nSource page text/output labels:\nImplementation – Pre-processing                           Output\n                             Code\n\n\n\n\n\n                                                                                                          10",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The installed method signature defaults pos to n; this call receives only an isolated word.",
+        "optionExplanations": {
+          "o1": "Correct. The installed method signature defaults pos to n; this call receives only an isolated word.",
+          "o2": "Incorrect. No sentence or POS-tagging call is passed to this method.",
+          "o3": "Incorrect. The default is noun, not verb.",
+          "o4": "The isolated method call does not automatically receive an earlier tagger result; pos must be passed explicitly."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The installed method signature defaults pos to n; this call receives only an isolated word.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Incorrect. No sentence or POS-tagging call is passed to this method.",
+          "Incorrect. The default is noun, not verb.",
+          "The isolated method call does not automatically receive an earlier tagger result; pos must be passed explicitly."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "primaryEvidence": [
+        {
+          "url": "https://www.nltk.org/api/nltk.stem.wordnet.html",
+          "version": "Installed NLTK 3.10.3 signature inspected; no corpus execution.",
+          "locator": "WordNetLemmatizer.lemmatize default pos=\"n\".",
+          "savedEvidencePath": "audits/W10-L46-v2-supplemental-evidence.json",
+          "savedEvidenceSha256": "8ce3598e2d3af10a393cebf2aeb566c0124167b148ecc5cf04fba675d4b726e7",
+          "section": "wordnet",
+          "relationToLecture": "Supplemental API premise for the call displayed on p1449."
+        }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
+    },
+    {
+      "id": "W10-L46-P1468-Q01",
+      "version": 2,
+      "status": "draft",
+      "authorId": "L46-author-20261019",
+      "stem": "In “Move the robot toward the shelf because it is cluttered,” which role mapping is explicitly used by the lecture?",
+      "selectionMode": "single",
+      "type": "match",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 10,
+      "lectureId": "L46",
+      "topic": "Natural Language Processing",
+      "subtopic": "Attention and context-dependent reference",
+      "tags": [
+        "nlp",
+        "attention"
+      ],
+      "conceptIds": [
+        "W10-L46-C-attention"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o2",
+          "text": "move: spatial context; robot: action; shelf: object to be moved"
+        },
+        {
+          "id": "o3",
+          "text": "move: action; robot: spatial destination; shelf: object to be moved"
+        },
+        {
+          "id": "o4",
+          "text": "move: action; robot: reference destination; shelf: the moved object with property cluttered."
+        },
+        {
+          "id": "o1",
+          "text": "move: action; robot: object to be moved; shelf: spatial context"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1468",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1468,
+          "kind": "statement",
+          "locator": "Printed slide 29: Main definition and explanatory bullets",
+          "evidenceText": "Transformers\n•  Using attention mechanism, transformers can learn:\n    – Which words are important\n    – Which words are related\n    – Where the model should focus\n•   In the command C1, the robot must focus on:\n    – “move” : the action\n    –  “robot” : object to be moved\n    –  “shelf” : spatial context\n•  This helps the model to connect related words, track\n   context and understand references and relationships\n• When transformer models were trained on massive\n  amounts of text and scaled to billions of parameters, they\n   evolved into Large Language Models (LLMs).\n\n                                                                                                          29",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "These are the three named roles on the slide.",
+        "optionExplanations": {
+          "o1": "Correct. These are the three named roles on the slide.",
+          "o2": "Incorrect. The action is the verb move, not robot.",
+          "o3": "Incorrect. The robot is moved toward the shelf, rather than moving the shelf toward the robot.",
+          "o4": "The source moves the robot toward the shelf; this alternative swaps the object and reference roles."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "These are the three named roles on the slide.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Incorrect. The action is the verb move, not robot.",
+          "Incorrect. The robot is moved toward the shelf, rather than moving the shelf toward the robot.",
+          "The source moves the robot toward the shelf; this alternative swaps the object and reference roles."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
+    }
+  ],
+  "afterHashes": {
+    "W10-L46-P1449-Q04": "b6be12dc0f52d422c6e96e26ffef1428f55c3e5b5678512b25ab6cd4008435ff",
+    "W10-L46-P1468-Q01": "960133c7d5d276a25d6bfd15bc559df000d2ece8374d6752c88e1192c217d13f"
+  }
+}

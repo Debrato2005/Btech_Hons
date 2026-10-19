@@ -1,0 +1,570 @@
+{
+  "1715": {
+    "footer": "1",
+    "inspectedAt": "2026-10-19T23:19:41.774684+00:00",
+    "notes": "Actual title page: Lecture Number54, Machine Learning for Robot Arms; footer1.",
+    "disposition": "excluded",
+    "exclusionReason": "Lecture title and institutional/author identification only; no examinable technical content.",
+    "concepts": {},
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1716": {
+    "footer": "2",
+    "inspectedAt": "2026-10-19T23:19:41.774697+00:00",
+    "notes": "Objectives explicitly name architecture/DOF/joints/end effectors, sensor streams, motor fault detection and planar2R IK. Footer2.",
+    "disposition": "excluded",
+    "exclusionReason": "Learning-objective roadmap; the substantive content is covered on subsequent pages.",
+    "concepts": {},
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1717": {
+    "footer": "3",
+    "inspectedAt": "2026-10-19T23:19:41.774701+00:00",
+    "notes": "Contents lists architecture, sensor data, SVM motor faults, inverse kinematics and MLP regression. Footer3.",
+    "disposition": "excluded",
+    "exclusionReason": "Contents roadmap only; no new technical proposition beyond later sections.",
+    "concepts": {},
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1718": {
+    "footer": "4",
+    "inspectedAt": "2026-10-19T23:19:41.774703+00:00",
+    "notes": "SCORBOT industrial articulated manipulator and DLR Hand Arm System photographs viewed. Six application bullets and ML through data/experience rather than fixed rules; photograph does not establish exact DOF.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "architecture": {
+        "title": "Robot-arm function and data-based learning",
+        "description": "Manipulator roles and learning from experience, with pictured industrial and hand-arm examples.",
+        "angles": [
+          "Distinguish learning from fixed replay",
+          "Match end-effector/application context",
+          "Avoid inferring exact DOF from a photograph"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1719": {
+    "footer": "5",
+    "inspectedAt": "2026-10-19T23:19:41.774706+00:00",
+    "notes": "Actual overlapping diagram labels Hard, Discrete, Non-Redundant, Redundant, Hyper redundant, Continuum, Soft; rigid redundant example and compliant continuum examples visible. Three bullet classifications are link structure, DOF and material. Redundancy requires a task reference; continuum is not defined by a particular finite link threshold.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "taxonomy": {
+        "title": "Arm architecture classification axes",
+        "description": "Discrete/continuum structure, task-relative redundancy and rigid/soft material behavior.",
+        "angles": [
+          "Read overlapping classes rather than mutually exclusive bins",
+          "Redundancy relative to task dimension",
+          "Structure versus material distinction"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1720": {
+    "footer": "6",
+    "inspectedAt": "2026-10-19T23:19:41.774709+00:00",
+    "notes": "Two tables read: revolute θ,dθ/dt,τ; prismatic x,dx/dt,F. Encoder→IK, strain gauge torque→fault detection, load-cell force→grasp, end-effector position(IMU)→task learning. IMU does not directly measure drift-free Cartesian position; every-joint-sensor wording describes instrumented example, not universal construction.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "joint-signals": {
+        "title": "Joint variables and ML sensor roles",
+        "description": "Rotational/translational coordinates, velocities, effort signals and measurement-versus-derived-state distinction.",
+        "angles": [
+          "Variables and SI units",
+          "Sensor-task pairings",
+          "Derivative from sampled state",
+          "Qualify IMU-position row"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1721": {
+    "footer": "7",
+    "inspectedAt": "2026-10-19T23:19:41.774713+00:00",
+    "notes": "End-effector definition, vacuum/welding photographs and all five table rows viewed. Parallel fingertip force, adaptive tactile contacts, suction pressure, welding current/voltage/feed rate, surgical sensing/tremor. The exact phrase sub-millimetre force sensing mixes a length unit with force; tremor filtering is processing, not a directly measured variable.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "end-effectors": {
+        "title": "End-effector sensing and dimensional interpretation",
+        "description": "Tool-dependent signals and the distinction between physical measurement and processing.",
+        "angles": [
+          "Map all five tool families",
+          "Vacuum versus welding photo signals",
+          "Force units versus spatial resolution",
+          "Tremor sensing versus filtering"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1722": {
+    "footer": "8",
+    "inspectedAt": "2026-10-19T23:19:41.774715+00:00",
+    "notes": "Circular diagram physical quantities→electrical signals→ADC→discrete numerical representation→ML models viewed. Perception, state estimation and feature-space bullets. Cannot learn unseen is scoped to information absent from all inputs, not a ban on latent inference from informative correlations.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "sensor-ml-chain": {
+        "title": "Sensor information and feature construction",
+        "description": "Physical-to-numeric measurement chain and limits from genuinely missing information.",
+        "angles": [
+          "Order transduction/ADC/features/model",
+          "Input feature design",
+          "No information versus indirect inference"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1723": {
+    "footer": "9",
+    "inspectedAt": "2026-10-19T23:20:38.490704+00:00",
+    "notes": "Fault problem states BLDC motors, three sensors sampled1kHz, input current(A), speed(RPM), temperature(°C), binary normal/overload labels and supervised SVM. Sampling rate is not proven inference throughput or temporal structure of later independent synthetic draws.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "fault-task": {
+        "title": "Motor fault classification task",
+        "description": "Three measured features and binary labels, with sampling-versus-inference distinction.",
+        "angles": [
+          "Features/targets/units",
+          "Classification not regression",
+          "1kHz sample interval and scalar/vector rates"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1724": {
+    "footer": "10",
+    "inspectedAt": "2026-10-19T23:20:38.490716+00:00",
+    "notes": "SVC/SVR bullets and sklearn.svm SVC import viewed; central solid decision boundary between blue circles and red triangles, parallel dashed margins. SVM separates in chosen feature space; nonlinear input boundaries possible with kernel.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "svm-concepts": {
+        "title": "Support vector classification geometry",
+        "description": "Decision boundary, margins, support vectors and classification/regression distinction.",
+        "angles": [
+          "SVC versus SVR",
+          "Solid boundary versus dashed margins",
+          "Kernel feature-space versus input-space geometry"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1725": {
+    "footer": "11",
+    "inspectedAt": "2026-10-19T23:20:38.490720+00:00",
+    "notes": "Actual formulas1/||w|| on each side, total2/||w|| and objective0.5||w||². Red rounded boxes select three blue and three red illustrative margin points; arrows drawn horizontally, not perpendicular. Exactly-on-margin support-vector definition is hard-margin simplification, not all soft-margin cases. Removal invariance needs fixed preprocessing/kernel and exact optimization, not refitting scaler on altered data.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "svm-margin": {
+        "title": "Canonical SVM margin and support-vector conditions",
+        "description": "Normalized separating planes, weight norm and scoped hard/soft-margin claims.",
+        "angles": [
+          "Half-width versus full width",
+          "Objective versus constraints",
+          "Decision sign and point distance",
+          "Hard-margin scope and soft-margin violations",
+          "Fixed preprocessing for removal statement"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1726": {
+    "footer": "12",
+    "inspectedAt": "2026-10-19T23:20:38.490724+00:00",
+    "notes": "Table actual normal current2±0.2A/speed1500±50RPM/temp45±3°C; overload5.5±0.5A/900±100RPM/72±5°C. Later code interprets ± as Gaussian standard deviation, not strict bounds or variance. Synthetic model lacks measured temporal/cross-feature correlations.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "fault-data": {
+        "title": "Synthetic motor-class distributions",
+        "description": "Independent Gaussian feature columns and class separation.",
+        "angles": [
+          "All three mean/scale shifts",
+          "Standard deviation versus hard range",
+          "Synthetic-versus-real limitations",
+          "Per-feature standardized deviation"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1727": {
+    "footer": "13",
+    "inspectedAt": "2026-10-19T23:20:38.490726+00:00",
+    "notes": "Imports numpy,SVC,StandardScaler,Pipeline,train_test_split,classification_report; np.random.seed(0),N600; X_norm column_stack of normal(2,.2,300),normal(1500,50,300),normal(45,3,300). StandardScaler described as clean data but it standardizes rather than repairs arbitrary errors.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "fault-code-data": {
+        "title": "Fault data generation and array shapes",
+        "description": "Seeded independent feature draws, column stacking, labels and stratified held-out split.",
+        "angles": [
+          "Random seed scope",
+          "300x3 normal matrix",
+          "column_stack versus row stacking",
+          "Gaussian scale parameter"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1728": {
+    "footer": "14",
+    "inspectedAt": "2026-10-19T23:20:38.490729+00:00",
+    "notes": "Overload normal draws5.5,.5;900,100;72,5. vstack600x3; labels first300zeros,next300ones. Exact split test_size.2,stratify=y,random_state42. Therefore480train/120test with240/60 per class, distinct seed roles.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "fault-code-data": {
+        "title": "Fault data generation and array shapes",
+        "description": "Seeded independent feature draws, column stacking, labels and stratified held-out split.",
+        "angles": [
+          "600x3/600 label alignment",
+          "480/120 split and240/60 per class",
+          "stratify versus shuffle/random seed",
+          "Do not conflate1kHz with iid row generation"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1729": {
+    "footer": "15",
+    "inspectedAt": "2026-10-19T23:20:38.490731+00:00",
+    "notes": "Pipeline exact steps sc=StandardScaler(), svc=SVC(kernel=rbf,C=10,gamma=scale,class_weight=balanced). Feature scaling before kernel, fit-training-only statistics. RBF/regularization explanation; low/high C is a tendency, not a fixed geometric guarantee. gamma and balanced class_weight visible in code require coverage.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "svm-pipeline": {
+        "title": "Scaled RBF SVC pipeline and hyperparameters",
+        "description": "Training-fitted standardization, RBF geometry, C, automatic gamma and class weighting.",
+        "angles": [
+          "Training-only scaler to prevent leakage",
+          "z score and RBF kernel",
+          "gamma scale after standardization",
+          "Balanced class weights for equal counts",
+          "C inverse regularization and non-guarantees"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1730": {
+    "footer": "16",
+    "inspectedAt": "2026-10-19T23:20:38.490732+00:00",
+    "notes": "Exact fit/predict/classification_report(y_te,y_pred,target_names=[normal,overload]) and historical100% statement. The page shows prose result, not a detailed confusion matrix. Real score will be lower is not universal proof; synthetic score does not establish deployed error rate. Full literal code is executable from1727–1730.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "fault-evaluation": {
+        "title": "Classification reporting and generalization",
+        "description": "Held-out labels, predictions, precision/recall/F1/support and synthetic-score scope.",
+        "angles": [
+          "fit versus predict data",
+          "Report inputs/class order",
+          "Confusion-derived metrics",
+          "100% test result is not universal deployment guarantee"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1731": {
+    "footer": "17",
+    "inspectedAt": "2026-10-19T23:22:15.476447+00:00",
+    "notes": "Planar2R problem with L1=L2=1m, input(x,y), output(theta1,theta2), MLP regression. Motivation does not prove learned IK eliminates branches or is faster/more accurate than analytic2R solution.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "ik-task": {
+        "title": "Learning an inverse-kinematics mapping",
+        "description": "Coordinates to joint angles for a fixed two-link robot.",
+        "angles": [
+          "Feature and target dimensions/units",
+          "Regression versus classification",
+          "Model approximation versus physical feasibility"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1732": {
+    "footer": "18",
+    "inspectedAt": "2026-10-19T23:22:15.476458+00:00",
+    "notes": "Actual sklearn.neural_network MLPRegressor import. Generic drawing has four input nodes x[0..3], three hidden h[0..2], one output; not the later2in/2out IK architecture. mglearn plot_single_hidden_layer_graph display snippet presumes mglearn/display setup not shown.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "mlp-architecture": {
+        "title": "Feed-forward regression and graph architecture",
+        "description": "Layer roles, dense connections, biases and generic illustration versus actual task.",
+        "angles": [
+          "Read4→3→1 diagram",
+          "Count weights with and without bias",
+          "MLPRegressor versus classifier",
+          "Plot snippet is not a standalone imported program"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1733": {
+    "footer": "19",
+    "inspectedAt": "2026-10-19T23:22:15.476464+00:00",
+    "notes": "Four-stage cycle forward→loss→backprop→weight update. Forward affine/ReLU example and joint-angle output; MSE stated; gradient descent w_new=w_old−eta*dLoss/dw_old. Later actual model uses tanh and default Adam, so illustrative ReLU/plain-gradient rule is not literal configured solver.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "mlp-learning": {
+        "title": "Forward pass, loss, backpropagation and update",
+        "description": "Training cycle with explicit numeric forward/loss/gradient examples.",
+        "angles": [
+          "Order and roles of four phases",
+          "Affine/nonlinear forward pass",
+          "Angle MSE and units",
+          "Gradient sign/update arithmetic",
+          "Illustrative gradient descent versus Adam configuration"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1734": {
+    "footer": "20",
+    "inspectedAt": "2026-10-19T23:22:15.476466+00:00",
+    "notes": "Both FK equations clearly include cos(theta1+theta2)/sin(theta1+theta2). X=[x,y], targets=[theta1,theta2]. Diagram two elbow configurations reaching same P; source calls theta2 positive elbow-down and negative elbow-up. theta1[-pi,pi],theta2[0,pi] branch used. Branch selection does not remove theta1 wrap seam or center singularity.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "fk-branches": {
+        "title": "Two-link forward geometry and inverse branches",
+        "description": "Relative elbow-angle convention, reachability and branch-restricted regression.",
+        "angles": [
+          "Exact FK values",
+          "Relative elbow angle versus absolute second-link orientation",
+          "Positive/negative elbow solutions",
+          "Workspace radial bounds",
+          "Angle wrap and degeneracy despite branch restriction"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1735": {
+    "footer": "21",
+    "inspectedAt": "2026-10-19T23:22:15.476468+00:00",
+    "notes": "Interactive illustration visible elbow-down selected, L1=L2=1.0,max2.0m, shoulder27.9°,elbow90.1°,endpoint0.415/1.351m, plotlabel(0.42,1.35), controls rounded28°/90°. Different display precisions should not be called an error; manual sliders demonstrate kinematics, not trained-model accuracy.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "ik-visual": {
+        "title": "Displayed arm configuration and rounded coordinates",
+        "description": "Read and numerically check the pictured joint-angle/endpoint example.",
+        "angles": [
+          "Link/angle labels and branch selection",
+          "FK consistency within rounding",
+          "Manual demonstration versus learned prediction"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1736": {
+    "footer": "22",
+    "inspectedAt": "2026-10-19T23:22:15.476470+00:00",
+    "notes": "Exact NumPy and sklearn imports; L1,L2=1.0,1.0;N40000;t1 uniform(-pi,pi,N),t2 uniform(0,pi,N). No local global seed printed in this IK fragment. uniform means random distribution, not exact equal spacing or uniform workspace density.40000generated points are not all training after split.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "ik-data": {
+        "title": "Forward-generated inverse-regression data",
+        "description": "Uniform angle draws, Cartesian coordinates, output pairing and held-out split.",
+        "angles": [
+          "Unseeded data generation versus model random_state",
+          "Angle support intervals",
+          "Angle-uniform versus workspace-uniform distribution",
+          "Generated versus training count"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1737": {
+    "footer": "23",
+    "inspectedAt": "2026-10-19T23:22:15.476472+00:00",
+    "notes": "Exact FK arrays, X=column_stack([x,y]),Y=column_stack([t1,t2]); train_test_split(X,Y,test_size=.1) without explicit random_state/stratify.40000x2 arrays,36000train/4000test. Paired split keeps each coordinate and its angles aligned.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "ik-data": {
+        "title": "Forward-generated inverse-regression data",
+        "description": "Uniform angle draws, Cartesian coordinates, output pairing and held-out split.",
+        "angles": [
+          "X/Y roles and shapes",
+          "36000/4000 held-out partition",
+          "Joint row alignment",
+          "No independent split of inputs and targets"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1738": {
+    "footer": "24",
+    "inspectedAt": "2026-10-19T23:22:15.476473+00:00",
+    "notes": "Exact Pipeline sc StandardScaler then mlp MLPRegressor((256,256,128),activation=tanh,max_iter300,learning_rate_init1e-3,random_state42); model.fit(X_tr,Y_tr). Hidden widths3, output2 inferred from targets, default solver requires pinned API. max_iter is upper limit, not exactly300 corrections; model seed does not seed earlier draws/split. Pipeline scales X only, not Y.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "ik-model": {
+        "title": "Configured MLP pipeline and optimization controls",
+        "description": "Actual layer dimensions, tanh, input scaling and bounded iterations.",
+        "angles": [
+          "2→256→256→128→2 shapes and full parameter count",
+          "Hidden tanh versus regression output",
+          "max_iter/epoch/update distinction",
+          "Default solver and stopping behavior",
+          "Scaler acts on coordinates only",
+          "Random-state scope"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1739": {
+    "footer": "25",
+    "inspectedAt": "2026-10-19T23:22:15.476475+00:00",
+    "notes": "Flowchart coordinates→MLP angles→FK reconstructed coordinates→Euclidean error. Code pred[:,0],pred[:,1],xp/yp,per-row sqrt,sum squares,err.mean()*100 two-decimal cm output. Historical9.82cm is mean Euclidean position error, not coordinate RMSE, max error or angle MSE; unseeded data makes exact reproduction context-dependent.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "ik-evaluation": {
+        "title": "Cartesian validation of predicted angles",
+        "description": "Forward-kinematic closure and mean Euclidean distance in meters/centimeters.",
+        "angles": [
+          "Full prediction→FK→error chain",
+          "Array axes and shape",
+          "Mean norm versus root mean square",
+          "Historical result versus reproducible specification"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1740": {
+    "footer": "26",
+    "inspectedAt": "2026-10-19T23:22:15.476478+00:00",
+    "notes": "Single input model.predict([[-1.0,1.0]]),outputs prediction[0][0]/[0][1],np.degrees and formatted4/2decimals. Historical1.6773/1.5809rad→96.10/90.58°. Ideal positive branch90°,90° reaches(-1,1). Printed approximate10cm in x and y is component-scale description, not totalEuclidean10cm; recalculate from roundedrad separately. Robot sketch shows ideal target, not predicted displaced tip.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "ik-target": {
+        "title": "Single-target prediction, angle conversion and task error",
+        "description": "Two-dimensional estimator input and exact versus approximate target reach.",
+        "angles": [
+          "Input shape1x2 and output indexing",
+          "Radians/degrees",
+          "Ideal elbow-down solution",
+          "Predicted FK residual components and norm",
+          "Source target drawing versus prediction"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1741": {
+    "footer": "27",
+    "inspectedAt": "2026-10-19T23:22:15.476480+00:00",
+    "notes": "Improvement bullets singularities at max reach/nearcenter, increase max_iter/data, convergence monitoring, learning-rate too-large overshoot and too-small slow learning. More data/iterations do not guarantee monotonic error improvement. Standard MLP already has tolerance/no-improvement stopping even when validation early_stopping=False; assess specific API.",
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "concepts": {
+      "ik-improvement": {
+        "title": "IK singularities and learning diagnostics",
+        "description": "Geometry, angular discontinuity, stopping criteria and validation-aware improvement.",
+        "angles": [
+          "Jacobian determinant and ill conditioning",
+          "Data coverage versus sheer count",
+          "Training convergence versus generalization",
+          "Learning-rate tradeoff",
+          "Built-in tolerance versus validation early stopping"
+        ]
+      }
+    },
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1742": {
+    "footer": "28",
+    "inspectedAt": "2026-10-19T23:22:15.476483+00:00",
+    "notes": "Summary repeats only the two previously inspected applications. Compared with1723/1731; no incremental code, formula, numerical value or mechanism.",
+    "disposition": "repeated",
+    "exclusionReason": null,
+    "concepts": {},
+    "repeatsSlideIds": [
+      "lectures-p1723",
+      "lectures-p1731"
+    ],
+    "incrementalChangesChecked": true
+  },
+  "1743": {
+    "footer": "29",
+    "inspectedAt": "2026-10-19T23:22:15.476485+00:00",
+    "notes": "References names Müller/Guido, Alpaydın and scikit-learn stable URL. Footer29.",
+    "disposition": "excluded",
+    "exclusionReason": "Bibliography and library homepage only; references retained for provenance, not trivia questions.",
+    "concepts": {},
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  },
+  "1744": {
+    "footer": "30",
+    "inspectedAt": "2026-10-19T23:22:15.476488+00:00",
+    "notes": "Thank You closing page; footer30.",
+    "disposition": "excluded",
+    "exclusionReason": "Closing courtesy page with no substantive technical content.",
+    "concepts": {},
+    "repeatsSlideIds": [],
+    "incrementalChangesChecked": false
+  }
+}

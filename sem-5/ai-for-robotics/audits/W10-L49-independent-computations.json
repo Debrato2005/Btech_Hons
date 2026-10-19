@@ -1,0 +1,185 @@
+{
+  "reviewer": "independent-reviewer-robotics-batches-v2",
+  "executedAt": "2026-10-19T23:16:32.240619+00:00",
+  "pythonExecutable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+  "numpyVersion": "2.3.5",
+  "groupsPassed": 26,
+  "variedCases": 4000,
+  "records": [
+    {
+      "name": "Literal module compile",
+      "passed": true,
+      "evidence": "'return' outside function"
+    },
+    {
+      "name": "Explicit wrapper compiles",
+      "passed": true,
+      "evidence": "Compiled only; imports and model loaders not executed."
+    },
+    {
+      "name": "Missing variable inputs",
+      "passed": true,
+      "evidence": [
+        "AutoModelForCausalLM",
+        "AutoTokenizer",
+        "model_id",
+        "pipeline",
+        "question"
+      ]
+    },
+    {
+      "name": "Literal prompt string",
+      "passed": true,
+      "evidence": "'<|user|>\\nHello\\n<|assistant|>\\n'"
+    },
+    {
+      "name": "Exact supplied lookup",
+      "passed": true,
+      "evidence": "PROMPTAnswer"
+    },
+    {
+      "name": "Mock full-text contract",
+      "passed": true,
+      "evidence": "Synthetic strings only; pinned API semantics independently checked in documentation."
+    },
+    {
+      "name": "No Gradio application call",
+      "passed": true,
+      "evidence": "Only import gradio in the displayed source."
+    },
+    {
+      "name": "Guitar wildcard",
+      "passed": true,
+      "evidence": "my guitar"
+    },
+    {
+      "name": "Guitar state and output",
+      "passed": true,
+      "evidence": {
+        "state": {
+          "it": "your guitar"
+        },
+        "reply": "Is your guitar a game or a musical instrument?"
+      }
+    },
+    {
+      "name": "Think variant",
+      "passed": true,
+      "evidence": {
+        "state": {
+          "it": "your guitar"
+        },
+        "reply": "Is a game or a musical instrument?"
+      }
+    },
+    {
+      "name": "Books wildcard",
+      "passed": true,
+      "evidence": "Sci-fi"
+    },
+    {
+      "name": "Nested setter propagation",
+      "passed": true,
+      "evidence": {
+        "topic": "read Sci-fi books",
+        "does": "read Sci-fi books",
+        "it": "read Sci-fi books",
+        "personality": "critical"
+      }
+    },
+    {
+      "name": "Books visible reply",
+      "passed": true,
+      "evidence": "Name some books in that genre."
+    },
+    {
+      "name": "Normalization domain",
+      "passed": true,
+      "evidence": [
+        1
+      ]
+    },
+    {
+      "name": "Reassembly",
+      "passed": true,
+      "evidence": "Direct stipulated slot substitution."
+    },
+    {
+      "name": "Cosine ranking and rejection",
+      "passed": true,
+      "evidence": [
+        0.6,
+        0.8,
+        -1.0
+      ]
+    },
+    {
+      "name": "Cosine invalid domains",
+      "passed": true,
+      "evidence": "Zero vector, dimension mismatch and NaN rejected."
+    },
+    {
+      "name": "Cosine acceptance boundary",
+      "passed": true,
+      "evidence": "Threshold is inclusive; rejection and ranking are separate."
+    },
+    {
+      "name": "Greedy and support",
+      "passed": true,
+      "evidence": "Unique greedy maximum; three positive-probability candidates."
+    },
+    {
+      "name": "Sequential latency",
+      "passed": true,
+      "evidence": "1.50 s; alternative errors: max+overhead .85, omit overhead 1.40, triple overhead 1.70."
+    },
+    {
+      "name": "Parallel latency",
+      "passed": true,
+      "evidence": "Both 2.1 s; speech 1.4 s; serial error 2.9 s."
+    },
+    {
+      "name": "Conditional cascade",
+      "passed": true,
+      "evidence": "0.684; average .883333, first stage .9, subtract errors .65 are distinct."
+    },
+    {
+      "name": "Polarity collision",
+      "passed": true,
+      "evidence": "A non-injective retained representation loses polarity."
+    },
+    {
+      "name": "Varied deterministic cases",
+      "passed": true,
+      "evidence": {
+        "iterations": 1000,
+        "caseFamilies": 4,
+        "cases": 4000,
+        "families": [
+          "Cosine bounds and positive scale invariance",
+          "Parallel completion identity",
+          "Conditional probability bounds",
+          "Nested hidden setter propagation"
+        ]
+      }
+    },
+    {
+      "name": "All frozen hashes preserved",
+      "passed": true,
+      "evidence": "84 question objects match minimal bindings."
+    },
+    {
+      "name": "Unique option texts and full rationales",
+      "passed": true,
+      "evidence": "Structural check supplements, not replaces, manual distractor review."
+    }
+  ],
+  "sourceCodeMode": "Exact slide transcription compiled; explicit wrapped variant compiled; XML reconstructed supplied semantics executed; mock string interface executed. No original notebook or model inference.",
+  "restrictedEnvironmentUsed": false,
+  "originalNotebookObtained": false,
+  "originalNotebookExecuted": false,
+  "pretrainedInferenceExecuted": false,
+  "codeTranscription": "import gradio\nfrom transformers import AutoTokenizer, AutoModelForCausalLM, pipeline\n# Load tokenizer (Text \u2192 Tokens)\ntokenizer = AutoTokenizer.from_pretrained(model_id)\n# Load pretrained LLM\nmodel = AutoModelForCausalLM.from_pretrained(model_id)\n# Create chatbot inference pipeline\npipe = pipeline(\n    \"text-generation\",\n    model=model,\n    tokenizer=tokenizer)\n# Format the user's question as a prompt\nprompt = f\"<|user|>\\n{question}\\n<|assistant|>\\n\"\n# Generate the chatbot's response\noutput = pipe(prompt)\n# Extract only the assistant's reply\nreply = output[0][\"generated_text\"]\n# Return/display the reply\nreturn reply\n",
+  "guitarTranscription": "<category><pattern>I PLAY *</pattern><template>Is <set_it><person/></set_it> a game or a musical instrument?</template></category>",
+  "booksTranscription": "<category><pattern>I READ * BOOKS</pattern><template>Name some books in that genre.<think><set_it><set_does><settopic>read <person/> books</settopic></set_does></set_it></think><think><set_personality>critical</set_personality></think></template></category>"
+}

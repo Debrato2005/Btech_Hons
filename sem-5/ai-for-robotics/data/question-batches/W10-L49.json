@@ -5,10 +5,10 @@
   "questions": [
     {
       "id": "W10-L49-P1539-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
-      "stem": "A robot transcribes “bring the cup” correctly but chooses the wrong task. Which distinction explains this failure?",
+      "stem": "A recognizer maps audio features directly to text tokens, without an exposed phoneme stage. It correctly transcribes “bring the cup”, but the robot selects the wrong task. Which conclusion respects both this case and the lecture’s ASR-versus-intent distinction?",
       "selectionMode": "single",
       "type": "scenario",
       "difficulty": "easy",
@@ -28,19 +28,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Recognizing words and interpreting the intended task are separate functions"
+          "text": "Word recognition can succeed while task interpretation fails; the slide’s phoneme decomposition is not a mandatory exposed stage for every recognizer."
         },
         {
           "id": "o2",
-          "text": "Correct transcription necessarily identifies the executable task, so only TTS can be wrong"
+          "text": "The task choice proves the transcript must contain a word error, even though its words have been checked against the request."
         },
         {
           "id": "o3",
-          "text": "Conversational interpretation produces the waveform, while ASR selects the task"
+          "text": "The missing exposed phoneme stage makes the supplied correct transcript invalid as ASR output, so intent interpretation is not the issue."
         },
         {
           "id": "o4",
-          "text": "ASR evaluates motion feasibility after the task has been selected"
+          "text": "The transcript is correct, so interpreting bring and cup has already determined the requested task without using any further context."
         }
       ],
       "correctOptionIds": [
@@ -60,27 +60,30 @@
         }
       ],
       "solution": {
-        "justification": "ASR can succeed while intent interpretation fails.",
+        "justification": "ASR concerns the spoken words; intent interpretation concerns the requested task. The supplied architecture shows why the slide’s phoneme description must not be treated as universal.",
         "optionExplanations": {
-          "o1": "Correct. ASR can succeed while intent interpretation fails.",
-          "o2": "Incorrect. TTS concerns generated speech; a correct transcript does not establish the correct task.",
-          "o3": "Incorrect. These are not the roles of interpretation and recognition.",
-          "o4": "Incorrect. Motion validation is distinct from acoustic transcription."
+          "o1": "The observed failure separates transcription from intent; the supplied direct token recognizer also bounds the slide’s general wording.",
+          "o2": "The premise explicitly establishes correct transcription, so the error can occur later.",
+          "o3": "An exposed phoneme stage is not required by the supplied audio-to-text architecture.",
+          "o4": "Correct words do not by themselves establish their intended task and contextual arguments."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "ASR can succeed while intent interpretation fails.",
+        "simpleExplanation": "ASR concerns the spoken words; intent interpretation concerns the requested task. The supplied architecture shows why the slide’s phoneme description must not be treated as universal.",
         "memoryAid": null,
         "misconceptions": [
-          "TTS concerns generated speech; a correct transcript does not establish the correct task.",
-          "These are not the roles of interpretation and recognition.",
-          "Motion validation is distinct from acoustic transcription."
+          "The premise explicitly establishes correct transcription, so the error can occur later.",
+          "An exposed phoneme stage is not required by the supplied audio-to-text architecture.",
+          "Correct words do not by themselves establish their intended task and contextual arguments."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1539-Q02",
@@ -237,7 +240,7 @@
     },
     {
       "id": "W10-L49-P1540-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "The timeline calls ALICE retrieval-based. What is the justified interpretation when read with the AIML slides?",
@@ -272,7 +275,7 @@
         },
         {
           "id": "o4",
-          "text": "It must generate every response from newly sampled neural tokens because it remembers context"
+          "text": "Remembered predicates mean the response bank must be searched by nearest-vector distance rather than by authored patterns."
         }
       ],
       "correctOptionIds": [
@@ -318,7 +321,7 @@
         "optionExplanations": {
           "o2": "Correct. The lecture’s later pattern/template examples specify the mechanism more narrowly.",
           "o3": "Incorrect. Stored responses do not uniquely determine a vector-search implementation.",
-          "o4": "Incorrect. Context predicates can be maintained by rule systems.",
+          "o4": "State predicates can condition pattern/template selection without requiring dense-vector retrieval.",
           "o1": "Incorrect. State and stored response templates can coexist."
         },
         "steps": [],
@@ -326,9 +329,9 @@
         "simpleExplanation": "The lecture’s later pattern/template examples specify the mechanism more narrowly.",
         "memoryAid": null,
         "misconceptions": [
-          "Stored responses do not uniquely determine a vector-search implementation.",
-          "Context predicates can be maintained by rule systems.",
-          "State and stored response templates can coexist."
+          "Incorrect. State and stored response templates can coexist.",
+          "Incorrect. Stored responses do not uniquely determine a vector-search implementation.",
+          "State predicates can condition pattern/template selection without requiring dense-vector retrieval."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -355,6 +358,9 @@
           "locator": "Sections pattern, person, set used in template, think and topic; modern named predicates differ from legacy-style slide setters.",
           "checkedAt": "2026-10-19T22:33:00Z"
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
       ]
     },
     {
@@ -875,10 +881,10 @@
     },
     {
       "id": "W10-L49-P1543-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
-      "stem": "Which statement avoids overgeneralizing the limitations of the slide’s stateless rule example?",
+      "stem": "A robot has a small, known command set but may also hear open-ended requests. Which deployment trade-off accurately qualifies the lecture’s rule-based design?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -898,19 +904,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "A wildcard rule is necessarily unable to match a previously unseen surface sentence"
+          "text": "A wildcard that matches several phrasings removes the need to maintain rules when new task meanings appear."
         },
         {
           "id": "o2",
-          "text": "Adding a remembered variable guarantees general language understanding"
+          "text": "Remembering the previous object makes the fixed rule bank suitable for arbitrary unseen requests without additional coverage checks."
         },
         {
           "id": "o3",
-          "text": "Rules may retain explicitly programmed state, even though this example does not learn new rules from dialogue"
+          "text": "Authored rules can give predictable behavior for covered fixed tasks and retain programmed state, while new meanings still require maintained rules or a fallback."
         },
         {
           "id": "o4",
-          "text": "Any rule system with a state variable must have trained neural weights"
+          "text": "A predictable response requires exact equality of complete sentences, so a stateful or wildcard rule cannot serve a fixed-task system."
         }
       ],
       "correctOptionIds": [
@@ -941,21 +947,21 @@
         }
       ],
       "solution": {
-        "justification": "State can be represented by variables without data-driven model training.",
+        "justification": "Rules can be useful for bounded tasks with explicit state and fallback behavior; broader meanings still require coverage and rule maintenance.",
         "optionExplanations": {
-          "o3": "Correct. State can be represented by variables without data-driven model training.",
-          "o4": "Incorrect. A variable is not evidence of neural training.",
-          "o1": "Incorrect. Wildcards can cover multiple surface strings.",
-          "o2": "Incorrect. State retention alone does not guarantee broad understanding."
+          "o3": "This preserves the fixed-domain benefit while qualifying the claimed state and generalization limits.",
+          "o4": "Predictable programmed behavior can include wildcard matching and explicit state transitions.",
+          "o1": "Surface-pattern coverage does not supply rules for every new task meaning.",
+          "o2": "State helps context but does not establish coverage of open-ended requests."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "State can be represented by variables without data-driven model training.",
+        "simpleExplanation": "Rules can be useful for bounded tasks with explicit state and fallback behavior; broader meanings still require coverage and rule maintenance.",
         "memoryAid": null,
         "misconceptions": [
-          "A variable is not evidence of neural training.",
-          "Wildcards can cover multiple surface strings.",
-          "State retention alone does not guarantee broad understanding."
+          "Surface-pattern coverage does not supply rules for every new task meaning.",
+          "State helps context but does not establish coverage of open-ended requests.",
+          "Predictable programmed behavior can include wildcard matching and explicit state transitions."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -973,7 +979,10 @@
         "method": "Use an explicitly stipulated rule set; contrast it with the lecture’s own later stateful AIML examples.",
         "sourceIssueId": "L49-ISSUE-rule-scope",
         "scope": "This version only; independent review required."
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1544-Q01",
@@ -1135,7 +1144,7 @@
     },
     {
       "id": "W10-L49-P1544-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "How should the slide’s claim that ELIZA has no memory beyond the previous statement be qualified using its original paper?",
@@ -1158,19 +1167,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "A limited memory mechanism and scripted responses are mutually exclusive designs"
+          "text": "MEMORY keeps an unchanged transcript of every turn and searches all of it for any later question."
         },
         {
           "id": "o2",
-          "text": "ELIZA had a limited mechanism storing transformed text for later use, not unrestricted semantic memory"
+          "text": "MEMORY retains selected transformed text for later reuse under limited rules."
         },
         {
           "id": "o3",
-          "text": "ELIZA had no stored state of any kind, so the original MEMORY mechanism is only a printed response word"
+          "text": "MEMORY stores only the last chosen keyword and never retains transformed response material."
         },
         {
           "id": "o4",
-          "text": "ELIZA’s stored transformed text proves it learned a complete world model during conversation"
+          "text": "MEMORY immediately returns every stored transformation on the next input, regardless of whether another keyword rule applies."
         }
       ],
       "correctOptionIds": [
@@ -1190,21 +1199,21 @@
         }
       ],
       "solution": {
-        "justification": "The original mechanism retained transformed material under bounded rules.",
+        "justification": "The original paper’s limited transformed-text memory qualifies the slide’s blanket no-memory wording.",
         "optionExplanations": {
-          "o2": "Correct. The original mechanism retained transformed material under bounded rules.",
-          "o3": "Incorrect. The paper describes an actual stored-text mechanism.",
-          "o4": "Incorrect. Limited state does not imply a learned world model.",
-          "o1": "Incorrect. The original implementation combines scripts and stored material."
+          "o2": "This is a bounded stored-text mechanism, not unrestricted semantic memory.",
+          "o3": "The original paper describes stored transformations, not only a keyword variable.",
+          "o4": "Reuse follows specific conditions; it is not unconditional next-turn playback.",
+          "o1": "The original mechanism is selective transformed-text storage, not a complete transcript archive."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The original mechanism retained transformed material under bounded rules.",
+        "simpleExplanation": "The original paper’s limited transformed-text memory qualifies the slide’s blanket no-memory wording.",
         "memoryAid": null,
         "misconceptions": [
-          "The paper describes an actual stored-text mechanism.",
-          "Limited state does not imply a learned world model.",
-          "The original implementation combines scripts and stored material."
+          "The original mechanism is selective transformed-text storage, not a complete transcript archive.",
+          "The original paper describes stored transformations, not only a keyword variable.",
+          "Reuse follows specific conditions; it is not unconditional next-turn playback."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -1231,6 +1240,9 @@
           "locator": "Printed pp. 36–37 keyword ranking and conversation; p. 41 MEMORY mechanism; appendix p. 44 MEMORY MY.",
           "checkedAt": "2026-10-19T22:33:00Z"
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
       ]
     },
     {
@@ -1393,10 +1405,10 @@
     },
     {
       "id": "W10-L49-P1545-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
-      "stem": "A supplied simplified script gives keyword sorry priority over I am by file order. The input contains both. Which conclusion is warranted?",
+      "stem": "For this toy trace, a simplified script prioritizes keywords by file order, with sorry before I am. This is not a claim about original ELIZA’s rank mechanism. An input matches both keywords. Which trace follows the supplied policy?",
       "selectionMode": "single",
       "type": "algorithm_trace",
       "difficulty": "easy",
@@ -1418,19 +1430,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Trace sorry first under this stipulated policy, without claiming that original ELIZA lacked explicit ranks"
+          "text": "Use sorry first because it precedes I am in the stipulated file-order priority."
         },
         {
           "id": "o2",
-          "text": "Trace I am first because every ELIZA implementation must prefer the longest keyword"
+          "text": "Use I am first because its keyword phrase is longer than sorry."
         },
         {
           "id": "o3",
-          "text": "Choose whichever word occurs last in the input regardless of the supplied script policy"
+          "text": "Use whichever matching keyword occurs last in the input sentence."
         },
         {
           "id": "o4",
-          "text": "Infer that the system must learn the priority from these two words at runtime"
+          "text": "Choose uniformly between the matching keywords before applying either decomposition."
         }
       ],
       "correctOptionIds": [
@@ -1452,10 +1464,10 @@
       "solution": {
         "justification": "The stated policy determines this toy trace; the historical algorithm supports rank metadata.",
         "optionExplanations": {
-          "o1": "Correct. The stated policy determines this toy trace; the historical algorithm supports rank metadata.",
-          "o2": "Incorrect. No longest-match rule is stipulated here.",
-          "o3": "Incorrect. That is not the supplied priority rule.",
-          "o4": "Incorrect. The priority is programmed, not learned in this scenario."
+          "o1": "This follows the explicitly supplied toy priority rule.",
+          "o2": "Keyword length is not the stipulated priority rule.",
+          "o3": "Input position is not the stipulated priority rule.",
+          "o4": "Random choice is not the stipulated priority rule."
         },
         "steps": [
           "Find both matching keywords.",
@@ -1466,9 +1478,9 @@
         "simpleExplanation": "The stated policy determines this toy trace; the historical algorithm supports rank metadata.",
         "memoryAid": null,
         "misconceptions": [
-          "No longest-match rule is stipulated here.",
-          "That is not the supplied priority rule.",
-          "The priority is programmed, not learned in this scenario."
+          "Keyword length is not the stipulated priority rule.",
+          "Input position is not the stipulated priority rule.",
+          "Random choice is not the stipulated priority rule."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -1495,17 +1507,20 @@
           "locator": "Printed pp. 36–37 keyword ranking and conversation; p. 41 MEMORY mechanism; appendix p. 44 MEMORY MY.",
           "checkedAt": "2026-10-19T22:33:00Z"
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
       ]
     },
     {
       "id": "W10-L49-P1545-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
-      "stem": "In a supplied decomposition pattern “I am *”, the wildcard captures “tired today”. A chosen reassembly template is “Why are you {capture}?”. What is produced?",
+      "stem": "In a supplied “I am *” pattern, the capture is “tired today” and the chosen template is “Why are you {capture}?”. Which result and selection-policy qualification are both correct?",
       "selectionMode": "single",
       "type": "algorithm_trace",
-      "difficulty": "easy",
+      "difficulty": "medium",
       "cognitiveSkill": "algorithm",
       "week": 10,
       "lectureId": "L49",
@@ -1524,23 +1539,23 @@
       "options": [
         {
           "id": "o1",
-          "text": "I am Why are you tired today?"
+          "text": "“Why are you tired today?”; the slide describes random template selection, whereas the original paper cycles ordinary reassembly alternatives and separately randomizes MEMORY transformations."
         },
         {
           "id": "o2",
-          "text": "Why are you *?"
+          "text": "“Why are you I am tired today?”; the slide and original paper both require ordinary response alternatives to be chosen randomly."
         },
         {
           "id": "o3",
-          "text": "Why are you tired today?"
+          "text": "“Why are you tired today?”; the original paper cycles MEMORY transformations but randomly chooses ordinary reassembly alternatives."
         },
         {
           "id": "o4",
-          "text": "Why are you I am tired today?"
+          "text": "“Why are you *?”; choosing a response policy means the wildcard marker is printed rather than replaced."
         }
       ],
       "correctOptionIds": [
-        "o3"
+        "o1"
       ],
       "citations": [
         {
@@ -1556,31 +1571,43 @@
         }
       ],
       "solution": {
-        "justification": "Substitute only the captured phrase into the chosen template.",
+        "justification": "Substitute the captured phrase into the chosen template, while distinguishing the simplified slide callout from the original program’s two selection mechanisms.",
         "optionExplanations": {
-          "o3": "Correct. Substitute only the captured phrase into the chosen template.",
-          "o4": "Incorrect. I am belongs to the fixed pattern prefix, not the capture.",
-          "o1": "Incorrect. The fixed input prefix is not prepended to the response.",
-          "o2": "Incorrect. The wildcard denotes captured content, not a literal output star."
+          "o3": "The result text is correct, but the two original mechanisms have been exchanged.",
+          "o4": "The wildcard stands for captured content, not a literal output symbol.",
+          "o1": "Only the captured phrase is substituted; the two selection mechanisms need distinct historical scope.",
+          "o2": "The fixed prefix is not part of the capture, and the historical selection claim is too broad."
         },
         "steps": [
-          "Match the fixed prefix I am.",
-          "Capture tired today.",
-          "Insert the capture into the selected template."
+          "Capture tired today, excluding the fixed I am prefix.",
+          "Insert that capture into the selected template.",
+          "Distinguish ordinary reassembly cycling from the separate randomized MEMORY transformation."
         ],
         "formulas": [],
-        "simpleExplanation": "Substitute only the captured phrase into the chosen template.",
+        "simpleExplanation": "Substitute the captured phrase into the chosen template, while distinguishing the simplified slide callout from the original program’s two selection mechanisms.",
         "memoryAid": null,
         "misconceptions": [
-          "I am belongs to the fixed pattern prefix, not the capture.",
-          "The fixed input prefix is not prepended to the response.",
-          "The wildcard denotes captured content, not a literal output star."
+          "The fixed prefix is not part of the capture, and the historical selection claim is too broad.",
+          "The result text is correct, but the two original mechanisms have been exchanged.",
+          "The wildcard stands for captured content, not a literal output symbol."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "primaryEvidence": [
+        {
+          "title": "Weizenbaum original ELIZA paper",
+          "url": "https://web.stanford.edu/class/cs124/p36-weizenabaum.pdf",
+          "version": "Communications of the ACM 9(1), January 1966",
+          "locator": "Printed p.40 ordinary reassembly cycling; p.41 randomized MEMORY transformations.",
+          "checkedAt": "2026-10-19T23:40:03.733025+00:00"
+        }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1546-Q01",
@@ -1663,7 +1690,7 @@
     },
     {
       "id": "W10-L49-P1546-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "Two differently worded questions obtain nearby vectors in a supplied semantic representation. Why might retrieval return the same stored answer?",
@@ -1688,19 +1715,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Any two questions with the same number of words have equal meaning"
+          "text": "Nearby query vectors force their highest-ranked stored answer to be identical, regardless of where the answer vectors lie."
         },
         {
           "id": "o2",
-          "text": "The returned answer is necessarily a new sentence sampled from an LLM"
+          "text": "Different strings cannot share a retrieved answer unless their vectors are exactly equal."
         },
         {
           "id": "o3",
-          "text": "Similarity search can match related meanings without exact string equality"
+          "text": "Semantic similarity can rank the same stored answer highest for two paraphrases without exact string equality."
         },
         {
           "id": "o4",
-          "text": "The tokenizer must have produced identical characters for both questions"
+          "text": "The smaller query-vector norm alone determines which answer is retrieved, independently of the chosen similarity metric."
         }
       ],
       "correctOptionIds": [
@@ -1722,29 +1749,32 @@
       "solution": {
         "justification": "Vector similarity can support paraphrase matching.",
         "optionExplanations": {
-          "o3": "Correct. Vector similarity can support paraphrase matching.",
-          "o4": "Incorrect. Different strings need not become identical to be nearby.",
-          "o1": "Incorrect. Length alone is not semantic equivalence.",
-          "o2": "Incorrect. This architecture selects a banked response rather than necessarily generating one."
+          "o3": "Similarity-based ranking can associate differently worded queries with the same stored response.",
+          "o4": "A vector norm alone is not a general answer-ranking rule.",
+          "o1": "Nearby queries can still fall on different ranking boundaries; the outcome is possible, not guaranteed.",
+          "o2": "Different vectors can have the same nearest candidate."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Vector similarity can support paraphrase matching.",
         "memoryAid": null,
         "misconceptions": [
-          "Different strings need not become identical to be nearby.",
-          "Length alone is not semantic equivalence.",
-          "This architecture selects a banked response rather than necessarily generating one."
+          "Nearby queries can still fall on different ranking boundaries; the outcome is possible, not guaranteed.",
+          "Different vectors can have the same nearest candidate.",
+          "A vector norm alone is not a general answer-ranking rule."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1546-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "A retrieval-only system has no suitable answer in its fixed bank. What limitation remains even if it finds the highest similarity score?",
@@ -1767,19 +1797,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Selecting a nearest neighbor automatically writes a missing expert answer into the bank"
+          "text": "The relative winner meets an adequacy threshold automatically because it outranks the other bank entries."
         },
         {
           "id": "o2",
-          "text": "A vector search can return a novel factual response without any generation or composition step"
+          "text": "Returning several nearest candidates removes the missing-answer limitation even if every candidate is unsuitable."
         },
         {
           "id": "o3",
-          "text": "The nearest available response can still be inappropriate"
+          "text": "The nearest available response can still be inappropriate, so an adequacy check or fallback may be needed."
         },
         {
           "id": "o4",
-          "text": "The largest score proves the stored answer is true and relevant"
+          "text": "Rescaling all similarity scores to a zero-to-one range makes the winning response appropriate for the query."
         }
       ],
       "correctOptionIds": [
@@ -1801,25 +1831,28 @@
       "solution": {
         "justification": "Best among available candidates is not the same as adequate for the query.",
         "optionExplanations": {
-          "o3": "Correct. Best among available candidates is not the same as adequate for the query.",
-          "o4": "Incorrect. Relative ranking is not proof of adequacy or truth.",
-          "o1": "Incorrect. Search does not automatically author missing knowledge.",
-          "o2": "Incorrect. A retrieval-only choice remains limited to the supplied responses."
+          "o3": "Best available does not imply sufficient or correct.",
+          "o4": "Changing score scale does not add missing content or validate relevance.",
+          "o1": "Relative rank does not establish an absolute quality threshold.",
+          "o2": "Several unsuitable candidates still do not supply the missing answer."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Best among available candidates is not the same as adequate for the query.",
         "memoryAid": null,
         "misconceptions": [
-          "Relative ranking is not proof of adequacy or truth.",
-          "Search does not automatically author missing knowledge.",
-          "A retrieval-only choice remains limited to the supplied responses."
+          "Relative rank does not establish an absolute quality threshold.",
+          "Several unsuitable candidates still do not supply the missing answer.",
+          "Changing score scale does not add missing content or validate relevance."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1546-Q04",
@@ -1920,7 +1953,7 @@
     },
     {
       "id": "W10-L49-P1547-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "What expansion of ALICE is printed in the lecture?",
@@ -1975,31 +2008,42 @@
         }
       ],
       "solution": {
-        "justification": "This is the expansion printed in the lecture.",
+        "justification": "The lecture prints Artificial Linguist Internet Computer Entity; Pandorabots gives the standard name as Artificial Linguistic Internet Computer Entity, so the source wording and standard expansion differ.",
         "optionExplanations": {
-          "o4": "Correct. This is the expansion printed in the lecture.",
+          "o4": "This is the printed slide wording; the standard expansion uses Linguistic rather than Linguist.",
           "o1": "Incorrect. The printed expansion uses Linguist, Internet, Computer and Entity, not these substituted terms.",
           "o2": "Incorrect. This is a plausible-looking expansion but not the printed name.",
           "o3": "Incorrect. This replaces several words and is not the source’s expansion."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "This is the expansion printed in the lecture.",
+        "simpleExplanation": "The lecture prints Artificial Linguist Internet Computer Entity; Pandorabots gives the standard name as Artificial Linguistic Internet Computer Entity, so the source wording and standard expansion differ.",
         "memoryAid": null,
         "misconceptions": [
-          "The printed expansion uses Linguist, Internet, Computer and Entity, not these substituted terms.",
-          "This is a plausible-looking expansion but not the printed name.",
-          "This replaces several words and is not the source’s expansion."
+          "Incorrect. The printed expansion uses Linguist, Internet, Computer and Entity, not these substituted terms.",
+          "Incorrect. This is a plausible-looking expansion but not the printed name.",
+          "Incorrect. This replaces several words and is not the source’s expansion."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "primaryEvidence": [
+        {
+          "title": "Pandorabots AIML history",
+          "url": "https://pandorabots.com/docs/aiml-basics/",
+          "locator": "History of AIML, A.L.I.C.E. expansion.",
+          "checkedAt": "2026-10-19T23:40:03.733052+00:00"
+        }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1547-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "Which feature is shared by the described ELIZA and ALICE approaches?",
@@ -2022,19 +2066,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Input-pattern processing and response construction from authored rules or templates"
+          "text": "Input-pattern processing and response construction from authored rules or templates."
         },
         {
           "id": "o2",
-          "text": "Mandatory dense-vector nearest-neighbor lookup in both original engines"
+          "text": "Both use AIML XML categories as the original script format."
         },
         {
           "id": "o3",
-          "text": "Automatic neural weight updates after every user sentence"
+          "text": "Both restrict matching to complete literal sentences and exclude substitutions or wildcard decomposition."
         },
         {
           "id": "o4",
-          "text": "Unrestricted factual synthesis without authored response material"
+          "text": "Both store the full dialogue as an unrestricted semantic memory that can answer any earlier-turn question."
         }
       ],
       "correctOptionIds": [
@@ -2067,25 +2111,28 @@
       "solution": {
         "justification": "The shared foundation is pattern-based text processing.",
         "optionExplanations": {
-          "o1": "Correct. The shared foundation is pattern-based text processing.",
-          "o2": "Incorrect. The lecture does not establish that vector mechanism for both.",
-          "o3": "Incorrect. Scripted response processing does not imply online neural learning.",
-          "o4": "Incorrect. Both descriptions emphasize authored patterns/material rather than unrestricted synthesis."
+          "o1": "Authored pattern-based processing is the shared foundation described here.",
+          "o2": "AIML belongs to the later ALICE approach; it was not original ELIZA’s script format.",
+          "o3": "The descriptions include substitutions and pattern decomposition, not only complete literal equality.",
+          "o4": "Limited programmed state is not unrestricted semantic memory."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The shared foundation is pattern-based text processing.",
         "memoryAid": null,
         "misconceptions": [
-          "The lecture does not establish that vector mechanism for both.",
-          "Scripted response processing does not imply online neural learning.",
-          "Both descriptions emphasize authored patterns/material rather than unrestricted synthesis."
+          "AIML belongs to the later ALICE approach; it was not original ELIZA’s script format.",
+          "The descriptions include substitutions and pattern decomposition, not only complete literal equality.",
+          "Limited programmed state is not unrestricted semantic memory."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1548-Q01",
@@ -2168,10 +2215,10 @@
     },
     {
       "id": "W10-L49-P1548-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
-      "stem": "What does the XML-based nature of AIML establish?",
+      "stem": "Which pair gives the lecture’s full expansion of AIML and a justified consequence of its XML-based format?",
       "selectionMode": "single",
       "type": "definition",
       "difficulty": "easy",
@@ -2191,19 +2238,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Well-formed XML guarantees every tag is implemented by every AIML interpreter"
+          "text": "Artificial Intelligence Markup Language; well-formed XML guarantees support for every tag in every interpreter."
         },
         {
           "id": "o2",
-          "text": "A syntactically valid category guarantees a matching response for every input"
+          "text": "Automated Intent Modeling Language; nested tags represent rules that an interpreter processes."
         },
         {
           "id": "o3",
-          "text": "XML validation determines the intended conversational meaning of each input"
+          "text": "Artificial Intelligence Markup Language; structural XML validity guarantees correct intent for every input."
         },
         {
           "id": "o4",
-          "text": "Dialogue rules have nested tagged structure that an interpreter processes"
+          "text": "Artificial Intelligence Markup Language; dialogue rules have nested tagged structure that an interpreter processes."
         }
       ],
       "correctOptionIds": [
@@ -2225,25 +2272,28 @@
       "solution": {
         "justification": "The format supplies structured representation, not all semantic guarantees.",
         "optionExplanations": {
-          "o4": "Correct. The format supplies structured representation, not all semantic guarantees.",
-          "o1": "Incorrect. Syntax validity and supported interpreter semantics are different checks.",
-          "o2": "Incorrect. Category coverage is separate from XML validity.",
-          "o3": "Incorrect. Structural validation does not infer a user’s intended meaning."
+          "o4": "This combines the printed expansion with the justified structural role.",
+          "o1": "The expansion is right, but syntax alone does not guarantee interpreter support for each tag.",
+          "o2": "The structural role is plausible, but the expansion is not the one shown in the lecture.",
+          "o3": "The expansion is right, but structural validity is not an intent-correctness guarantee."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The format supplies structured representation, not all semantic guarantees.",
         "memoryAid": null,
         "misconceptions": [
-          "Syntax validity and supported interpreter semantics are different checks.",
-          "Category coverage is separate from XML validity.",
-          "Structural validation does not infer a user’s intended meaning."
+          "The expansion is right, but syntax alone does not guarantee interpreter support for each tag.",
+          "The structural role is plausible, but the expansion is not the one shown in the lecture.",
+          "The expansion is right, but structural validity is not an intent-correctness guarantee."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1548-Q03",
@@ -2980,7 +3030,7 @@
     },
     {
       "id": "W10-L49-P1550-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "Why does an authored response template not by itself prove a robot conversation is safe?",
@@ -3007,7 +3057,7 @@
         },
         {
           "id": "o2",
-          "text": "A hidden assignment certifies that the selected physical action is feasible"
+          "text": "Suppressing an assignment with think means the assigned context has already been checked against the user’s intended scope."
         },
         {
           "id": "o3",
@@ -3039,7 +3089,7 @@
         "optionExplanations": {
           "o4": "Correct. Template structure alone does not validate substituted content or physical behavior.",
           "o1": "Incorrect. User-controlled captured content need not have been individually approved.",
-          "o2": "Incorrect. Display suppression is unrelated to motion feasibility.",
+          "o2": "Output suppression controls what is displayed; it does not establish the correctness or authorization of assigned context.",
           "o3": "Incorrect. Pattern compatibility is not a permission or task-scope check."
         },
         "steps": [],
@@ -3047,9 +3097,9 @@
         "simpleExplanation": "Template structure alone does not validate substituted content or physical behavior.",
         "memoryAid": null,
         "misconceptions": [
-          "User-controlled captured content need not have been individually approved.",
-          "Display suppression is unrelated to motion feasibility.",
-          "Pattern compatibility is not a permission or task-scope check."
+          "Incorrect. User-controlled captured content need not have been individually approved.",
+          "Output suppression controls what is displayed; it does not establish the correctness or authorization of assigned context.",
+          "Incorrect. Pattern compatibility is not a permission or task-scope check."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -3067,7 +3117,10 @@
         "method": "Provide a counterexample using wildcard substitution and distinguish response selection from action validation.",
         "sourceIssueId": "L49-ISSUE-template-safety",
         "scope": "This version only; independent review required."
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1551-Q01",
@@ -3437,10 +3490,10 @@
     },
     {
       "id": "W10-L49-P1552-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
-      "stem": "Which role mapping matches the Python excerpt?",
+      "stem": "Which intended role mapping matches the simplified Python excerpt, without claiming that the incomplete module executed?",
       "selectionMode": "single",
       "type": "match",
       "difficulty": "easy",
@@ -3460,19 +3513,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "AutoTokenizer: text representation; AutoModelForCausalLM: response display; pipeline: model training loop"
+          "text": "AutoTokenizer: text/token mapping; AutoModelForCausalLM: inference wrapper; pipeline: pretrained causal-model weights."
         },
         {
           "id": "o2",
-          "text": "AutoTokenizer: web form; AutoModelForCausalLM: pretrained causal model; pipeline: stored-response search"
+          "text": "AutoTokenizer: inference wrapper; AutoModelForCausalLM: pretrained causal model; pipeline: text/token mapping."
         },
         {
           "id": "o3",
-          "text": "AutoTokenizer: text representation; AutoModelForCausalLM: pretrained causal model; pipeline: inference wrapper"
+          "text": "AutoTokenizer: text/token mapping; AutoModelForCausalLM: pretrained causal model; pipeline: inference wrapper."
         },
         {
           "id": "o4",
-          "text": "AutoTokenizer: pretrained model weights; AutoModelForCausalLM: vocabulary mapping; pipeline: inference wrapper"
+          "text": "AutoTokenizer: pretrained causal-model weights; AutoModelForCausalLM: text/token mapping; pipeline: inference wrapper."
         }
       ],
       "correctOptionIds": [
@@ -3492,27 +3545,30 @@
         }
       ],
       "solution": {
-        "justification": "The excerpt loads a tokenizer and a causal model, then combines them for text generation.",
+        "justification": "The excerpt intends to combine a tokenizer and a causal model through an inference wrapper; its incomplete surrounding code is not evidence of a successful run.",
         "optionExplanations": {
-          "o3": "Correct. The excerpt loads a tokenizer and a causal model, then combines them for text generation.",
-          "o4": "Incorrect. This exchanges tokenizer and model roles.",
-          "o1": "Incorrect. The code loads and runs a model; it does not define training or display as those components’ roles.",
-          "o2": "Incorrect. The tokenizer is not the frontend and text-generation is not a fixed response search."
+          "o3": "This matches the intended roles shown in the simplified excerpt.",
+          "o4": "The tokenizer and model-weight roles are exchanged.",
+          "o1": "The model loader and inference-wrapper roles are exchanged.",
+          "o2": "The tokenizer and wrapper roles are exchanged."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The excerpt loads a tokenizer and a causal model, then combines them for text generation.",
+        "simpleExplanation": "The excerpt intends to combine a tokenizer and a causal model through an inference wrapper; its incomplete surrounding code is not evidence of a successful run.",
         "memoryAid": null,
         "misconceptions": [
-          "This exchanges tokenizer and model roles.",
-          "The code loads and runs a model; it does not define training or display as those components’ roles.",
-          "The tokenizer is not the frontend and text-generation is not a fixed response search."
+          "The model loader and inference-wrapper roles are exchanged.",
+          "The tokenizer and wrapper roles are exchanged.",
+          "The tokenizer and model-weight roles are exchanged."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1552-Q02",
@@ -4630,7 +4686,7 @@
     },
     {
       "id": "W10-L49-P1554-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "Within the slide’s simplified commercial-assistant sequence, what follows wake-word detection?",
@@ -4678,7 +4734,7 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1554,
           "kind": "statement",
-          "locator": "Printed slide 18: Numbered wake-word, recording/STT, NLP, response/action and TTS steps",
+          "locator": "Lecture L49, physical PDF page 1554, printed footer 18: Unnumbered wake-word, speech-to-text, NLP intent, response/action and TTS bullets.",
           "evidenceText": "Commercial Voice Assistants\n•  While marketed as digital assistants, devices like Siri, Alexa, and Google Assistant\n   are technically intent-driven, retrieval-based chatbots.                      Siri     Alexa\n•  A local wake-word engine detects the trigger and sends the\n   recorded audio to a cloud speech-to-text service for transcription\n•  An NLP system processes the transcribed text to remove filler   Google\n   words and determine the user's intended command.             Assistant\n•  After identifying the intent, the assistant performs the required action,\n   retrieves a predefined response, and converts it to speech using a TTS engine.\n•  They are optimized for short-turn dialogues and operate\n   with minimal contextual memory.\n•  While virtual assistants only execute digital software calls,\n  an embodied robotic assistant must bridge this identical\n   linguistic pipeline directly to a physical control loop.\n\n                                                                                                          18",
           "role": "conflict",
           "region": null
@@ -4697,9 +4753,9 @@
         "simpleExplanation": "This is the taught processing order.",
         "memoryAid": null,
         "misconceptions": [
-          "This prematurely synthesizes the input transcript rather than the selected response.",
-          "The wake word alone does not supply the later request’s intent.",
-          "TTS renders response speech rather than performing intent inference."
+          "Incorrect. TTS renders response speech rather than performing intent inference.",
+          "Incorrect. This prematurely synthesizes the input transcript rather than the selected response.",
+          "Incorrect. The wake word alone does not supply the later request’s intent."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -4717,11 +4773,14 @@
         "method": "Scope stems to the depicted sequence; no current-product capability survey is claimed.",
         "sourceIssueId": "L49-ISSUE-commercial-scope",
         "scope": "This version only; independent review required."
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1554-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "What is the safest interpretation of the named commercial assistants on this slide?",
@@ -4769,7 +4828,7 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1554,
           "kind": "statement",
-          "locator": "Printed slide 18: Numbered commercial-assistant processing stages",
+          "locator": "Lecture L49, physical PDF page 1554, printed footer 18: Unnumbered wake-word, speech-to-text, NLP intent, response/action and TTS bullets.",
           "evidenceText": "Commercial Voice Assistants\n•  While marketed as digital assistants, devices like Siri, Alexa, and Google Assistant\n   are technically intent-driven, retrieval-based chatbots.                      Siri     Alexa\n•  A local wake-word engine detects the trigger and sends the\n   recorded audio to a cloud speech-to-text service for transcription\n•  An NLP system processes the transcribed text to remove filler   Google\n   words and determine the user's intended command.             Assistant\n•  After identifying the intent, the assistant performs the required action,\n   retrieves a predefined response, and converts it to speech using a TTS engine.\n•  They are optimized for short-turn dialogues and operate\n   with minimal contextual memory.\n•  While virtual assistants only execute digital software calls,\n  an embodied robotic assistant must bridge this identical\n   linguistic pipeline directly to a physical control loop.\n\n                                                                                                          18",
           "role": "conflict",
           "region": null
@@ -4788,9 +4847,9 @@
         "simpleExplanation": "A pedagogical example does not settle all present and future implementations.",
         "memoryAid": null,
         "misconceptions": [
-          "The source is not a current exhaustive product evaluation.",
-          "The stated intent stage does not prove exact matching is the only mechanism.",
-          "Software commands can be connected to physical systems, so that categorical boundary is too strong."
+          "Incorrect. The source is not a current exhaustive product evaluation.",
+          "Incorrect. The stated intent stage does not prove exact matching is the only mechanism.",
+          "Incorrect. Software commands can be connected to physical systems, so that categorical boundary is too strong."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -4808,11 +4867,14 @@
         "method": "Scope stems to the depicted sequence; no current-product capability survey is claimed.",
         "sourceIssueId": "L49-ISSUE-commercial-scope",
         "scope": "This version only; independent review required."
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1555-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "Why can a two-stage wake-word/full-ASR design suit a resource-constrained mobile robot?",
@@ -4847,7 +4909,7 @@
         },
         {
           "id": "o4",
-          "text": "The wake phrase replaces task transcription by encoding all requested objects and actions"
+          "text": "Run the lightweight detector only after the full recognizer finishes each utterance, using it as a later activation filter."
         }
       ],
       "correctOptionIds": [
@@ -4871,7 +4933,7 @@
         "optionExplanations": {
           "o2": "Correct. Gating can limit when the more expensive stage is active.",
           "o3": "Incorrect. That does not achieve the depicted lightweight-first gating of full recognition.",
-          "o4": "Incorrect. The trigger does not encode the subsequent command.",
+          "o4": "A detector applied after full recognition cannot gate the expensive recognition work for that utterance.",
           "o1": "Incorrect. The source offers cloud or local ASR after the local trigger."
         },
         "steps": [],
@@ -4879,15 +4941,18 @@
         "simpleExplanation": "Gating can limit when the more expensive stage is active.",
         "memoryAid": null,
         "misconceptions": [
-          "That does not achieve the depicted lightweight-first gating of full recognition.",
-          "The trigger does not encode the subsequent command.",
-          "The source offers cloud or local ASR after the local trigger."
+          "Incorrect. The source offers cloud or local ASR after the local trigger.",
+          "Incorrect. That does not achieve the depicted lightweight-first gating of full recognition.",
+          "A detector applied after full recognition cannot gate the expensive recognition work for that utterance."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1555-Q02",
@@ -5221,13 +5286,13 @@
     },
     {
       "id": "W10-L49-P1556-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "A shared recognition/interpretation stage takes 0.6 s. Then speech feedback takes 0.8 s and validated action takes 1.5 s, starting together. When have both branches finished, and when does speech finish?",
       "selectionMode": "single",
       "type": "numerical",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "numerical",
       "week": 10,
       "lectureId": "L49",
@@ -5323,9 +5388,9 @@
         "simpleExplanation": "Both completion waits for the slower branch: 0.6+1.5=2.1 s; speech completes at 0.6+0.8=1.4 s.",
         "memoryAid": null,
         "misconceptions": [
-          "This serializes the two stipulated concurrent branches.",
-          "This omits the shared prefix.",
-          "This exchanges the slower all-branch completion with the speech completion."
+          "Incorrect. This serializes the two stipulated concurrent branches.",
+          "Incorrect. This omits the shared prefix.",
+          "Incorrect. This exchanges the slower all-branch completion with the speech completion."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -5343,7 +5408,11 @@
         "method": "Trace diagram dependencies, then calculate explicit branch durations and distinguish intent from motion validation.",
         "sourceIssueId": "L49-ISSUE-parallel-not-instant",
         "scope": "This version only; independent review required."
-      }
+      },
+      "difficultyRationale": "Direct evaluation of the fully supplied rule or straightforward source-based design distinction.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1556-Q04",
@@ -5532,7 +5601,7 @@
     },
     {
       "id": "W10-L49-P1557-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "A robot hears “Put those away” while several object groups are visible. What additional information may be required?",
@@ -5557,19 +5626,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "The first object noun mentioned in any earlier session, regardless of the current scene"
+          "text": "Choose the group named most recently in the current dialogue, without checking whether pointing or current context changes the reference."
         },
         {
           "id": "o2",
-          "text": "The referent of those and the intended scope of putting them away"
+          "text": "Resolve the current referent of those and the intended scope of putting them away using context or clarification."
         },
         {
           "id": "o3",
-          "text": "Only the verb put, since the object group never affects the task"
+          "text": "Select every visible group because a plural demonstrative specifies all objects in view."
         },
         {
           "id": "o4",
-          "text": "The nearest visible object group, assumed correct without contextual evidence"
+          "text": "Select the nearest visible group because distance alone determines what those denotes."
         }
       ],
       "correctOptionIds": [
@@ -5602,25 +5671,28 @@
       "solution": {
         "justification": "The demonstrative and task scope need grounding in the current context.",
         "optionExplanations": {
-          "o2": "Correct. The demonstrative and task scope need grounding in the current context.",
-          "o3": "Incorrect. Object selection changes the requested task.",
-          "o4": "Incorrect. Proximity alone is not supplied as the reference rule.",
-          "o1": "Incorrect. An unrelated stale referent is not justified by the current request."
+          "o2": "The demonstrative and task scope must be grounded in the current situation.",
+          "o3": "Plurality does not mean universal scope over every group.",
+          "o4": "Proximity alone has not been established as the speaker’s intended reference.",
+          "o1": "Recency is a possible cue, not a sufficient supplied reference rule."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The demonstrative and task scope need grounding in the current context.",
         "memoryAid": null,
         "misconceptions": [
-          "Object selection changes the requested task.",
-          "Proximity alone is not supplied as the reference rule.",
-          "An unrelated stale referent is not justified by the current request."
+          "Recency is a possible cue, not a sufficient supplied reference rule.",
+          "Plurality does not mean universal scope over every group.",
+          "Proximity alone has not been established as the speaker’s intended reference."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1557-Q03",
@@ -5799,7 +5871,7 @@
     },
     {
       "id": "W10-L49-P1558-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "A filter retains only clean and room. It maps both “Clean the room” and “Do not clean the room” to [clean, room]. What failure does this prove?",
@@ -5828,7 +5900,7 @@
         },
         {
           "id": "o2",
-          "text": "The problem is only output pronunciation, not intent information"
+          "text": "The only lost distinction is the order of the two retained content words, not whether the command is negated."
         },
         {
           "id": "o3",
@@ -5861,7 +5933,7 @@
           "o3": "Correct. The negation distinguishes the requests but is absent after filtering.",
           "o4": "Incorrect. The original commands have opposite action polarity.",
           "o1": "Incorrect. The stipulated representations are identical and contain no polarity cue.",
-          "o2": "Incorrect. The information loss occurs before response speech."
+          "o2": "Both outputs retain clean then room; the missing distinction is the discarded negation."
         },
         "steps": [
           "Filter the affirmative command to clean, room.",
@@ -5872,9 +5944,9 @@
         "simpleExplanation": "The negation distinguishes the requests but is absent after filtering.",
         "memoryAid": null,
         "misconceptions": [
-          "The original commands have opposite action polarity.",
-          "The stipulated representations are identical and contain no polarity cue.",
-          "The information loss occurs before response speech."
+          "Incorrect. The stipulated representations are identical and contain no polarity cue.",
+          "Both outputs retain clean then room; the missing distinction is the discarded negation.",
+          "Incorrect. The original commands have opposite action polarity."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -5892,11 +5964,14 @@
         "method": "Construct explicit same-keyword opposite-polarity commands and trace their retained strings.",
         "sourceIssueId": "L49-ISSUE-keyword-ambiguity",
         "scope": "This version only; independent review required."
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1558-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "Which change directly addresses the polarity failure of a clean/toys-only intent filter?",
@@ -5919,19 +5994,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Rename CLEAN_ROOM to CLEAN_TOYS without changing parsing behavior"
+          "text": "Alphabetically sort the same retained content words before intent selection."
         },
         {
           "id": "o2",
-          "text": "Preserve negation and relevant argument relations when mapping the command"
+          "text": "Preserve negation and relevant argument relations when mapping the command."
         },
         {
           "id": "o3",
-          "text": "Make the TTS voice clearer while leaving the filtered representation unchanged"
+          "text": "Lemmatize clean and toys but continue removing the negative marker."
         },
         {
           "id": "o4",
-          "text": "Always choose the highest keyword count even when a negative marker was discarded"
+          "text": "Increase the keyword-count threshold while continuing to discard not."
         }
       ],
       "correctOptionIds": [
@@ -5953,19 +6028,19 @@
       "solution": {
         "justification": "Keeping semantic distinctions relevant to the task prevents this particular collision.",
         "optionExplanations": {
-          "o2": "Correct. Keeping semantic distinctions relevant to the task prevents this particular collision.",
-          "o3": "Incorrect. A clearer spoken answer cannot restore information lost before intent selection.",
-          "o4": "Incorrect. More retained content words do not repair discarded polarity.",
-          "o1": "Incorrect. Changing a label alone does not change what information the parser preserves."
+          "o2": "The representation retains the semantic distinction needed for this failure case.",
+          "o3": "Morphological normalization does not restore a removed negative marker.",
+          "o4": "A threshold on unchanged keywords still lacks the missing polarity information.",
+          "o1": "Reordering the same collapsed representation cannot restore the missing polarity."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Keeping semantic distinctions relevant to the task prevents this particular collision.",
         "memoryAid": null,
         "misconceptions": [
-          "A clearer spoken answer cannot restore information lost before intent selection.",
-          "More retained content words do not repair discarded polarity.",
-          "Changing a label alone does not change what information the parser preserves."
+          "Reordering the same collapsed representation cannot restore the missing polarity.",
+          "Morphological normalization does not restore a removed negative marker.",
+          "A threshold on unchanged keywords still lacks the missing polarity information."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -5983,7 +6058,10 @@
         "method": "Construct explicit same-keyword opposite-polarity commands and trace their retained strings.",
         "sourceIssueId": "L49-ISSUE-keyword-ambiguity",
         "scope": "This version only; independent review required."
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1559-Q01",
@@ -6147,13 +6225,13 @@
     },
     {
       "id": "W10-L49-P1559-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "In a toy cascade, ASR is correct with probability 0.9; given correct ASR, intent interpretation is correct with probability 0.8; given both, response rendering is correct with probability 0.95. If success requires all three, what is its probability?",
       "selectionMode": "single",
       "type": "numerical",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "numerical",
       "week": 10,
       "lectureId": "L49",
@@ -6237,19 +6315,23 @@
         "simpleExplanation": "The conditional chain gives 0.9×0.8×0.95=0.684.",
         "memoryAid": null,
         "misconceptions": [
-          "That averages stage probabilities rather than computing joint success.",
-          "This ignores failures after recognition.",
-          "This subtracts the separate error probabilities 0.1+0.2+0.05 from one instead of using the supplied conditional chain."
+          "Incorrect. That averages stage probabilities rather than computing joint success.",
+          "Incorrect. This ignores failures after recognition.",
+          "Incorrect. This subtracts the separate error probabilities 0.1+0.2+0.05 from one instead of using the supplied conditional chain."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "difficultyRationale": "Direct evaluation of the fully supplied rule or straightforward source-based design distinction.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1559-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "What is the central change offered by the direct-speech approach described here?",
@@ -6272,19 +6354,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "No trained representation is needed because audio is already numerical"
+          "text": "The architecture retains a mandatory plain-text transcript as the only intermediate state but changes the synthesized voice."
         },
         {
           "id": "o2",
-          "text": "Speech representations can be modeled without a mandatory intermediate transcript bottleneck"
+          "text": "Speech representations can be modeled without a mandatory intermediate transcript bottleneck."
         },
         {
           "id": "o3",
-          "text": "Every system must remove all optional text inputs and outputs"
+          "text": "Avoiding a mandatory transcript also forbids optional text inputs or text outputs in the architecture."
         },
         {
           "id": "o4",
-          "text": "Every ASR error disappears because the model has fewer named boxes"
+          "text": "Removing the named transcription box removes recognition uncertainty, so the remaining speech representation needs no error evaluation."
         }
       ],
       "correctOptionIds": [
@@ -6317,19 +6399,19 @@
       "solution": {
         "justification": "The architectural change avoids requiring plain text as the only intermediate representation.",
         "optionExplanations": {
-          "o2": "Correct. The architectural change avoids requiring plain text as the only intermediate representation.",
-          "o3": "Incorrect. The next slide’s diagram explicitly includes text paths.",
-          "o4": "Incorrect. End-to-end processing does not guarantee error-free output.",
-          "o1": "Incorrect. The model still needs suitable learned or engineered representations."
+          "o2": "Plain text need not be the sole mandatory intermediate representation.",
+          "o3": "Optional text paths can coexist with direct speech processing.",
+          "o4": "Architectural integration does not eliminate all input or representation errors.",
+          "o1": "That preserves the bottleneck rather than making the stated architectural change."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The architectural change avoids requiring plain text as the only intermediate representation.",
         "memoryAid": null,
         "misconceptions": [
-          "The next slide’s diagram explicitly includes text paths.",
-          "End-to-end processing does not guarantee error-free output.",
-          "The model still needs suitable learned or engineered representations."
+          "That preserves the bottleneck rather than making the stated architectural change.",
+          "Optional text paths can coexist with direct speech processing.",
+          "Architectural integration does not eliminate all input or representation errors."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -6344,6 +6426,9 @@
           "locator": "Sections 3, 4.1 and 4.3; appendix C token trade-offs; appendix D text-present versus text-independent inference.",
           "checkedAt": "2026-10-19T22:33:00Z"
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
       ]
     },
     {
@@ -6506,7 +6591,7 @@
     },
     {
       "id": "W10-L49-P1560-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "What distinction is intended by discrete versus continuous speech representations?",
@@ -6529,19 +6614,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Discrete and continuous refer to turn-taking schedule rather than representation values"
+          "text": "Discrete units are integer codebook choices; continuous features are codebook indices written with decimal points."
         },
         {
           "id": "o2",
-          "text": "Discrete units are quantized choices; continuous features are real-valued representations"
+          "text": "Discrete units are quantized choices; continuous features are real-valued representations."
         },
         {
           "id": "o3",
-          "text": "Discrete units must be written words; continuous features must be literal waveform samples"
+          "text": "Discrete units must be written words; continuous features must be literal waveform samples."
         },
         {
           "id": "o4",
-          "text": "Discrete units preserve every original sample exactly; continuous features necessarily discard all content"
+          "text": "Discrete units become continuous whenever their codebook is large, regardless of whether outputs remain selected indices."
         }
       ],
       "correctOptionIds": [
@@ -6563,19 +6648,19 @@
       "solution": {
         "justification": "The distinction is quantized units versus a real-valued representation domain.",
         "optionExplanations": {
-          "o2": "Correct. The distinction is quantized units versus a real-valued representation domain.",
-          "o3": "Incorrect. Speech units need not be words, and continuous features may be learned latent vectors.",
-          "o4": "Incorrect. Neither exact waveform recovery nor loss of all content follows merely from that distinction.",
-          "o1": "Incorrect. Representation type and interaction schedule are different design dimensions."
+          "o2": "The difference concerns the representation domain and quantization.",
+          "o3": "Discrete acoustic units need not be words, and continuous features can be latent vectors.",
+          "o4": "A larger finite codebook is still a quantized representation.",
+          "o1": "A decimal notation for an index does not create a continuous latent representation."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The distinction is quantized units versus a real-valued representation domain.",
         "memoryAid": null,
         "misconceptions": [
-          "Speech units need not be words, and continuous features may be learned latent vectors.",
-          "Neither exact waveform recovery nor loss of all content follows merely from that distinction.",
-          "Representation type and interaction schedule are different design dimensions."
+          "A decimal notation for an index does not create a continuous latent representation.",
+          "Discrete acoustic units need not be words, and continuous features can be latent vectors.",
+          "A larger finite codebook is still a quantized representation."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -6590,6 +6675,9 @@
           "locator": "Sections 3, 4.1 and 4.3; appendix C token trade-offs; appendix D text-present versus text-independent inference.",
           "checkedAt": "2026-10-19T22:33:00Z"
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
       ]
     },
     {
@@ -6761,10 +6849,10 @@
     },
     {
       "id": "W10-L49-P1561-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
-      "stem": "Which behavior is genuinely full-duplex rather than merely fast half-duplex?",
+      "stem": "A demonstration includes a user interrupting the robot and a nearby conversation not addressed to it. Which behavior supports both the lecture’s full-duplex interaction and appropriate-silence claims?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -6784,19 +6872,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Alternate very short input/output turns without concurrent input processing"
+          "text": "Alternate short input/output turns and answer every detected background utterance."
         },
         {
           "id": "o2",
-          "text": "Record a user interruption during output but process it only after the complete reply ends"
+          "text": "Buffer interruptions until the complete reply ends, then answer them without checking whom they address."
         },
         {
           "id": "o3",
-          "text": "Process new input speech while producing output speech and handling interruptions"
+          "text": "Process new input during speech output, handle an interruption, and withhold a reply when context indicates the nearby speech is not addressed to the robot."
         },
         {
           "id": "o4",
-          "text": "Wait until the user stops, produce a fast reply, and disable input processing during it"
+          "text": "Disable input while speaking, then stay silent whenever any further sound is detected."
         }
       ],
       "correctOptionIds": [
@@ -6816,21 +6904,21 @@
         }
       ],
       "solution": {
-        "justification": "The stipulated concurrent processing and interruption response support full-duplex interaction.",
+        "justification": "The claim needs observed concurrent input handling and context-sensitive response control; merely using acoustic tokens does not establish these behaviors.",
         "optionExplanations": {
-          "o3": "Correct. The stipulated concurrent processing and interruption response support full-duplex interaction.",
-          "o4": "Incorrect. That remains half-duplex despite low latency.",
-          "o1": "Incorrect. Short turn lengths do not establish simultaneous processing.",
-          "o2": "Incorrect. Buffering alone without acting on the interruption does not demonstrate the stated interactive full-duplex behavior."
+          "o3": "This combines concurrent interaction, interruption response and a justified decision not to speak.",
+          "o4": "Disabled input is half-duplex, and silence triggered by every sound is not context-sensitive interaction.",
+          "o1": "Short alternating turns do not establish concurrency, and indiscriminate replies do not demonstrate appropriate silence.",
+          "o2": "Deferred buffering does not demonstrate interactive interruption handling or context-sensitive silence."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The stipulated concurrent processing and interruption response support full-duplex interaction.",
+        "simpleExplanation": "The claim needs observed concurrent input handling and context-sensitive response control; merely using acoustic tokens does not establish these behaviors.",
         "memoryAid": null,
         "misconceptions": [
-          "That remains half-duplex despite low latency.",
-          "Short turn lengths do not establish simultaneous processing.",
-          "Buffering alone without acting on the interruption does not demonstrate the stated interactive full-duplex behavior."
+          "Short alternating turns do not establish concurrency, and indiscriminate replies do not demonstrate appropriate silence.",
+          "Deferred buffering does not demonstrate interactive interruption handling or context-sensitive silence.",
+          "Disabled input is half-duplex, and silence triggered by every sound is not context-sensitive interaction."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -6857,11 +6945,14 @@
           "locator": "Sections 3, 4.1 and 4.3; appendix C token trade-offs; appendix D text-present versus text-independent inference.",
           "checkedAt": "2026-10-19T22:33:00Z"
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
       ]
     },
     {
       "id": "W10-L49-P1561-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "A model accepts acoustic tokens. What further fact would support a claim that it handles conversational interruption?",
@@ -6884,7 +6975,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "Its output sample rate is higher than the microphone sample rate"
+          "text": "It records microphone input during output but postpones all input processing until the current reply finishes."
         },
         {
           "id": "o2",
@@ -6892,7 +6983,7 @@
         },
         {
           "id": "o3",
-          "text": "Its token vocabulary is larger than that of a text-only model"
+          "text": "It processes incoming speech concurrently but queues every change until the original spoken reply finishes."
         },
         {
           "id": "o4",
@@ -6919,18 +7010,18 @@
         "justification": "Interruption handling is a behavior and scheduling capability that needs direct support.",
         "optionExplanations": {
           "o2": "Correct. Interruption handling is a behavior and scheduling capability that needs direct support.",
-          "o3": "Incorrect. Vocabulary size alone does not establish concurrent input handling.",
+          "o3": "Concurrent input analysis without timely cancellation or redirection does not establish the claimed interruption behavior.",
           "o4": "Incorrect. Single-turn expressive synthesis does not test interruption.",
-          "o1": "Incorrect. A sample-rate relationship does not establish dialogue control."
+          "o1": "Recording alone does not demonstrate timely processing or interruption control."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Interruption handling is a behavior and scheduling capability that needs direct support.",
         "memoryAid": null,
         "misconceptions": [
-          "Vocabulary size alone does not establish concurrent input handling.",
-          "Single-turn expressive synthesis does not test interruption.",
-          "A sample-rate relationship does not establish dialogue control."
+          "Recording alone does not demonstrate timely processing or interruption control.",
+          "Concurrent input analysis without timely cancellation or redirection does not establish the claimed interruption behavior.",
+          "Incorrect. Single-turn expressive synthesis does not test interruption."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -6957,6 +7048,9 @@
           "locator": "Sections 3, 4.1 and 4.3; appendix C token trade-offs; appendix D text-present versus text-independent inference.",
           "checkedAt": "2026-10-19T22:33:00Z"
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
       ]
     },
     {
@@ -7061,7 +7155,7 @@
     },
     {
       "id": "W10-L49-P1562-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "Which distinction captures the slide’s contrast between what was said and how it was said?",
@@ -7084,19 +7178,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Linguistic word content versus the grammatical class of those same words"
+          "text": "Linguistic word content versus the grammatical classes of those same words."
         },
         {
           "id": "o2",
-          "text": "Linguistic word content versus whether the transcript uses uppercase letters"
+          "text": "Linguistic word content versus which synonyms the transcript uses."
         },
         {
           "id": "o3",
-          "text": "Linguistic word content versus the identifier of the response template"
+          "text": "Linguistic word content versus the syntactic order of the transcribed phrases."
         },
         {
           "id": "o4",
-          "text": "Linguistic word content versus vocal pitch, rhythm and intonation"
+          "text": "Linguistic word content versus vocal pitch, rhythm and intonation."
         }
       ],
       "correctOptionIds": [
@@ -7118,29 +7212,32 @@
       "solution": {
         "justification": "The source’s how refers to vocal expression and prosody.",
         "optionExplanations": {
-          "o4": "Correct. The source’s how refers to vocal expression and prosody.",
-          "o1": "Incorrect. Grammatical class remains linguistic structure, not the cited vocal expression.",
-          "o2": "Incorrect. Capitalization is not the original acoustic cue.",
-          "o3": "Incorrect. A response identifier is not a property of how the user spoke."
+          "o4": "These are the vocal delivery cues named on the slide.",
+          "o1": "Grammatical classes concern linguistic structure, not the cited vocal expression.",
+          "o2": "Synonym choice is lexical content rather than the cited delivery cues.",
+          "o3": "Transcript syntax is different from acoustic rhythm and intonation."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The source’s how refers to vocal expression and prosody.",
         "memoryAid": null,
         "misconceptions": [
-          "Grammatical class remains linguistic structure, not the cited vocal expression.",
-          "Capitalization is not the original acoustic cue.",
-          "A response identifier is not a property of how the user spoke."
+          "Grammatical classes concern linguistic structure, not the cited vocal expression.",
+          "Synonym choice is lexical content rather than the cited delivery cues.",
+          "Transcript syntax is different from acoustic rhythm and intonation."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1562-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "If feelings are internal states, what is the justified limit on a robot’s emotion estimate?",
@@ -7171,7 +7268,7 @@
         },
         {
           "id": "o3",
-          "text": "Storing earlier turns converts the estimate into direct mind reading"
+          "text": "Agreement among stored earlier labels removes the need to report uncertainty for a new utterance."
         },
         {
           "id": "o4",
@@ -7211,16 +7308,16 @@
           "o4": "Correct. Hidden-state inference may use evidence while retaining uncertainty.",
           "o1": "Incorrect. Inaccessibility to direct measurement is not impossibility of inference.",
           "o2": "Incorrect. Observable expressions and model labels can be ambiguous.",
-          "o3": "Incorrect. Memory adds context, not direct access to private experience."
+          "o3": "Historical agreement can inform inference, but new observations and calibration still matter; it does not make the hidden state directly measured."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Hidden-state inference may use evidence while retaining uncertainty.",
         "memoryAid": null,
         "misconceptions": [
-          "Inaccessibility to direct measurement is not impossibility of inference.",
-          "Observable expressions and model labels can be ambiguous.",
-          "Memory adds context, not direct access to private experience."
+          "Incorrect. Inaccessibility to direct measurement is not impossibility of inference.",
+          "Incorrect. Observable expressions and model labels can be ambiguous.",
+          "Historical agreement can inform inference, but new observations and calibration still matter; it does not make the hidden state directly measured."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -7238,7 +7335,10 @@
         "method": "Contrast direct measurement with probabilistic inference and the following slide’s observable-pattern model.",
         "sourceIssueId": "L49-ISSUE-internal-state-inference",
         "scope": "This version only; independent review required."
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1562-Q03",
@@ -7318,7 +7418,7 @@
     },
     {
       "id": "W10-L49-P1563-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "Which inputs fit the lecture’s third-person pattern-recognition approach?",
@@ -7341,19 +7441,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "The transcript alone, assumed to retain every acoustic and facial cue"
+          "text": "Transcript word counts and response-template identifiers."
         },
         {
           "id": "o2",
-          "text": "The bot’s current personality variable, assumed to be the user’s emotional state"
+          "text": "The bot’s current personality variable and its planned reply wording."
         },
         {
           "id": "o3",
-          "text": "A single facial category label, assumed to be direct access to the person’s inner state"
+          "text": "The predicted intent label and the selected robot-action identifier."
         },
         {
           "id": "o4",
-          "text": "Facial motion and vocal patterns observed from the person"
+          "text": "Facial motion and vocal patterns observed from the person."
         }
       ],
       "correctOptionIds": [
@@ -7375,32 +7475,35 @@
       "solution": {
         "justification": "These are external cues explicitly named by the lecture.",
         "optionExplanations": {
-          "o4": "Correct. These are external cues explicitly named by the lecture.",
-          "o1": "Incorrect. A text transcript does not encode all acoustic and visual information.",
-          "o2": "Incorrect. The robot’s response state and the human’s state are distinct.",
-          "o3": "Incorrect. A predicted label is an inference, not direct inner-state access."
+          "o4": "The slide explicitly names facial motion and speech patterns.",
+          "o1": "These are text or system-level records, not the two external expressive cue types named here.",
+          "o2": "Robot response variables are not observations of the person’s face or voice.",
+          "o3": "Task labels are not the cited external emotion-related observations."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "These are external cues explicitly named by the lecture.",
         "memoryAid": null,
         "misconceptions": [
-          "A text transcript does not encode all acoustic and visual information.",
-          "The robot’s response state and the human’s state are distinct.",
-          "A predicted label is an inference, not direct inner-state access."
+          "These are text or system-level records, not the two external expressive cue types named here.",
+          "Robot response variables are not observations of the person’s face or voice.",
+          "Task labels are not the cited external emotion-related observations."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1563-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
-      "stem": "Facial cues suggest one interpretation while speech and context suggest another. What is a justified response of an emotion-aware interface?",
+      "stem": "Facial cues suggest one interpretation while speech and context suggest another, and both cue models are fallible. Which response is justified?",
       "selectionMode": "single",
       "type": "scenario",
       "difficulty": "easy",
@@ -7422,19 +7525,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Treat the facial label as ground truth regardless of the other observations"
+          "text": "Choose whichever modality reports the larger raw confidence value, without checking cross-model calibration."
         },
         {
           "id": "o2",
-          "text": "Discard all contextual information because emotion is always determined by one acoustic feature"
+          "text": "Average the two label numbers and treat the resulting number as the person’s emotion."
         },
         {
           "id": "o3",
-          "text": "Treat disagreement as proof that the person is deliberately deceptive"
+          "text": "Use the facial label as a fixed tie-breaker even when scene context reduces its reliability."
         },
         {
           "id": "o4",
-          "text": "Retain uncertainty and seek context or clarification rather than treating one cue as conclusive"
+          "text": "Retain uncertainty and seek context or clarification rather than treating one cue as conclusive."
         }
       ],
       "correctOptionIds": [
@@ -7456,19 +7559,19 @@
       "solution": {
         "justification": "Conflicting observations weaken a categorical inference and motivate cautious interaction.",
         "optionExplanations": {
-          "o4": "Correct. Conflicting observations weaken a categorical inference and motivate cautious interaction.",
-          "o1": "Incorrect. A predicted facial label is not direct access to the hidden state.",
-          "o2": "Incorrect. Multiple cues and context are part of the pattern-recognition problem.",
-          "o3": "Incorrect. Disagreement has many causes and does not prove deception."
+          "o4": "Conflicting fallible observations support a cautious, contextual response.",
+          "o1": "Confidence values from different models need not be directly comparable.",
+          "o2": "Category codes are not a meaningful numerical emotion scale to average.",
+          "o3": "A fixed tie-breaker ignores relevant evidence about reliability."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Conflicting observations weaken a categorical inference and motivate cautious interaction.",
         "memoryAid": null,
         "misconceptions": [
-          "A predicted facial label is not direct access to the hidden state.",
-          "Multiple cues and context are part of the pattern-recognition problem.",
-          "Disagreement has many causes and does not prove deception."
+          "Confidence values from different models need not be directly comparable.",
+          "Category codes are not a meaningful numerical emotion scale to average.",
+          "A fixed tie-breaker ignores relevant evidence about reliability."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -7486,17 +7589,20 @@
         "method": "Distinguish model predictions from direct access to internal states; restrict questions to measurable inputs and claims.",
         "sourceIssueId": "L49-ISSUE-emotion-understanding",
         "scope": "This version only; independent review required."
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     },
     {
       "id": "W10-L49-P1563-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L49-author-20261019",
       "stem": "Which design best combines the lecture’s language and emotion lessons for a robot receiving an ambiguous spoken request?",
       "selectionMode": "single",
       "type": "synthesis",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "synthesis",
       "week": 10,
       "lectureId": "L49",
@@ -7515,19 +7621,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Use only a keyword count and discard polarity, reference and tone because the words are enough"
+          "text": "Select the highest-scoring task from the words alone, then use tone only to choose a friendly TTS voice while leaving material reference ambiguity unresolved."
         },
         {
           "id": "o2",
-          "text": "Execute the broadest matching routine while asking a clarifying question after motion begins"
+          "text": "Validate a geometrically feasible plan for the nearest object and treat that feasibility as confirmation of the user’s intended referent."
         },
         {
           "id": "o3",
-          "text": "Use content and available contextual/acoustic cues, clarify material ambiguity, then validate the selected action"
+          "text": "Use content and available contextual/acoustic cues, clarify material ambiguity, then validate the selected action."
         },
         {
           "id": "o4",
-          "text": "Treat a confident emotion label as sufficient to determine both the requested object and a safe trajectory"
+          "text": "Resolve the object from dialogue context, but let the emotion label override a still-unresolved negative command marker before action selection."
         }
       ],
       "correctOptionIds": [
@@ -7571,10 +7677,10 @@
       "solution": {
         "justification": "The combined pipeline distinguishes evidence, interpretation and validated physical behavior.",
         "optionExplanations": {
-          "o3": "Correct. The combined pipeline distinguishes evidence, interpretation and validated physical behavior.",
-          "o4": "Incorrect. Emotion classification does not determine all task and geometric details.",
-          "o1": "Incorrect. The lecture’s limitations show why relevant information should not be discarded indiscriminately.",
-          "o2": "Incorrect. Clarification after an overbroad action does not resolve the ambiguity before execution."
+          "o3": "Interpretation, clarification and action validation address distinct requirements in the correct order.",
+          "o4": "An inferred emotion does not authorize dropping unresolved command polarity.",
+          "o1": "A friendly voice does not resolve ambiguity that can change the requested task.",
+          "o2": "Geometric feasibility does not establish which object the user intended."
         },
         "steps": [
           "Preserve relevant content and contextual cues.",
@@ -7585,9 +7691,9 @@
         "simpleExplanation": "The combined pipeline distinguishes evidence, interpretation and validated physical behavior.",
         "memoryAid": null,
         "misconceptions": [
-          "Emotion classification does not determine all task and geometric details.",
-          "The lecture’s limitations show why relevant information should not be discarded indiscriminately.",
-          "Clarification after an overbroad action does not resolve the ambiguity before execution."
+          "A friendly voice does not resolve ambiguity that can change the requested task.",
+          "Geometric feasibility does not establish which object the user intended.",
+          "An inferred emotion does not authorize dropping unresolved command polarity."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -7605,7 +7711,11 @@
         "method": "Distinguish model predictions from direct access to internal states; restrict questions to measurable inputs and claims.",
         "sourceIssueId": "L49-ISSUE-emotion-understanding",
         "scope": "This version only; independent review required."
-      }
+      },
+      "difficultyRationale": "Direct evaluation of the fully supplied rule or straightforward source-based design distinction.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L49-v2-author"
+      ]
     }
   ],
   "concepts": [

@@ -1,0 +1,560 @@
+{
+  "completedAt": "2026-10-19T22:54:57.966600+00:00",
+  "reviewerId": "robotics-contracts-reviewer",
+  "pagesInspected": [
+    1440,
+    1441,
+    1442,
+    1443,
+    1444,
+    1445,
+    1446,
+    1447,
+    1448,
+    1449,
+    1450,
+    1451,
+    1452,
+    1453,
+    1454,
+    1455,
+    1456,
+    1457,
+    1458,
+    1459,
+    1460,
+    1461,
+    1462,
+    1463,
+    1464,
+    1465,
+    1466,
+    1467,
+    1468,
+    1469,
+    1470,
+    1471,
+    1472,
+    1473,
+    1474,
+    1475
+  ],
+  "substantivePages": [
+    1443,
+    1444,
+    1445,
+    1446,
+    1447,
+    1448,
+    1449,
+    1450,
+    1451,
+    1452,
+    1453,
+    1454,
+    1455,
+    1456,
+    1457,
+    1458,
+    1459,
+    1460,
+    1461,
+    1462,
+    1463,
+    1464,
+    1465,
+    1466,
+    1467,
+    1468,
+    1469,
+    1470,
+    1471,
+    1472
+  ],
+  "pageCoverage": [
+    {
+      "physicalPage": 1440,
+      "questionIds": [],
+      "conceptIds": [],
+      "notes": "Lecture 46 Natural Language Processing cover and institutional metadata."
+    },
+    {
+      "physicalPage": 1441,
+      "questionIds": [],
+      "conceptIds": [],
+      "notes": "Objectives: HRI language, pipeline, representations, core tasks, attention/LLMs and multimodal robotic actions."
+    },
+    {
+      "physicalPage": 1442,
+      "questionIds": [],
+      "conceptIds": [],
+      "notes": "Agenda only, matching following technical sections."
+    },
+    {
+      "physicalPage": 1443,
+      "questionIds": [
+        "W10-L46-P1443-Q01",
+        "W10-L46-P1443-Q02"
+      ],
+      "conceptIds": [
+        "W10-L46-C-nlp-hri"
+      ],
+      "notes": "NLP covers language analysis and generation in written/spoken forms. Diagram separates speech recognition, language understanding and response generation."
+    },
+    {
+      "physicalPage": 1444,
+      "questionIds": [
+        "W10-L46-P1444-Q01",
+        "W10-L46-P1444-Q02"
+      ],
+      "conceptIds": [
+        "W10-L46-C-semantic-slots"
+      ],
+      "notes": "Red-ball command extraction: action pick up, target ball, property red, spatial reference near chair. Language interpretation precedes robot planning and execution."
+    },
+    {
+      "physicalPage": 1445,
+      "questionIds": [
+        "W10-L46-P1445-Q01",
+        "W10-L46-P1445-Q02",
+        "W10-L46-P1461-Q03"
+      ],
+      "conceptIds": [
+        "W10-L46-C-language-challenges"
+      ],
+      "notes": "Challenges: light-box semantic ambiguity, ball/bowl acoustic confusion, contextual synonym interpretation, sarcasm/tone/body-language context in praise versus frustration."
+    },
+    {
+      "physicalPage": 1446,
+      "questionIds": [
+        "W10-L46-P1446-Q01",
+        "W10-L46-P1446-Q02",
+        "W10-L46-P1446-Q03"
+      ],
+      "conceptIds": [
+        "W10-L46-C-pipeline"
+      ],
+      "notes": "Six-stage conceptual pipeline from input through preprocessing, vectorization, understanding, planning and action. Stages may combine internally. Preprocessing order: lower, punctuation removal, tokenization, stopwords, stem/lemma; NLTK expanded."
+    },
+    {
+      "physicalPage": 1447,
+      "questionIds": [
+        "W10-L46-P1447-Q01",
+        "W10-L46-P1447-Q02",
+        "W10-L46-P1447-Q03"
+      ],
+      "conceptIds": [
+        "W10-L46-C-tokens-vocabulary-corpus"
+      ],
+      "notes": "Token occurrence list has repeated the, while vocabulary means unique types. Corpus is a collection of texts. Tokenization does not alone establish understanding; the phrase machines learn language by breaking sentences is a simplification."
+    },
+    {
+      "physicalPage": 1448,
+      "questionIds": [
+        "W10-L46-P1448-Q01",
+        "W10-L46-P1448-Q02"
+      ],
+      "conceptIds": [
+        "W10-L46-C-normalization"
+      ],
+      "notes": "Stopwords often removed but action particles/negation can matter. Mechanical stemming versus lexical lemmatization, studies to studi versus study. Claimed speed/simplicity benefits are not universally safe semantic preservation."
+    },
+    {
+      "physicalPage": 1449,
+      "questionIds": [
+        "W10-L46-P1449-Q01",
+        "W10-L46-P1449-Q02",
+        "W10-L46-P1449-Q03",
+        "W10-L46-P1449-Q04",
+        "W10-L46-P1460-Q04"
+      ],
+      "conceptIds": [
+        "W10-L46-C-preprocess-code"
+      ],
+      "notes": "Actual printed code lowercases, deletes string.punctuation, tokenizes, filters by stopword membership while iterating original tokens, then default WordNet lemmatization. Displayed output removes up and the. Required corpus resources are not downloaded by this cell."
+    },
+    {
+      "physicalPage": 1450,
+      "questionIds": [
+        "W10-L46-P1448-Q01",
+        "W10-L46-P1450-Q01",
+        "W10-L46-P1450-Q02"
+      ],
+      "conceptIds": [
+        "W10-L46-C-normalization"
+      ],
+      "notes": "Printed studies demonstration imports stemmer/lemmatizer but invokes nltk.download without importing nltk in this isolated cell. Shown output studi versus study. The word better is limited to lexical form, not universal task superiority."
+    },
+    {
+      "physicalPage": 1451,
+      "questionIds": [
+        "W10-L46-P1451-Q01",
+        "W10-L46-P1451-Q02"
+      ],
+      "conceptIds": [
+        "W10-L46-C-vectorization"
+      ],
+      "notes": "Vectorization options: one-hot, bag of words, TF-IDF, Word2Vec/GloVe. Numerical conversion does not itself guarantee preservation of order or meaning."
+    },
+    {
+      "physicalPage": 1452,
+      "questionIds": [
+        "W10-L46-P1452-Q01",
+        "W10-L46-P1452-Q02"
+      ],
+      "conceptIds": [
+        "W10-L46-C-one-hot-bow"
+      ],
+      "notes": "One-hot encodes token identity; bag of words counts document terms and discards order. Both sparse, unlike learned dense embeddings. The most-common claim is contextual, not a timeless ranking."
+    },
+    {
+      "physicalPage": 1453,
+      "questionIds": [
+        "W10-L46-P1453-Q01",
+        "W10-L46-P1453-Q02",
+        "W10-L46-P1453-Q03",
+        "W10-L46-P1453-Q04"
+      ],
+      "conceptIds": [
+        "W10-L46-C-one-hot-code"
+      ],
+      "notes": "Printed encoder uses sparse_output=False. Alphabetical columns ball, chair, near, pick, red; input rows pick, red, ball, near, chair. Row indices and feature indices are different. Dense return does not make this a learned embedding."
+    },
+    {
+      "physicalPage": 1454,
+      "questionIds": [
+        "W10-L46-P1454-Q01",
+        "W10-L46-P1454-Q02",
+        "W10-L46-P1454-Q03",
+        "W10-L46-P1454-Q04",
+        "W10-L46-P1454-Q05",
+        "W10-L46-P1456-Q01",
+        "W10-L46-P1456-Q04",
+        "W10-L46-P1457-Q02"
+      ],
+      "conceptIds": [
+        "W10-L46-C-bow-code"
+      ],
+      "notes": "Three commands; eight alphabetical features ball, blue, box, chair, grab, near, pick, red. Distinct grab and pick columns. Document matrix rows contain token counts, not phrase order."
+    },
+    {
+      "physicalPage": 1455,
+      "questionIds": [
+        "W10-L46-P1455-Q01",
+        "W10-L46-P1456-Q04",
+        "W10-L46-P1457-Q01"
+      ],
+      "conceptIds": [
+        "W10-L46-C-tfidf-math"
+      ],
+      "notes": "TF equation divides term count by document token length. Counts are dimensionless; repetition does not determine document frequency."
+    },
+    {
+      "physicalPage": 1456,
+      "questionIds": [
+        "W10-L46-P1456-Q01",
+        "W10-L46-P1456-Q02",
+        "W10-L46-P1456-Q03",
+        "W10-L46-P1456-Q04",
+        "W10-L46-P1457-Q01"
+      ],
+      "conceptIds": [
+        "W10-L46-C-tfidf-math"
+      ],
+      "notes": "IDF is log(N/df); simple TF-IDF product. Base not specified; questions explicitly choose natural logarithm. df counts documents; zero df makes unsmoothed expression undefined."
+    },
+    {
+      "physicalPage": 1457,
+      "questionIds": [
+        "W10-L46-P1457-Q01",
+        "W10-L46-P1457-Q02",
+        "W10-L46-P1457-Q03",
+        "W10-L46-P1457-Q04"
+      ],
+      "conceptIds": [
+        "W10-L46-C-tfidf-code"
+      ],
+      "notes": "Printed TfidfVectorizer table uses library defaults, not the preceding unsmoothed formula: smooth IDF plus one, raw counts, L2 row normalization. Rounded first row ball/chair/near .49, pick/red .37."
+    },
+    {
+      "physicalPage": 1458,
+      "questionIds": [
+        "W10-L46-P1458-Q01",
+        "W10-L46-P1458-Q02",
+        "W10-L46-P1458-Q03",
+        "W10-L46-P1458-Q04",
+        "W10-L46-P1458-Q05",
+        "W10-L46-P1458-Q06"
+      ],
+      "conceptIds": [
+        "W10-L46-C-embeddings"
+      ],
+      "notes": "Dense embedding diagram has qualitative Action, Intention and Context axes, not calibrated learned coordinates. Cosine is dot product over norm product. Training and comparison must not be conflated: GloVe uses co-occurrence objectives, not just cosine."
+    },
+    {
+      "physicalPage": 1459,
+      "questionIds": [
+        "W10-L46-P1446-Q02",
+        "W10-L46-P1459-Q01"
+      ],
+      "conceptIds": [
+        "W10-L46-C-understanding"
+      ],
+      "notes": "POS grammar versus NER entity spans. Classic pipeline ordering is not universal for joint modern architectures."
+    },
+    {
+      "physicalPage": 1460,
+      "questionIds": [
+        "W10-L46-P1459-Q01",
+        "W10-L46-P1460-Q01",
+        "W10-L46-P1460-Q02",
+        "W10-L46-P1460-Q03",
+        "W10-L46-P1460-Q04",
+        "W10-L46-P1461-Q02",
+        "W10-L46-P1463-Q02"
+      ],
+      "conceptIds": [
+        "W10-L46-C-pos-code"
+      ],
+      "notes": "Printed code lowercases, tokenizes and tags; no preceding stopword filtering is applied here. Saved example pick VB, up RP, the DT, red JJ, ball NN, near IN, the DT, chair NN. Corpus-sensitive output is historical."
+    },
+    {
+      "physicalPage": 1461,
+      "questionIds": [
+        "W10-L46-P1461-Q01",
+        "W10-L46-P1461-Q02",
+        "W10-L46-P1461-Q03",
+        "W10-L46-P1461-Q04"
+      ],
+      "conceptIds": [
+        "W10-L46-C-pos-ambiguity"
+      ],
+      "notes": "Printed command2 has capital Pick but saved output starts lowercase pick, indicating mismatched execution context. Light NN contradicts the assumed non-heavy adjective sense; POS alone cannot resolve two adjectival senses."
+    },
+    {
+      "physicalPage": 1462,
+      "questionIds": [
+        "W10-L46-P1459-Q01",
+        "W10-L46-P1462-Q01",
+        "W10-L46-P1462-Q02",
+        "W10-L46-P1462-Q03",
+        "W10-L46-P1462-Q04",
+        "W10-L46-P1461-Q04"
+      ],
+      "conceptIds": [
+        "W10-L46-C-ner-code"
+      ],
+      "notes": "NER tokenize, POS, then ne_chunk. Historical tree labels Lab3 GPE and Mary PERSON; both NNP. Lab3 being a room does not make it geographically geopolitical. Linked official notebook independently read; no new corpus execution claimed."
+    },
+    {
+      "physicalPage": 1463,
+      "questionIds": [
+        "W10-L46-P1463-Q01",
+        "W10-L46-P1463-Q02"
+      ],
+      "conceptIds": [
+        "W10-L46-C-intent"
+      ],
+      "notes": "Whole-command intent taxonomy: find charger Navigation, stop Emergency, lift crate Manipulation. Categories are task conventions, not universal labels."
+    },
+    {
+      "physicalPage": 1464,
+      "questionIds": [
+        "W10-L46-P1464-Q01",
+        "W10-L46-P1464-Q02",
+        "W10-L46-P1464-Q03"
+      ],
+      "conceptIds": [
+        "W10-L46-C-core-tasks"
+      ],
+      "notes": "Frustrated Great job example is negative sarcasm. Translation changes language; source QA example extracts knowledge-base answer, not an exhaustive definition of all QA."
+    },
+    {
+      "physicalPage": 1465,
+      "questionIds": [
+        "W10-L46-P1465-Q01",
+        "W10-L46-P1465-Q02",
+        "W10-L46-P1465-Q03",
+        "W10-L46-P1472-Q06"
+      ],
+      "conceptIds": [
+        "W10-L46-C-asr"
+      ],
+      "notes": "ASR transcribes audio; NLP interpretation and planning follow. Transcript accuracy does not ensure target grounding or safe motion. Whisper is a source example, not a current model ranking."
+    },
+    {
+      "physicalPage": 1466,
+      "questionIds": [
+        "W10-L46-P1466-Q01"
+      ],
+      "conceptIds": [
+        "W10-L46-C-context-limits"
+      ],
+      "notes": "Context-limited baseline has pronoun and long-instruction weaknesses. Not a universal claim that every non-transformer is context-free."
+    },
+    {
+      "physicalPage": 1467,
+      "questionIds": [
+        "W10-L46-P1467-Q01",
+        "W10-L46-P1467-Q02"
+      ],
+      "conceptIds": [
+        "W10-L46-C-attention"
+      ],
+      "notes": "Cluttered points to shelf; low battery points to robot. Arrow darkness conveys illustrative relation strength, not numerical attention weights."
+    },
+    {
+      "physicalPage": 1468,
+      "questionIds": [
+        "W10-L46-P1468-Q01",
+        "W10-L46-P1468-Q02"
+      ],
+      "conceptIds": [
+        "W10-L46-C-attention"
+      ],
+      "notes": "Move is action, robot moved object, shelf spatial context. Attention is contextual mechanism; data and parameter scaling separate. Blank lower-right panel contains no extra material."
+    },
+    {
+      "physicalPage": 1469,
+      "questionIds": [
+        "W10-L46-P1469-Q01",
+        "W10-L46-P1469-Q02",
+        "W10-L46-P1469-Q03",
+        "W10-L46-P1469-Q04"
+      ],
+      "conceptIds": [
+        "W10-L46-C-llm-generation"
+      ],
+      "notes": "Autoregressive diagram appends up to pick. Displayed .57+.35+.15+.07=1.14, impossible even as partial probabilities. Up remains maximum; renormalizing explicitly supplied positive weights is a different declared model."
+    },
+    {
+      "physicalPage": 1470,
+      "questionIds": [
+        "W10-L46-P1470-Q01",
+        "W10-L46-P1470-Q02",
+        "W10-L46-P1470-Q03"
+      ],
+      "conceptIds": [
+        "W10-L46-C-llm-robotics"
+      ],
+      "notes": "LLM proposes interpretation and planning; robot planning then action. Fluent output can be wrong and needs grounding/checking. Philosophical truly understand statement is not a rigorously defined exam criterion."
+    },
+    {
+      "physicalPage": 1471,
+      "questionIds": [
+        "W10-L46-P1471-Q01",
+        "W10-L46-P1471-Q02",
+        "W10-L46-P1471-Q03"
+      ],
+      "conceptIds": [
+        "W10-L46-C-vlm"
+      ],
+      "notes": "Image plus text to vision encoder and language representation; ViT is the illustrated design, not necessary for every VLM. Mug .78 is maximum; displayed probabilities total .99 with ellipsis. Language response is not a motor action."
+    },
+    {
+      "physicalPage": 1472,
+      "questionIds": [
+        "W10-L46-P1472-Q01",
+        "W10-L46-P1472-Q02",
+        "W10-L46-P1472-Q03",
+        "W10-L46-P1472-Q04",
+        "W10-L46-P1472-Q05",
+        "W10-L46-P1472-Q06"
+      ],
+      "conceptIds": [
+        "W10-L46-C-vla"
+      ],
+      "notes": "VLA combines image/instruction and action head; action executes and next visual state updates. Often discrete action tokens is qualified, not all VLAs. Mug .65 is an object-word label, not a joint coordinate. RT-2/OpenVLA listed examples."
+    },
+    {
+      "physicalPage": 1473,
+      "questionIds": [],
+      "conceptIds": [
+        "W10-L46-C-nlp-hri",
+        "W10-L46-C-pipeline",
+        "W10-L46-C-context-limits",
+        "W10-L46-C-attention",
+        "W10-L46-C-llm-generation",
+        "W10-L46-C-vlm",
+        "W10-L46-C-vla"
+      ],
+      "notes": "Summary repeats prior concepts; broad lack-of-context claim needs baseline qualification. No additional equation or code."
+    },
+    {
+      "physicalPage": 1474,
+      "questionIds": [],
+      "conceptIds": [],
+      "notes": "Reference to Jurafsky and Martin January 2026 online manuscript. Reference-only page; no extra examinable formula."
+    },
+    {
+      "physicalPage": 1475,
+      "questionIds": [],
+      "conceptIds": [],
+      "notes": "Thank-you footer only; excluded from examinable content."
+    }
+  ],
+  "exclusions": {
+    "1440": "Cover and institutional attribution.",
+    "1441": "Objectives revisited in the substantive content.",
+    "1442": "Agenda only.",
+    "1473": "Summary compared for new content; repeats existing concepts without a new equation or code path.",
+    "1474": "Reference-only page.",
+    "1475": "Thank-you slide."
+  },
+  "remainingBoundedGaps": [
+    {
+      "id": "L46-G01",
+      "pages": [
+        1446,
+        1448,
+        1449,
+        1450,
+        1453,
+        1460,
+        1462
+      ],
+      "finding": "Individual preprocessing outputs and code fragments are tested, but no item traces the complete five-stage preprocessing path and compares its retained information with the separate POS/NER path. Concept ledger claims full intermediate/lemma sequence and nested encoder-input shape without an integrated exercise.",
+      "remedy": "Add or replace a redundant item with a bounded full trace using explicitly supplied stopword/lemma tables, including repeated tokens, a meaning-bearing particle or negation, ordered output, and nested encoder input. Contrast with an unfiltered POS path and identify corpus/setup versus algorithm-output dependencies. Do not invent a fresh unavailable NLTK run."
+    },
+    {
+      "id": "L46-G02",
+      "pages": [
+        1454,
+        1455,
+        1456,
+        1457,
+        1458
+      ],
+      "finding": "The numerical weighting question uses identical term counts and one document; cosine is tested only on separately supplied vectors. No question integrates corpus document frequency, repeated-token TF, exact weighting convention, normalization and similarity/ranking, or tests when larger TF can outweigh greater rarity.",
+      "remedy": "Add a bounded integrated document/query comparison with a fixed vocabulary, explicit log/smoothing/normalization conventions, unequal term multiplicities and a nontrivial cosine comparison. Include the zero-vector domain if it occurs, and explain each distractor from a coherent wrong convention. This can supply meaningful hard reasoning without relying on unprinted embedding coordinates."
+    },
+    {
+      "id": "L46-G03",
+      "pages": [
+        1444,
+        1445,
+        1463,
+        1464,
+        1465,
+        1467,
+        1470,
+        1471,
+        1472
+      ],
+      "finding": "Grounding and safe-execution limits are repeated as broad assertions, while most tasks are definition/diagram recognition. No integrated case distinguishes ASR, translation, intent/entity/context resolution, visual grounding and action-feedback roles under an explicit ambiguous robot instruction.",
+      "remedy": "Replace duplicate simple scenarios with one bounded multistatement or sequence case using supplied transcript, scene/object candidates and a later observation. Require choosing the information/clarification that resolves the ambiguity and distinguishing VLM language output from VLA action and next state. All facts must remain explicitly supplied or source-cited, not invented model predictions."
+    }
+  ],
+  "conceptLedger": "27 meaningful grouped concept families, not 90 invented one-question concepts. All substantive pages have at least one citation, but page presence does not close the integrated reasoning gaps.",
+  "difficultyMix": {
+    "easy": 85,
+    "medium": 5
+  },
+  "difficultyFinding": "85 easy and 5 medium, no hard or multiselect items. Two medium labels are straightforward substitution/normalization. Close bounded integrated gaps rather than merely relabeling recall.",
+  "sourceQualifications": "All 12 author source qualifications were independently assessed and should remain visible. Vocabulary repeats the; corpus/version-sensitive outputs; lemma versus stem criterion; TF-IDF conventions; GloVe training versus comparison; PDF/notebook POS provenance; GPE model label versus ontology; bounded traditional-NLP claim; invalid probability subtotal; operational rather than philosophical understanding; illustrated ViT scope; often-discrete actions. No course source was silently corrected.",
+  "runtime": "No corpus-dependent NLTK pipeline/POS/NER fresh execution. Historical outputs read as historical source evidence only. No resource download attempted; no fake/mocked outputs.",
+  "runtimeSucceeded": "Original notebook cells 17 and 19 executed unchanged; cell 15 executed with explicitly supplied PDF tokens, not a completed upstream NLTK run. PorterStemmer and standard-library lower/punctuation operations executed. 22 explicit checks plus 5000 varied assertions.",
+  "formulaResource": "Unlike L47, numerical items do include formula/variable/unit records. Four narrow source-scope repairs are flagged; retain useful formula resources rather than deleting them globally.",
+  "answerPosition": "All intended stable IDs are o1, but stored option arrays vary and the app uses answer-independent display order. No user-facing clue was inferred from stable option IDs alone.",
+  "releaseComplete": false
+}

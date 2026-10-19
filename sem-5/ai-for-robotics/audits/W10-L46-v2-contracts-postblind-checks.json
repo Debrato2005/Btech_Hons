@@ -1,0 +1,75 @@
+{
+  "completedAt": "2026-10-19T23:33:08.872090+00:00",
+  "blindEvidenceUnchanged": true,
+  "primaryEvidence": [
+    {
+      "questionId": "W10-L46-P1449-Q04",
+      "evidence": {
+        "url": "https://www.nltk.org/api/nltk.stem.wordnet.html",
+        "version": "Installed NLTK 3.10.3 signature inspected; no corpus execution.",
+        "locator": "WordNetLemmatizer.lemmatize default pos=\"n\".",
+        "savedEvidencePath": "audits/W10-L46-v2-supplemental-evidence.json",
+        "savedEvidenceSha256": "8ce3598e2d3af10a393cebf2aeb566c0124167b148ecc5cf04fba675d4b726e7",
+        "section": "wordnet",
+        "relationToLecture": "Supplemental API premise for the call displayed on p1449."
+      }
+    },
+    {
+      "questionId": "W10-L46-P1454-Q04",
+      "evidence": {
+        "title": "CountVectorizer installed primary implementation",
+        "url": "https://scikit-learn.org/1.8/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html",
+        "version": "scikit-learn 1.8.0",
+        "localPath": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/sklearn/feature_extraction/text.py",
+        "sha256": "a7a67a48b0856af50224f4548f3d2cae9f4a9d0af1e37730d4aea3da95d99d65",
+        "locator": "fit_transform/transform, alphabetic feature sorting, counts and fixed learned vocabulary.",
+        "checkedAt": "2026-10-19T22:10:00Z"
+      }
+    },
+    {
+      "questionId": "W10-L46-P1454-Q05",
+      "evidence": {
+        "url": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/main/week10/week10_lecture46.ipynb",
+        "localPath": "sources/supplemental/L46-official-week10_lecture46.ipynb",
+        "sha256": "d32019733e3d14c0b21c9bf5276ecceb8fa4b0a11757bb0b4ffef4b2fe2504c3",
+        "locator": "Zero-based cell 17: pd.DataFrame(X.toarray(), columns=vectorizer.get_feature_names_out()).",
+        "savedEvidencePath": "audits/W10-L46-v2-supplemental-evidence.json",
+        "savedEvidenceSha256": "8ce3598e2d3af10a393cebf2aeb566c0124167b148ecc5cf04fba675d4b726e7",
+        "section": "countDataFrame",
+        "relationToLecture": "Exact notebook detail omitted from the shortened p1454 excerpt; linked by p1462."
+      }
+    },
+    {
+      "questionId": "W10-L46-P1458-Q05",
+      "evidence": {
+        "title": "GloVe: Global Vectors for Word Representation",
+        "url": "https://nlp.stanford.edu/pubs/glove.pdf",
+        "version": "Pennington, Socher and Manning, 2014",
+        "locator": "Abstract and Section 3: global log-bilinear/co-occurrence model; cosine/distance used in evaluation",
+        "checkedAt": "2026-10-19T22:09:00Z"
+      }
+    },
+    {
+      "questionId": "W10-L46-P1462-Q03",
+      "evidence": {
+        "title": "Official lecture 46 notebook",
+        "url": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/main/week10/week10_lecture46.ipynb",
+        "version": "Retrieved 2026-10-19; saved NLTK output reports 3.9.1",
+        "localPath": "sources/supplemental/L46-official-week10_lecture46.ipynb",
+        "sha256": "d32019733e3d14c0b21c9bf5276ecceb8fa4b0a11757bb0b4ffef4b2fe2504c3",
+        "checkedAt": "2026-10-19T22:10:00Z",
+        "locator": "Zero-based cell 27; saved outputs are historical evidence, not fresh corpus-dependent execution."
+      }
+    }
+  ],
+  "sourcePremises": "Added p1452/1455/1456/1458/1466 citations match actual definitions; notebook cell 17 is explicitly bound through p1462 hyperlink plus original notebook path/hash/cell. GloVe original qualification and historical NER model output retained.",
+  "residuals": {
+    "W10-L46-P1449-Q04": [
+      "The newly added pre-answer assumption explicitly says the method defaults pos to n and performs no automatic tagging, which directly supplies the requested answer. Preserve the excellent API/signature provenance in primaryEvidence and the post-answer solution, but remove the answer-bearing default from pre-answer assumptions (or turn the item into a genuine application that needs the supplied default). The noun default, version check and revised alternatives are otherwise correct."
+    ],
+    "W10-L46-P1468-Q01": [
+      "The repaired o4 duplicates the substantive error already offered by o3: both label robot as the destination/reference and shelf as the moved object while keeping move as the action. Adding the true cluttered property does not create a distinct tested mapping or misconception. Replace one with a different plausible role/property assignment, or use three genuinely distinct choices. The source mapping and key remain correct."
+    ]
+  },
+  "preAnswerLeak": "P1449-Q04 assumption contains the default noun answer. Binding source provenance was necessary, but source/API facts should not gratuitously answer the same recall stem in visible assumptions."
+}

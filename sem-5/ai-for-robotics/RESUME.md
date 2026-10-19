@@ -15,7 +15,7 @@
 
 ## Checkpoint authorization and remote state
 
-The user explicitly authorized this and future validated checkpoint pushes to main on19October2026 at22:47UTC. Inspect main and use expected-SHA protection before updates. The last verified main before this snapshot was acf4ba33dd2894e56f4cc6985de4178ecc0423c5. Older unreferenced commit080eee36f72d244176dd16a082757648385901a6 is superseded by the newer coherent snapshot, not a completion claim. Only validated independent reviews enter the default pool; drafts and flagged items remain excluded.
+The user explicitly authorized this and future validated checkpoint pushes to main on19October2026 at22:47UTC. Inspect main and use expected-SHA protection before updates. The last verified main at 23:28 UTC before this snapshot was eb3e2a77028c15e6097d4644606c14a7d58d12a8. Older unreferenced commit080eee36f72d244176dd16a082757648385901a6 is superseded by the newer coherent snapshot, not a completion claim. Only validated independent reviews enter the default pool; drafts and flagged items remain excluded.
 
 ## Next actions
 
@@ -24,3 +24,7 @@ Read docs/handoffs/integration.md and each worker handoff before assigning more 
 ## Verification of checkpoints
 
 Use `git ls-remote origin refs/heads/main` and compare with the intended commit. Local commits alone are not durable completion. This file is updated at meaningful checkpoints; current commits are self-identifying through Git history.
+
+## Runtime boundaries
+
+Do not use /tmp/robotics-l35-venv, install or retrieve models through denied routes, retrieve the denied L49 notebook, download NLTK corpora after its access denial, or bypass offline-browser restrictions. Read audits/W10-L48-independent-runtime-boundary.json and audits/W11-L52-runtime-boundary.json. Historical computations are not pretrained inference or hardware validation. Default installed Python deterministic analysis remains permitted.

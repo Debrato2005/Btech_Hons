@@ -342,7 +342,7 @@
     },
     {
       "id": "W09-L44-Q005",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "Why does the source motivate alternatives to GPS in an indoor or urban-canyon setting?",
@@ -368,15 +368,15 @@
         },
         {
           "id": "o2",
-          "text": "The satellite navigation measurement is derived from wheel pulses, so wheel slip directly corrupts its measured range."
+          "text": "The receiver may retain its last outdoor fix; treating that stale fix as a current position removes the indoor localization problem."
         },
         {
           "id": "o3",
-          "text": "The main cited limitation is that camera lighting changes the satellite receiver’s image features."
+          "text": "A correctly surveyed indoor map guarantees usable satellite reception, so only map calibration needs attention."
         },
         {
           "id": "o4",
-          "text": "The main cited limitation is a mismatch between stored landmark labels and camera object classes."
+          "text": "A higher requested GPS update frequency guarantees recovery of the obstructed satellite measurements."
         }
       ],
       "correctOptionIds": [
@@ -398,26 +398,29 @@
       "solution": {
         "justification": "The limitation concerns the measurement environment, not the existence of a pose state.",
         "optionExplanations": {
-          "o1": "This is the source’s indoor and urban-canyon limitation.",
-          "o2": "This confuses GNSS with encoder-based odometry.",
-          "o3": "That is a visual-perception issue, not the stated GNSS mechanism.",
-          "o4": "That is a map-association issue, not obstruction of satellite signals."
+          "o1": "The source identifies blocked satellite signals as the indoor and urban-canyon limitation.",
+          "o2": "A retained old fix is not a new observation of the moving robot.",
+          "o3": "Map accuracy does not restore a blocked radio path.",
+          "o4": "Requesting more frequent output does not itself make unavailable signals observable."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The limitation concerns the measurement environment, not the existence of a pose state.",
         "memoryAid": null,
         "misconceptions": [
-          "This confuses GNSS with encoder-based odometry.",
-          "That is a visual-perception issue, not the stated GNSS mechanism.",
-          "That is a map-association issue, not obstruction of satellite signals."
+          "A retained old fix is not a new observation of the moving robot.",
+          "Map accuracy does not restore a blocked radio path.",
+          "Requesting more frequent output does not itself make unavailable signals observable."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q006",
@@ -1023,7 +1026,7 @@
     },
     {
       "id": "W09-L44-Q013",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "How should the slide’s pulse-time formula and model-unspecified RPLidar example be used together?",
@@ -1053,11 +1056,11 @@
         },
         {
           "id": "o3",
-          "text": "Replace the round-trip divisor 2 by the number of points per revolution for any rotating scanner."
+          "text": "Infer the ranging principle from the 5.5 Hz spin rate alone, because scan rotation uniquely distinguishes time-of-flight from triangulation."
         },
         {
           "id": "o4",
-          "text": "Treat 360 points per revolution as the distance calibration factor of all laser sensors."
+          "text": "Treat the roughly 12 m example range and 360 samples as guarantees for every device in the product family."
         }
       ],
       "correctOptionIds": [
@@ -1081,8 +1084,8 @@
         "optionExplanations": {
           "o1": "The mathematical example does not establish the sensing mechanism of every product.",
           "o2": "The official A1 description uses triangulation, so that inference is too broad.",
-          "o3": "Scanning sample count does not change the flight-path geometry.",
-          "o4": "Angular sampling and distance calibration are different properties."
+          "o3": "Rotation rate describes scanning, not a unique distance-measurement principle.",
+          "o4": "The slide gives an unspecified example, not a family-wide specification."
         },
         "steps": [],
         "formulas": [],
@@ -1090,8 +1093,8 @@
         "memoryAid": null,
         "misconceptions": [
           "The official A1 description uses triangulation, so that inference is too broad.",
-          "Scanning sample count does not change the flight-path geometry.",
-          "Angular sampling and distance calibration are different properties."
+          "Rotation rate describes scanning, not a unique distance-measurement principle.",
+          "The slide gives an unspecified example, not a family-wide specification."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -1120,7 +1123,10 @@
           "relationToLecture": "Supplementary qualification, not additional course coverage."
         }
       ],
-      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q014",
@@ -1231,7 +1237,7 @@
     },
     {
       "id": "W09-L44-Q015",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "A gyro reads a constant 30°/s for 2 s. What can be obtained without knowing the initial heading?",
@@ -1259,7 +1265,7 @@
         },
         {
           "id": "o2",
-          "text": "A travelled distance of 60 m."
+          "text": "A heading change of 30°, by using the rate value as the accumulated angle."
         },
         {
           "id": "o3",
@@ -1290,19 +1296,36 @@
         "justification": "The integrated angular rate gives relative orientation change.",
         "optionExplanations": {
           "o1": "This divides rate by elapsed time rather than integrating.",
-          "o2": "Angular rate does not directly specify linear distance.",
+          "o2": "This omits multiplication by the two-second duration.",
           "o3": "Integration gives the change; an initial reference is still needed.",
           "o4": "This silently assumes a zero initial heading."
         },
         "steps": [
           "Δθ = 30°/s × 2 s = 60°."
         ],
-        "formulas": [],
+        "formulas": [
+          {
+            "expression": "Δθ = ∫ω(t)dt = ωΔt for constant ω",
+            "variables": {
+              "Δθ": "heading change",
+              "ω": "angular rate",
+              "Δt": "elapsed time"
+            },
+            "units": {
+              "Δθ": "degrees",
+              "ω": "degrees per second",
+              "Δt": "seconds"
+            },
+            "assumptions": [
+              "Constant unbiased rate; an initial heading is required for the absolute final heading."
+            ]
+          }
+        ],
         "simpleExplanation": "The integrated angular rate gives relative orientation change.",
         "memoryAid": null,
         "misconceptions": [
           "This divides rate by elapsed time rather than integrating.",
-          "Angular rate does not directly specify linear distance.",
+          "This omits multiplication by the two-second duration.",
           "This silently assumes a zero initial heading."
         ],
         "examTraps": [],
@@ -1316,7 +1339,10 @@
         "independentReview": false,
         "scope": "Author calculations or pinned code execution, not independent review."
       },
-      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q016",
@@ -1584,7 +1610,7 @@
     },
     {
       "id": "W09-L44-Q019",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "A robot has a known map but no useful initial-pose estimate. Which task is this, compared with starting near a known pose?",
@@ -1606,11 +1632,11 @@
       "options": [
         {
           "id": "o1",
-          "text": "Mapping, compared with sensor calibration."
+          "text": "Both are global localization, because possessing a map is the defining condition in both cases."
         },
         {
           "id": "o2",
-          "text": "Path tracking, compared with trajectory generation."
+          "text": "Both are position tracking, because either task can use repeated measurements after motion starts."
         },
         {
           "id": "o3",
@@ -1640,9 +1666,9 @@
       "solution": {
         "justification": "Position tracking starts with a localized prior; global localization must initially retain wider pose uncertainty.",
         "optionExplanations": {
-          "o1": "The map is already known in both described localization tasks.",
-          "o2": "Those are control/planning tasks rather than the initial-pose distinction.",
-          "o3": "The source distinguishes the tasks by prior pose knowledge.",
+          "o1": "Map availability alone does not distinguish the two source definitions; initial pose knowledge does.",
+          "o2": "Repeated measurements do not turn an initially unknown pose into a known initial-pose premise.",
+          "o3": "The source distinguishes the tasks by the amount of initial pose knowledge.",
           "o4": "This reverses the stated definitions."
         },
         "steps": [],
@@ -1650,8 +1676,8 @@
         "simpleExplanation": "Position tracking starts with a localized prior; global localization must initially retain wider pose uncertainty.",
         "memoryAid": null,
         "misconceptions": [
-          "The map is already known in both described localization tasks.",
-          "Those are control/planning tasks rather than the initial-pose distinction.",
+          "Map availability alone does not distinguish the two source definitions; initial pose knowledge does.",
+          "Repeated measurements do not turn an initially unknown pose into a known initial-pose premise.",
           "This reverses the stated definitions."
         ],
         "examTraps": [],
@@ -1659,7 +1685,10 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q020",
@@ -1916,7 +1945,7 @@
     },
     {
       "id": "W09-L44-Q023",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "Two robots have the same position but different velocities, and their future positions depend on velocity. Is position alone a complete state for that model?",
@@ -1940,11 +1969,11 @@
       "options": [
         {
           "id": "o1",
-          "text": "Yes; the latest position makes all motion variables irrelevant."
+          "text": "Yes; with a fixed future control, present velocity cannot change the next-position distribution."
         },
         {
           "id": "o2",
-          "text": "No; a complete state must instead store every raw image ever observed."
+          "text": "No; adding the present control alone always makes position sufficient, even when velocity remains unknown."
         },
         {
           "id": "o3",
@@ -1952,7 +1981,7 @@
         },
         {
           "id": "o4",
-          "text": "Yes; a state is complete whenever it has physical units."
+          "text": "Yes; declaring a first-order transition makes position sufficient without checking omitted velocity information."
         }
       ],
       "correctOptionIds": [
@@ -1974,26 +2003,29 @@
       "solution": {
         "justification": "Completeness means retaining the variables needed for the model’s future evolution.",
         "optionExplanations": {
-          "o1": "The premise explicitly says velocity affects the future.",
-          "o2": "A sufficient state can summarize history without storing all raw observations.",
+          "o1": "A fixed control does not remove the explicitly stated dependence on present velocity.",
+          "o2": "Present control does not necessarily determine current velocity or its effect on the future.",
           "o3": "The same proposed state would lead to different transition behavior.",
-          "o4": "Units do not establish predictive sufficiency."
+          "o4": "A Markov assumption must be justified for the chosen state; merely declaring it does not establish sufficiency."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Completeness means retaining the variables needed for the model’s future evolution.",
         "memoryAid": null,
         "misconceptions": [
-          "The premise explicitly says velocity affects the future.",
-          "A sufficient state can summarize history without storing all raw observations.",
-          "Units do not establish predictive sufficiency."
+          "A fixed control does not remove the explicitly stated dependence on present velocity.",
+          "Present control does not necessarily determine current velocity or its effect on the future.",
+          "A Markov assumption must be justified for the chosen state; merely declaring it does not establish sufficiency."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q024",
@@ -2371,7 +2403,7 @@
     },
     {
       "id": "W09-L44-Q028",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "If every likelihood-times-prediction weight is zero, what is the immediate issue with the normalized Bayes update?",
@@ -2393,7 +2425,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "The posterior is automatically the state with smallest index."
+          "text": "The stated normalized update automatically returns the predicted prior unchanged."
         },
         {
           "id": "o2",
@@ -2427,7 +2459,7 @@
       "solution": {
         "justification": "An impossible-under-model observation requires investigation or an explicit fallback model, not silent division by zero.",
         "optionExplanations": {
-          "o1": "No such state choice follows from Bayes normalization.",
+          "o1": "Ignoring the observation and retaining the prior is an additional recovery policy, not the result of normalizing zero weights.",
           "o2": "A zero total cannot be normalized.",
           "o3": "Uniform replacement would be a separately chosen recovery policy.",
           "o4": "An all-zero vector is not a probability distribution."
@@ -2437,7 +2469,7 @@
         "simpleExplanation": "An impossible-under-model observation requires investigation or an explicit fallback model, not silent division by zero.",
         "memoryAid": null,
         "misconceptions": [
-          "No such state choice follows from Bayes normalization.",
+          "Ignoring the observation and retaining the prior is an additional recovery policy, not the result of normalizing zero weights.",
           "Uniform replacement would be a separately chosen recovery policy.",
           "An all-zero vector is not a probability distribution."
         ],
@@ -2446,7 +2478,10 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q029",
@@ -2834,7 +2869,7 @@
     },
     {
       "id": "W09-L44-Q033",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "The slide allows positive-semidefinite covariance but writes an ordinary inverse and determinant in its density. What qualification is needed for that exact formula?",
@@ -2860,15 +2895,15 @@
         },
         {
           "id": "o2",
-          "text": "Use any singular covariance because zero determinants cancel the exponent automatically."
+          "text": "Use a pseudoinverse in the exponent but retain the ordinary zero determinant in the full-dimensional normalizer."
         },
         {
           "id": "o3",
-          "text": "Replace every singular covariance by an identity matrix without changing the distribution."
+          "text": "Add εI with ε > 0 and describe the resulting full-dimensional density as exactly the same singular distribution."
         },
         {
           "id": "o4",
-          "text": "Reject all correlated covariances, even when they are positive definite."
+          "text": "Use a pseudoinverse and pseudodeterminant, then interpret the resulting support density as an ordinary density over the entire original space."
         }
       ],
       "correctOptionIds": [
@@ -2890,19 +2925,19 @@
       "solution": {
         "justification": "Positive semidefiniteness characterizes covariance in general, while the displayed full-dimensional density requires nonsingularity.",
         "optionExplanations": {
-          "o1": "A singular covariance has no ordinary inverse and a zero determinant.",
-          "o2": "The formula does not define that cancellation.",
-          "o3": "That changes the modeled uncertainty.",
-          "o4": "Correlation does not imply singularity."
+          "o1": "A singular covariance has no ordinary inverse and zero determinant, so the printed formula needs the stated qualification.",
+          "o2": "The zero determinant still makes the ordinary normalization undefined.",
+          "o3": "Positive regularization changes the covariance and distribution, even if useful as an approximation.",
+          "o4": "A density on lower-dimensional support is not a full-dimensional density with the same reference measure."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Positive semidefiniteness characterizes covariance in general, while the displayed full-dimensional density requires nonsingularity.",
         "memoryAid": null,
         "misconceptions": [
-          "The formula does not define that cancellation.",
-          "That changes the modeled uncertainty.",
-          "Correlation does not imply singularity."
+          "The zero determinant still makes the ordinary normalization undefined.",
+          "Positive regularization changes the covariance and distribution, even if useful as an approximation.",
+          "A density on lower-dimensional support is not a full-dimensional density with the same reference measure."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -2931,7 +2966,10 @@
           "relationToLecture": "Supplementary qualification, not additional course coverage."
         }
       ],
-      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q034",
@@ -3296,7 +3334,7 @@
     },
     {
       "id": "W09-L44-Q038",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "The slide introduces “LTI” systems but uses F_t, G_t and H_t. Must those matrices be constant for the displayed Kalman recursion to be used?",
@@ -3318,15 +3356,15 @@
       "options": [
         {
           "id": "o1",
-          "text": "Yes; a subscript t can label only a constant matrix."
+          "text": "Yes; changing a known F_t requires nonlinear linearization even if the state equation remains linear."
         },
         {
           "id": "o2",
-          "text": "No; arbitrary nonlinear functions can simply replace matrices without changing the exact linear filter."
+          "text": "No; matrices chosen as arbitrary nonlinear functions of the current unknown state preserve the exact linear-Gaussian recursion."
         },
         {
           "id": "o3",
-          "text": "Yes; otherwise process noise must be set to zero."
+          "text": "Yes; known time-varying matrices permit only steady-state gain, so the displayed time-indexed gain cannot be recomputed."
         },
         {
           "id": "o4",
@@ -3352,19 +3390,19 @@
       "solution": {
         "justification": "The LTI introductory wording is narrower than the time-indexed linear-Gaussian recursion.",
         "optionExplanations": {
-          "o1": "Time subscripts can indicate changing known matrices.",
-          "o2": "Nonlinear functions require additional treatment such as local linearization.",
-          "o3": "Time-varying deterministic matrices do not eliminate process uncertainty.",
-          "o4": "Linearity is essential here; time invariance is a narrower special case."
+          "o1": "Known variation with time does not by itself make the state dependence nonlinear.",
+          "o2": "State-dependent matrices can make the transition nonlinear and break exact Gaussian closure.",
+          "o3": "The recursion can recompute the gain; a constant steady-state gain is a separate special case.",
+          "o4": "Linearity is required here; time invariance is a narrower special case."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The LTI introductory wording is narrower than the time-indexed linear-Gaussian recursion.",
         "memoryAid": null,
         "misconceptions": [
-          "Time subscripts can indicate changing known matrices.",
-          "Nonlinear functions require additional treatment such as local linearization.",
-          "Time-varying deterministic matrices do not eliminate process uncertainty."
+          "Known variation with time does not by itself make the state dependence nonlinear.",
+          "State-dependent matrices can make the transition nonlinear and break exact Gaussian closure.",
+          "The recursion can recompute the gain; a constant steady-state gain is a separate special case."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -3382,7 +3420,10 @@
           1388
         ]
       },
-      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q039",
@@ -4038,7 +4079,7 @@
     },
     {
       "id": "W09-L44-Q045",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "In the correction plot, why is the posterior peak between the predicted mean 4 and sensor-centered value 5, rather than exactly at either?",
@@ -4068,7 +4109,7 @@
         },
         {
           "id": "o3",
-          "text": "The initial mean 2 is copied unchanged into every later posterior."
+          "text": "The gain weights the measurement in direct proportion to its variance, so a noisier measurement would pull the posterior more strongly."
         },
         {
           "id": "o4",
@@ -4101,7 +4142,7 @@
         "optionExplanations": {
           "o1": "The scalar independent Gaussian update combines both sources.",
           "o2": "Here the corrected mean is about 4.7143, not 4.5.",
-          "o3": "The control and measurement updates change the mean.",
+          "o3": "The scalar gain P/(P+R) decreases when measurement variance R increases; more precise, not noisier, measurements receive greater weight.",
           "o4": "A Gaussian measurement model is not a hard clipping threshold."
         },
         "steps": [],
@@ -4110,7 +4151,7 @@
         "memoryAid": null,
         "misconceptions": [
           "Here the corrected mean is about 4.7143, not 4.5.",
-          "The control and measurement updates change the mean.",
+          "The scalar gain P/(P+R) decreases when measurement variance R increases; more precise, not noisier, measurements receive greater weight.",
           "A Gaussian measurement model is not a hard clipping threshold."
         ],
         "examTraps": [],
@@ -4118,7 +4159,10 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q046",
@@ -4493,7 +4537,7 @@
     },
     {
       "id": "W09-L44-Q050",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "Why does the EKF use F_v V F_vᵀ rather than adding V directly in every nonlinear motion model?",
@@ -4515,15 +4559,15 @@
       "options": [
         {
           "id": "o1",
-          "text": "V is always a scalar and must be enlarged by arbitrary repetition."
+          "text": "Use F_vᵀ V F_v because transposing the Jacobian always converts noise coordinates into state coordinates."
         },
         {
           "id": "o2",
-          "text": "F_v changes process noise into measurement noise."
+          "text": "Use F_x V F_xᵀ because the state Jacobian also maps any native process-noise coordinates correctly."
         },
         {
           "id": "o3",
-          "text": "Direct addition is forbidden even when F_v is the state identity."
+          "text": "Direct addition is forbidden even when the noise already lies in state coordinates and F_v is the identity."
         },
         {
           "id": "o4",
@@ -4549,30 +4593,33 @@
       "solution": {
         "justification": "The noise Jacobian is essential for non-additive or lower-dimensional noise inputs.",
         "optionExplanations": {
-          "o1": "Noise covariance can be multidimensional and its mapping is model-defined.",
-          "o2": "Process and measurement models retain separate roles.",
-          "o3": "For additive state-space noise with identity mapping, the expression reduces to V.",
-          "o4": "The Jacobian performs the required covariance transformation."
+          "o1": "The required mapping is F_v from noise to state; the reversed product is generally dimensionally invalid.",
+          "o2": "F_x differentiates with respect to state, not noise, and cannot generally substitute for F_v.",
+          "o3": "For additive state-space noise with identity mapping, the covariance term reduces to V.",
+          "o4": "A linearized noise perturbation F_v v has covariance F_v V F_vᵀ."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The noise Jacobian is essential for non-additive or lower-dimensional noise inputs.",
         "memoryAid": null,
         "misconceptions": [
-          "Noise covariance can be multidimensional and its mapping is model-defined.",
-          "Process and measurement models retain separate roles.",
-          "For additive state-space noise with identity mapping, the expression reduces to V."
+          "The required mapping is F_v from noise to state; the reversed product is generally dimensionally invalid.",
+          "F_x differentiates with respect to state, not noise, and cannot generally substitute for F_v.",
+          "For additive state-space noise with identity mapping, the covariance term reduces to V."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q051",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "For an added scalar f(x) = x², previous mean μ = 2, previous variance P = 0.25, and zero process-noise mean, what mean does the first-order EKF prediction use?",
@@ -4632,7 +4679,7 @@
         "optionExplanations": {
           "o3": "The first-order EKF evaluates the nonlinear function at the previous mean.",
           "o1": "This omits the Taylor intercept and replaces the nonlinear mean rule with a derivative product.",
-          "o2": "This is the exact transformed second moment for the stated X² model, not the first-order EKF mean.",
+          "o2": "For Y = X², 4.25 is E[Y] = E[X²], the transformed mean and original X second moment; it is not the first-order EKF mean.",
           "o4": "This does not apply the nonlinear transition."
         },
         "steps": [
@@ -4644,7 +4691,7 @@
         "memoryAid": null,
         "misconceptions": [
           "This omits the Taylor intercept and replaces the nonlinear mean rule with a derivative product.",
-          "This is the exact transformed second moment for the stated X² model, not the first-order EKF mean.",
+          "For Y = X², 4.25 is E[Y] = E[X²], the transformed mean and original X second moment; it is not the first-order EKF mean.",
           "This does not apply the nonlinear transition."
         ],
         "examTraps": [],
@@ -4658,7 +4705,10 @@
         "sha256": "1577960146f94f68ec4091dc8cdf700cabff804753f48d16c4f9263367b5825d",
         "independentReview": false,
         "scope": "Author-added scalar transform check, not independent verification."
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q052",
@@ -4771,7 +4821,7 @@
     },
     {
       "id": "W09-L44-Q053",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "The displayed product includes the previous pose’s world translation (x_(t−1), y_(t−1)). What does the completed product represent?",
@@ -4805,7 +4855,7 @@
         },
         {
           "id": "o4",
-          "text": "A measurement covariance matrix."
+          "text": "The new world-to-robot coordinate transform, rather than the new robot-to-world pose."
         }
       ],
       "correctOptionIds": [
@@ -4841,7 +4891,7 @@
           "o1": "The old world pose is already included in the multiplication.",
           "o2": "The product explicitly contains the old world position and heading.",
           "o3": "No inversion is performed.",
-          "o4": "A homogeneous rigid transform is not a covariance."
+          "o4": "The shown composition maps the new robot frame into the world frame; reversing that direction requires inversion."
         },
         "steps": [
           "Identify the first factor as T_world,old.",
@@ -4854,7 +4904,7 @@
         "misconceptions": [
           "The product explicitly contains the old world position and heading.",
           "No inversion is performed.",
-          "A homogeneous rigid transform is not a covariance."
+          "The shown composition maps the new robot frame into the world frame; reversing that direction requires inversion."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -4879,7 +4929,10 @@
         "independentReview": false,
         "scope": "Author calculations or pinned code execution, not independent review."
       },
-      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q054",
@@ -4994,13 +5047,13 @@
     },
     {
       "id": "W09-L44-Q055",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "Differentiate the zero-noise motion f = (x + d cosθ, y + d sinθ, θ + Δθ) with respect to (x, y, θ). Which F_x follows?",
       "selectionMode": "single",
       "type": "derivation",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "synthesis",
       "week": 9,
       "lectureId": "L44",
@@ -5099,11 +5152,14 @@
         "independentReview": false,
         "scope": "Author calculations or pinned code execution, not independent review."
       },
-      "difficultyRationale": "Integrates multiple state-estimation steps, matrix operations, or a derivative/model qualification."
+      "difficultyRationale": "Direct differentiation of the fully supplied elementary motion function.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q056",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "In the source noise vector v = (v_d, v_θ), why is F_v a 3×2 matrix?",
@@ -5125,7 +5181,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "The robot has only two state variables because it has two wheels."
+          "text": "The two columns are x and y state derivatives, while heading is omitted because odometry already contains an angle."
         },
         {
           "id": "o2",
@@ -5137,7 +5193,7 @@
         },
         {
           "id": "o4",
-          "text": "It converts a 3×3 covariance directly into a scalar likelihood."
+          "text": "It is the transpose of the derivative of the three pose outputs with respect to the two noise inputs."
         }
       ],
       "correctOptionIds": [
@@ -5159,30 +5215,33 @@
       "solution": {
         "justification": "Noise dimension and state dimension need not be equal.",
         "optionExplanations": {
-          "o1": "The planar pose still includes x, y and heading.",
+          "o1": "F_v differentiates with respect to two noise inputs, not selected state coordinates.",
           "o2": "Its columns correspond to distance and angular noise, and rows to x, y and heading.",
           "o3": "This reverses the dimensions.",
-          "o4": "F_v is a derivative of the motion function, not a likelihood normalizer."
+          "o4": "The standard output-by-input derivative already has shape 3×2; its transpose has shape 2×3."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Noise dimension and state dimension need not be equal.",
         "memoryAid": null,
         "misconceptions": [
-          "The planar pose still includes x, y and heading.",
+          "F_v differentiates with respect to two noise inputs, not selected state coordinates.",
           "This reverses the dimensions.",
-          "F_v is a derivative of the motion function, not a likelihood normalizer."
+          "The standard output-by-input derivative already has shape 3×2; its transpose has shape 2×3."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q057",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "For θ = π/2 and d = 2 m, let P = diag(0.01, 0.04, 0.09) and V = diag(0.0025, 0.0004), using metres and radians. Under the displayed Jacobians, which predicted covariance follows?",
@@ -5235,6 +5294,17 @@
           "evidenceText": "Odometry Motion model (Cont.)                                                                    then 𝒙𝒕= 𝑓𝒙𝒕−𝟏, 𝒖𝒕\n                                                                          𝑥𝑡−1 + (𝛿𝑑) cos 𝜃𝑡−1\n         cos(𝜃𝑡−1 + 𝛿𝜃)  −sin(𝜃𝑡−1 + 𝛿𝜃)  𝑥𝑡−1 + 𝛿𝑑cos 𝜃𝑡−1                                           =  𝑦𝑡−1 + (𝛿𝑑) sin 𝜃𝑡−1\n• 𝐓=          sin(𝜃𝑡−1 + 𝛿𝜃)   cos(𝜃𝑡−1 + 𝛿𝜃)   𝑦𝑡−1 + 𝛿𝑑sin 𝜃𝑡−1                                                                               𝜃𝑡−1 + 𝛿𝜃\n             0             0              1\n•  Motion uncertainty is modeled by Gaussian noise 𝒗𝒕=  𝑣𝑑, 𝑣𝜃𝑇 ~𝒩(0, 𝐕𝐭) with\n   covariance matrix 𝐕𝐭= diag(𝜎𝑑2, 𝜎𝜃2), then 𝒙𝒕= 𝑓𝒙𝒕−𝟏, 𝒖𝒕, 𝒗𝒕\n           then 𝒙𝒕= 𝑓𝒙𝒕−𝟏, 𝒖𝒕, 𝒗𝒕                               cos 𝜃𝑡−1  0                                              𝜕𝑓\n               𝑥𝑡−1 + (𝛿𝑑+𝑣𝑑) cos 𝜃𝑡−1        𝑭𝒗=    =  sin 𝜃𝑡−1  0                                                 𝜕𝒗𝒗=0\n       =  𝑦𝑡−1 + (𝛿𝑑+𝑣𝑑) sin 𝜃𝑡−1                         0    1\n                   𝜃𝑡−1 + 𝛿𝜃+ 𝑣𝜃\n\n                                1  0  −𝛿𝑑sin 𝜃𝑡−1\n                               𝜕𝑓•  Derivatives of                𝑭𝒙=    =  0  1   𝛿𝑑cos 𝜃𝑡−1    ,                              𝜕𝒙𝒗=0\n   function f are                 0  0      1\n•\n                                                                                                          26",
           "role": "premise",
           "region": null
+        },
+        {
+          "slideId": "lectures-p1393",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1393,
+          "kind": "equation",
+          "locator": "Lecture L44, physical PDF page 1393, printed footer 24: Prediction box: covariance propagation P̄ = F_x P F_xᵀ + F_v V F_vᵀ.",
+          "evidenceText": "Extended Kalman Filter (Cont.)                                            Input: 𝝁𝒕−𝟏, 𝚺𝐭−𝟏, 𝒖𝒕, 𝒛𝒕, 𝐕𝐭, 𝐖𝐭, 𝐅𝐱, 𝐅𝐯, 𝐇𝐱, 𝐇𝐰\n                                       Output: 𝝁𝒕, 𝚺𝐭 Algorithm: Recursive estimation of bel 𝒙𝒕\n with linear approximations of non-linear functions (𝑓, ℎ)\n                                                     ഥ𝝁𝒕= 𝑓𝝁𝒕−𝟏, 𝒖𝒕, 𝟎\n1.  Prediction Step: Computes predicted mean ഥ𝝁𝒕 using                                                        ഥ𝚺𝐭= 𝐅𝐱𝚺𝐭−𝟏𝐅𝐱𝐓+ 𝐅𝐯𝐕𝐭𝐅𝐯𝐓\n   the linear approximation of 𝑓 and the predicted\n   covariance ഥ𝚺𝒕 using the Jacobians 𝐅𝐱, 𝐅𝐯.                                 𝐊𝐭= ഥ𝚺𝐭𝐇𝐱𝐓𝐇𝐱ഥ𝚺𝐭𝐇𝐱𝐓+ 𝐇𝐰𝐖𝐭𝐇𝐰𝐓−𝟏\n2. Correction Step: Updates the predicted belief                                   𝝁𝒕= ഥ𝝁𝒕+ 𝐊𝐭𝒛𝒕−ℎ(ഥ𝝁𝒕, 𝟎)\n   using linear approximate of measurement ℎ to 𝚺𝐭= 𝐈−𝐊𝐭𝐇𝐱ഥ𝚺𝐭\n   obtain corrected mean 𝝁𝒕 & covariance 𝚺𝐭 using\n   Jacobian 𝐇𝐱, 𝐇𝐰.\nEKF is arguably the most popular tool for state estimation\nin robotics due to its simplicity and computational\nefficiency.\n\n\n                                                                                                          24",
+          "role": "premise",
+          "region": null
         }
       ],
       "solution": {
@@ -5272,31 +5342,22 @@
             ]
           },
           {
-            "expression": "P̄ = F_x P F_xᵀ + F_v V F_vᵀ; S = H_x P̄ H_xᵀ + H_w W H_wᵀ; K = P̄ H_xᵀ S⁻¹; μ⁺ = μ̄ + K(z − h(μ̄)); P⁺ = (I − K H_x)P̄",
+            "expression": "P̄ = F_x P F_xᵀ + F_v V F_vᵀ",
             "variables": {
-              "μ̄,P̄": "predicted state mean and covariance",
-              "μ⁺,P⁺": "corrected state mean and covariance",
-              "P": "previous corrected covariance",
-              "F_x,F_v": "motion Jacobians with respect to state and process noise",
-              "H_x,H_w": "measurement Jacobians with respect to state and measurement noise",
-              "V,W": "process-noise and measurement-noise covariance in their native coordinates",
-              "S": "innovation covariance",
-              "K": "innovation-to-state gain",
-              "z": "current measurement vector",
-              "h": "noiseless observation function",
-              "I": "state-space identity matrix"
+              "P": "previous pose covariance",
+              "P̄": "predicted pose covariance",
+              "F_x": "state-to-state motion derivative",
+              "F_v": "noise-to-state motion derivative",
+              "V": "native odometry-noise covariance"
             },
             "units": {
-              "μ̄,μ⁺": "state units componentwise",
-              "P,P̄,P⁺": "products of state-component units",
-              "V,W": "products of corresponding noise-coordinate units",
-              "S": "products of measurement-component units",
-              "z,h(μ̄)": "measurement units componentwise",
-              "F_x,F_v,H_x,H_w,K": "corresponding derivative/mapping units",
-              "I": "dimensionless"
+              "pose entries": "metres and radians",
+              "P,P̄": "products of pose-component units",
+              "V": "products of distance and angle noise units",
+              "F_x,F_v": "corresponding derivative units"
             },
             "assumptions": [
-              "Independent zero-mean noises; locally differentiable models; nonsingular innovation covariance; angular innovation wrapped where needed."
+              "Zero-mean process noise independent of previous pose error; Jacobians evaluated at the specified mean and zero noise."
             ]
           }
         ],
@@ -5318,11 +5379,14 @@
         "independentReview": false,
         "scope": "Author calculations or pinned code execution, not independent review."
       },
-      "difficultyRationale": "Integrates multiple state-estimation steps, matrix operations, or a derivative/model qualification."
+      "difficultyRationale": "Integrates multiple state-estimation steps, matrix operations, or a derivative/model qualification.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q058",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "For a finite interval with simultaneous nonzero forward speed and turn rate, how should the displayed old-heading translation model be interpreted?",
@@ -5350,7 +5414,7 @@
         },
         {
           "id": "o2",
-          "text": "As a model that changes heading but never position."
+          "text": "As midpoint integration, because the use of θ in the displacement implicitly means θ + Δθ/2."
         },
         {
           "id": "o3",
@@ -5403,7 +5467,7 @@
         "justification": "The source’s discrete update and continuous differential-drive kinematics must not be silently conflated.",
         "optionExplanations": {
           "o1": "Trigonometric terms alone do not make old-heading translation an exact arc.",
-          "o2": "The state equations explicitly translate.",
+          "o2": "The source explicitly uses the old heading; a midpoint approximation would evaluate a different direction.",
           "o3": "The source evaluates position increments at the previous heading.",
           "o4": "The continuous velocity direction changes during an exact turning arc."
         },
@@ -5413,7 +5477,7 @@
         "memoryAid": null,
         "misconceptions": [
           "Trigonometric terms alone do not make old-heading translation an exact arc.",
-          "The state equations explicitly translate.",
+          "The source explicitly uses the old heading; a midpoint approximation would evaluate a different direction.",
           "The source evaluates position increments at the previous heading."
         ],
         "examTraps": [],
@@ -5421,7 +5485,10 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q059",
@@ -5928,7 +5995,7 @@
     },
     {
       "id": "W09-L44-Q064",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "What is E0 = diag([0.05, 0.05, deg2rad(0.5)]) ** 2 in the source EKF setup?",
@@ -5950,7 +6017,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "The robot’s true trajectory over three time steps."
+          "text": "The initial 3×3 standard-deviation matrix, with diagonal entries still 0.05, 0.05 and deg2rad(0.5)."
         },
         {
           "id": "o2",
@@ -6016,7 +6083,7 @@
       "solution": {
         "justification": "The initial mean and initial covariance are different inputs.",
         "optionExplanations": {
-          "o1": "The entries describe uncertainty at initialization, not a sequence.",
+          "o1": "Elementwise squaring produces variances on the diagonal, not the original standard deviations.",
           "o2": "Its diagonal contains two positional variances and one angular variance.",
           "o3": "It is a matrix of squared uncertainty values, not a pose.",
           "o4": "The matrix has three state components and initializes state uncertainty."
@@ -6026,7 +6093,7 @@
         "simpleExplanation": "The initial mean and initial covariance are different inputs.",
         "memoryAid": null,
         "misconceptions": [
-          "The entries describe uncertainty at initialization, not a sequence.",
+          "Elementwise squaring produces variances on the diagonal, not the original standard deviations.",
           "It is a matrix of squared uncertainty values, not a pose.",
           "The matrix has three state components and initializes state uncertainty."
         ],
@@ -6052,7 +6119,10 @@
         "sourceClaim": "The p1400 prose calls Σ0 an initial pose, but P0 in the code is a 3×3 covariance.",
         "basis": "A pose is a three-component mean/state; squaring diagonal standard deviations constructs covariance.",
         "method": "Retain the prose and explicitly distinguish the matrix’s executable meaning."
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q065",
@@ -7075,7 +7145,7 @@
     },
     {
       "id": "W09-L44-Q074",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "What happens to the range-bearing pose Jacobian when a landmark coincides with the robot position?",
@@ -7105,7 +7175,7 @@
         },
         {
           "id": "o3",
-          "text": "The sensor-noise covariance becomes the robot’s exact pose."
+          "text": "Replace only r in the denominators by a small ε and call the result the exact derivative at coincidence."
         },
         {
           "id": "o4",
@@ -7144,7 +7214,7 @@
         "optionExplanations": {
           "o1": "The division singularity cannot be replaced by zeros automatically.",
           "o2": "A zero displacement has no unique direction.",
-          "o3": "Noise covariance does not resolve the geometric singularity.",
+          "o3": "Regularization is a chosen approximation; it does not supply the missing unique direction or exact derivative at zero range.",
           "o4": "The regular local model assumes a nonzero displacement."
         },
         "steps": [],
@@ -7154,14 +7224,17 @@
         "misconceptions": [
           "The division singularity cannot be replaced by zeros automatically.",
           "A zero displacement has no unique direction.",
-          "Noise covariance does not resolve the geometric singularity."
+          "Regularization is a chosen approximation; it does not supply the missing unique direction or exact derivative at zero range."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q075",
@@ -7450,7 +7523,7 @@
     },
     {
       "id": "W09-L44-Q078",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "With the missing imports supplied, what actually happens to the printed RangeBearingSensor(..., animate=True) call in RTB 1.4.4?",
@@ -7478,11 +7551,11 @@
         },
         {
           "id": "o2",
-          "text": "It silently changes range=4 into an unlimited sensor."
+          "text": "It accepts the keyword silently, with no deprecation warning, and treats it as the preferred current spelling."
         },
         {
           "id": "o3",
-          "text": "It selects SLAM mode and discards the supplied known map."
+          "text": "It warns but ignores animate=True, leaving the plotting option false rather than mapping the legacy value."
         },
         {
           "id": "o4",
@@ -7514,8 +7587,8 @@
         "justification": "A deprecated argument is not the same as an unsupported argument; report the observed version-specific behavior.",
         "optionExplanations": {
           "o1": "The compatibility path explicitly accepts this keyword in the pinned version.",
-          "o2": "The alias controls plotting, not sensor range.",
-          "o3": "Animation compatibility does not change the estimator problem.",
+          "o2": "The independently checked pinned implementation emits a deprecation warning recommending plot.",
+          "o3": "In the checked compatibility path the legacy value is accepted for plotting; it is not simply discarded.",
           "o4": "The pinned implementation accepts the legacy keyword and warns."
         },
         "steps": [],
@@ -7524,8 +7597,8 @@
         "memoryAid": null,
         "misconceptions": [
           "The compatibility path explicitly accepts this keyword in the pinned version.",
-          "The alias controls plotting, not sensor range.",
-          "Animation compatibility does not change the estimator problem."
+          "The independently checked pinned implementation emits a deprecation warning recommending plot.",
+          "In the checked compatibility path the legacy value is accepted for plotting; it is not simply discarded."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -7549,7 +7622,10 @@
         "independentReview": false,
         "scope": "Author calculations or pinned code execution, not independent review."
       },
-      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q079",
@@ -7733,7 +7809,7 @@
     },
     {
       "id": "W09-L44-Q080",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
       "stem": "Which conclusion is justified by the odometry-only and landmark-corrected examples?",
@@ -7757,7 +7833,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "A close trajectory overlay proves every state covariance entry is zero."
+          "text": "The close corrected trajectory shows that the measurement model dominates every update regardless of its assumed noise."
         },
         {
           "id": "o2",
@@ -7765,11 +7841,11 @@
         },
         {
           "id": "o3",
-          "text": "Landmark correction works by setting the process-noise covariance V to zero."
+          "text": "The examples show that a smaller estimated covariance guarantees smaller actual error even with incorrect landmark association."
         },
         {
           "id": "o4",
-          "text": "The two examples differ only in path color; both omit sensor updates."
+          "text": "The landmark-corrected run guarantees every covariance entry decreases after every prediction and correction step."
         }
       ],
       "correctOptionIds": [
@@ -7823,26 +7899,29 @@
       "solution": {
         "justification": "The figures illustrate the value of sensor fusion, not a proof of exact trajectories or monotonic behavior of every covariance component.",
         "optionExplanations": {
-          "o1": "Small plotted error and zero modeled uncertainty are different claims.",
+          "o1": "Fusion weights depend on the model and covariance, not just the appearance of one trajectory overlay.",
           "o2": "The examples illustrate prediction without and with exteroceptive correction.",
-          "o3": "The landmark example retains nonzero process noise and adds measurement correction.",
-          "o4": "The known-landmark example explicitly incorporates range-bearing observations."
+          "o3": "Covariance is a model-based uncertainty estimate; incorrect association can create an overconfident but wrong estimate.",
+          "o4": "Prediction can add uncertainty, and the source illustration does not establish monotonic behavior of every matrix entry."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The figures illustrate the value of sensor fusion, not a proof of exact trajectories or monotonic behavior of every covariance component.",
         "memoryAid": null,
         "misconceptions": [
-          "Small plotted error and zero modeled uncertainty are different claims.",
-          "The landmark example retains nonzero process noise and adds measurement correction.",
-          "The known-landmark example explicitly incorporates range-bearing observations."
+          "Fusion weights depend on the model and covariance, not just the appearance of one trajectory overlay.",
+          "Covariance is a model-based uncertainty estimate; incorrect association can create an overconfident but wrong estimate.",
+          "Prediction can add uncertainty, and the source illustration does not establish monotonic behavior of every matrix entry."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
     },
     {
       "id": "W09-L44-Q081",
@@ -8581,10 +8660,10 @@
     },
     {
       "id": "W09-L44-Q089",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L44-author",
-      "stem": "In the two Python excerpts, which roles belong to RandomPath and EKF?",
+      "stem": "Which mapping correctly combines the driver, vehicle methods and estimator in the source differential-drive example?",
       "selectionMode": "single",
       "type": "code",
       "difficulty": "easy",
@@ -8603,19 +8682,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "RandomPath supplies vehicle control commands; EKF maintains an estimated state and covariance from the specified robot and optional sensor model."
+          "text": "RandomPath supplies controls; vehicle .step simulates odometry; .f predicts the mean; .Fx and .Fv support covariance prediction; EKF maintains the estimate."
         },
         {
           "id": "o2",
-          "text": "RandomPath estimates the posterior covariance; EKF supplies the random waypoint controller."
+          "text": "RandomPath supplies controls; vehicle .step directly returns the posterior covariance; .f returns noisy odometry; .Fx and .Fv draw the uncertainty ellipse."
         },
         {
           "id": "o3",
-          "text": "RandomPath constructs the known landmark coordinates; EKF only draws those coordinates."
+          "text": "RandomPath estimates the mean; vehicle .step supplies controls; .f constructs the posterior covariance; EKF selects random waypoints."
         },
         {
           "id": "o4",
-          "text": "RandomPath generates sensor covariance W; EKF replaces wheel motion with measured landmark IDs."
+          "text": "RandomPath supplies controls; vehicle .step simulates odometry; .f predicts the covariance; .Fx and .Fv supply the predicted mean without a motion function."
         }
       ],
       "correctOptionIds": [
@@ -8627,9 +8706,9 @@
           "sourceId": "lectures",
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1397,
-          "kind": "code",
-          "locator": "Lecture L44, physical PDF page 1397, printed footer 28: robot.control assignment and EKF initialization.",
-          "evidenceText": "The full Python raster snippet was transcribed. Vt is defined from distance and converted angular standard deviations, but EKF(robot=(robot,V)) refers to undefined V in a clean namespace. RandomPath supplies control. E0 is an initial covariance. The code runs numerical and animation stages, invokes HTML without supplied notebook imports, and plots blue truth, red estimate, and green ellipses. The angular input is 0.5 degrees in code although prose omits units.",
+          "kind": "statement",
+          "locator": "Lecture L44, physical PDF page 1397, printed footer 28: Driver paragraph and bottom method-role bullets: .step, .f, .Fx and .Fv.",
+          "evidenceText": "Example: Differential Drive Robot\n\n•   Localisation with EKF\n•  Define the odometry noise model ~𝒩0, 𝐕𝐭 with\n  𝜎𝑑= 0.02, 𝜎𝜃= 0.5.\n•   Instantiate a Differential Drive vehicle model with\n   covariance 𝐕𝐭, using default initial pose ([0, 0, 0]),\n   wheelbase(2𝑑) & sampling interval (0.1𝑠).\n•  Generate inputs (𝑢𝑡) using driver (Randompath)\n   that steers robot to randomly selected waypoints\n   within a specified region (±5m). It:\n   – Simulates odometry 𝜹𝒕 using .step method. In real, 𝜹𝒕\n         is from wheel encoders\n   – Predicts mean ഥ𝝁𝒕= 𝑓𝝁𝒕−𝟏, 𝒖𝒕, 𝟎  using .f method and\n       covariance ഥ𝚺𝐭= 𝐅𝐱𝚺𝐭−𝟏𝐅𝐱𝐓+ 𝐅𝐯𝐕𝐭𝐅𝐯𝐓 using Jacobians 𝐅𝐱, 𝐅𝐯 (.Fx, .Fv methods)\n                                                                                                           28",
           "role": "premise",
           "region": {
             "x": 0.01,
@@ -8656,21 +8735,21 @@
         }
       ],
       "solution": {
-        "justification": "Do not confuse the simulated control policy, ground-truth vehicle, sensor model, and state estimator.",
+        "justification": "The driver chooses controls, .step advances simulation and yields odometry, .f propagates the estimated mean, and .Fx/.Fv supply the covariance Jacobians; EKF combines the specified models.",
         "optionExplanations": {
-          "o1": "The driver and estimator serve different parts of the simulation.",
-          "o2": "This reverses the driver and estimator roles.",
-          "o3": "LandmarkMap constructs the map; EKF performs estimation.",
-          "o4": "W is specified separately, and landmark IDs identify map features rather than motion commands."
+          "o1": "The slide separates control generation, simulated odometry, nonlinear mean propagation, Jacobian covariance propagation and estimation.",
+          "o2": "The odometry, mean, derivative and plotting roles have been interchanged.",
+          "o3": "RandomPath is a driver, not the posterior estimator; the listed method roles are also interchanged.",
+          "o4": "The nonlinear function predicts the mean, while its derivatives propagate covariance."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Do not confuse the simulated control policy, ground-truth vehicle, sensor model, and state estimator.",
+        "simpleExplanation": "The driver chooses controls, .step advances simulation and yields odometry, .f propagates the estimated mean, and .Fx/.Fv supply the covariance Jacobians; EKF combines the specified models.",
         "memoryAid": null,
         "misconceptions": [
-          "This reverses the driver and estimator roles.",
-          "LandmarkMap constructs the map; EKF performs estimation.",
-          "W is specified separately, and landmark IDs identify map features rather than motion commands."
+          "The odometry, mean, derivative and plotting roles have been interchanged.",
+          "RandomPath is a driver, not the posterior estimator; the listed method roles are also interchanged.",
+          "The nonlinear function predicts the mean, while its derivatives propagate covariance."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -8683,6 +8762,167 @@
         "independentReview": false,
         "scope": "Author calculations or pinned code execution, not independent review."
       },
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L44-v2-author"
+      ]
+    },
+    {
+      "id": "W09-L44-Q090",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_robotics_study_app:L44-v2-author",
+      "stem": "The position-uncertainty figure has horizontal axes x (m) and y (m), a probability-density axis, and contours projected below the surface. Which interpretation is supported?",
+      "selectionMode": "single",
+      "type": "diagram",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 9,
+      "lectureId": "L44",
+      "topic": "Understanding the Perception and Localization",
+      "subtopic": "Position-density surface and contour projection",
+      "tags": [
+        "gap-90"
+      ],
+      "conceptIds": [
+        "W09-L44-C-gap-90"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o1",
+          "text": "The surface height is robot heading, so the plot directly displays a three-coordinate pose sample."
+        },
+        {
+          "id": "o2",
+          "text": "The surface represents density over two position coordinates; the lower contours project equal-density levels rather than negative probabilities."
+        },
+        {
+          "id": "o3",
+          "text": "The negative vertical position of the projected contours means some possible positions have negative probability."
+        },
+        {
+          "id": "o4",
+          "text": "The height at each plotted point is the probability of that exact continuous position, so the surface values must sum to one without an area factor."
+        }
+      ],
+      "correctOptionIds": [
+        "o2"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1382",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1382,
+          "kind": "figure",
+          "locator": "Lecture L44, physical PDF page 1382, printed footer 13: Position-density surface and contour projection",
+          "evidenceText": "Probabilistic Paradigm\n\n•  Since the robot’s true pose cannot be measured\n    directly, localization is formulated as a probabilistic\n   (recursive) state estimation problem.\n•  This framework explicitly models the uncertainty\n   introduced by noisy motion execution(𝒖) and\n   imperfect sensor measurements(𝒛).\n•  So the robot's pose is represented as a probability        Position Uncertainty: bel 𝒙\n                                                       2D gaussian with 𝜎= 20\n    distribution, or belief, bel 𝒙= 𝑝(𝒙|𝒛, 𝒖) rather than a\n   single deterministic state 𝒙=  𝑥, 𝑦, 𝜃T.\n•  This belief quantifies the uncertainty in the robot’s\n   pose estimation and is recursively updated using the\n   motion and the sensor models.\n\n\n                                                                                                          13",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The illustrated Gaussian describes uncertainty in x and y; a full planar-pose belief would also address heading. The contour display does not make probability negative.",
+        "optionExplanations": {
+          "o1": "The vertical axis is labeled probability density, not heading.",
+          "o2": "The source explicitly labels position uncertainty and a 2D Gaussian; the lower drawing plane is a display projection.",
+          "o3": "A projection below the surface changes its visual placement, not the nonnegative density values.",
+          "o4": "A continuous density assigns probability through integration over an area, not by reading a point height as a point probability."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The illustrated Gaussian describes uncertainty in x and y; a full planar-pose belief would also address heading. The contour display does not make probability negative.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The vertical axis is labeled probability density, not heading.",
+          "A projection below the surface changes its visual placement, not the nonnegative density values.",
+          "A continuous density assigns probability through integration over an area, not by reading a point height as a point probability."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
+    },
+    {
+      "id": "W09-L44-Q091",
+      "version": 2,
+      "status": "draft",
+      "authorId": "build_robotics_study_app:L44-v2-author",
+      "stem": "Let H_t = (x_0:t−1, z_1:t−1, u_1:t), so it includes past states and measurements plus controls through the current u_t. Which pair preserves both conditional-independence assumptions in the lecture’s model?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 9,
+      "lectureId": "L44",
+      "topic": "Understanding the Perception and Localization",
+      "subtopic": "Measurement conditional independence versus transition",
+      "tags": [
+        "gap-91"
+      ],
+      "conceptIds": [
+        "W09-L44-C-gap-91"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o1",
+          "text": "p(x_t | H_t) = p(x_t | x_(t−1)); p(z_t | H_t,x_t) = p(z_t | x_t), dropping the current control from motion."
+        },
+        {
+          "id": "o2",
+          "text": "p(x_t | H_t) = p(x_t | x_(t−1),u_t); p(z_t | H_t,x_t) = p(z_t), dropping dependence on the current state."
+        },
+        {
+          "id": "o3",
+          "text": "p(x_t | H_t) = p(x_t | x_(t−1),u_t); p(z_t | H_t,x_t) = p(z_t | x_t)."
+        },
+        {
+          "id": "o4",
+          "text": "p(x_t | H_t) = p(x_t | x_(t−1),u_t); p(z_t | H_t,x_t) = p(z_t | x_(t−1)), using only the previous state for sensing."
+        }
+      ],
+      "correctOptionIds": [
+        "o3"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1384",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1384,
+          "kind": "equation",
+          "locator": "Lecture L44, physical PDF page 1384, printed footer 15: Measurement conditional independence versus transition",
+          "evidenceText": "State Completeness & Markov Assumption\n\n•  A state 𝒙𝒕​ is complete if it fully describes the system at time 𝑡, so past states\n   𝒙𝟎:𝒕−𝟏, measurements 𝒛𝟏:𝒕−𝟏, or controls 𝒖𝟏:𝒕 provide no additional information\n   for predicting the future.\n•  Such temporal processes are known as Markov chains,\n   defined by the Markov property and its two key\n   conditional independence assumptions.\n   – State Transition model: Probability of present state 𝒙𝒕 ​depends only on the\n       previous state 𝒙𝒕−𝟏​ and current control 𝒖𝒕​.\n               𝑝𝒙𝒕𝒙𝟎:𝒕−𝟏, 𝒛𝟏:𝒕−𝟏, 𝒖𝟏:𝒕= 𝑝𝒙𝒕𝒙𝒕−𝟏, 𝒖𝒕\n   – Measurement model: Present measurement 𝒛𝒕\n      depends only on the current state.\n                   𝑝𝒛𝒕𝒙𝟎:𝒕, 𝒛𝟏:𝒕−𝟏, 𝒖𝟏:𝒕= 𝑝𝒛𝒕𝒙𝒕\n\n                                                                                                          15",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "A sufficient current state screens the present measurement from history; the transition instead uses the previous state together with the current control.",
+        "optionExplanations": {
+          "o1": "The controlled transition retains the current input u_t.",
+          "o2": "Conditional independence from history given x_t does not imply unconditional independence from x_t.",
+          "o3": "Motion is conditioned on the previous state and current control; sensing is conditioned on the current state.",
+          "o4": "The displayed measurement relation uses x_t, not x_(t−1)."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "A sufficient current state screens the present measurement from history; the transition instead uses the previous state together with the current control.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The controlled transition retains the current input u_t.",
+          "Conditional independence from history given x_t does not imply unconditional independence from x_t.",
+          "The displayed measurement relation uses x_t, not x_(t−1)."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
       "difficultyRationale": "Direct interpretation, source reading, or a short specified calculation."
     }
   ],
@@ -9728,7 +9968,8 @@
       "title": "Odometry covariance calculation",
       "description": "The prediction transforms both previous pose uncertainty and two-dimensional odometry noise.",
       "slideIds": [
-        "lectures-p1395"
+        "lectures-p1395",
+        "lectures-p1393"
       ],
       "questionIds": [
         "W09-L44-Q057"
@@ -10327,7 +10568,7 @@
     {
       "id": "W09-L44-C-simulation-workflow",
       "title": "Simulation driver versus estimator",
-      "description": "Do not confuse the simulated control policy, ground-truth vehicle, sensor model, and state estimator.",
+      "description": "The driver chooses controls, .step advances simulation and yields odometry, .f propagates the estimated mean, and .Fx/.Fv supply the covariance Jacobians; EKF combines the specified models.",
       "slideIds": [
         "lectures-p1397",
         "lectures-p1400"
@@ -10341,6 +10582,42 @@
       "prerequisiteConceptIds": [],
       "examinationAngles": [
         "code"
+      ]
+    },
+    {
+      "id": "W09-L44-C-gap-90",
+      "title": "Position-density surface and contour projection",
+      "description": "The illustrated Gaussian describes uncertainty in x and y; a full planar-pose belief would also address heading. The contour display does not make probability negative.",
+      "slideIds": [
+        "lectures-p1382"
+      ],
+      "questionIds": [
+        "W09-L44-Q090"
+      ],
+      "status": "drafted",
+      "topic": "Understanding the Perception and Localization",
+      "subtopic": "Position-density surface and contour projection",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "diagram"
+      ]
+    },
+    {
+      "id": "W09-L44-C-gap-91",
+      "title": "Measurement conditional independence versus transition",
+      "description": "A sufficient current state screens the present measurement from history; the transition instead uses the previous state together with the current control.",
+      "slideIds": [
+        "lectures-p1384"
+      ],
+      "questionIds": [
+        "W09-L44-Q091"
+      ],
+      "status": "drafted",
+      "topic": "Understanding the Perception and Localization",
+      "subtopic": "Measurement conditional independence versus transition",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "conceptual"
       ]
     }
   ],

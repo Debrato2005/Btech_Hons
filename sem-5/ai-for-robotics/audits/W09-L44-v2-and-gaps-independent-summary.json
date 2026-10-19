@@ -1,0 +1,87 @@
+{
+  "batchId": "W09-L44",
+  "frozenAt": "2026-10-19T23:23:55.232692+00:00",
+  "reviewCount": 23,
+  "decisionCounts": {
+    "verified": 22,
+    "flagged": 1
+  },
+  "intendedKeyAgreements": 23,
+  "freshBlindAnswers": 2,
+  "priorExposedRevisionAnswers": 21,
+  "preservedAcceptedHashes": 68,
+  "currentCombinedDecisions": {
+    "verified": 90,
+    "flagged": 1
+  },
+  "sourcePagesFreshlyRevisited": [
+    1374,
+    1378,
+    1379,
+    1381,
+    1382,
+    1384,
+    1385,
+    1386,
+    1388,
+    1391,
+    1393,
+    1394,
+    1395,
+    1396,
+    1397,
+    1398,
+    1399,
+    1400,
+    1401,
+    1402
+  ],
+  "freshExecutableGroups": 13,
+  "freshVariedCases": 4000,
+  "newToolboxExecution": false,
+  "historicalApiEvidenceReused": true,
+  "reviewFile": "data/reviews/W09-L44-v2-and-gaps-independent.json",
+  "reviewSha256": "cf3d5b66477d0a9dc2d1674e1a3f8e0c50c10e1805e127ac9880b59bf1277090",
+  "beforeKeySha256": "a3c62458e3de2d6aefdb8529424bf130c6b00d6109f3df5f54c06f95b238744f",
+  "all23BindingsMatch": true,
+  "all68AcceptedHashesPreserved": true,
+  "sourceIssueSha256": "1454746779ad7984c70d76b76cb26f9e20fce87576eabd552fa4211d7e868ae2",
+  "sourceQualificationsRetained": 18,
+  "additionalScopeNotesRetained": 11,
+  "boundedCoverageTargets": [
+    {
+      "id": "L44-GAP-position-density-figure",
+      "questionId": "W09-L44-Q090",
+      "questionHash": "d7ef8434f4fa0b65a00b9ad7e95c23905e87b79ada9f0f336516132348ce7b58",
+      "status": "closed",
+      "basis": "Actual x/y axes, density height and offset contour plane are explicitly assessed."
+    },
+    {
+      "id": "L44-GAP-measurement-independence",
+      "questionId": "W09-L44-Q091",
+      "questionHash": "403e7a174998085588ec7c5952d4e2a0ff05f528c9fc22d70ea4aa5871214563",
+      "status": "pending_quality_repair",
+      "basis": "The intended distinction is included, but H_t must include the current control or condition on it explicitly."
+    },
+    {
+      "id": "L44-GAP-vehicle-method-roles",
+      "questionId": "W09-L44-Q089",
+      "questionHash": "a030d7fc39fb22a82c25007c57849f6ea8862806e924175c7429c4ae59a661a6",
+      "status": "closed",
+      "basis": "step/f/Fx/Fv are explicitly contrasted with control-driver and estimator roles."
+    }
+  ],
+  "findings": [
+    {
+      "questionId": "W09-L44-Q091",
+      "failedChecks": [
+        "assumptions",
+        "answerSet",
+        "explanation"
+      ],
+      "findings": [
+        "H_t is defined as past states, controls and measurements, so the current control u_t is not explicitly included in its conditioning information. The intended o3 transition equality requires that current input. In a valid controlled Markov example x_t=u_t with independent binary u_t and a fixed past, p(x_t=1|past)=1/2 but p(x_t=1|x_(t-1),u_t=1)=1. Define H_t=(x_0:t-1,z_1:t-1,u_1:t), or put u_t on the left as well. The supplied explanation states the intended dependence but does not repair the missing left-side conditioning premise. Source p1384 explicitly includes u_1:t."
+      ]
+    }
+  ]
+}

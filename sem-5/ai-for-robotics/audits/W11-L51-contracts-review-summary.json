@@ -1,0 +1,258 @@
+{
+  "completedAt": "2026-10-19T23:20:56.602644+00:00",
+  "reviewed": 76,
+  "verified": 39,
+  "flagged": 37,
+  "keyDisagreements": 0,
+  "keyAgreementQualification": "All intended keys agree. Quality approval is independent of key agreement; Q065 has a missing promised visible rule and Q054 a definite distractor-rationale arithmetic defect.",
+  "freshBlindQuestions": 76,
+  "actualPagesInspected": 25,
+  "conceptRecords": 76,
+  "remainingBoundedGaps": [
+    {
+      "id": "L51-G01",
+      "pages": [
+        1600,
+        1601,
+        1603,
+        1604,
+        1616
+      ],
+      "finding": "Material rows, simple torque scaling and gripper names are covered separately, but no bounded hardware co-design question combines structural inertia, actuator capability and terminal-tool task constraints. Brushless cooling versus electronic commutation is not substantively challenged.",
+      "remedy": "Replace weak matching/recall with a constrained source-based design scenario using only declared candidate properties. Require a coherent material/actuator/gripper combination, comparable inertia/load assumptions, action-dimension versus task-capability tradeoff, and the actual brush-wear/cooling/electronic-commutation distinction. Do not invent safety guarantees or grade-specific strength data."
+    },
+    {
+      "id": "L51-G02",
+      "pages": [
+        1606,
+        1607,
+        1608,
+        1609,
+        1610,
+        1611,
+        1612,
+        1613,
+        1617
+      ],
+      "finding": "Separate runtime, UART, camera-bandwidth and serial-loop calculations exist, but no candidate must simultaneously satisfy energy, data-rate and end-to-end timing constraints. This misses the lecture learning outcome of connecting hardware choices to AI performance.",
+      "remedy": "Add one integrated, explicitly parameterized compute/power/link selection exercise. Require full motor+sensor+compute power, usable battery energy, payload/framing units and serial sensing/inference/command timing, distinguishing low-level MCU from inference compute. Supply candidate measurements instead of deriving latency from TOPS; preserve network/power uncertainty."
+    },
+    {
+      "id": "L51-G03",
+      "pages": [
+        1605,
+        1606,
+        1614,
+        1615
+      ],
+      "finding": "Fusion methods and individual sensor roles are recalled; scalar weighting is isolated. No bounded failure-aware mobile-palette/pipeline scenario tests complementary sensing when GNSS is unavailable, odometry drifts/slips, vision is occluded or timestamps disagree. Ultrasonic/IR close-range roles remain only peripheral distractors.",
+      "remedy": "Add a source-bounded pipeline/fault scenario with explicit available measurements and error/timestamp assumptions. Ask which preprocessing, complementary sensors and valid loop-closure evidence are justified; include near-range ultrasound/IR versus global/relative pose roles. A declared independent scalar weighting plus a shared-bias or stale-sample variant may exercise robustness without inventing an unsourced full EKF derivation."
+    }
+  ],
+  "reviewFile": "data/reviews/W11-L51-v1-independent-contracts.json",
+  "reviewSha256": "ce7d8f60ff3380baabd43d80d95e0d595cf297d0cc146dc1b783526151212859",
+  "blindAnswersPath": "audits/blind-answers-W11-L51-contracts-reviewer.json",
+  "blindAnswersSha256": "1b1d162bbcd93b0dc4a803ccad8f34202dc2f349c9a59061e7cc0fdd457c3de6",
+  "coveragePath": "audits/W11-L51-contracts-coverage-challenge.json",
+  "flaggedFindings": {
+    "W11-L51-Q002": [
+      "The battery/wiring determining the number of joints and chassis being a communication transport are conspicuously unrelated. Use parallel realistic allocations among structure, power distribution, sensing and computation, or a concrete subsystem fault scenario."
+    ],
+    "W11-L51-Q003": [
+      "Requiring Wi-Fi as CAN physical signaling and asserting that ROS eliminates the need for underlying communication are extreme alternatives. Contrast realistic application/middleware/transport/bus assignments without making the qualified answer the only credible one."
+    ],
+    "W11-L51-Q005": [
+      "Calling soft silicone a high-cost metal and titanium inflatable fingers is implausible beyond a meaningful source-row confusion. Use actual material-property tuples with one plausible swapped cost/weight/use attribute."
+    ],
+    "W11-L51-Q006": [
+      "The aluminium-as-silicone and steel-as-plastic option is an obvious category mismatch. Replace with a realistic mass/cost/strength tradeoff or an application satisfying stated constraints."
+    ],
+    "W11-L51-Q008": [
+      "No power-supply/control hardware and no working fluid are not credible complete hydraulic-system alternatives. Compare actuator-only versus whole-system mass, gearbox/direct-drive implications and leakage/control tradeoffs with parallel scope."
+    ],
+    "W11-L51-Q009": [
+      "Zero friction plus incompressible air is presented as the named difficulty, while other options use only liquid-reservoir or fixed-gear properties. Use plausible pneumatic mechanisms such as compressibility, valve dynamics, pressure variation and seal friction under a source-specific criterion."
+    ],
+    "W11-L51-Q011": [
+      "A commutator supplying current with neither contact nor external switching is not a plausible competing motor arrangement. Replace it with a coherent but incorrect winding/brush/commutator configuration."
+    ],
+    "W11-L51-Q014": [
+      "Both electromagnetic assemblies stationary while the shaft rotates is conspicuously impossible in the stated design. Use coherent competing motor arrangements and ideally test the actual brush-wear/cooling versus electronic-commutation tradeoff. Also expand the locator: the first two brushless bullets do not include the fourth bullet that supplies external electronic commutation."
+    ],
+    "W11-L51-Q015": [
+      "Sensorless operation becoming mechanically brushed is a category-changing absurdity. Use plausible sensored versus estimated-position implementations and low-speed/back-EMF limitations, retaining primary evidence and conditional wording."
+    ],
+    "W11-L51-Q017": [
+      "An AC supply making all feedback sensors unusable and servo requiring brushes are weak alternatives. Contrast realistic historical limitations, feedback/drive configurations and modern positioning capability."
+    ],
+    "W11-L51-Q018": [
+      "A two-finger parallel mechanism being three wrapping fingers can be rejected from the labels alone. Use plausible contact/shape/application alternatives without changing the explicitly stated finger counts."
+    ],
+    "W11-L51-Q020": [
+      "A magnetic gripper requiring a vacuum seal is a mechanism mismatch unrelated to the meaningful material qualification. Replace with plausible material/thickness/air-gap/contact-area interpretations under supplied conditions."
+    ],
+    "W11-L51-Q021": [
+      "Equating camera pixel count with gripper action dimension is not a credible alternative. Use plausible actuator coupling, independent-command count and task-capability comparisons for the declared designs."
+    ],
+    "W11-L51-Q023": [
+      "Tactile arrays measuring only battery current and a force sensor being unable to detect external force are conspicuously false. Compare defensible internal-state versus interaction-based classification conventions rather than unrelated measurements."
+    ],
+    "W11-L51-Q028": [
+      "Identical memory because both execute instructions is not a plausible compute-allocation rule. Use realistic MCU/SBC resource, operating-system timing, memory and workload alternatives, with sufficient stated constraints."
+    ],
+    "W11-L51-Q032": [
+      "An arbitrary whole-network inference equaling one TOPS operation and memory capacity removing every execution cost are extreme. Use credible peak-versus-sustained throughput, precision, bandwidth and end-to-end latency estimates."
+    ],
+    "W11-L51-Q033": [
+      "Recovering a deadline before it occurs and exactly zero network delay are implausible. Compare realistic local/offloaded latency, jitter, outage fallback, bandwidth and power budgets under explicit conditions."
+    ],
+    "W11-L51-Q040": [
+      "The 83.25-minute distractor has a specific arithmetic origin:27.75/20*60, retaining only the new compute load and omitting motors/sensors. The explanation merely says higher load extends life; name the actual omitted-load error or replace the option with a calculated misconception."
+    ],
+    "W11-L51-Q042": [
+      "UART as ROS discovery and I2C as the entire Wi-Fi stack are conspicuous layer mismatches. Use realistic peripheral versus controller versus fieldbus allocations with parallel specificity."
+    ],
+    "W11-L51-Q043": [
+      "The CAN FD correction is supported by the saved primary-evidence audit but not linked from this question. Bind the Bosch CAN FD evidence (URL, precise locator, saved evidence hash) to this explanatory qualification, as already done for other corrected items; the lecture only supplies the Classical-CAN example."
+    ],
+    "W11-L51-Q044": [
+      "A speed-mode change turning I2C into analog measurement is implausible. Use real mode/device/loading constraints. Link the existing NXP UM10204 primary evidence to this question: the lecture range does not itself establish the extra modes being tested."
+    ],
+    "W11-L51-Q047": [
+      "Link the saved ROS middleware primary evidence to this item, not only to Q003/global audit. The cited Wi-Fi example is a premise, not by itself evidence of wired transport and middleware separation."
+    ],
+    "W11-L51-Q049": [
+      "Every raw sensor being a reward and state/reward/actuator commands being identical in every problem are implausible universals. Use a concrete measured-state, issued-command and reward-rule scenario with parallel competing assignments."
+    ],
+    "W11-L51-Q050": [
+      "Negative joint angles being impossible and relabeling explicitly supplied radians as degrees are unrelated giveaways. Use realistic partial-state alternatives involving position, velocity, object/contact state and observability under a specified dynamic task."
+    ],
+    "W11-L51-Q051": [
+      "The correction is sound, but its existing Maxon primary evidence is only global. Bind the precise load/voltage/PWM evidence to the question or explicitly connect a fully supplied model demonstrating the limitation; do not treat the incorrect slide percentage as proof of its correction."
+    ],
+    "W11-L51-Q053": [
+      "Halving reward physically halving force and the sensor necessarily outputting+10newtons are conspicuous software/physics conflations. Compare realistic reward rules using measured force, thresholded success and additional task conditions."
+    ],
+    "W11-L51-Q054": [
+      "The o2 rationale is wrong: adding the stated10ms period and8ms inference gives18ms, not12ms. Explain a coherent source of12ms or replace the distractor/rationale. The correct2ms remains unchanged."
+    ],
+    "W11-L51-Q056": [
+      "The stem explicitly asks only for a bound conversion without a distribution, but the formula record imports a uniform-interval sigma formula and an added uniform-error assumption. Narrow this item to a_rad=a_deg*pi/180 and the stated error-bound meaning; keep the distinct uniform model on Q058."
+    ],
+    "W11-L51-Q059": [
+      "A slower IMU creating more high-frequency information is not a credible sampling-design alternative. Use realistic confusion between policy frequency, signal bandwidth, timestamp latency and anti-alias margins under a concrete stated signal model."
+    ],
+    "W11-L51-Q061": [
+      "Accuracy as ignoring error and robustness as trusting a failed sensor are meaningless negations, unlike plausible confusions among the four motivations. Use parallel scenario-to-benefit mappings with realistic overlap/complementarity/fault/noise distinctions."
+    ],
+    "W11-L51-Q065": [
+      "The stem promises an explicitly supplied inverse-variance rule, but the rule is only in the hidden solution.formulas/steps. Supply the two expressions in the stem/visible assumptions, or remove the claim and honestly state the prerequisite. The slide only names fusion methods; it prints no such equation. Intended mean2.6 and variance.8 are independently confirmed."
+    ],
+    "W11-L51-Q066": [
+      "A failed output becoming reliable solely by concatenation and independent errors being identical to shared bias are weak categorical alternatives. Use concrete independent/correlated/bias/fault cases with supplied models that make the failure diagnosis meaningful."
+    ],
+    "W11-L51-Q068": [
+      "Several alternatives place map output or estimation before raw-data acquisition. Use plausible preprocess/feature/estimator/loop-closure placement errors rather than reversed causal order. A concise stage-by-stage explanation would also make the workflow useful beyond copying the chosen option."
+    ],
+    "W11-L51-Q069": [
+      "Equal file format proving simultaneity is a conspicuous non-temporal claim. Use credible acquisition-versus-arrival timestamp, shared-clock offset, frame calibration and motion-compensation alternatives."
+    ],
+    "W11-L51-Q071": [
+      "All six-joint arms having identical workspaces and unrestricted simultaneous reach are broad giveaways. Use a specified robot/pose/configuration scenario to distinguish reachability, joint limits, redundancy and local singularity without unqualified universal options."
+    ],
+    "W11-L51-Q072": [
+      "Removing sensors from a simulation automatically eliminating the gap is implausible. Use parallel genuine mismatch mechanisms and a bounded case so the hardware-versus-model/environment distinction is assessed, not merely the most qualified wording."
+    ],
+    "W11-L51-Q076": [
+      "Camera nominal frame rate and motor rated maximum torque are obvious non-measurements of the current contact wrench. Use realistic position, torque-estimate, direct-wrench and interaction-law feedback configurations with explicit task assumptions."
+    ]
+  },
+  "acceptedQuestionHashes": {
+    "W11-L51-Q001": "f998ff18f51f2bc96b538fcff058f50d32c69d5a4af109be067ec61adf107b57",
+    "W11-L51-Q004": "5405c757662a1531b40c6a8bcdb5dea8023dac32bf74e4d62a7066a7dd56ab28",
+    "W11-L51-Q007": "41a44a79d43d1fa7b575ba530c924c5eef36fd9635c5d54fdf02e79499adfcc5",
+    "W11-L51-Q010": "c5daee2db1b78284489c8b7216c668502467fea0898ac4004a9ea28921f0a46f",
+    "W11-L51-Q012": "9fc369aa634c6323f4b60b844bd402070669c8139e1f97817c4df4067a00a243",
+    "W11-L51-Q013": "90db1ff2e5c5e5d36006d1e1b896c08e648b85396ecc7eedf9f858875192563b",
+    "W11-L51-Q016": "f6fb245e340fefab6086311ea340fcc0c051810a41af4b4b9c1cef87f6e01903",
+    "W11-L51-Q019": "d3a07cdf1d09d56ff83d4026087d3dd3b70eb17dc7e00e299ac308e3b68c7550",
+    "W11-L51-Q022": "7b6b8fe8bd0f37715086fdcd4ae8595cd9a775fbce74270c492db18975252b12",
+    "W11-L51-Q024": "d22d49398dcc32fa232bee5ad394b3b86e13f754dc2532b170ed0a202fb3149c",
+    "W11-L51-Q025": "daca8f42bbced91df0034facf467724cfc1b3f4e72346ee6376f43e08bfb53ee",
+    "W11-L51-Q026": "478cdba8e474745e4dc75b074fac3b70111dca88855f991b96e91b9b36370e0d",
+    "W11-L51-Q027": "87f93220a4975b5540b76ccd7ff0ada87d390cd1d6584436cd4a80a727af158a",
+    "W11-L51-Q029": "42bc966f145f4be56217af44b3e9ae68e29dc7e91b40067b9ff7c9080fa29697",
+    "W11-L51-Q030": "3436f2c8cd4151d1d51a09fc52b559f4f95c727b0f028ca0494efe2b0a02bea5",
+    "W11-L51-Q031": "ece2982ad99efaaebc3ee3de545d755a4eebc2bda4b1fc2ba3bd6c56b3839ad2",
+    "W11-L51-Q034": "ceaf187f0395fff895629ab9efe23d1dc7adfb3363b21d936d08570517184130",
+    "W11-L51-Q035": "9f8d07ee19735ab2c3671f298e5e675911ac1bd73afaa18ee76bf3772cd1842c",
+    "W11-L51-Q036": "ec0f1d93b8c7872efcabfe6e9abb2a30878b294b4f59cc1dacfb96ba1491d7b4",
+    "W11-L51-Q037": "32119202a36622e6198dcaac92e3bc1943877693c84580f81704348d237e7fa7",
+    "W11-L51-Q038": "edf9faed9f753c46166a973a75830d0f29f3a81fd7d3bff4a3b5e329f035d36b",
+    "W11-L51-Q039": "8d6918b1021f144d526a5e9427e980dc3b15381d071e415ee94c6db2842ad392",
+    "W11-L51-Q041": "c9135b1d9f9e6589ff1b290ae2dc012a6c3f3c67c1f295c49b08a178e136511b",
+    "W11-L51-Q045": "67f4035da75069d8ebcfceab1d517e221484527f32273acf03a255e34264d216",
+    "W11-L51-Q046": "e9c9374ec68a9b0870954a5a704ab88ed12b77cf655d7dfc14937e738121edec",
+    "W11-L51-Q048": "61c948ec5ff0792ce882b19dc208198c6229c17949db0b65d1e0e4bd7148ba9b",
+    "W11-L51-Q052": "85f4be0dc6f1ec0e9436ae43122835c9a84ea42a9eef7b3ab92137d849885e16",
+    "W11-L51-Q055": "04226744e002019262ad2e137635be818c0ede8333190366693affbac8d21432",
+    "W11-L51-Q057": "7054e7a741e563c8e49e6e49eca99863419d4c3fa2aa94b49bd1d7ac17070f19",
+    "W11-L51-Q058": "825ab988139796dbec7e68a22f8babe0ee9abe03ccdb88cff34e5a9c7f63d671",
+    "W11-L51-Q060": "e5b40d540e565f51c610224f2e6484fedaf2b0e8688a22b9afd9cf175b15374f",
+    "W11-L51-Q062": "c663e60aa030151c47d26837350498a62ae85ced1cb61b22d0846cc268d01ad3",
+    "W11-L51-Q063": "444f68119b4eb24bf6fa7300762d0f1ce59d617f5f1dcec22effd111dec57ebe",
+    "W11-L51-Q064": "9fabd59052260e325f6cbbc3c2cbd8fb90110853932a096c75646df243b24ab3",
+    "W11-L51-Q067": "3a40f390b657689e43c4da361cd3ae7ff8a2147aac1c50d2768afb125b55c0d3",
+    "W11-L51-Q070": "78d196987a0e788d9df01bde737077fb62477d9ebf3b2e9caf2522f31f4d0f6e",
+    "W11-L51-Q073": "f5bd098d014aaaf9f6d9b6aff4eea8b74ec3234b87745719914c92674484e34f",
+    "W11-L51-Q074": "a086279cda7b37b26a338216782f27ca9f3c788e27af8c27c8f31cf58616c656",
+    "W11-L51-Q075": "d697d2d749ab4aa14ad31fa2551a298b84296e67403428ddf9d2b4f3b148a080"
+  },
+  "independentChecks": {
+    "explicit": 25,
+    "variedCases": 1000,
+    "variedAssertions": 5000
+  },
+  "validation": {
+    "valid": true,
+    "release": false,
+    "errors": [],
+    "warnings": [],
+    "counts": {
+      "sources": 2,
+      "sourcesReady": 2,
+      "pagesExpected": 2012,
+      "pagesInventoried": 2012,
+      "pagesVisuallyInspected": 357,
+      "pagesExcluded": 140,
+      "pagesRepeated": 0,
+      "concepts": 76,
+      "conceptsWithDraftQuestions": 76,
+      "conceptsWithVerifiedQuestions": 39,
+      "questions": 76,
+      "questionsByStatus": {
+        "verified": 39,
+        "flagged": 37
+      },
+      "currentlyVerifiedQuestions": 39,
+      "staleReviews": 0,
+      "numericalFamilies": 0,
+      "verifiedByWeek": {
+        "11": 39
+      },
+      "verifiedByDifficulty": {
+        "easy": 33,
+        "medium": 6
+      },
+      "verifiedByType": {
+        "numerical": 15,
+        "match": 11,
+        "diagram": 2,
+        "conceptual": 7,
+        "scenario": 4
+      }
+    }
+  },
+  "restrictions": "Denied downloads remain stopped. L48 dependency/model routes restricted; incident temporary environment must not be used. Permitted source inspection and deterministic default-environment checks remain available.",
+  "mutations": "Reviewer artifacts only; no author, bank, source, app or Git edits."
+}

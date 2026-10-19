@@ -1,0 +1,327 @@
+[
+  {
+    "id": "L52-ISSUE-autonomy-scope",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1622,
+    "finding": "Without sensors a robot cannot operate autonomously is broad wording.",
+    "handling": "Distinguish preset open-loop behavior from adapting to unobserved changes.",
+    "method": "Use explicitly stipulated open-loop and feedback scenarios, not a universal impossibility claim.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-deadband-wording",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1625,
+    "finding": "Dead band is described as a region where no output is produced.",
+    "handling": "Interpret an input interval with no responsive output change; output need not literally be zero.",
+    "method": "Supply a complete constant-output example and distinguish baseline value from response.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-adc-convention",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1628,
+    "finding": "0–1023 over0–5V can invite mixing bin width and endpoint interpolation.",
+    "handling": "State either ideal1024-bin quantization or0-to1023 endpoint calibration explicitly.",
+    "method": "Calculate each convention separately; no silent denominator substitution.",
+    "primaryEvidence": [
+      {
+        "title": "Arduino analogRead reference",
+        "url": "https://github.com/arduino/reference-en/blob/master/Language/Functions/Analog%20IO/analogRead.adoc",
+        "version": "Official reference accessed 2026-10-19",
+        "locator": "Description: 10-bit codes 0–1023 and 5/1024 V quantization example; board-dependent defaults.",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-encoder-accuracy",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1632,
+    "finding": "Code explanation says interrupt ensures accurate counting.",
+    "handling": "An interrupt does not guarantee no missed events; volatile is not an atomic multi-byte snapshot.",
+    "method": "Trace the displayed interrupt-masked snapshot and note explicitly supplied AVR word size and event-rate assumptions.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-ldr-polarity",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1639,
+    "finding": "High value means bright light is asserted without divider orientation.",
+    "handling": "Scope this to the demonstrated module; bare LDR resistance decreases with light, but output voltage depends on circuit placement.",
+    "method": "Derive the divider under explicitly supplied upper/lower resistor positions.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-tilt-semicolon",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1643,
+    "finding": "The else Serial.println statement lacks its semicolon.",
+    "handling": "As printed the excerpt fails compilation; add only the missing semicolon for a separately labeled repaired trace.",
+    "method": "Compile the exact transcription in an Arduino-stub C++ harness, then compile the explicitly repaired copy.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-ultrasonic-ground",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1651,
+    "finding": "The wiring table omits GND although the photo labels it.",
+    "handling": "A compatible common signal reference is an explicitly supplied completion, not a printed table entry.",
+    "method": "Compare the three table rows with four labeled pins in the actual photo.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-ultrasonic-output",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1652,
+    "finding": "Code prints Distance: twice and uses print without a line break, unlike demonstration output.",
+    "handling": "Trace literal output separately from historical slide1653/1654 screenshots.",
+    "method": "Execute the transcribed loop using a stub serial sink and supplied pulse widths.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-dht-revision",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1655,
+    "finding": "Capacitive humidity element is specified without a sensor revision.",
+    "handling": "Preserve the slide description; legacy translated data sheet says resistive while vendor guide says capacitive. Do not declare the photographed device wrong without revision evidence.",
+    "method": "Compare the cited documentation; ask source-attributed architecture or version-aware interpretation, not a universal component claim.",
+    "primaryEvidence": [
+      {
+        "title": "DHT11 translated technical data sheet",
+        "url": "https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf",
+        "version": "Undated legacy translated manufacturer data sheet; exact pictured revision unknown",
+        "locator": "PDF page2 introduction describes resistive humidity component; page4 separates resolution and accuracy.",
+        "checkedAt": "2026-10-19"
+      },
+      {
+        "title": "Adafruit DHT sensor guide",
+        "url": "https://learn.adafruit.com/dht/overview",
+        "version": "Vendor guide accessed 2026-10-19",
+        "locator": "Overview describes capacitive humidity sensing; different documentation cannot identify the revision pictured in the lecture.",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-imu-specific-force",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1659,
+    "finding": "Accelerometer is summarized as measuring linear acceleration.",
+    "handling": "Raw accelerometer output includes gravity-related specific-force effects; gravity-dominated quasi-static posture is assumed by the later tilt formula.",
+    "method": "Contrast static gravity-vector geometry with added translational acceleration; no sensor-fusion output is silently assumed.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-imu-supply",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1660,
+    "finding": "VCC5V is listed under MPU6500.",
+    "handling": "Treat this as a compatible breakout-input example, not bare-chip5V tolerance.",
+    "method": "Separate board-level VIN circuitry from the manufacturer bare-IC supply rating.",
+    "primaryEvidence": [
+      {
+        "title": "TDK MPU-6500 product details",
+        "url": "https://www.invensense.tdk.com/en-us/products/inertial-sensors/mpu-6500",
+        "version": "Manufacturer page accessed 2026-10-19",
+        "locator": "Bare IC supply-voltage range is below 5 V; breakout input rating requires its own design evidence.",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-imu-read-portability",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1661,
+    "finding": "Each axis uses two Wire.read calls as operands of one bitwise-OR expression.",
+    "handling": "For portable reconstruction, explicitly read high byte then low byte in separate statements, validate six bytes, and widen before signed negation.",
+    "method": "The intended high-byte/low-byte mapping is tested in an explicitly sequential reconstruction; no portable evaluation order or AVR overflow behavior is claimed for the original expression.",
+    "primaryEvidence": [
+      {
+        "title": "C++ working draft: program execution",
+        "url": "https://eel.is/c++draft/intro.execution",
+        "version": "Current public working draft accessed 2026-10-19",
+        "locator": "Paragraphs 9–12: separate full-expressions are sequenced; operands are not generally evaluated left-to-right. Function-call executions do not interleave, but the bitwise-OR expression does not guarantee which Wire.read call occurs first.",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-vl53-versus-scanner",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1664,
+    "finding": "Header namesVL53L0X while body describes scanning2D/3D point clouds.",
+    "handling": "A fixed single-zone measurement does not by itself supply a scan; direction and pose must be supplied.",
+    "method": "Separate general range-plus-direction geometry from the named component.",
+    "primaryEvidence": [
+      {
+        "title": "ST VL53L0X datasheet",
+        "url": "https://www.st.com/resource/en/datasheet/vl53l0x.pdf",
+        "version": "Manufacturer datasheet accessed 2026-10-19",
+        "locator": "Device description and I2C interface; integrated single-zone ranging device, not a rotating scanner.",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-vl53-bus",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1667,
+    "finding": "Right explanation claims UART and SoftwareSerial, but code uses Wire and AdafruitVL53L0X.",
+    "handling": "Sensor acquisition is I2C; Serial sends console output. No SoftwareSerial appears in code.",
+    "method": "Compare actual includes, Wire.begin and preceding SDA/SCL table; preserve conflicting prose.",
+    "primaryEvidence": [
+      {
+        "title": "ST VL53L0X datasheet",
+        "url": "https://www.st.com/resource/en/datasheet/vl53l0x.pdf",
+        "version": "Manufacturer datasheet accessed 2026-10-19",
+        "locator": "Device description and I2C interface; integrated single-zone ranging device, not a rotating scanner.",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-vl53-status",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1667,
+    "finding": "The sample accepts every RangeStatus other than4.",
+    "handling": "Literal branch acceptance is broader than API-valid status0; other failure codes may pass it.",
+    "method": "Apply the exact !=4 predicate to ST Table1 statuses; separate code behavior from measurement validity.",
+    "primaryEvidence": [
+      {
+        "title": "ST VL53L0X API manual",
+        "url": "https://www.st.com/resource/en/user_manual/dm00279088-world-smallest-time-of-flight-ranging-and-gesture-detection-sensor-application-programming-interface-stmicroelectronics.pdf",
+        "version": "UM2039 DocID029105 Rev2.0",
+        "locator": "Section5.3.2, PDF page16 Table1: status0 valid;1 sigma fail;2 signal fail;3 min-range fail;4 phase fail;5 hardware fail;255 no update.",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-rplidar-resolution",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1670,
+    "finding": "Distance resolution<0.5mm is parenthetically equated with1% ofdistance.",
+    "handling": "Do not equate absolute and relative resolution across the stated range; model-specific conditions are unspecified.",
+    "method": "Use dimensional arithmetic under an explicitly supplied distance; no new universal hardware specification is inferred.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-rplidar-color",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1670,
+    "finding": "Prose says distance-angle plot is red.",
+    "handling": "Actual next-page return traces are cyan/green; red text is a status readout. Color is presentation, not a ranging principle.",
+    "method": "Compare exact prose with actual viewer screenshot1671.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-openimages-count",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1676,
+    "finding": "Code comments and window title say600classes.",
+    "handling": "Preserve rounded source label; installed8.4.182 YAML and current official guide contain601 names indexed0–600. This is not600 detections or the content of an uninspected checkpoint.",
+    "method": "Count installed dataset configuration entries without downloading weights or running a webcam.",
+    "primaryEvidence": [
+      {
+        "title": "Ultralytics Open Images V7 definition",
+        "url": "https://docs.ultralytics.com/datasets/detect/open-images-v7",
+        "version": "Official guide accessed 2026-10-19; installed Ultralytics8.4.182",
+        "locator": "Dataset Structure and names0–600:601 entries; slide600 is rounded taxonomy shorthand, not observed object count.",
+        "checkedAt": "2026-10-19",
+        "localEvidence": {
+          "path": "sources/supplemental/L52-ultralytics-open-images-v7.yaml",
+          "sha256": "497468af9dc644d149101efc090727d3c6fd644591f4cc2e8c5adeb00f4ad848"
+        }
+      }
+    ],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-video-frame-size",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1677,
+    "finding": "Frames are forced to640×480 after writer is opened with camera-reported dimensions.",
+    "handling": "These sizes agree only if reported capture dimensions match the forced resize; use consistent writer/frame sizes explicitly.",
+    "method": "Trace source assignments and test the writer-size contract with synthetic frames, not camera footage.",
+    "primaryEvidence": [
+      {
+        "title": "OpenCV VideoWriter contract",
+        "url": "https://docs.opencv.org/4.13.0/dd/d9e/classcv_1_1VideoWriter.html",
+        "version": "OpenCV4.13.0 reference; local author runtime OpenCV5.0.0 tested separately",
+        "locator": "write(): frame size must equal size specified when opening writer; fps is created-stream frame rate.",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-real-time-scope",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1675,
+    "finding": "YOLO is described as real-time, while later large model runs onCPU withfps20writer.",
+    "handling": "Writer metadata does not guarantee inference throughput; actual interval-based display may be lower.",
+    "method": "Compute loop-FPS and playback duration using stipulated timings, without claiming fresh checkpoint inference.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-depth-validity",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1679,
+    "finding": "Every pixel is said to contain distance and3Dcoordinates.",
+    "handling": "Missing/invalid pixels and calibration/registration must be handled; RGB appearance alone is not metric depth.",
+    "method": "Compare the source output descriptions with actual black gaps in1680 and an explicitly supplied calibrated pinhole model.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L52-ISSUE-sensor-spec-scope",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1682,
+    "finding": "Sub-mN and>10kHz are listed without a sensor model.",
+    "handling": "Treat these as illustrative performance, not guaranteed by every strain-gauge or piezoelectric sensor.",
+    "method": "Use supplied engineering requirements; distinguish transduction mechanism from model-specific specifications.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  }
+]

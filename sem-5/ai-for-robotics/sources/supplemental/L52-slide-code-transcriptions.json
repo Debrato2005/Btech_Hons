@@ -1,0 +1,92 @@
+{
+  "potentiometer": {
+    "physicalPages": [
+      1628
+    ],
+    "provenance": "Manual transcription from actually viewed PDF pixels; whitespace normalized, statements preserved. Not an original notebook.",
+    "code": "int potPin = A0;\nint potValue = 0;\nvoid setup() { Serial.begin(9600); }\nvoid loop() {\n potValue = analogRead(potPin);\n Serial.println(potValue); delay(200);\n}\n",
+    "sha256": "567db90dbd159d8cdf099fffbfc6034ae294602c7d39c851c5febdeece1ca5e0"
+  },
+  "encoder": {
+    "physicalPages": [
+      1632
+    ],
+    "provenance": "Manual transcription from actually viewed PDF pixels; whitespace normalized, statements preserved. Not an original notebook.",
+    "code": "volatile long count = 0;\nconst int PPR = 600; // pulses per rotation\nvoid setup() {\n pinMode(2, INPUT_PULLUP);\n pinMode(3, INPUT_PULLUP);\n attachInterrupt(digitalPinToInterrupt(2), encoderISR, RISING);\n Serial.begin(9600);\n}\nvoid loop() {\n float rotations;\n noInterrupts();\n rotations = (float)count / PPR;\n interrupts();\n Serial.print(\"Rotations: \");\n Serial.println((int)rotations);\n delay(50);\n}\nvoid encoderISR() {\n if (digitalRead(3) == HIGH) count++;\n else count--;\n}\n",
+    "sha256": "45f51a4bb3eb8f24f5e4f8935bbb018575ecdb170f2638e81db37e3e785eabbd"
+  },
+  "ir": {
+    "physicalPages": [
+      1635
+    ],
+    "provenance": "Manual transcription from actually viewed PDF pixels; whitespace normalized, statements preserved. Not an original notebook.",
+    "code": "int irPin = 8;\nvoid setup() { pinMode(irPin, INPUT); Serial.begin(9600); }\nvoid loop() {\n int state = digitalRead(irPin);\n if (state == HIGH) { Serial.println(\"Obstacle Detected\"); }\n else { Serial.println(\"No Obstacle\"); }\n delay(300);\n}\n",
+    "sha256": "1c0fca924d963bed3b45fcffdf0dc0ac17fa6d082ab280cea95d1f861043a86d"
+  },
+  "ldr": {
+    "physicalPages": [
+      1639
+    ],
+    "provenance": "Manual transcription from actually viewed PDF pixels; whitespace normalized, statements preserved. Not an original notebook.",
+    "code": "int ldrPin = A1;\nvoid setup() { Serial.begin(9600); }\nvoid loop() {\n int lightValue = analogRead(ldrPin);\n Serial.print(\"Light Intensity: \");\n Serial.println(lightValue);\n delay(500);\n}\n",
+    "sha256": "2d34b076decf62cdf94b99a6505ecaa186be793acaa6cadcabecb76f2c416078"
+  },
+  "tilt": {
+    "physicalPages": [
+      1643
+    ],
+    "provenance": "Manual transcription from actually viewed PDF pixels; whitespace normalized, statements preserved. Not an original notebook.",
+    "code": "int tiltPin = 8;\nvoid setup() { pinMode(tiltPin, INPUT_PULLUP); Serial.begin(9600); }\nvoid loop() {\n if (digitalRead(tiltPin) == LOW) { Serial.println(\"Tilt Detected!\"); }\n else { Serial.println(\"Tilt Not Detected!\") }\n}\n",
+    "sha256": "7baec1a2ab712b80bef92453d65caa9e7f1307a616803ced6106b2d092dbbefc"
+  },
+  "reed": {
+    "physicalPages": [
+      1647
+    ],
+    "provenance": "Manual transcription from actually viewed PDF pixels; whitespace normalized, statements preserved. Not an original notebook.",
+    "code": "int reedPin = 9;\nvoid setup() { pinMode(reedPin, INPUT_PULLUP); Serial.begin(9600); }\nvoid loop() {\n if (digitalRead(reedPin) == LOW) { Serial.println(\"Magnet Detected!\"); }\n else { Serial.println(\"Magnet Not Detected!\"); }\n}\n",
+    "sha256": "595f02c29cc1e708f92e33732173b6a2d83f880cf82db3c3d772bf8f89764bcf"
+  },
+  "ultrasonic": {
+    "physicalPages": [
+      1652
+    ],
+    "provenance": "Manual transcription from actually viewed PDF pixels; whitespace normalized, statements preserved. Not an original notebook.",
+    "code": "long duration;\nint distance;\nvoid setup() { pinMode(9, OUTPUT); pinMode(10, INPUT); Serial.begin(9600); }\nvoid loop() {\n digitalWrite(9, LOW); delayMicroseconds(2);\n digitalWrite(9, HIGH); delayMicroseconds(10);\n digitalWrite(9, LOW);\n duration = pulseIn(10, HIGH);\n distance = duration * 0.034 / 2;\n Serial.print(\"Distance: \");\n Serial.print(\"Distance: \");\n Serial.print(distance);\n delay(300);\n}\n",
+    "sha256": "137f7ae1b3340d7e0adcc3910d98efea7906a6269055656a8a97471b5b1093bd"
+  },
+  "dht": {
+    "physicalPages": [
+      1657
+    ],
+    "provenance": "Manual transcription from actually viewed PDF pixels; whitespace normalized, statements preserved. Not an original notebook.",
+    "code": "#include <DHT.h>\n#define DHTPIN 7\n#define DHTTYPE DHT11\nDHT dht(DHTPIN, DHTTYPE);\nvoid setup() { Serial.begin(9600); dht.begin(); }\nvoid loop() {\n float humidity = dht.readHumidity();\n float temperature = dht.readTemperature();\n Serial.print(\"Humidity: \"); Serial.print(humidity); Serial.print(\" %  \");\n Serial.print(\"Temperature: \"); Serial.print(temperature); Serial.println(\" °C\");\n delay(2000);\n}\n",
+    "sha256": "ef1560a031c204e5d819ff03eeb05411409973e9a6af44919454243b79e382fc"
+  },
+  "imu": {
+    "physicalPages": [
+      1660,
+      1661
+    ],
+    "provenance": "Manual transcription from actually viewed PDF pixels; whitespace normalized, statements preserved. Not an original notebook.",
+    "code": "#include <Wire.h>\n#define MPU_ADDR 0x68\nint16_t ax, ay, az;\nfloat tiltAngle;\nfloat offset = 0;\nvoid setup() {\n Serial.begin(115200);\n Wire.begin(); // Wake MPU6500\n Wire.beginTransmission(MPU_ADDR);\n Wire.write(0x6B); Wire.write(0x00); Wire.endTransmission(true);\n delay(2000); // keep leg straight\n offset = readTilt(); // Calibrate zero position\n Serial.println(\"Calibration done!\");\n}\nvoid loop() {\n tiltAngle = readTilt() - offset;\n Serial.print(\"Lower leg tilt: \"); Serial.print(tiltAngle); Serial.println(\" degrees\");\n delay(50);\n}\nfloat readTilt() {\n readAccel(); // Pitch angle (forward/backward)\n float angle = atan2(-ax, sqrt((float)ay * ay + (float)az * az));\n return angle * 180.0 / PI;\n}\nvoid readAccel() {\n Wire.beginTransmission(MPU_ADDR); Wire.write(0x3B);\n Wire.endTransmission(false); Wire.requestFrom(MPU_ADDR, 6, true);\n ax = Wire.read() << 8 | Wire.read(); ay = Wire.read() << 8 | Wire.read();\n az = Wire.read() << 8 | Wire.read();\n}\n",
+    "sha256": "cbe60e413057976753cb8d5da1507195de1c9ef3fd756131c79c02d5dfd9adad"
+  },
+  "vl53l0x": {
+    "physicalPages": [
+      1667
+    ],
+    "provenance": "Manual transcription from actually viewed PDF pixels; whitespace normalized, statements preserved. Not an original notebook.",
+    "code": "#include <Wire.h>\n#include \"Adafruit_VL53L0X.h\"\nAdafruit_VL53L0X lox = Adafruit_VL53L0X();\nvoid setup() {\n Serial.begin(9600);\n Wire.begin(); // Uses Mega I2C pins 20 & 21 automatically\n if (!lox.begin()) { Serial.println(\"VL53L0X not detected\"); while (1); }\n Serial.println(\"VL53L0X Ready\");\n}\nvoid loop() {\n VL53L0X_RangingMeasurementData_t measure;\n lox.rangingTest(&measure, false);\n if (measure.RangeStatus != 4) {\n  Serial.print(\"Distance: \"); Serial.print(measure.RangeMilliMeter / 10.0);\n  Serial.println(\" cm\");\n } else { Serial.println(\"Out of range\"); }\n delay(300);\n}\n",
+    "sha256": "ffee4f5346c8d2ea3fc2c98a7bee0bd2a392853fcfbc2e88b33cf1f50b170fe1"
+  },
+  "vision": {
+    "physicalPages": [
+      1676,
+      1677
+    ],
+    "provenance": "Manual transcription from actually viewed PDF pixels; whitespace normalized, statements preserved. Not an original notebook.",
+    "code": "import cv2\nimport time\nfrom ultralytics import YOLO\n# Load OpenImages YOLOv8 model (600 classes)\nmodel = YOLO(\"yolov8x-oiv7.pt\")  # Make sure this file exists\ndevice = \"cpu\"\n# Open webcam\ncap = cv2.VideoCapture(0)\n# Set resolution (optional)\ncap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)\ncap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)\nframe_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))\nframe_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))\n# Video writer\nfps = 20\nfourcc = cv2.VideoWriter_fourcc(*\"mp4v\")\nout = cv2.VideoWriter(\"max_objects_cpu.mp4\", fourcc, fps, (frame_width, frame_height))\nprev_time = 0\nprint(\"Detecting ~600 object classes on CPU...\")\nprint(\"Press 'q' to quit\")\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n    frame = cv2.resize(frame, (640, 480))\n    results = model(frame, device=device, conf=0.25)\n    annotated = results[0].plot()\n    # FPS counter\n    current_time = time.time()\n    fps_display = 1 / (current_time - prev_time) if prev_time else 0\n    prev_time = current_time\n    cv2.putText(annotated, f\"FPS: {int(fps_display)}\",\n                (20, 40), cv2.FONT_HERSHEY_SIMPLEX,\n                1, (0, 255, 0), 2)\n    out.write(annotated)\n    cv2.imshow(\"Max Objects Detection (600 classes)\", annotated)\n    if cv2.waitKey(1) & 0xFF == ord('q'):\n        break\ncap.release()\nout.release()\ncv2.destroyAllWindows()\n",
+    "sha256": "f135fd36327ba74ac8d5fee72a28fc0f73afabeb0da5057a746def19b046ae84"
+  }
+}

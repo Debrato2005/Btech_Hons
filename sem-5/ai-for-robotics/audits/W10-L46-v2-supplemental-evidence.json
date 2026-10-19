@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-19T23:12:27.090227+00:00",
+  "wordnet": {
+    "url": "https://www.nltk.org/api/nltk.stem.wordnet.html",
+    "installedVersion": "3.10.3",
+    "signature": "lemmatize(self, word: str, pos: str = \"n\")",
+    "localSourceSha256": "e1eeec1ef6d3f1a50b45f6f6d84aee3d55d0be1335be2540567d6b9c0cfa927f",
+    "scope": "Signature inspected as text; no corpus-dependent execution or download."
+  },
+  "countDataFrame": {
+    "url": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/main/week10/week10_lecture46.ipynb",
+    "localPath": "sources/supplemental/L46-official-week10_lecture46.ipynb",
+    "sha256": "d32019733e3d14c0b21c9bf5276ecceb8fa4b0a11757bb0b4ffef4b2fe2504c3",
+    "cell": 17,
+    "source": "from sklearn.feature_extraction.text import CountVectorizer\nimport pandas as pd\n\ncommands = [\n    \"pick red ball near chair\",\n    \"pick blue box\",\n    \"grab red box\"\n]\n\n# Create BoW vectorizer\nvectorizer = CountVectorizer()\n\n# Convert text into BoW vectors\nX = vectorizer.fit_transform(commands)\n\n# Display matrix\ndf = pd.DataFrame(\n    X.toarray(),\n    columns=vectorizer.get_feature_names_out()\n)\n\nprint(df)"
+  }
+}

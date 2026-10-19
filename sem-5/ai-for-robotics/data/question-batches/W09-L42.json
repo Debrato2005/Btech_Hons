@@ -2801,7 +2801,7 @@
     },
     {
       "id": "W09-L42-Q027",
-      "version": 2,
+      "version": 3,
       "status": "draft",
       "authorId": "build_offline_study_interface:L42-author",
       "stem": "Trace this declared six-slot GA generation. The selected parents are P1,P2,P3,P4,P4,P6, paired (P1,P3),(P4,P6),(P2,P4); swap the second waypoint in each pair, label children C1…C6 in that order, then change only C1 from [(0,3),(3,4)] to C1′=[(0,3),(3,5)]. Use the source grid and H-then-V decoder with C=L+10N_obs+N_turn and F=1/(1+C). Retain old elite P1 in one slot, then the five lowest-cost evaluated children, breaking equal costs by child number. Which child-cost vector, next population and best fitness result?",
@@ -2932,7 +2932,7 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1312,
           "kind": "table",
-          "locator": "Lecture L42, physical PDF page 1312, printed footer 16: Six original waypoint chromosomes.",
+          "locator": "Lecture L42, physical PDF page 1312, printed footer 16: P1 waypoint chromosome and its worked cost/fitness evaluation.",
           "evidenceText": "Evaluate the Initial Chromosomes            S               (0,3)\n\n•  Using Manhattan distance between consecutive        X   X\n   points: 𝑑((𝑟1, 𝑐1), (𝑟2, 𝑐2)) = |𝑟2 −𝑟1| + |𝑐2 −𝑐1|\n                                                  X      X\n•   (1) 𝑃1 = [(0,3), (4,5)]\n•  𝑑(𝑆, 𝑊1) = |0 −0| + |3 −0| = 3                      X\n•  𝑑(𝑊1, 𝑊2) = |4 −0| + |5 −3| = 6\n                                                     X         (4,5)•  𝑑(𝑊2, 𝐺) = |5 −4| + |5 −5| = 1\n•   Total 𝐿= 10.\n                                                    G\n•  A valid decoded route can avoid obstacles on these\n   segments, so take 𝑁obs = 0.\n   𝑁turn = 1.\n   Cost = 10 + 10(0) + 1(1) = 11.\n   Fitness = 1/(1 + 11) = 1/12 ≈0.0833.\n\n\n\n                                                                                                          16",
           "role": "premise",
           "region": {
@@ -2998,6 +2998,22 @@
           "kind": "code",
           "locator": "Lecture L42, physical PDF page 1326, printed footer 30: Pseudocode evaluates candidates and retains an elite; exact fixed-size policy is supplied in this exercise.",
           "evidenceText": "Pseudocode\nInput: 6x6 grid, start S, goal G, obstacle set Obs\nOutput: best path\nInitialize population P with N chromosomes\nEach chromosome = [W1, W2], where W1 and W2 are free cells\nFor gen = 1 to MaxGen:\n  For each chromosome C in P:\n    Decode path: S -> W1 -> W2 -> G\n   Compute path length L\n    Count obstacle violations Nobs\n    Count turns Nturn\n    Cost = L + alpha*Nobs + beta*Nturn\n     Fitness = 1 / (1 + Cost)\n  Keep best chromosome (elitism)\n  Select parent pairs from P based on fitness\n  For each pair:\n    Perform crossover to create children\n    Mutate waypoint genes with probability pm\n    Repair invalid waypoints if needed\n   Add children to new population\n  Replace old population with new population\nReturn chromosome with highest fitness\nDecode it into final path\n\n                                                                                                          30",
+          "role": "premise",
+          "region": {
+            "x": 0.01,
+            "y": 0.04,
+            "width": 0.98,
+            "height": 0.87
+          }
+        },
+        {
+          "slideId": "lectures-p1308",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1308,
+          "kind": "table",
+          "locator": "Lecture L42, physical PDF page 1308, printed footer 12: Six original waypoint chromosomes P1 through P6.",
+          "evidenceText": "SInitial Population\n                           •  At the start, thesePopulation of 6                                 X   X\n                        paths may be random\ncandidate paths.                        or partly heuristic.              X      X\n•  𝑃1 = [0,3 | 4,5]     •  Diversity is important\n                                                  X•  𝑃2 = [2,1 | 5,3]      because identical\n•                       paths limit exploration.  𝑃3 = [0,2 | 3,4]                                      X\n                           •  Some initial paths can•   𝑃4 = [3,0 | 5,4]\n                     be bad; GA improves                   G•  𝑃5 = [1,3 | 4,4]                             this population\n•  𝑃6 = [2,0 | 5,2]       generation by\n                        generation using\n                           selection, crossover,\n                     and mutation.\n\n\n\n                                                                                                          12",
           "role": "premise",
           "region": {
             "x": 0.01,
@@ -8918,7 +8934,8 @@
         "lectures-p1319",
         "lectures-p1321",
         "lectures-p1322",
-        "lectures-p1326"
+        "lectures-p1326",
+        "lectures-p1308"
       ],
       "questionIds": [
         "W09-L42-Q027"

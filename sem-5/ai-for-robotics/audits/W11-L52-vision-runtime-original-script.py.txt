@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+"""Synthetic-frame OpenCV and installed Ultralytics metadata check; no camera/model loading."""
+from pathlib import Path
+import cv2,ultralytics,yaml,numpy as np,json,hashlib,tempfile,shutil
+R=Path(__file__).resolve().parents[1];d=Path(tempfile.mkdtemp(prefix='robotics-l52-vision-',dir='/tmp'));checks=[]
+def ck(n,v,e):assert v,(n,e);checks.append({'name':n,'passed':True,'detail':e})
+p=Path(ultralytics.__file__).parent/'cfg/datasets/open-images-v7.yaml';cfg=yaml.safe_load(p.read_text());dest=R/'sources/supplemental/L52-ultralytics-open-images-v7.yaml';shutil.copyfile(p,dest)
+ck('Open Images label count',len(cfg['names'])==601 and cfg['names'][600]=='Zucchini','Installed Ultralytics8.4.182 YAML has601 names indexed0–600; no checkpoint downloaded/inspected.')
+for name,size in [('matching',(640,480)),('mismatched',(1280,720))]:
+ fn=d/(name+'.mp4');w=cv2.VideoWriter(str(fn),cv2.VideoWriter_fourcc(*'mp4v'),20,size);ck(name+' writer opened',w.isOpened(),str(size))
+ for i in range(3):w.write(np.full((480,640,3),i*60,dtype=np.uint8))
+ w.release();c=cv2.VideoCapture(str(fn));count=0;dims=[]
+ while True:
+  ok,f=c.read()
+  if not ok:break
+  count+=1;dims.append([f.shape[1],f.shape[0]])
+ fps=c.get(cv2.CAP_PROP_FPS);c.release()
+ if name=='matching':ck('Matching frames round trip',count==3 and dims==[[640,480]]*3 and abs(fps-20)<1e-9,{'frames':count,'dimensions':dims,'fps':fps})
+ else:ck('Mismatched frames not silently resized',count!=3 or dims!=[[1280,720]]*3,{'decodableFrames':count,'dimensions':dims,'note':'Observed backend result; the API contract, not a universal failure mode, determines the question.'})
+r={'batchId':'W11-L52','status':'author_runtime_checks_only','checkedAt':'2026-10-19T23:11:00Z','python':__import__('sys').version,'opencvVersion':cv2.__version__,'ultralyticsVersion':ultralytics.__version__,'checks':checks,'yamlEvidence':{'path':str(dest.relative_to(R)),'sha256':hashlib.sha256(dest.read_bytes()).hexdigest(),'originalInstalledPath':str(p)},'scope':'Synthetic constant-color frames only. No webcam, user footage, YOLO checkpoint load/inference or official notebook run.'}
+(R/'audits/W11-L52-vision-runtime-author.json').write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n');print(len(checks),'runtime checks passed; no camera or model inference')

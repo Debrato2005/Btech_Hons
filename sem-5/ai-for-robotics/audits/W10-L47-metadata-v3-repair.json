@@ -1,0 +1,286 @@
+{
+  "createdAt": "2026-10-19T23:31:07.479546+00:00",
+  "changes": {
+    "W10-L47-Q016": "Remove irrelevant full attention formula; retain fully defined variance derivation.",
+    "W10-L47-Q019": "Define dv as value-vector width with dimensionless count units."
+  },
+  "preservedQuestionCount": 74,
+  "before": [
+    {
+      "id": "W10-L47-Q016",
+      "version": 2,
+      "status": "draft",
+      "authorId": "build_robotics_study_app:L47-author",
+      "stem": "Assume independent zero-mean unit-variance query and key coordinates; how does dividing q·k by √dk change its variance?",
+      "selectionMode": "single",
+      "type": "derivation",
+      "difficulty": "medium",
+      "cognitiveSkill": "synthesis",
+      "week": 10,
+      "lectureId": "L47",
+      "topic": "Transformers",
+      "subtopic": "Why the square-root scale is used",
+      "tags": [
+        "scale-variance"
+      ],
+      "conceptIds": [
+        "W10-L47-C-scale-variance"
+      ],
+      "assumptions": [
+        "All products are independent under the stated coordinate model."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Variance dk becomes variance 1."
+        },
+        {
+          "id": "o2",
+          "text": "Variance dk becomes variance 1/dk."
+        },
+        {
+          "id": "o3",
+          "text": "Variance dk becomes variance √dk."
+        },
+        {
+          "id": "o4",
+          "text": "Variance dk remains variance dk."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1486",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1486,
+          "kind": "equation",
+          "locator": "Lecture 47, physical PDF page 1486, printed footer 11: Scaled score equation with √dk denominator and stability motivation.",
+          "evidenceText": "Self-Attention\n•  Step 2: Compute the attention scores between Query & Key\n                                                       𝐪𝑖. 𝐤𝑗\n                               score 𝐱𝑖, 𝐱𝑗=\n                                          𝑑𝑘\n•  Step 3: To improve numerical stability & prevent gradient loss during training,\n  score 𝐱𝑖, 𝐱𝑗  is scaled using  𝑑𝑘 before normalization, where 𝑑𝑘 = Key vector size.\n•  Step 4: Normalize score 𝐱𝑖, 𝐱𝑗  using Softmax, to get attention weights(probabilities)\n\n                  𝛼𝑖𝑗= softmax score 𝐱𝑖, 𝐱𝑗  ∀ 𝑗≤𝑖\n•  Step 5,6: Compute the weighted value vectors\n\n          𝐡𝐞𝐚𝐝𝑖= Σ  (𝛼𝑖𝑗𝐯𝑗)\n                     𝒋≤𝒊\n•  Step 7: Reshape into 1 × d using multiplication with a\n    linear projection matrix 𝐖𝐎    𝐚𝑖= 𝐡𝐞𝐚𝐝𝑖𝐖𝐎\n\n                                                                                                            11",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1495",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1495,
+          "kind": "equation",
+          "locator": "Lecture 47, physical PDF page 1495, printed footer 20: Inclusive causal mask Mij and placement before softmax.",
+          "evidenceText": "Transformer Block - Attention parallelization\n•   In a single go, we get the initial 𝐐𝐊𝐓 table of shape N × N.\n•  This results in a score for each query value for every key\n   value, including those that follow the query.\n•  This is inappropriate for predicting the next word, so we\n   add a mask matrix 𝐌 to set the elements in the upper-\n    triangular portion of the matrix to −∞ (which the softmax\n    will turn to 0), making attention strictly unidirectional.\n\n\n                  M𝑖𝑗= −∞ ∀ 𝑗> 𝑖\n                  M𝑖𝑗= 0, otherwise\n\n\n\n              initial 𝐐𝐊𝐓                                     final 𝐐𝐊𝐓\n\n                                                                                                          20",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Under the stated assumptions the dot-product variance is dk, and dividing by √dk divides variance by dk.",
+        "optionExplanations": {
+          "o1": "Var(S/√dk)=Var(S)/dk=1.",
+          "o2": "That would result from dividing S by dk, not by √dk.",
+          "o3": "This divides the variance by √dk instead of the square of the amplitude divisor.",
+          "o4": "This ignores the change of scale."
+        },
+        "steps": [
+          "Each independent product has variance 1.",
+          "The sum of dk such terms has variance dk.",
+          "Var(S/√dk)=Var(S)/dk=1."
+        ],
+        "formulas": [
+          {
+            "expression": "Var(S)=dk; Var(S/√dk)=Var(S)/dk=1",
+            "variables": {
+              "S": "sum Σ_r q_r k_r of dk coordinate products",
+              "q_r,k_r": "query/key coordinates",
+              "r": "coordinate index",
+              "dk": "number of coordinate products",
+              "Var": "variance operator"
+            },
+            "units": {
+              "S,q_r,k_r": "dimensionless random variables",
+              "dk,r": "dimensionless count/index",
+              "Var(S)": "dimensionless squared scale"
+            },
+            "assumptions": [
+              "All query/key coordinates independent, zero mean and unit variance, so the product terms are independent with variance 1."
+            ]
+          },
+          {
+            "expression": "S=QKᵀ/√dk+M; P_ij=exp(S_ij)/Σ_r exp(S_ir); H=PV",
+            "variables": {
+              "Q,K": "query/key matrices, N×dk",
+              "V": "value matrix, N×dv",
+              "dk": "shared query/key width",
+              "M": "N×N additive causal mask: 0 for j≤i, −∞ for j>i",
+              "S": "N×N masked score table",
+              "P": "N×N attention weights, row-normalized over key index r",
+              "H": "N×dv head output",
+              "i": "query row",
+              "j,r": "key-position indices",
+              "N": "token count"
+            },
+            "units": {
+              "Q,K,V,S,M,H": "dimensionless numerical representations; −∞ is a mask sentinel",
+              "P": "dimensionless probabilities",
+              "dk,N,i,j,r": "dimensionless counts or indices"
+            },
+            "assumptions": [
+              "Inclusive causal mask; at least one finite allowed score in each row; scale once; softmax over keys before multiplying values."
+            ]
+          }
+        ],
+        "simpleExplanation": "Under the stated assumptions the dot-product variance is dk, and dividing by √dk divides variance by dk.",
+        "memoryAid": null,
+        "misconceptions": [
+          "That would result from dividing S by dk, not by √dk.",
+          "This divides the variance by √dk instead of the square of the amplitude divisor.",
+          "This ignores the change of scale."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "primaryEvidence": [
+        {
+          "title": "Attention Is All You Need",
+          "url": "https://arxiv.org/html/1706.03762v7",
+          "locator": "Sections 3.1–3.5: architecture, scaled attention, projections and embeddings.",
+          "checkedAt": "2026-10-19T22:09:00+00:00"
+        }
+      ],
+      "revisionAuthors": [
+        "build_offline_study_interface:L47-revision-author"
+      ],
+      "difficultyRationale": "Combines multiple representations, conventions or arithmetic steps.",
+      "authorCheckEvidence": {
+        "path": "audits/W10-L47-v2-author-checks.json",
+        "sha256": "9fdebae4b6f2368cca4fcb3394480520fe133567124e139ed98881fa53cd8506",
+        "independentReview": false,
+        "scope": "Explicit added arithmetic/model checks and qualified normalization rationale; not source code or pretrained output."
+      }
+    },
+    {
+      "id": "W10-L47-Q019",
+      "version": 2,
+      "status": "draft",
+      "authorId": "build_robotics_study_app:L47-author",
+      "stem": "Which computation directly produces the shown a3?",
+      "selectionMode": "single",
+      "type": "diagram",
+      "difficulty": "easy",
+      "cognitiveSkill": "application",
+      "week": 10,
+      "lectureId": "L47",
+      "topic": "Transformers",
+      "subtopic": "Tracing the third-token diagram",
+      "tags": [
+        "third-token-diagram"
+      ],
+      "conceptIds": [
+        "W10-L47-C-third-token-diagram"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Use q3 against k1,k2 only, normalize those scores, combine v1,v2 and project."
+        },
+        {
+          "id": "o2",
+          "text": "Use q1 against k1,k2,k3, normalize those scores, combine v1,v2,v3 and project."
+        },
+        {
+          "id": "o3",
+          "text": "Use q3 against k1,k2,k3, normalize those scores, combine v1,v2,v3 and project."
+        },
+        {
+          "id": "o4",
+          "text": "Use q3 against k1,k2,k3, normalize those scores, combine k1,k2,k3 and project."
+        }
+      ],
+      "correctOptionIds": [
+        "o3"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1487",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1487,
+          "kind": "figure",
+          "locator": "Lecture 47, physical PDF page 1487, printed footer 12: Third-token detailed diagram: q3 compared with k1,k2,k3, softmax, values and WO.",
+          "evidenceText": "Self-Attention\n                                                                      Calculating the value of\n                                                                   𝑎3, the third element of\n                                                           a sequence using causal\n                                                                                     (left to-right) self-\n                                                                    attention from prior\n                                                               tokens (𝑥1, 𝑥2) and\n                                                                  current token 𝑥3. Note\n                                                how prior influences\n                                                              the current one.\n\n\n\n\n\n                                                                                                          12",
+          "role": "explicit",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1486",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1486,
+          "kind": "equation",
+          "locator": "Lecture 47, physical PDF page 1486, printed footer 11: Scaled scores, softmax weights and weighted-value output.",
+          "evidenceText": "Self-Attention\n•  Step 2: Compute the attention scores between Query & Key\n                                                       𝐪𝑖. 𝐤𝑗\n                               score 𝐱𝑖, 𝐱𝑗=\n                                          𝑑𝑘\n•  Step 3: To improve numerical stability & prevent gradient loss during training,\n  score 𝐱𝑖, 𝐱𝑗  is scaled using  𝑑𝑘 before normalization, where 𝑑𝑘 = Key vector size.\n•  Step 4: Normalize score 𝐱𝑖, 𝐱𝑗  using Softmax, to get attention weights(probabilities)\n\n                  𝛼𝑖𝑗= softmax score 𝐱𝑖, 𝐱𝑗  ∀ 𝑗≤𝑖\n•  Step 5,6: Compute the weighted value vectors\n\n          𝐡𝐞𝐚𝐝𝑖= Σ  (𝛼𝑖𝑗𝐯𝑗)\n                     𝒋≤𝒊\n•  Step 7: Reshape into 1 × d using multiplication with a\n    linear projection matrix 𝐖𝐎    𝐚𝑖= 𝐡𝐞𝐚𝐝𝑖𝐖𝐎\n\n                                                                                                            11",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The diagram uses the third token’s query against every eligible key, including its own.",
+        "optionExplanations": {
+          "o3": "This follows the third-token query and inclusive context.",
+          "o1": "This incorrectly omits the current token’s key/value.",
+          "o2": "This substitutes the wrong query position.",
+          "o4": "The weighted content vectors must be values, not keys."
+        },
+        "steps": [],
+        "formulas": [
+          {
+            "expression": "S=QKᵀ/√dk+M; P_ij=exp(S_ij)/Σ_r exp(S_ir); H=PV",
+            "variables": {
+              "Q,K": "query/key matrices, N×dk",
+              "V": "value matrix, N×dv",
+              "dk": "shared query/key width",
+              "M": "N×N additive causal mask: 0 for j≤i, −∞ for j>i",
+              "S": "N×N masked score table",
+              "P": "N×N attention weights, row-normalized over key index r",
+              "H": "N×dv head output",
+              "i": "query row",
+              "j,r": "key-position indices",
+              "N": "token count"
+            },
+            "units": {
+              "Q,K,V,S,M,H": "dimensionless numerical representations; −∞ is a mask sentinel",
+              "P": "dimensionless probabilities",
+              "dk,N,i,j,r": "dimensionless counts or indices"
+            },
+            "assumptions": [
+              "Inclusive causal mask; at least one finite allowed score in each row; scale once; softmax over keys before multiplying values."
+            ]
+          }
+        ],
+        "simpleExplanation": "The diagram uses the third token’s query against every eligible key, including its own.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This incorrectly omits the current token’s key/value.",
+          "This substitutes the wrong query position.",
+          "The weighted content vectors must be values, not keys."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_offline_study_interface:L47-revision-author"
+      ],
+      "difficultyRationale": "Direct source distinction or short specified operation."
+    }
+  ],
+  "afterHashes": {
+    "W10-L47-Q016": "3dfb78cd7ce328803aef4cf5d678aead7a1e068732254ccf4cfd682c5cf6ed18",
+    "W10-L47-Q019": "67833a89b8d6b80935d3a154eb20e3e2cb652c9762d596a8d0128a6740382699"
+  }
+}

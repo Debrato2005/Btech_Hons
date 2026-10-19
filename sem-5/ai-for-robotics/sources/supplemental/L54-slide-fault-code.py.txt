@@ -1,0 +1,28 @@
+import numpy as np
+from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+np.random.seed(0)
+N = 600
+X_norm = np.column_stack([
+    np.random.normal(2.0, 0.2, N//2),
+    np.random.normal(1500, 50, N//2),
+    np.random.normal(45, 3, N//2),
+])
+X_over = np.column_stack([
+    np.random.normal(5.5, 0.5, N//2),
+    np.random.normal(900, 100, N//2),
+    np.random.normal(72, 5, N//2),
+])
+X = np.vstack([X_norm, X_over])
+y = np.array([0]*len(X_norm) + [1]*len(X_over))
+X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)
+svm = Pipeline([
+    ('sc', StandardScaler()),
+    ('svc', SVC(kernel='rbf', C=10, gamma='scale', class_weight='balanced'))
+])
+svm.fit(X_tr, y_tr)
+y_pred = svm.predict(X_te)
+print(classification_report(y_te, y_pred, target_names=["normal", "overload"]))

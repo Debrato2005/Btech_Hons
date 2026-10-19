@@ -402,7 +402,7 @@
     },
     {
       "id": "W10-L46-P1445-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "A robot receives “fetch the box” after being trained on “pick up the box.” What should the lecture’s synonym example motivate?",
@@ -425,11 +425,11 @@
       "options": [
         {
           "id": "o3",
-          "text": "Treat different spellings as different physical objects even when the target is unchanged"
+          "text": "Accept only the exact trained command string, because paraphrases cannot express the same intended action."
         },
         {
           "id": "o4",
-          "text": "Use character count to decide whether the commands request the same action"
+          "text": "Treat commands as equivalent whenever their object nouns match, without checking the requested action or context."
         },
         {
           "id": "o1",
@@ -461,23 +461,26 @@
         "optionExplanations": {
           "o1": "Correct. Contextual paraphrases can express related requests despite different strings.",
           "o2": "Incorrect. The words are not interchangeable in every linguistic or physical context.",
-          "o3": "Incorrect. Changing the action wording does not necessarily change the named object.",
-          "o4": "Incorrect. String length does not determine semantic equivalence."
+          "o3": "Exact-template matching can miss related requests that use different wording.",
+          "o4": "The same object can be involved in different actions; noun agreement alone is insufficient."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Contextual paraphrases can express related requests despite different strings.",
         "memoryAid": null,
         "misconceptions": [
-          "The words are not interchangeable in every linguistic or physical context.",
-          "Changing the action wording does not necessarily change the named object.",
-          "String length does not determine semantic equivalence."
+          "Exact-template matching can miss related requests that use different wording.",
+          "The same object can be involved in different actions; noun agreement alone is insufficient.",
+          "Incorrect. The words are not interchangeable in every linguistic or physical context."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1446-Q01",
@@ -560,7 +563,7 @@
     },
     {
       "id": "W10-L46-P1446-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "Does the lecture require vectorization and language understanding to be separate software modules in every implementation?",
@@ -583,19 +586,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "No; combining stages means numerical representations are unnecessary"
+          "text": "No; joint implementation means numerical encoding and understanding are the same concept, so their different responsibilities disappear."
         },
         {
           "id": "o1",
-          "text": "No; they are conceptual stages that some models perform together internally"
+          "text": "No; they are conceptual stages that some models perform together internally."
         },
         {
           "id": "o2",
-          "text": "Yes; each stage must run in a separate process with a serialized file between them"
+          "text": "Yes; a numerical representation must always be exported by a separately trained module before language understanding can begin."
         },
         {
           "id": "o3",
-          "text": "Yes; joint models may combine only planning and actuation, never language operations"
+          "text": "Yes; end-to-end training may tune numerical encodings but cannot learn their interaction with language understanding."
         }
       ],
       "correctOptionIds": [
@@ -628,25 +631,28 @@
       "solution": {
         "justification": "The text explicitly permits internal joint processing while retaining a conceptual distinction.",
         "optionExplanations": {
-          "o1": "Correct. The text explicitly permits internal joint processing while retaining a conceptual distinction.",
-          "o2": "Incorrect. Separate operating-system processes are not prescribed.",
-          "o3": "Incorrect. The text specifically permits joint internal language operations.",
-          "o4": "Incorrect. Joint implementation still uses numerical representations."
+          "o1": "The text permits joint internal processing while retaining the conceptual roles.",
+          "o2": "The source does not impose a separately trained, externally exported representation boundary.",
+          "o3": "Jointly learned interaction is consistent with the described internal combination.",
+          "o4": "Combining software stages does not erase their different conceptual responsibilities."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The text explicitly permits internal joint processing while retaining a conceptual distinction.",
         "memoryAid": null,
         "misconceptions": [
-          "Separate operating-system processes are not prescribed.",
-          "The text specifically permits joint internal language operations.",
-          "Joint implementation still uses numerical representations."
+          "Combining software stages does not erase their different conceptual responsibilities.",
+          "The source does not impose a separately trained, externally exported representation boundary.",
+          "Jointly learned interaction is consistent with the described internal combination."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1446-Q03",
@@ -840,7 +846,7 @@
     },
     {
       "id": "W10-L46-P1447-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "Which distinction between vocabulary and corpus is correct in this lecture?",
@@ -867,11 +873,11 @@
         },
         {
           "id": "o3",
-          "text": "A vocabulary stores only grammatical tags; a corpus stores only learned vectors"
+          "text": "A vocabulary counts every repeated token occurrence separately; a corpus is only the set of distinct types."
         },
         {
           "id": "o4",
-          "text": "A vocabulary is one token occurrence; a corpus is one word’s stem"
+          "text": "A vocabulary is the list of document identifiers; a corpus is the list of feature-column names."
         },
         {
           "id": "o1",
@@ -899,23 +905,26 @@
         "optionExplanations": {
           "o1": "Correct. The vocabulary is the type inventory, whereas the corpus contains the documents from which such an inventory may be built.",
           "o2": "Incorrect. This reverses the two concepts.",
-          "o3": "Incorrect. Neither object is defined by restricting it to tags or vectors.",
-          "o4": "Incorrect. This confuses collections with individual linguistic units."
+          "o3": "Repeated occurrences belong to the texts; the vocabulary is a distinct-type inventory.",
+          "o4": "Document identifiers and feature-column names are metadata, not the stated text-collection and token-type distinction."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The vocabulary is the type inventory, whereas the corpus contains the documents from which such an inventory may be built.",
         "memoryAid": null,
         "misconceptions": [
-          "This reverses the two concepts.",
-          "Neither object is defined by restricting it to tags or vectors.",
-          "This confuses collections with individual linguistic units."
+          "Incorrect. This reverses the two concepts.",
+          "Repeated occurrences belong to the texts; the vocabulary is a distinct-type inventory.",
+          "Document identifiers and feature-column names are metadata, not the stated text-collection and token-type distinction."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1447-Q03",
@@ -1452,10 +1461,10 @@
     },
     {
       "id": "W10-L46-P1449-Q04",
-      "version": 1,
+      "version": 3,
       "status": "draft",
       "authorId": "L46-author-20261019",
-      "stem": "What assumption is hidden when WordNetLemmatizer.lemmatize(word) is called without a POS argument?",
+      "stem": "In the checked NLTK 3.10.3 API, what assumption is hidden when WordNetLemmatizer.lemmatize(word) is called without a POS argument?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -1483,7 +1492,7 @@
         },
         {
           "id": "o4",
-          "text": "It selects whichever POS would minimize the command’s token count"
+          "text": "It inherits the grammatical tag returned by any earlier pos_tag call, even when that tag is not passed to lemmatize."
         },
         {
           "id": "o1",
@@ -1512,16 +1521,16 @@
           "o1": "Correct. The installed method signature defaults pos to n; this call receives only an isolated word.",
           "o2": "Incorrect. No sentence or POS-tagging call is passed to this method.",
           "o3": "Incorrect. The default is noun, not verb.",
-          "o4": "Incorrect. The API does not optimize sentence token count."
+          "o4": "The isolated method call does not automatically receive an earlier tagger result; pos must be passed explicitly."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The installed method signature defaults pos to n; this call receives only an isolated word.",
         "memoryAid": null,
         "misconceptions": [
-          "No sentence or POS-tagging call is passed to this method.",
-          "The default is noun, not verb.",
-          "The API does not optimize sentence token count."
+          "Incorrect. No sentence or POS-tagging call is passed to this method.",
+          "Incorrect. The default is noun, not verb.",
+          "The isolated method call does not automatically receive an earlier tagger result; pos must be passed explicitly."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -1530,19 +1539,22 @@
       "reviewIds": [],
       "primaryEvidence": [
         {
-          "title": "WordNetLemmatizer installed primary implementation",
-          "url": "https://www.nltk.org/api/nltk.stem.WordNetLemmatizer.html",
-          "version": "NLTK 3.10.3",
-          "localPath": "/tmp/robotics-l46-deps/nltk/stem/wordnet.py",
-          "sha256": "e1eeec1ef6d3f1a50b45f6f6d84aee3d55d0be1335be2540567d6b9c0cfa927f",
-          "locator": "lemmatize(word,pos=\"n\"); default noun POS inspected without loading WordNet corpus.",
-          "checkedAt": "2026-10-19T22:10:00Z"
+          "url": "https://www.nltk.org/api/nltk.stem.wordnet.html",
+          "version": "Installed NLTK 3.10.3 signature inspected; no corpus execution.",
+          "locator": "WordNetLemmatizer.lemmatize default pos=\"n\".",
+          "savedEvidencePath": "audits/W10-L46-v2-supplemental-evidence.json",
+          "savedEvidenceSha256": "8ce3598e2d3af10a393cebf2aeb566c0124167b148ecc5cf04fba675d4b726e7",
+          "section": "wordnet",
+          "relationToLecture": "Supplemental API premise for the call displayed on p1449."
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
       ]
     },
     {
       "id": "W10-L46-P1450-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "What is the defensible meaning of “better” in the displayed studies comparison?",
@@ -1565,19 +1577,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "The example proves lemmatization needs no lexical resource"
+          "text": "The example establishes higher downstream command-classification accuracy for lemmatization."
         },
         {
           "id": "o1",
-          "text": "The lemma study is a recognizable lexical base, while the stem studi need not be a word"
+          "text": "The lemma study is a recognizable lexical base, while the stem studi need not be a word."
         },
         {
           "id": "o2",
-          "text": "The example proves lemmatization always maximizes robot task success"
+          "text": "The example demonstrates a smaller resulting vocabulary for lemmatization across any corpus."
         },
         {
           "id": "o3",
-          "text": "The example proves stemming can never group related word forms"
+          "text": "The example measures lower runtime and memory use for lemmatization than for stemming."
         }
       ],
       "correctOptionIds": [
@@ -1599,19 +1611,19 @@
       "solution": {
         "justification": "The example supports the lexical-base criterion, not a universal performance ordering.",
         "optionExplanations": {
-          "o1": "Correct. The example supports the lexical-base criterion, not a universal performance ordering.",
-          "o2": "Incorrect. One output comparison cannot establish every downstream task outcome.",
-          "o3": "Incorrect. The stemmer is explicitly used to reduce related inflections.",
-          "o4": "Incorrect. The WordNet example depends on a lexical corpus."
+          "o1": "Only the lexical-base comparison is directly shown.",
+          "o2": "A single word-form example does not measure a corpus-wide vocabulary-size outcome.",
+          "o3": "The slide does not benchmark runtime or memory in this comparison.",
+          "o4": "No downstream task-accuracy experiment is supplied."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The example supports the lexical-base criterion, not a universal performance ordering.",
         "memoryAid": null,
         "misconceptions": [
-          "One output comparison cannot establish every downstream task outcome.",
-          "The stemmer is explicitly used to reduce related inflections.",
-          "The WordNet example depends on a lexical corpus."
+          "No downstream task-accuracy experiment is supplied.",
+          "A single word-form example does not measure a corpus-wide vocabulary-size outcome.",
+          "The slide does not benchmark runtime or memory in this comparison."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -1620,7 +1632,7 @@
       "reviewIds": [],
       "conflictResolution": {
         "status": "explicit-qualification-pending-independent-review",
-        "questionVersion": 1,
+        "questionVersion": 2,
         "sourceId": "lectures",
         "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
         "physicalPage": 1450,
@@ -1629,7 +1641,10 @@
         "method": "Compare the exact reported output strings and distinguish lexical validity from a universal accuracy claim.",
         "scope": "This question version only; independent review required.",
         "sourceIssueId": "L46-ISSUE-lemma-criterion"
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1450-Q02",
@@ -1727,7 +1742,7 @@
     },
     {
       "id": "W10-L46-P1451-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "Which representation pairing best preserves the lecture’s distinctions?",
@@ -1779,6 +1794,50 @@
           "evidenceText": "Vectorization: Representing Language Numerically\n•  Humans understand meaning, emotion and context from language clearly.\n•  But, computers can only process numbers (math operations, vectors, etc)\n•   Just like images become pixel values, language (unstructured) must become\n   numbers (structured data).\n•  Hence, the core idea is to turn words into vectors.\n•  There are several techniques to convert text to vectors.\n•  They are:\n    – One-Hot Encoding\n    – Bag of Words (BOW)\n    – Term Frequency–Inverse Document Frequency (TF-IDF)\n    – Word Embeddings like Word2Vec & GloVe\n\n\n\n                                                                                                          12",
           "role": "explicit",
           "region": null
+        },
+        {
+          "slideId": "lectures-p1452",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1452,
+          "kind": "statement",
+          "locator": "Lecture L46, physical PDF page 1452, printed footer 13: One-hot identity and bag-of-words counts/limitations.",
+          "evidenceText": "One-hot encoding & Bag of Words\n1.  One-Hot Encoding: is the most common method. Every word in your dictionary\n    (vocabulary) will be represented as a binary vector\n      •  Each token will be a unique combination of 0s and 1s.\n      •  Limitations:\n        ꟷcreates very large, sparse matrices\n        ꟷDoesn’t capture the relationship between other words\n2.  Bag of Words (BoW): represents a command by counting how many times each\n   word from the vocabulary appears.\n      •   It creates a vector for an entire command, unlike One-Hot\n       Encoding, which represents a single word\n      •  Limitations:\n        ꟷIgnores word order and context\n        ꟷSparsity\n\n\n                                                                                                          13",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1455",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1455,
+          "kind": "statement",
+          "locator": "Lecture L46, physical PDF page 1455, printed footer 16: TF-IDF term-frequency definition.",
+          "evidenceText": "TF-IDF (Term Frequency-Inverse Document Frequency)\n\n3.  TF-IDF (Term Frequency-Inverse Document Frequency):\n      •  TF-IDF measures:\n      ꟷhow often a word appears in a command\n      ꟷhow important or unique that word is across many commands/documents\n      •  Term Frequency (TF): Measures how often a word appears in the current\n      command/document.\n                      𝐍𝐨. 𝐨𝐟 𝐭𝐢𝐦𝐞𝐬 𝐭𝐞𝐫𝐦 𝒕 𝐚𝐩𝐩𝐞𝐚𝐫𝐬 𝐢𝐧 𝐝𝐨𝐜𝐮𝐦𝐞𝐧𝐭 𝒅\n           𝐓𝐅𝒕, 𝒅=\n                          𝐓𝐨𝐭𝐚𝐥 𝐧𝐨. 𝐨𝐟 𝐭𝐞𝐫𝐦𝐬 𝐢𝐧 𝐝𝐨𝐜𝐮𝐦𝐞𝐧𝐭 𝒅\n      •  Note: here, term & document mean token & a\n        single/collection of commands, respectively.\n      •  Unlike BoW, TF-IDF does not simply count words. It gives:\n       ꟷlower importance to very common words\n       ꟷhigher importance to informative/rare words\n\n\n                                                                                                          16",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1456",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1456,
+          "kind": "statement",
+          "locator": "Lecture L46, physical PDF page 1456, printed footer 17: Corpus document-frequency and IDF weighting.",
+          "evidenceText": "TF-IDF (Term Frequency-Inverse Document Frequency)\n\n•   Inverse Document Frequency (IDF): Measures how unique or rare a word is across the\n    entire dataset (the corpus 𝐷).\n•  Common words get lower importance.\n•  Rare words get higher importance.\n                                    𝐓𝐨𝐭𝐚𝐥 𝐧𝐨. 𝐨𝐟 𝐝𝐨𝐜𝐮𝐦𝐞𝐧𝐭𝐬 𝑵\n              𝐈𝐃𝐅𝒕, 𝑫= 𝒍𝒐𝒈(                               𝐍𝐨. 𝐨𝐟 𝐝𝐨𝐜𝐮𝐦𝐞𝐧𝐭𝐬 𝐰𝐢𝐭𝐡 𝐭𝐞𝐫𝐦 𝒕 𝐢𝐧 𝐭𝐡𝐞𝐦)\n\n               𝐓𝐅−𝐈𝐃𝐅𝒕, 𝒅, 𝐃= 𝐓𝐅𝒕, 𝒅 × 𝐈𝐃𝐅(𝒕, 𝑫)\n\n    Note:\n     •  A corpus will have many documents\n     •  A document will have many terms/tokens.\n     •  Hence, BoW and TF-IDF use word tokens to generate vector\n       representations of entire documents or commands.\n\n\n\n                                                                                                          17",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1458",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1458,
+          "kind": "statement",
+          "locator": "Lecture L46, physical PDF page 1458, printed footer 19: Learned dense embeddings and cosine comparison.",
+          "evidenceText": "Word Embeddings\n4.  Word Embeddings (Word2Vec & GloVe)\n    – The most modern approach of word\n        vectorization, where words are\n       represented as dense vectors in a\n       continuous space.\n    – Word2Vec or GloVe use neural networks\n        to learn vectors & uses Cosine Similarity\n        to place words with similar meaning\n        closer to each other.\n   ꟷExample: For 2 words like pick(A) & fetch(B),\n                                                   𝐀. 𝐁\n                    𝐒𝐢𝐦𝐢𝐥𝐚𝐫𝐢𝐭𝐲𝐀, 𝐁= 𝐜𝐨𝐬 𝜽=\n                                      ‖𝐀‖‖𝐁‖\n   ꟷ  The lesser the θ between 2 vectors, the more identical they\n        are in meaning.\n\n\n                                                                                                          19",
+          "role": "premise",
+          "region": null
         }
       ],
       "solution": {
@@ -1794,19 +1853,22 @@
         "simpleExplanation": "The methods encode identity, aggregate counts, corpus-weighted counts and learned coordinates respectively.",
         "memoryAid": null,
         "misconceptions": [
-          "This exchanges the units represented by token one-hot and document BoW.",
-          "This exchanges learned semantic coordinates with TF-IDF weighting.",
-          "One-hot is not context-trained, TF-IDF is weighted, and learned embeddings are not mere category indicators."
+          "Incorrect. One-hot is not context-trained, TF-IDF is weighted, and learned embeddings are not mere category indicators.",
+          "Incorrect. This exchanges the units represented by token one-hot and document BoW.",
+          "Incorrect. This exchanges learned semantic coordinates with TF-IDF weighting."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1451-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "Why is mapping words to numbers not, by itself, proof of correct command understanding?",
@@ -1858,6 +1920,28 @@
           "evidenceText": "Vectorization: Representing Language Numerically\n•  Humans understand meaning, emotion and context from language clearly.\n•  But, computers can only process numbers (math operations, vectors, etc)\n•   Just like images become pixel values, language (unstructured) must become\n   numbers (structured data).\n•  Hence, the core idea is to turn words into vectors.\n•  There are several techniques to convert text to vectors.\n•  They are:\n    – One-Hot Encoding\n    – Bag of Words (BOW)\n    – Term Frequency–Inverse Document Frequency (TF-IDF)\n    – Word Embeddings like Word2Vec & GloVe\n\n\n\n                                                                                                          12",
           "role": "explicit",
           "region": null
+        },
+        {
+          "slideId": "lectures-p1452",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1452,
+          "kind": "statement",
+          "locator": "Lecture L46, physical PDF page 1452, printed footer 13: Bag-of-words loses word order and semantic context.",
+          "evidenceText": "One-hot encoding & Bag of Words\n1.  One-Hot Encoding: is the most common method. Every word in your dictionary\n    (vocabulary) will be represented as a binary vector\n      •  Each token will be a unique combination of 0s and 1s.\n      •  Limitations:\n        ꟷcreates very large, sparse matrices\n        ꟷDoesn’t capture the relationship between other words\n2.  Bag of Words (BoW): represents a command by counting how many times each\n   word from the vocabulary appears.\n      •   It creates a vector for an entire command, unlike One-Hot\n       Encoding, which represents a single word\n      •  Limitations:\n        ꟷIgnores word order and context\n        ꟷSparsity\n\n\n                                                                                                          13",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1466",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1466,
+          "kind": "statement",
+          "locator": "Lecture L46, physical PDF page 1466, printed footer 27: Context, pronoun and reference difficulties.",
+          "evidenceText": "Problems with traditional NLP systems\n•   Traditional NLP systems:\n    –  processed words one-by-one      −  often forgot the earlier context\n    –  struggled with long sentences\n•  This created difficulties in robotics tasks involving:\n    –  long instructions                     −pronouns and references\n    –  multiple objects    −complex task planning\n•   It struggles with commands like: “Move the robot toward the shelf because it is\n   cluttered”\n•  The struggle: What does it refer to?\n•  The robot must understand:\n      •  object relationships\n      •  context                       •  instruction sequence\n•  Solution: Transformers\n\n                                                                                                          27",
+          "role": "premise",
+          "region": null
         }
       ],
       "solution": {
@@ -1873,15 +1957,18 @@
         "simpleExplanation": "Representations differ in retained information; successful encoding does not establish interpretation.",
         "memoryAid": null,
         "misconceptions": [
-          "Arbitrary identifiers do not define semantic distances.",
-          "Word order and relations can differ despite identical counts.",
-          "Vocabulary coverage does not by itself resolve contextual senses."
+          "Incorrect. Arbitrary identifiers do not define semantic distances.",
+          "Incorrect. Word order and relations can differ despite identical counts.",
+          "Incorrect. Vocabulary coverage does not by itself resolve contextual senses."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1452-Q01",
@@ -2804,7 +2891,7 @@
     },
     {
       "id": "W10-L46-P1454-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "Why do the source table’s grab and pick columns remain separate?",
@@ -2831,7 +2918,7 @@
         },
         {
           "id": "o2",
-          "text": "The model has concluded that grabbing and picking are physically incompatible actions"
+          "text": "The fitted CountVectorizer automatically lemmatizes and merges grab with pick, but the printed table temporarily splits their shared column."
         },
         {
           "id": "o3",
@@ -2862,7 +2949,7 @@
         "justification": "Separate strings obtain separate vocabulary features without semantic normalization.",
         "optionExplanations": {
           "o1": "Correct. Separate strings obtain separate vocabulary features without semantic normalization.",
-          "o2": "Incorrect. The table does not represent a physical-action compatibility judgement.",
+          "o2": "The source uses ordinary token-count columns; it does not declare a synonym-merging or lemmatizing analyzer.",
           "o3": "Incorrect. The columns form a single shared vocabulary.",
           "o4": "Incorrect. Even equal counts do not cause automatic synonym merging."
         },
@@ -2871,9 +2958,9 @@
         "simpleExplanation": "Separate strings obtain separate vocabulary features without semantic normalization.",
         "memoryAid": null,
         "misconceptions": [
-          "The table does not represent a physical-action compatibility judgement.",
-          "The columns form a single shared vocabulary.",
-          "Even equal counts do not cause automatic synonym merging."
+          "The source uses ordinary token-count columns; it does not declare a synonym-merging or lemmatizing analyzer.",
+          "Incorrect. The columns form a single shared vocabulary.",
+          "Incorrect. Even equal counts do not cause automatic synonym merging."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -2890,11 +2977,14 @@
           "locator": "fit_transform/transform, alphabetic feature sorting, counts and fixed learned vocabulary.",
           "checkedAt": "2026-10-19T22:10:00Z"
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
       ]
     },
     {
       "id": "W10-L46-P1454-Q05",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "How does the official notebook turn the fitted sparse count matrix into the labeled output table shown on the slide?",
@@ -2946,6 +3036,17 @@
           "evidenceText": "from sklearn.feature_extraction.text import CountVectorizer\ncommands = [\n    \"pick red ball near chair\",\n    \"pick blue box\",\n    \"grab red box\" ]\n# Create BoW vectorizer\nvectorizer = CountVectorizer()\n# Convert commands into BoW vectors\nX = vectorizer.fit_transform(commands)\n\nSource page text/output labels:\nImplementation - Bag of words\n\n                                              Prepare shared vocabulary in alphabetical\n                                                  order: ['ball', 'blue', 'box', 'chair', 'grab', 'near',\n                                                                            'pick', 'red']\n                                                             •  Command1(  ) ⇒ [1,0,0,1,0,1,1,1]\n                                                             •  Command2 ⇒ [0,1,1,0,0,0,1,0]\n                                                             •  Each position in the vector\n                                                  corresponds to a word in the shared\n                                                      vocabulary.\nOUTPUT:\n\n\n\n\n\nLimitation-Ambiguity: Note that BOW seems to think pick & grab\nare different, although they mean the same here\n\n                                                                                                          15",
           "role": "premise",
           "region": null
+        },
+        {
+          "slideId": "lectures-p1462",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1462,
+          "kind": "statement",
+          "locator": "Lecture L46, physical PDF page 1462, printed footer 23: Complete-code hyperlink provides the official notebook whose zero-based cell 17 constructs the table.",
+          "evidenceText": "Language Understanding: NER\n•  NER identifies important real-world entities in text like, locations ,people,\n   dates, objects, organizations, etc, useful for robots involved in navigation.\n•  Example: “Go to Lab3 and meet Mary” ⇒ NER extracts:\n    ꟷLab3 → Location & Mary → Person\n\n\n\n\n\n                                                           Access the complete code here\n\n•  OUTPUT:\n\n\nNote that Lab3 is mapped to the closest category to ‘location’, which\nis Geo-Political Entity (GPE) here. NER Useful in delivery robots\n\n                                                                                                          23",
+          "role": "premise",
+          "region": null
         }
       ],
       "solution": {
@@ -2965,9 +3066,9 @@
         "simpleExplanation": "The notebook constructs a pandas DataFrame from dense count values and fitted feature labels.",
         "memoryAid": null,
         "misconceptions": [
-          "The two methods have different return roles: names versus values.",
-          "The displayed matrix comes from the fitted vectorizer output.",
-          "toarray supplies values; separate DataFrame construction and column labels provide the report."
+          "Incorrect. The displayed matrix comes from the fitted vectorizer output.",
+          "Incorrect. toarray supplies values; separate DataFrame construction and column labels provide the report.",
+          "Incorrect. The two methods have different return roles: names versus values."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -2976,20 +3077,24 @@
       "reviewIds": [],
       "primaryEvidence": [
         {
-          "title": "Official lecture 46 notebook",
           "url": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/main/week10/week10_lecture46.ipynb",
-          "version": "Retrieved 2026-10-19; saved NLTK output reports 3.9.1",
           "localPath": "sources/supplemental/L46-official-week10_lecture46.ipynb",
           "sha256": "d32019733e3d14c0b21c9bf5276ecceb8fa4b0a11757bb0b4ffef4b2fe2504c3",
-          "checkedAt": "2026-10-19T22:10:00Z",
-          "locator": "Zero-based cell 17; saved outputs are historical evidence, not fresh corpus-dependent execution."
+          "locator": "Zero-based cell 17: pd.DataFrame(X.toarray(), columns=vectorizer.get_feature_names_out()).",
+          "savedEvidencePath": "audits/W10-L46-v2-supplemental-evidence.json",
+          "savedEvidenceSha256": "8ce3598e2d3af10a393cebf2aeb566c0124167b148ecc5cf04fba675d4b726e7",
+          "section": "countDataFrame",
+          "relationToLecture": "Exact notebook detail omitted from the shortened p1454 excerpt; linked by p1462."
         }
       ],
-      "notes": "The PDF omits the reporting lines; the cited official notebook contains them."
+      "notes": "The PDF omits the reporting lines; the cited official notebook contains them.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1455-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "A supplied document is “pick pick red box”. Under the lecture’s length-normalized TF, what is TF(pick,d)?",
@@ -3014,7 +3119,7 @@
       "options": [
         {
           "id": "o2",
-          "text": "1/3"
+          "text": "2/3"
         },
         {
           "id": "o3",
@@ -3049,7 +3154,7 @@
         "justification": "Pick occurs twice among four token occurrences, so TF=2/4=1/2.",
         "optionExplanations": {
           "o1": "Correct. Pick occurs twice among four token occurrences, so TF=2/4=1/2.",
-          "o2": "Incorrect. The denominator counts occurrences, not three unique types.",
+          "o2": "This wrongly divides the two occurrences by the three distinct token types instead of four token occurrences.",
           "o3": "Incorrect. Two is the raw count, not the normalized frequency.",
           "o4": "Incorrect. This counts only one of the two pick occurrences."
         },
@@ -3060,43 +3165,42 @@
         ],
         "formulas": [
           {
-            "expression": "TF(t,d)=c(t,d)/L_d; df(t)=Σ_d 1[c(t,d)>0]; IDF(t)=ln(N/df(t)); w(t,d)=TF(t,d) IDF(t)",
+            "expression": "TF(t,d)=c(t,d)/L_d",
             "variables": {
-              "t": "Term",
-              "d": "Document",
-              "c(t,d)": "Occurrences of term t in document d",
-              "L_d": "Total token occurrences in d",
-              "df(t)": "Number of corpus documents containing t",
-              "N": "Number of corpus documents",
-              "TF(t,d)": "Length-normalized frequency",
-              "IDF(t)": "Unsmoothed inverse document frequency",
-              "w(t,d)": "Printed-convention TF-IDF weight"
+              "t": "term",
+              "d": "document",
+              "c(t,d)": "number of occurrences of t in d",
+              "L_d": "total token occurrences in d",
+              "TF(t,d)": "length-normalized term frequency"
             },
             "units": {
-              "c,L_d,df,N": "counts",
-              "TF,IDF,w": "dimensionless"
+              "c,L_d": "counts",
+              "TF": "dimensionless"
             },
             "assumptions": [
-              "Natural logarithm explicitly chosen; L_d>0 and 1≤df(t)≤N; each supplied command is one document."
+              "L_d > 0; use all supplied tokens without additional filtering."
             ]
           }
         ],
         "simpleExplanation": "Pick occurs twice among four token occurrences, so TF=2/4=1/2.",
         "memoryAid": null,
         "misconceptions": [
-          "The denominator counts occurrences, not three unique types.",
-          "Two is the raw count, not the normalized frequency.",
-          "This counts only one of the two pick occurrences."
+          "This wrongly divides the two occurrences by the three distinct token types instead of four token occurrences.",
+          "Incorrect. Two is the raw count, not the normalized frequency.",
+          "Incorrect. This counts only one of the two pick occurrences."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1456-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "Use the three documents d1=\"pick red ball near chair\", d2=\"pick blue box\", d3=\"grab red box\". For red, which pair is document frequency and unsmoothed IDF using natural logarithms?",
@@ -3176,43 +3280,43 @@
         ],
         "formulas": [
           {
-            "expression": "TF(t,d)=c(t,d)/L_d; df(t)=Σ_d 1[c(t,d)>0]; IDF(t)=ln(N/df(t)); w(t,d)=TF(t,d) IDF(t)",
+            "expression": "df(t)=Σ_d 1[c(t,d)>0]; IDF(t)=ln(N/df(t))",
             "variables": {
-              "t": "Term",
-              "d": "Document",
-              "c(t,d)": "Occurrences of term t in document d",
-              "L_d": "Total token occurrences in d",
-              "df(t)": "Number of corpus documents containing t",
-              "N": "Number of corpus documents",
-              "TF(t,d)": "Length-normalized frequency",
-              "IDF(t)": "Unsmoothed inverse document frequency",
-              "w(t,d)": "Printed-convention TF-IDF weight"
+              "t": "term",
+              "d": "document",
+              "c(t,d)": "occurrences in document d",
+              "df(t)": "number of corpus documents containing t",
+              "N": "corpus document count",
+              "IDF(t)": "unsmoothed inverse document frequency"
             },
             "units": {
-              "c,L_d,df,N": "counts",
-              "TF,IDF,w": "dimensionless"
+              "c,df,N": "counts",
+              "IDF": "dimensionless"
             },
             "assumptions": [
-              "Natural logarithm explicitly chosen; L_d>0 and 1≤df(t)≤N; each supplied command is one document."
+              "Natural logarithm; N > 0; the finite formula requires 1 ≤ df(t) ≤ N; df=0 is deliberately outside its domain."
             ]
           }
         ],
         "simpleExplanation": "Red occurs in d1 and d3, so df=2 and IDF=ln(N/df)=ln(3/2).",
         "memoryAid": null,
         "misconceptions": [
-          "There are three documents, but red is absent from d2.",
-          "This inverts the ratio in the source equation.",
-          "This counts only one of the two documents containing red."
+          "Incorrect. There are three documents, but red is absent from d2.",
+          "Incorrect. This inverts the ratio in the source equation.",
+          "Incorrect. This counts only one of the two documents containing red."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1456-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "If a term occurs ten times in one of five documents and nowhere else, what is its document frequency for the printed IDF formula?",
@@ -3281,43 +3385,43 @@
         ],
         "formulas": [
           {
-            "expression": "TF(t,d)=c(t,d)/L_d; df(t)=Σ_d 1[c(t,d)>0]; IDF(t)=ln(N/df(t)); w(t,d)=TF(t,d) IDF(t)",
+            "expression": "df(t)=Σ_d 1[c(t,d)>0]; IDF(t)=ln(N/df(t))",
             "variables": {
-              "t": "Term",
-              "d": "Document",
-              "c(t,d)": "Occurrences of term t in document d",
-              "L_d": "Total token occurrences in d",
-              "df(t)": "Number of corpus documents containing t",
-              "N": "Number of corpus documents",
-              "TF(t,d)": "Length-normalized frequency",
-              "IDF(t)": "Unsmoothed inverse document frequency",
-              "w(t,d)": "Printed-convention TF-IDF weight"
+              "t": "term",
+              "d": "document",
+              "c(t,d)": "occurrences in document d",
+              "df(t)": "number of corpus documents containing t",
+              "N": "corpus document count",
+              "IDF(t)": "unsmoothed inverse document frequency"
             },
             "units": {
-              "c,L_d,df,N": "counts",
-              "TF,IDF,w": "dimensionless"
+              "c,df,N": "counts",
+              "IDF": "dimensionless"
             },
             "assumptions": [
-              "Natural logarithm explicitly chosen; L_d>0 and 1≤df(t)≤N; each supplied command is one document."
+              "Natural logarithm; N > 0; the finite formula requires 1 ≤ df(t) ≤ N; df=0 is deliberately outside its domain."
             ]
           }
         ],
         "simpleExplanation": "Document frequency counts documents containing the term, not its repeated occurrences.",
         "memoryAid": null,
         "misconceptions": [
-          "Ten is the within-document token count.",
-          "Five is the corpus size, not the number of matching documents.",
-          "One-fifth is a document-presence fraction, not the count used as df."
+          "Incorrect. One-fifth is a document-presence fraction, not the count used as df.",
+          "Incorrect. Ten is the within-document token count.",
+          "Incorrect. Five is the corpus size, not the number of matching documents."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1456-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "Under the unsmoothed printed IDF with natural logs, how should ubiquitous and unseen terms be handled?",
@@ -3388,39 +3492,39 @@
         ],
         "formulas": [
           {
-            "expression": "TF(t,d)=c(t,d)/L_d; df(t)=Σ_d 1[c(t,d)>0]; IDF(t)=ln(N/df(t)); w(t,d)=TF(t,d) IDF(t)",
+            "expression": "df(t)=Σ_d 1[c(t,d)>0]; IDF(t)=ln(N/df(t))",
             "variables": {
-              "t": "Term",
-              "d": "Document",
-              "c(t,d)": "Occurrences of term t in document d",
-              "L_d": "Total token occurrences in d",
-              "df(t)": "Number of corpus documents containing t",
-              "N": "Number of corpus documents",
-              "TF(t,d)": "Length-normalized frequency",
-              "IDF(t)": "Unsmoothed inverse document frequency",
-              "w(t,d)": "Printed-convention TF-IDF weight"
+              "t": "term",
+              "d": "document",
+              "c(t,d)": "occurrences in document d",
+              "df(t)": "number of corpus documents containing t",
+              "N": "corpus document count",
+              "IDF(t)": "unsmoothed inverse document frequency"
             },
             "units": {
-              "c,L_d,df,N": "counts",
-              "TF,IDF,w": "dimensionless"
+              "c,df,N": "counts",
+              "IDF": "dimensionless"
             },
             "assumptions": [
-              "Natural logarithm explicitly chosen; L_d>0 and 1≤df(t)≤N; each supplied command is one document."
+              "Natural logarithm; N > 0; the finite formula requires 1 ≤ df(t) ≤ N; df=0 is deliberately outside its domain."
             ]
           }
         ],
         "simpleExplanation": "df=N gives ln 1=0; df=0 gives division by zero and is outside this formula’s domain.",
         "memoryAid": null,
         "misconceptions": [
-          "The ubiquitous-term value 1 belongs to an additive-one convention, not this equation.",
-          "Substituting df=N does not give ln N, and df=0 is not defined.",
-          "A useful interpretation does not repair division by zero without an explicit convention."
+          "Incorrect. Substituting df=N does not give ln N, and df=0 is not defined.",
+          "Incorrect. A useful interpretation does not repair division by zero without an explicit convention.",
+          "Incorrect. The ubiquitous-term value 1 belongs to an additive-one convention, not this equation."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1456-Q04",
@@ -4129,13 +4233,13 @@
     },
     {
       "id": "W10-L46-P1458-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "For supplied vectors A=(1,2,2) and B=(2,1,2), what is their cosine similarity?",
       "selectionMode": "single",
       "type": "numerical",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "numerical",
       "week": 10,
       "lectureId": "L46",
@@ -4218,15 +4322,19 @@
         "simpleExplanation": "The dot product is 8 and both Euclidean norms are 3, giving 8/(3·3)=8/9.",
         "memoryAid": null,
         "misconceptions": [
-          "This omits both norm factors.",
-          "This incorrectly adds the norms rather than multiplying them.",
-          "This uses one minus the correct similarity, a different quantity."
+          "Incorrect. This incorrectly adds the norms rather than multiplying them.",
+          "Incorrect. This uses one minus the correct similarity, a different quantity.",
+          "Incorrect. This omits both norm factors."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "difficultyRationale": "Direct substitution into a fully supplied formula with a short arithmetic calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1458-Q03",
@@ -4421,7 +4529,7 @@
     },
     {
       "id": "W10-L46-P1458-Q05",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "What is a precise qualification of the slide’s statement that Word2Vec/GloVe use cosine similarity to place words?",
@@ -4448,11 +4556,11 @@
         },
         {
           "id": "o3",
-          "text": "GloVe’s co-occurrence model is just one-hot encoding with the zero entries omitted"
+          "text": "GloVe first computes document-level TF-IDF and takes each normalized document row as the word embedding, without fitting a word co-occurrence model."
         },
         {
           "id": "o4",
-          "text": "The similarity measure determines every training objective uniquely, so no other corpus model is needed"
+          "text": "GloVe fits global co-occurrence statistics, so cosine comparison of its learned vectors is invalid after training."
         },
         {
           "id": "o1",
@@ -4480,17 +4588,17 @@
         "optionExplanations": {
           "o1": "Correct. Training and similarity evaluation are distinct; the original GloVe paper describes global log-bilinear regression on co-occurrence data.",
           "o2": "Incorrect. The pairwise similarity definition does not supply a full corpus-training algorithm.",
-          "o3": "Incorrect. GloVe learns continuous vectors rather than merely compressing identity indicators.",
-          "o4": "Incorrect. Different training procedures can yield vectors compared using the same cosine measure."
+          "o3": "This confuses document feature vectors with the learned word vectors and co-occurrence objective in the cited original paper.",
+          "o4": "The training objective and a valid post-training comparison measure need not be identical."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Training and similarity evaluation are distinct; the original GloVe paper describes global log-bilinear regression on co-occurrence data.",
         "memoryAid": null,
         "misconceptions": [
-          "The pairwise similarity definition does not supply a full corpus-training algorithm.",
-          "GloVe learns continuous vectors rather than merely compressing identity indicators.",
-          "Different training procedures can yield vectors compared using the same cosine measure."
+          "Incorrect. The pairwise similarity definition does not supply a full corpus-training algorithm.",
+          "This confuses document feature vectors with the learned word vectors and co-occurrence objective in the cited original paper.",
+          "The training objective and a valid post-training comparison measure need not be identical."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -4499,7 +4607,7 @@
       "reviewIds": [],
       "conflictResolution": {
         "status": "explicit-qualification-pending-independent-review",
-        "questionVersion": 1,
+        "questionVersion": 2,
         "sourceId": "lectures",
         "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
         "physicalPage": 1458,
@@ -4517,6 +4625,9 @@
           "locator": "Abstract and Section 3: global log-bilinear/co-occurrence model; cosine/distance used in evaluation",
           "checkedAt": "2026-10-19T22:09:00Z"
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
       ]
     },
     {
@@ -5023,7 +5134,7 @@
     },
     {
       "id": "W10-L46-P1460-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "Why should the earlier stopword-filtered five-token list not be substituted silently for the POS example’s input?",
@@ -5046,7 +5157,7 @@
       "options": [
         {
           "id": "o4",
-          "text": "A stopword set and a token sequence are interchangeable inputs to the shown tagger"
+          "text": "Pass only the unique sorted filtered words, because POS tagging uses the vocabulary rather than the ordered token occurrences."
         },
         {
           "id": "o1",
@@ -5054,7 +5165,7 @@
         },
         {
           "id": "o2",
-          "text": "A POS tagger necessarily returns the original eight tokens even when only five are supplied"
+          "text": "The filtered five-token sequence preserves the original POS input positions because stopwords have no position in the sentence."
         },
         {
           "id": "o3",
@@ -5092,24 +5203,27 @@
         "justification": "The two source examples use different preprocessing; the POS sentence preserves grammatical function words.",
         "optionExplanations": {
           "o1": "Correct. The two source examples use different preprocessing; the POS sentence preserves grammatical function words.",
-          "o2": "Incorrect. The shown tagger annotates the supplied tokens rather than reconstructing deleted ones.",
+          "o2": "The original sequence has eight tokens, including up and two the occurrences; deleting them changes positions.",
           "o3": "Incorrect. POS prediction can depend on surrounding context.",
-          "o4": "Incorrect. A stopword inventory is not the ordered sentence token sequence used by the code."
+          "o4": "The shown tagger receives an ordered sentence token list, not a unique sorted type list."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The two source examples use different preprocessing; the POS sentence preserves grammatical function words.",
         "memoryAid": null,
         "misconceptions": [
-          "The shown tagger annotates the supplied tokens rather than reconstructing deleted ones.",
-          "POS prediction can depend on surrounding context.",
-          "A stopword inventory is not the ordered sentence token sequence used by the code."
+          "The shown tagger receives an ordered sentence token list, not a unique sorted type list.",
+          "The original sequence has eight tokens, including up and two the occurrences; deleting them changes positions.",
+          "Incorrect. POS prediction can depend on surrounding context."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1461-Q01",
@@ -5208,7 +5322,7 @@
     },
     {
       "id": "W10-L46-P1461-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "Assume the speaker means a box that is not heavy. How should the screenshot’s light/NN output be interpreted?",
@@ -5237,11 +5351,11 @@
         },
         {
           "id": "o3",
-          "text": "It is the expected adjective label because NN abbreviates non-heavy"
+          "text": "It is a proper-noun label that confirms light is the name of the box."
         },
         {
           "id": "o4",
-          "text": "It proves that the tokenization failed to include the word light"
+          "text": "It is an adjective-sense confidence score, so its presence confirms the lightweight interpretation."
         },
         {
           "id": "o1",
@@ -5280,27 +5394,30 @@
         "optionExplanations": {
           "o1": "Correct. NN is the displayed noun tag, whereas the stipulated lightweight reading makes light an adjective.",
           "o2": "Incorrect. A model prediction is not proof of the speaker’s intention.",
-          "o3": "Incorrect. JJ, not NN, is the adjective tag in the slide’s legend.",
-          "o4": "Incorrect. The word is visibly present in the displayed output."
+          "o3": "The displayed NN is a common-noun tag, not the NNP proper-noun category or proof of an object name.",
+          "o4": "The displayed output is a grammatical category label, not a confidence score or word-sense decision."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "NN is the displayed noun tag, whereas the stipulated lightweight reading makes light an adjective.",
         "memoryAid": null,
         "misconceptions": [
-          "A model prediction is not proof of the speaker’s intention.",
-          "JJ, not NN, is the adjective tag in the slide’s legend.",
-          "The word is visibly present in the displayed output."
+          "Incorrect. A model prediction is not proof of the speaker’s intention.",
+          "The displayed NN is a common-noun tag, not the NNP proper-noun category or proof of an object name.",
+          "The displayed output is a grammatical category label, not a confidence score or word-sense decision."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1461-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "Could a correct adjective tag alone distinguish “light” meaning lightweight from “light” meaning illuminated?",
@@ -5325,11 +5442,11 @@
       "options": [
         {
           "id": "o2",
-          "text": "Yes; identifying a word as an adjective guarantees that only one sense remains"
+          "text": "Yes; an adjective tag records which one of the two supplied adjectival senses is intended."
         },
         {
           "id": "o3",
-          "text": "Yes; a POS tag is itself a complete contextual word-sense label"
+          "text": "No; the adjective tag is useful only for recognizing the object’s physical location, not its grammatical role."
         },
         {
           "id": "o1",
@@ -5367,23 +5484,26 @@
         "justification": "Multiple senses can share a grammatical class; context and grounding may still be needed.",
         "optionExplanations": {
           "o1": "Correct. Multiple senses can share a grammatical class; context and grounding may still be needed.",
-          "o2": "Incorrect. Adjectives can be polysemous.",
-          "o3": "Incorrect. A grammatical category is not a complete sense annotation."
+          "o2": "The stipulated senses share their grammatical category, so that tag cannot distinguish them.",
+          "o3": "The tag does indicate grammatical role; its limitation is incomplete sense resolution, not absence of linguistic information."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Multiple senses can share a grammatical class; context and grounding may still be needed.",
         "memoryAid": null,
         "misconceptions": [
-          "Adjectives can be polysemous.",
-          "A grammatical category is not a complete sense annotation."
+          "The stipulated senses share their grammatical category, so that tag cannot distinguish them.",
+          "The tag does indicate grammatical role; its limitation is incomplete sense resolution, not absence of linguistic information."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three distinct technical alternatives are sufficient for this narrow distinction; a fourth would be filler."
+      "optionCountRationale": "Three distinct alternatives test sense labeling, grammatical-role information and the correct limitation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1462-Q01",
@@ -5571,7 +5691,7 @@
     },
     {
       "id": "W10-L46-P1462-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "What is justified by the reported GPE label for Lab3?",
@@ -5594,11 +5714,11 @@
       "options": [
         {
           "id": "o3",
-          "text": "The robot now knows Lab3’s metric coordinates and a collision-free route"
+          "text": "The GPE label includes a calibrated confidence high enough to establish the intended navigation destination."
         },
         {
           "id": "o4",
-          "text": "The model has proven that GPE and PERSON are interchangeable categories"
+          "text": "Because the speaker used Lab3 as a destination, every valid entity recognizer must output exactly the same GPE label."
         },
         {
           "id": "o1",
@@ -5606,7 +5726,7 @@
         },
         {
           "id": "o2",
-          "text": "Every room name must be a geopolitical entity in any correct ontology"
+          "text": "The reported category proves the annotation scheme defines every indoor laboratory as a geopolitical entity."
         }
       ],
       "correctOptionIds": [
@@ -5640,18 +5760,18 @@
         "justification": "The slide and notebook report a label, and the notebook explicitly qualifies Lab3 as not exactly a GPE.",
         "optionExplanations": {
           "o1": "Correct. The slide and notebook report a label, and the notebook explicitly qualifies Lab3 as not exactly a GPE.",
-          "o2": "Incorrect. An observed prediction is not a universal ontology rule.",
-          "o3": "Incorrect. Category recognition does not establish location coordinates or route feasibility.",
-          "o4": "Incorrect. The tree uses distinct entity categories."
+          "o2": "One reported model label does not establish the annotation ontology or universal correctness.",
+          "o3": "The displayed categorical output supplies neither a calibrated confidence nor a grounded metric destination.",
+          "o4": "Different annotation schemes and models can represent such mentions differently; task use does not mandate this label."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The slide and notebook report a label, and the notebook explicitly qualifies Lab3 as not exactly a GPE.",
         "memoryAid": null,
         "misconceptions": [
-          "An observed prediction is not a universal ontology rule.",
-          "Category recognition does not establish location coordinates or route feasibility.",
-          "The tree uses distinct entity categories."
+          "The displayed categorical output supplies neither a calibrated confidence nor a grounded metric destination.",
+          "Different annotation schemes and models can represent such mentions differently; task use does not mandate this label.",
+          "One reported model label does not establish the annotation ontology or universal correctness."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -5660,7 +5780,7 @@
       "reviewIds": [],
       "conflictResolution": {
         "status": "explicit-qualification-pending-independent-review",
-        "questionVersion": 1,
+        "questionVersion": 2,
         "sourceId": "lectures",
         "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
         "physicalPage": 1462,
@@ -5680,6 +5800,9 @@
           "checkedAt": "2026-10-19T22:10:00Z",
           "locator": "Zero-based cell 27; saved outputs are historical evidence, not fresh corpus-dependent execution."
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
       ]
     },
     {
@@ -6089,14 +6212,14 @@
     },
     {
       "id": "W10-L46-P1464-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
-      "stem": "A robot reads a Spanish instruction and produces an English equivalent, without changing the requested task. Which NLP operation is directly illustrated?",
+      "stem": "In an added multilingual robot case, ASR and translation are stipulated correct and yield “pick up the light box.” Box A is illuminated and heavy; B is unlit and lightweight; both are visible. Which sequence resolves the remaining ambiguity and correctly distinguishes VLM description, VLA action and feedback?",
       "selectionMode": "single",
       "type": "scenario",
-      "difficulty": "easy",
-      "cognitiveSkill": "application",
+      "difficulty": "medium",
+      "cognitiveSkill": "synthesis",
       "week": 10,
       "lectureId": "L46",
       "topic": "Natural Language Processing",
@@ -6108,23 +6231,26 @@
       "conceptIds": [
         "W10-L46-C-core-tasks"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "All scene facts and successful ASR/translation are supplied, not inferred model outputs.",
+        "The user clarifies that light means low mass; physical feasibility must be checked before execution."
+      ],
       "options": [
         {
           "id": "o3",
-          "text": "Named-entity recognition"
+          "text": "Accept a VLM description naming B as sufficient proof that the pick action has already executed; omit action and state checks."
         },
         {
           "id": "o4",
-          "text": "Sentiment classification"
+          "text": "Select B after clarification, but treat the predicted next visual state as the actual observation even if feedback shows that the grasp failed."
         },
         {
           "id": "o1",
-          "text": "Machine translation"
+          "text": "Clarify whether light means low mass or illuminated; after the user says low mass, select B, check feasibility, and use the updated observation after execution."
         },
         {
           "id": "o2",
-          "text": "Speech synthesis"
+          "text": "Repeat ASR on the unchanged audio until the English word light disappears; select A because illumination is directly visible."
         }
       ],
       "correctOptionIds": [
@@ -6141,30 +6267,88 @@
           "evidenceText": "Core NLP Tasks and their Application in Robotics\n\n 2. Sentiment Analysis: Detects the emotion or tone behind the words.\n       •  Essential for Service Robots or Social Robots.\n        ꟷIf a human says \"Great job, robot!\" with frustration after a failure, the\n            robot needs to detect the Negative Sentiment (sarcasm) rather than just\n            the literal words.\n 3. Machine Translation: Translates text from one language to another.\n       •  Multilingual robot can function in places like airports, where people from all\n        over the world will be present.\n 4.  Question Answering: Extracting an answer from a\n    knowledge base.\n       •  Robots acts as a mobile interface/assistant for information\n\n\n\n\n                                                                                                          25",
           "role": "explicit",
           "region": null
+        },
+        {
+          "slideId": "lectures-p1445",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1445,
+          "kind": "statement",
+          "locator": "Lecture L46, physical PDF page 1445, printed footer 6: Lightweight versus illuminated word-sense ambiguity.",
+          "evidenceText": "Challenges of Human Language\n•  The main challenges (with example commands) that prevent a robot from\n   learning human commands are:\n    –  Ambiguity: the same word with more than one meaning\n           •  “Pick up the light box” – does light mean lightweight or illuminated?\n    –  Accents: the same word can be pronounced differently by people from different places\n           •  “Fetch the ball” – The robot may mishear bowl for ball\n    – Synonyms: Words with similar meanings\n           • Humans may say: “fetch”, ”pick”, or “take” the object\n           – Can robots understand that?\n    –  Context: AI models struggle to detect sarcasm/tone/body\n       language\n           •  “Great job, robot!” from humans may be genuine\n             praise or frustration after failure.\n\n                                                                                                           6",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1465",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1465,
+          "kind": "statement",
+          "locator": "Lecture L46, physical PDF page 1465, printed footer 26: Speech recognition, language understanding, planning and execution pipeline.",
+          "evidenceText": "Core NLP Tasks and their Application in Robotics\n 5. Automatic Speech Recognition (ASR)\n       •  Converts Speech into Text. This process is called transcription.\n       •  This is how mostly robots receive commands for processing in HRI\n       •  A complete HRI pipeline using ASR would look like:\n\n\n\n       •  The NLP processing stage may include preprocessing, vectorization, intent detection,\n        language understanding & contextual understanding\n       •  ASR itself do not understand language\n       •  Commonly used STT model: OpenAI whisper model\n       •  ASR is used in voice-controlled robots, smart assistants\n      home automation, healthcare robots, humanoid robots, etc\n\n\n                                                                                                          26",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1470",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1470,
+          "kind": "statement",
+          "locator": "Lecture L46, physical PDF page 1470, printed footer 31: Clarification, hallucination and instruction interpretation limits.",
+          "evidenceText": "Large Language Models (LLMs)\n•  By learning to predict the next word across billions of sentences, LLMs learn\n   grammar, context, relationship between words & reasoning patterns.\n•  This will enable LLMs to help robots with:\n    –  understand flexible commands −plan multi-step tasks −ask clarification questions\n    –  interact conversationally      −explain their actions\n\n\n\n•  But LLMs don’t truly understand human language. They:\n      •  hallucinate (generate incorrect information)\n      •  misunderstand instructions\n•  In robotics, incorrect understanding can lead to unsafe\n   actions.\n\n\n                                                                                                          31",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1471",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1471,
+          "kind": "statement",
+          "locator": "Lecture L46, physical PDF page 1471, printed footer 32: Image-plus-text model produces language descriptions.",
+          "evidenceText": "Beyond LLMs: Multimodal AI in Robotics\n•  Modern robots increasingly combine LLMs with\n   vision, sensors, and planning systems to achieve\n  more natural human-robot interaction.\n1.  Vision Language Models(VLMs): input becomes\n    a combination of image & text\n    –  It has an additional vision backbone called Vision\n       Transformer (ViT), which is a transformer\n        architecture modified to process images.\n    – The visual tokens from the ViT are mapped into the\n       LLM, allowing the LLM to see the image patches as\n            if they were just part of the text prompt.\n    –  Examples: DeepSeek-VL2, Gemini 2.0 Flash, GPT-\n        4o, Llama 3.2, NVLM, Qwen 2.5-VL\n\n\n                                                                                                          32",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1472",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1472,
+          "kind": "statement",
+          "locator": "Lecture L46, physical PDF page 1472, printed footer 33: Action prediction head, execution and updated embodied visual state.",
+          "evidenceText": "Beyond LLMs: Multimodal AI in Robotics\n2. Vision Language Action (VLA) Models extend VLMs by adding robot actions.\n   ꟷThey connect vision, language & physical\n       robot control\n   ꟷTo make actions compatible with transformer\n        architectures, VLAs often tokenize continuous\n        robotic actions (like joint angles or end-\n        effector positions) into discrete values, treating\n       a physical movement exactly like a word in a\n       vocabulary sentence.\n   ꟷVLAs enable robots to understand language,\n       detect objects, plan movement & execute\n        actions.\n    ꟷExamples: RT-2 (Robotics Transformer 2) by\n       Google DeepMind, OpenVLA\n\n                                                                                                          33",
+          "role": "premise",
+          "region": null
         }
       ],
       "solution": {
-        "justification": "The operation changes the language of the text while preserving its intended content.",
+        "justification": "Correct transcription and translation do not settle every word sense. Clarification identifies low mass, the supplied scene grounds that request to B, and a validated action must be distinguished from a description and its observed result.",
         "optionExplanations": {
-          "o1": "Correct. The operation changes the language of the text while preserving its intended content.",
-          "o2": "Incorrect. No conversion of text to audio is specified.",
-          "o3": "Incorrect. The operation is not merely marking entity spans.",
-          "o4": "Incorrect. It does not assign an emotional polarity."
+          "o1": "The linguistic ambiguity needs clarification; grounding then selects B, and action generation is distinct from execution and observed feedback.",
+          "o2": "ASR and translation are stipulated correct; repeating transcription does not resolve the remaining sense ambiguity.",
+          "o3": "A language description of the image is not a physical action or evidence that it happened.",
+          "o4": "A predicted outcome is not a substitute for the observed post-action state, especially after failure."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The operation changes the language of the text while preserving its intended content.",
+        "simpleExplanation": "Correct transcription and translation do not settle every word sense. Clarification identifies low mass, the supplied scene grounds that request to B, and a validated action must be distinguished from a description and its observed result.",
         "memoryAid": null,
         "misconceptions": [
-          "No conversion of text to audio is specified.",
-          "The operation is not merely marking entity spans.",
-          "It does not assign an emotional polarity."
+          "A language description of the image is not a physical action or evidence that it happened.",
+          "A predicted outcome is not a substitute for the observed post-action state, especially after failure.",
+          "ASR and translation are stipulated correct; repeating transcription does not resolve the remaining sense ambiguity."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1465-Q01",
@@ -6247,7 +6431,7 @@
     },
     {
       "id": "W10-L46-P1465-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "In the displayed voice-controlled pipeline, what comes between the ASR transcript and physical execution?",
@@ -6270,19 +6454,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "Robot execution, then later language interpretation for logging"
+          "text": "Robot planning of a fixed motion first, then NLP only to assign a label to that finished plan."
         },
         {
           "id": "o3",
-          "text": "Only speech synthesis of the transcript back to the user"
+          "text": "Speech synthesis of the transcript, followed directly by execution without interpreting its requested action."
         },
         {
           "id": "o4",
-          "text": "Only token counting, because a transcript specifies all geometry"
+          "text": "Map grounding alone, with the requested action and object relation left unresolved until after motion."
         },
         {
           "id": "o1",
-          "text": "NLP extraction/understanding, then robot planning"
+          "text": "NLP extraction/understanding, then robot planning."
         }
       ],
       "correctOptionIds": [
@@ -6304,32 +6488,35 @@
       "solution": {
         "justification": "The diagram places NLP processing and planning between speech recognition and execution.",
         "optionExplanations": {
-          "o1": "Correct. The diagram places NLP processing and planning between speech recognition and execution.",
-          "o2": "Incorrect. Execution is the final depicted stage, not a predecessor of understanding.",
-          "o3": "Incorrect. Speaking the transcript is not the shown planning stage.",
-          "o4": "Incorrect. A transcript does not itself provide all geometric constraints."
+          "o1": "The diagram puts understanding before planning and execution.",
+          "o2": "Planning the requested task requires interpretation, rather than merely labeling an already fixed plan.",
+          "o3": "Repeating the text as audio does not supply its interpretation or a plan.",
+          "o4": "Grounding a place is not sufficient to resolve the requested action and relation."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The diagram places NLP processing and planning between speech recognition and execution.",
         "memoryAid": null,
         "misconceptions": [
-          "Execution is the final depicted stage, not a predecessor of understanding.",
-          "Speaking the transcript is not the shown planning stage.",
-          "A transcript does not itself provide all geometric constraints."
+          "Planning the requested task requires interpretation, rather than merely labeling an already fixed plan.",
+          "Repeating the text as audio does not supply its interpretation or a plan.",
+          "Grounding a place is not sufficient to resolve the requested action and relation."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1465-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
-      "stem": "A speech recognizer transcribes “pick up the red ball” perfectly. What has not yet been established by that result alone?",
+      "stem": "ASR correctly outputs “pick up the red ball,” the intent parser outputs pick(red ball), and the controller accurately reaches the selected target. Logs show that target ID refers to the blue ball. Which stage is directly implicated?",
       "selectionMode": "single",
       "type": "scenario",
       "difficulty": "easy",
@@ -6349,19 +6536,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Which physical ball is intended and whether the requested motion is feasible"
+          "text": "Scene grounding or target selection failed after correct speech and intent processing."
         },
         {
           "id": "o2",
-          "text": "The exact text sequence output by the recognizer"
+          "text": "ASR substituted blue for red in the audio transcript."
         },
         {
           "id": "o3",
-          "text": "Whether the recognized string contains the word ball"
+          "text": "The intent parser interpreted pick up as put down."
         },
         {
           "id": "o4",
-          "text": "Whether the input-to-text stage returned a transcription"
+          "text": "A correct red-ball target was selected, but the motor controller missed its planned trajectory."
         }
       ],
       "correctOptionIds": [
@@ -6392,31 +6579,34 @@
         }
       ],
       "solution": {
-        "justification": "Correct text is distinct from scene grounding and planning feasibility.",
+        "justification": "The evidence isolates an incorrect mapping from the understood object description to a scene object, not an ASR, action-intent or trajectory-tracking error.",
         "optionExplanations": {
-          "o1": "Correct. Correct text is distinct from scene grounding and planning feasibility.",
-          "o2": "Incorrect. The premise explicitly supplies the correct transcript.",
-          "o3": "Incorrect. The supplied transcript visibly includes ball.",
-          "o4": "Incorrect. The premise explicitly states transcription success."
+          "o1": "The stipulated target ID already points to the blue ball, so the error occurs before otherwise accurate execution.",
+          "o2": "The supplied transcript is correct and contains red.",
+          "o3": "The supplied intent is explicitly pick(red ball), not put down.",
+          "o4": "The executed trajectory reaches the selected blue-ball target accurately; the wrong target was chosen earlier."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Correct text is distinct from scene grounding and planning feasibility.",
+        "simpleExplanation": "The evidence isolates an incorrect mapping from the understood object description to a scene object, not an ASR, action-intent or trajectory-tracking error.",
         "memoryAid": null,
         "misconceptions": [
-          "The premise explicitly supplies the correct transcript.",
-          "The supplied transcript visibly includes ball.",
-          "The premise explicitly states transcription success."
+          "The supplied transcript is correct and contains red.",
+          "The supplied intent is explicitly pick(red ball), not put down.",
+          "The executed trajectory reaches the selected blue-ball target accurately; the wrong target was chosen earlier."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1466-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "For a system with limited ability to retain earlier context, which command feature creates the difficulty emphasized by the lecture?",
@@ -6441,19 +6631,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "A pronoun whose intended antecedent depends on a later descriptive phrase"
+          "text": "In “move the robot toward the shelf because it is cluttered,” resolving it requires relating the later description to the earlier candidates."
         },
         {
           "id": "o2",
-          "text": "A word occurring twice in a list whose token boundaries are already known"
+          "text": "In “pick the red box,” choosing a noun from two senses is fully solved by keeping the last token only."
         },
         {
           "id": "o3",
-          "text": "A corpus with an explicitly supplied set of three document strings"
+          "text": "In “move left, then stop,” the later stop always cancels the earlier instruction rather than following it."
         },
         {
           "id": "o4",
-          "text": "A punctuation mark that a specified deletion table removes deterministically"
+          "text": "In “put the cup on the tray beside the chair,” the nearest noun rule always determines which object is beside the chair."
         }
       ],
       "correctOptionIds": [
@@ -6475,19 +6665,19 @@
       "solution": {
         "justification": "Resolving it in the shelf/robot example requires relating words and context rather than processing isolated tokens.",
         "optionExplanations": {
-          "o1": "Correct. Resolving it in the shelf/robot example requires relating words and context rather than processing isolated tokens.",
-          "o2": "Incorrect. Counting a known repeated token is not the depicted reference-resolution challenge.",
-          "o3": "Incorrect. Explicit document boundaries do not by themselves create the stated pronoun ambiguity.",
-          "o4": "Incorrect. The highlighted issue is contextual interpretation, not deterministic deletion."
+          "o1": "This is the source’s context-dependent reference example.",
+          "o2": "Keeping a single last token does not retain the action and descriptive context.",
+          "o3": "The explicit then expresses a sequence, not a general cancellation rule.",
+          "o4": "Attachment and relation interpretation require more than an unconditional nearest-noun rule."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Resolving it in the shelf/robot example requires relating words and context rather than processing isolated tokens.",
         "memoryAid": null,
         "misconceptions": [
-          "Counting a known repeated token is not the depicted reference-resolution challenge.",
-          "Explicit document boundaries do not by themselves create the stated pronoun ambiguity.",
-          "The highlighted issue is contextual interpretation, not deterministic deletion."
+          "Keeping a single last token does not retain the action and descriptive context.",
+          "The explicit then expresses a sequence, not a general cancellation rule.",
+          "Attachment and relation interpretation require more than an unconditional nearest-noun rule."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -6496,7 +6686,7 @@
       "reviewIds": [],
       "conflictResolution": {
         "status": "explicit-qualification-pending-independent-review",
-        "questionVersion": 1,
+        "questionVersion": 2,
         "sourceId": "lectures",
         "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
         "physicalPage": 1466,
@@ -6505,7 +6695,10 @@
         "method": "Qualify the class of systems in the question rather than treating a pedagogical contrast as an exhaustive historical theorem.",
         "scope": "This question version only; independent review required.",
         "sourceIssueId": "L46-ISSUE-traditional-scope"
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1467-Q01",
@@ -6590,7 +6783,7 @@
     },
     {
       "id": "W10-L46-P1467-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "What can be inferred from arrow boldness in the displayed attention figures?",
@@ -6613,7 +6806,7 @@
       "options": [
         {
           "id": "o4",
-          "text": "A unique physical trajectory that the robot can execute without planning"
+          "text": "The illustrated boldest link must carry more than 0.5 of the normalized attention mass."
         },
         {
           "id": "o1",
@@ -6661,26 +6854,29 @@
           "o1": "Correct. The source uses boldness to illustrate attention qualitatively and supplies no calibrated numbers.",
           "o2": "Incorrect. No mapping from pixel width to normalized weight is given.",
           "o3": "Incorrect. Pale arrows are shown; they are not labeled zero.",
-          "o4": "Incorrect. The figure depicts linguistic relations, not robot geometry or actuation."
+          "o4": "A qualitative ranking or bold stroke supplies no calibrated absolute threshold or denominator."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The source uses boldness to illustrate attention qualitatively and supplies no calibrated numbers.",
         "memoryAid": null,
         "misconceptions": [
-          "No mapping from pixel width to normalized weight is given.",
-          "Pale arrows are shown; they are not labeled zero.",
-          "The figure depicts linguistic relations, not robot geometry or actuation."
+          "A qualitative ranking or bold stroke supplies no calibrated absolute threshold or denominator.",
+          "Incorrect. No mapping from pixel width to normalized weight is given.",
+          "Incorrect. Pale arrows are shown; they are not labeled zero."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1468-Q01",
-      "version": 1,
+      "version": 3,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "In “Move the robot toward the shelf because it is cluttered,” which role mapping is explicitly used by the lecture?",
@@ -6711,7 +6907,7 @@
         },
         {
           "id": "o4",
-          "text": "move: entity category; robot: sentiment; shelf: tokenization rule"
+          "text": "move: action; robot: object to be moved; shelf: a descriptive property rather than a spatial reference"
         },
         {
           "id": "o1",
@@ -6740,26 +6936,29 @@
           "o1": "Correct. These are the three named roles on the slide.",
           "o2": "Incorrect. The action is the verb move, not robot.",
           "o3": "Incorrect. The robot is moved toward the shelf, rather than moving the shelf toward the robot.",
-          "o4": "Incorrect. These substitute unrelated annotation categories for the illustrated semantic roles."
+          "o4": "The noun shelf supplies spatial context; cluttered is the descriptive property in the sentence."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "These are the three named roles on the slide.",
         "memoryAid": null,
         "misconceptions": [
-          "The action is the verb move, not robot.",
-          "The robot is moved toward the shelf, rather than moving the shelf toward the robot.",
-          "These substitute unrelated annotation categories for the illustrated semantic roles."
+          "Incorrect. The action is the verb move, not robot.",
+          "Incorrect. The robot is moved toward the shelf, rather than moving the shelf toward the robot.",
+          "The noun shelf supplies spatial context; cluttered is the descriptive property in the sentence."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1468-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "Which description correctly distinguishes the transformer mechanism from the scaling story leading to LLMs?",
@@ -6782,19 +6981,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Attention relates context-dependent token information; training-data and parameter growth describe model scale"
+          "text": "Attention relates context-dependent token information; training-data and parameter growth describe model scale."
         },
         {
           "id": "o2",
-          "text": "Attention is simply a larger vocabulary; parameter scaling by itself fixes every reference ambiguity"
+          "text": "Increasing the number of training examples changes only the attention mechanism, while adding attention leaves the architecture unchanged."
         },
         {
           "id": "o3",
-          "text": "Attention means generating all output tokens independently, while scaling supplies the shared context afterward"
+          "text": "Model width is the attention weight assigned to each token, so a wider model means every contextual link has a higher probability."
         },
         {
           "id": "o4",
-          "text": "Attention assigns each word one permanent importance value, unchanged across commands"
+          "text": "Parameter count directly specifies the current sentence’s token-to-token attention matrix, independently of the input."
         }
       ],
       "correctOptionIds": [
@@ -6816,29 +7015,32 @@
       "solution": {
         "justification": "Contextual relationships and the scale of training/model capacity are different concepts.",
         "optionExplanations": {
-          "o1": "Correct. Contextual relationships and the scale of training/model capacity are different concepts.",
-          "o2": "Incorrect. Vocabulary size is not attention, and scale alone does not guarantee correct reference resolution.",
-          "o3": "Incorrect. The generation and context relationships are not independent in that manner.",
-          "o4": "Incorrect. The slide’s paired examples explicitly change the relevant relation with context."
+          "o1": "Contextual interaction is a mechanism; data and parameter growth describe scale.",
+          "o2": "More training data is a scaling change; introducing attention is an architectural/mechanistic change.",
+          "o3": "Hidden width and input-dependent attention weights are different quantities.",
+          "o4": "A parameter count is not the input-specific attention matrix or its entries."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Contextual relationships and the scale of training/model capacity are different concepts.",
         "memoryAid": null,
         "misconceptions": [
-          "Vocabulary size is not attention, and scale alone does not guarantee correct reference resolution.",
-          "The generation and context relationships are not independent in that manner.",
-          "The slide’s paired examples explicitly change the relevant relation with context."
+          "More training data is a scaling change; introducing attention is an architectural/mechanistic change.",
+          "Hidden width and input-dependent attention weights are different quantities.",
+          "A parameter count is not the input-specific attention matrix or its entries."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1469-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "Which process describes the autoregressive generation example shown in the lecture?",
@@ -6869,7 +7071,7 @@
         },
         {
           "id": "o4",
-          "text": "Translate each input character to exactly one output word before considering context"
+          "text": "At inference, append the correct future reference token after each prediction, even though no reference answer was supplied."
         },
         {
           "id": "o1",
@@ -6909,7 +7111,7 @@
           "o1": "Correct. The example is context-conditioned next-token prediction repeated as generation proceeds.",
           "o2": "Incorrect. The distribution depends on context, not merely a fixed word-to-word lookup.",
           "o3": "Incorrect. Later context changes when generated tokens are appended.",
-          "o4": "Incorrect. Tokens may be words or subwords, and the process is not a fixed character substitution."
+          "o4": "Using known reference tokens describes teacher-forced conditioning, not ordinary free autoregressive generation."
         },
         "steps": [
           "Represent the available context.",
@@ -6920,15 +7122,18 @@
         "simpleExplanation": "The example is context-conditioned next-token prediction repeated as generation proceeds.",
         "memoryAid": null,
         "misconceptions": [
-          "The distribution depends on context, not merely a fixed word-to-word lookup.",
-          "Later context changes when generated tokens are appended.",
-          "Tokens may be words or subwords, and the process is not a fixed character substitution."
+          "Incorrect. The distribution depends on context, not merely a fixed word-to-word lookup.",
+          "Incorrect. Later context changes when generated tokens are appended.",
+          "Using known reference tokens describes teacher-forced conditioning, not ordinary free autoregressive generation."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1469-Q02",
@@ -7043,13 +7248,13 @@
     },
     {
       "id": "W10-L46-P1469-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "In an explicitly repaired exercise, treat 0.57, 0.35, 0.15 and 0.07 as unnormalized weights for exactly four exhaustive next-token choices. What probability does normalization assign to up?",
       "selectionMode": "single",
       "type": "numerical",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "numerical",
       "week": 10,
       "lectureId": "L46",
@@ -7132,9 +7337,9 @@
         "simpleExplanation": "Divide the up weight .57 by the total weight 1.14 to obtain .50.",
         "memoryAid": null,
         "misconceptions": [
-          "This leaves the weight unnormalized.",
-          "This subtracts the original weight from one rather than dividing by total mass.",
-          "Normalize by the sum of weights, not by the number of candidates."
+          "Incorrect. This divides 0.57 by the four-candidate count instead of by their total weight 1.14.",
+          "Incorrect. This leaves the weight unnormalized.",
+          "Incorrect. This subtracts the original weight from one rather than dividing by total mass."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -7143,7 +7348,7 @@
       "reviewIds": [],
       "conflictResolution": {
         "status": "explicit-qualification-pending-independent-review",
-        "questionVersion": 1,
+        "questionVersion": 2,
         "sourceId": "lectures",
         "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
         "physicalPage": 1469,
@@ -7152,11 +7357,15 @@
         "method": "Add the four printed numbers exactly as rational values and use nonnegative probability mass constraints.",
         "scope": "This question version only; independent review required.",
         "sourceIssueId": "L46-ISSUE-probability-sum"
-      }
+      },
+      "difficultyRationale": "Direct substitution into a fully supplied formula with a short arithmetic calculation.",
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1469-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "In the notation p(w|context), what is conditioned on, and what can w represent according to the slide?",
@@ -7179,15 +7388,15 @@
       "options": [
         {
           "id": "o2",
-          "text": "The proposed next word; a probability for the preceding context"
+          "text": "The available context and next token jointly; their joint probability p(w,context) without normalization by the context probability."
         },
         {
           "id": "o3",
-          "text": "Only the most recent character; a complete sentence generated as one token"
+          "text": "The candidate token w; the probability that all previously observed context would occur given it."
         },
         {
           "id": "o4",
-          "text": "Only the total training-corpus size; a next word independent of the actual prompt"
+          "text": "The available context; a marginal probability p(w) that deliberately ignores which context was supplied."
         },
         {
           "id": "o1",
@@ -7214,31 +7423,34 @@
         "justification": "The notation conditions the next word/subword on the available context.",
         "optionExplanations": {
           "o1": "Correct. The notation conditions the next word/subword on the available context.",
-          "o2": "Incorrect. That reverses the conditional probability to p(context|w).",
-          "o3": "Incorrect. The source describes token-by-token generation from context, not a fixed character-to-sentence mapping.",
-          "o4": "Incorrect. The actual context matters; corpus size alone does not determine a prompt-specific distribution."
+          "o2": "The displayed expression is conditional, not the unnormalized joint probability.",
+          "o3": "This reverses the direction of conditioning to a context-given-token likelihood.",
+          "o4": "A conditional distribution p(w|context) retains dependence on the specified context, unlike a marginal p(w)."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The notation conditions the next word/subword on the available context.",
         "memoryAid": null,
         "misconceptions": [
-          "That reverses the conditional probability to p(context|w).",
-          "The source describes token-by-token generation from context, not a fixed character-to-sentence mapping.",
-          "The actual context matters; corpus size alone does not determine a prompt-specific distribution."
+          "The displayed expression is conditional, not the unnormalized joint probability.",
+          "This reverses the direction of conditioning to a context-given-token likelihood.",
+          "A conditional distribution p(w|context) retains dependence on the specified context, unlike a marginal p(w)."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1470-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
-      "stem": "Two visually identical red balls are plausible targets of a flexible command. Which listed LLM capability is most directly useful before committing to one?",
+      "stem": "Two visually identical red balls lie left and right of a tray, and either fits “pick up the red ball.” Which clarification can distinguish the intended target using the supplied scene?",
       "selectionMode": "single",
       "type": "scenario",
       "difficulty": "easy",
@@ -7258,19 +7470,19 @@
       "options": [
         {
           "id": "o3",
-          "text": "Replace the scene observation with a fluent description of a likely ball"
+          "text": "Ask “Should I pick up a ball?” when the requested action and object class are already clear."
         },
         {
           "id": "o4",
-          "text": "Repeat the command verbatim as proof that the ambiguity has been resolved"
+          "text": "Ask “Is it the round object?” when both candidates have the same round shape."
         },
         {
           "id": "o1",
-          "text": "Ask a clarification question that distinguishes the intended target"
+          "text": "Ask “Do you mean the ball left of the tray or the ball right of it?” when those positions distinguish the two candidates."
         },
         {
           "id": "o2",
-          "text": "Treat the highest next-token score as a physical target-identification certificate"
+          "text": "Ask “Is the target red?” when both candidates are already known to be red."
         }
       ],
       "correctOptionIds": [
@@ -7292,25 +7504,28 @@
       "solution": {
         "justification": "Clarification is explicitly listed and can obtain missing information about the intended referent.",
         "optionExplanations": {
-          "o1": "Correct. Clarification is explicitly listed and can obtain missing information about the intended referent.",
-          "o2": "Incorrect. A language score does not certify which physical object the speaker intends.",
-          "o3": "Incorrect. A fluent description can remain ungrounded or incorrect.",
-          "o4": "Incorrect. Repeating ambiguous text does not supply the missing distinction."
+          "o1": "The supplied left/right distinction can identify the intended candidate.",
+          "o2": "Confirming a shared color leaves both candidates possible.",
+          "o3": "Repeating the agreed action and class does not distinguish the two targets.",
+          "o4": "A shared shape does not resolve the target ambiguity."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Clarification is explicitly listed and can obtain missing information about the intended referent.",
         "memoryAid": null,
         "misconceptions": [
-          "A language score does not certify which physical object the speaker intends.",
-          "A fluent description can remain ungrounded or incorrect.",
-          "Repeating ambiguous text does not supply the missing distinction."
+          "Repeating the agreed action and class does not distinguish the two targets.",
+          "A shared shape does not resolve the target ambiguity.",
+          "Confirming a shared color leaves both candidates possible."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1470-Q02",
@@ -7393,7 +7608,7 @@
     },
     {
       "id": "W10-L46-P1470-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "Which operational conclusion follows from the slide’s hallucination and instruction-misinterpretation warnings?",
@@ -7416,19 +7631,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "Misunderstood instructions matter only when the robot has no language model"
+          "text": "Check only that the object noun appears in the command, without verifying its scene identity or the requested spatial relation."
         },
         {
           "id": "o1",
-          "text": "A fluent proposed action may still need checking against the intended task and physical constraints"
+          "text": "Check the proposed action against the intended task and observed physical constraints before execution."
         },
         {
           "id": "o2",
-          "text": "A fluent explanation guarantees the proposed movement is correct"
+          "text": "Check only that the response parses as valid JSON, because syntax validity establishes the intended object and feasible path."
         },
         {
           "id": "o3",
-          "text": "Hallucination means only misspelled words and therefore cannot affect robotics"
+          "text": "Ask the same language model for a more confident explanation without comparing it with scene or task evidence."
         }
       ],
       "correctOptionIds": [
@@ -7450,19 +7665,19 @@
       "solution": {
         "justification": "Incorrect information or interpretation can propagate into unsafe actions; fluency is not validation.",
         "optionExplanations": {
-          "o1": "Correct. Incorrect information or interpretation can propagate into unsafe actions; fluency is not validation.",
-          "o2": "Incorrect. Fluency is not evidence of factual or physical correctness.",
-          "o3": "Incorrect. The slide defines hallucination as incorrect information, broader than spelling.",
-          "o4": "Incorrect. The warning explicitly includes language models."
+          "o1": "Grounding and physical/task checks address incorrect content and interpretation rather than just fluent output.",
+          "o2": "Well-formed syntax does not establish meaning, grounding or feasibility.",
+          "o3": "A second unsupported explanation is not independent grounding evidence.",
+          "o4": "Matching a noun alone can still select the wrong instance or relation."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Incorrect information or interpretation can propagate into unsafe actions; fluency is not validation.",
         "memoryAid": null,
         "misconceptions": [
-          "Fluency is not evidence of factual or physical correctness.",
-          "The slide defines hallucination as incorrect information, broader than spelling.",
-          "The warning explicitly includes language models."
+          "Matching a noun alone can still select the wrong instance or relation.",
+          "Well-formed syntax does not establish meaning, grounding or feasibility.",
+          "A second unsupported explanation is not independent grounding evidence."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -7471,7 +7686,7 @@
       "reviewIds": [],
       "conflictResolution": {
         "status": "explicit-qualification-pending-independent-review",
-        "questionVersion": 1,
+        "questionVersion": 2,
         "sourceId": "lectures",
         "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
         "physicalPage": 1470,
@@ -7480,11 +7695,14 @@
         "method": "Use the explicit capability/risk bullets and separate model output from planning and physical validation.",
         "scope": "This question version only; independent review required.",
         "sourceIssueId": "L46-ISSUE-understanding-wording"
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1471-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "Which input and architectural flow is depicted for the lecture’s VLM example?",
@@ -7509,15 +7727,15 @@
       "options": [
         {
           "id": "o2",
-          "text": "Only the text question; the image appears solely after the answer is generated"
+          "text": "Encode the image and answer from image features alone, using the question only to format the finished answer."
         },
         {
           "id": "o3",
-          "text": "Only the image; the textual question is ignored by definition"
+          "text": "Encode only the text and use the raw image merely as a lookup label, without visual representations entering the language model."
         },
         {
           "id": "o4",
-          "text": "A text-only POS list; the vision backbone merely sorts vocabulary strings"
+          "text": "Send predicted language tokens into the vision backbone to generate an image, rather than mapping input-image tokens into language processing."
         },
         {
           "id": "o1",
@@ -7555,18 +7773,18 @@
         "justification": "The example conditions on both image content and a question, with the described ViT providing visual representations.",
         "optionExplanations": {
           "o1": "Correct. The example conditions on both image content and a question, with the described ViT providing visual representations.",
-          "o2": "Incorrect. The pictured image is an input rather than only an output.",
-          "o3": "Incorrect. The question supplies linguistic context for the visual task.",
-          "o4": "Incorrect. The visual encoder processes image information, not lexical sorting."
+          "o2": "The depicted model conditions its answer on image and question together, not just output formatting.",
+          "o3": "The source explicitly maps visual tokens from the vision encoder into the language model.",
+          "o4": "This reverses the illustrated input-image encoding direction."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The example conditions on both image content and a question, with the described ViT providing visual representations.",
         "memoryAid": null,
         "misconceptions": [
-          "The pictured image is an input rather than only an output.",
-          "The question supplies linguistic context for the visual task.",
-          "The visual encoder processes image information, not lexical sorting."
+          "The depicted model conditions its answer on image and question together, not just output formatting.",
+          "The source explicitly maps visual tokens from the vision encoder into the language model.",
+          "This reverses the illustrated input-image encoding direction."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -7575,7 +7793,7 @@
       "reviewIds": [],
       "conflictResolution": {
         "status": "explicit-qualification-pending-independent-review",
-        "questionVersion": 1,
+        "questionVersion": 2,
         "sourceId": "lectures",
         "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
         "physicalPage": 1471,
@@ -7584,11 +7802,14 @@
         "method": "Limit the question to the displayed image/text diagram and stated architectural example.",
         "scope": "This question version only; independent review required.",
         "sourceIssueId": "L46-ISSUE-vlm-architecture-scope"
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1471-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "The VLM figure lists mug=.78, cup=.15, desk=.04 and pencil=.02 with an ellipsis. If they are probabilities for mutually exclusive next-token outcomes, which conclusion follows?",
@@ -7619,7 +7840,7 @@
         },
         {
           "id": "o3",
-          "text": "Cup is selected because its probability is closest to the average shown value"
+          "text": "Mug has the largest shown value; renormalizing the four shown entries to sum to one proves omitted outcomes have zero probability."
         },
         {
           "id": "o4",
@@ -7647,7 +7868,7 @@
         "optionExplanations": {
           "o1": "Correct. The four values sum to .99, so the remaining mass is .01; .78 is the largest shown probability.",
           "o2": "Incorrect. The complement of mug alone is .22, but .21 of that is already assigned to the other shown outcomes.",
-          "o3": "Incorrect. No closest-to-average decoding rule is shown.",
+          "o3": "Renormalizing a displayed subset changes the stipulated full distribution and discards its residual mass; the ellipsis leaves 0.01 unshown.",
           "o4": "Incorrect. This subtotal is .99, not greater than one."
         },
         "steps": [
@@ -7674,15 +7895,18 @@
         "simpleExplanation": "The four values sum to .99, so the remaining mass is .01; .78 is the largest shown probability.",
         "memoryAid": null,
         "misconceptions": [
-          "The complement of mug alone is .22, but .21 of that is already assigned to the other shown outcomes.",
-          "No closest-to-average decoding rule is shown.",
-          "This subtotal is .99, not greater than one."
+          "Incorrect. The complement of mug alone is .22, but .21 of that is already assigned to the other shown outcomes.",
+          "Renormalizing a displayed subset changes the stipulated full distribution and discards its residual mass; the ellipsis leaves 0.01 unshown.",
+          "Incorrect. This subtotal is .99, not greater than one."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1471-Q03",
@@ -7850,7 +8074,7 @@
     },
     {
       "id": "W10-L46-P1472-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "In the VLA figure, what happens at the next embodied state?",
@@ -7877,7 +8101,7 @@
         },
         {
           "id": "o4",
-          "text": "The object-label vocabulary changes, while the physical scene plays no role"
+          "text": "Use the predicted next scene as if it were a new camera observation, without checking the executed action’s outcome."
         },
         {
           "id": "o1",
@@ -7910,26 +8134,29 @@
           "o1": "Correct. The figure explicitly labels action execution and visual-state update.",
           "o2": "Incorrect. The source label explicitly says the action is executed.",
           "o3": "Incorrect. The diagram explicitly includes an updated visual state.",
-          "o4": "Incorrect. The illustrated update is embodied scene change, not vocabulary maintenance."
+          "o4": "Prediction and observed post-action state are distinct; the figure depicts embodied execution and a visual-state update."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The figure explicitly labels action execution and visual-state update.",
         "memoryAid": null,
         "misconceptions": [
-          "The source label explicitly says the action is executed.",
-          "The diagram explicitly includes an updated visual state.",
-          "The illustrated update is embodied scene change, not vocabulary maintenance."
+          "Incorrect. The diagram explicitly includes an updated visual state.",
+          "Prediction and observed post-action state are distinct; the figure depicts embodied execution and a visual-state update.",
+          "Incorrect. The source label explicitly says the action is executed."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1472-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L46-author-20261019",
       "stem": "What is the appropriate scope of the statement that VLAs often tokenize continuous actions into discrete values?",
@@ -7952,19 +8179,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "It means tokenization alone guarantees collision-free execution"
+          "text": "It guarantees that increasing token resolution by itself increases actual actuator accuracy by the same factor."
         },
         {
           "id": "o1",
-          "text": "It describes a representation choice used in many designs, not a requirement that every VLA use discrete action tokens"
+          "text": "It describes a representation choice used in many designs, not a requirement that every VLA use discrete action tokens."
         },
         {
           "id": "o2",
-          "text": "It proves all physical movements occur only at integer-valued joint angles"
+          "text": "It states that every VLA must use a categorical action-token head and rules out continuous action decoders."
         },
         {
           "id": "o3",
-          "text": "It proves an action token and a natural-language word have identical physical consequences"
+          "text": "It means each distinct token must correspond to a distinct physically achievable motion even when actuator limits are considered."
         }
       ],
       "correctOptionIds": [
@@ -7986,19 +8213,19 @@
       "solution": {
         "justification": "The source says often; discretization is a model interface choice, not a universal physical or safety theorem.",
         "optionExplanations": {
-          "o1": "Correct. The source says often; discretization is a model interface choice, not a universal physical or safety theorem.",
-          "o2": "Incorrect. A discrete representation does not make the underlying mechanics integer-valued.",
-          "o3": "Incorrect. The word analogy concerns representation, not physical equivalence.",
-          "o4": "Incorrect. Feasibility and safety are not guaranteed by encoding."
+          "o1": "The source says often, so its scope is a common design choice rather than a universal architecture rule.",
+          "o2": "Often does not mean every design or exclude other output parameterizations.",
+          "o3": "Representation labels do not by themselves establish feasibility under physical constraints.",
+          "o4": "Representation resolution and actual control accuracy depend on different limits and uncertainties."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The source says often; discretization is a model interface choice, not a universal physical or safety theorem.",
         "memoryAid": null,
         "misconceptions": [
-          "A discrete representation does not make the underlying mechanics integer-valued.",
-          "The word analogy concerns representation, not physical equivalence.",
-          "Feasibility and safety are not guaranteed by encoding."
+          "Representation resolution and actual control accuracy depend on different limits and uncertainties.",
+          "Often does not mean every design or exclude other output parameterizations.",
+          "Representation labels do not by themselves establish feasibility under physical constraints."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -8007,7 +8234,7 @@
       "reviewIds": [],
       "conflictResolution": {
         "status": "explicit-qualification-pending-independent-review",
-        "questionVersion": 1,
+        "questionVersion": 2,
         "sourceId": "lectures",
         "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
         "physicalPage": 1472,
@@ -8016,7 +8243,10 @@
         "method": "Preserve often, interpret the action-head and next-state diagram, and supply explicit bins and units only for generated numerical variants.",
         "scope": "This question version only; independent review required.",
         "sourceIssueId": "L46-ISSUE-action-token-analogy"
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L46-v2-author"
+      ]
     },
     {
       "id": "W10-L46-P1472-Q04",
@@ -8400,6 +8630,264 @@
           "locator": "Zero-based cell 24; saved outputs are historical evidence, not fresh corpus-dependent execution."
         }
       ]
+    },
+    {
+      "id": "W10-L46-P1449-Q05",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_robotics_study_app:L46-v2-author",
+      "stem": "Apply the five stages to “Do NOT pick up the boxes near the boxes!”: lowercase, delete punctuation, split on spaces, remove only {do,the,up}, then map boxes→box and leave other tokens unchanged. One-hot input uses one one-word row per surviving token. A separate POS path only lowercases, deletes punctuation and splits the original string. Which trace is correct?",
+      "selectionMode": "single",
+      "type": "algorithm_trace",
+      "difficulty": "medium",
+      "cognitiveSkill": "synthesis",
+      "week": 10,
+      "lectureId": "L46",
+      "topic": "Natural Language Processing",
+      "subtopic": "Complete preprocessing and unfiltered POS paths",
+      "tags": [
+        "1449-Q05"
+      ],
+      "conceptIds": [
+        "W10-L46-C-gap-1449-Q05"
+      ],
+      "assumptions": [
+        "These stopword and lemma rules are supplied exercise premises, not a claim about a fresh WordNet or POS execution.",
+        "Punctuation is deleted before space splitting; no empty tokens result."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Lemmas [not,pick,box,near,box]; encoder input [[not],[pick],[box],[near],[box]]; the separate POS path retains all 9 token occurrences."
+        },
+        {
+          "id": "o2",
+          "text": "Lemmas [pick,box,near,box]; encoder input has 4 one-word rows; not is removed automatically even though absent from the declared stop set."
+        },
+        {
+          "id": "o3",
+          "text": "Lemmas [box,near,not,pick]; encoder input has 4 rows because repeated box tokens must be deduplicated before any encoding."
+        },
+        {
+          "id": "o4",
+          "text": "Lemmas [not,pick,box,near,box]; encoder input is one row with 5 separate features; the separate POS path receives only these same 5 tokens."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1446",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1446,
+          "kind": "statement",
+          "locator": "Lecture L46, physical PDF page 1446, printed footer 7: Five conceptual preprocessing stages.",
+          "evidenceText": "NLP Pipeline\n•  These stages are conceptual.\n•   In modern NLP systems, multiple stages may happen together internally.\n\n\n\n•  The Pre-processing step includes:\n    –  Step 1: Convert text to lowercase\n    –  Step 2: Remove punctuations\n    –  Step 3: Tokenization\n    –  Step 4: Remove stopwords\n    –  Step 5: Stemming or Lemmatization\n\n• We use nltk (Natural Language Toolkit) Python library for general NLP tasks.\n\n                                                                                                           7",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1449",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1449,
+          "kind": "code",
+          "locator": "Lecture L46, physical PDF page 1449, printed footer 10: Ordered preprocessing code and intermediate outputs.",
+          "evidenceText": "Implementation – Pre-processing                           Output\n                             Code\n\n\n\n\n\n                                                                                                          10",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1453",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1453,
+          "kind": "code",
+          "locator": "Lecture L46, physical PDF page 1453, printed footer 14: Nested one-word rows in OneHotEncoder input.",
+          "evidenceText": "Implementation - One-hot Encoding                                                                    •  Prepare a vocabulary in\n                                                             alphabetical order:\n                                                                                            ['ball', 'chair', 'near', 'pick', 'red']\n                                                                    •  Each unique word is assigned its\n                                           own column in the vocabulary\n                                                             table with prefix x0.\n                                                                    •  For a given word, the matching\n                                                  column gets the value 1, else 0\n OUTPUT:                                                        •  length (binary vector) of each\n                                                       token = vocabulary size.\n  pick\n  red\n  ball\n near\n chair\n              From the output, red( ) = [0. , 0. , 0. , 0. , 1. ]\n\n\n                                                                                                          14",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1460",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1460,
+          "kind": "code",
+          "locator": "Lecture L46, physical PDF page 1460, printed footer 21: Separate unfiltered POS token path.",
+          "evidenceText": "Language Understanding: POS Tagging\n• POS Tagging: POS tagging identifies the grammatical role of each word in a\n   sentence. This helps robots understand:\n    ꟷactions                             ꟷobject properties\n    ꟷobjects                   ꟷspatial relationships\n•  Code:\n\n\n\n\n\n•  Output:\n\n\n\n\n\n                                                                                                          21",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The supplied tables make every stage deterministic without downloading NLTK resources. The ordered lemma sequence is not the same object as a unique vocabulary or the separate POS input.",
+        "optionExplanations": {
+          "o1": "Only declared stopwords are removed, the negation and repeated object remain, and separate unfiltered POS preprocessing retains function words.",
+          "o2": "The supplied stop set does not contain not; deleting it changes the declared algorithm and can change meaning.",
+          "o3": "The sequence preserves occurrence order and repeated tokens; fitting a vocabulary is not permission to deduplicate the input sequence.",
+          "o4": "The source encoder has one categorical feature per word row, and the distinct POS path does not receive the filtered list."
+        },
+        "steps": [
+          "Lowercase: do not pick up the boxes near the boxes!",
+          "Delete punctuation: do not pick up the boxes near the boxes",
+          "Tokens: [do,not,pick,up,the,boxes,near,the,boxes]",
+          "Filter: [not,pick,boxes,near,boxes]",
+          "Lemmatize: [not,pick,box,near,box]; construct five one-word encoder rows."
+        ],
+        "formulas": [],
+        "simpleExplanation": "The supplied tables make every stage deterministic without downloading NLTK resources. The ordered lemma sequence is not the same object as a unique vocabulary or the separate POS input.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The supplied stop set does not contain not; deleting it changes the declared algorithm and can change meaning.",
+          "The sequence preserves occurrence order and repeated tokens; fitting a vocabulary is not permission to deduplicate the input sequence.",
+          "The source encoder has one categorical feature per word row, and the distinct POS path does not receive the filtered list."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": []
+    },
+    {
+      "id": "W10-L46-P1458-Q07",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_robotics_study_app:L46-v2-author",
+      "stem": "Use vocabulary [red,box,ball] and corpus d1=\"red red red box\", d2=\"red ball\", d3=\"red box\", d4=\"box box box box box box box box box ball\". Query q=\"red ball\" is not added to the corpus. Use TF=count/document length, IDF=ln(4/df), no smoothing, and cosine similarity. Which descending document ranking and weight comparison are correct?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "hard",
+      "cognitiveSkill": "synthesis",
+      "week": 10,
+      "lectureId": "L46",
+      "topic": "Natural Language Processing",
+      "subtopic": "Integrated corpus weighting and cosine ranking",
+      "tags": [
+        "1458-Q07"
+      ],
+      "conceptIds": [
+        "W10-L46-C-gap-1458-Q07"
+      ],
+      "assumptions": [
+        "All documents, counts and conventions are added exercise premises; no pretrained embedding coordinates are inferred."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "d2 > d1 > d4 > d3; w(red,d1) > w(ball,d4)."
+        },
+        {
+          "id": "o2",
+          "text": "d2 > d1 = d3 > d4; w(red,d1) > w(ball,d4)."
+        },
+        {
+          "id": "o3",
+          "text": "d2 > d1 > d3 > d4; w(red,d1) > w(ball,d4)."
+        },
+        {
+          "id": "o4",
+          "text": "d2 > d1 > d3 > d4; w(red,d1) < w(ball,d4) because ball is rarer."
+        }
+      ],
+      "correctOptionIds": [
+        "o3"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1454",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1454,
+          "kind": "code",
+          "locator": "Lecture L46, physical PDF page 1454, printed footer 15: Shared document vocabulary and count matrix.",
+          "evidenceText": "Implementation - Bag of words\n\n                                              Prepare shared vocabulary in alphabetical\n                                                  order: ['ball', 'blue', 'box', 'chair', 'grab', 'near',\n                                                                            'pick', 'red']\n                                                             •  Command1(  ) ⇒ [1,0,0,1,0,1,1,1]\n                                                             •  Command2 ⇒ [0,1,1,0,0,0,1,0]\n                                                             •  Each position in the vector\n                                                  corresponds to a word in the shared\n                                                      vocabulary.\nOUTPUT:\n\n\n\n\n\nLimitation-Ambiguity: Note that BOW seems to think pick & grab\nare different, although they mean the same here\n\n                                                                                                          15",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1455",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1455,
+          "kind": "equation",
+          "locator": "Lecture L46, physical PDF page 1455, printed footer 16: Length-normalized term frequency.",
+          "evidenceText": "TF-IDF (Term Frequency-Inverse Document Frequency)\n\n3.  TF-IDF (Term Frequency-Inverse Document Frequency):\n      •  TF-IDF measures:\n      ꟷhow often a word appears in a command\n      ꟷhow important or unique that word is across many commands/documents\n      •  Term Frequency (TF): Measures how often a word appears in the current\n      command/document.\n                      𝐍𝐨. 𝐨𝐟 𝐭𝐢𝐦𝐞𝐬 𝐭𝐞𝐫𝐦 𝒕 𝐚𝐩𝐩𝐞𝐚𝐫𝐬 𝐢𝐧 𝐝𝐨𝐜𝐮𝐦𝐞𝐧𝐭 𝒅\n           𝐓𝐅𝒕, 𝒅=\n                          𝐓𝐨𝐭𝐚𝐥 𝐧𝐨. 𝐨𝐟 𝐭𝐞𝐫𝐦𝐬 𝐢𝐧 𝐝𝐨𝐜𝐮𝐦𝐞𝐧𝐭 𝒅\n      •  Note: here, term & document mean token & a\n        single/collection of commands, respectively.\n      •  Unlike BoW, TF-IDF does not simply count words. It gives:\n       ꟷlower importance to very common words\n       ꟷhigher importance to informative/rare words\n\n\n                                                                                                          16",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1456",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1456,
+          "kind": "equation",
+          "locator": "Lecture L46, physical PDF page 1456, printed footer 17: Document frequency and unsmoothed IDF.",
+          "evidenceText": "TF-IDF (Term Frequency-Inverse Document Frequency)\n\n•   Inverse Document Frequency (IDF): Measures how unique or rare a word is across the\n    entire dataset (the corpus 𝐷).\n•  Common words get lower importance.\n•  Rare words get higher importance.\n                                    𝐓𝐨𝐭𝐚𝐥 𝐧𝐨. 𝐨𝐟 𝐝𝐨𝐜𝐮𝐦𝐞𝐧𝐭𝐬 𝑵\n              𝐈𝐃𝐅𝒕, 𝑫= 𝒍𝒐𝒈(                               𝐍𝐨. 𝐨𝐟 𝐝𝐨𝐜𝐮𝐦𝐞𝐧𝐭𝐬 𝐰𝐢𝐭𝐡 𝐭𝐞𝐫𝐦 𝒕 𝐢𝐧 𝐭𝐡𝐞𝐦)\n\n               𝐓𝐅−𝐈𝐃𝐅𝒕, 𝒅, 𝐃= 𝐓𝐅𝒕, 𝒅 × 𝐈𝐃𝐅(𝒕, 𝑫)\n\n    Note:\n     •  A corpus will have many documents\n     •  A document will have many terms/tokens.\n     •  Hence, BoW and TF-IDF use word tokens to generate vector\n       representations of entire documents or commands.\n\n\n\n                                                                                                          17",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1458",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1458,
+          "kind": "equation",
+          "locator": "Lecture L46, physical PDF page 1458, printed footer 19: Cosine similarity equation.",
+          "evidenceText": "Word Embeddings\n4.  Word Embeddings (Word2Vec & GloVe)\n    – The most modern approach of word\n        vectorization, where words are\n       represented as dense vectors in a\n       continuous space.\n    – Word2Vec or GloVe use neural networks\n        to learn vectors & uses Cosine Similarity\n        to place words with similar meaning\n        closer to each other.\n   ꟷExample: For 2 words like pick(A) & fetch(B),\n                                                   𝐀. 𝐁\n                    𝐒𝐢𝐦𝐢𝐥𝐚𝐫𝐢𝐭𝐲𝐀, 𝐁= 𝐜𝐨𝐬 𝜽=\n                                      ‖𝐀‖‖𝐁‖\n   ꟷ  The lesser the θ between 2 vectors, the more identical they\n        are in meaning.\n\n\n                                                                                                          19",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Document frequency counts documents, TF keeps within-document multiplicity, and cosine compares direction after length normalization. A rarer term need not have the greater final weight.",
+        "optionExplanations": {
+          "o1": "The d4/d3 order here results from using raw dot products rather than cosine; the required normalization reverses that pair.",
+          "o2": "Ignoring repeated red occurrences produces an equal-direction d1/d3 comparison, but the declared TF retains those occurrences.",
+          "o3": "df=(3,3,2), cosine scores are approximately (0.363662,1,0.271057,0.238852), and the compared weights are 0.215762 and 0.069315.",
+          "o4": "IDF rarity alone does not order TF-IDF weights across documents; the larger red term frequency outweighs the ball rarity in this comparison."
+        },
+        "steps": [
+          "df(red)=3, df(box)=3, df(ball)=2; let a=ln(4/3), b=ln 2.",
+          "w1=(3a/4,a/4,0), w2=q=(a/2,0,b/2), w3=(a/2,a/2,0), w4=(0,9a/10,b/10).",
+          "Cosines for d1 through d4: [0.36366150937673836, 1.0, 0.2710572852555213, 0.23885165989390938].",
+          "3a/4≈0.215762 exceeds b/10≈0.069315 despite ball having higher IDF."
+        ],
+        "formulas": [
+          {
+            "expression": "TF(t,d)=c(t,d)/L_d; df(t)=Σ_d 1[c(t,d)>0]; IDF(t)=ln(N/df(t)); w(t,d)=TF(t,d)IDF(t); cos(w,q)=(w·q)/(||w||₂||q||₂)",
+            "variables": {
+              "t": "term in fixed vocabulary [red,box,ball]",
+              "d": "one supplied document",
+              "c,L_d": "term count and total token count in d",
+              "df,N": "document frequency and training-corpus document count",
+              "w,q": "document and query TF-IDF vectors using training-corpus IDF"
+            },
+            "units": {
+              "counts": "token/document counts",
+              "weights and cosine": "dimensionless"
+            },
+            "assumptions": [
+              "No smoothing, additive constant, binary TF or sublinear TF; natural logarithm; query is not added to the four-document corpus.",
+              "No separate L2 normalization is needed before cosine; cosine itself divides by both norms.",
+              "Cosine is undefined for a zero vector; all supplied vectors are nonzero."
+            ]
+          }
+        ],
+        "simpleExplanation": "Document frequency counts documents, TF keeps within-document multiplicity, and cosine compares direction after length normalization. A rarer term need not have the greater final weight.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The d4/d3 order here results from using raw dot products rather than cosine; the required normalization reverses that pair.",
+          "Ignoring repeated red occurrences produces an equal-direction d1/d3 comparison, but the declared TF retains those occurrences.",
+          "IDF rarity alone does not order TF-IDF weights across documents; the larger red term frequency outweighs the ball rarity in this comparison."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": []
     }
   ],
   "concepts": [
@@ -8465,7 +8953,8 @@
         "Ambiguity versus accent confusion",
         "Contextual synonyms versus identical strings",
         "Sarcasm/praise requires context",
-        "Do not assume a synonym is interchangeable in every instruction"
+        "Do not assume a synonym is interchangeable in every instruction",
+        "scenario"
       ]
     },
     {
@@ -8489,7 +8978,8 @@
         "Full six-stage figure order",
         "Five preprocessing-step order",
         "NLTK name and role",
-        "Conceptual stages need not be isolated modules"
+        "Conceptual stages need not be isolated modules",
+        "conceptual"
       ]
     },
     {
@@ -8512,7 +9002,8 @@
         "Eight token occurrences versus seven unique types",
         "Vocabulary uniqueness versus repeated the in source example",
         "Corpus versus vocabulary",
-        "Tokenization does not by itself establish semantic learning"
+        "Tokenization does not by itself establish semantic learning",
+        "definition"
       ]
     },
     {
@@ -8539,7 +9030,8 @@
         "Task-specific benefit and information-loss boundary",
         "PorterStemmer versus WordNetLemmatizer executed example",
         "Prior nltk import dependency",
-        "No universal superiority claim from one lexical output"
+        "No universal superiority claim from one lexical output",
+        "conceptual"
       ]
     },
     {
@@ -8565,7 +9057,8 @@
         "set membership with ordered list output",
         "Default lemma POS and context limits",
         "Code excerpt has no printed reporting loop",
-        "Stopword removal loses up in pick up"
+        "Stopword removal loses up in pick up",
+        "conceptual"
       ]
     },
     {
@@ -8573,7 +9066,12 @@
       "title": "Numerical representations and their granularity",
       "description": "Different encodings provide different information and sparsity.",
       "slideIds": [
-        "lectures-p1451"
+        "lectures-p1451",
+        "lectures-p1452",
+        "lectures-p1455",
+        "lectures-p1456",
+        "lectures-p1458",
+        "lectures-p1466"
       ],
       "questionIds": [
         "W10-L46-P1451-Q01",
@@ -8586,7 +9084,9 @@
       "examinationAngles": [
         "Motivation for numerical encoding",
         "Four representation families",
-        "Encoding is not guaranteed understanding"
+        "Encoding is not guaranteed understanding",
+        "match",
+        "conceptual"
       ]
     },
     {
@@ -8639,7 +9139,8 @@
       "title": "CountVectorizer code and vocabulary",
       "description": "CountVectorizer code and vocabulary.",
       "slideIds": [
-        "lectures-p1454"
+        "lectures-p1454",
+        "lectures-p1462"
       ],
       "questionIds": [
         "W10-L46-P1454-Q01",
@@ -8656,7 +9157,9 @@
         "Complete shared vocabulary and matrix",
         "Repeated-token and word-order variants",
         "Contextual synonyms remain distinct string features",
-        "Sparse output versus report formatting"
+        "Sparse output versus report formatting",
+        "conceptual",
+        "algorithm_trace"
       ]
     },
     {
@@ -8685,7 +9188,8 @@
         "Document frequency versus token count",
         "Explicit logarithm base",
         "Product and ubiquitous-term zero",
-        "Unsmoothed domain conditions"
+        "Unsmoothed domain conditions",
+        "numerical"
       ]
     },
     {
@@ -8736,7 +9240,9 @@
         "Nonzero-domain cosine formula and angle ordering",
         "Positive rescaling invariance and zero-vector boundary",
         "Schematic axes not guaranteed interpretable learned coordinates",
-        "GloVe/Word2Vec training versus similarity measurement"
+        "GloVe/Word2Vec training versus similarity measurement",
+        "numerical",
+        "conceptual"
       ]
     },
     {
@@ -8779,7 +9285,8 @@
         "All tag labels and token pairing",
         "Lowercasing and retention of stopwords",
         "POS action/object/property/spatial hints are not a complete plan",
-        "Dependency and exact runtime output checks"
+        "Dependency and exact runtime output checks",
+        "scenario"
       ]
     },
     {
@@ -8803,7 +9310,8 @@
         "Capitalized code versus lowercased displayed token",
         "Intended adjective versus noun prediction",
         "POS cannot guarantee intended sense",
-        "Model/resource-version dependence"
+        "Model/resource-version dependence",
+        "scenario"
       ]
     },
     {
@@ -8828,7 +9336,8 @@
         "POS NN/NNP versus entity PERSON/GPE distinctions",
         "Reported Lab3/Mary labels versus version-dependent predictions",
         "Category recognition versus coordinate grounding",
-        "Displayed GPE label is not a geographical fact"
+        "Displayed GPE label is not a geographical fact",
+        "scenario"
       ]
     },
     {
@@ -8857,7 +9366,12 @@
       "title": "Sentiment, translation and question answering",
       "description": "Sentiment, translation and question answering.",
       "slideIds": [
-        "lectures-p1464"
+        "lectures-p1464",
+        "lectures-p1445",
+        "lectures-p1465",
+        "lectures-p1470",
+        "lectures-p1471",
+        "lectures-p1472"
       ],
       "questionIds": [
         "W10-L46-P1464-Q01",
@@ -8871,7 +9385,8 @@
       "examinationAngles": [
         "Task/output distinctions",
         "Contextual negative sentiment despite positive surface words",
-        "Airport translation versus answering known information"
+        "Airport translation versus answering known information",
+        "scenario"
       ]
     },
     {
@@ -8894,7 +9409,9 @@
         "Transcription versus translation versus synthesis",
         "Diagram stage order and NLP substeps",
         "Transcript correctness versus safe grounded execution",
-        "Whisper as lecture example, not API usage"
+        "Whisper as lecture example, not API usage",
+        "diagram",
+        "scenario"
       ]
     },
     {
@@ -8915,7 +9432,8 @@
       "examinationAngles": [
         "Object relationships, context and instruction sequence",
         "Pronoun ambiguity is not a tokenization failure",
-        "Traditional-versus-transformer teaching comparison is not universal"
+        "Traditional-versus-transformer teaching comparison is not universal",
+        "scenario"
       ]
     },
     {
@@ -8943,7 +9461,10 @@
         "No exact numerical weights from schematic",
         "Context versus fixed nearest-noun rule",
         "Action/object/spatial-context role mapping",
-        "Transformer architecture versus model scale/training data"
+        "Transformer architecture versus model scale/training data",
+        "diagram",
+        "match",
+        "conceptual"
       ]
     },
     {
@@ -8969,7 +9490,10 @@
         "Context-conditioned next-token process",
         "Highest printed score versus sampled choice",
         "As-printed four probabilities sum to 1.14",
-        "Repair requires explicit assumption, not silent normalization"
+        "Repair requires explicit assumption, not silent normalization",
+        "algorithm_trace",
+        "numerical",
+        "definition"
       ]
     },
     {
@@ -8992,7 +9516,8 @@
         "Five assistance roles",
         "Language output versus plan and physical action",
         "Clarification and validation versus unsupported execution",
-        "Hallucination and instruction misinterpretation"
+        "Hallucination and instruction misinterpretation",
+        "scenario"
       ]
     },
     {
@@ -9017,7 +9542,9 @@
         "ViT/visual-token mapping in depicted design",
         "Highest printed candidate versus full distribution residual",
         "Vision-language answer versus robotic action",
-        "Examples are lecture-version examples"
+        "Examples are lecture-version examples",
+        "diagram",
+        "numerical"
       ]
     },
     {
@@ -9045,7 +9572,51 @@
         "Encoder/action head/next-state diagram",
         "Continuous action discretization with supplied explicit units and bins",
         "Representation analogy versus actuator execution/safety",
-        "RT-2 and OpenVLA source examples"
+        "RT-2 and OpenVLA source examples",
+        "diagram",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "W10-L46-C-gap-1449-Q05",
+      "title": "Complete preprocessing and unfiltered POS paths",
+      "description": "The supplied tables make every stage deterministic without downloading NLTK resources. The ordered lemma sequence is not the same object as a unique vocabulary or the separate POS input.",
+      "slideIds": [
+        "lectures-p1446",
+        "lectures-p1449",
+        "lectures-p1453",
+        "lectures-p1460"
+      ],
+      "questionIds": [
+        "W10-L46-P1449-Q05"
+      ],
+      "status": "drafted",
+      "topic": "Natural Language Processing",
+      "subtopic": "Complete preprocessing and unfiltered POS paths",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "algorithm_trace"
+      ]
+    },
+    {
+      "id": "W10-L46-C-gap-1458-Q07",
+      "title": "Integrated corpus weighting and cosine ranking",
+      "description": "Document frequency counts documents, TF keeps within-document multiplicity, and cosine compares direction after length normalization. A rarer term need not have the greater final weight.",
+      "slideIds": [
+        "lectures-p1454",
+        "lectures-p1455",
+        "lectures-p1456",
+        "lectures-p1458"
+      ],
+      "questionIds": [
+        "W10-L46-P1458-Q07"
+      ],
+      "status": "drafted",
+      "topic": "Natural Language Processing",
+      "subtopic": "Integrated corpus weighting and cosine ranking",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "numerical"
       ]
     }
   ],

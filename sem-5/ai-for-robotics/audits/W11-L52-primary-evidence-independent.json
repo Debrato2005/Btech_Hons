@@ -1,0 +1,62 @@
+{
+  "reviewerId": "independent-reviewer-robotics-batches-v2",
+  "checkedAt": "2026-10-19T23:42:00.570041+00:00",
+  "method": "Opened and read official primary references via web during this review; no restricted notebook or model route used.",
+  "references": [
+    {
+      "title": "Arduino analogRead",
+      "url": "https://github.com/arduino/reference-en/blob/master/Language/Functions/Analog%20IO/analogRead.adoc",
+      "independentFinding": "10-bit codes 0–1023; 5/1024 quantization bin distinct from endpoint interpolation."
+    },
+    {
+      "title": "Arduino pulseIn",
+      "url": "https://github.com/arduino/reference-en/blob/master/Language/Functions/Advanced%20IO/pulseIn.adoc",
+      "independentFinding": "Timeout returns zero, not a physically verified zero range."
+    },
+    {
+      "title": "Legacy translated DHT11 manufacturer sheet",
+      "url": "https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf",
+      "independentFinding": "Introduction describes resistive humidity and NTC; exact pictured revision unresolved."
+    },
+    {
+      "title": "Adafruit DHT guide",
+      "url": "https://learn.adafruit.com/dht/overview",
+      "independentFinding": "Guide describes capacitive humidity sensing, thermistor and digital conversion; disagreement does not identify lecture device revision."
+    },
+    {
+      "title": "TDK MPU6500",
+      "url": "https://www.invensense.tdk.com/en-us/products/inertial-sensors/mpu-6500",
+      "independentFinding": "Bare-IC 1.71–3.6 V supply and I2C/SPI; do not infer bare-chip 5 V tolerance from module table."
+    },
+    {
+      "title": "C++ execution sequencing",
+      "url": "https://eel.is/c++draft/intro.execution",
+      "independentFinding": "Separate full expressions sequence reads; operands of bitwise OR do not impose high-byte-first evaluation. No blanket undefined-behavior claim."
+    },
+    {
+      "title": "ST VL53L0X datasheet",
+      "url": "https://www.st.com/resource/en/datasheet/vl53l0x.pdf",
+      "independentFinding": "Device ranging and I2C; fixed sensor is not by itself a rotating scan with world pose."
+    },
+    {
+      "title": "ST VL53L0X API manual",
+      "url": "https://www.st.com/resource/en/user_manual/dm00279088-world-smallest-time-of-flight-ranging-and-gesture-detection-sensor-application-programming-interface-stmicroelectronics.pdf",
+      "independentFinding": "UM2039 Table1 on PDF p16: 0 valid; 1 Sigma Fail; only rejecting 4 is weaker than accepting only 0."
+    },
+    {
+      "title": "OpenCV VideoWriter",
+      "url": "https://docs.opencv.org/4.13.0/dd/d9e/classcv_1_1VideoWriter.html",
+      "independentFinding": "write requires the opened frame size; created-stream fps is not measured acquisition/inference throughput."
+    },
+    {
+      "title": "Ultralytics Open Images V7 guide",
+      "url": "https://docs.ultralytics.com/datasets/detect/open-images-v7",
+      "independentFinding": "601 configuration names, indexed 0–600; not a fresh checkpoint inspection or detection result."
+    }
+  ],
+  "savedMetadata": {
+    "path": "sources/supplemental/L52-ultralytics-open-images-v7.yaml",
+    "sha256": "497468af9dc644d149101efc090727d3c6fd644591f4cc2e8c5adeb00f4ad848",
+    "handling": "Read configuration text and counted names only; embedded downloader not executed."
+  }
+}
