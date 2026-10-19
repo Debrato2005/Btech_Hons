@@ -22,10 +22,20 @@ def main():
    if rec.get('sourceSha256') != byslide[sid]['sourceSha256']:raise ValueError(f'Stale inspection {sid}')
    for k,v in rec.items():
     if k not in ('id','slideId','sourceSha256','conceptIds'):byslide[sid][k]=v
+ for p in sorted((ROOT/'audits').glob('*page-observations.jsonl')):
+  for line in p.read_text().splitlines():
+   if not line.strip():continue
+   rec=json.loads(line);sid=rec.get('slideId')
+   if sid not in byslide or rec.get('sourceSha256')!=byslide[sid]['sourceSha256']:continue
+   slide=byslide[sid]
+   if slide['visualInspection']['status']!='complete':
+    slide['visualInspection']={'status':'complete','inspectorId':rec['inspectorId'],'inspectedAt':rec['inspectedAt'],'method':rec['method'],'notes':rec.get('notes','')}
+   for k in ('disposition','exclusionReason','printedSlideNumber','printedSlideNumberStatus'):
+    if k in rec:slide[k]=rec[k]
  questions=[];concepts=[];reviews=[]
  for p in sorted((ROOT/'data/question-batches').glob('*.json')):
   b=read(p);questions.extend(b.get('questions',[]));concepts.extend(b.get('concepts',[]))
- for p in sorted((ROOT/'audits/review-batches').glob('*.json')):
+ for p in sorted(list((ROOT/'audits/review-batches').glob('*.json'))+list((ROOT/'data/reviews').glob('*.json'))):
   b=read(p);reviews.extend(b if isinstance(b,list) else b.get('reviews',[]))
  for name,records in [('questions',questions),('concepts',concepts),('reviews',reviews)]:
   ids=[x['id'] for x in records]
