@@ -1,5 +1,5 @@
 # Offline interface and review handoff
-Updated 2026-10-19 16:34 UTC.
+Updated 2026-10-19 16:40 UTC.
 
 ## Completed and frozen
 - App algorithm selector now defaults to verified source-linked records only. An explicit audit toggle exposes provenance-valid unverified records, and synthetic demos remain labeled separately. Missing/stale/uninspected/unresolved source references fail closed in both modes. 21 core/component checks and 28 learning-engine checks pass; component checks are not browser tests. Browser routes were blocked; zero browser checks executed, do not retry those routes.
@@ -15,5 +15,21 @@ Updated 2026-10-19 16:34 UTC.
 - Final blind packet: audits/blind-W02-L08-v2-revisions.json, SHA-256 c6d0961634d112e6c65aa00838699bceb676279372e31a67c155ad3df5c968f1. No keys, solutions, conflict resolutions or citation evidenceText. Another reviewer must independently verify it. No further L08 edits planned.
 - Final in-memory assembly/checkpoint validation passes with zero errors; self-approval rejection tested. Summary and validation: audits/W02-L08-v2-revision-summary.json and audits/W02-L08-v2-validation.json. Source PDFs, source-dispute ledger, inspections and canonical bank untouched.
 
+## L04 v2 completed and frozen
+- Reviewed 37 revisions after inspecting all 25 cited actual page images. All answer sets agree. Frozen blind reasoning: audits/blind-answers-W01-L04-v2-independent.json.
+- Saved 35 verified and two flagged reviews in data/reviews/W01-L04-v2-independent.json. Exact remaining distractor-quality flags: P0144-Q02 (syntax error despite a completed simulation) and P0160-Q02 (duplicate automatic-continuation alternatives and unsupported row-count divisor). Parent owns these two repairs.
+- All 94 previously accepted objects and hashes remain unchanged. Ten independent code/numerical check groups pass, including NumPy 2.3.5 in-place casting, literal syntax/name errors, finite differences and 5.064495-unit polyline length. Script: scripts/check_W01_L04_v2_independent.py.
+- In-memory validation passes with zero errors; L04 integrates as 129 verified and two flagged. Summary: audits/W01-L04-v2-independent-summary.json. No authored question or canonical bank edited.
+
 ## Active next task
-Independently review 37 L04 v2 revisions from audits/blind-W01-L04-v2-revisions.json. Revision author define_robotics_data_contracts; original author L04-author-20261019. We are distinct and have not read keys or prior reviews. Inspect actual cited pixels and save source-based answers before keyed batch access. Preserve the 94 accepted objects and hashes. Next take L09 once its author freezes the packet. Parent owns bank, Git and integration. No direct user updates from this worker.
+Independently review L09 from audits/blind-W02-L09.json (SHA-256 419d46ba692b1e45ad47174dcc8de9435085c2215512be60a5539b9658c78a95), 102 draft questions, 21 concepts, physical pages 296–325. Inspect all 30 actual page images and save source-based answers before keyed batch access. Record substantive coverage gaps separately. Do not edit L09 authored questions. Parent owns bank, Git and integration. No direct user updates from this worker.
+
+## 2026-10-19 16:53 UTC: L09 initial review and L04 v3 re-review frozen
+
+- L09: `data/reviews/W02-L09-v1-independent.json` records 54 verified and 48 flagged questions. All 102 independently solved answers agree with the keys. Blind answers were frozen before keyed access at `audits/blind-answers-W02-L09-independent.json`; the original packet's citation evidence text was removed in `audits/blind-W02-L09-review-copy.json` before solving. All 30 page images, physical pages 296–325, were inspected.
+- Exact L09 findings: `audits/W02-L09-independent-summary.json`. Overlapping findings: 22 distractor-quality, 12 difficulty, 9 source-binding, 14 explanation/metadata/readability, and 2 notation/assumption findings. Seven existing conflict citations have no question-level resolution. Two more p316 references label contradictory wording as explicit support. No key corrections are needed.
+- `scripts/check_W02_L09_independent.py` passes 5,026 independent cases in seven groups. Result: `audits/W02-L09-independent-computations.json`. This checks mathematical models under stated assumptions, not robot safety guarantees.
+- Three source coverage gaps are recorded in `audits/W02-L09-independent-coverage-gaps.json`: p309 O/A/B/C geometry mapping, p321 RMRC applications, and p322 singularity avoidance as a control use. They need new draft questions and separate review. No L09 authored question, inspection, or source-dispute ledger was edited.
+- L04: both v3 repairs independently re-reviewed and verified in `data/reviews/W01-L04-v3-independent.json`. Explicitly a revision re-review, not a fresh blind solve. Reinspected source pixels 144/160 and compiled the literal-newline example. In-memory assembly now gives 131 verified L04 questions.
+- In-memory integration report: `audits/W02-L09-independent-validation.json`. No L09/L04 errors; the full concurrent workspace has unrelated missing-step errors in L10-GAP-Q003 and L12 Q006/Q013/Q014/Q017/Q019. Parent was notified. The canonical bank was not written.
+- Parent owns integration and next repair assignments. Do not edit L09 question content until ownership is explicitly assigned; another reviewer must handle any revisions authored by this worker. L08 v2 repairs remain frozen for the separately assigned reviewer. No Git operations or browser retries were performed.

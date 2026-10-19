@@ -112,7 +112,7 @@ ask(c,'IfQis atB’s origin,haszero B-relativevelocity,andBrotates while transla
 issue(300,'notation_roles','Nested reference/expression superscripts and derivative notation can be confused. Rotating a B-relativezero velocity doesnot produce its A-relativephysicalmotion.','Questions name differentiation observer andexpression basis explicitly;transportterms are added onlywhenchanging thephysicalobserver.')
 issue(308,'moving_vector_labels','Diagram labels old/newgeometricvectors BQ(t),BQ(t+dt)althoughtheprecedingpointisbodyfixed. Theirvisualdirectionschange,butconstantbodycoordinates mustnot be mistaken for changingBcomponents.','Interpretpicturegeometrically in fixedA;do not subtracttuplesfromdifferentmovingbases.')
 issue(309,'finite_chord_scope','Small-motion equality treats displacementlength asradius timesangle;finitechordandarcaredifferent. Intermediate scalar/vector notationcompressed.','Useinfinitesimallimit or explicitfirst-orderapproximation;exactvector result isomega crossr.')
-if __name__=='__main__':persist(False)
+# Incremental slice was persisted during authoring; final rebuild is below.
 # Link-to-link outward recursion; preserve the source frame-placement convention.
 REC=['Use the source’s link frames and joint axis z_(i+1);R=(i+1)_i R converts parent components into child components.','v_i andω_i are velocities relative to the fixed base/universal frame,not derivatives relative to their own moving link.','The relative origin offsetP is expressed in parent framei;for the revolute recurrence it is constant in that frame.']
 c=concept(311,'Robot-chain motion and universal reference','Base frame0 as observer;link-origin andbody velocities;outward iteration.',[311,323])
@@ -159,7 +159,7 @@ ask(c,'Why shoulddiag(R,R)notbeusedalonewhenchanging thephysicalpointwhose linea
 issue(313,'frame_placement','Revolutelinearrecurrenceassumesparent-to-childoriginoffsetconstantinparentframeandnewaxisthroughchildorigin.','Keepthatstatedframeplacement;donotapplyformulaunchangedtoarbitraryframechoicesoroffsettools.')
 issue(316,'general_shape_and_time','Printedmostgeneral6x6contradictsnonsquarestatementandlater6xnsummary;Jwillvarywithtimeisnotunconditional.','Use6xnforfullspatialtask,njointinputs;6x6onlyn6;timevariationthroughconfigurationmayvanish.')
 issue(318,'rotation_only_scope','Blockdiag(R,R)changesexpressionbasisofthesamepoint/twist,butdoesnotincludephysicalreference-pointshiftorchangeofmovingobserver.','Explicitlyfixsamepointandobserver;useomega crossrwhenchangingpoint. No claimthatthesourceformulaitselfiswrongunderitsproper scope.')
-if __name__=='__main__':persist(False)
+# Incremental slice was persisted during authoring; final rebuild is below.
 # Singularities require an explicit task, rank and desired-velocity direction.
 c=concept(319,'Singularity rank loss and bounded inverse interpretation','Square invertibility, lost attainable directions, near-singular amplification and compatible versus incompatible tasks.')
 ask(c,'For the square Jacobian in the slide, when is qdot=J(q)^−1 v an ordinary valid inverse solution?', ['When J is nonsingular at the specified configuration','Whenever the robot has any number of joints','Whenever the desired velocity is nonzero, even if J is singular','Only when all Jacobian entries are positive'], ['A square full-rank matrix has the inverse used in the equation.','The displayed ordinary inverse needs a square nonsingular task map.','A nonzero target does not create an inverse.','Entry signs do not determine invertibility.'])
@@ -208,7 +208,7 @@ issue(321,'safety_and_learning_claims','ExplicitJacobianprovidessafetyguarantees
 issue(321,'overdot_rendering','EnlargedPDFpixelsmakecombiningoverdotslookoverlappedinside theta;PDFtextcontainsU+0307oncomputedrateandEuler-ratefactor. Samephenomenonon323.','Do not falselycallthese missing-dotformulaerrors. Transcribethetadotexplicitly andpreservethisrejectedallegation.','not_a_source_defect_rendering_qualification')
 issue(322,'learning_table_scope','Exactanalyticmodelandneuralinversephrasingcouldbeoverread;model-freegradientoperationsarenotnecessarilythephysicalgeometricJacobian;packageexamplesarenotcurrentAPIguarantees.','Useconditionalmodelaccuracy,source-attributedexamplesandexplicitlimitations;do notassertallneuralIKequalsMoore-Penroseorallmodel-freeRLusesanalyticJ.')
 issue(323,'determinant_scope','Summarystates6xnthenusesdetJ=0withoutrestrictingn=6.','Use determinantonlysquare;generalrank-basedsingularitytest. ForceJtransposequestionsstatepowerassumptionsanddonotclaimtorepresentallrobot dynamics.')
-if __name__=='__main__':persist(False)
+# Incremental slice was persisted during authoring; final rebuild is below.
 # Deterministic readability repairs, with no changes to mathematical answer sets.
 import re
 POLISH=json.loads((ROOT/'audits/L09-text-polish-map.json').read_text())
@@ -242,7 +242,7 @@ for q in Q:
   for key in ['locator','evidenceText']:cite[key]=prose(cite[key])
 for c in C:
  for key in ['title','description','examinationAngles']:c[key]=polish_obj(c[key])
-if __name__=='__main__':persist(False)
+# Incremental slice was persisted during authoring; final rebuild is below.
 # Units and equation metadata for worked examples.
 def fm(expression,variables,units,assumptions):return dict(expression=expression,variables=variables,units=units,assumptions=assumptions)
 FROT=fm('v_A=R_AB v_B',{'R_AB':'rotation mapping B components into A','v_A,v_B':'same velocity vector in two bases'},{'R_AB':'dimensionless','v':'m/s for linear velocity; rad/s for angular velocity'},FRAME)

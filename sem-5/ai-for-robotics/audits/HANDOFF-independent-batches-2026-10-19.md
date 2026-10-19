@@ -16,3 +16,11 @@ Each review is bound using scripts/validate.py question_hash and validates again
 Parent will issue the one-item L02 Q084 v4 packet, then the L10 independent blind-review packet when frozen. Do not edit author questions or integrate bank records. Parent owns integration and user communications.
 
 Update 16:24 UTC: L02 Q084 v4 now verified. All 104 previously accepted hashes are unchanged; 105 current questions verified. Beginning independent source-to-question coverage challenge for L01–L03 while later packets are authored.
+
+## Update 2026-10-19 16:47 UTC
+L01 full coverage rechallenge is frozen at audits/W01-L01-coverage-rechallenge-independent.json. Its two genuine omissions now have independently verified gapfill questions in data/reviews/W01-L01-gapfill-v1-independent.json; closure at audits/W01-L01-coverage-rechallenge-closure.json. Original85 hashes unchanged;87 current verified. L02 coverage audit is frozen at audits/W01-L02-coverage-challenge-independent.json with3 genuine gaps (p68 activation properties; p73 camera/LiDAR/radar limitations; p76 BFS/DFS complexity and infinite-depth completeness) and existing source disputes preserved. No question or bank writes.
+Next: independently solve34 L08v2 repairs from audits/blind-W02-L08-v2-revisions.json before opening keyed batch, then L03 coverage challenge. Packet SHA c6d0961634d112e6c65aa00838699bceb676279372e31a67c155ad3df5c968f1. No L08 answer record saved yet and no full batch/old reviews/author calculations opened in this run. Parent owns Git and integration.
+
+## Update 2026-10-19 16:55 UTC
+L08v2 independent review completed and frozen: data/reviews/W02-L08-v2-independent.json; audits/W02-L08-v2-independent-summary.json. All34 keys match;23 verified and11 qualityflags.76priorapprovals exact,99 current verified.21actualcitedpages viewed,7018 independent mathcases passed. Before-key record hash d24cf9b07b6f17e3cd231b71ae7df8dd9b4e985cbbb55323bf42452898e5b04c. Source repair mathematics accepted, but8 difficultylabels needeasy;P0280-Q03missingantecedent;P0284-Q03o3rationalefactors/sign;P0287-Q05internallycontradictory same/distinctwording. Parent andUIauthor notified; noauthorquestion/bank/Gitwrites.
+Next active: L03 independent coverage challenge, all30pages95–124. No L03 source pixels or author questions opened yet in this coverage pass.

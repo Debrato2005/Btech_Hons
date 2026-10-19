@@ -1,0 +1,249 @@
+{
+  "reviewerId": "independent-reviewer-robotics-batches-v2",
+  "completedAt": "2026-10-19T16:54:52.545672+00:00",
+  "batchPath": "data/question-batches/W02-L08.json",
+  "batchSha256": "5c80631a686ba57fea11f7ad5397a57d3a90736fdf7359d774945bd2d6f15bfa",
+  "packetPath": "audits/blind-W02-L08-v2-revisions.json",
+  "packetSha256": "c6d0961634d112e6c65aa00838699bceb676279372e31a67c155ad3df5c968f1",
+  "answerRecordPath": "audits/blind-answers-W02-L08-v2-independent-before-reveal.json",
+  "answerRecordSha256": "d24cf9b07b6f17e3cd231b71ae7df8dd9b4e985cbbb55323bf42452898e5b04c",
+  "reviewPath": "data/reviews/W02-L08-v2-independent.json",
+  "reviewSha256": "aaf250b14350d3f6d7743bf5d745b64c0536ee0486b90beb56a691521baa5c5f",
+  "reviewedCount": 34,
+  "keyAgreementCount": 34,
+  "decisions": {
+    "verified": 23,
+    "flagged": 11
+  },
+  "priorAcceptedUnchangedCount": 76,
+  "priorReviewFilePreservedSha256": "eb890bc692da3b58d825b18119be03ef09b9ad922a2d352067ee9e2bcb780bf1",
+  "currentVerifiedAfterIntegration": 99,
+  "currentFlaggedAfterIntegration": 11,
+  "sourcePagesActuallyViewed": [
+    272,
+    273,
+    274,
+    275,
+    276,
+    277,
+    278,
+    279,
+    280,
+    281,
+    282,
+    283,
+    284,
+    285,
+    287,
+    288,
+    289,
+    290,
+    291,
+    292,
+    293
+  ],
+  "sourcePageCount": 21,
+  "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+  "mathematicalChecks": {
+    "reviewerId": "independent-reviewer-robotics-batches-v2",
+    "runAt": "2026-10-19T16:53:37.057292+00:00",
+    "seed": 813729,
+    "source": "Actual lecture pages inspected; independently coded from persisted pre-key reasoning, not author scripts.",
+    "checks": [
+      {
+        "name": "Two-branch planar IK reconstructs complete pose",
+        "cases": 2000,
+        "passed": true,
+        "detail": "1000 seeded nondegenerate targets, two independently reconstructed elbow/shoulder/wrist solutions each."
+      },
+      {
+        "name": "Boundary elbow coalescence",
+        "cases": 7,
+        "passed": true,
+        "detail": "Outer and nonzero inner annulus boundaries; plus/minus zero sine correspond to the same elbow rotation modulo2π."
+      },
+      {
+        "name": "Equal-link origin continuous family",
+        "cases": 1000,
+        "passed": true,
+        "detail": "Arbitrary shoulder with folded elbow and compensating wrist reconstructs zero translation and desired orientation."
+      },
+      {
+        "name": "Length domains and unreachable annulus",
+        "cases": 5,
+        "passed": true,
+        "detail": "Zero/negative lengths rejected; inner hole and beyond outer radius both unreachable."
+      },
+      {
+        "name": "Corrected normalized x expansion",
+        "cases": 1000,
+        "passed": true,
+        "detail": "Correct cosine-sum identity holds; printed repeated-cosine factor is not used."
+      },
+      {
+        "name": "P0284-Q03 distractor values",
+        "cases": 3,
+        "passed": true,
+        "detail": "o3 changes the first θ factor and subtraction sign; its second sinγ sinθ1 product is already the correct factor, disproving “both original factors changed incorrectly”."
+      },
+      {
+        "name": "Homogeneity counterexample",
+        "cases": 1,
+        "passed": true,
+        "detail": "f(3)=6; printed RHS3; repaired RHS6, exact integers."
+      },
+      {
+        "name": "Tall and wide full-rank shortcuts",
+        "cases": 1000,
+        "passed": true,
+        "detail": "500 seeded3×2 matrices and their2×3 transposes; compare independent formulas and identity products to SVD pseudoinverse."
+      },
+      {
+        "name": "Rank-deficient pseudoinverse exists while Gram inverse fails",
+        "cases": 1,
+        "passed": true,
+        "detail": "Dependent columns yield singular Gram matrix but satisfy Moore–Penrose reconstruction with SVD."
+      },
+      {
+        "name": "Wide minimum-norm example and distinct options",
+        "cases": 1001,
+        "passed": true,
+        "detail": "Every exact solution[1+t,1−t] has squared norm2+2t²; only[1,1] minimizes it. Other choices are distinct."
+      },
+      {
+        "name": "Differential-drive ranks and feasible-rate inverse",
+        "cases": 1000,
+        "passed": true,
+        "detail": "Positive radius/half-track maintain rank2 including90°; signed wheel rates reconstruct yaw and world translation."
+      }
+    ],
+    "allPassed": true,
+    "testDevelopmentNote": "The initial floating-point endpoint test produced ±2.98e-8 sine for the exact inner radius with lengths0.4,3.7 because computed c2 was−0.9999999999999996. The test helper now snaps c2 to an endpoint only within1e-12, distinguishing roundoff from a new physical branch. No authored question content changed.",
+    "limitations": "No numerical question generator or runtime robot is claimed. These are mathematical checks for34 fixed review items; no instantiated variants are present."
+  },
+  "flags": [
+    {
+      "questionId": "W02-L08-P0278-Q02",
+      "questionVersion": 2,
+      "questionSha256": "1e3dfe33ef9aebf5be78dc9f3a8c8f72e9a3ebe0f8d833ed534c1f454f730a23",
+      "failedChecks": [
+        "difficulty"
+      ],
+      "findings": [
+        "Difficulty repair: change medium to easy. Recognition of the standard homogeneity definition is direct recall, with the source typo explicitly identified in the stem."
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0278-Q03",
+      "questionVersion": 2,
+      "questionSha256": "abae3277361d9041542310dcbf7b3fd5e9cf5db6df6587a50d3e75b8587b026b",
+      "failedChecks": [
+        "difficulty"
+      ],
+      "findings": [
+        "Difficulty repair: change medium to easy. All supplied values require only evaluating2×3 and3×2; this is direct one-step substitution, not a medium numerical derivation."
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0279-Q01",
+      "questionVersion": 2,
+      "questionSha256": "569aeedd53dc4857f1798a192c342a36abd5163595d662efdb115f09ee1ba98c",
+      "failedChecks": [
+        "difficulty"
+      ],
+      "findings": [
+        "Difficulty repair: change medium to easy. The stem asks only which structural features are stated on the slide, with no application to a new mechanism."
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0280-Q01",
+      "questionVersion": 2,
+      "questionSha256": "fb47e450ec85d79acce74aca6c49f6c531b130e92907a5e99a86df941c87dbca",
+      "failedChecks": [
+        "difficulty"
+      ],
+      "findings": [
+        "Difficulty repair: change medium to easy. The task directly matches three explicitly listed method definitions; no algorithm or derivation is applied."
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0280-Q03",
+      "questionVersion": 2,
+      "questionSha256": "302558ef86b32470cbb7c08b2bb0c1d1cd4d896a844db176316e67ed58118579",
+      "failedChecks": [
+        "assumptions"
+      ],
+      "findings": [
+        "The standalone stem refers to “that geometric condition” without identifying a condition. In a shuffled bank, the preceding P0280-Q02 cannot be assumed present. Name the stated6R/three-neighboring-intersecting-axis condition in this stem. The intended sufficient-versus-necessary answer remains o1."
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0281-Q02",
+      "questionVersion": 2,
+      "questionSha256": "964d9579c576c1afd90f84125667806796b5369659968b1943293cc30df7ac83",
+      "failedChecks": [
+        "difficulty"
+      ],
+      "findings": [
+        "Difficulty repair: change medium to easy. The question directly reads three numbered motion labels from the wrist drawing. It does not require mechanical inference, despite cognitiveSkill application."
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0284-Q02",
+      "questionVersion": 2,
+      "questionSha256": "83986b32a72d67888b7f8934507c82d3d24ff08fb1327be9edb5178778e84a4b",
+      "failedChecks": [
+        "difficulty"
+      ],
+      "findings": [
+        "Difficulty repair: change medium to easy. The labeled triangle and adjacent displayed definitions give legs, hypotenuse and atan2 ordering directly. No new triangle, quadrant calculation or derivation is required."
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0284-Q03",
+      "questionVersion": 2,
+      "questionSha256": "f997d9451808dc16e82140bfce7aa9ee9cba3e253a5c0edb93cb64335bd4a7ee",
+      "failedChecks": [
+        "explanation"
+      ],
+      "findings": [
+        "The o3 rationale and repeated misconception say “Both original factors are changed incorrectly.” But o3=cosγ sinθ1+sinγ sinθ1 retains the correct second product sinγ sinθ1. Its actual errors are the first θ factor (sin instead ofcos) and the plus sign (instead ofminus). Correct that specific rationale; the key and repaired equation are correct."
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0285-Q01",
+      "questionVersion": 2,
+      "questionSha256": "0fce90b079018b30cef950bec569476fafc138e023fcfc2debffa5b5fc40d558",
+      "failedChecks": [
+        "difficulty"
+      ],
+      "findings": [
+        "Difficulty repair: change medium to easy. The entire angle-sum premise is supplied; isolating θ3 is one elementary rearrangement. The source typo is already identified for the learner."
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0287-Q05",
+      "questionVersion": 2,
+      "questionSha256": "e61a43d8cc16e980707e3497707b195c58e24fd9c83f799fcff98f96cb46f2e3",
+      "failedChecks": [
+        "distractors"
+      ],
+      "findings": [
+        "Optiono3 says “always the same distinct configuration,” an internally contradictory same/distinct phrase that weakens the distractor and creates an accidental wording clue. Replace it with a coherent false claim, for example that the sign-reflected branches always represent the same configuration, then explain their generic distinction and boundary coalescence."
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0290-Q01",
+      "questionVersion": 2,
+      "questionSha256": "f6243b415a969707450a44c21772c2f6e7bc547c094ee5a9445143ac10a9f203",
+      "failedChecks": [
+        "difficulty"
+      ],
+      "findings": [
+        "Difficulty repair: change medium to easy. The task is direct recognition of the input/output definition, comparable to the correctly easy manipulator IK definition itemP0272-Q02."
+      ]
+    }
+  ],
+  "validation": "All34 review records pass schema; canonical question hashes match frozen packet; answers match keys; reviewer differs from original and revision authors; all cited slides were viewed. All76 prior accepted hashes remain exact. No question, bank or Git writes.",
+  "scopeLimit": "Targeted review of34revisions, not a new review of76prioraccepted items or a fulllecture coverage closure."
+}

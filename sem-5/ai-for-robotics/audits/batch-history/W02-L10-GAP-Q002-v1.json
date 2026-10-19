@@ -1,0 +1,99 @@
+{
+  "id": "W02-L10-GAP-Q002",
+  "version": 1,
+  "status": "draft",
+  "authorId": "robotics-integration-L10-gapfill-author",
+  "stem": "Let L1=L2=1 m, θ1=30°, θ2=60° and the base-frame command (vx,vy)=(1,2) m/s; what joint rates solve J qdot=(vx,vy)?",
+  "selectionMode": "single",
+  "type": "numerical",
+  "difficulty": "medium",
+  "cognitiveSkill": "numerical",
+  "week": 2,
+  "lectureId": "L10",
+  "topic": "Static forces and velocity propagation",
+  "subtopic": "Both inverse-Jacobian columns",
+  "tags": [
+    "full-inverse-command"
+  ],
+  "conceptIds": [
+    "W02-L10-GAP-C-full-inverse-command"
+  ],
+  "assumptions": [],
+  "options": [
+    {
+      "id": "o2",
+      "text": "(0, -1) rad/s"
+    },
+    {
+      "id": "o3",
+      "text": "(4/√3, -1+2√3) rad/s"
+    },
+    {
+      "id": "o4",
+      "text": "(2, -3) rad/s"
+    },
+    {
+      "id": "o1",
+      "text": "(4/√3, -1-2√3) rad/s"
+    }
+  ],
+  "correctOptionIds": [
+    "o1"
+  ],
+  "citations": [
+    {
+      "slideId": "lectures-p0337",
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 337,
+      "kind": "equation",
+      "locator": "Lecture 10, physical PDF page 337, printed slide 12: relevant text, equations and associated figures",
+      "evidenceText": "Consider the two-link robot shown. It is moving its\nExample 2: Singularities                                                        end-effector along the X axis at 1.0 m/s. Show that\n•  We start by calculating the inverse of the         joint rates are reasonable when far from a singularity\n    Jacobian written in (0):                          but that, as a singularity is approached at 𝜃2 = 0,\n                                                              joint rates tend to infinity.            −𝐿1𝑠1 −𝐿2𝑠12  −𝐿2𝑠12•  0𝐽𝜃=\n              𝐿1𝑐1 + 𝐿2𝑐12    𝐿2𝑐12\n                  1        𝐿2𝑐12           𝐿2𝑠12•   0𝐽−1 𝜃=\n                  𝐿1𝐿2𝑠2  −𝐿1𝑐1 −𝐿2𝑐12  −𝐿1𝑠1 −𝐿2𝑠12\n       ሶ𝜃1              ሶ𝑋       1•    = 𝐽−1     𝐽−1\n                      0       ሶ𝜃2         ሶ𝑌=\n            𝑐12•    ሶ𝜃1 =           𝐿1𝑠2\n               𝑐1      𝑐12•    ሶ𝜃2 = −   −             𝐿2𝑠2    𝐿1𝑠2\n•   As the arm starches out towards 𝜃2= 0, both joint\n    rates go to infinity.\n\n\n\n\n                                                                                                          12",
+      "role": "premise",
+      "region": null
+    }
+  ],
+  "solution": {
+    "justification": "J=[[-3/2,-1],[√3/2,0]] gives q1dot=4/√3 from the y row, then q2dot=-1-2√3 from the x row.",
+    "optionExplanations": {
+      "o1": "Substitution gives x velocity 1 m/s and y velocity 2 m/s.",
+      "o2": "This solves only the vx command and drops vy.",
+      "o3": "This reverses the inherited coupling sign.",
+      "o4": "This treats the y coefficient as 1 rather than √3/2."
+    },
+    "steps": [
+      "Evaluate sin30°=1/2, cos30°=√3/2 and θ1+θ2=90°.",
+      "Solve (√3/2) q1dot=2.",
+      "Solve -(3/2) q1dot-q2dot=1."
+    ],
+    "formulas": [
+      {
+        "expression": "qdot=J⁻¹[vx,vy]ᵀ",
+        "variables": {
+          "qdot": "joint-rate vector",
+          "J": "base-coordinate planar position Jacobian",
+          "vx,vy": "base-frame velocity components"
+        },
+        "units": {
+          "qdot": "rad/s",
+          "J": "m/rad",
+          "vx,vy": "m/s"
+        },
+        "assumptions": [
+          "L1=L2=1 m, θ1=30°, θ2=60°; sinθ2≠0."
+        ]
+      }
+    ],
+    "simpleExplanation": "J=[[-3/2,-1],[√3/2,0]] gives q1dot=4/√3 from the y row, then q2dot=-1-2√3 from the x row.",
+    "memoryAid": null,
+    "misconceptions": [
+      "This solves only the vx command and drops vy.",
+      "This reverses the inherited coupling sign.",
+      "This treats the y coefficient as 1 rather than √3/2."
+    ],
+    "examTraps": [],
+    "prerequisiteConceptIds": []
+  },
+  "origin": "generated",
+  "reviewIds": []
+}

@@ -2845,7 +2845,7 @@
     },
     {
       "id": "W01-L04-P0144-Q02",
-      "version": 2,
+      "version": 3,
       "status": "draft",
       "authorId": "L04-author-20261019",
       "stem": "A simulation predicts success on a 30° slope, but the real robot flips under the same intended test conditions. What can be concluded?",
@@ -2877,7 +2877,7 @@
         },
         {
           "id": "o2",
-          "text": "The code must contain a syntax error"
+          "text": "The discrepancy proves an implementation bug rather than an inadequate physical model"
         },
         {
           "id": "o3",
@@ -2904,7 +2904,7 @@
         "justification": "A model can be implemented correctly yet omit relevant physical behavior.",
         "optionExplanations": {
           "o1": "Correct. A model can be implemented correctly yet omit relevant physical behavior.",
-          "o2": "Incorrect. Real disagreement does not identify a syntax error as its cause.",
+          "o2": "Incorrect. A faithful implementation of an inadequate model can also disagree with the physical robot, so an implementation bug is not established.",
           "o3": "Incorrect. Verification does not establish empirical validity.",
           "o4": "Incorrect. The failure is a substantive performance mismatch."
         },
@@ -2913,7 +2913,7 @@
         "simpleExplanation": "A model can be implemented correctly yet omit relevant physical behavior.",
         "memoryAid": null,
         "misconceptions": [
-          "Real disagreement does not identify a syntax error as its cause.",
+          "A faithful implementation of an inadequate model can also disagree with the physical robot, so an implementation bug is not established.",
           "Verification does not establish empirical validity.",
           "The failure is a substantive performance mismatch."
         ],
@@ -2923,7 +2923,8 @@
       "origin": "generated",
       "reviewIds": [],
       "revisionAuthors": [
-        "define_robotics_data_contracts:L04-v2-revision-author"
+        "define_robotics_data_contracts:L04-v2-revision-author",
+        "robotics-integration-L04-v3-revision-author"
       ],
       "revisionHistory": [
         {
@@ -2932,6 +2933,13 @@
           "revisedAt": "2026-10-19T16:28:09.635935+00:00",
           "priorQuestionSha256": "4e465f31327943e9874192c1dcc0f102b7d059a8525eee78b335b4ad69287aab",
           "reason": "Address the frozen v1 independent quality finding; new independent review required."
+        },
+        {
+          "version": 3,
+          "authorId": "robotics-integration-L04-v3-revision-author",
+          "revisedAt": "2026-10-19T16:41:10.113394+00:00",
+          "priorQuestionSha256": "c65827f29f119aeef9521235e60e0940e88f2fce874d0a599cfdf4236046d914",
+          "reason": "Repair two frozen independent distractor-quality findings; keys unchanged and new independent review required."
         }
       ]
     },
@@ -6944,7 +6952,7 @@
     },
     {
       "id": "W01-L04-P0160-Q02",
-      "version": 2,
+      "version": 3,
       "status": "draft",
       "authorId": "L04-author-20261019",
       "stem": "Treat the displayed Pandas velocity assignment’s line break after / as a literal source-code newline, without adding parentheses or a continuation. What occurs when that file is parsed?",
@@ -6970,15 +6978,15 @@
       "options": [
         {
           "id": "o2",
-          "text": "It automatically joins the lines and calculates velocity"
+          "text": "It automatically joins the two lines and computes velocity"
         },
         {
           "id": "o3",
-          "text": "The second line becomes a valid divisor solely because both lines are adjacent"
+          "text": "It reads the CSV, then raises TypeError when the velocity division executes"
         },
         {
           "id": "o4",
-          "text": "It divides by the number of CSV rows instead of time"
+          "text": "It stores the position difference as velocity, then evaluates the next line as an unused expression"
         },
         {
           "id": "o1",
@@ -7005,9 +7013,9 @@
         "justification": "A bare line ending after the binary operator is not a complete statement outside an enclosing continuation context.",
         "optionExplanations": {
           "o1": "Correct. A bare line ending after the binary operator is not a complete statement outside an enclosing continuation context.",
-          "o2": "Incorrect. No such implicit continuation is present in the printed snippet.",
-          "o3": "Incorrect. Adjacency is insufficient here; an explicit syntactic continuation is needed.",
-          "o4": "Incorrect. Parsing fails rather than choosing an alternative divisor."
+          "o2": "Incorrect. This assignment has neither an enclosing continuation context nor an explicit continuation character.",
+          "o3": "Incorrect. Python parses the complete file before execution; the dangling division operator causes SyntaxError before the CSV read, not a later runtime TypeError.",
+          "o4": "Incorrect. The trailing division operator prevents the first line from being a complete assignment; it cannot silently be discarded."
         },
         "steps": [
           "The assignment has no surrounding parentheses.",
@@ -7018,9 +7026,9 @@
         "simpleExplanation": "A bare line ending after the binary operator is not a complete statement outside an enclosing continuation context.",
         "memoryAid": null,
         "misconceptions": [
-          "No such implicit continuation is present in the printed snippet.",
-          "Adjacency is insufficient here; an explicit syntactic continuation is needed.",
-          "Parsing fails rather than choosing an alternative divisor."
+          "This assignment has neither an enclosing continuation context nor an explicit continuation character.",
+          "Python parses the complete file before execution; the dangling division operator causes SyntaxError before the CSV read, not a later runtime TypeError.",
+          "The trailing division operator prevents the first line from being a complete assignment; it cannot silently be discarded."
         ],
         "examTraps": [
           "Distinguish the stated assumptions and source code from unstated corrections."
@@ -7030,7 +7038,8 @@
       "origin": "generated",
       "reviewIds": [],
       "revisionAuthors": [
-        "define_robotics_data_contracts:L04-v2-revision-author"
+        "define_robotics_data_contracts:L04-v2-revision-author",
+        "robotics-integration-L04-v3-revision-author"
       ],
       "revisionHistory": [
         {
@@ -7039,6 +7048,13 @@
           "revisedAt": "2026-10-19T16:28:09.635935+00:00",
           "priorQuestionSha256": "ef7a32bab0f44d5797f58f0ea2261e78140c30a617b34749a3f720d3293e9239",
           "reason": "Address the frozen v1 independent quality finding; new independent review required."
+        },
+        {
+          "version": 3,
+          "authorId": "robotics-integration-L04-v3-revision-author",
+          "revisedAt": "2026-10-19T16:41:10.113467+00:00",
+          "priorQuestionSha256": "d6b72940ac6558980d05010cdfa7100ade2e84fb99d1c45fbaf06174d962c055",
+          "reason": "Repair two frozen independent distractor-quality findings; keys unchanged and new independent review required."
         }
       ]
     },

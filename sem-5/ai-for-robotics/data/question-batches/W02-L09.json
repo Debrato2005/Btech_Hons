@@ -85,7 +85,7 @@
     },
     {
       "id": "W02-L09-P0299-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "A point has velocity (3, 4, 0) m/s in a Cartesian frame. What is its speed?",
@@ -143,9 +143,9 @@
         }
       ],
       "solution": {
-        "justification": "The Euclidean magnitude is√(3²+4²)=5.",
+        "justification": "The speed is the nonnegative velocity norm: sqrt(3²+4²+0²)=5 m/s.",
         "optionExplanations": {
-          "o1": "Correct. The Euclidean magnitude is√(3²+4²)=5.",
+          "o1": "Correct. The nonnegative norm is sqrt(9+16)=5 m/s.",
           "o2": "Incorrect. Adding components does not give a vector magnitude.",
           "o3": "Incorrect. 25 is the squared magnitude, with the wrong units for speed.",
           "o4": "Incorrect. Subtracting components is not the norm."
@@ -158,18 +158,23 @@
           {
             "expression": "speed=sqrt(vx²+vy²+vz²)",
             "variables": {
-              "v": "velocity components",
-              "speed": "Euclidean magnitude"
+              "vx": "x component of the point velocity in the specified Cartesian basis and reference frame",
+              "vy": "y component of the same velocity vector",
+              "vz": "z component of the same velocity vector",
+              "speed": "nonnegative Euclidean norm of that velocity vector"
             },
             "units": {
-              "all velocities": "m/s"
+              "vx": "m/s",
+              "vy": "m/s",
+              "vz": "m/s",
+              "speed": "m/s"
             },
             "assumptions": [
-              "Orthonormal Cartesian axes."
+              "Orthonormal Cartesian axes; all three components refer to the same observer, point and basis."
             ]
           }
         ],
-        "simpleExplanation": "The Euclidean magnitude is√(3²+4²)=5.",
+        "simpleExplanation": "The speed is the nonnegative velocity norm: sqrt(3²+4²+0²)=5 m/s.",
         "memoryAid": null,
         "misconceptions": [
           "Adding components does not give a vector magnitude.",
@@ -180,7 +185,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0299-Q03",
@@ -528,7 +536,7 @@
     },
     {
       "id": "W02-L09-P0301-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Which two frame roles must be distinguished in the velocity notation?",
@@ -552,19 +560,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "The robot manufacturer and the camera frame rate"
+          "text": "The frame attached to the moving body and the frame attached to the point, with no separate observer role"
         },
         {
           "id": "o3",
-          "text": "Only the initial and final time samples"
+          "text": "The expression basis at the initial time and the expression basis at the final time only"
         },
         {
           "id": "o4",
-          "text": "Only the point and its scalar speed"
+          "text": "The origin used for position and the axis used for scalar speed only"
         },
         {
           "id": "o1",
-          "text": "The frame relative to which differentiation is defined, and the frame used to express the resulting vector"
+          "text": "The differentiation/reference observer and the basis used to express the resulting vector"
         }
       ],
       "correctOptionIds": [
@@ -584,27 +592,30 @@
         }
       ],
       "solution": {
-        "justification": "These are the two roles explicitly identified in the source.",
+        "justification": "The source distinguishes the observer defining relative motion from the coordinates representing that same vector.",
         "optionExplanations": {
-          "o1": "Correct. These are the two roles explicitly identified in the source.",
-          "o2": "Incorrect. Those do not define the vector’s reference/representation.",
-          "o3": "Incorrect. Time samples do not replace frame definitions.",
-          "o4": "Incorrect. A point and a scalar magnitude do not specify both frame roles."
+          "o1": "Correct. The source distinguishes the observer defining relative motion from the coordinates representing that same vector.",
+          "o2": "Incorrect. Body and point attachment alone do not distinguish the observer from the expression basis.",
+          "o3": "Incorrect. Time samples do not replace the two simultaneous reference and representation roles.",
+          "o4": "Incorrect. A position origin and a scalar magnitude do not define the velocity’s observer and vector basis."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "These are the two roles explicitly identified in the source.",
+        "simpleExplanation": "The source distinguishes the observer defining relative motion from the coordinates representing that same vector.",
         "memoryAid": null,
         "misconceptions": [
-          "Those do not define the vector’s reference/representation.",
-          "Time samples do not replace frame definitions.",
-          "A point and a scalar magnitude do not specify both frame roles."
+          "Body and point attachment alone do not distinguish the observer from the expression basis.",
+          "Time samples do not replace the two simultaneous reference and representation roles.",
+          "A position origin and a scalar magnitude do not define the velocity’s observer and vector basis."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0301-Q02",
@@ -793,13 +804,13 @@
     },
     {
       "id": "W02-L09-P0301-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Does multiplying a zero B-relative velocity by ^A_B R produce the marker’s generally nonzero velocity relative to A?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L09",
@@ -820,19 +831,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "Yes; the rotation matrix alone creates the missing angular-motion velocity"
+          "text": "Yes; the coordinate rotation alone includes the frame-origin and rotational transport velocities"
         },
         {
           "id": "o3",
-          "text": "Yes; every rotating matrix maps zero to a nonzero vector"
+          "text": "No; changing the observer requires only an origin-translation term, even for a rotating frame"
         },
         {
           "id": "o4",
-          "text": "No; therefore a body-fixed marker can never move in space"
+          "text": "No; therefore a marker fixed in B has zero velocity relative to every observer"
         },
         {
           "id": "o1",
-          "text": "No; rotation of zero remains zero, and changing the physical observer requires the additional motion terms"
+          "text": "No; rotating zero keeps it zero, while changing the observer requires the frame-motion terms"
         }
       ],
       "correctOptionIds": [
@@ -874,27 +885,30 @@
         }
       ],
       "solution": {
-        "justification": "Re-expression and observer change are different operations; the later transport formula adds origin and rotational terms.",
+        "justification": "Re-expression preserves a zero B-relative vector. A different observer can measure motion from the B-origin translation and frame rotation.",
         "optionExplanations": {
-          "o1": "Correct. Re-expression and observer change are different operations; the later transport formula adds origin and rotational terms.",
-          "o2": "Incorrect. Those extra terms are not contained in multiplying the zero vector.",
-          "o3": "Incorrect. Every linear map sends zero to zero.",
-          "o4": "Incorrect. The conclusion confuses B-relative zero motion with A-relative motion."
+          "o1": "Correct. Re-expression preserves a zero B-relative vector. A different observer can measure motion from the B-origin translation and frame rotation.",
+          "o2": "Incorrect. R only changes vector components; the origin velocity and ω×r terms must be added separately.",
+          "o3": "Incorrect. A rotating frame also contributes ω×r, which can be nonzero even when the two origins coincide.",
+          "o4": "Incorrect. Being fixed relative to B does not make the marker fixed relative to A."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Re-expression and observer change are different operations; the later transport formula adds origin and rotational terms.",
+        "simpleExplanation": "Re-expression preserves a zero B-relative vector. A different observer can measure motion from the B-origin translation and frame rotation.",
         "memoryAid": null,
         "misconceptions": [
-          "Those extra terms are not contained in multiplying the zero vector.",
-          "Every linear map sends zero to zero.",
-          "The conclusion confuses B-relative zero motion with A-relative motion."
+          "R only changes vector components; the origin velocity and ω×r terms must be added separately.",
+          "A rotating frame also contributes ω×r, which can be nonzero even when the two origins coincide.",
+          "Being fixed relative to B does not make the marker fixed relative to A."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0302-Q01",
@@ -978,7 +992,7 @@
     },
     {
       "id": "W02-L09-P0302-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "In ^A v_C, which roles do A, C and U play in this shorthand?",
@@ -1005,19 +1019,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "A and U must be the same frame by definition"
+          "text": "U identifies the moving origin, C the reference observer, and A the expression basis"
         },
         {
           "id": "o1",
-          "text": "C supplies the moving origin, Uthe reference observer, and A the coordinate basis"
+          "text": "C identifies the moving origin, U the reference observer, and A the expression basis"
         },
         {
           "id": "o2",
-          "text": "A supplies the moving origin, Cthe observer, and U the time unit"
+          "text": "A identifies the moving origin, U the reference observer, and C the expression basis"
         },
         {
           "id": "o3",
-          "text": "C is a scalar speed, Ais an acceleration, and U is a joint angle"
+          "text": "C identifies the moving origin, A the reference observer, and U the expression basis"
         }
       ],
       "correctOptionIds": [
@@ -1037,27 +1051,30 @@
         }
       ],
       "solution": {
-        "justification": "The slide explicitly separates C’s origin motion relative U from its expression in A.",
+        "justification": "The shorthand defines the velocity of origin C relative to U and allows it to be expressed in A.",
         "optionExplanations": {
-          "o1": "Correct. The slide explicitly separates C’s origin motion relative U from its expression in A.",
-          "o2": "Incorrect. Those frame roles are permuted.",
-          "o3": "Incorrect. All three labels are frames, not these physical quantities.",
-          "o4": "Incorrect. The point of the superscript is to permit a different expression frame."
+          "o1": "Correct. The shorthand defines the velocity of origin C relative to U and allows it to be expressed in A.",
+          "o2": "Incorrect. This interchanges the moving-origin and expression-basis labels.",
+          "o3": "Incorrect. This interchanges the observer and expression-basis labels.",
+          "o4": "Incorrect. This reverses the moving-origin and observer roles."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The slide explicitly separates C’s origin motion relative U from its expression in A.",
+        "simpleExplanation": "The shorthand defines the velocity of origin C relative to U and allows it to be expressed in A.",
         "memoryAid": null,
         "misconceptions": [
-          "Those frame roles are permuted.",
-          "All three labels are frames, not these physical quantities.",
-          "The point of the superscript is to permit a different expression frame."
+          "This interchanges the moving-origin and expression-basis labels.",
+          "This interchanges the observer and expression-basis labels.",
+          "This reverses the moving-origin and observer roles."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0303-Q01",
@@ -1303,13 +1320,13 @@
     },
     {
       "id": "W02-L09-P0303-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "In ^A ω_C, does the leading A necessarily mean the angular velocity is measured relative to A?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L09",
@@ -1379,11 +1396,14 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0305-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Which three time-dependent quantities account for the general point-position relation?",
@@ -1407,19 +1427,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "Three independent copies of the same origin position"
+          "text": "A fixed origin p_AB, point coordinates q_B within B, and orientation R_AB"
         },
         {
           "id": "o1",
-          "text": "Origin translation p_AB, relative point vector q_B, and orientation R_AB"
+          "text": "Origin translation p_AB, point coordinates q_B within B, and orientation R_AB"
         },
         {
           "id": "o2",
-          "text": "Only the body mass, link color and camera resolution"
+          "text": "Origin translation p_AB, point coordinates q_B within B, and a fixed R_AB"
         },
         {
           "id": "o3",
-          "text": "Only the angular speed, with no translation terms"
+          "text": "Origin translation p_AB, a fixed point q_B within B, and orientation R_AB"
         }
       ],
       "correctOptionIds": [
@@ -1439,27 +1459,30 @@
         }
       ],
       "solution": {
-        "justification": "These are the three changing quantities identified in the slide.",
+        "justification": "The general position relation p_A=p_AB+R_AB q_B permits all three factors to vary.",
         "optionExplanations": {
-          "o1": "Correct. These are the three changing quantities identified in the slide.",
-          "o2": "Incorrect. These do not appear in the kinematic position relation.",
-          "o3": "Incorrect. The source explicitly includes both origin and internal point changes.",
-          "o4": "Incorrect. Origin, relative point and orientation are different objects."
+          "o1": "Correct. The general position relation p_A=p_AB+R_AB q_B permits all three factors to vary.",
+          "o2": "Incorrect. This is the translation-only orientation special case, not the general changing-orientation case.",
+          "o3": "Incorrect. This restricts the point to be body-fixed and omits general relative point motion.",
+          "o4": "Incorrect. This omits general origin translation."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "These are the three changing quantities identified in the slide.",
+        "simpleExplanation": "The general position relation p_A=p_AB+R_AB q_B permits all three factors to vary.",
         "memoryAid": null,
         "misconceptions": [
-          "These do not appear in the kinematic position relation.",
-          "The source explicitly includes both origin and internal point changes.",
-          "Origin, relative point and orientation are different objects."
+          "This is the translation-only orientation special case, not the general changing-orientation case.",
+          "This restricts the point to be body-fixed and omits general relative point motion.",
+          "This omits general origin translation."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0305-Q02",
@@ -1629,10 +1652,10 @@
     },
     {
       "id": "W02-L09-P0306-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
-      "stem": "For constant R_AB=Rz (90°), v_Borigin^A=(1, 0, 0) m/s and v_relative^B=(2, 0, 0) m/s, what is v_Q^A?",
+      "stem": "For constant R_AB=Rz(90°), v_origin^A=(1, 0, 0) m/s and v_relative^B=(2, 0, 0) m/s, what is v_Q^A?",
       "selectionMode": "single",
       "type": "numerical",
       "difficulty": "medium",
@@ -1650,9 +1673,9 @@
         "W02-L09-P0306-C01"
       ],
       "assumptions": [
-        "^A_B R maps vector components from frame B to frame A. Unless stated otherwise, the same physical point and the same differentiation/reference observer are retained when merely re-expressing a vector.",
-        "All vectors in a sum or cross product are expressed in the same basis; right-handed axes.",
-        "Rz (90°)=[[0, −1, 0], [1, 0, 0], [0, 0, 1]], constant in time."
+        "Right-handed orthonormal frames. R_AB maps B-basis components into A-basis components.",
+        "When only re-expressing a vector, keep the same physical point and reference observer. Changing the observer is a different operation and requires the frame-motion terms.",
+        "Rz(90°)=[[0, −1, 0], [1, 0, 0], [0, 0, 1]] is constant in time, so omega^A=0."
       ],
       "options": [
         {
@@ -1697,29 +1720,33 @@
           "o4": "Incorrect. This omits the moving-origin contribution."
         },
         "steps": [
-          "Rz (90°)(2, 0, 0)=(0, 2, 0).",
-          "Add the origin velocity (1, 0, 0).",
-          "Obtain (1, 2, 0) m/s."
+          "Constant R_AB implies omega^A=0, so the rotational transport term vanishes.",
+          "Rotate the B-relative vector: Rz(90°)(2, 0, 0)=(0, 2, 0) m/s.",
+          "Add the origin velocity: (1, 0, 0)+(0, 2, 0)=(1, 2, 0) m/s."
         ],
         "formulas": [
           {
-            "expression": "v_Q^A=v_origin^A+R_AB v_relative^B+omega^A cross(R_AB q_B)",
+            "expression": "v_Q^A=v_origin^A+R_AB v_relative^B+omega^A×(R_AB q_B)",
             "variables": {
-              "v_origin^A": "velocity of B origin relative A",
-              "v_relative^B": "point velocity relative B",
-              "q_B": "offset from B origin to point",
-              "omega^A": "angular velocity of B relative A in A components",
-              "R_AB": "B-to-A rotation"
+              "v_Q^A": "velocity of point Q relative to observer A, expressed in the A basis",
+              "v_origin^A": "velocity of the B-frame origin relative to A, expressed in A",
+              "v_relative^B": "velocity of Q relative to observer B, expressed in B",
+              "q_B": "position offset from the B origin to Q, expressed in B",
+              "omega^A": "angular velocity of frame B relative to A, expressed in A",
+              "R_AB": "rotation mapping B components into A components"
             },
             "units": {
-              "velocities": "m/s",
+              "v_Q^A": "m/s",
+              "v_origin^A": "m/s",
+              "v_relative^B": "m/s",
               "q_B": "m",
-              "omega": "rad/s",
+              "omega^A": "rad/s",
               "R_AB": "dimensionless"
             },
             "assumptions": [
-              "^A_B R maps vector components from frameB to frameA. Unless stated otherwise,the same physical point and the same differentiation/reference observer are retained when merely re-expressing a vector.",
-              "All vectors in a sum or cross product are expressed in the same basis;right-handed axes."
+              "Right-handed orthonormal frames. R_AB maps B-basis components into A-basis components.",
+              "When only re-expressing a vector, keep the same physical point and reference observer. Changing the observer is a different operation and requires the frame-motion terms.",
+              "Constant relative orientation implies omega^A=0, reducing the general formula to v_Q^A=v_origin^A+R_AB v_relative^B."
             ]
           }
         ],
@@ -1734,7 +1761,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0306-Q03",
@@ -2528,7 +2558,7 @@
     },
     {
       "id": "W02-L09-P0310-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "For R_AB=Rz (90°), q_B=(2, 0, 0) m, v_relative^B=(1, 0, 0) m/s, v_origin^A=(1, 0, 0) m/s and ω^A=(0, 0, 2) rad/s, what is v_Q^A?",
@@ -2596,30 +2626,33 @@
           "o4": "Incorrect. This omits the origin velocity."
         },
         "steps": [
-          "Rotateq_B to (0, 2, 0) m.",
-          "Compute ω×r=(−4, 0, 0) m/s.",
-          "Rotate relative velocity to (0, 1, 0) m/s.",
-          "Sum (1, 0, 0)+(0, 1, 0)+(−4, 0, 0)=(−3, 1, 0) m/s."
+          "Rotate q_B: R_AB q_B=(0, 2, 0) m.",
+          "Compute rotational velocity: (0, 0, 2)×(0, 2, 0)=(−4, 0, 0) m/s.",
+          "Rotate the relative velocity: R_AB v_relative^B=(0, 1, 0) m/s.",
+          "Add origin, relative and rotational terms: (1, 0, 0)+(0, 1, 0)+(−4, 0, 0)=(−3, 1, 0) m/s."
         ],
         "formulas": [
           {
-            "expression": "v_Q^A=v_origin^A+R_AB v_relative^B+omega^A cross(R_AB q_B)",
+            "expression": "v_Q^A=v_origin^A+R_AB v_relative^B+omega^A×(R_AB q_B)",
             "variables": {
-              "v_origin^A": "velocity of B origin relative A",
-              "v_relative^B": "point velocity relative B",
-              "q_B": "offset from B origin to point",
-              "omega^A": "angular velocity of B relative A in A components",
-              "R_AB": "B-to-A rotation"
+              "v_Q^A": "velocity of point Q relative to observer A, expressed in the A basis",
+              "v_origin^A": "velocity of the B-frame origin relative to A, expressed in A",
+              "v_relative^B": "velocity of Q relative to observer B, expressed in B",
+              "q_B": "position offset from the B origin to Q, expressed in B",
+              "omega^A": "angular velocity of frame B relative to A, expressed in A",
+              "R_AB": "rotation mapping B components into A components"
             },
             "units": {
-              "velocities": "m/s",
+              "v_Q^A": "m/s",
+              "v_origin^A": "m/s",
+              "v_relative^B": "m/s",
               "q_B": "m",
-              "omega": "rad/s",
+              "omega^A": "rad/s",
               "R_AB": "dimensionless"
             },
             "assumptions": [
-              "^A_B R maps vector components from frameB to frameA. Unless stated otherwise,the same physical point and the same differentiation/reference observer are retained when merely re-expressing a vector.",
-              "All vectors in a sum or cross product are expressed in the same basis;right-handed axes."
+              "Right-handed orthonormal frames. R_AB maps B-basis components into A-basis components.",
+              "When only re-expressing a vector, keep the same physical point and reference observer. Changing the observer is a different operation and requires the frame-motion terms."
             ]
           }
         ],
@@ -2634,7 +2667,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0310-Q03",
@@ -2884,7 +2920,7 @@
     },
     {
       "id": "W02-L09-P0311-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "In which direction does the summary’s velocity propagation proceed?",
@@ -2908,19 +2944,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Outward from the base toward the end effector"
+          "text": "From known base velocities to each successive child link and the end effector"
         },
         {
           "id": "o2",
-          "text": "Backward from the tool toward the base only"
+          "text": "From a prescribed end-effector velocity to each parent link, without solving joint rates"
         },
         {
           "id": "o3",
-          "text": "Randomly between nonadjacent links"
+          "text": "From the base to the end effector for angular velocity, but from tip to base for linear velocity"
         },
         {
           "id": "o4",
-          "text": "From Cartesian forces directly to joint positions"
+          "text": "From tip to base for angular velocity, but from base to tip for linear velocity"
         }
       ],
       "correctOptionIds": [
@@ -2951,27 +2987,30 @@
         }
       ],
       "solution": {
-        "justification": "Known upstream velocities are carried to each next link.",
+        "justification": "Both angular and linear velocity recurrences propagate known upstream quantities outward.",
         "optionExplanations": {
-          "o1": "Correct. Known upstream velocities are carried to each next link.",
-          "o2": "Incorrect. That is not the stated outward velocity recursion.",
-          "o3": "Incorrect. The formulas relate neighboring link frames.",
-          "o4": "Incorrect. That is not this velocity-propagation operation."
+          "o1": "Correct. Both angular and linear velocity recurrences propagate known upstream quantities outward.",
+          "o2": "Incorrect. This describes an inverse task rather than the source’s outward velocity recurrence.",
+          "o3": "Incorrect. The linear recurrence is also outward, using the parent-origin velocity and parent angular velocity.",
+          "o4": "Incorrect. The angular recurrence is also outward, using inherited parent rotation plus the local joint rate."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Known upstream velocities are carried to each next link.",
+        "simpleExplanation": "Both angular and linear velocity recurrences propagate known upstream quantities outward.",
         "memoryAid": null,
         "misconceptions": [
-          "That is not the stated outward velocity recursion.",
-          "The formulas relate neighboring link frames.",
-          "That is not this velocity-propagation operation."
+          "This describes an inverse task rather than the source’s outward velocity recurrence.",
+          "The linear recurrence is also outward, using the parent-origin velocity and parent angular velocity.",
+          "The angular recurrence is also outward, using inherited parent rotation plus the local joint rate."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0312-Q01",
@@ -3311,7 +3350,7 @@
     },
     {
       "id": "W02-L09-P0312-Q05",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Let R_child, parent=Rx (90°), ω_parent=(0, 0, 2) rad/s and θdot=3 rad/s. What is ω_child?",
@@ -3332,10 +3371,11 @@
         "W02-L09-P0312-C01"
       ],
       "assumptions": [
-        "Use the source’s link frames and joint axis z_(i+1); R=(i+1)_i R converts parent components into child components.",
-        "v_i and ω_i are velocities relative to the fixed base/universal frame, not derivatives relative to their own moving link.",
-        "The relative origin offset P is expressed in parent frame i; for the revolute recurrence it is constant in that frame.",
-        "The suppliedRx is the component map from parent to child."
+        "Both link velocities are measured relative to the same fixed base observer, not differentiated relative to the moving link itself.",
+        "R maps parent-basis components into the child basis. P points from the parent origin to the child origin and is expressed in the parent basis.",
+        "All cross products are evaluated in one basis before rotation. The joint-axis unit vector z_child is expressed in the child basis.",
+        "For this revolute joint, P is constant in the parent frame and z_child=(0, 0, 1).",
+        "The given Rx(90°)=[[1, 0, 0], [0, 0, −1], [0, 1, 0]] maps parent components into child components."
       ],
       "options": [
         {
@@ -3372,43 +3412,50 @@
         }
       ],
       "solution": {
-        "justification": "Rx (90°) maps the inherited z rate to child−y; add local+zrate 3.",
+        "justification": "The inherited angular velocity is re-expressed before adding the child-local revolute rate, giving (0, −2, 3) rad/s.",
         "optionExplanations": {
-          "o1": "Correct. Rx (90°) maps the inherited z rate to child−y; add local+zrate 3.",
+          "o1": "Correct. Rotate the inherited angular velocity into child −y, then add the local +z joint rate: (0, −2, 0)+(0, 0, 3)=(0, −2, 3) rad/s.",
           "o2": "Incorrect. This adds rates without rotating the parent basis.",
           "o3": "Incorrect. This uses the opposite rotation sign.",
           "o4": "Incorrect. This incorrectly rotates the already child-local joint term."
         },
         "steps": [
-          "UseRx (90°)=[[1, 0, 0], [0, 0, −1], [0, 1, 0]].",
-          "Rotate (0, 0, 2) to (0, −2, 0).",
-          "Add (0, 0, 3) to get (0, −2, 3)."
+          "Apply Rx(90°) to omega_parent=(0, 0, 2), obtaining (0, −2, 0) rad/s.",
+          "The local revolute contribution is theta_dot z_child=3(0, 0, 1)=(0, 0, 3) rad/s.",
+          "Add the two child-basis vectors to obtain omega_child=(0, −2, 3) rad/s."
         ],
         "formulas": [
           {
-            "expression": "omega_child=R omega_parent+theta_dot z_child; v_child=R(v_parent+omega_parent cross P)",
+            "expression": "omega_child=R omega_parent+theta_dot z_child; v_child=R(v_parent+omega_parent×P)",
             "variables": {
+              "omega_parent": "parent-link angular velocity relative to the fixed base observer, expressed in the parent basis",
+              "omega_child": "child-link angular velocity relative to the same base observer, expressed in the child basis",
+              "v_parent": "parent-origin linear velocity relative to the fixed base observer, expressed in the parent basis",
+              "v_child": "child-origin linear velocity relative to the same base observer, expressed in the child basis",
               "R": "parent-to-child coordinate rotation",
-              "P": "parent-to-child origin offset in parent components",
-              "theta_dot": "relative revolute joint angular rate",
-              "z_child": "local joint-axis unit vector",
-              "omega": "base-relative angular velocity",
-              "v": "base-relative origin linear velocity"
+              "P": "vector from parent origin to child origin in parent components",
+              "z_child": "unit vector of the joint axis expressed in the child basis",
+              "theta_dot": "relative revolute-joint angle’s first time derivative"
             },
             "units": {
-              "omega,theta_dot": "rad/s",
-              "v": "m/s",
+              "omega_parent": "rad/s",
+              "omega_child": "rad/s",
+              "v_parent": "m/s",
+              "v_child": "m/s",
+              "R": "dimensionless",
               "P": "m",
-              "R,z_child": "dimensionless"
+              "z_child": "dimensionless",
+              "theta_dot": "rad/s"
             },
             "assumptions": [
-              "Use the source’s link frames and joint axis z_(i+1);R=(i+1)_i R converts parent components into child components.",
-              "v_i andω_i are velocities relative to the fixed base/universal frame,not derivatives relative to their own moving link.",
-              "The relative origin offsetP is expressed in parent framei;for the revolute recurrence it is constant in that frame."
+              "Both link velocities are measured relative to the same fixed base observer, not differentiated relative to the moving link itself.",
+              "R maps parent-basis components into the child basis. P points from the parent origin to the child origin and is expressed in the parent basis.",
+              "All cross products are evaluated in one basis before rotation. The joint-axis unit vector z_child is expressed in the child basis.",
+              "For this revolute recurrence, P is constant in the parent frame and the new revolute axis passes through the child origin."
             ]
           }
         ],
-        "simpleExplanation": "Rx (90°) maps the inherited z rate to child−y; add local+zrate 3.",
+        "simpleExplanation": "The inherited angular velocity is re-expressed before adding the child-local revolute rate, giving (0, −2, 3) rad/s.",
         "memoryAid": null,
         "misconceptions": [
           "This adds rates without rotating the parent basis.",
@@ -3419,7 +3466,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0313-Q01",
@@ -3591,7 +3641,7 @@
     },
     {
       "id": "W02-L09-P0313-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Given v_parent=(1, 2, 0) m/s, ω_parent=(0, 0, 2) rad/s, P=(3, 0, 0) m, and R=I, what is v_child?",
@@ -3612,9 +3662,11 @@
         "W02-L09-P0313-C01"
       ],
       "assumptions": [
-        "Use the source’s link frames and joint axis z_(i+1); R=(i+1)_i R converts parent components into child components.",
-        "v_i and ω_i are velocities relative to the fixed base/universal frame, not derivatives relative to their own moving link.",
-        "The relative origin offset P is expressed in parent frame i; for the revolute recurrence it is constant in that frame."
+        "Both link velocities are measured relative to the same fixed base observer, not differentiated relative to the moving link itself.",
+        "R maps parent-basis components into the child basis. P points from the parent origin to the child origin and is expressed in the parent basis.",
+        "All cross products are evaluated in one basis before rotation. The joint-axis unit vector z_child is expressed in the child basis.",
+        "Revolute frame placement: P is constant in the parent basis and the new joint axis passes through the child origin.",
+        "R=I is the parent-to-child component map at this instant."
       ],
       "options": [
         {
@@ -3651,9 +3703,9 @@
         }
       ],
       "solution": {
-        "justification": "ω×P=(0, 6, 0); addv_parent to give (1, 8, 0).",
+        "justification": "The inherited linear velocity plus the rotational sweep is (1, 2, 0)+(0, 6, 0)=(1, 8, 0) m/s.",
         "optionExplanations": {
-          "o1": "Correct. ω×P=(0, 6, 0); addv_parent to give (1, 8, 0).",
+          "o1": "Correct. omega_parent×P=(0, 6, 0) m/s; adding v_parent gives (1, 8, 0) m/s, unchanged by R=I.",
           "o2": "Incorrect. This reverses the cross product.",
           "o3": "Incorrect. This adds the offset rather than its rotational velocity.",
           "o4": "Incorrect. This adds angular rate directly as linear velocity."
@@ -3665,29 +3717,36 @@
         ],
         "formulas": [
           {
-            "expression": "omega_child=R omega_parent+theta_dot z_child; v_child=R(v_parent+omega_parent cross P)",
+            "expression": "omega_child=R omega_parent+theta_dot z_child; v_child=R(v_parent+omega_parent×P)",
             "variables": {
+              "omega_parent": "parent-link angular velocity relative to the fixed base observer, expressed in the parent basis",
+              "omega_child": "child-link angular velocity relative to the same base observer, expressed in the child basis",
+              "v_parent": "parent-origin linear velocity relative to the fixed base observer, expressed in the parent basis",
+              "v_child": "child-origin linear velocity relative to the same base observer, expressed in the child basis",
               "R": "parent-to-child coordinate rotation",
-              "P": "parent-to-child origin offset in parent components",
-              "theta_dot": "relative revolute joint angular rate",
-              "z_child": "local joint-axis unit vector",
-              "omega": "base-relative angular velocity",
-              "v": "base-relative origin linear velocity"
+              "P": "vector from parent origin to child origin in parent components",
+              "z_child": "unit vector of the joint axis expressed in the child basis",
+              "theta_dot": "relative revolute-joint angle’s first time derivative"
             },
             "units": {
-              "omega,theta_dot": "rad/s",
-              "v": "m/s",
+              "omega_parent": "rad/s",
+              "omega_child": "rad/s",
+              "v_parent": "m/s",
+              "v_child": "m/s",
+              "R": "dimensionless",
               "P": "m",
-              "R,z_child": "dimensionless"
+              "z_child": "dimensionless",
+              "theta_dot": "rad/s"
             },
             "assumptions": [
-              "Use the source’s link frames and joint axis z_(i+1);R=(i+1)_i R converts parent components into child components.",
-              "v_i andω_i are velocities relative to the fixed base/universal frame,not derivatives relative to their own moving link.",
-              "The relative origin offsetP is expressed in parent framei;for the revolute recurrence it is constant in that frame."
+              "Both link velocities are measured relative to the same fixed base observer, not differentiated relative to the moving link itself.",
+              "R maps parent-basis components into the child basis. P points from the parent origin to the child origin and is expressed in the parent basis.",
+              "All cross products are evaluated in one basis before rotation. The joint-axis unit vector z_child is expressed in the child basis.",
+              "For this revolute recurrence, P is constant in the parent frame and the new revolute axis passes through the child origin."
             ]
           }
         ],
-        "simpleExplanation": "ω×P=(0, 6, 0); addv_parent to give (1, 8, 0).",
+        "simpleExplanation": "The inherited linear velocity plus the rotational sweep is (1, 2, 0)+(0, 6, 0)=(1, 8, 0) m/s.",
         "memoryAid": null,
         "misconceptions": [
           "This reverses the cross product.",
@@ -3698,14 +3757,17 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0313-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
-      "stem": "For the same parent data but R_child, parent=Rz (−90°), what is v_child?",
+      "stem": "Given v_parent=(1, 2, 0) m/s, omega_parent=(0, 0, 2) rad/s, P=(3, 0, 0) m, and R_child,parent=Rz(−90°), what is v_child?",
       "selectionMode": "single",
       "type": "numerical",
       "difficulty": "medium",
@@ -3723,10 +3785,11 @@
         "W02-L09-P0313-C01"
       ],
       "assumptions": [
-        "Use the source’s link frames and joint axis z_(i+1); R=(i+1)_i R converts parent components into child components.",
-        "v_i and ω_i are velocities relative to the fixed base/universal frame, not derivatives relative to their own moving link.",
-        "The relative origin offset P is expressed in parent frame i; for the revolute recurrence it is constant in that frame.",
-        "Same numericparentdata: v=(1, 2, 0), ω=(0, 0, 2), P=(3, 0, 0)."
+        "Both link velocities are measured relative to the same fixed base observer, not differentiated relative to the moving link itself.",
+        "R maps parent-basis components into the child basis. P points from the parent origin to the child origin and is expressed in the parent basis.",
+        "All cross products are evaluated in one basis before rotation. The joint-axis unit vector z_child is expressed in the child basis.",
+        "Revolute frame placement: P is constant in the parent basis and the new joint axis passes through the child origin.",
+        "Rz(−90°)=[[0, 1, 0], [−1, 0, 0], [0, 0, 1]] maps parent components to child components."
       ],
       "options": [
         {
@@ -3771,31 +3834,38 @@
           "o4": "Incorrect. This rotates only one contribution and mixes bases."
         },
         "steps": [
-          "The parent-basis sum is (1, 8, 0).",
-          "Rz (−90°)=[[0, 1, 0], [−1, 0, 0], [0, 0, 1]].",
-          "Multiplytoget (8, −1, 0)."
+          "Compute omega_parent×P=(0, 6, 0) m/s.",
+          "The parent-basis sum is v_parent+omega_parent×P=(1, 8, 0) m/s.",
+          "Multiply the complete sum by Rz(−90°) to obtain (8, −1, 0) m/s."
         ],
         "formulas": [
           {
-            "expression": "omega_child=R omega_parent+theta_dot z_child; v_child=R(v_parent+omega_parent cross P)",
+            "expression": "omega_child=R omega_parent+theta_dot z_child; v_child=R(v_parent+omega_parent×P)",
             "variables": {
+              "omega_parent": "parent-link angular velocity relative to the fixed base observer, expressed in the parent basis",
+              "omega_child": "child-link angular velocity relative to the same base observer, expressed in the child basis",
+              "v_parent": "parent-origin linear velocity relative to the fixed base observer, expressed in the parent basis",
+              "v_child": "child-origin linear velocity relative to the same base observer, expressed in the child basis",
               "R": "parent-to-child coordinate rotation",
-              "P": "parent-to-child origin offset in parent components",
-              "theta_dot": "relative revolute joint angular rate",
-              "z_child": "local joint-axis unit vector",
-              "omega": "base-relative angular velocity",
-              "v": "base-relative origin linear velocity"
+              "P": "vector from parent origin to child origin in parent components",
+              "z_child": "unit vector of the joint axis expressed in the child basis",
+              "theta_dot": "relative revolute-joint angle’s first time derivative"
             },
             "units": {
-              "omega,theta_dot": "rad/s",
-              "v": "m/s",
+              "omega_parent": "rad/s",
+              "omega_child": "rad/s",
+              "v_parent": "m/s",
+              "v_child": "m/s",
+              "R": "dimensionless",
               "P": "m",
-              "R,z_child": "dimensionless"
+              "z_child": "dimensionless",
+              "theta_dot": "rad/s"
             },
             "assumptions": [
-              "Use the source’s link frames and joint axis z_(i+1);R=(i+1)_i R converts parent components into child components.",
-              "v_i andω_i are velocities relative to the fixed base/universal frame,not derivatives relative to their own moving link.",
-              "The relative origin offsetP is expressed in parent framei;for the revolute recurrence it is constant in that frame."
+              "Both link velocities are measured relative to the same fixed base observer, not differentiated relative to the moving link itself.",
+              "R maps parent-basis components into the child basis. P points from the parent origin to the child origin and is expressed in the parent basis.",
+              "All cross products are evaluated in one basis before rotation. The joint-axis unit vector z_child is expressed in the child basis.",
+              "For this revolute recurrence, P is constant in the parent frame and the new revolute axis passes through the child origin."
             ]
           }
         ],
@@ -3810,7 +3880,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0313-Q05",
@@ -3909,7 +3982,7 @@
     },
     {
       "id": "W02-L09-P0314-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "How does an ideal prismatic joint change the angular-velocity recurrence?",
@@ -3930,9 +4003,10 @@
         "W02-L09-P0314-C01"
       ],
       "assumptions": [
-        "Use the source’s link frames and joint axis z_(i+1); R=(i+1)_i R converts parent components into child components.",
-        "v_i and ω_i are velocities relative to the fixed base/universal frame, not derivatives relative to their own moving link.",
-        "The relative origin offset P is expressed in parent frame i; for the revolute recurrence it is constant in that frame."
+        "Both link velocities are measured relative to the same fixed base observer, not differentiated relative to the moving link itself.",
+        "R maps parent-basis components into the child basis. P points from the parent origin to the child origin and is expressed in the parent basis.",
+        "All cross products are evaluated in one basis before rotation. The joint-axis unit vector z_child is expressed in the child basis.",
+        "d_dot denotes the first time derivative of prismatic displacement d, measured in m/s; it is not a second derivative or an angular rate."
       ],
       "options": [
         {
@@ -3945,7 +4019,7 @@
         },
         {
           "id": "o2",
-          "text": "It adds ddot z_child directly to angular velocity"
+          "text": "It adds the linear joint speed d_dot z_child directly to angular velocity"
         },
         {
           "id": "o3",
@@ -3989,7 +4063,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0314-Q02",
@@ -4077,10 +4154,10 @@
     },
     {
       "id": "W02-L09-P0314-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
-      "stem": "Use parent v=(1, 2, 0) m/s, ω=(0, 0, 2) rad/s, P=(3, 0, 0) m, R=Rz (−90°), and prismatic ddot=4 m/s along child z. What is v_child?",
+      "stem": "Use v_parent=(1, 2, 0) m/s, omega_parent=(0, 0, 2) rad/s, P=(3, 0, 0) m, R=Rz(−90°), and prismatic speed d_dot=4 m/s along child z. What is v_child?",
       "selectionMode": "single",
       "type": "numerical",
       "difficulty": "medium",
@@ -4098,10 +4175,11 @@
         "W02-L09-P0314-C01"
       ],
       "assumptions": [
-        "Use the source’s link frames and joint axis z_(i+1); R=(i+1)_i R converts parent components into child components.",
-        "v_i and ω_i are velocities relative to the fixed base/universal frame, not derivatives relative to their own moving link.",
-        "The relative origin offset P is expressed in parent frame i; for the revolute recurrence it is constant in that frame.",
-        "Rz (−90°)=[[0, 1, 0], [−1, 0, 0], [0, 0, 1]]."
+        "Both link velocities are measured relative to the same fixed base observer, not differentiated relative to the moving link itself.",
+        "R maps parent-basis components into the child basis. P points from the parent origin to the child origin and is expressed in the parent basis.",
+        "All cross products are evaluated in one basis before rotation. The joint-axis unit vector z_child is expressed in the child basis.",
+        "d_dot=dd/dt is the first time derivative of the prismatic displacement, not acceleration.",
+        "z_child=(0, 0, 1); Rz(−90°)=[[0, 1, 0], [−1, 0, 0], [0, 0, 1]]."
       ],
       "options": [
         {
@@ -4146,31 +4224,39 @@
           "o4": "Incorrect. This fails to rotate the inherited sum."
         },
         "steps": [
-          "Parentv+ω×P=(1, 8, 0).",
-          "Rz (−90°) maps itto (8, −1, 0).",
-          "Addddot z_child=(0, 0, 4)."
+          "The parent-basis sum is (1, 2, 0)+(0, 0, 2)×(3, 0, 0)=(1, 8, 0) m/s.",
+          "Rz(−90°) maps this sum to (8, −1, 0) m/s.",
+          "Add d_dot z_child=4(0, 0, 1)=(0, 0, 4) m/s.",
+          "The child-origin velocity is (8, −1, 4) m/s."
         ],
         "formulas": [
           {
-            "expression": "omega_child=R omega_parent; v_child=R(v_parent+omega_parent cross P)+d_dot z_child",
+            "expression": "omega_child=R omega_parent; v_child=R(v_parent+omega_parent×P)+d_dot z_child",
             "variables": {
+              "omega_parent": "parent-link angular velocity relative to the fixed base observer, expressed in the parent basis",
+              "omega_child": "child-link angular velocity relative to the same base observer, expressed in the child basis",
+              "v_parent": "parent-origin linear velocity relative to the fixed base observer, expressed in the parent basis",
+              "v_child": "child-origin linear velocity relative to the same base observer, expressed in the child basis",
               "R": "parent-to-child coordinate rotation",
-              "P": "origin offset in parent components",
-              "d_dot": "first time derivative of prismatic displacement",
-              "z_child": "local joint-axis unit vector",
-              "omega": "base-relative angular velocity",
-              "v": "base-relative origin linear velocity"
+              "P": "vector from parent origin to child origin in parent components",
+              "z_child": "unit vector of the joint axis expressed in the child basis",
+              "d_dot": "first time derivative of prismatic-joint displacement d"
             },
             "units": {
-              "omega": "rad/s",
-              "v,d_dot": "m/s",
+              "omega_parent": "rad/s",
+              "omega_child": "rad/s",
+              "v_parent": "m/s",
+              "v_child": "m/s",
+              "R": "dimensionless",
               "P": "m",
-              "R,z_child": "dimensionless"
+              "z_child": "dimensionless",
+              "d_dot": "m/s"
             },
             "assumptions": [
-              "Use the source’s link frames and joint axis z_(i+1);R=(i+1)_i R converts parent components into child components.",
-              "v_i andω_i are velocities relative to the fixed base/universal frame,not derivatives relative to their own moving link.",
-              "The relative origin offsetP is expressed in parent framei;for the revolute recurrence it is constant in that frame."
+              "Both link velocities are measured relative to the same fixed base observer, not differentiated relative to the moving link itself.",
+              "R maps parent-basis components into the child basis. P points from the parent origin to the child origin and is expressed in the parent basis.",
+              "All cross products are evaluated in one basis before rotation. The joint-axis unit vector z_child is expressed in the child basis.",
+              "An ideal prismatic joint adds translation along z_child but no relative angular velocity. P is the instantaneous origin offset; it need not remain constant during prismatic extension."
             ]
           }
         ],
@@ -4185,11 +4271,14 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0314-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "In a chain with stationary base, an upstream revolute joint produces ω=(0, 0, 2) rad/s. A following prismatic joint translates along the same z axis at 3 m/s, with coincident origins and R=I. What is its instantaneous (ω, v)?",
@@ -4210,10 +4299,11 @@
         "W02-L09-P0314-C01"
       ],
       "assumptions": [
-        "Use the source’s link frames and joint axis z_(i+1); R=(i+1)_i R converts parent components into child components.",
-        "v_i and ω_i are velocities relative to the fixed base/universal frame, not derivatives relative to their own moving link.",
-        "The relative origin offset P is expressed in parent frame i; for the revolute recurrence it is constant in that frame.",
-        "Atthisinstant the parent-origin linear velocity is zero and P=0."
+        "Both link velocities are measured relative to the same fixed base observer, not differentiated relative to the moving link itself.",
+        "R maps parent-basis components into the child basis. P points from the parent origin to the child origin and is expressed in the parent basis.",
+        "All cross products are evaluated in one basis before rotation. The joint-axis unit vector z_child is expressed in the child basis.",
+        "At this instant v_parent=(0, 0, 0) m/s, P=(0, 0, 0) m and R=I.",
+        "The first derivative of prismatic displacement is d_dot=3 m/s, with z_child=(0, 0, 1)."
       ],
       "options": [
         {
@@ -4258,31 +4348,39 @@
           "o4": "Incorrect. The angular rate is not an additional linear velocity."
         },
         "steps": [
-          "Carry the upstream angular velocity unchangedbecauseR=I.",
-          "CoincidentoriginsmakeP=0, and origin linear velocity is given zero.",
-          "Addtheprismaticlinearvelocity 3 z."
+          "R=I leaves omega_parent=(0, 0, 2) rad/s unchanged.",
+          "Coincident origins give P=0, so omega_parent×P=0; the parent-origin linear velocity is also zero.",
+          "The child linear velocity is solely d_dot z_child=(0, 0, 3) m/s.",
+          "Thus omega_child=(0, 0, 2) rad/s and v_child=(0, 0, 3) m/s."
         ],
         "formulas": [
           {
-            "expression": "omega_child=R omega_parent; v_child=R(v_parent+omega_parent cross P)+d_dot z_child",
+            "expression": "omega_child=R omega_parent; v_child=R(v_parent+omega_parent×P)+d_dot z_child",
             "variables": {
+              "omega_parent": "parent-link angular velocity relative to the fixed base observer, expressed in the parent basis",
+              "omega_child": "child-link angular velocity relative to the same base observer, expressed in the child basis",
+              "v_parent": "parent-origin linear velocity relative to the fixed base observer, expressed in the parent basis",
+              "v_child": "child-origin linear velocity relative to the same base observer, expressed in the child basis",
               "R": "parent-to-child coordinate rotation",
-              "P": "origin offset in parent components",
-              "d_dot": "first time derivative of prismatic displacement",
-              "z_child": "local joint-axis unit vector",
-              "omega": "base-relative angular velocity",
-              "v": "base-relative origin linear velocity"
+              "P": "vector from parent origin to child origin in parent components",
+              "z_child": "unit vector of the joint axis expressed in the child basis",
+              "d_dot": "first time derivative of prismatic-joint displacement d"
             },
             "units": {
-              "omega": "rad/s",
-              "v,d_dot": "m/s",
+              "omega_parent": "rad/s",
+              "omega_child": "rad/s",
+              "v_parent": "m/s",
+              "v_child": "m/s",
+              "R": "dimensionless",
               "P": "m",
-              "R,z_child": "dimensionless"
+              "z_child": "dimensionless",
+              "d_dot": "m/s"
             },
             "assumptions": [
-              "Use the source’s link frames and joint axis z_(i+1);R=(i+1)_i R converts parent components into child components.",
-              "v_i andω_i are velocities relative to the fixed base/universal frame,not derivatives relative to their own moving link.",
-              "The relative origin offsetP is expressed in parent framei;for the revolute recurrence it is constant in that frame."
+              "Both link velocities are measured relative to the same fixed base observer, not differentiated relative to the moving link itself.",
+              "R maps parent-basis components into the child basis. P points from the parent origin to the child origin and is expressed in the parent basis.",
+              "All cross products are evaluated in one basis before rotation. The joint-axis unit vector z_child is expressed in the child basis.",
+              "An ideal prismatic joint adds translation along z_child but no relative angular velocity. P is the instantaneous origin offset; it need not remain constant during prismatic extension."
             ]
           }
         ],
@@ -4294,12 +4392,15 @@
           "The angular rate is not an additional linear velocity."
         ],
         "examTraps": [
-          "Distinguish the stated assumptions and source code from unstated corrections."
+          "A prismatic joint adds a linear speed, not an angular rate or acceleration."
         ],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0315-Q01",
@@ -4566,10 +4667,10 @@
     },
     {
       "id": "W02-L09-P0315-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
-      "stem": "For that same map at (2, 3), what output rate results from qdot=(0.5, −1) per second?",
+      "stem": "For F(q1,q2)=q1²+q2 and G(q1,q2)=q1 q2 at (q1,q2)=(2,3), what output rate results from q_dot=(0.5,−1) per second?",
       "selectionMode": "single",
       "type": "numerical",
       "difficulty": "medium",
@@ -4587,7 +4688,8 @@
         "W02-L09-P0315-C01"
       ],
       "assumptions": [
-        "SameexplicitmapF=q1²+q2, G=q1 q2; dimensionlesscoordinates, time in seconds."
+        "The task output is x=(F,G). All joint/input and task coordinates are dimensionless; time is in seconds.",
+        "Evaluate the derivatives at q1=2 and q2=3."
       ],
       "options": [
         {
@@ -4632,25 +4734,39 @@
           "o4": "Incorrect. This does not perform the matrix product."
         },
         "steps": [
-          "UseJ=[[4, 1], [3, 2]].",
-          "xdot=4×0.5+1×(−1)=1.",
-          "ydot=3×0.5+2×(−1)=−0.5."
+          "Differentiate: J=[[2q1, 1], [q2, q1]].",
+          "At (2,3), J=[[4, 1], [3, 2]].",
+          "F_dot=4(0.5)+1(−1)=1 per second.",
+          "G_dot=3(0.5)+2(−1)=−0.5 per second."
         ],
         "formulas": [
           {
-            "expression": "J_ij=partial f_i/partial q_j; x_dot=J(q) q_dot",
+            "expression": "J_ij=∂f_i/∂q_j; x_dot=J(q) q_dot",
             "variables": {
-              "f_i": "task-coordinate function",
-              "q_j": "joint/input coordinate",
-              "J": "local derivative matrix",
-              "x_dot": "task velocity",
-              "q_dot": "joint/input rate"
+              "f_i": "ith component of f=(F,G), the task-position map",
+              "q_j": "jth input coordinate of q=(q1,q2)",
+              "i": "task-component index",
+              "j": "input-coordinate index",
+              "J_ij": "row i, column j of the Jacobian J",
+              "J": "matrix of task derivatives with respect to q",
+              "q": "input-coordinate vector at which derivatives are evaluated",
+              "x_dot": "time derivative of task vector x=(F,G)",
+              "q_dot": "time derivative of input vector q"
             },
             "units": {
-              "explicit polynomial example": "coordinates dimensionless; all rates per second"
+              "f_i": "dimensionless",
+              "q_j": "dimensionless",
+              "i": "dimensionless index",
+              "j": "dimensionless index",
+              "J_ij": "dimensionless",
+              "J": "dimensionless",
+              "q": "dimensionless",
+              "x_dot": "s^−1",
+              "q_dot": "s^−1"
             },
             "assumptions": [
-              "Evaluate all partial derivatives at the supplied configuration."
+              "The task output is x=(F,G). All joint/input and task coordinates are dimensionless; time is in seconds.",
+              "Evaluate the derivatives at q1=2 and q2=3."
             ]
           }
         ],
@@ -4665,17 +4781,20 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0315-Q05",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "For a small configuration increment δq, which statement connects the Jacobian to position changes?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L09",
@@ -4747,7 +4866,10 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0316-Q01",
@@ -4831,13 +4953,13 @@
     },
     {
       "id": "W02-L09-P0316-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "How should the statement that J varies with time be qualified?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L09",
@@ -4880,7 +5002,7 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 316,
           "kind": "statement",
-          "locator": "Printed slide 21: instantaneous map, row/column interpretation and inconsistent general-size wording",
+          "locator": "Printed slide 21: time-variation statement next to the J(θ) rate map",
           "evidenceText": "0 v=0 J (theta)*thetadot. Jacobianmultidimensionalderivative; instantaneouslineartransformation; varieswithtime. RowsCartesianDOF; columnsjoints. Printed: mostgeneralform 6 x6; doesnothavetobesquare.",
           "role": "conflict",
           "region": null
@@ -4907,11 +5029,25 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ],
+      "conflictResolution": {
+        "status": "derived-qualification-pending-independent-review",
+        "questionVersion": 2,
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 316,
+        "sourceClaim": "The Jacobian will vary as a function of time.",
+        "basis": "The source writes J(θ). Therefore time dependence occurs through θ(t); a fixed configuration or a constant derivative map can leave J unchanged. For the explicit linear task f(q)=q, J=I at every time.",
+        "method": "Restrict the claim to possible configuration-induced time variation, not mandatory change in every entry.",
+        "scope": "This question version only. The source PDF remains unchanged and the global source-dispute record is retained."
+      }
     },
     {
       "id": "W02-L09-P0316-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "For a full spatial end-effector twist and n independent joint coordinates, what is the standard Jacobian shape?",
@@ -4932,7 +5068,7 @@
         "W02-L09-P0316-C01"
       ],
       "assumptions": [
-        "Full 6-componentgeometricvelocitytask; nindependentjointcoordinates."
+        "A full six-component geometric velocity task, with three linear and three angular components, and n independent joint coordinates."
       ],
       "options": [
         {
@@ -4957,17 +5093,6 @@
       ],
       "citations": [
         {
-          "slideId": "lectures-p0316",
-          "sourceId": "lectures",
-          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-          "physicalPage": 316,
-          "kind": "statement",
-          "locator": "Printed slide 21: instantaneous map, row/column interpretation and inconsistent general-size wording",
-          "evidenceText": "0 v=0 J (theta)*thetadot. Jacobianmultidimensionalderivative; instantaneouslineartransformation; varieswithtime. RowsCartesianDOF; columnsjoints. Printed: mostgeneralform 6 x6; doesnothavetobesquare.",
-          "role": "explicit",
-          "region": null
-        },
-        {
           "slideId": "lectures-p0317",
           "sourceId": "lectures",
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
@@ -4975,7 +5100,7 @@
           "kind": "statement",
           "locator": "Printed slide 22: six-joint dimensions and linear/angular stacking",
           "evidenceText": "Six-jointedspatialrobot: J6 x6, thetadot 6 x1, Cartesianvelocity 6 x1 stacking 3 linear and 3 rotationalcomponents.",
-          "role": "explicit",
+          "role": "premise",
           "region": null
         },
         {
@@ -4984,8 +5109,8 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 323,
           "kind": "statement",
-          "locator": "Printed slide 28: summary column interpretation,6×n size,determinant statement and force-transpose application",
-          "evidenceText": "Outwardvelocityrecursionbase-to-tip. Revoluteaddthetadot*zhatandsweeplinearvelocityomega crossp; prismaticaddddot*zhat. J (theta)6 xn. Eachcolumnisend-effectormotionfromsinglejointunitrate. Singularities (det J=0) limitmotion. ApplicationsRMRC, force control (J^T), differentiablesimulation, learnedkinematics.",
+          "locator": "Printed slide 28: the explicit 6×n Jacobian dimension and joint-rate-to-end-effector-velocity description",
+          "evidenceText": "The Jacobian J(θ) is a 6×n matrix mapping joint velocities to end-effector Cartesian velocities.",
           "role": "explicit",
           "region": null
         }
@@ -5011,11 +5136,14 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0316-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "A robot has 7 independent joints and the task tracks all 3 linear and 3 angular velocity components. What dimensions are J, qdot and v?",
@@ -5059,17 +5187,6 @@
       ],
       "citations": [
         {
-          "slideId": "lectures-p0316",
-          "sourceId": "lectures",
-          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-          "physicalPage": 316,
-          "kind": "statement",
-          "locator": "Printed slide 21: instantaneous map, row/column interpretation and inconsistent general-size wording",
-          "evidenceText": "0 v=0 J (theta)*thetadot. Jacobianmultidimensionalderivative; instantaneouslineartransformation; varieswithtime. RowsCartesianDOF; columnsjoints. Printed: mostgeneralform 6 x6; doesnothavetobesquare.",
-          "role": "explicit",
-          "region": null
-        },
-        {
           "slideId": "lectures-p0317",
           "sourceId": "lectures",
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
@@ -5077,7 +5194,7 @@
           "kind": "statement",
           "locator": "Printed slide 22: six-joint dimensions and linear/angular stacking",
           "evidenceText": "Six-jointedspatialrobot: J6 x6, thetadot 6 x1, Cartesianvelocity 6 x1 stacking 3 linear and 3 rotationalcomponents.",
-          "role": "explicit",
+          "role": "premise",
           "region": null
         },
         {
@@ -5086,8 +5203,8 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 323,
           "kind": "statement",
-          "locator": "Printed slide 28: summary column interpretation,6×n size,determinant statement and force-transpose application",
-          "evidenceText": "Outwardvelocityrecursionbase-to-tip. Revoluteaddthetadot*zhatandsweeplinearvelocityomega crossp; prismaticaddddot*zhat. J (theta)6 xn. Eachcolumnisend-effectormotionfromsinglejointunitrate. Singularities (det J=0) limitmotion. ApplicationsRMRC, force control (J^T), differentiablesimulation, learnedkinematics.",
+          "locator": "Printed slide 28: the explicit 6×n Jacobian dimension and joint-rate-to-end-effector-velocity description",
+          "evidenceText": "The Jacobian J(θ) is a 6×n matrix mapping joint velocities to end-effector Cartesian velocities.",
           "role": "explicit",
           "region": null
         }
@@ -5097,7 +5214,7 @@
         "optionExplanations": {
           "o1": "Correct. Six outputs and seven inputs require these dimensions.",
           "o2": "Incorrect. This swaps input/output roles.",
-          "o3": "Incorrect. A6×6 matrix cannot multiply the 7-vector as given.",
+          "o3": "Incorrect. A 6×6 matrix cannot multiply the given 7×1 joint-rate vector.",
           "o4": "Incorrect. This omits the three angular velocity components."
         },
         "steps": [],
@@ -5105,15 +5222,18 @@
         "simpleExplanation": "Six outputs and seven inputs require these dimensions.",
         "memoryAid": null,
         "misconceptions": [
-          "This swaps input/output roles.",
-          "A6×6 matrix cannot multiply the 7-vector as given.",
-          "This omits the three angular velocity components."
+          "Swapping input and output dimensions reverses the velocity map.",
+          "A 6×6 Jacobian has only six joint-rate input columns.",
+          "A 3×7 map omits the angular-velocity task components."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0316-Q05",
@@ -5558,7 +5678,7 @@
     },
     {
       "id": "W02-L09-P0318-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "For R_AB=Rz (90°), v_B=(1, 0, 0) m/s and ω_B=(0, 1, 0) rad/s, what is [v_A; ω_A]?",
@@ -5618,36 +5738,49 @@
         }
       ],
       "solution": {
-        "justification": "R rotates both blocks: xmaps toy, and y maps to−x.",
+        "justification": "The same rotation acts on both blocks: +x becomes +y, and +y becomes −x.",
         "optionExplanations": {
-          "o1": "Correct. R rotates both blocks: xmaps toy, and y maps to−x.",
+          "o1": "Correct. Rotate both vectors: v_A=(0, 1, 0) m/s and omega_A=(−1, 0, 0) rad/s.",
           "o2": "Incorrect. This rotates only the linear block.",
           "o3": "Incorrect. This rotates only the angular block.",
           "o4": "Incorrect. This interchanges the input block roles."
         },
         "steps": [
-          "MultiplyRz (90°) by (1, 0, 0) to get (0, 1, 0).",
-          "MultiplythesameRby (0, 1, 0) to get (−1, 0, 0)."
+          "Multiply Rz(90°) by v_B=(1, 0, 0) to obtain v_A=(0, 1, 0) m/s.",
+          "Multiply the same Rz(90°) by omega_B=(0, 1, 0) to obtain omega_A=(−1, 0, 0) rad/s.",
+          "Stack the linear block first and the angular block second."
         ],
         "formulas": [
           {
-            "expression": "twist_A=diag(R_AB,R_AB)twist_B",
+            "expression": "twist_A=diag(R_AB,R_AB) twist_B",
             "variables": {
-              "twist": "stacked [linear velocity; angular velocity]",
-              "R_AB": "coordinate rotation"
+              "twist_A": "stacked [v_A; omega_A] for the same physical point/body motion and fixed reference observer, expressed in basis A",
+              "twist_B": "the same stacked [linear; angular] velocity expressed in basis B",
+              "v_A": "point linear velocity in A components",
+              "v_B": "the same point linear velocity in B components",
+              "omega_A": "body angular velocity in A components",
+              "omega_B": "the same body angular velocity in B components",
+              "R_AB": "rotation mapping B components into A components",
+              "diag(R_AB,R_AB)": "6×6 block-diagonal basis-change matrix"
             },
             "units": {
-              "linear": "m/s",
-              "angular": "rad/s",
-              "R_AB": "dimensionless"
+              "v_A": "m/s",
+              "v_B": "m/s",
+              "omega_A": "rad/s",
+              "omega_B": "rad/s",
+              "twist_A": "first three entries m/s; last three entries rad/s",
+              "twist_B": "first three entries m/s; last three entries rad/s",
+              "R_AB": "dimensionless",
+              "diag(R_AB,R_AB)": "dimensionless"
             },
             "assumptions": [
-              "^A_B R maps vector components from frameB to frameA. Unless stated otherwise,the same physical point and the same differentiation/reference observer are retained when merely re-expressing a vector.",
-              "All vectors in a sum or cross product are expressed in the same basis;right-handed axes."
+              "Right-handed orthonormal frames. R_AB maps B-basis components into A-basis components.",
+              "When only re-expressing a vector, keep the same physical point and reference observer. Changing the observer is a different operation and requires the frame-motion terms.",
+              "No shift of the physical reference point and no change of the reference observer."
             ]
           }
         ],
-        "simpleExplanation": "R rotates both blocks: xmaps toy, and y maps to−x.",
+        "simpleExplanation": "The same rotation acts on both blocks: +x becomes +y, and +y becomes −x.",
         "memoryAid": null,
         "misconceptions": [
           "This rotates only the linear block.",
@@ -5658,17 +5791,20 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0318-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Can this pure coordinate-basis rotation remove a kinematic rank deficiency?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L09",
@@ -5689,19 +5825,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "No; the block rotation is invertible, so rank is unchanged"
+          "text": "No; the block rotation is invertible and therefore preserves Jacobian rank"
         },
         {
           "id": "o2",
-          "text": "Yes; rotating the axes always adds one independent column"
+          "text": "Yes; choosing axes aligned with the image of J turns a missing output direction into an attainable one"
         },
         {
           "id": "o3",
-          "text": "Yes; the Jacobian becomes identity after any 90°rotation"
+          "text": "Yes; mixing linear and angular components can increase the number of independent task directions"
         },
         {
           "id": "o4",
-          "text": "No; because a rotation matrix itself is singular"
+          "text": "No; because rotating the basis preserves each individual Jacobian entry"
         }
       ],
       "correctOptionIds": [
@@ -5721,27 +5857,30 @@
         }
       ],
       "solution": {
-        "justification": "Premultiplication by an invertible matrix preserves rank.",
+        "justification": "Premultiplication by an invertible coordinate map changes representation but not rank.",
         "optionExplanations": {
-          "o1": "Correct. Premultiplication by an invertible matrix preserves rank.",
-          "o2": "Incorrect. It changes representation, not physical motion capability.",
-          "o3": "Incorrect. An arbitrary Jacobian does not become identity.",
-          "o4": "Incorrect. A proper rotation is invertible, which is why the rank is preserved."
+          "o1": "Correct. Premultiplication by an invertible coordinate map changes representation but not rank.",
+          "o2": "Incorrect. An aligned basis can make the missing direction easier to identify, but it does not create it.",
+          "o3": "Incorrect. An invertible basis change cannot increase the span dimension, and this block map rotates the two blocks without exchanging them.",
+          "o4": "Incorrect. Individual entries generally change; rank is preserved because the transformation is invertible, not because entries are unchanged."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Premultiplication by an invertible matrix preserves rank.",
+        "simpleExplanation": "Premultiplication by an invertible coordinate map changes representation but not rank.",
         "memoryAid": null,
         "misconceptions": [
-          "It changes representation, not physical motion capability.",
-          "An arbitrary Jacobian does not become identity.",
-          "A proper rotation is invertible, which is why the rank is preserved."
+          "An aligned basis can make the missing direction easier to identify, but it does not create it.",
+          "An invertible basis change cannot increase the span dimension, and this block map rotates the two blocks without exchanging them.",
+          "Individual entries generally change; rank is preserved because the transformation is invertible, not because entries are unchanged."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0318-Q05",
@@ -5931,13 +6070,13 @@
     },
     {
       "id": "W02-L09-P0319-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "What is the most precise interpretation of a kinematic singularity for a specified task Jacobian?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L09",
@@ -5982,7 +6121,7 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 319,
           "kind": "statement",
-          "locator": "Printed slide 24: inverse-rate equation, rank-loss discussion and qualified singularity examples",
+          "locator": "Printed slide 24: singularity interpretation and rank/inverse-rate claims",
           "evidenceText": "Nonsingularsquarecase: thetadot=J^-1(theta) v. SingularitylosesinstantaneousCartesianmotion/DOF. Highratesmayoccurwithoutchecks. Printedactualsingularityrequiresinfinitejointmotion. Commonexamplesjointalignmentinteriorandworkspaceedge. PrintedadditionalnotpredictedbyJacobian; structuresmaybesingularity-freefromJacobianview.",
           "role": "conflict",
           "region": null
@@ -6009,17 +6148,31 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ],
+      "conflictResolution": {
+        "status": "derived-qualification-pending-independent-review",
+        "questionVersion": 2,
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 319,
+        "sourceClaim": "No instantaneous motion along one of the Cartesian coordinates is possible; the manipulator loses one or more DOF.",
+        "basis": "For the specified map v=J(q)q_dot, attainable instantaneous task velocities form image(J). A drop below the attainable regular rank reduces this image dimension without removing any physical joint.",
+        "method": "Define singularity for the stated differential task and model; do not identify every zero entry or constrained joint with rank loss.",
+        "scope": "This question version only. The source PDF remains unchanged and the global source-dispute record is retained."
+      }
     },
     {
       "id": "W02-L09-P0319-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Why must the source’s phrase “one Cartesian coordinate is lost” not be interpreted as necessarily one named world axis?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L09",
@@ -6037,19 +6190,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "A singularity always removes the world x-axis specifically"
+          "text": "The unavailable direction must always coincide with the first named world-coordinate axis"
         },
         {
           "id": "o3",
-          "text": "Changing axis labels can restore the missing physical direction"
+          "text": "Renaming the task axes can restore the missing physical output direction"
         },
         {
           "id": "o4",
-          "text": "Every rank loss is merely a drawing error"
+          "text": "Each zero Jacobian entry identifies one lost Cartesian direction"
         },
         {
           "id": "o1",
-          "text": "The lost direction can be a linear combination of coordinate axes, depending on the configuration and basis"
+          "text": "The unavailable direction can be a linear combination of named axes, depending on configuration and basis"
         }
       ],
       "correctOptionIds": [
@@ -6064,7 +6217,7 @@
           "kind": "equation",
           "locator": "Printed slide 23: block-diagonal rotation and Jacobian frame-change equations",
           "evidenceText": "Twistorder [v; omega]. [Av; Aomega]=diag (A_B R, A_B R)[Bv; Bomega]. Therefore A J=diag (A_B R, A_B R)*B J.",
-          "role": "explicit",
+          "role": "premise",
           "region": null
         },
         {
@@ -6073,34 +6226,48 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 319,
           "kind": "statement",
-          "locator": "Printed slide 24: inverse-rate equation, rank-loss discussion and qualified singularity examples",
+          "locator": "Printed slide 24: singularity interpretation and rank/inverse-rate claims",
           "evidenceText": "Nonsingularsquarecase: thetadot=J^-1(theta) v. SingularitylosesinstantaneousCartesianmotion/DOF. Highratesmayoccurwithoutchecks. Printedactualsingularityrequiresinfinitejointmotion. Commonexamplesjointalignmentinteriorandworkspaceedge. PrintedadditionalnotpredictedbyJacobian; structuresmaybesingularity-freefromJacobianview.",
           "role": "conflict",
           "region": null
         }
       ],
       "solution": {
-        "justification": "Rank loss is geometric, while named coordinate axes depend on representation.",
+        "justification": "Rank loss concerns a subspace of task velocities; its representation need not align with one named world axis.",
         "optionExplanations": {
-          "o1": "Correct. Rank loss is geometric, while named coordinate axes depend on representation.",
-          "o2": "Incorrect. No universal world-axis direction is singled out.",
-          "o3": "Incorrect. A basis change preserves rank and physical capability.",
-          "o4": "Incorrect. Rank deficiency can be a genuine mechanical configuration property."
+          "o1": "Correct. Rank loss concerns a subspace of task velocities; its representation need not align with one named world axis.",
+          "o2": "Incorrect. The mathematical deficiency does not universally select the world x direction.",
+          "o3": "Incorrect. An invertible coordinate change preserves rank and cannot restore physical capability.",
+          "o4": "Incorrect. Individual zero entries do not determine the image dimension; full-rank matrices may contain many zeros."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Rank loss is geometric, while named coordinate axes depend on representation.",
+        "simpleExplanation": "Rank loss concerns a subspace of task velocities; its representation need not align with one named world axis.",
         "memoryAid": null,
         "misconceptions": [
-          "No universal world-axis direction is singled out.",
-          "A basis change preserves rank and physical capability.",
-          "Rank deficiency can be a genuine mechanical configuration property."
+          "The mathematical deficiency does not universally select the world x direction.",
+          "An invertible coordinate change preserves rank and cannot restore physical capability.",
+          "Individual zero entries do not determine the image dimension; full-rank matrices may contain many zeros."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ],
+      "conflictResolution": {
+        "status": "derived-qualification-pending-independent-review",
+        "questionVersion": 2,
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 319,
+        "sourceClaim": "No instantaneous motion along one of the Cartesian coordinates is possible.",
+        "basis": "An invertible task-basis change D sends image(J) to D image(J) and preserves rank. The unavailable direction need not align with a named world axis; it may be a linear combination of coordinate directions.",
+        "method": "Interpret the sentence geometrically as loss of an instantaneous output direction, not necessarily one named Cartesian axis.",
+        "scope": "This question version only. The source PDF remains unchanged and the global source-dispute record is retained."
+      }
     },
     {
       "id": "W02-L09-P0319-Q04",
@@ -6205,13 +6372,13 @@
     },
     {
       "id": "W02-L09-P0319-Q05",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "For J=diag (1, 0), which statement distinguishes the desired velocities (2, 0) and (0, 1)?",
       "selectionMode": "single",
       "type": "numerical",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "numerical",
       "week": 2,
       "lectureId": "L09",
@@ -6302,11 +6469,14 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0319-Q06",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Which correction best qualifies “at the actual singularity we require infinite joint motion”?",
@@ -6330,19 +6500,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Near-singular inversion can amplify rates for some targets; at exact rank loss, an incompatible target has no exact solution, while compatible targets may have finite solutions"
+          "text": "Near-singular inversion can amplify some rates; at exact rank loss, incompatible targets lack exact solutions while compatible targets may have finite solutions"
         },
         {
           "id": "o2",
-          "text": "Every target, including zero velocity, needs infinite rates at a singularity"
+          "text": "At exact rank loss, all targets lack finite solutions, including targets lying in the Jacobian image"
         },
         {
           "id": "o3",
-          "text": "An infinite numerical value is always a physically executable command"
+          "text": "At exact rank loss, a least-squares rate is an exact solution for every desired task velocity"
         },
         {
           "id": "o4",
-          "text": "A singular Jacobian is always invertible if the controller runs faster"
+          "text": "Near-singular amplification proves that every bounded target needs an unbounded rate, including targets along well-conditioned directions"
         }
       ],
       "correctOptionIds": [
@@ -6355,38 +6525,52 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 319,
           "kind": "statement",
-          "locator": "Printed slide 24: inverse-rate equation, rank-loss discussion and qualified singularity examples",
+          "locator": "Printed slide 24: singularity interpretation and rank/inverse-rate claims",
           "evidenceText": "Nonsingularsquarecase: thetadot=J^-1(theta) v. SingularitylosesinstantaneousCartesianmotion/DOF. Highratesmayoccurwithoutchecks. Printedactualsingularityrequiresinfinitejointmotion. Commonexamplesjointalignmentinteriorandworkspaceedge. PrintedadditionalnotpredictedbyJacobian; structuresmaybesingularity-freefromJacobianview.",
           "role": "conflict",
           "region": null
         }
       ],
       "solution": {
-        "justification": "The exact linear equations distinguish attainable and unattainable directions.",
+        "justification": "Solvability at exact rank loss depends on membership in the image of J; inverse-rate growth near a singularity is a separate limiting issue.",
         "optionExplanations": {
-          "o1": "Correct. The exact linear equations distinguish attainable and unattainable directions.",
-          "o2": "Incorrect. Zero input produces zero output even at a singularity.",
-          "o3": "Incorrect. Physical actuators cannot execute infinite rates.",
-          "o4": "Incorrect. Sampling frequency does not restore a missing matrix rank."
+          "o1": "Correct. Solvability at exact rank loss depends on membership in the image of J; inverse-rate growth near a singularity is a separate limiting issue.",
+          "o2": "Incorrect. Compatible targets can have finite solutions; for J=diag(1,0), the target(2,0) is achieved by rate(2,0).",
+          "o3": "Incorrect. For an incompatible target, least squares leaves a nonzero residual rather than producing an exact solution.",
+          "o4": "Incorrect. Amplification depends on the target direction; a rate can remain bounded when the demand avoids the weakening direction."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The exact linear equations distinguish attainable and unattainable directions.",
+        "simpleExplanation": "Solvability at exact rank loss depends on membership in the image of J; inverse-rate growth near a singularity is a separate limiting issue.",
         "memoryAid": null,
         "misconceptions": [
-          "Zero input produces zero output even at a singularity.",
-          "Physical actuators cannot execute infinite rates.",
-          "Sampling frequency does not restore a missing matrix rank."
+          "Compatible targets can have finite solutions; for J=diag(1,0), the target(2,0) is achieved by rate(2,0).",
+          "For an incompatible target, least squares leaves a nonzero residual rather than producing an exact solution.",
+          "Amplification depends on the target direction; a rate can remain bounded when the demand avoids the weakening direction."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ],
+      "conflictResolution": {
+        "status": "derived-qualification-pending-independent-review",
+        "questionVersion": 2,
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 319,
+        "sourceClaim": "At the actual singularity we would require infinite motion from the joint.",
+        "basis": "For J=diag(1,0), v=(2,0) has the finite solution q_dot=(2,0), whereas v=(0,1) has no exact solution. For J_epsilon=diag(1,epsilon), epsilon>0, the latter target gives q_dot=(0,1/epsilon), which diverges only as a near-singular limit.",
+        "method": "Separate exact compatibility from near-singular inverse-rate amplification; do not interpret an infinite rate as an exact executable solution.",
+        "scope": "This question version only. The source PDF remains unchanged and the global source-dispute record is retained."
+      }
     },
     {
       "id": "W02-L09-P0319-Q07",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Which pair of situations is named as common singularity examples in the source?",
@@ -6412,19 +6596,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "Only maximum motor temperature and depleted batteries"
+          "text": "Joint-axis alignment only at workspace edges and all nonaligned interior configurations"
         },
         {
           "id": "o3",
-          "text": "Only camera occlusion and corrupted image files"
+          "text": "All orthogonal-axis configurations and all configurations halfway between joint limits"
         },
         {
           "id": "o4",
-          "text": "Only collisions and communication delays"
+          "text": "All redundant-arm configurations and all configurations with a rectangular task Jacobian"
         },
         {
           "id": "o1",
-          "text": "Joint-axis alignment in the workspace interior, and configurations at workspace edges"
+          "text": "Joint-axis alignment in the workspace interior and configurations at workspace edges"
         }
       ],
       "correctOptionIds": [
@@ -6444,37 +6628,40 @@
         }
       ],
       "solution": {
-        "justification": "These are the two geometric examples listed, subject to task/rank qualification.",
+        "justification": "These are the two geometric examples named by the source; whether either is singular still depends on the task and rank.",
         "optionExplanations": {
-          "o1": "Correct. These are the two geometric examples listed, subject to task/rank qualification.",
-          "o2": "Incorrect. These are hardware conditions, not the listed Jacobian examples.",
-          "o3": "Incorrect. These are perception/data issues rather than the named configurations.",
-          "o4": "Incorrect. Those may be serious failures but are not the listed kinematic examples."
+          "o1": "Correct. These are the two geometric examples named by the source; whether either is singular still depends on the task and rank.",
+          "o2": "Incorrect. The source places the alignment example in the workspace interior and does not call every nonaligned interior pose singular.",
+          "o3": "Incorrect. Orthogonality and midrange joint values do not by themselves establish the listed singularity examples.",
+          "o4": "Incorrect. Redundancy and a rectangular Jacobian do not automatically imply a loss of attainable task rank."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "These are the two geometric examples listed, subject to task/rank qualification.",
+        "simpleExplanation": "These are the two geometric examples named by the source; whether either is singular still depends on the task and rank.",
         "memoryAid": null,
         "misconceptions": [
-          "These are hardware conditions, not the listed Jacobian examples.",
-          "These are perception/data issues rather than the named configurations.",
-          "Those may be serious failures but are not the listed kinematic examples."
+          "The source places the alignment example in the workspace interior and does not call every nonaligned interior pose singular.",
+          "Orthogonality and midrange joint values do not by themselves establish the listed singularity examples.",
+          "Redundancy and a rectangular Jacobian do not automatically imply a loss of attainable task rank."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0319-Q08",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "For the position task x=q1, y=q2, z=q3 with independent prismatic coordinates each limited to [0, 1], what is J at a limit-defined workspace corner?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "extremely_tricky",
+      "difficulty": "hard",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L09",
@@ -6557,17 +6744,20 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0319-Q09",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "A redundant task map has J=[[1, 1, 0], [0, 0, 1]]. Do the identical first two columns alone prove loss of its two-dimensional task capability?",
       "selectionMode": "single",
       "type": "numerical",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "numerical",
       "week": 2,
       "lectureId": "L09",
@@ -6658,11 +6848,14 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0319-Q10",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "How should the statement about “additional singularities not predicted by the Jacobian” be treated?",
@@ -6711,7 +6904,7 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 319,
           "kind": "statement",
-          "locator": "Printed slide 24: inverse-rate equation, rank-loss discussion and qualified singularity examples",
+          "locator": "Printed slide 24: singularity interpretation and rank/inverse-rate claims",
           "evidenceText": "Nonsingularsquarecase: thetadot=J^-1(theta) v. SingularitylosesinstantaneousCartesianmotion/DOF. Highratesmayoccurwithoutchecks. Printedactualsingularityrequiresinfinitejointmotion. Commonexamplesjointalignmentinteriorandworkspaceedge. PrintedadditionalnotpredictedbyJacobian; structuresmaybesingularity-freefromJacobianview.",
           "role": "conflict",
           "region": null
@@ -6738,11 +6931,25 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "conflictResolution": {
+        "status": "derived-qualification-pending-independent-review",
+        "questionVersion": 2,
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 319,
+        "sourceClaim": "Additional singularities may exist that are not predicted by the Jacobian.",
+        "basis": "A differential singularity of the explicitly modeled task is defined and diagnosed by its task-Jacobian rank. Collision, joint-limit, representation and unmodeled physical failures need their own models or definitions; full rank alone does not exclude them.",
+        "method": "Bound the answer to the specified task Jacobian rather than claiming that one kinematic model diagnoses every physical failure.",
+        "scope": "This question version only. The source PDF remains unchanged and the global source-dispute record is retained."
+      },
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0321-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "What is the central RMRC operation described in the lecture?",
@@ -6766,19 +6973,19 @@
       "options": [
         {
           "id": "o3",
-          "text": "Find a single fixed joint pose without any velocity update"
+          "text": "Solve directly for a joint pose from a desired end-effector pose without rate integration"
         },
         {
           "id": "o4",
-          "text": "Replace every kinematic model by a list of motor powers"
+          "text": "Compute joint accelerations online from prescribed joint torques"
         },
         {
           "id": "o1",
-          "text": "Compute joint velocities from a desired Cartesian velocity in real time"
+          "text": "Compute joint velocities online from a desired Cartesian velocity"
         },
         {
           "id": "o2",
-          "text": "Compute camera exposure from joint temperatures"
+          "text": "Compute Cartesian velocity online from prescribed joint velocities"
         }
       ],
       "correctOptionIds": [
@@ -6798,27 +7005,30 @@
         }
       ],
       "solution": {
-        "justification": "RMRC is a velocity-level inverse control method.",
+        "justification": "The source defines RMRC as real-time inverse velocity control followed by integration.",
         "optionExplanations": {
-          "o1": "Correct. RMRC is a velocity-level inverse control method.",
-          "o2": "Incorrect. Those quantities are not its stated inputs and outputs.",
-          "o3": "Incorrect. The algorithm updates rates and integrates over time.",
-          "o4": "Incorrect. The slide explicitly requires an accurate kinematic model."
+          "o1": "Correct. The source defines RMRC as real-time inverse velocity control followed by integration.",
+          "o2": "Incorrect. This is the forward velocity map, the opposite input/output direction.",
+          "o3": "Incorrect. This is position-level inverse kinematics rather than the stated rate-control update.",
+          "o4": "Incorrect. This is a dynamics operation rather than the kinematic rate mapping."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "RMRC is a velocity-level inverse control method.",
+        "simpleExplanation": "The source defines RMRC as real-time inverse velocity control followed by integration.",
         "memoryAid": null,
         "misconceptions": [
-          "Those quantities are not its stated inputs and outputs.",
-          "The algorithm updates rates and integrates over time.",
-          "The slide explicitly requires an accurate kinematic model."
+          "This is the forward velocity map, the opposite input/output direction.",
+          "This is position-level inverse kinematics rather than the stated rate-control update.",
+          "This is a dynamics operation rather than the kinematic rate mapping."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0321-Q02",
@@ -6904,7 +7114,7 @@
     },
     {
       "id": "W02-L09-P0321-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "At one step, J=diag (2, 1), desired v=(0.4, −0.2), q=(1, 2), and Δt=0.1 s. Using the inverse and the stated Euler update, what is q_next?",
@@ -6987,20 +7197,25 @@
         ],
         "formulas": [
           {
-            "expression": "q_dot=J^-1 v; q_next=q+q_dot*delta_t",
+            "expression": "q_dot=J^−1 v; q_next=q+q_dot delta_t",
             "variables": {
-              "q": "joint/input coordinates",
-              "v": "desired task rate",
-              "delta_t": "timestep",
-              "J": "given nonsingular local Jacobian"
+              "q_dot": "computed first time derivative of the joint/input-coordinate vector",
+              "q_next": "joint/input-coordinate vector at the end of this Euler step",
+              "q": "current joint/input-coordinate vector",
+              "v": "desired task-coordinate time derivative",
+              "J": "specified nonsingular local Jacobian relating joint and task rates",
+              "delta_t": "duration of this integration step"
             },
             "units": {
-              "q": "dimensionless in example",
-              "v,q_dot": "per second",
+              "q_dot": "s^−1",
+              "q_next": "dimensionless",
+              "q": "dimensionless",
+              "v": "s^−1",
+              "J": "dimensionless in this example",
               "delta_t": "s"
             },
             "assumptions": [
-              "Single forward-Euler step with computed rate held constant."
+              "Generated dimensionless-coordinate example. Hold the computed q_dot constant for one forward-Euler step."
             ]
           }
         ],
@@ -7017,11 +7232,14 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0321-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Why is recomputing the Jacobian along a moving trajectory generally necessary?",
@@ -7045,19 +7263,19 @@
       "options": [
         {
           "id": "o3",
-          "text": "A rotation matrix can only be used once"
+          "text": "Changing the integration timestep changes the geometric derivative J at an otherwise fixed configuration"
         },
         {
           "id": "o4",
-          "text": "Cartesian velocity never changes, so all computations must restart"
+          "text": "Integrating the joint rates makes the previous configuration’s J exact for every later configuration"
         },
         {
           "id": "o1",
-          "text": "J depends on configuration, which changes as joint rates are integrated"
+          "text": "J depends on configuration, which generally changes while the joint rates are integrated"
         },
         {
           "id": "o2",
-          "text": "The number of physical joints changes at every timestep"
+          "text": "Changing the desired Cartesian velocity changes J even when the configuration and kinematic model stay fixed"
         }
       ],
       "correctOptionIds": [
@@ -7088,31 +7306,34 @@
         }
       ],
       "solution": {
-        "justification": "The next local velocity map may differ from the previous one.",
+        "justification": "As q changes, J(q) may change, so a controller generally reevaluates the local map.",
         "optionExplanations": {
-          "o1": "Correct. The next local velocity map may differ from the previous one.",
-          "o2": "Incorrect. Joint count does not change merely because the arm moves.",
-          "o3": "Incorrect. There is no single-use restriction on rotation matrices.",
-          "o4": "Incorrect. The reason is local configuration dependence, not this contradictory claim."
+          "o1": "Correct. As q changes, J(q) may change, so a controller generally reevaluates the local map.",
+          "o2": "Incorrect. The desired velocity changes the right-hand side of the rate equation; it does not by itself change a fixed model’s J(q).",
+          "o3": "Incorrect. The timestep affects the numerical update, not the geometric derivative at the same q.",
+          "o4": "Incorrect. Rate integration updates q; it does not make one local derivative globally valid."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The next local velocity map may differ from the previous one.",
+        "simpleExplanation": "As q changes, J(q) may change, so a controller generally reevaluates the local map.",
         "memoryAid": null,
         "misconceptions": [
-          "Joint count does not change merely because the arm moves.",
-          "There is no single-use restriction on rotation matrices.",
-          "The reason is local configuration dependence, not this contradictory claim."
+          "The desired velocity changes the right-hand side of the rate equation; it does not by itself change a fixed model’s J(q).",
+          "The timestep affects the numerical update, not the geometric derivative at the same q.",
+          "Rate integration updates q; it does not make one local derivative globally valid."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0321-Q05",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Which three limitations are explicitly listed for RMRC?",
@@ -7136,19 +7357,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "No need for a model, zero drift, and automatic singularity removal"
+          "text": "Singularity issues, ambiguity of inertia parameters, and dependence on an accurate mass matrix"
         },
         {
           "id": "o3",
-          "text": "Only image resolution, font size, and plot color"
+          "text": "Accumulated trajectory drift, multiple static IK branches, and dependence on a global pose lookup table"
         },
         {
           "id": "o4",
-          "text": "Guaranteed failure on every short trajectory"
+          "text": "Dependence on an accurate kinematic model, fixed joint-space sampling resolution, and minimum-time trajectory search"
         },
         {
           "id": "o1",
-          "text": "Singularity issues, accumulated drift, and dependence on an accurate kinematic model"
+          "text": "Singularity issues, accumulated trajectory drift, and dependence on an accurate kinematic model"
         }
       ],
       "correctOptionIds": [
@@ -7168,31 +7389,34 @@
         }
       ],
       "solution": {
-        "justification": "These are the three limitations named in the source.",
+        "justification": "These are the three limitations explicitly named in the RMRC slide.",
         "optionExplanations": {
-          "o1": "Correct. These are the three limitations named in the source.",
-          "o2": "Incorrect. This reverses all three stated cautions.",
-          "o3": "Incorrect. These presentation choices are not the listed control limitations.",
-          "o4": "Incorrect. The source describes RMRC as useful, with limitations rather than universal failure."
+          "o1": "Correct. These are the three limitations explicitly named in the RMRC slide.",
+          "o2": "Incorrect. Only singularity issues match; the listed method is kinematic and the slide does not list inertia or mass-matrix identification.",
+          "o3": "Incorrect. Only drift matches; the bullet does not list static branch selection or a pose lookup table.",
+          "o4": "Incorrect. Only kinematic-model dependence matches; those sampling and planning limitations are not the listed trio."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "These are the three limitations named in the source.",
+        "simpleExplanation": "These are the three limitations explicitly named in the RMRC slide.",
         "memoryAid": null,
         "misconceptions": [
-          "This reverses all three stated cautions.",
-          "These presentation choices are not the listed control limitations.",
-          "The source describes RMRC as useful, with limitations rather than universal failure."
+          "Only singularity issues match; the listed method is kinematic and the slide does not list inertia or mass-matrix identification.",
+          "Only drift matches; the bullet does not list static branch selection or a pose lookup table.",
+          "Only kinematic-model dependence matches; those sampling and planning limitations are not the listed trio."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0321-Q06",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Which statement correctly qualifies the source’s claim that an explicit Jacobian supplies safety guarantees?",
@@ -7241,7 +7465,7 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 321,
           "kind": "statement",
-          "locator": "Printed slide 26: RMRC definition, Euler update, limitations and AI/safety claim",
+          "locator": "Printed slide 26: final AI-connection bullet claiming interpretability and safety guarantees",
           "evidenceText": "RMRC (Whitney, 1969): realtimejointvelocitycontrolfromdesiredCartesianvelocity. Eachstepcomputethetadot, integratetheta<-theta+thetadot*delta_t. Limitations: singularities, driftlongtrajectories, accuratekinematicmodel. RLmaylearnRMRC-likebehavior; explicitJacobianinterpretabilityandsafetyguaranteesclaimed.",
           "role": "conflict",
           "region": null
@@ -7268,7 +7492,21 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "conflictResolution": {
+        "status": "derived-qualification-pending-independent-review",
+        "questionVersion": 2,
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 321,
+        "sourceClaim": "Explicit Jacobian provides interpretability and safety guarantees.",
+        "basis": "The equation v=Jq_dot describes a local rate map. It contains no collision clearance, actuator-limit or model-validity constraints by itself. The same slide lists singularity and model-accuracy limitations.",
+        "method": "Preserve the interpretability benefit but require explicit constraints and controller/model checks before any physical-safety guarantee.",
+        "scope": "This question version only. The source PDF remains unchanged and the global source-dispute record is retained."
+      },
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0321-Q07",
@@ -7436,7 +7674,7 @@
     },
     {
       "id": "W02-L09-P0322-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "What is contrasted in the table’s first row?",
@@ -7460,19 +7698,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Traditional analytic Jacobians from DH parameters versus online Jacobian estimates from data"
+          "text": "Analytic Jacobians from DH parameters versus online Jacobian estimates from data"
         },
         {
           "id": "o2",
-          "text": "Traditional image compression versus learned display themes"
+          "text": "Finite-difference Jacobians from a geometric model versus symbolic differentiation of a fitted neural model"
         },
         {
           "id": "o3",
-          "text": "Traditional random Jacobians versus neural methods that need no observations"
+          "text": "Offline calibration of DH parameters versus lookup of a fixed precomputed Jacobian"
         },
         {
           "id": "o4",
-          "text": "Two methods that both require identical symbolic DH calculations"
+          "text": "Online estimation in both columns, distinguished only by the chosen coordinate basis"
         }
       ],
       "correctOptionIds": [
@@ -7492,31 +7730,34 @@
         }
       ],
       "solution": {
-        "justification": "The table contrasts analytic modeling with Broyden/neural estimation from data.",
+        "justification": "The table’s first row contrasts an analytic DH-based model with data-driven online estimation.",
         "optionExplanations": {
-          "o1": "Correct. The table contrasts analytic modeling with Broyden/neural estimation from data.",
-          "o2": "Incorrect. Those are unrelated to the displayed control comparison.",
-          "o3": "Incorrect. The analytic side is not described as random, and estimation needs information.",
-          "o4": "Incorrect. The learning side is presented as a different estimation route."
+          "o1": "Correct. The table’s first row contrasts an analytic DH-based model with data-driven online estimation.",
+          "o2": "Incorrect. These are plausible derivative strategies, but they are not the displayed first-row contrast.",
+          "o3": "Incorrect. The learning column explicitly says estimated online, not merely a fixed precomputed lookup.",
+          "o4": "Incorrect. The traditional column is described as analytic computation from DH parameters, not as the same online estimator in another basis."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The table contrasts analytic modeling with Broyden/neural estimation from data.",
+        "simpleExplanation": "The table’s first row contrasts an analytic DH-based model with data-driven online estimation.",
         "memoryAid": null,
         "misconceptions": [
-          "Those are unrelated to the displayed control comparison.",
-          "The analytic side is not described as random, and estimation needs information.",
-          "The learning side is presented as a different estimation route."
+          "These are plausible derivative strategies, but they are not the displayed first-row contrast.",
+          "The learning column explicitly says estimated online, not merely a fixed precomputed lookup.",
+          "The traditional column is described as analytic computation from DH parameters, not as the same online estimator in another basis."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0322-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Which two techniques are named for online Jacobian estimation? Select both.",
@@ -7544,11 +7785,11 @@
         },
         {
           "id": "o3",
-          "text": "Changing the source PDF pagination"
+          "text": "Finite differences of a calibrated forward-kinematics model"
         },
         {
           "id": "o4",
-          "text": "Increasing a drawing’s font size"
+          "text": "Symbolic differentiation of DH transformation matrices"
         },
         {
           "id": "o1",
@@ -7573,30 +7814,33 @@
         }
       ],
       "solution": {
-        "justification": "Broyden updates are explicitly listed. Neural networks are explicitly listed.",
+        "justification": "Broyden updates are explicitly named in the table’s online-estimation parentheses. Neural networks are the other explicitly named technique in those parentheses.",
         "optionExplanations": {
-          "o1": "Correct. Broyden updates are explicitly listed.",
-          "o2": "Correct. Neural networks are explicitly listed.",
-          "o3": "Incorrect. Document pagination does not estimate a motion derivative.",
-          "o4": "Incorrect. Font size has no such kinematic role."
+          "o1": "Correct. Broyden updates are explicitly named in the table’s online-estimation parentheses.",
+          "o2": "Correct. Neural networks are the other explicitly named technique in those parentheses.",
+          "o3": "Incorrect. Finite differences can estimate derivatives, but this technique is not named in that table entry.",
+          "o4": "Incorrect. Symbolic DH differentiation belongs to an analytic-model route and is not one of the two named online techniques."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Broyden updates are explicitly listed. Neural networks are explicitly listed.",
+        "simpleExplanation": "Broyden updates are explicitly named in the table’s online-estimation parentheses. Neural networks are the other explicitly named technique in those parentheses.",
         "memoryAid": null,
         "misconceptions": [
-          "Document pagination does not estimate a motion derivative.",
-          "Font size has no such kinematic role."
+          "Finite differences can estimate derivatives, but this technique is not named in that table entry.",
+          "Symbolic DH differentiation belongs to an analytic-model route and is not one of the two named online techniques."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0322-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Which group of control methods is listed on the traditional side?",
@@ -7620,15 +7864,15 @@
       "options": [
         {
           "id": "o2",
-          "text": "JPEG encoding, ray tracing and OCR"
+          "text": "PID control, sliding-mode control and model-predictive control"
         },
         {
           "id": "o3",
-          "text": "Database indexing, email routing and calendar scheduling"
+          "text": "Computed-torque control, adaptive control and iterative learning control"
         },
         {
           "id": "o4",
-          "text": "Only model-free policy gradients with no model"
+          "text": "Visual servoing, force-admittance control and gain-scheduled joint control"
         },
         {
           "id": "o1",
@@ -7652,37 +7896,40 @@
         }
       ],
       "solution": {
-        "justification": "Those three control examples appear together in the left column.",
+        "justification": "This is the exact three-method group listed in the traditional-control column.",
         "optionExplanations": {
-          "o1": "Correct. Those three control examples appear together in the left column.",
-          "o2": "Incorrect. These are graphics/document methods, not that control list.",
-          "o3": "Incorrect. These are information-management tasks.",
-          "o4": "Incorrect. That description belongs to neither this traditional list nor all traditional control."
+          "o1": "Correct. This is the exact three-method group listed in the traditional-control column.",
+          "o2": "Incorrect. These are plausible control methods, but not the three-method group printed in this row.",
+          "o3": "Incorrect. This is another plausible robotics-control group, not the source’s stated list.",
+          "o4": "Incorrect. These methods do not reproduce the printed RMRC/operational-space/impedance group."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Those three control examples appear together in the left column.",
+        "simpleExplanation": "This is the exact three-method group listed in the traditional-control column.",
         "memoryAid": null,
         "misconceptions": [
-          "These are graphics/document methods, not that control list.",
-          "These are information-management tasks.",
-          "That description belongs to neither this traditional list nor all traditional control."
+          "These are plausible control methods, but not the three-method group printed in this row.",
+          "This is another plausible robotics-control group, not the source’s stated list.",
+          "These methods do not reproduce the printed RMRC/operational-space/impedance group."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0322-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "How should “exact but requires a precise kinematic model” be read?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L09",
@@ -7752,14 +7999,17 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0322-Q05",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
-      "stem": "What role does null-space control have in the table?",
+      "stem": "What role does null-space joint-rate control have in the table?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "medium",
@@ -7777,7 +8027,8 @@
         "W02-L09-P0322-C01"
       ],
       "assumptions": [
-        "Use the mathematical definition Jz=0 to make the listed redundancy-resolution role explicit."
+        "z is a joint-rate vector in the null space of the current task Jacobian J: Jz=0.",
+        "The statement is instantaneous; a finite displacement in a null space computed at one configuration need not preserve the finite task pose."
       ],
       "options": [
         {
@@ -7786,7 +8037,7 @@
         },
         {
           "id": "o1",
-          "text": "Redundancy resolution, using joint motion that does not change the primary instantaneous task velocity"
+          "text": "Redundancy resolution using joint rates whose contribution to the primary instantaneous task velocity is zero"
         },
         {
           "id": "o2",
@@ -7814,27 +8065,30 @@
         }
       ],
       "solution": {
-        "justification": "A null-space joint increment maps to zero primary task velocity.",
+        "justification": "The table associates null-space control with redundancy resolution. Its defining local relation is Jz=0 for a joint-rate vector z.",
         "optionExplanations": {
-          "o1": "Correct. A null-space joint increment maps to zero primary task velocity.",
-          "o2": "Incorrect. Null-space motion is defined by no change in the chosen task output.",
+          "o1": "Correct. A null-space joint-rate vector z satisfies Jz=0, so its instantaneous primary-task velocity contribution is zero.",
+          "o2": "Incorrect. A null-space rate contributes zero instantaneous velocity to the specified primary task; it does not add an arbitrary end-effector velocity. This is not a guarantee about a finite displacement under nonlinear kinematics.",
           "o3": "Incorrect. Rank cannot exceed the number of rows.",
           "o4": "Incorrect. The null space depends on the specified task Jacobian."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "A null-space joint increment maps to zero primary task velocity.",
+        "simpleExplanation": "The robot can use suitable joint rates for a secondary purpose without adding instantaneous velocity to the selected primary task.",
         "memoryAid": null,
         "misconceptions": [
-          "Null-space motion is defined by no change in the chosen task output.",
-          "Rank cannot exceed the number of rows.",
-          "The null space depends on the specified task Jacobian."
+          "A local null-space rate is not an arbitrary task velocity.",
+          "A finite displacement along a locally null direction can change a nonlinear task pose.",
+          "Null spaces are defined with respect to a specified task Jacobian."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0322-Q06",
@@ -7937,7 +8191,7 @@
     },
     {
       "id": "W02-L09-P0322-Q07",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Which industrial-arm names occur in the traditional-control column?",
@@ -7963,11 +8217,11 @@
       "options": [
         {
           "id": "o3",
-          "text": "NumPy, Pandas and Matplotlib"
+          "text": "KUKA, FANUC and Kawasaki"
         },
         {
           "id": "o4",
-          "text": "RRT, A* and Dijkstra"
+          "text": "ABB, Yaskawa and DENSO"
         },
         {
           "id": "o1",
@@ -7975,7 +8229,7 @@
         },
         {
           "id": "o2",
-          "text": "PyRobot, Drake and Broyden"
+          "text": "FANUC, Yaskawa and Stäubli"
         }
       ],
       "correctOptionIds": [
@@ -7995,31 +8249,34 @@
         }
       ],
       "solution": {
-        "justification": "Those three names are the printed industrial-arm examples.",
+        "justification": "The source lists precisely these three industrial-arm examples.",
         "optionExplanations": {
-          "o1": "Correct. Those three names are the printed industrial-arm examples.",
-          "o2": "Incorrect. These are other robotics/mathematical names in different roles, not that row.",
-          "o3": "Incorrect. These are Python libraries, not the listed arm examples.",
-          "o4": "Incorrect. These are planning algorithms, not the named industrial brands."
+          "o1": "Correct. The source lists precisely these three industrial-arm examples.",
+          "o2": "Incorrect. These are plausible industry names, but not the trio printed in the table.",
+          "o3": "Incorrect. Only KUKA overlaps the printed trio; the other two differ.",
+          "o4": "Incorrect. Only ABB overlaps the printed trio; the other two differ."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Those three names are the printed industrial-arm examples.",
+        "simpleExplanation": "The source lists precisely these three industrial-arm examples.",
         "memoryAid": null,
         "misconceptions": [
-          "These are other robotics/mathematical names in different roles, not that row.",
-          "These are Python libraries, not the listed arm examples.",
-          "These are planning algorithms, not the named industrial brands."
+          "These are plausible industry names, but not the trio printed in the table.",
+          "Only KUKA overlaps the printed trio; the other two differ.",
+          "Only ABB overlaps the printed trio; the other two differ."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0322-Q08",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Which association matches the table’s sim-to-real row?",
@@ -8043,11 +8300,11 @@
       "options": [
         {
           "id": "o3",
-          "text": "Replacing every physical measurement by a PDF diagram"
+          "text": "Using the Jacobian chiefly to replace a contact-dynamics model with an inertia model"
         },
         {
           "id": "o4",
-          "text": "Guaranteeing transfer without any calibration or testing"
+          "text": "Using the Jacobian only to rank static configurations by geometric reach"
         },
         {
           "id": "o1",
@@ -8055,7 +8312,7 @@
         },
         {
           "id": "o2",
-          "text": "Assuming simulator and hardware dynamics are always identical"
+          "text": "Using an unchanged simulator Jacobian only for nominal inverse-velocity commands"
         }
       ],
       "correctOptionIds": [
@@ -8075,31 +8332,34 @@
         }
       ],
       "solution": {
-        "justification": "The table names domain adaptation as the sim-to-real role.",
+        "justification": "The sim-to-real bullet specifically associates the Jacobian with domain adaptation.",
         "optionExplanations": {
-          "o1": "Correct. The table names domain adaptation as the sim-to-real role.",
-          "o2": "Incorrect. A bridge is useful precisely because domains may differ.",
-          "o3": "Incorrect. The table does not propose discarding measurements.",
-          "o4": "Incorrect. No unconditional transfer guarantee follows."
+          "o1": "Correct. The sim-to-real bullet specifically associates the Jacobian with domain adaptation.",
+          "o2": "Incorrect. Nominal inverse-velocity control does not state the source’s cross-domain adaptation role.",
+          "o3": "Incorrect. The cited row concerns adaptation across domains, not replacing contact dynamics with inertia modeling.",
+          "o4": "Incorrect. A static reach ranking is not the sim-to-real bridge described in that row."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The table names domain adaptation as the sim-to-real role.",
+        "simpleExplanation": "The sim-to-real bullet specifically associates the Jacobian with domain adaptation.",
         "memoryAid": null,
         "misconceptions": [
-          "A bridge is useful precisely because domains may differ.",
-          "The table does not propose discarding measurements.",
-          "No unconditional transfer guarantee follows."
+          "Nominal inverse-velocity control does not state the source’s cross-domain adaptation role.",
+          "The cited row concerns adaptation across domains, not replacing contact dynamics with inertia modeling.",
+          "A static reach ranking is not the sim-to-real bridge described in that row."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0322-Q09",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "What is the learned-IK example in the table?",
@@ -8125,19 +8385,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "A claim that every neural network is exactly the Moore–Penrose pseudoinverse"
+          "text": "A neural forward model is differentiated and then followed by an explicit pseudoinverse"
         },
         {
           "id": "o3",
-          "text": "A proof that joint limits no longer matter"
+          "text": "A neural torque model replaces the actuator dynamics while analytic IK is retained"
         },
         {
           "id": "o4",
-          "text": "A method that can make unreachable poses reachable"
+          "text": "A neural geometry estimator supplies DH parameters to an otherwise analytic inverse solver"
         },
         {
           "id": "o1",
-          "text": "A neural network used instead of an explicit pseudoinverse computation"
+          "text": "A neural inverse model replaces an explicit pseudoinverse computation"
         }
       ],
       "correctOptionIds": [
@@ -8157,31 +8417,34 @@
         }
       ],
       "solution": {
-        "justification": "That is the architectural role named in the learning column.",
+        "justification": "The learning column explicitly describes learned IK as a neural network replacing the pseudoinverse.",
         "optionExplanations": {
-          "o1": "Correct. That is the architectural role named in the learning column.",
-          "o2": "Incorrect. Replacing a computation does not prove numerical equivalence or exactness.",
-          "o3": "Incorrect. Physical constraints still apply.",
-          "o4": "Incorrect. Learning does not enlarge the mechanism’s physical workspace."
+          "o1": "Correct. The learning column explicitly describes learned IK as a neural network replacing the pseudoinverse.",
+          "o2": "Incorrect. This retains the explicit pseudoinverse and uses the network for a different intermediate role.",
+          "o3": "Incorrect. This changes a dynamics model rather than the inverse-kinematics computation named in the table.",
+          "o4": "Incorrect. This learns geometric parameters but retains an analytic inverse solver, unlike the stated replacement."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "That is the architectural role named in the learning column.",
+        "simpleExplanation": "The learning column explicitly describes learned IK as a neural network replacing the pseudoinverse.",
         "memoryAid": null,
         "misconceptions": [
-          "Replacing a computation does not prove numerical equivalence or exactness.",
-          "Physical constraints still apply.",
-          "Learning does not enlarge the mechanism’s physical workspace."
+          "This retains the explicit pseudoinverse and uses the network for a different intermediate role.",
+          "This changes a dynamics model rather than the inverse-kinematics computation named in the table.",
+          "This learns geometric parameters but retains an analytic inverse solver, unlike the stated replacement."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0322-Q10",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "What operation links differentiable robotics to the Jacobian in the table?",
@@ -8205,19 +8468,19 @@
       "options": [
         {
           "id": "o3",
-          "text": "Treating the output pose as independent of joint inputs"
+          "text": "Applying only a Jacobian determinant test before choosing a pose"
         },
         {
           "id": "o4",
-          "text": "Replacing a gradient by an unrelated constant for every robot"
+          "text": "Integrating Cartesian velocities numerically to reconstruct the task trajectory"
         },
         {
           "id": "o1",
-          "text": "Backpropagation through kinematics"
+          "text": "Backpropagating gradients through the kinematic mapping"
         },
         {
           "id": "o2",
-          "text": "Deleting all partial derivatives before training"
+          "text": "Forward-integrating joint rates through the kinematic mapping without a backward derivative pass"
         }
       ],
       "correctOptionIds": [
@@ -8237,27 +8500,30 @@
         }
       ],
       "solution": {
-        "justification": "The Jacobian supplies local derivatives used in chain-rule gradient propagation.",
+        "justification": "The table explicitly names backpropagation through kinematics; derivatives propagate a learning objective backward through the map.",
         "optionExplanations": {
-          "o1": "Correct. The Jacobian supplies local derivatives used in chain-rule gradient propagation.",
-          "o2": "Incorrect. Differentiability relies on derivatives, not their removal.",
-          "o3": "Incorrect. Kinematics relates output pose to joint coordinates.",
-          "o4": "Incorrect. A constant unrelated gradient would not describe that map."
+          "o1": "Correct. The table explicitly names backpropagation through kinematics; derivatives propagate a learning objective backward through the map.",
+          "o2": "Incorrect. Forward simulation is distinct from the stated gradient-backpropagation operation.",
+          "o3": "Incorrect. A determinant test detects some square-map singularities but is not the stated differentiable-learning operation.",
+          "o4": "Incorrect. Trajectory integration is a forward accumulation process, not backpropagation through kinematics."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The Jacobian supplies local derivatives used in chain-rule gradient propagation.",
+        "simpleExplanation": "The table explicitly names backpropagation through kinematics; derivatives propagate a learning objective backward through the map.",
         "memoryAid": null,
         "misconceptions": [
-          "Differentiability relies on derivatives, not their removal.",
-          "Kinematics relates output pose to joint coordinates.",
-          "A constant unrelated gradient would not describe that map."
+          "Forward simulation is distinct from the stated gradient-backpropagation operation.",
+          "A determinant test detects some square-map singularities but is not the stated differentiable-learning operation.",
+          "Trajectory integration is a forward accumulation process, not backpropagation through kinematics."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0322-Q11",
@@ -8343,7 +8609,7 @@
     },
     {
       "id": "W02-L09-P0322-Q12",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "What purpose is assigned to meta-learning in the comparison?",
@@ -8367,15 +8633,15 @@
       "options": [
         {
           "id": "o2",
-          "text": "Guaranteeing that a robot never needs a kinematic model"
+          "text": "Calibration of one fixed robot morphology from a single data set"
         },
         {
           "id": "o3",
-          "text": "Making all robots have identical joint geometry"
+          "text": "Learning one task-specific inverse map for one fixed robot"
         },
         {
           "id": "o4",
-          "text": "Eliminating every training-data requirement"
+          "text": "Optimizing one prescribed trajectory without adapting robot geometry"
         },
         {
           "id": "o1",
@@ -8399,31 +8665,34 @@
         }
       ],
       "solution": {
-        "justification": "The final learning-side bullet names adaptation to new morphologies.",
+        "justification": "The final learning-side bullet explicitly names adaptation to new robot morphologies.",
         "optionExplanations": {
-          "o1": "Correct. The final learning-side bullet names adaptation to new morphologies.",
-          "o2": "Incorrect. The table does not establish that universal consequence.",
-          "o3": "Incorrect. Adaptation is needed because morphologies may differ.",
-          "o4": "Incorrect. No such universal data-free guarantee is stated."
+          "o1": "Correct. The final learning-side bullet explicitly names adaptation to new robot morphologies.",
+          "o2": "Incorrect. Single-morphology calibration does not state the cross-morphology adaptation objective.",
+          "o3": "Incorrect. A fixed task/robot inverse map lacks the named adaptation to new morphologies.",
+          "o4": "Incorrect. A single trajectory optimization does not capture the listed meta-learning purpose."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The final learning-side bullet names adaptation to new morphologies.",
+        "simpleExplanation": "The final learning-side bullet explicitly names adaptation to new robot morphologies.",
         "memoryAid": null,
         "misconceptions": [
-          "The table does not establish that universal consequence.",
-          "Adaptation is needed because morphologies may differ.",
-          "No such universal data-free guarantee is stated."
+          "Single-morphology calibration does not state the cross-morphology adaptation objective.",
+          "A fixed task/robot inverse map lacks the named adaptation to new morphologies.",
+          "A single trajectory optimization does not capture the listed meta-learning purpose."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0322-Q13",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Why is “model-free RL uses Jacobian-like operations” not equivalent to saying every model-free policy explicitly requires the robot’s analytic geometric Jacobian?",
@@ -8447,19 +8716,19 @@
       "options": [
         {
           "id": "o3",
-          "text": "The phrase proves no gradients are used"
+          "text": "A learned forward-model Jacobian necessarily has the same inputs and outputs as the geometric Jacobian"
         },
         {
           "id": "o4",
-          "text": "Model-free methods always know perfect DH parameters"
+          "text": "A Jacobian-like policy update must differentiate a DH model even when its policy is parameterized directly"
         },
         {
           "id": "o1",
-          "text": "A learning gradient can be Jacobian-like without being that particular physical kinematic matrix"
+          "text": "A derivative used in learning need not be the robot’s analytic joint-to-twist Jacobian"
         },
         {
           "id": "o2",
-          "text": "Every derivative in machine learning is numerically identical to the robot’s 6×n Jacobian"
+          "text": "A policy-parameter gradient is the same matrix as the joint-to-twist Jacobian because both are derivatives"
         }
       ],
       "correctOptionIds": [
@@ -8479,27 +8748,30 @@
         }
       ],
       "solution": {
-        "justification": "The table draws an analogy between derivative operations; it does not identify every derivative as the robot Jacobian.",
+        "justification": "Jacobians are derivatives of particular maps; the policy or learned model may have different inputs, outputs and dimensions from the robot’s geometric map.",
         "optionExplanations": {
-          "o1": "Correct. The table draws an analogy between derivative operations; it does not identify every derivative as the robot Jacobian.",
-          "o2": "Incorrect. Different functions have different derivatives and dimensions.",
-          "o3": "Incorrect. The phrase explicitly refers to gradient-like operations.",
-          "o4": "Incorrect. Model-free does not imply perfect analytic robot geometry."
+          "o1": "Correct. Jacobians are derivatives of particular maps; the policy or learned model may have different inputs, outputs and dimensions from the robot’s geometric map.",
+          "o2": "Incorrect. Policy parameters and joint coordinates are different variables, so these derivatives are not identified merely by the word gradient.",
+          "o3": "Incorrect. A forward model may map states/actions to future states rather than joint coordinates to end-effector velocity; its derivative need not be the geometric Jacobian.",
+          "o4": "Incorrect. The source’s analogy does not require every model-free policy update to include an analytic DH model."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The table draws an analogy between derivative operations; it does not identify every derivative as the robot Jacobian.",
+        "simpleExplanation": "Jacobians are derivatives of particular maps; the policy or learned model may have different inputs, outputs and dimensions from the robot’s geometric map.",
         "memoryAid": null,
         "misconceptions": [
-          "Different functions have different derivatives and dimensions.",
-          "The phrase explicitly refers to gradient-like operations.",
-          "Model-free does not imply perfect analytic robot geometry."
+          "Policy parameters and joint coordinates are different variables, so these derivatives are not identified merely by the word gradient.",
+          "A forward model may map states/actions to future states rather than joint coordinates to end-effector velocity; its derivative need not be the geometric Jacobian.",
+          "The source’s analogy does not require every model-free policy update to include an analytic DH model."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0323-Q01",
@@ -8674,13 +8946,13 @@
     },
     {
       "id": "W02-L09-P0323-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "When is det J=0 a valid singularity test without further reformulation?",
       "selectionMode": "single",
       "type": "conceptual",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "cognitiveSkill": "conceptual",
       "week": 2,
       "lectureId": "L09",
@@ -8718,17 +8990,6 @@
       ],
       "citations": [
         {
-          "slideId": "lectures-p0316",
-          "sourceId": "lectures",
-          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-          "physicalPage": 316,
-          "kind": "statement",
-          "locator": "Printed slide 21: instantaneous map, row/column interpretation and inconsistent general-size wording",
-          "evidenceText": "0 v=0 J (theta)*thetadot. Jacobianmultidimensionalderivative; instantaneouslineartransformation; varieswithtime. RowsCartesianDOF; columnsjoints. Printed: mostgeneralform 6 x6; doesnothavetobesquare.",
-          "role": "conflict",
-          "region": null
-        },
-        {
           "slideId": "lectures-p0319",
           "sourceId": "lectures",
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
@@ -8736,7 +8997,7 @@
           "kind": "statement",
           "locator": "Printed slide 24: inverse-rate equation, rank-loss discussion and qualified singularity examples",
           "evidenceText": "Nonsingularsquarecase: thetadot=J^-1(theta) v. SingularitylosesinstantaneousCartesianmotion/DOF. Highratesmayoccurwithoutchecks. Printedactualsingularityrequiresinfinitejointmotion. Commonexamplesjointalignmentinteriorandworkspaceedge. PrintedadditionalnotpredictedbyJacobian; structuresmaybesingularity-freefromJacobianview.",
-          "role": "conflict",
+          "role": "premise",
           "region": null
         },
         {
@@ -8745,7 +9006,7 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 323,
           "kind": "statement",
-          "locator": "Printed slide 28: summary column interpretation,6×n size,determinant statement and force-transpose application",
+          "locator": "Printed slide 28: 6×n Jacobian description and unqualified det J = 0 statement",
           "evidenceText": "Outwardvelocityrecursionbase-to-tip. Revoluteaddthetadot*zhatandsweeplinearvelocityomega crossp; prismaticaddddot*zhat. J (theta)6 xn. Eachcolumnisend-effectormotionfromsinglejointunitrate. Singularities (det J=0) limitmotion. ApplicationsRMRC, force control (J^T), differentiablesimulation, learnedkinematics.",
           "role": "conflict",
           "region": null
@@ -8772,11 +9033,25 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ],
+      "conflictResolution": {
+        "status": "derived-qualification-pending-independent-review",
+        "questionVersion": 2,
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 323,
+        "sourceClaim": "The summary states J(θ) is 6×n and then writes Singularities (det J = 0).",
+        "basis": "An ordinary determinant is defined only for a square matrix. A full spatial 6×n task is square only when n=6; otherwise task rank, rather than an undefined ordinary determinant, diagnoses differential rank loss.",
+        "method": "Restrict determinant testing to square maps; use the specified task’s attainable regular rank for rectangular maps.",
+        "scope": "This question version only. The source PDF remains unchanged and the global source-dispute record is retained."
+      }
     },
     {
       "id": "W02-L09-P0323-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L09-author-20261019",
       "stem": "Which matrix operation does the summary associate with force control?",
@@ -8800,19 +9075,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Jacobian transpose J^T"
+          "text": "The Jacobian transpose J^T"
         },
         {
           "id": "o2",
-          "text": "Always the entrywise reciprocal ofJ"
+          "text": "The untransposed Jacobian J"
         },
         {
           "id": "o3",
-          "text": "Only the determinant as a force vector"
+          "text": "The ordinary Jacobian inverse J^−1"
         },
         {
           "id": "o4",
-          "text": "Squaring every Jacobian entry independently"
+          "text": "The Moore–Penrose pseudoinverse J^+"
         }
       ],
       "correctOptionIds": [
@@ -8832,27 +9107,30 @@
         }
       ],
       "solution": {
-        "justification": "The summary explicitly names force control (J^T).",
+        "justification": "The summary explicitly associates force control with J^T; matching virtual-power conventions give joint effort from task force through the transpose.",
         "optionExplanations": {
-          "o1": "Correct. The summary explicitly names force control (J^T).",
-          "o2": "Incorrect. Entrywise reciprocals are not the stated operation.",
-          "o3": "Incorrect. A determinant is scalar, not the listed force mapping.",
-          "o4": "Incorrect. Entrywise squaring is not the listed operation."
+          "o1": "Correct. The summary explicitly associates force control with J^T; matching virtual-power conventions give joint effort from task force through the transpose.",
+          "o2": "Incorrect. J is the forward joint-rate-to-task-velocity map, not the transpose force association named here.",
+          "o3": "Incorrect. J^−1 is used for square nonsingular inverse velocity mapping, not this task-force-to-joint-effort association.",
+          "o4": "Incorrect. A pseudoinverse can be used in rate-solving contexts, but it is not the operation named for force control in this summary."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The summary explicitly names force control (J^T).",
+        "simpleExplanation": "The summary explicitly associates force control with J^T; matching virtual-power conventions give joint effort from task force through the transpose.",
         "memoryAid": null,
         "misconceptions": [
-          "Entrywise reciprocals are not the stated operation.",
-          "A determinant is scalar, not the listed force mapping.",
-          "Entrywise squaring is not the listed operation."
+          "J is the forward joint-rate-to-task-velocity map, not the transpose force association named here.",
+          "J^−1 is used for square nonsingular inverse velocity mapping, not this task-force-to-joint-effort association.",
+          "A pseudoinverse can be used in rate-solving contexts, but it is not the operation named for force control in this summary."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "L09-author-20261019"
+      ]
     },
     {
       "id": "W02-L09-P0323-Q05",
@@ -9608,8 +9886,8 @@
       "physicalPage": 300,
       "sourceId": "lectures",
       "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-      "finding": "Nested reference/expression superscripts and derivative notation can be confused. Rotating a B-relativezero velocity doesnot produce its A-relativephysicalmotion.",
-      "handling": "Questions name differentiation observer andexpression basis explicitly;transportterms are added onlywhenchanging thephysicalobserver.",
+      "finding": "Nested reference/expression superscripts and derivative notation can be confused. Rotating a zero B-relative velocity does not produce its generally nonzero A-relative motion.",
+      "handling": "Name the differentiation observer and expression basis separately. Add transport terms only when changing the physical observer.",
       "status": "bounded_by_explicit_question_scope"
     },
     {
@@ -9617,8 +9895,8 @@
       "physicalPage": 308,
       "sourceId": "lectures",
       "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-      "finding": "Diagram labels old/newgeometricvectors BQ(t),BQ(t+dt)althoughtheprecedingpointisbodyfixed. Theirvisualdirectionschange,butconstantbodycoordinates mustnot be mistaken for changingBcomponents.",
-      "handling": "Interpretpicturegeometrically in fixedA;do not subtracttuplesfromdifferentmovingbases.",
+      "finding": "The diagram labels successive geometric vectors even though the point is fixed in its body frame. Their directions in the fixed frame change, but the body-coordinate tuple remains constant.",
+      "handling": "Interpret the picture geometrically in fixed frame A; do not subtract coordinate tuples expressed in different moving bases.",
       "status": "bounded_by_explicit_question_scope"
     },
     {
@@ -9626,8 +9904,8 @@
       "physicalPage": 309,
       "sourceId": "lectures",
       "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-      "finding": "Small-motion equality treats displacementlength asradius timesangle;finitechordandarcaredifferent. Intermediate scalar/vector notationcompressed.",
-      "handling": "Useinfinitesimallimit or explicitfirst-orderapproximation;exactvector result isomega crossr.",
+      "finding": "The small-motion equation uses radius times angle for displacement length. A finite tip chord differs from the circular arc; the intermediate scalar/vector notation is compressed.",
+      "handling": "Use the infinitesimal limit or an explicitly first-order approximation. The exact instantaneous vector result is omega×r.",
       "status": "bounded_by_explicit_question_scope"
     },
     {
@@ -9635,8 +9913,8 @@
       "physicalPage": 313,
       "sourceId": "lectures",
       "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-      "finding": "Revolutelinearrecurrenceassumesparent-to-childoriginoffsetconstantinparentframeandnewaxisthroughchildorigin.",
-      "handling": "Keepthatstatedframeplacement;donotapplyformulaunchangedtoarbitraryframechoicesoroffsettools.",
+      "finding": "The revolute linear recurrence assumes the parent-to-child origin offset is constant in the parent frame and the new joint axis passes through the child origin.",
+      "handling": "Preserve that frame placement. Do not apply the formula unchanged to arbitrary frame choices or an offset tool point.",
       "status": "bounded_by_explicit_question_scope"
     },
     {
@@ -9644,8 +9922,8 @@
       "physicalPage": 316,
       "sourceId": "lectures",
       "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-      "finding": "Printedmostgeneral6x6contradictsnonsquarestatementandlater6xnsummary;Jwillvarywithtimeisnotunconditional.",
-      "handling": "Use6xnforfullspatialtask,njointinputs;6x6onlyn6;timevariationthroughconfigurationmayvanish.",
+      "finding": "The printed most-general 6×6 claim conflicts with the nonsquare statement and later 6×n summary. Mandatory time variation is also too broad.",
+      "handling": "Use 6×n for the full spatial task with n joint-rate inputs; 6×6 is the n=6 case. Configuration-induced time variation can vanish.",
       "status": "bounded_by_explicit_question_scope"
     },
     {
@@ -9653,8 +9931,8 @@
       "physicalPage": 318,
       "sourceId": "lectures",
       "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-      "finding": "Blockdiag(R,R)changesexpressionbasisofthesamepoint/twist,butdoesnotincludephysicalreference-pointshiftorchangeofmovingobserver.",
-      "handling": "Explicitlyfixsamepointandobserver;useomega crossrwhenchangingpoint. No claimthatthesourceformulaitselfiswrongunderitsproper scope.",
+      "finding": "Blockdiag(R,R) changes the expression basis of the same point/body velocity. It does not include a physical reference-point shift or change of moving observer.",
+      "handling": "Keep the same physical point and observer. A point shift requires the appropriate omega×r term. The source equation is valid within its proper scope.",
       "status": "bounded_by_explicit_question_scope"
     },
     {
@@ -9662,8 +9940,8 @@
       "physicalPage": 319,
       "sourceId": "lectures",
       "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-      "finding": "Source losesoneCartesiancoordinateandactualsingularityrequiresinfinitemotionwordingisoverbroad.",
-      "handling": "Use task-rankloss;lostdirectionscanbeaxiscombinations. Near-singularinverseamplifiescertainrates;atexactsingularitycompatibletargetsremainfiniteandincompatibletargetshavenoexactsolution.",
+      "finding": "The descriptions of losing one Cartesian coordinate and requiring infinite motion at the actual singularity are overbroad.",
+      "handling": "Use task-rank loss; unavailable directions can combine named axes. Near-singular inverse mapping may amplify rates. At exact rank loss, compatible targets may have finite solutions while incompatible targets have no exact solution.",
       "status": "bounded_by_explicit_question_scope"
     },
     {
@@ -9671,8 +9949,8 @@
       "physicalPage": 319,
       "sourceId": "lectures",
       "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-      "finding": "Alignment/workspace-edgeexamplesarecontextdependent;additionalnotpredictedbyJacobianandsingularity-freestructureslacktask/modelbounds.",
-      "handling": "Ranktestusescorrecttaskmap. Jointlimitscanboundworkspacewithoutdifferentialrankloss;redundantduplicatecolumnsneednotreducefulltaskrank. Otherfailuremodesaredistinct.",
+      "finding": "Joint-axis alignment and workspace-edge examples are context dependent. Claims about additional singularities and singularity-free structures need task/model bounds.",
+      "handling": "Use the correct task-map rank test. Joint limits can bound a workspace without differential rank loss, and duplicate columns need not eliminate full row rank in a redundant task. Treat other failure modes separately.",
       "status": "bounded_by_explicit_question_scope"
     },
     {
@@ -9680,8 +9958,8 @@
       "physicalPage": 321,
       "sourceId": "lectures",
       "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-      "finding": "ExplicitJacobianprovidessafetyguaranteesandRLpoliciesoftenlearnRMRC-likebehaviorareunqualified.",
-      "handling": "TreatRLconnectionasanalogy;interpretabilitydoesnotguaranteesafetywithoutconstraints,modelvalidityandcontrollerchecks.",
+      "finding": "The explicit-Jacobian safety claim and the RL/RMRC behavioral connection are not qualified on the slide.",
+      "handling": "Treat the RL connection as an analogy. Interpretability alone does not guarantee safety without explicit constraints, valid models and controller checks.",
       "status": "bounded_by_explicit_question_scope"
     },
     {
@@ -9689,8 +9967,8 @@
       "physicalPage": 321,
       "sourceId": "lectures",
       "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-      "finding": "EnlargedPDFpixelsmakecombiningoverdotslookoverlappedinside theta;PDFtextcontainsU+0307oncomputedrateandEuler-ratefactor. Samephenomenonon323.",
-      "handling": "Do not falselycallthese missing-dotformulaerrors. Transcribethetadotexplicitly andpreservethisrejectedallegation.",
+      "finding": "Enlarged PDF pixels make combining overdots overlap the theta glyph. Encoded PDF text contains U+0307 on the computed rate and Euler-rate factor; the same rendering issue occurs on p323.",
+      "handling": "Do not label these as missing-dot source equations. Transcribe theta_dot explicitly and retain the rejected defect allegation.",
       "status": "not_a_source_defect_rendering_qualification"
     },
     {
@@ -9698,8 +9976,8 @@
       "physicalPage": 322,
       "sourceId": "lectures",
       "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-      "finding": "Exactanalyticmodelandneuralinversephrasingcouldbeoverread;model-freegradientoperationsarenotnecessarilythephysicalgeometricJacobian;packageexamplesarenotcurrentAPIguarantees.",
-      "handling": "Useconditionalmodelaccuracy,source-attributedexamplesandexplicitlimitations;do notassertallneuralIKequalsMoore-Penroseorallmodel-freeRLusesanalyticJ.",
+      "finding": "Exact analytic-model and neural-inverse wording can be overread. Learning derivatives are not necessarily the robot’s geometric Jacobian; named software examples are not current-API guarantees.",
+      "handling": "Use conditional model fidelity and source-attributed examples. Do not claim every neural IK map equals the Moore–Penrose pseudoinverse or every model-free RL method uses an analytic robot Jacobian.",
       "status": "bounded_by_explicit_question_scope"
     },
     {
@@ -9707,8 +9985,8 @@
       "physicalPage": 323,
       "sourceId": "lectures",
       "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-      "finding": "Summarystates6xnthenusesdetJ=0withoutrestrictingn=6.",
-      "handling": "Use determinantonlysquare;generalrank-basedsingularitytest. ForceJtransposequestionsstatepowerassumptionsanddonotclaimtorepresentallrobot dynamics.",
+      "finding": "The summary introduces a 6×n Jacobian and then uses det J=0 without restricting the matrix to square dimensions.",
+      "handling": "Use an ordinary determinant only for square matrices; otherwise use task rank. Force-transpose questions state their virtual-power scope and do not claim to model all robot dynamics.",
       "status": "bounded_by_explicit_question_scope"
     }
   ],
@@ -9916,5 +10194,6 @@
       "detail": "tau^Tqdot=f^TJqdot for arbitraryjoint rates."
     }
   ],
-  "coverageNote": "All30 pages visually inspected;original inspector attribution preserved. Author complete,independent review pending."
+  "coverageNote": "All30 pages visually inspected;original inspector attribution preserved. Author complete,independent review pending.",
+  "revisionNote": "Incremental v2 author repair; independent review not yet requested."
 }

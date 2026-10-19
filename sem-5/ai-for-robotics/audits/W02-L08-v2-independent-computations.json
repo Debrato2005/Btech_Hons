@@ -1,0 +1,77 @@
+{
+  "reviewerId": "independent-reviewer-robotics-batches-v2",
+  "runAt": "2026-10-19T16:53:37.057292+00:00",
+  "seed": 813729,
+  "source": "Actual lecture pages inspected; independently coded from persisted pre-key reasoning, not author scripts.",
+  "checks": [
+    {
+      "name": "Two-branch planar IK reconstructs complete pose",
+      "cases": 2000,
+      "passed": true,
+      "detail": "1000 seeded nondegenerate targets, two independently reconstructed elbow/shoulder/wrist solutions each."
+    },
+    {
+      "name": "Boundary elbow coalescence",
+      "cases": 7,
+      "passed": true,
+      "detail": "Outer and nonzero inner annulus boundaries; plus/minus zero sine correspond to the same elbow rotation modulo2\u03c0."
+    },
+    {
+      "name": "Equal-link origin continuous family",
+      "cases": 1000,
+      "passed": true,
+      "detail": "Arbitrary shoulder with folded elbow and compensating wrist reconstructs zero translation and desired orientation."
+    },
+    {
+      "name": "Length domains and unreachable annulus",
+      "cases": 5,
+      "passed": true,
+      "detail": "Zero/negative lengths rejected; inner hole and beyond outer radius both unreachable."
+    },
+    {
+      "name": "Corrected normalized x expansion",
+      "cases": 1000,
+      "passed": true,
+      "detail": "Correct cosine-sum identity holds; printed repeated-cosine factor is not used."
+    },
+    {
+      "name": "P0284-Q03 distractor values",
+      "cases": 3,
+      "passed": true,
+      "detail": "o3 changes the first \u03b8 factor and subtraction sign; its second sin\u03b3 sin\u03b81 product is already the correct factor, disproving \u201cboth original factors changed incorrectly\u201d."
+    },
+    {
+      "name": "Homogeneity counterexample",
+      "cases": 1,
+      "passed": true,
+      "detail": "f(3)=6; printed RHS3; repaired RHS6, exact integers."
+    },
+    {
+      "name": "Tall and wide full-rank shortcuts",
+      "cases": 1000,
+      "passed": true,
+      "detail": "500 seeded3\u00d72 matrices and their2\u00d73 transposes; compare independent formulas and identity products to SVD pseudoinverse."
+    },
+    {
+      "name": "Rank-deficient pseudoinverse exists while Gram inverse fails",
+      "cases": 1,
+      "passed": true,
+      "detail": "Dependent columns yield singular Gram matrix but satisfy Moore\u2013Penrose reconstruction with SVD."
+    },
+    {
+      "name": "Wide minimum-norm example and distinct options",
+      "cases": 1001,
+      "passed": true,
+      "detail": "Every exact solution[1+t,1\u2212t] has squared norm2+2t\u00b2; only[1,1] minimizes it. Other choices are distinct."
+    },
+    {
+      "name": "Differential-drive ranks and feasible-rate inverse",
+      "cases": 1000,
+      "passed": true,
+      "detail": "Positive radius/half-track maintain rank2 including90\u00b0; signed wheel rates reconstruct yaw and world translation."
+    }
+  ],
+  "allPassed": true,
+  "testDevelopmentNote": "The initial floating-point endpoint test produced \u00b12.98e-8 sine for the exact inner radius with lengths0.4,3.7 because computed c2 was\u22120.9999999999999996. The test helper now snaps c2 to an endpoint only within1e-12, distinguishing roundoff from a new physical branch. No authored question content changed.",
+  "limitations": "No numerical question generator or runtime robot is claimed. These are mathematical checks for34 fixed review items; no instantiated variants are present."
+}

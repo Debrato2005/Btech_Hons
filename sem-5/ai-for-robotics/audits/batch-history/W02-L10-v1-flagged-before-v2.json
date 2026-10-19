@@ -1,0 +1,1260 @@
+[
+  {
+    "id": "W02-L10-Q008",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L10",
+    "stem": "Frames2 and3 are fixed on the same link with aligned axes; which statement is correct?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "cognitiveSkill": "conceptual",
+    "week": 2,
+    "lectureId": "L10",
+    "topic": "Static forces and velocity propagation",
+    "subtopic": "Two points on one rigid link",
+    "tags": [
+      "same-link-velocities"
+    ],
+    "conceptIds": [
+      "W02-L10-C-same-link-velocities"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "Their angular velocities differ whenever their origins do not coincide"
+      },
+      {
+        "id": "choice-1",
+        "text": "Their angular velocities match, but their linear velocities can differ by ω×p23"
+      },
+      {
+        "id": "choice-2",
+        "text": "Both linear and angular velocities must be identical at any two origins"
+      },
+      {
+        "id": "choice-3",
+        "text": "Their linear velocities match, but angular velocities differ by L2"
+      }
+    ],
+    "correctOptionIds": [
+      "choice-1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0332",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 332,
+        "kind": "statement",
+        "locator": "Lecture 10, physical PDF page 332, printed slide 7: displayed derivation, text and associated figure",
+        "evidenceText": "•   3ω3 = 2ω2 (Both frames are on same link)\n•   3𝑣3 = 3𝑅2   2𝑣2 + 2ω2 × 2P3  ; 3R2 = unit matrix\n\n            ሶ𝜃1𝐿1𝑠2      0   − ሶ𝜃1                      + ሶ𝜃2   0  𝐿2\n•   3𝑣3 =            ሶ𝜃1𝐿1𝑐2 +  ( ሶ𝜃1+ሶ𝜃2)      0      0  0\n                                       0           0        0        0      0\n\n             ሶ𝜃1𝐿1𝑠2           0\n•    3𝑣3 =      +   ሶ𝜃1 + ሶ𝜃2 𝐿2             ሶ𝜃1𝐿1𝑐2\n                          0           0\n\n                  𝐿1𝑠2 ሶ𝜃1\n•   3𝑣3 =           𝐿1𝑐2 ሶ𝜃1 + 𝐿2  ሶ𝜃1 + ሶ𝜃2\n                 0\n\n\n\n                                                                                                           7",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Rigid-body angular velocity is common, whereas an offset point acquires the tangential velocity ω×p.",
+      "optionExplanations": {
+        "choice-1": "This is the propagation shown.",
+        "choice-2": "Distinct rigid-body points can have different linear velocities.",
+        "choice-3": "A length is not an angular-velocity difference.",
+        "choice-4": "Origin translation does not create a relative rigid-body rotation."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "Rigid-body angular velocity is common, whereas an offset point acquires the tangential velocity ω×p.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Distinct rigid-body points can have different linear velocities.",
+        "A length is not an angular-velocity difference.",
+        "Origin translation does not create a relative rigid-body rotation."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W02-L10-Q024",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L10",
+    "stem": "Which sequence follows the lecture’s statics method?",
+    "selectionMode": "single",
+    "type": "sequence",
+    "difficulty": "easy",
+    "cognitiveSkill": "conceptual",
+    "week": 2,
+    "lectureId": "L10",
+    "topic": "Static forces and velocity propagation",
+    "subtopic": "Static-equilibrium procedure",
+    "tags": [
+      "static-method"
+    ],
+    "conceptIds": [
+      "W02-L10-C-static-method"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "Unlock joints → prescribe arbitrary accelerations → call the resulting motion static equilibrium"
+      },
+      {
+        "id": "choice-1",
+        "text": "Treat joints as locked → write each link’s force/moment balance → project the required effort onto each joint axis"
+      },
+      {
+        "id": "choice-2",
+        "text": "Project joint efforts → integrate acceleration → replace all link balances with velocity propagation"
+      },
+      {
+        "id": "choice-3",
+        "text": "Write only force balance → ignore moments → infer effort from link length alone"
+      }
+    ],
+    "correctOptionIds": [
+      "choice-1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0338",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 338,
+        "kind": "statement",
+        "locator": "Lecture 10, physical PDF page 338, printed slide 13: displayed derivation, text and associated figure",
+        "evidenceText": "Static Forces in Manipulators\n\n•  When manipulator act on environment, what\n   should be the joint torques that must be acting to\n   keep the system in static equilibrium?\n•  Method\n     1.  First, lock all the joints so that the manipulator\n      becomes a structure.\n     2. Consider each link in this structure and write a\n      force/moment balance relationship in terms of\n       the link frames.\n     3.  Finally, compute what static torque must be\n        acting about the joint axis in order for the\n       manipulator to be in static equilibrium.\n\n\n                                                                                                          13",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Static equilibrium is determined from force and moment balance, then the actuator component along the joint freedom is extracted.",
+      "optionExplanations": {
+        "choice-1": "This matches the three steps.",
+        "choice-2": "Acceleration integration is not this static procedure.",
+        "choice-3": "Moment balance is essential for torque.",
+        "choice-4": "Nonzero arbitrary acceleration contradicts the stated static condition."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "Static equilibrium is determined from force and moment balance, then the actuator component along the joint freedom is extracted.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Acceleration integration is not this static procedure.",
+        "Moment balance is essential for torque.",
+        "Nonzero arbitrary acceleration contradicts the stated static condition."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W02-L10-Q027",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L10",
+    "stem": "Given an end-effector force and moment, which direction does the shown statics recursion proceed?",
+    "selectionMode": "single",
+    "type": "definition",
+    "difficulty": "easy",
+    "cognitiveSkill": "recall",
+    "week": 2,
+    "lectureId": "L10",
+    "topic": "Static forces and velocity propagation",
+    "subtopic": "Direction of static-load propagation",
+    "tags": [
+      "inward-propagation"
+    ],
+    "conceptIds": [
+      "W02-L10-C-inward-propagation"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "From the middle link outward in both directions without boundary data"
+      },
+      {
+        "id": "choice-4",
+        "text": "From the force vector to a position inverse without link geometry"
+      },
+      {
+        "id": "choice-1",
+        "text": "From the hand toward the base"
+      },
+      {
+        "id": "choice-2",
+        "text": "From the base toward the hand using joint rates"
+      }
+    ],
+    "correctOptionIds": [
+      "choice-1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0340",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 340,
+        "kind": "statement",
+        "locator": "Lecture 10, physical PDF page 340, printed slide 15: displayed derivation, text and associated figure",
+        "evidenceText": "•  Summing torques about the origin of frame {𝑖},\n  ➢  𝑖𝑛𝑖−  𝑖𝑛𝑖+1 −  𝑖𝑃𝑖+1 ×  𝑖𝑓𝑖+1 = 0\n•    If we know force/moment applied by hand then\n  we propagate downwards\n  ➢ 𝑖𝑓𝑖=  𝑖𝑓𝑖+1\n  ➢ 𝑖𝑛𝑖=  𝑖𝑛𝑖+1 +  𝑖𝑃𝑖+1 ×  𝑖𝑓𝑖+1\n•  Write forces & moments in terms of own frame of\n   application\n  ➢ 𝑖𝑓𝑖= 𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1,\n               +  𝑖𝑃𝑖+1 ×  𝑖𝑓𝑖  ➢ 𝑖𝑛𝑖= 𝑖+1𝑖𝑅𝑖+1𝑛𝑖+1\n\n\n\n\n                                                                                                          15",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The distal load supplies boundary data; each preceding link adds the transmitted and offset moment.",
+      "optionExplanations": {
+        "choice-1": "This is the stated downward recursion.",
+        "choice-2": "That is the velocity-propagation direction, not the prescribed-load statics recursion.",
+        "choice-3": "A boundary load and geometry are needed.",
+        "choice-4": "The recursion uses rotations and moment arms, not an inverse position solve."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The distal load supplies boundary data; each preceding link adds the transmitted and offset moment.",
+      "memoryAid": null,
+      "misconceptions": [
+        "That is the velocity-propagation direction, not the prescribed-load statics recursion.",
+        "A boundary load and geometry are needed.",
+        "The recursion uses rotations and moment arms, not an inverse position solve."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W02-L10-Q037",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L10",
+    "stem": "For L1=2 m, L2=1 m, θ2=90° and force in frame3(f_x,f_y)=(3,4) N, what are(τ1,τ2)?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "cognitiveSkill": "numerical",
+    "week": 2,
+    "lectureId": "L10",
+    "topic": "Static forces and velocity propagation",
+    "subtopic": "Computing both static joint torques",
+    "tags": [
+      "two-link-torques"
+    ],
+    "conceptIds": [
+      "W02-L10-C-two-link-torques"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "(10,4) N·m"
+      },
+      {
+        "id": "choice-2",
+        "text": "(4,4) N·m"
+      },
+      {
+        "id": "choice-3",
+        "text": "(−2,4) N·m"
+      },
+      {
+        "id": "choice-4",
+        "text": "(8,6) N·m"
+      }
+    ],
+    "correctOptionIds": [
+      "choice-1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0342",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 342,
+        "kind": "equation",
+        "locator": "Lecture 10, physical PDF page 342, printed slide 17: displayed derivation, text and associated figure",
+        "evidenceText": "Example\n\n•  The two-link arm manipulator is applying a force vector\n   3𝐹with its end-effector. Find the required joint torques\n   as a function of configuration and of the applied force.\n•   Starting from the last link and going toward the base of\n   the robot:\n   ➢  𝑖𝑓𝑖= 𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1,\n               +  𝑖𝑃𝑖+1 ×  𝑖𝑓𝑖   ➢  𝑖𝑛𝑖= 𝑖+1𝑖𝑅𝑖+1𝑛𝑖+1\n                 𝑓𝑥\n                    = [𝐼] 3𝑓3;   ➢  3𝑓3 =  𝑓𝑦  ; 2𝑓2 = 2𝑅3𝑓33\n            0\n                          𝑓𝑥    0  0   0    𝑓𝑥     0\n   ➢  2𝑛2 = 𝐿2 ෠𝑋2 ×  𝑓𝑦                =  0  0  −𝐿2  𝑓𝑦 =  0    ,\n                   𝑜     0  𝐿2   0   𝑜     𝐿2𝑓𝑦\n\n\n                                                                                                          17",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0343",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 343,
+        "kind": "equation",
+        "locator": "Lecture 10, physical PDF page 343, printed slide 18: displayed derivation, text and associated figure",
+        "evidenceText": "𝑐2  −𝑠2  0   𝑓𝑥    𝑐2𝑓𝑥−𝑠2𝑓𝑦\n➢  1𝑓1 = 1𝑅2𝑓22   =  𝑠2   𝑐2   0  𝑓𝑦                      = 𝑠2𝑓𝑥+ 𝑐2𝑓𝑦\n                0   0   1  0        0\n\n                                  𝑐2  −𝑠2  0   0\n➢  1𝑛1 = 1𝑅2𝑛22    + 1𝑃2 × 1𝑓1 =  𝑠2   𝑐2   0   0  + 𝐿1 ෠𝑋1 × 1𝑓1\n                           0   0   1  𝐿2𝑓𝑦\n\n          0     0  0   0   𝑐2𝑓𝑥−𝑠2𝑓𝑦\n➢  1𝑛1 =   0  + 0  0  −𝐿1  𝑠2𝑓𝑥+ 𝑐2𝑓𝑦\n           𝐿2𝑓𝑦    0  𝐿1   0       0\n\n          0          0                  0\n➢  1𝑛1 =  0  +       0     =          0\n           𝐿2𝑓𝑦    𝐿1𝑠2𝑓𝑥+ 𝐿1𝑐2𝑓𝑦    𝐿2𝑓𝑦+ 𝐿1𝑠2𝑓𝑥+ 𝐿1𝑐2𝑓𝑦\n\n\n\n\n                                                                                                    18",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0344",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 344,
+        "kind": "equation",
+        "locator": "Lecture 10, physical PDF page 344, printed slide 19: displayed derivation, text and associated figure",
+        "evidenceText": "•  So we have,\n   ➢𝜏1 = 𝐿1𝑠2𝑓𝑥+ 𝐿2 + 𝐿1𝑐2 𝑓𝑦,\n   ➢𝜏2 = 𝐿2𝑓𝑦 .\n•  This relationship can be written as a matrix\n   operator:\n           𝐿1𝑠2  𝐿2 + 𝐿1𝑐2  𝑓𝑥  ➢𝜏=\n           0       𝐿2      𝑓𝑦\n•  This matrix is the transpose of the Jacobian that we\n   had,\n                  𝐿1𝑠2    0  ➢ 3𝐽𝜃=\n               𝐿2 + 𝐿1𝑐2  𝐿2\n\n\n                                                                                                          19",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "τ1=2×1×3+(1+2×0)×4=10 and τ2=1×4=4.",
+      "optionExplanations": {
+        "choice-1": "Both terms and joint2’s moment arm are included.",
+        "choice-2": "This omits the first-link moment contribution.",
+        "choice-3": "This reverses the sign of the f_x contribution.",
+        "choice-4": "This does not follow the correct transpose mapping."
+      },
+      "steps": [
+        "Evaluate sinθ2=1 and cosθ2=0.",
+        "τ1=2×3+1×4=10.",
+        "τ2=1×4=4."
+      ],
+      "formulas": [
+        {
+          "expression": "τ1=L1 sinθ2 f_x+(L2+L1 cosθ2)f_y; τ2=L2 f_y",
+          "variables": {
+            "τ1,τ2": "joint efforts required to apply the specified end force",
+            "f_x,f_y": "force components exerted by the hand, expressed in frame3",
+            "L1,L2": "link lengths",
+            "θ2": "elbow angle"
+          },
+          "units": {
+            "τ1,τ2": "N·m",
+            "f_x,f_y": "N",
+            "L1,L2": "m",
+            "θ2": "rad"
+          },
+          "assumptions": [
+            "No applied terminal couple; link gravity omitted; positive efforts increase the corresponding angles."
+          ]
+        }
+      ],
+      "simpleExplanation": "τ1=2×1×3+(1+2×0)×4=10 and τ2=1×4=4.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This omits the first-link moment contribution.",
+        "This reverses the sign of the f_x contribution.",
+        "This does not follow the correct transpose mapping."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W02-L10-Q040",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L10",
+    "stem": "At θ2=0 and f_y=0, what does the ideal planar formula give for nonzero f_x along the straight arm?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "synthesis",
+    "week": 2,
+    "lectureId": "L10",
+    "topic": "Static forces and velocity propagation",
+    "subtopic": "A nonzero force can require zero actuator torque",
+    "tags": [
+      "force-nullspace"
+    ],
+    "conceptIds": [
+      "W02-L10-C-force-nullspace"
+    ],
+    "assumptions": [
+      "Ideal rigid planar arm, no gravity, no terminal couple; this statement does not rate the real robot’s joints or structure."
+    ],
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "No finite force can be represented because J is singular"
+      },
+      {
+        "id": "choice-1",
+        "text": "τ1=τ2=0, without proving unlimited structural load capacity"
+      },
+      {
+        "id": "choice-2",
+        "text": "τ1=L1 f_x and τ2=L2 f_x"
+      },
+      {
+        "id": "choice-3",
+        "text": "τ1=τ2=f_x regardless of length units"
+      }
+    ],
+    "correctOptionIds": [
+      "choice-1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0344",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 344,
+        "kind": "equation",
+        "locator": "Lecture 10, physical PDF page 344, printed slide 19: displayed derivation, text and associated figure",
+        "evidenceText": "•  So we have,\n   ➢𝜏1 = 𝐿1𝑠2𝑓𝑥+ 𝐿2 + 𝐿1𝑐2 𝑓𝑦,\n   ➢𝜏2 = 𝐿2𝑓𝑦 .\n•  This relationship can be written as a matrix\n   operator:\n           𝐿1𝑠2  𝐿2 + 𝐿1𝑐2  𝑓𝑥  ➢𝜏=\n           0       𝐿2      𝑓𝑦\n•  This matrix is the transpose of the Jacobian that we\n   had,\n                  𝐿1𝑠2    0  ➢ 3𝐽𝜃=\n               𝐿2 + 𝐿1𝑐2  𝐿2\n\n\n                                                                                                          19",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The radial force has zero moment about both joint axes in this ideal geometry; structural stresses and load limits remain separate.",
+      "optionExplanations": {
+        "choice-1": "This is the null space of Jᵀ and includes the necessary physical limit.",
+        "choice-2": "Parallel force and lever arms create no z moment.",
+        "choice-3": "Force and torque have different units.",
+        "choice-4": "The transpose force map exists even when the velocity inverse does not."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "τ1=L1 sinθ2 f_x+(L2+L1 cosθ2)f_y; τ2=L2 f_y",
+          "variables": {
+            "τ1,τ2": "joint efforts required to apply the specified end force",
+            "f_x,f_y": "force components exerted by the hand, expressed in frame3",
+            "L1,L2": "link lengths",
+            "θ2": "elbow angle"
+          },
+          "units": {
+            "τ1,τ2": "N·m",
+            "f_x,f_y": "N",
+            "L1,L2": "m",
+            "θ2": "rad"
+          },
+          "assumptions": [
+            "No applied terminal couple; link gravity omitted; positive efforts increase the corresponding angles."
+          ]
+        }
+      ],
+      "simpleExplanation": "The radial force has zero moment about both joint axes in this ideal geometry; structural stresses and load limits remain separate.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Parallel force and lever arms create no z moment.",
+        "Force and torque have different units.",
+        "The transpose force map exists even when the velocity inverse does not."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W02-L10-Q041",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L10",
+    "stem": "If the same planar arm must also exert a pure terminal z couple M, what changes in the torque formulas?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "synthesis",
+    "week": 2,
+    "lectureId": "L10",
+    "topic": "Static forces and velocity propagation",
+    "subtopic": "Adding a terminal moment",
+    "tags": [
+      "terminal-couple"
+    ],
+    "conceptIds": [
+      "W02-L10-C-terminal-couple"
+    ],
+    "assumptions": [
+      "This is a derived extension: add the specified terminal couple to the lecture’s force-only example."
+    ],
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "Add M to both τ1 and τ2"
+      },
+      {
+        "id": "choice-2",
+        "text": "Add M only to τ2"
+      },
+      {
+        "id": "choice-3",
+        "text": "Multiply both torques by M"
+      },
+      {
+        "id": "choice-4",
+        "text": "Add L1M to τ1 and L2M to τ2"
+      }
+    ],
+    "correctOptionIds": [
+      "choice-1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0342",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 342,
+        "kind": "equation",
+        "locator": "Lecture 10, physical PDF page 342, printed slide 17: displayed derivation, text and associated figure",
+        "evidenceText": "Example\n\n•  The two-link arm manipulator is applying a force vector\n   3𝐹with its end-effector. Find the required joint torques\n   as a function of configuration and of the applied force.\n•   Starting from the last link and going toward the base of\n   the robot:\n   ➢  𝑖𝑓𝑖= 𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1,\n               +  𝑖𝑃𝑖+1 ×  𝑖𝑓𝑖   ➢  𝑖𝑛𝑖= 𝑖+1𝑖𝑅𝑖+1𝑛𝑖+1\n                 𝑓𝑥\n                    = [𝐼] 3𝑓3;   ➢  3𝑓3 =  𝑓𝑦  ; 2𝑓2 = 2𝑅3𝑓33\n            0\n                          𝑓𝑥    0  0   0    𝑓𝑥     0\n   ➢  2𝑛2 = 𝐿2 ෠𝑋2 ×  𝑓𝑦                =  0  0  −𝐿2  𝑓𝑦 =  0    ,\n                   𝑜     0  𝐿2   0   𝑜     𝐿2𝑓𝑦\n\n\n                                                                                                          17",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0344",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 344,
+        "kind": "equation",
+        "locator": "Lecture 10, physical PDF page 344, printed slide 19: displayed derivation, text and associated figure",
+        "evidenceText": "•  So we have,\n   ➢𝜏1 = 𝐿1𝑠2𝑓𝑥+ 𝐿2 + 𝐿1𝑐2 𝑓𝑦,\n   ➢𝜏2 = 𝐿2𝑓𝑦 .\n•  This relationship can be written as a matrix\n   operator:\n           𝐿1𝑠2  𝐿2 + 𝐿1𝑐2  𝑓𝑥  ➢𝜏=\n           0       𝐿2      𝑓𝑦\n•  This matrix is the transpose of the Jacobian that we\n   had,\n                  𝐿1𝑠2    0  ➢ 3𝐽𝜃=\n               𝐿2 + 𝐿1𝑐2  𝐿2\n\n\n                                                                                                          19",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "A pure z couple propagates unchanged through planar z rotations and acts about both revolute axes.",
+      "optionExplanations": {
+        "choice-1": "The angular-Jacobian row is[1,1].",
+        "choice-2": "The upstream joint also transmits the couple.",
+        "choice-3": "Efforts add linearly; multiplication has wrong units.",
+        "choice-4": "Multiplying a moment by length gives the wrong units."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "τ=J_positionᵀ f+[1,1]ᵀM",
+          "variables": {
+            "τ": "two joint torques",
+            "f": "tip planar force",
+            "M": "terminal z moment",
+            "J_position": "planar position Jacobian"
+          },
+          "units": {
+            "τ,M": "N·m",
+            "f": "N",
+            "J_position": "m/rad"
+          },
+          "assumptions": [
+            "Terminal couple is an explicit extension of the zero-couple worked example."
+          ]
+        }
+      ],
+      "simpleExplanation": "A pure z couple propagates unchanged through planar z rotations and acts about both revolute axes.",
+      "memoryAid": null,
+      "misconceptions": [
+        "The upstream joint also transmits the couple.",
+        "Efforts add linearly; multiplication has wrong units.",
+        "Multiplying a moment by length gives the wrong units."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W02-L10-Q047",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L10",
+    "stem": "For J=[[1,0,1],[0,2,1]], F=(3,4) N and qdot=(0.2,−0.1,0.3) rad/s, what common power follows?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "hard",
+    "cognitiveSkill": "numerical",
+    "week": 2,
+    "lectureId": "L10",
+    "topic": "Static forces and velocity propagation",
+    "subtopic": "Checking task and joint power",
+    "tags": [
+      "power-equality"
+    ],
+    "conceptIds": [
+      "W02-L10-C-power-equality"
+    ],
+    "assumptions": [
+      "The numerical J is in m/rad; ideal instantaneous mapping with consistent force convention."
+    ],
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "0.7 W"
+      },
+      {
+        "id": "choice-4",
+        "text": "0 W because one joint rate is negative"
+      },
+      {
+        "id": "choice-1",
+        "text": "1.9 W"
+      },
+      {
+        "id": "choice-2",
+        "text": "2.7 W"
+      }
+    ],
+    "correctOptionIds": [
+      "choice-1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0346",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 346,
+        "kind": "equation",
+        "locator": "Lecture 10, physical PDF page 346, printed slide 21: displayed derivation, text and associated figure",
+        "evidenceText": "•   Virtual Work\n   – Based on conservation of energy.\n   – Same amount of energy is required no mater what frame.\n   – Work is the dot product of the force or torque vector and the motion vector.\n   – Work done in Cartesian term = work done in joint space terms\n                     𝐹⋅𝛿𝜒= 𝜏⋅𝛿Θ\n                      𝐹𝑇𝛿𝜒= 𝜏𝑇𝛿Θ\n   – 𝐹 is the Cartesian force-moment vector (6 × 1)\n   – 𝛿𝜒 is a Cartesian displacement vector of EE (6 × 1)\n   –   is the joint toque-force vector (6 × 1)\n   –  is the joint position vector (6 × 1)\n•  The Jacobian is defined as:𝛿𝜒= 𝐽𝛿Θ\n•  So we can get the following: 𝐹𝑇𝐽𝛿Θ = 𝜏𝑇𝛿Θ 𝑖. 𝑒. , 𝜏= 𝐽𝑇𝐹\n\n\n                                                                                                          21",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "v=Jqdot=(0.5,0.1), giving F·v=1.5+0.4=1.9 W; τ=(3,8,7) gives the same joint power.",
+      "optionExplanations": {
+        "choice-1": "Both power calculations agree.",
+        "choice-2": "This ignores the negative contribution of joint2.",
+        "choice-3": "This omits one or more transmitted contributions.",
+        "choice-4": "Negative rate changes a signed contribution, not necessarily the total to zero."
+      },
+      "steps": [
+        "Compute task velocity(0.5,0.1) m/s.",
+        "Compute task power3×0.5+4×0.1=1.9 W.",
+        "Compute τ=JᵀF=(3,8,7) N·m.",
+        "Compute joint power3×0.2+8×(−0.1)+7×0.3=1.9 W."
+      ],
+      "formulas": [
+        {
+          "expression": "δW=Fᵀδχ=τᵀδq; δχ=Jδq; τ=JᵀF",
+          "variables": {
+            "δW": "virtual work",
+            "F": "task wrench or force, matched to task displacement",
+            "δχ": "infinitesimal task displacement",
+            "τ": "generalized joint efforts",
+            "δq": "infinitesimal joint displacement",
+            "J": "task Jacobian"
+          },
+          "units": {
+            "δW": "J",
+            "force components": "N",
+            "moment components and revolute efforts": "N·m",
+            "translation and prismatic displacement": "m",
+            "rotation and revolute displacement": "rad",
+            "prismatic efforts": "N"
+          },
+          "assumptions": [
+            "Consistent frame, reference point and force sign; ideal virtual work; F is the wrench the manipulator is required to exert."
+          ]
+        },
+        {
+          "expression": "P=Fᵀv=τᵀqdot",
+          "variables": {
+            "P": "mechanical power",
+            "F": "task force",
+            "v": "task velocity",
+            "τ": "joint torques",
+            "qdot": "joint rates"
+          },
+          "units": {
+            "P": "W",
+            "F": "N",
+            "v": "m/s",
+            "τ": "N·m",
+            "qdot": "rad/s"
+          },
+          "assumptions": []
+        }
+      ],
+      "simpleExplanation": "v=Jqdot=(0.5,0.1), giving F·v=1.5+0.4=1.9 W; τ=(3,8,7) gives the same joint power.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This ignores the negative contribution of joint2.",
+        "This omits one or more transmitted contributions.",
+        "Negative rate changes a signed contribution, not necessarily the total to zero."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W02-L10-Q050",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L10",
+    "stem": "Why is the relative joint-rate term crossed out before the fixed frame-to-frame velocity transform?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "medium",
+    "cognitiveSkill": "application",
+    "week": 2,
+    "lectureId": "L10",
+    "topic": "Static forces and velocity propagation",
+    "subtopic": "When the six-by-six velocity transform applies",
+    "tags": [
+      "fixed-body-transform"
+    ],
+    "conceptIds": [
+      "W02-L10-C-fixed-body-transform"
+    ],
+    "assumptions": [
+      "Interpret the blue strike on the relative-rate term as the fixed-body special case, not a general moving-joint identity."
+    ],
+    "options": [
+      {
+        "id": "choice-2",
+        "text": "A rotation matrix always makes every relative joint rate zero"
+      },
+      {
+        "id": "choice-3",
+        "text": "Angular velocity is omitted from every Cartesian transform"
+      },
+      {
+        "id": "choice-4",
+        "text": "Only translations can be represented by a6×6 matrix"
+      },
+      {
+        "id": "choice-1",
+        "text": "The two frames are treated as fixed on one rigid body, so they have no relative joint motion"
+      }
+    ],
+    "correctOptionIds": [
+      "choice-1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0347",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 347,
+        "kind": "figure",
+        "locator": "Lecture 10, physical PDF page 347, printed slide 22: displayed derivation, text and associated figure",
+        "evidenceText": "Cartesian Transformation of Velocities and Static Forces\n\n                                            𝑣\n• 6 × 1 representation of general velocity of a body 𝜈=\n                                 𝜔\n                                   𝐹• 6 × 1 representation of general force vector ℱ=\n                              𝑁\n      = 𝑖+1𝑅⋅•  𝑖+1ω𝑖+1                          𝑖   𝑖ω𝑖+ ሶθi+1 𝑖+1 መ𝑍𝑖+1\n     = 𝑖+1𝑅•   𝑖𝑣𝑖+1                       𝑖   𝑖𝑣𝑖+ 𝑖ω𝑖×  𝑖P𝑖+1\n   𝐵𝑣𝐵    𝐵𝑅𝐴   −𝐴𝐵𝑅𝐴𝑃𝐵𝑂𝑅𝐺×   𝐴𝑣𝐴•     =\n   𝐵𝜔𝐵     0       𝐵𝑅𝐴        𝐴𝜔𝐴\n\n\n\n\n                                                                                                          22",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The displayed transform relates two fixed reference frames on the same rigid body; an articulated joint would add relative motion.",
+      "optionExplanations": {
+        "choice-1": "This states the needed assumption.",
+        "choice-2": "Coordinate rotation does not cancel physical relative motion.",
+        "choice-3": "Angular velocity occupies the lower three components.",
+        "choice-4": "Both rotation and origin offset appear in the block matrix."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The displayed transform relates two fixed reference frames on the same rigid body; an articulated joint would add relative motion.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Coordinate rotation does not cancel physical relative motion.",
+        "Angular velocity occupies the lower three components.",
+        "Both rotation and origin offset appear in the block matrix."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W02-L10-Q051",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L10",
+    "stem": "Let p point from origin A to origin B, expressed in A, and R convert A components into B; why is the upper-right block −R[p]×?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "synthesis",
+    "week": 2,
+    "lectureId": "L10",
+    "topic": "Static forces and velocity propagation",
+    "subtopic": "Sign of the velocity offset block",
+    "tags": [
+      "twist-offset-sign"
+    ],
+    "conceptIds": [
+      "W02-L10-C-twist-offset-sign"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "choice-3",
+        "text": "Because angular velocity changes sign under every rotation"
+      },
+      {
+        "id": "choice-4",
+        "text": "Because an origin shift reverses all linear velocity components"
+      },
+      {
+        "id": "choice-1",
+        "text": "Because v_B expressed in A is v_A+ω×p=v_A−p×ω"
+      },
+      {
+        "id": "choice-2",
+        "text": "Because v_B=v_A+p×ω by the right-hand rule"
+      }
+    ],
+    "correctOptionIds": [
+      "choice-1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0347",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 347,
+        "kind": "equation",
+        "locator": "Lecture 10, physical PDF page 347, printed slide 22: displayed derivation, text and associated figure",
+        "evidenceText": "Cartesian Transformation of Velocities and Static Forces\n\n                                            𝑣\n• 6 × 1 representation of general velocity of a body 𝜈=\n                                 𝜔\n                                   𝐹• 6 × 1 representation of general force vector ℱ=\n                              𝑁\n      = 𝑖+1𝑅⋅•  𝑖+1ω𝑖+1                          𝑖   𝑖ω𝑖+ ሶθi+1 𝑖+1 መ𝑍𝑖+1\n     = 𝑖+1𝑅•   𝑖𝑣𝑖+1                       𝑖   𝑖𝑣𝑖+ 𝑖ω𝑖×  𝑖P𝑖+1\n   𝐵𝑣𝐵    𝐵𝑅𝐴   −𝐴𝐵𝑅𝐴𝑃𝐵𝑂𝑅𝐺×   𝐴𝑣𝐴•     =\n   𝐵𝜔𝐵     0       𝐵𝑅𝐴        𝐴𝜔𝐴\n\n\n\n\n                                                                                                          22",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Cross-product antisymmetry gives ω×p=−p×ω before the coordinate rotation.",
+      "optionExplanations": {
+        "choice-1": "This derives the block sign.",
+        "choice-2": "This reverses the cross-product order without a sign change.",
+        "choice-3": "Proper rotation changes components, not the physical vector sign universally.",
+        "choice-4": "Only the rotational offset term is added; translation does not negate all velocity."
+      },
+      "steps": [
+        "Write the velocity at displaced point B as v_A+ω×p.",
+        "Replace ω×p by−[p]×ω.",
+        "Rotate both terms into B coordinates."
+      ],
+      "formulas": [
+        {
+          "expression": "v_B^B=R_BA(v_A^A+ω^A×p^A)",
+          "variables": {
+            "v_B^B": "B-origin velocity in B coordinates",
+            "v_A^A": "A-origin velocity in A coordinates",
+            "R_BA": "rotation from A to B coordinates",
+            "ω^A": "rigid-body angular velocity in A",
+            "p^A": "A-origin to B-origin vector in A"
+          },
+          "units": {
+            "v_B^B,v_A^A": "m/s",
+            "ω^A": "rad/s",
+            "p^A": "m",
+            "R_BA": "dimensionless"
+          },
+          "assumptions": []
+        }
+      ],
+      "simpleExplanation": "Cross-product antisymmetry gives ω×p=−p×ω before the coordinate rotation.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This reverses the cross-product order without a sign change.",
+        "Proper rotation changes components, not the physical vector sign universally.",
+        "Only the rotational offset term is added; translation does not negate all velocity."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W02-L10-Q052",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L10",
+    "stem": "Let p_A→B=(1,0,0) m, R_BA=Rz(−90°), v_A^A=(1,0,0) m/s and ω^A=(0,0,2) rad/s; what is v_B^B?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "hard",
+    "cognitiveSkill": "numerical",
+    "week": 2,
+    "lectureId": "L10",
+    "topic": "Static forces and velocity propagation",
+    "subtopic": "Changing both origin and coordinates",
+    "tags": [
+      "twist-numerical"
+    ],
+    "conceptIds": [
+      "W02-L10-C-twist-numerical"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "(1,2,0) m/s"
+      },
+      {
+        "id": "choice-1",
+        "text": "(2,−1,0) m/s"
+      },
+      {
+        "id": "choice-2",
+        "text": "(−2,−1,0) m/s"
+      },
+      {
+        "id": "choice-3",
+        "text": "(0,−1,0) m/s"
+      }
+    ],
+    "correctOptionIds": [
+      "choice-1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0347",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 347,
+        "kind": "equation",
+        "locator": "Lecture 10, physical PDF page 347, printed slide 22: displayed derivation, text and associated figure",
+        "evidenceText": "Cartesian Transformation of Velocities and Static Forces\n\n                                            𝑣\n• 6 × 1 representation of general velocity of a body 𝜈=\n                                 𝜔\n                                   𝐹• 6 × 1 representation of general force vector ℱ=\n                              𝑁\n      = 𝑖+1𝑅⋅•  𝑖+1ω𝑖+1                          𝑖   𝑖ω𝑖+ ሶθi+1 𝑖+1 መ𝑍𝑖+1\n     = 𝑖+1𝑅•   𝑖𝑣𝑖+1                       𝑖   𝑖𝑣𝑖+ 𝑖ω𝑖×  𝑖P𝑖+1\n   𝐵𝑣𝐵    𝐵𝑅𝐴   −𝐴𝐵𝑅𝐴𝑃𝐵𝑂𝑅𝐺×   𝐴𝑣𝐴•     =\n   𝐵𝜔𝐵     0       𝐵𝑅𝐴        𝐴𝜔𝐴\n\n\n\n\n                                                                                                          22",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The B-point velocity in A is(1,2,0); rotating by−90° gives(2,−1,0).",
+      "optionExplanations": {
+        "choice-1": "This includes both origin shift and basis change.",
+        "choice-2": "This reverses ω×p.",
+        "choice-3": "This omits the offset velocity.",
+        "choice-4": "This is the correct vector before rotating its components into B."
+      },
+      "steps": [
+        "ω×p=(0,2,0) m/s.",
+        "v_B^A=(1,2,0) m/s.",
+        "Rz(−90°)(1,2,0)=(2,−1,0) m/s."
+      ],
+      "formulas": [
+        {
+          "expression": "v_B^B=R_BA(v_A^A+ω^A×p^A)",
+          "variables": {
+            "v_B^B,v_A^A": "origin velocities in the indicated bases",
+            "R_BA": "A-to-B rotation",
+            "ω^A": "angular velocity",
+            "p^A": "A-to-B origin offset"
+          },
+          "units": {
+            "v_B^B,v_A^A": "m/s",
+            "ω^A": "rad/s",
+            "p^A": "m",
+            "R_BA": "dimensionless"
+          },
+          "assumptions": []
+        }
+      ],
+      "simpleExplanation": "The B-point velocity in A is(1,2,0); rotating by−90° gives(2,−1,0).",
+      "memoryAid": null,
+      "misconceptions": [
+        "This reverses ω×p.",
+        "This omits the offset velocity.",
+        "This is the correct vector before rotating its components into B."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W02-L10-Q054",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L10",
+    "stem": "Let R_AB=Rz(90°), p_A→B=(1,0,0) m, F_B=(2,0,0) N and N_B=(0,0,3) N·m; what are(F_A,N_A)?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "hard",
+    "cognitiveSkill": "numerical",
+    "week": 2,
+    "lectureId": "L10",
+    "topic": "Static forces and velocity propagation",
+    "subtopic": "A rotated and translated force-moment pair",
+    "tags": [
+      "wrench-numerical"
+    ],
+    "conceptIds": [
+      "W02-L10-C-wrench-numerical"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "choice-2",
+        "text": "((0,2,0) N,(0,0,1) N·m)"
+      },
+      {
+        "id": "choice-3",
+        "text": "((2,0,0) N,(0,0,3) N·m)"
+      },
+      {
+        "id": "choice-4",
+        "text": "((0,2,0) N,(0,0,3) N·m)"
+      },
+      {
+        "id": "choice-1",
+        "text": "((0,2,0) N,(0,0,5) N·m)"
+      }
+    ],
+    "correctOptionIds": [
+      "choice-1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0348",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 348,
+        "kind": "equation",
+        "locator": "Lecture 10, physical PDF page 348, printed slide 23: displayed derivation, text and associated figure",
+        "evidenceText": "•  Similarly for static forces\n  ➢𝑖𝑓𝑖= 𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1,\n              +    ×  ➢𝑖𝑛𝑖= 𝑖+1𝑖𝑅𝑖+1𝑛𝑖+1    𝑖𝑃𝑖+1     𝑖𝑓𝑖\n        𝐴𝐹𝐴          𝐵𝐴𝑅      0   𝐵𝐹𝐵  ➢     =\n       𝐴𝑁𝐴     𝐴𝑃𝐵𝑂𝑅𝐺× 𝐵𝐴𝑅  𝐵𝐴𝑅  𝐵𝑁𝐵\n\n\n\n\n\n                                                                                                          23",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "Rotate the force to(0,2,0); its moment about A is(0,0,2), which adds to the rotated3 N·m couple.",
+      "optionExplanations": {
+        "choice-1": "Both operations and signs are included.",
+        "choice-2": "This subtracts the offset moment.",
+        "choice-3": "This ignores the basis change and offset.",
+        "choice-4": "This rotates but omits the origin-shift contribution."
+      },
+      "steps": [
+        "F_A=Rz(90°)(2,0,0)=(0,2,0).",
+        "p×F_A=(0,0,2).",
+        "R_AB N_B=(0,0,3).",
+        "N_A=(0,0,5)."
+      ],
+      "formulas": [
+        {
+          "expression": "f_i=R_i,i+1 f_(i+1); n_i=R_i,i+1 n_(i+1)+p_i,i+1×f_i",
+          "variables": {
+            "f_i,f_(i+1)": "transmitted force in each link frame",
+            "n_i,n_(i+1)": "transmitted moment about each origin",
+            "R_i,i+1": "rotation from downstream coordinates into frame i",
+            "p_i,i+1": "vector from origin i to origin i+1, expressed in frame i"
+          },
+          "units": {
+            "f_i,f_(i+1)": "N",
+            "n_i,n_(i+1)": "N·m",
+            "p_i,i+1": "m",
+            "R_i,i+1": "dimensionless"
+          },
+          "assumptions": [
+            "Static equilibrium; no link gravity or other distributed loads in this example."
+          ]
+        }
+      ],
+      "simpleExplanation": "Rotate the force to(0,2,0); its moment about A is(0,0,2), which adds to the rotated3 N·m couple.",
+      "memoryAid": null,
+      "misconceptions": [
+        "This subtracts the offset moment.",
+        "This ignores the basis change and offset.",
+        "This rotates but omits the origin-shift contribution."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W02-L10-Q056",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L10",
+    "stem": "For fixed frames A and B with the same origin but different orientations, what do the velocity and wrench maps reduce to?",
+    "selectionMode": "single",
+    "type": "derivation",
+    "difficulty": "medium",
+    "cognitiveSkill": "synthesis",
+    "week": 2,
+    "lectureId": "L10",
+    "topic": "Static forces and velocity propagation",
+    "subtopic": "When block-diagonal rotation is sufficient",
+    "tags": [
+      "origin-versus-basis"
+    ],
+    "conceptIds": [
+      "W02-L10-C-origin-versus-basis"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "choice-4",
+        "text": "A scalar scaling of all six components by the distance between the origins"
+      },
+      {
+        "id": "choice-1",
+        "text": "Separate rotation of linear/angular and force/moment components with zero offset blocks"
+      },
+      {
+        "id": "choice-2",
+        "text": "A translation-only map with no rotation blocks"
+      },
+      {
+        "id": "choice-3",
+        "text": "A sign reversal of every moment component"
+      }
+    ],
+    "correctOptionIds": [
+      "choice-1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0347",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 347,
+        "kind": "equation",
+        "locator": "Lecture 10, physical PDF page 347, printed slide 22: displayed derivation, text and associated figure",
+        "evidenceText": "Cartesian Transformation of Velocities and Static Forces\n\n                                            𝑣\n• 6 × 1 representation of general velocity of a body 𝜈=\n                                 𝜔\n                                   𝐹• 6 × 1 representation of general force vector ℱ=\n                              𝑁\n      = 𝑖+1𝑅⋅•  𝑖+1ω𝑖+1                          𝑖   𝑖ω𝑖+ ሶθi+1 𝑖+1 መ𝑍𝑖+1\n     = 𝑖+1𝑅•   𝑖𝑣𝑖+1                       𝑖   𝑖𝑣𝑖+ 𝑖ω𝑖×  𝑖P𝑖+1\n   𝐵𝑣𝐵    𝐵𝑅𝐴   −𝐴𝐵𝑅𝐴𝑃𝐵𝑂𝑅𝐺×   𝐴𝑣𝐴•     =\n   𝐵𝜔𝐵     0       𝐵𝑅𝐴        𝐴𝜔𝐴\n\n\n\n\n                                                                                                          22",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p0348",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 348,
+        "kind": "equation",
+        "locator": "Lecture 10, physical PDF page 348, printed slide 23: displayed derivation, text and associated figure",
+        "evidenceText": "•  Similarly for static forces\n  ➢𝑖𝑓𝑖= 𝑖+1𝑖𝑅𝑖+1𝑓𝑖+1,\n              +    ×  ➢𝑖𝑛𝑖= 𝑖+1𝑖𝑅𝑖+1𝑛𝑖+1    𝑖𝑃𝑖+1     𝑖𝑓𝑖\n        𝐴𝐹𝐴          𝐵𝐴𝑅      0   𝐵𝐹𝐵  ➢     =\n       𝐴𝑁𝐴     𝐴𝑃𝐵𝑂𝑅𝐺× 𝐵𝐴𝑅  𝐵𝐴𝑅  𝐵𝑁𝐵\n\n\n\n\n\n                                                                                                          23",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "When p=0, all cross-product offset terms vanish; the appropriate coordinate rotation remains on both diagonal blocks.",
+      "optionExplanations": {
+        "choice-1": "This is the p=0 special case.",
+        "choice-2": "The orientations still differ.",
+        "choice-3": "Changing basis is not a universal sign reversal.",
+        "choice-4": "The distance is zero and does not define a scaling operation."
+      },
+      "steps": [],
+      "formulas": [
+        {
+          "expression": "f_i=R_i,i+1 f_(i+1); n_i=R_i,i+1 n_(i+1)+p_i,i+1×f_i",
+          "variables": {
+            "f_i,f_(i+1)": "transmitted force in each link frame",
+            "n_i,n_(i+1)": "transmitted moment about each origin",
+            "R_i,i+1": "rotation from downstream coordinates into frame i",
+            "p_i,i+1": "vector from origin i to origin i+1, expressed in frame i"
+          },
+          "units": {
+            "f_i,f_(i+1)": "N",
+            "n_i,n_(i+1)": "N·m",
+            "p_i,i+1": "m",
+            "R_i,i+1": "dimensionless"
+          },
+          "assumptions": [
+            "Static equilibrium; no link gravity or other distributed loads in this example."
+          ]
+        }
+      ],
+      "simpleExplanation": "When p=0, all cross-product offset terms vanish; the appropriate coordinate rotation remains on both diagonal blocks.",
+      "memoryAid": null,
+      "misconceptions": [
+        "The orientations still differ.",
+        "Changing basis is not a universal sign reversal.",
+        "The distance is zero and does not define a scaling operation."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  },
+  {
+    "id": "W02-L10-Q057",
+    "version": 1,
+    "status": "draft",
+    "authorId": "robotics-integration-author-L10",
+    "stem": "Which summary correctly contrasts the two recursions taught in the lecture?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "medium",
+    "cognitiveSkill": "recall",
+    "week": 2,
+    "lectureId": "L10",
+    "topic": "Static forces and velocity propagation",
+    "subtopic": "Velocity and statics propagation",
+    "tags": [
+      "outward-inward-duality"
+    ],
+    "conceptIds": [
+      "W02-L10-C-outward-inward-duality"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "choice-1",
+        "text": "Velocities propagate base-to-tip from joint rates; static loads propagate tip-to-base from the specified end wrench"
+      },
+      {
+        "id": "choice-2",
+        "text": "Both propagate base-to-tip from the same force boundary data"
+      },
+      {
+        "id": "choice-3",
+        "text": "Both propagate tip-to-base from the same joint-rate boundary data"
+      },
+      {
+        "id": "choice-4",
+        "text": "Velocity propagation requires Jᵀ, while force propagation requires J⁻¹"
+      }
+    ],
+    "correctOptionIds": [
+      "choice-1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0349",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 349,
+        "kind": "statement",
+        "locator": "Lecture 10, physical PDF page 349, printed slide 24: displayed derivation, text and associated figure",
+        "evidenceText": "Summary\n\n•  Velocity propagation (outward) iteratively computes angular and\n   linear velocities from base to end-effector.\n•  The Jacobian J(θ) is a matrix mapping joint velocities to end-\n   effector Cartesian velocities\n•  Singularities (det J = 0) limit motion.\n\n•  𝑣=   𝐽ሶ𝜃\n• 𝜏= 𝐽𝑇𝐹\n\n\n\n\n\n                                                                                                          24",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "The kinematic recursion accumulates motion outward; the load recursion accumulates force and moment inward.",
+      "optionExplanations": {
+        "choice-1": "This preserves both boundary conditions and directions.",
+        "choice-2": "The motion and load problems use different inputs.",
+        "choice-3": "Joint rates do not serve as a distal wrench boundary.",
+        "choice-4": "The direct task relations are v=Jqdot andτ=JᵀF."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "The kinematic recursion accumulates motion outward; the load recursion accumulates force and moment inward.",
+      "memoryAid": null,
+      "misconceptions": [
+        "The motion and load problems use different inputs.",
+        "Joint rates do not serve as a distal wrench boundary.",
+        "The direct task relations are v=Jqdot andτ=JᵀF."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": []
+  }
+]

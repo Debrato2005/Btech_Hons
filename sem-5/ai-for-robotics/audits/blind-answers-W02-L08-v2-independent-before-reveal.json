@@ -1,0 +1,556 @@
+{
+  "reviewerId": "independent-reviewer-robotics-batches-v2",
+  "packetPath": "audits/blind-W02-L08-v2-revisions.json",
+  "packetSha256": "c6d0961634d112e6c65aa00838699bceb676279372e31a67c155ad3df5c968f1",
+  "authorAnswerOpened": false,
+  "exposure": "New independent reviewer for these revisions. No author key, previous review, revision report or author computations opened. Source statements and formulas are visible as necessary premises; no worked numerical answers to these generated examples were exposed.",
+  "answers": [
+    {
+      "questionId": "W02-L08-P0272-Q01",
+      "questionVersion": 2,
+      "packetQuestionSha256": "5c126ab6b1245c30c7b6981ff796ad8a939c8a6e13ffce46af80630dbe89fb93",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:49:11.701144+00:00",
+      "sourcePages": [
+        272
+      ],
+      "reasoning": "The input tool/station transform is not the wrist/base target. Correct workflow is convert frames and tool offset to B_T_W, then solve link-dependent IK. Simply inverting the pose does not determine joints; using either unconverted frame as target is wrong.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0272-Q02",
+      "questionVersion": 2,
+      "packetQuestionSha256": "8f39591d26095e2b6f8f1c66361ed63e1f88a2aadd15b64c91740652ff3f8db0",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:49:11.701156+00:00",
+      "sourcePages": [
+        272
+      ],
+      "reasoning": "IK maps desired end-effector pose to joint variables. Differential IK maps velocity to joint rates; link geometry is design data; supplied joints to pose is forward kinematics.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0273-Q03",
+      "questionVersion": 2,
+      "packetQuestionSha256": "0fbdfccdf5b34dfd69059a2d5e8185e1bad9b8e84f01fdf9f81a8fa63529a522",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:49:11.701161+00:00",
+      "sourcePages": [
+        273,
+        274,
+        276
+      ],
+      "reasoning": "Three position plus three local orientation constraints match six unknowns only in count. Nonlinear equations can lack a solution or admit multiple branches, consistent with pages274/276. Neither linearity nor a fixed number of solutions follows.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0275-Q06",
+      "questionVersion": 2,
+      "packetQuestionSha256": "126b2d3a5fa0c4158adadfb6432c5858bb2039bb66acc077bdf03c5f049af81f",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:50:05.255773+00:00",
+      "sourcePages": [
+        275,
+        282
+      ],
+      "reasoning": "With no tool translation the position equations depend only on θ1,θ2; φ=θ1+θ2+θ3. For any reachable point, choose a position branch and change unrestricted θ3 to realize arbitrary planar orientation without moving frame3 origin. Neither annulus enlargement nor position-only change follows.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0276-Q02",
+      "questionVersion": 2,
+      "packetQuestionSha256": "545e2992b5c7514d126c7d4d61679948efad54096a4c253b93b5b60a08f88e0e",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:49:11.701165+00:00",
+      "sourcePages": [
+        276
+      ],
+      "reasoning": "Can have eight is a branch possibility, not existence for unreachable goals or feasibility under every constraint. It does not describe eight independent joints.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0277-Q05",
+      "questionVersion": 2,
+      "packetQuestionSha256": "e6afd825051738783422d18a9b19b3502fb1e22b376001b1cb363c49105ce5ad",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:49:11.701168+00:00",
+      "sourcePages": [
+        277
+      ],
+      "reasoning": "Both final rows state ≤16, so removing the last zero-length condition does not raise the stated bound. An upper bound is not a guarantee of16; it also refutes strict doubling and uniqueness.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0278-Q02",
+      "questionVersion": 2,
+      "packetQuestionSha256": "1e3dfe33ef9aebf5be78dc9f3a8c8f72e9a3ebe0f8d833ed534c1f454f730a23",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:49:11.701171+00:00",
+      "sourcePages": [
+        278
+      ],
+      "reasoning": "Scaling input by α must scale output f(x), giving f(αx)=αf(x). The printed αx would incorrectly force identity-like behavior; addition, scalar offset and scale-invariance alternatives do not express homogeneity.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0278-Q03",
+      "questionVersion": 2,
+      "packetQuestionSha256": "abae3277361d9041542310dcbf7b3fd5e9cf5db6df6587a50d3e75b8587b026b",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:49:11.701174+00:00",
+      "sourcePages": [
+        278
+      ],
+      "reasoning": "Substitute αx=3 into f(t)=2t: f(3)=6. Printed RHS is3 whereas corrected3f(1)=3·2=6. This linear map is a counterexample to the printed equality, not to homogeneity.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0278-Q04",
+      "questionVersion": 2,
+      "packetQuestionSha256": "4755b0572e562c73fd5985a222686b7de4f39955c64d0471881ca6e81887176a",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:49:11.701177+00:00",
+      "sourcePages": [
+        276,
+        278,
+        279
+      ],
+      "reasoning": "Existence/algorithmic determination can coexist with multiple solutions; p276 explicitly allows branches andp279 asks for all. Neither discard-before-existence nor uniqueness nor universal reachability follows.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0278-Q05",
+      "questionVersion": 2,
+      "packetQuestionSha256": "7eaafe18c80c02c40f1a415db5c20f2096e64213920cb52de0b896e4300af75d",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:49:11.701181+00:00",
+      "sourcePages": [
+        278
+      ],
+      "reasoning": "A unit circle contains(1,0) but not its scalar multiple(2,0); it is therefore not a linear vector subspace. Being a smaller subset is insufficient; curvature is not a requirement.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0279-Q01",
+      "questionVersion": 2,
+      "packetQuestionSha256": "569aeedd53dc4857f1798a192c342a36abd5163595d662efdb115f09ee1ba98c",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:49:11.701184+00:00",
+      "sourcePages": [
+        279
+      ],
+      "reasoning": "Source explicitly favors intersecting joint axes and many zero/right-angle link twists. Unequal/equal lengths or arbitrary frame translations alone are not the listed geometry; skew axes/non-right twists do not substitute for it.",
+      "qualityConcernsBeforeReveal": [
+        "Direct recognition of the listed structural features appears easy rather than medium."
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0279-Q02",
+      "questionVersion": 2,
+      "packetQuestionSha256": "f4d356f9dc31950f170dcbcebed30b0a3d69ec10959486b6e2cab23b4e6bb360",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:51:16.268907+00:00",
+      "sourcePages": [
+        279,
+        293
+      ],
+      "reasoning": "Six DOF is not a guarantee that every target is inside the workspace or that every numerical initialization converges. Summary explicitly calls for singularity handling; residual/feasibility checks are required and multiple branches can exist.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0280-Q01",
+      "questionVersion": 2,
+      "packetQuestionSha256": "fb47e450ec85d79acce74aca6c49f6c531b130e92907a5e99a86df941c87dbca",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:49:11.701187+00:00",
+      "sourcePages": [
+        278,
+        280
+      ],
+      "reasoning": "Algebraic uses equations/identities/substitution, geometric uses spatial relationships such as cosine law, numerical uses iterations. Each alternative permutes at least two of those roles.",
+      "qualityConcernsBeforeReveal": [
+        "Direct three-definition matching appears easy rather than medium."
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0280-Q03",
+      "questionVersion": 2,
+      "packetQuestionSha256": "302558ef86b32470cbb7c08b2bb0c1d1cd4d896a844db176316e67ed58118579",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:49:11.701191+00:00",
+      "sourcePages": [
+        280
+      ],
+      "reasoning": "Sufficient means satisfying the condition supports the stated closed-form conclusion; it does not assert necessity, unique branch or universal target reachability.",
+      "qualityConcernsBeforeReveal": [
+        "Stem says “that geometric condition” without identifying it; answer is generic sufficient-versus-necessary logic, but the standalone stem should name the three-neighboring-axis condition."
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0280-Q04",
+      "questionVersion": 2,
+      "packetQuestionSha256": "07589431ddcce2900b063561600e0ee69c61f8bea083b3da60a24f0e946becab",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:51:16.268917+00:00",
+      "sourcePages": [
+        280,
+        293
+      ],
+      "reasoning": "Closed form uses appropriate geometry and avoids repeated iteration when applicable; numerical IK handles broader geometries but needs singularity/convergence/pose validity checks. A tiny step alone can indicate stagnation rather than a solved target; universal geometry applicability and identical iteration are false.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0281-Q02",
+      "questionVersion": 2,
+      "packetQuestionSha256": "964d9579c576c1afd90f84125667806796b5369659968b1943293cc30df7ac83",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:50:05.255783+00:00",
+      "sourcePages": [
+        281
+      ],
+      "reasoning": "Read exact diagram labels:4 wrist rotation,5 wrist bend,6 flange rotation. Other options swap physically labeled joints.",
+      "qualityConcernsBeforeReveal": [
+        "Direct reading of three diagram labels is easy rather than medium."
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0282-Q02",
+      "questionVersion": 2,
+      "packetQuestionSha256": "60cdaf58064d94858ee2d98073df271f3a9ac90f9603bcef6cc27a1f596671ef",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:50:05.255787+00:00",
+      "sourcePages": [
+        282
+      ],
+      "reasoning": "Only the orientation entries c123,s123 contain θ3; both translation entries contain only θ1 andθ2. Thus changing θ3 changes orientation, not the origin coordinates, under no-offset assumption.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0282-Q05",
+      "questionVersion": 2,
+      "packetQuestionSha256": "d375884fb5190f4af039751158655c44e564968c97431ba9950eacac8575f940",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:50:05.255791+00:00",
+      "sourcePages": [
+        282
+      ],
+      "reasoning": "The pair(cφ,sφ) lies on the unit circle and is parameterized by one angle; c²+s²=1 couples the entries. It is not two independent orientation freedoms; neither sine nor position can be discarded.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0283-Q08",
+      "questionVersion": 2,
+      "packetQuestionSha256": "6d75363f93b784be7447f434672faa9d0ac5be3f779f6361dd50bdbbddb3c792",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:50:05.255794+00:00",
+      "sourcePages": [
+        283
+      ],
+      "reasoning": "At either c2 boundary,1−c2²=0, so both ± square roots are zero. At c2=1 angles are0; at−1 the representatives+π and−π are equivalent modulo2π. Thus elbow-angle branches merge, not become unreachable.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0284-Q02",
+      "questionVersion": 2,
+      "packetQuestionSha256": "83986b32a72d67888b7f8934507c82d3d24ff08fb1327be9edb5178778e84a4b",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:50:05.255797+00:00",
+      "sourcePages": [
+        284
+      ],
+      "reasoning": "The small triangle uses legs k1,k2, diagonal sqrt(k1²+k2²) and γ=atan2(opposite,adjacent)=atan2(k2,k1). Sum of legs is not Euclidean hypotenuse; reversed arguments reflect the complementary bearing; x,y bearing is θ1+γ, notγ.",
+      "qualityConcernsBeforeReveal": [
+        "Direct triangle/formula recognition may be easy; the atan2 argument-order misconception provides some conceptual discrimination."
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0284-Q03",
+      "questionVersion": 2,
+      "packetQuestionSha256": "f997d9451808dc16e82140bfce7aa9ee9cba3e253a5c0edb93cb64335bd4a7ee",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:50:05.255800+00:00",
+      "sourcePages": [
+        284
+      ],
+      "reasoning": "Substitute k1=r cosγ,k2=r sinγ into x=k1cosθ1−k2sinθ1 and divide by positive r. The result is cosγcosθ1−sinγsinθ1=cos(γ+θ1). Printed cosθ1 in the second term and cos(γ−θ1) have wrong factors/sign.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0285-Q01",
+      "questionVersion": 2,
+      "packetQuestionSha256": "0fce90b079018b30cef950bec569476fafc138e023fcfc2debffa5b5fc40d558",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:51:16.268923+00:00",
+      "sourcePages": [
+        285,
+        288
+      ],
+      "reasoning": "Subtract θ1 andθ2 from both sides of θ1+θ2+θ3=φ. The repaired resultθ3=φ−θ1−θ2 is required modulo2π; plusθ2 in p288 is inconsistent. Other signed combinations fail by substitution.",
+      "qualityConcernsBeforeReveal": [
+        "One-step rearrangement of the supplied angle sum is easy rather than medium."
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0285-Q04",
+      "questionVersion": 2,
+      "packetQuestionSha256": "761c75f07a86a0c7974336d0f540ca55d4c25c1a40343e908dcf34bafa44fa3e",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:50:05.255804+00:00",
+      "sourcePages": [
+        282,
+        284,
+        285
+      ],
+      "reasoning": "Equal lengths and θ2=π make the second link cancel the first for every θ1. Holding φ requires θ3=φ−θ1−π modulo2π. This is a continuous family, not two isolated shoulders; software atan2(0,0) conventions cannot remove physical freedom.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0285-Q05",
+      "questionVersion": 2,
+      "packetQuestionSha256": "ff0fda8db1897d7d6c22ce9b617ee2eb68139026b3ee170b870a66766dcb4ff9",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:50:05.255807+00:00",
+      "sourcePages": [
+        282,
+        285
+      ],
+      "reasoning": "A rotation matrix depends on sine/cosine, invariant under2π increments. The principal atan2 output is a representative; actual joint limits may rule out some lifted angle sums. It does not force each joint to equal the tool angle.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0285-Q06",
+      "questionVersion": 2,
+      "packetQuestionSha256": "3de61ce3bd907b7eac35cc77c51a00d19e284ab01ae4e8eb9e0e132d7e987c26",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:50:05.255811+00:00",
+      "sourcePages": [
+        276,
+        283,
+        284,
+        285
+      ],
+      "reasoning": "Reachability c2 first, then both nonzero sine signs with their own atan2 elbow; each changes k2 and therefore its shoulder angle. Finally θ3 cancels the branch-specific first two angles fromφ, and forward-pose/constraints are checked. Principal arccos alone drops a branch; reusing shoulder or assigningθ3=φ fails genericpose.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0287-Q05",
+      "questionVersion": 2,
+      "packetQuestionSha256": "e61a43d8cc16e980707e3497707b195c58e24fd9c83f799fcff98f96cb46f2e3",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:51:16.268927+00:00",
+      "sourcePages": [
+        287,
+        288
+      ],
+      "reasoning": "The negative interval chooses one geometric elbow branch. Reflection gives another valid branch in the nondegenerate case, not a prohibition of all positive angles. Closed boundaries are included and coincide in elbow-angle representation rather than being excluded.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0290-Q01",
+      "questionVersion": 2,
+      "packetQuestionSha256": "f6243b415a969707450a44c21772c2f6e7bc547c094ee5a9445143ac10a9f203",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:51:16.268930+00:00",
+      "sourcePages": [
+        290,
+        292
+      ],
+      "reasoning": "The prose specifically asks wheel angular velocities for supplied desired body linear/yaw motion. The reverse mapping is forward kinematics. A final world pose alone does not fix unique instantaneous wheel commands; geometry alone does not fix motion.",
+      "qualityConcernsBeforeReveal": [
+        "Direct input/output definition recognition is easy rather than medium."
+      ]
+    },
+    {
+      "questionId": "W02-L08-P0290-Q02",
+      "questionVersion": 2,
+      "packetQuestionSha256": "393f9abf6b41688e3780304ec002fd283c5acc331b4b8387a5543c583610cd1d",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:51:16.268934+00:00",
+      "sourcePages": [
+        289,
+        290,
+        291
+      ],
+      "reasoning": "The p289 J has3rows and2columns, so a two-sided inverse cannot exist. Page291 supplies a2×3 pseudoinverse with stated rank assumptions. Negative entries or scalar input components do not settle invertibility.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0290-Q03",
+      "questionVersion": 2,
+      "packetQuestionSha256": "e235f4164bd050901ebf58cc1ca1fc447edc94c039182a76d2e2c34ff0ab1541",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:51:16.268938+00:00",
+      "sourcePages": [
+        289,
+        290,
+        291
+      ],
+      "reasoning": "Matrix multiplication J(3×2)pdot(2×1) yields qdot(3×1), so forward flow is pdot→J→qdot. J^T onpdot is dimensionally invalid and the printed qdot→J→pdot reverses input/output. J+ maps task rates to wheel rates, not task rates to task rates.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0291-Q02",
+      "questionVersion": 2,
+      "packetQuestionSha256": "783d0640f6aac4ac7a6991b6f9f4d98e6fa1be0c57ccbed43835bd99731ad798",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:51:16.268942+00:00",
+      "sourcePages": [
+        291
+      ],
+      "reasoning": "Full column rank makes J^TJ a positive-definite n×n matrix. Its inverse followed byJ^T gives an n×m pseudoinverse; JJ^T has rankn<m and is not invertible. A rectangular ordinary inverse does not exist; J^TJ alone has wrong shape and action.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0291-Q03",
+      "questionVersion": 2,
+      "packetQuestionSha256": "8c7466e868aef355b0216f3371e8ccd7fe17853bf8939400e98b3d450443e885",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:51:16.268945+00:00",
+      "sourcePages": [
+        291
+      ],
+      "reasoning": "Full row rank makes JJ^T a positive-definite m×m matrix, giving n×m J+=J^T(JJ^T)^−1. J^TJ has rankm<n and is singular. Transpose alone works only under extra row-orthonormality, not every full-row-rankJ.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0291-Q05",
+      "questionVersion": 2,
+      "packetQuestionSha256": "cab96a8bb5bc949f64c8e52083a6d015f4905feda97d33da373faae17cc142a9",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:51:16.268949+00:00",
+      "sourcePages": [
+        291
+      ],
+      "reasoning": "If some nonzeroz satisfiesJz=0, thenJ^TJz=0, proving the Gram matrix singular. Thus the shortcut with ordinary inverse fails; the Moore–Penrose pseudoinverse remains definable, for example via SVD.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0291-Q08",
+      "questionVersion": 2,
+      "packetQuestionSha256": "c3380b9881bf4182eb6010b1ea9edd095fc804305d55a5359cd4b22dbd228951",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:51:16.268952+00:00",
+      "sourcePages": [
+        291
+      ],
+      "reasoning": "JJ^T=2, J+=[1/2,1/2]^T, so b=2 gives[1,1]. Every exact solution is[1+t,1−t], squared norm2+2t² minimized only at t=0. [2,0] is exact but not unique/minimal;[2,2] sums4 andzero sums0.",
+      "qualityConcernsBeforeReveal": []
+    },
+    {
+      "questionId": "W02-L08-P0291-Q13",
+      "questionVersion": 2,
+      "packetQuestionSha256": "71ee326fd9c8b389971f838498f0b7e8398c3254d0a79104f000782e12264057",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "solvedBeforeAnswerSeen": true,
+      "recordedAt": "2026-10-19T16:51:16.268956+00:00",
+      "sourcePages": [
+        289,
+        291
+      ],
+      "reasoning": "Atφ=π/2 the xdot row vanishes, but yaw row is proportional to[−1,1] andydot to[1,1]. Their2×2minor determinant is−r²/(2d), nonzero for positiver,d. Rank stays2, never3 for3×2. One zero entry or row is not sufficient for rankloss.",
+      "qualityConcernsBeforeReveal": []
+    }
+  ],
+  "completedBeforeRevealAt": "2026-10-19T16:51:16.269891+00:00"
+}

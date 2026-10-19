@@ -1,0 +1,194 @@
+[
+  {
+    "id": "W01-L04-P0144-Q02",
+    "version": 2,
+    "status": "draft",
+    "authorId": "L04-author-20261019",
+    "stem": "A simulation predicts success on a 30° slope, but the real robot flips under the same intended test conditions. What can be concluded?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "cognitiveSkill": "application",
+    "week": 1,
+    "lectureId": "L04",
+    "topic": "Python as Modelling and Simulation Tool",
+    "subtopic": "Verification versus validation",
+    "tags": [
+      "python",
+      "modeling-simulation",
+      "Verification versus validation"
+    ],
+    "conceptIds": [
+      "W01-L04-P0144-C01"
+    ],
+    "assumptions": [],
+    "options": [
+      {
+        "id": "o4",
+        "text": "The discrepancy is only a visualization concern"
+      },
+      {
+        "id": "o1",
+        "text": "The model fails validation for this use, even if its code faithfully implements its assumptions"
+      },
+      {
+        "id": "o2",
+        "text": "The code must contain a syntax error"
+      },
+      {
+        "id": "o3",
+        "text": "Verification automatically proves the real robot should succeed"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0144",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 144,
+        "kind": "statement",
+        "locator": "Printed slide 20: Verification versus validation; cited text and relevant visual example",
+        "evidenceText": "Modelling and Simulation - Verification and Validation\n –  Verification: \"Was the model built correctly?\".\n      •    It determines if the simulation code accurately reflects the conceptual model and\n         specifications.\n      •   This involves checking the software code. In robotics, this means ensuring that the\n       C++ or Python control algorithms correctly implement the intended mathematical\n        kinematic equations without bugs\n–   Validation: \"Was the right model built?\".\n      •    It measures how well the model matches reality within the context of its intended\n        use. Techniques range from informal reviews to formal logical proofs.\n      •   This measures how well the simulated robot matches the\n         physical robot's performance in the real world. If the\n        simulated robot can climb a 30-degree slope but the real\n        robot flips over, the model is invalid.\n      •   Validation prevents false confidence in simulation outcomes.\n\n                                                                                                          20",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "A model can be implemented correctly yet omit relevant physical behavior.",
+      "optionExplanations": {
+        "o1": "Correct. A model can be implemented correctly yet omit relevant physical behavior.",
+        "o2": "Incorrect. Real disagreement does not identify a syntax error as its cause.",
+        "o3": "Incorrect. Verification does not establish empirical validity.",
+        "o4": "Incorrect. The failure is a substantive performance mismatch."
+      },
+      "steps": [],
+      "formulas": [],
+      "simpleExplanation": "A model can be implemented correctly yet omit relevant physical behavior.",
+      "memoryAid": null,
+      "misconceptions": [
+        "Real disagreement does not identify a syntax error as its cause.",
+        "Verification does not establish empirical validity.",
+        "The failure is a substantive performance mismatch."
+      ],
+      "examTraps": [],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": [],
+    "revisionAuthors": [
+      "define_robotics_data_contracts:L04-v2-revision-author"
+    ],
+    "revisionHistory": [
+      {
+        "version": 2,
+        "authorId": "define_robotics_data_contracts:L04-v2-revision-author",
+        "revisedAt": "2026-10-19T16:28:09.635935+00:00",
+        "priorQuestionSha256": "4e465f31327943e9874192c1dcc0f102b7d059a8525eee78b335b4ad69287aab",
+        "reason": "Address the frozen v1 independent quality finding; new independent review required."
+      }
+    ]
+  },
+  {
+    "id": "W01-L04-P0160-Q02",
+    "version": 2,
+    "status": "draft",
+    "authorId": "L04-author-20261019",
+    "stem": "Treat the displayed Pandas velocity assignment’s line break after / as a literal source-code newline, without adding parentheses or a continuation. What occurs when that file is parsed?",
+    "selectionMode": "single",
+    "type": "code_output",
+    "difficulty": "medium",
+    "cognitiveSkill": "algorithm",
+    "week": 1,
+    "lectureId": "L04",
+    "topic": "Python as Modelling and Simulation Tool",
+    "subtopic": "Pandas robot data pipeline",
+    "tags": [
+      "python",
+      "modeling-simulation",
+      "Pandas robot data pipeline"
+    ],
+    "conceptIds": [
+      "W01-L04-P0160-C01"
+    ],
+    "assumptions": [
+      "The visually printed newline is a real newline; no surrounding parentheses or backslash is supplied."
+    ],
+    "options": [
+      {
+        "id": "o2",
+        "text": "It automatically joins the lines and calculates velocity"
+      },
+      {
+        "id": "o3",
+        "text": "The second line becomes a valid divisor solely because both lines are adjacent"
+      },
+      {
+        "id": "o4",
+        "text": "It divides by the number of CSV rows instead of time"
+      },
+      {
+        "id": "o1",
+        "text": "SyntaxError before any data-processing line executes"
+      }
+    ],
+    "correctOptionIds": [
+      "o1"
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p0160",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 160,
+        "kind": "code",
+        "locator": "Printed slide 36: Pandas robot data pipeline; cited text and relevant visual example",
+        "evidenceText": "Pandas — Data Handling for Robot Experiments\n•  Pandas DataFrames are the standard container for tabular robot data — ROS\n   bag exports, sensor logs, experiment results, and training datasets.\n                                                                          Load ROS bag exports,  Python                                         read_csv /\n                                                                                 sensor CSV logs, MoCap\n    import pandas as pd                                 read_hdf5                                                                                 data files.\n    import numpy as np\n                                                                                         Align sensors running at    # Load ROS2 bag CSV export\n    df = pd.read_csv('joint_states.csv')                     resample()         different Hz — 50 Hz IMU\n    df['time'] = pd.to_datetime(df['timestamp'], unit='s')                                to 200 Hz encoder.\n    df = df.set_index('time')                                                        Sliding-window statistics:\n    # Compute velocity from position\n    df['vel_j1'] = df['pos_j1'].diff() /                     rolling()         running mean, std, max —\n    df.index.to_series().diff().dt.total_seconds()                                                    filter sensor noise.\n                                                                               Aggregate over trials,\n    # Rolling mean filter (50 ms window)\n    df['vel_j1_filt'] = df['vel_j1'].rolling('50ms').mean()       groupby()          episodes, or robot\n                                                                                          configurations.\n    # Statistics per joint                                                           Synchronise data from\n    summary = df[['pos_j1','pos_j2']].describe()\n    print(summary)                                     merge / join      multiple sensors by\n                                                                               timestamp.\n    # Export cleaned dataset\n    df.to_csv('cleaned_joints.csv')\n\n\n\n                                                                                                          36\n\n[Visual code transcription; source comments omitted, executable tokens retained]\nimport pandas as pd\nimport numpy as np\ndf = pd.read_csv('joint_states.csv')\ndf['time'] = pd.to_datetime(df['timestamp'], unit='s')\ndf = df.set_index('time')\ndf['vel_j1'] = df['pos_j1'].diff() /\ndf.index.to_series().diff().dt.total_seconds()\ndf['vel_j1_filt'] = df['vel_j1'].rolling('50ms').mean()\nsummary = df[['pos_j1','pos_j2']].describe()\nprint(summary)\ndf.to_csv('cleaned_joints.csv')",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "solution": {
+      "justification": "A bare line ending after the binary operator is not a complete statement outside an enclosing continuation context.",
+      "optionExplanations": {
+        "o1": "Correct. A bare line ending after the binary operator is not a complete statement outside an enclosing continuation context.",
+        "o2": "Incorrect. No such implicit continuation is present in the printed snippet.",
+        "o3": "Incorrect. Adjacency is insufficient here; an explicit syntactic continuation is needed.",
+        "o4": "Incorrect. Parsing fails rather than choosing an alternative divisor."
+      },
+      "steps": [
+        "The assignment has no surrounding parentheses.",
+        "The first physical line ends with /.",
+        "Parsing fails before the script can execute the CSV read."
+      ],
+      "formulas": [],
+      "simpleExplanation": "A bare line ending after the binary operator is not a complete statement outside an enclosing continuation context.",
+      "memoryAid": null,
+      "misconceptions": [
+        "No such implicit continuation is present in the printed snippet.",
+        "Adjacency is insufficient here; an explicit syntactic continuation is needed.",
+        "Parsing fails rather than choosing an alternative divisor."
+      ],
+      "examTraps": [
+        "Distinguish the stated assumptions and source code from unstated corrections."
+      ],
+      "prerequisiteConceptIds": []
+    },
+    "origin": "generated",
+    "reviewIds": [],
+    "revisionAuthors": [
+      "define_robotics_data_contracts:L04-v2-revision-author"
+    ],
+    "revisionHistory": [
+      {
+        "version": 2,
+        "authorId": "define_robotics_data_contracts:L04-v2-revision-author",
+        "revisedAt": "2026-10-19T16:28:09.635935+00:00",
+        "priorQuestionSha256": "ef7a32bab0f44d5797f58f0ea2261e78140c30a617b34749a3f720d3293e9239",
+        "reason": "Address the frozen v1 independent quality finding; new independent review required."
+      }
+    ]
+  }
+]

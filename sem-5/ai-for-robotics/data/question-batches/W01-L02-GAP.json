@@ -1,0 +1,413 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "W01-L02-GAP",
+  "authorId": "robotics-integration-L02-gapfill-author",
+  "questions": [
+    {
+      "id": "W01-L02-GAP-Q001",
+      "version": 1,
+      "status": "draft",
+      "authorId": "robotics-integration-L02-gapfill-author",
+      "stem": "Select all correct statements for ReLU(x)=max(0,x) and sigmoid(x)=1/(1+e^(−x)) at finite real x.",
+      "selectionMode": "multi",
+      "type": "statement",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 1,
+      "lectureId": "L02",
+      "topic": "Introduction to artificial intelligence",
+      "subtopic": "Negative inputs and sigmoid range",
+      "tags": [
+        "activation-limits"
+      ],
+      "conceptIds": [
+        "W01-L02-GAP-C-activation-limits"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o1",
+          "text": "ReLU(-2)=0"
+        },
+        {
+          "id": "o2",
+          "text": "0<sigmoid(x)<1"
+        },
+        {
+          "id": "o3",
+          "text": "sigmoid(-2) is positive but less than 0.5"
+        },
+        {
+          "id": "o4",
+          "text": "ReLU(-2)=-2 because negative inputs are passed through"
+        }
+      ],
+      "correctOptionIds": [
+        "o1",
+        "o2",
+        "o3"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0068",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 68,
+          "kind": "statement",
+          "locator": "Lecture 2, physical PDF page 68, printed slide 19: relevant text, equations and associated figures",
+          "evidenceText": "Artificial Neural Networks\n   •  Core of deep learning\n   •  Inspired by the human brain\n   •  Billions of parameters\n   •  Powers modern AI\n   •  Forward : predictions\n   •  Backward: Adjust weights\n   Neuron\n    Unit that computes:                                              Output Layer\n   a = σ(Σwᵢxᵢ + b)             Input Layer  Hidden Layer 1 Hidden Layer 2\n  w = weights, b = bias, σ =\n    activation fn\n                                Loss function & Opt.\n    Activations                       Loss measures prediction error.\n                                     Backprop computes gradients.    ReLU: max(0,x) — sparse, fast\n                                Adam/SGD updates weights.     Sigmoid: 1/(1+e⁻ˣ) — smooth 0-1\n\n\n                                                                                                            19",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "ReLU clips a negative input to zero; the sigmoid denominator is greater than 1, and at x=-2 it exceeds 2.",
+        "optionExplanations": {
+          "o1": "The maximum of 0 and -2 is 0.",
+          "o2": "For finite real x, e^(−x)>0, so the result lies strictly between 0 and 1.",
+          "o3": "1/(1+e²) lies between 0 and 0.5.",
+          "o4": "That is a linear pass-through, not ReLU."
+        },
+        "steps": [],
+        "formulas": [
+          {
+            "expression": "ReLU(x)=max(0,x); σ(x)=1/(1+e^(−x))",
+            "variables": {
+              "x": "finite real preactivation",
+              "σ": "logistic sigmoid"
+            },
+            "units": {
+              "x,σ,ReLU": "dimensionless"
+            },
+            "assumptions": []
+          }
+        ],
+        "simpleExplanation": "ReLU clips a negative input to zero; the sigmoid denominator is greater than 1, and at x=-2 it exceeds 2.",
+        "memoryAid": null,
+        "misconceptions": [
+          "That is a linear pass-through, not ReLU."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": []
+    },
+    {
+      "id": "W01-L02-GAP-Q002",
+      "version": 1,
+      "status": "draft",
+      "authorId": "robotics-integration-L02-gapfill-author",
+      "stem": "According to the comparison slide, select all correctly paired limitations.",
+      "selectionMode": "multi",
+      "type": "table",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 1,
+      "lectureId": "L02",
+      "topic": "Introduction to artificial intelligence",
+      "subtopic": "Limitations that motivate sensor fusion",
+      "tags": [
+        "sensor-limitations"
+      ],
+      "conceptIds": [
+        "W01-L02-GAP-C-sensor-limitations"
+      ],
+      "assumptions": [
+        "These are the supplied slide’s broad modality comparisons, not specifications for every sensor model."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "LiDAR: sparse geometric data without texture, and higher cost in this comparison"
+        },
+        {
+          "id": "o3",
+          "text": "Radar: lower resolution despite useful rain/fog operation and velocity measurement"
+        },
+        {
+          "id": "o4",
+          "text": "Camera: the slide says it is unaffected by lighting because its data are dense"
+        },
+        {
+          "id": "o1",
+          "text": "Camera: affected by lighting and limited depth cues"
+        }
+      ],
+      "correctOptionIds": [
+        "o1",
+        "o2",
+        "o3"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0073",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 73,
+          "kind": "statement",
+          "locator": "Lecture 2, physical PDF page 73, printed slide 24: relevant text, equations and associated figures",
+          "evidenceText": "Sensor Fusion & Multimodal Perception\n\n     Camera                 LiDAR                   Radar\n  2D   Dense texture and colour.      3D    Accurate 3D geometry.       3D    Works in rain/fog.\n        Shallow depth cue.                      Sparse, no texture.                      Velocity measurement.\n        Affected by lighting.                     Expensive.                      Low resolution.\n\n     IMU                  GPS/GNSS               Sonar\n   6-\n          High-rate acceleration.        Abs    Global localisation.          1D    Cheap proximity sensing.\n  DoF\n           Drifts over time.                    Denied indoors.                  Low resolution.\n        Cheap and small.                 Low update rate.                 Good underwater.\n\n Fusion Strategies:\n                 Mid Fusion         Late Fusion  Early Fusion\n  Concatenate raw          Combine at              Combine final\n   sensor data. Rich but        intermediate feature         predictions. Modular\n   computationally               level. Balance of            but loses cross-modal\n   expensive.                   richness and efficiency.       context.\n\n                                                                                                          24",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The table explicitly lists camera lighting/depth limitations, LiDAR sparsity/texture/cost limitations, and radar resolution limitations.",
+        "optionExplanations": {
+          "o1": "Both limitations occur in the camera row.",
+          "o2": "These are the LiDAR row’s stated tradeoffs.",
+          "o3": "The radar row pairs its strengths with low resolution.",
+          "o4": "Dense texture/color does not remove the stated lighting limitation."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The table explicitly lists camera lighting/depth limitations, LiDAR sparsity/texture/cost limitations, and radar resolution limitations.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Dense texture/color does not remove the stated lighting limitation."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": []
+    },
+    {
+      "id": "W01-L02-GAP-Q003",
+      "version": 1,
+      "status": "draft",
+      "authorId": "robotics-integration-L02-gapfill-author",
+      "stem": "Using the slide’s finite-depth tree-search model with branching factor b and relevant explored depth d, which memory comparison is stated?",
+      "selectionMode": "single",
+      "type": "match",
+      "difficulty": "easy",
+      "cognitiveSkill": "recall",
+      "week": 1,
+      "lectureId": "L02",
+      "topic": "Introduction to artificial intelligence",
+      "subtopic": "Contrasting BFS and DFS storage",
+      "tags": [
+        "search-memory"
+      ],
+      "conceptIds": [
+        "W01-L02-GAP-C-search-memory"
+      ],
+      "assumptions": [
+        "For this comparison d denotes the depth relevant to each finite exploration; a general DFS bound uses its maximum explored depth, not necessarily BFS’s shallowest-goal depth.",
+        "The formulas summarize tree-search storage and do not include an additional unbounded graph-search visited set."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "Both: O(d), independent of branching factor"
+        },
+        {
+          "id": "o4",
+          "text": "Both: O(1), because each expansion handles one node"
+        },
+        {
+          "id": "o1",
+          "text": "BFS: O(b^d); DFS: O(bd)"
+        },
+        {
+          "id": "o2",
+          "text": "BFS: O(bd); DFS: O(b^d)"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0076",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 76,
+          "kind": "statement",
+          "locator": "Lecture 2, physical PDF page 76, printed slide 27: relevant text, equations and associated figures",
+          "evidenceText": "Search Algorithms for Robot Planning\n•  Finding optimal action sequences in structured state spaces\n\n  Uninformed (Blind) Search             Informed (Heuristic) Search\n\n           Breadth-First Search. Complete & optimal                     Expand node with lowest h(n). Fast but\n  BFS   for unit costs. Exponential memory O(bᵈ).       Greedy   not optimal. h must estimate cost to\n        Good for shallow goal finding.                                   goal (heuristic function).\n\n           Depth-First Search. Low memory O(bd). Not                    f(n) = g(n)+h(n). Optimal if h admissible.\n  DFS   optimal; not complete in infinite spaces.       A*   Most widely used for robot path planning on\n           Useful for tree search.                                        grids and graphs.\n\n          Uniform Cost Search. Expands lowest path                   Rapidly-exploring Random Trees. Samples\n UCS   cost first. Optimal for non-uniform step       RRT  random states; builds tree. Excellent for\n            costs. Dijkstra's algorithm.                               high-DoF configuration spaces.\n\n            Iterative Deepening Search. Combines DFS      D*   Dynamic A*. Re-plans efficiently when\n  IDS  memory efficiency with BFS optimality. Best               environment changes. Used in autonomous\n          uninformed for unknown depths.               Lite   robots navigating changing maps.\n\n\n                                                                                                          27",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Breadth-first search stores a broad frontier; depth-first search stores a path and pending siblings. The slide writes O(b^d) versus O(bd).",
+        "optionExplanations": {
+          "o1": "This preserves the source formulas and the frontier-versus-depth distinction.",
+          "o2": "This swaps the two storage behaviors.",
+          "o3": "Branching affects stored frontier nodes or siblings.",
+          "o4": "Previously generated pending nodes still require storage."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "Breadth-first search stores a broad frontier; depth-first search stores a path and pending siblings. The slide writes O(b^d) versus O(bd).",
+        "memoryAid": null,
+        "misconceptions": [
+          "This swaps the two storage behaviors.",
+          "Branching affects stored frontier nodes or siblings.",
+          "Previously generated pending nodes still require storage."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": []
+    },
+    {
+      "id": "W01-L02-GAP-Q004",
+      "version": 1,
+      "status": "draft",
+      "authorId": "robotics-integration-L02-gapfill-author",
+      "stem": "An infinite-depth search tree has a left child that begins an endless chain and a right child that is a goal; DFS always chooses the left child first. What can happen?",
+      "selectionMode": "single",
+      "type": "scenario",
+      "difficulty": "medium",
+      "cognitiveSkill": "application",
+      "week": 1,
+      "lectureId": "L02",
+      "topic": "Introduction to artificial intelligence",
+      "subtopic": "Why DFS can miss a shallow goal",
+      "tags": [
+        "dfs-infinite-depth"
+      ],
+      "conceptIds": [
+        "W01-L02-GAP-C-dfs-infinite-depth"
+      ],
+      "assumptions": [
+        "Plain DFS without a depth limit, iterative deepening or fairness mechanism; the selected chain contains no goal."
+      ],
+      "options": [
+        {
+          "id": "o4",
+          "text": "DFS is complete here merely because each node has finitely many children"
+        },
+        {
+          "id": "o1",
+          "text": "DFS follows the infinite chain and never reaches the right-child goal"
+        },
+        {
+          "id": "o2",
+          "text": "DFS must find the right-child goal after one left expansion because it is shallow"
+        },
+        {
+          "id": "o3",
+          "text": "DFS automatically switches to breadth-first order whenever depth grows"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0076",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 76,
+          "kind": "statement",
+          "locator": "Lecture 2, physical PDF page 76, printed slide 27: relevant text, equations and associated figures",
+          "evidenceText": "Search Algorithms for Robot Planning\n•  Finding optimal action sequences in structured state spaces\n\n  Uninformed (Blind) Search             Informed (Heuristic) Search\n\n           Breadth-First Search. Complete & optimal                     Expand node with lowest h(n). Fast but\n  BFS   for unit costs. Exponential memory O(bᵈ).       Greedy   not optimal. h must estimate cost to\n        Good for shallow goal finding.                                   goal (heuristic function).\n\n           Depth-First Search. Low memory O(bd). Not                    f(n) = g(n)+h(n). Optimal if h admissible.\n  DFS   optimal; not complete in infinite spaces.       A*   Most widely used for robot path planning on\n           Useful for tree search.                                        grids and graphs.\n\n          Uniform Cost Search. Expands lowest path                   Rapidly-exploring Random Trees. Samples\n UCS   cost first. Optimal for non-uniform step       RRT  random states; builds tree. Excellent for\n            costs. Dijkstra's algorithm.                               high-DoF configuration spaces.\n\n            Iterative Deepening Search. Combines DFS      D*   Dynamic A*. Re-plans efficiently when\n  IDS  memory efficiency with BFS optimality. Best               environment changes. Used in autonomous\n          uninformed for unknown depths.               Lite   robots navigating changing maps.\n\n\n                                                                                                          27",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Depth-first traversal may never finish its first infinite branch, so a goal elsewhere can remain unvisited despite finite branching.",
+        "optionExplanations": {
+          "o1": "This demonstrates the source’s infinite-space incompleteness caveat.",
+          "o2": "A shallow goal need not be visited while DFS is trapped deeper in its chosen branch.",
+          "o3": "Plain DFS does not change algorithms automatically.",
+          "o4": "Finite branching alone does not prevent an infinite branch."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "Depth-first traversal may never finish its first infinite branch, so a goal elsewhere can remain unvisited despite finite branching.",
+        "memoryAid": null,
+        "misconceptions": [
+          "A shallow goal need not be visited while DFS is trapped deeper in its chosen branch.",
+          "Plain DFS does not change algorithms automatically.",
+          "Finite branching alone does not prevent an infinite branch."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": []
+    }
+  ],
+  "concepts": [
+    {
+      "id": "W01-L02-GAP-C-activation-limits",
+      "title": "Negative inputs and sigmoid range",
+      "description": "ReLU clips a negative input to zero; the sigmoid denominator is greater than 1, and at x=-2 it exceeds 2.",
+      "slideIds": [
+        "lectures-p0068"
+      ],
+      "questionIds": [
+        "W01-L02-GAP-Q001"
+      ],
+      "status": "drafted",
+      "topic": "Introduction to artificial intelligence",
+      "subtopic": "Negative inputs and sigmoid range",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "statement"
+      ]
+    },
+    {
+      "id": "W01-L02-GAP-C-sensor-limitations",
+      "title": "Limitations that motivate sensor fusion",
+      "description": "The table explicitly lists camera lighting/depth limitations, LiDAR sparsity/texture/cost limitations, and radar resolution limitations.",
+      "slideIds": [
+        "lectures-p0073"
+      ],
+      "questionIds": [
+        "W01-L02-GAP-Q002"
+      ],
+      "status": "drafted",
+      "topic": "Introduction to artificial intelligence",
+      "subtopic": "Limitations that motivate sensor fusion",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "table"
+      ]
+    },
+    {
+      "id": "W01-L02-GAP-C-search-memory",
+      "title": "Contrasting BFS and DFS storage",
+      "description": "Breadth-first search stores a broad frontier; depth-first search stores a path and pending siblings. The slide writes O(b^d) versus O(bd).",
+      "slideIds": [
+        "lectures-p0076"
+      ],
+      "questionIds": [
+        "W01-L02-GAP-Q003"
+      ],
+      "status": "drafted",
+      "topic": "Introduction to artificial intelligence",
+      "subtopic": "Contrasting BFS and DFS storage",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "match"
+      ]
+    },
+    {
+      "id": "W01-L02-GAP-C-dfs-infinite-depth",
+      "title": "Why DFS can miss a shallow goal",
+      "description": "Depth-first traversal may never finish its first infinite branch, so a goal elsewhere can remain unvisited despite finite branching.",
+      "slideIds": [
+        "lectures-p0076"
+      ],
+      "questionIds": [
+        "W01-L02-GAP-Q004"
+      ],
+      "status": "drafted",
+      "topic": "Introduction to artificial intelligence",
+      "subtopic": "Why DFS can miss a shallow goal",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "scenario"
+      ]
+    }
+  ],
+  "coverageNote": "Hand-authored drafts after actual source-page inspection; independent answer review and complete-coverage challenge remain required."
+}
