@@ -30,6 +30,7 @@ function laboratory() {
     toolLinks:record=>el('span',{text:record.id}),
     renderTrace:output=>output.append('trace'),
     engine:{searchTrace:(g,config)=>({steps:[],provenance:config.provenance}),qLearningTrace:config=>({steps:[],provenance:config.provenance})}};
+  const F=require('../tests/fixtures/learning-resource-bank.js'),bound=F.fixture();F.approveTool(bound,verified);draft.sourceRefs=structuredClone(verified.sourceRefs);context.rawBank={...bound,learningTools:{algorithmVisualizations:[verified,draft]}};
   context.render=()=>{w.replaceChildren();context.renderAlgorithms(w,context.engine);};
   vm.runInNewContext(component,context);
   context.render();

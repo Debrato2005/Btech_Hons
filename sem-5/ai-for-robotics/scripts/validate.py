@@ -9,6 +9,7 @@ import argparse
 from collections import Counter, defaultdict
 from datetime import datetime
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
 import re
@@ -21,6 +22,19 @@ SCHEMA_PATH = PROJECT_ROOT / 'data' / 'schema.bank.json'
 ENTITY_KEYS = ('sources', 'slides', 'concepts', 'questions', 'reviews', 'assets')
 CHECK_KEYS = ('sourceSupport', 'assumptions', 'answerSet', 'distractors',
               'calculations', 'figureFidelity', 'explanation', 'difficulty', 'duplication')
+_LEARNING_RESOURCES = None
+
+
+def learning_resources_module():
+    """Load the sibling gate under CLI, package and file-spec entry points."""
+    global _LEARNING_RESOURCES
+    if _LEARNING_RESOURCES is None:
+        spec = importlib.util.spec_from_file_location(
+            'robotics_learning_resources', Path(__file__).with_name('learning_resources.py'))
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        _LEARNING_RESOURCES = module
+    return _LEARNING_RESOURCES
 
 
 def canonical_json(value: Any) -> str:
@@ -279,6 +293,14 @@ def validate_bank(bank: dict, root: Path | str = PROJECT_ROOT, *, release: bool 
         option_ids = {o['id'] for o in question['options']}
         if not set(review['independentAnswerOptionIds']) <= option_ids:
             errors.append(f'{rid}: independent answer refers to a missing option ID')
+        conditional_ids = review.get('conditionalIntendedOptionIds', [])
+        if conditional_ids:
+            if not set(conditional_ids) <= option_ids:
+                errors.append(f'{rid}: conditional intended answer refers to a missing option ID')
+            if not str(review.get('conditionalAnswerAssumption', '')).strip():
+                errors.append(f'{rid}: conditional intended answers require a separately labeled repair assumption')
+        if review['decision'] == 'verified' and not review['independentAnswerOptionIds']:
+            errors.append(f'{rid}: verified review requires a nonempty literal independent answer set')
         if review['questionVersion'] != question['version'] or review['questionSha256'] != question_hash(question):
             stale_review_ids.add(rid)
         for source_id, sha in review['sourceVersions'].items():
@@ -430,7 +452,10 @@ def validate_bank(bank: dict, root: Path | str = PROJECT_ROOT, *, release: bool 
     for question in questions.values():
         if question.get('variant') and question['variant']['familyId'] not in tool_indexes['numericalFamilies']:
             errors.append(f'{question["id"]}: variant familyId is missing from learningTools.numericalFamilies')
+    errors.extend(learning_resources_module().integrity_errors(bank, root))
     if strict:
+        if not bank.get('learningResourceIntegrity', {}).get('policyEligible'):
+            errors.append('Complete release requires an independently approved learning-resource extraction policy.')
         if not sources or not slides or not concepts or not current_verified:
             errors.append('Complete bank requires sources, source pages, concepts, and independently verified questions.')
         if stale_review_ids & {rid for q in questions.values() if q['status'] == 'verified' for rid in q['reviewIds']}:

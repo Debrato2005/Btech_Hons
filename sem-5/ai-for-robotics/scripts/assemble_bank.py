@@ -62,6 +62,10 @@ def main():
   d=read(p);d=d.get('learningTools',d)
   for k in tools:tools[k].extend(d.get(k,[]))
  bank={'schemaVersion':'1.0.0','bankVersion':a.version or datetime.datetime.now(datetime.timezone.utc).strftime('0.1.%Y%m%dT%H%M%SZ'),'title':'Semester 5 · AI for Robotics','complete':False,'sources':manifest['sources'],'slides':slides,'concepts':concepts,'questions':questions,'reviews':reviews,'assets':manifest['assets'],'learningTools':tools,'notes':['Work in progress: unreviewed pages and draft questions are not complete or validated coverage.','Only independent source-bound verified questions enter normal study and exams.']}
+ from learning_resources import prepare_integrity,apply_tool_gate
+ tool_diagnostics=apply_tool_gate(bank,ROOT)
+ bank['learningResourceIntegrity']=prepare_integrity(bank,ROOT)
+ bank['learningResourceIntegrity']['toolDiagnostics']=tool_diagnostics
  challenge=ROOT/'audits/coverage_challenge.json'
  if challenge.exists():bank['coverageChallenge']=read(challenge)
  dump(ROOT/'data/bank.json',bank)

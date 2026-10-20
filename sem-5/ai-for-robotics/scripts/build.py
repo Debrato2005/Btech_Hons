@@ -104,6 +104,8 @@ def build(args):
     replacements = {
         'STYLES': (ROOT / 'app' / 'styles.css').read_text(encoding='utf-8'),
         'CORE': (ROOT / 'app' / 'core.js').read_text(encoding='utf-8'),
+        'LEARNING_RESOURCES': (ROOT / 'app' / 'learning-resources.js').read_text(encoding='utf-8'),
+        'LEARNING_RESOURCE_UI': (ROOT / 'app' / 'learning-resource-ui.js').read_text(encoding='utf-8'),
         'APP': (ROOT / 'app' / 'app.js').read_text(encoding='utf-8'),
         'LEARNING_TOOLS': (ROOT / 'app' / 'learning-tools.js').read_text(encoding='utf-8') if (ROOT / 'app' / 'learning-tools.js').exists() else '/* No learning-tools engine packaged. */',
         'BANK': script_json(bank),

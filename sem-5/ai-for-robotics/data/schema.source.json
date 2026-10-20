@@ -923,7 +923,7 @@
             "type": "string",
             "minLength": 1
           },
-          "minItems": 1,
+          "minItems": 0,
           "uniqueItems": true
         },
         "solvedBeforeAnswerSeen": {
@@ -983,6 +983,20 @@
             "type": "string"
           },
           "minItems": 0
+        },
+        "conditionalIntendedOptionIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Hypothetical choices after an explicitly stated repair, never substituted for the literal independent answer set."
+        },
+        "conditionalAnswerAssumption": {
+          "type": "string",
+          "minLength": 1
         }
       },
       "required": [
@@ -1001,7 +1015,29 @@
         "reasoning",
         "findings"
       ],
-      "additionalProperties": true
+      "additionalProperties": true,
+      "anyOf": [
+        {
+          "properties": {
+            "decision": {
+              "enum": [
+                "flagged",
+                "rejected"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "decision": {
+              "const": "verified"
+            },
+            "independentAnswerOptionIds": {
+              "minItems": 1
+            }
+          }
+        }
+      ]
     },
     "learningTool": {
       "type": "object",

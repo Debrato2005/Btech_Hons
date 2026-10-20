@@ -1,0 +1,563 @@
+{
+  "reviewerId": "robotics-integration-L55-independent",
+  "packetPath": "audits/blind-W11-L55.json",
+  "packetSha256": "cfa26d0c2ae85df95cd0986c82a20cefe88e1a4a2138e642d70429d29cae5366",
+  "solvedAt": "2026-10-20T00:06:42.951709+00:00",
+  "solvedBeforeKeyedAccess": true,
+  "priorAuthorExposure": false,
+  "sourcePagesPersonallyViewed": [
+    1745,
+    1746,
+    1747,
+    1748,
+    1749,
+    1750,
+    1751,
+    1752,
+    1753,
+    1754,
+    1755,
+    1756,
+    1757,
+    1758,
+    1759,
+    1760,
+    1761,
+    1762,
+    1763,
+    1764,
+    1765,
+    1766,
+    1767,
+    1768,
+    1769,
+    1770,
+    1771,
+    1772,
+    1773,
+    1774,
+    1775,
+    1776
+  ],
+  "sourceVersion": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+  "answers": [
+    {
+      "questionId": "W11-L55-Q001",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Backlash and compliance are omitted physical effects, not ideal identities."
+    },
+    {
+      "questionId": "W11-L55-Q002",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "New payload requires relevant data and model update; a network is not automatically adaptive."
+    },
+    {
+      "questionId": "W11-L55-Q003",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "Observed minus nominal torque is (2,-3) N m."
+    },
+    {
+      "questionId": "W11-L55-Q004",
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "Inverse dynamics computes torque from state and acceleration; forward dynamics computes acceleration from state and torque."
+    },
+    {
+      "questionId": "W11-L55-Q005",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "C already denotes an n-vector of velocity-product torques in this displayed convention."
+    },
+    {
+      "questionId": "W11-L55-Q006",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "Matrix times acceleration gives (5,0), then C+G=(5,1), hence (10,1)."
+    },
+    {
+      "questionId": "W11-L55-Q007",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "Solving the 2x2 system M a=(5,0) gives (2,-1)."
+    },
+    {
+      "questionId": "W11-L55-Q008",
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "Explicit Euler uses the old velocity for q and old acceleration for velocity: (.2,.9) and (1.6,-.7)."
+    },
+    {
+      "questionId": "W11-L55-Q009",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Universal approximation is a capacity statement, not a training or extrapolation guarantee."
+    },
+    {
+      "questionId": "W11-L55-Q010",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "Differentiable maps support gradient calculations and physics-derived learning."
+    },
+    {
+      "questionId": "W11-L55-Q011",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "The listed physics-informed families are DeLaN, Hamiltonian networks and PINNs."
+    },
+    {
+      "questionId": "W11-L55-Q012",
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "Forward dynamics has 6 inputs for 2 joints and 2 acceleration outputs."
+    },
+    {
+      "questionId": "W11-L55-Q013",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The illustrative 32/32 drawing is not the later specified 30/20 example."
+    },
+    {
+      "questionId": "W11-L55-Q014",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "Parameter count is (6+1)*30+(30+1)*20+(20+1)*2=872."
+    },
+    {
+      "questionId": "W11-L55-Q015",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "Nominal-data pretraining precedes fine-tuning on real-robot data."
+    },
+    {
+      "questionId": "W11-L55-Q016",
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "The reported iterations and tolerance are historical setup choices, not universal stopping guarantees."
+    },
+    {
+      "questionId": "W11-L55-Q017",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "A 5 ms interval is 200 Hz; 58000 endpoint samples span 57999*0.005=289.995 s."
+    },
+    {
+      "questionId": "W11-L55-Q018",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "For natural frequency 8 Hz the strict sub-half condition is f<4 Hz; 3 qualifies."
+    },
+    {
+      "questionId": "W11-L55-Q019",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "Novel input tests require integration and comparison with physical-robot motion."
+    },
+    {
+      "questionId": "W11-L55-Q020",
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "The drawing uses massless links, tip masses, horizontal q1 and relative q2."
+    },
+    {
+      "questionId": "W11-L55-Q021",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Analytical dynamics generate supervised labels; the fitted mapping does not call the generator at inference."
+    },
+    {
+      "questionId": "W11-L55-Q022",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "The distal-mass coupling uses m2; equal masses hide the printed m1 discrepancy."
+    },
+    {
+      "questionId": "W11-L55-Q023",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "True M11=3+1+2=6; the printed m1 coupling would give 8."
+    },
+    {
+      "questionId": "W11-L55-Q024",
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "The unit-arm determinant is 2-cos(q2)^2, at least 1, and its first principal minor is positive."
+    },
+    {
+      "questionId": "W11-L55-Q025",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "C1=-1+4=3 and C2=4."
+    },
+    {
+      "questionId": "W11-L55-Q026",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "At rest q=0, gravity is (3g,g)=(29.43,9.81)."
+    },
+    {
+      "questionId": "W11-L55-Q027",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "M a=(1,-1), C=(3,4), G=(19.62,0), giving (23.62,3)."
+    },
+    {
+      "questionId": "W11-L55-Q028",
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "The feature order is positions, velocities, then accelerations."
+    },
+    {
+      "questionId": "W11-L55-Q029",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Only the first state meets all three coordinate bounds."
+    },
+    {
+      "questionId": "W11-L55-Q030",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "Independent uniform marginals do not imply Cartesian-uniform density or compatible time derivatives."
+    },
+    {
+      "questionId": "W11-L55-Q031",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "The input has 6 columns, torque has 2, and the 90:10 split is 45000/5000."
+    },
+    {
+      "questionId": "W11-L55-Q032",
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "Split and MLP seeds do not seed earlier NumPy sampling."
+    },
+    {
+      "questionId": "W11-L55-Q033",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The pipeline fits training statistics once and reuses them for held-out inputs."
+    },
+    {
+      "questionId": "W11-L55-Q034",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "(10-2)/4=2."
+    },
+    {
+      "questionId": "W11-L55-Q035",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "A zero-variance feature gets scale 1 and becomes zero after default centering; official API documentation checked."
+    },
+    {
+      "questionId": "W11-L55-Q036",
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "6-256-256-128-2 affine layers contain 100738 parameters with biases."
+    },
+    {
+      "questionId": "W11-L55-Q037",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "For default Adam max_iter limits epochs; convergence can stop earlier and each epoch has minibatches."
+    },
+    {
+      "questionId": "W11-L55-Q038",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "The displayed drawing lacks aggregation; the code computes sqrt(mean(square(error)))."
+    },
+    {
+      "questionId": "W11-L55-Q039",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "The RMS of 3 and 4 is sqrt(12.5)."
+    },
+    {
+      "questionId": "W11-L55-Q040",
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "The plots show close but nonidentical trajectory torque estimates, not universal or closed-loop guarantees."
+    },
+    {
+      "questionId": "W11-L55-Q041",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Position alone inputs H/V networks, but full torque computation also uses velocity and acceleration."
+    },
+    {
+      "questionId": "W11-L55-Q042",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "H is a symmetric positive-definite inertia matrix and V is scalar potential."
+    },
+    {
+      "questionId": "W11-L55-Q043",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "L L transpose is [[4,2],[2,2]]; half v transpose H v equals 1."
+    },
+    {
+      "questionId": "W11-L55-Q044",
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "The first energy equation defines twice physical kinetic energy, so its half gradient is the physical gradient."
+    },
+    {
+      "questionId": "W11-L55-Q045",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "When the flowchart already includes half in kinetic energy, the further half gradient is erroneous."
+    },
+    {
+      "questionId": "W11-L55-Q046",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "H a=6, Hdot*v=8, dK/dq=4 and dV/dq=2; torque is 12."
+    },
+    {
+      "questionId": "W11-L55-Q047",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "Total Hdot is the sum of configuration partial derivatives weighted by their joint velocities."
+    },
+    {
+      "questionId": "W11-L55-Q048",
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "The configuration gradient of V is gravity-compensation torque."
+    },
+    {
+      "questionId": "W11-L55-Q049",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The two historical examples suggest data efficiency but do not establish a universal 10x rule."
+    },
+    {
+      "questionId": "W11-L55-Q050",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "The analytical function labels sampled states; it does not supply the missing network definition."
+    },
+    {
+      "questionId": "W11-L55-Q051",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "Q_tr is 4500 by 2 and TAU_te is 500 by 2, explicitly float32."
+    },
+    {
+      "questionId": "W11-L55-Q052",
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "One torque row must stay paired with the state that generated it."
+    },
+    {
+      "questionId": "W11-L55-Q053",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The lecture instantiates but does not define DeLaN2R, so this is not standalone executable training code."
+    },
+    {
+      "questionId": "W11-L55-Q054",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "Floor division gives 35 full batches, 4480 rows used and 20 omitted."
+    },
+    {
+      "questionId": "W11-L55-Q055",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "35*500=17500 updates; random permutation changes which rows can be omitted."
+    },
+    {
+      "questionId": "W11-L55-Q056",
+      "independentAnswerOptionIds": [],
+      "reasoning": "No option matches the literal source order: prediction, loss, zero_grad, backward, step. Option o2 is an equivalent conventional reordering, but the question asks what matches the source.",
+      "conditionalIntendedOptionIds": [
+        "o2"
+      ],
+      "requiredRepairAssumption": "Reword to an equivalent valid update order, or change o2 to the literal displayed order."
+    },
+    {
+      "questionId": "W11-L55-Q057",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "Mean squared error over all four entries is (1+1+4+4)/4=2.5."
+    },
+    {
+      "questionId": "W11-L55-Q058",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "The log-loss curve has local increases despite its overall decline; training loss is not test RMSE."
+    },
+    {
+      "questionId": "W11-L55-Q059",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "Evaluation mode and recording derivatives are separate mechanisms, and energy differentiation still needs gradients."
+    },
+    {
+      "questionId": "W11-L55-Q060",
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "A GPU tensor must move to CPU for this NumPy conversion; detach only removes gradient attachment."
+    },
+    {
+      "questionId": "W11-L55-Q061",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "(0.6311-0.2826)/0.6311*100 is approximately 55.22 percent."
+    },
+    {
+      "questionId": "W11-L55-Q062",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "Differentiating 0.5 sin(2t) twice yields cos(2t) and -2 sin(2t)."
+    },
+    {
+      "questionId": "W11-L55-Q063",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "300 inclusive time samples have 299 intervals, and each state has 2 positions."
+    },
+    {
+      "questionId": "W11-L55-Q064",
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "At t=0 accelerations and velocity products are zero, so torque equals gravity."
+    },
+    {
+      "questionId": "W11-L55-Q065",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "M at q2=0 is [[5,2],[2,1]]; a=(-1,0), C=0, G=(3g cos1,g cos1)."
+    },
+    {
+      "questionId": "W11-L55-Q066",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "Robust closed-loop claims need an explicit controller and disturbance/limit tests or analysis."
+    },
+    {
+      "questionId": "W11-L55-Q067",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "For a time-invariant conservative model dE/dt equals applied power tau dot velocity, not zero for arbitrary actuation."
+    },
+    {
+      "questionId": "W11-L55-Q068",
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "A residual learned from suitable data can capture speed-dependent friction while retaining known rigid-body terms."
+    },
+    {
+      "questionId": "W11-L55-Q069",
+      "independentAnswerOptionIds": [
+        "o1"
+      ],
+      "reasoning": "The displayed constructor sets hidden_size=64,n_layers=2 and Adam lr=.001,weight_decay=.0001; missing implementation limits stronger structural claims."
+    },
+    {
+      "questionId": "W11-L55-Q070",
+      "independentAnswerOptionIds": [
+        "o4"
+      ],
+      "reasoning": "Thirty-five minibatch means of .2 sum to 7 before normalization."
+    },
+    {
+      "questionId": "W11-L55-Q071",
+      "independentAnswerOptionIds": [
+        "o3"
+      ],
+      "reasoning": "The summary names RNEA and ABA."
+    },
+    {
+      "questionId": "W11-L55-Q072",
+      "independentAnswerOptionIds": [
+        "o2"
+      ],
+      "reasoning": "Feedforward torque uses inverse dynamics; simulation acceleration uses forward dynamics."
+    }
+  ],
+  "externalSources": [
+    {
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html",
+      "checkedAt": "2026-10-20T00:06:42.951709+00:00",
+      "claim": "Zero variance yields scale 1; training mean and variance determine transformation."
+    },
+    {
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPRegressor.html",
+      "checkedAt": "2026-10-20T00:06:42.951709+00:00",
+      "claim": "Default Adam uses max_iter as epoch limit and can converge earlier."
+    }
+  ]
+}

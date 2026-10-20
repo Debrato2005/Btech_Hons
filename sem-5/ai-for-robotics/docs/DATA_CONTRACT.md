@@ -84,3 +84,7 @@ Required review fields: `id`, `questionId`, `questionVersion`, `questionSha256`,
 ## Intentional extensibility
 
 Schemas allow additional descriptive fields for specialist tools and future evidence. Existing required fields and semantics may not be renamed. Semantic validation checks identity, referential integrity, complete source page ledgers, review freshness, local asset existence/hash, full option explanations, and suspicious duplicates. Reports clearly separate errors from warnings and raw counts from verified coverage. The schema does not replace source review, legibility inspection, meaningful-angle coverage challenge, or runtime offline testing.
+
+### Literal no-valid-answer review findings
+
+A flagged or rejected review may have an empty `independentAnswerOptionIds` array when no offered option is defensible as written. A verified review must retain a nonempty literal answer set matching valid option IDs and the current key. Optional `conditionalIntendedOptionIds` describe hypothetical choices only and require a separate `conditionalAnswerAssumption`; they never replace the literal answers or qualify an item for the default pool. Current empty-answer disputes quarantine the question, including when another current approval exists.

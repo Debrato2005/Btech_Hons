@@ -4,10 +4,10 @@
  */
 (function (root, factory) {
   'use strict';
-  const api = factory();
+  const api = factory(typeof module === 'object' && module.exports ? require('./learning-resources.js') : root.RoboticsLearningResources);
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (root) root.RoboticsLearningTools = api;
-}(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+}(typeof globalThis !== 'undefined' ? globalThis : this, function (resourceGate) {
   'use strict';
   const ENGINE_VERSION = '1.0.0';
   const families = new Map();
@@ -153,8 +153,9 @@
     families.set(definition.id, Object.freeze({ ...definition }));
     return definition.id;
   }
-  function listNumericalFamilies({ includeSynthetic = false } = {}) {
-    return [...families.values()].filter(f => includeSynthetic || !f.synthetic).map(f => ({
+  function listNumericalFamilies({ includeSynthetic = false, includeDrafts = false } = {}) {
+    return [...families.values()].filter(f => (includeSynthetic || !f.synthetic) &&
+      (f.synthetic || includeDrafts || f.status === 'verified')).map(f => ({
       id: f.id, title: f.title, version: f.version, description: f.description || '',
       parameterDomains: clone(f.parameterDomains || {}), provenance: provenance(f)
     }));
@@ -228,9 +229,12 @@
       if (!implementation) errors.push('Unknown allowlisted generatorKind.');
       if (!record.id || !record.generatorVersion) errors.push('A family requires id and generatorVersion.');
       if (record.synthetic) errors.push('Synthetic records cannot be registered as course families.');
-      if (getStatus(record) !== 'verified' && !includeDrafts) errors.push('Family review is not verified.');
+      if (!includeDrafts && !resourceGate?.toolRecordAllowed(record, bank)) errors.push('Family lacks current hash-bound independent approval.');
       if (implementation && record.generatorVersion !== implementation.version) errors.push('Generator version does not match the implemented formula version.');
-      if (errors.length) { diagnostics.push({id:record.id,errors}); continue; }
+      if (errors.length) {
+        if (families.get(record.id)?.bankRegistered) families.delete(record.id);
+        diagnostics.push({id:record.id,errors}); continue;
+      }
       const previous = families.get(record.id);
       if (previous) {
         if (previous.version !== record.generatorVersion || stableStringify(previous.sourceRefs) !== stableStringify(getRefs(record))) {
@@ -241,7 +245,7 @@
         registerNumericalFamily({ ...implementation, id:record.id, version:record.generatorVersion,
           title:record.title || implementation.title.replace(' (synthetic)', ''),
           description:record.description || 'Generated numerical exercise derived from the cited course premises under the stated assumptions.',
-          synthetic:false, status:getStatus(record), sourceRefs:clone(getRefs(record)), review:record.review || null });
+          synthetic:false, bankRegistered:true, status:resourceGate?.toolRecordAllowed(record, bank)?'verified':'draft', sourceRefs:clone(getRefs(record)), review:record.review || null });
       }
       registered.push(record.id);
     }
@@ -524,7 +528,7 @@
       if (!item.id) errors.push('Missing learning item ID.');
       for (const id of item.questionIds || []) if (!questionIds.has(id)) errors.push('Unknown linked question ' + id + '.');
       if (item.synthetic) errors.push('Synthetic examples are excluded from course views.');
-      if (getStatus(item) !== 'verified') errors.push('Learning item has not been independently verified.');
+      if (!resourceGate?.toolRecordAllowed(item, bank)) errors.push('Learning item lacks current hash-bound independent approval.');
       if (errors.length) diagnostics.push({ kind, id: item.id || null, errors });
       const referencesValid = !validateReferences(getRefs(item), bank).length;
       if (item.synthetic || !referencesValid || (!includeDrafts && errors.length)) return [];

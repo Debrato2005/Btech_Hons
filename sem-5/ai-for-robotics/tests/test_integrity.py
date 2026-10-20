@@ -222,6 +222,64 @@ class IntegrityTests(unittest.TestCase):
         self.bank['reviews'][0]['independentAnswerOptionIds'] = ['synthetic-q1-o0']
         self.assertError('reviewer answer set differs')
 
+    def test_empty_answer_flag_is_valid_but_not_verified(self):
+        for decision in ['flagged', 'rejected']:
+            with self.subTest(decision=decision):
+                self.setUp()
+                self.bank['questions'][0]['status'] = decision
+                self.bank['concepts'][0]['status'] = 'flagged'
+                review = self.bank['reviews'][0]
+                review['decision'] = decision
+                review['checks']['answerSet'] = False
+                review['independentAnswerOptionIds'] = []
+                result = self.result()
+                self.assertTrue(result['valid'], result)
+                self.assertEqual(result['counts']['currentlyVerifiedQuestions'], 0)
+
+    def test_empty_verified_answer_fails_even_with_conditional_choice(self):
+        review = self.bank['reviews'][0]
+        review['independentAnswerOptionIds'] = []
+        review['conditionalIntendedOptionIds'] = list(self.bank['questions'][0]['correctOptionIds'])
+        review['conditionalAnswerAssumption'] = 'Synthetic unit repair, not the literal answer.'
+        self.assertError('does not match any allowed schema')
+
+    def test_conditional_answer_requires_separate_label(self):
+        self.bank['reviews'][0]['conditionalIntendedOptionIds'] = list(self.bank['questions'][0]['correctOptionIds'])
+        self.assertError('separately labeled repair assumption')
+
+    def test_empty_answer_dispute_blocks_assembly_default_pool(self):
+        spec = importlib.util.spec_from_file_location('robotics_review_gate', ROOT / 'scripts' / 'review_gate.py')
+        gate = importlib.util.module_from_spec(spec)
+        sys.modules['validate'] = validator
+        spec.loader.exec_module(gate)
+        q = self.bank['questions'][0]
+        before = validator.question_hash(q)
+        dispute = copy.deepcopy(self.bank['reviews'][0])
+        dispute.update(id='synthetic-empty-answer-dispute', decision='flagged', independentAnswerOptionIds=[],
+                       conditionalIntendedOptionIds=list(q['correctOptionIds']),
+                       conditionalAnswerAssumption='Only after correcting synthetic units.')
+        dispute['checks']['answerSet'] = False
+        self.bank['reviews'].append(dispute)
+        quarantined = gate.apply_review_gate(self.bank['questions'], self.bank['reviews'], self.bank['slides'], self.bank['sources'])
+        self.assertEqual(q['status'], 'flagged')
+        self.assertEqual(len(quarantined), 1)
+        self.assertEqual(dispute['independentAnswerOptionIds'], [])
+        self.assertEqual(validator.question_hash(q), before)
+
+    def test_assembly_never_substitutes_conditional_answer(self):
+        spec = importlib.util.spec_from_file_location('robotics_review_gate', ROOT / 'scripts' / 'review_gate.py')
+        gate = importlib.util.module_from_spec(spec)
+        sys.modules['validate'] = validator
+        spec.loader.exec_module(gate)
+        q = self.bank['questions'][0]
+        q['status'] = 'draft'
+        review = self.bank['reviews'][0]
+        review['independentAnswerOptionIds'] = []
+        review['conditionalIntendedOptionIds'] = list(q['correctOptionIds'])
+        review['conditionalAnswerAssumption'] = 'Only after a hypothetical repair.'
+        gate.apply_review_gate(self.bank['questions'], self.bank['reviews'], self.bank['slides'], self.bank['sources'])
+        self.assertEqual(q['status'], 'draft')
+
     def test_review_source_binding_must_be_complete(self):
         self.bank['reviews'][0]['sourceVersions'] = {}
         self.assertError('not all cited source versions bound')

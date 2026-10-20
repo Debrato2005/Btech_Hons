@@ -1040,10 +1040,10 @@
     },
     {
       "id": "W11-L52-P1627-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L52-author-20261019",
-      "stem": "Which terminal provides the position-dependent divider output?",
+      "stem": "With a fixed supply across a potentiometer’s track and a high-impedance ADC, which connection gives a position-dependent divider voltage?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -1059,19 +1059,21 @@
       "conceptIds": [
         "W11-L52-C-potentiometer"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "Ideal fixed supply, negligible ADC loading, and a functioning resistive track; no wiper-to-endpoint short in the intended connection."
+      ],
       "options": [
         {
           "id": "o1",
-          "text": "The potentiometer housing, treating its mechanical rotation as an electrical terminal"
+          "text": "Read the wiper after permanently shorting it to the grounded track endpoint"
         },
         {
           "id": "o2",
-          "text": "The voltage between the two fixed track endpoints, rather than the wiper"
+          "text": "Read between the two fixed track endpoints"
         },
         {
           "id": "o3",
-          "text": "The wiper between the supply-connected track endpoints"
+          "text": "Read the unshorted wiper relative to the grounded track endpoint"
         }
       ],
       "correctOptionIds": [
@@ -1091,26 +1093,29 @@
         }
       ],
       "solution": {
-        "justification": "Wiper position selects a fraction of the track voltage.",
+        "justification": "The moving contact taps a position-dependent fraction of the fixed track voltage.",
         "optionExplanations": {
-          "o1": "Incorrect. The housing is not the movable electrical contact that taps the resistive track.",
-          "o2": "Incorrect. With a fixed supply, the end-to-end voltage does not vary with wiper position.",
-          "o3": "Correct. Wiper position selects a fraction of the track voltage."
+          "o1": "Incorrect. The short clamps the wiper to ground instead of allowing its unloaded divider voltage to vary.",
+          "o2": "Incorrect. Their voltage remains the fixed supply, independent of the wiper position.",
+          "o3": "Correct. The moving contact taps a position-dependent fraction of the fixed track voltage."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Wiper position selects a fraction of the track voltage.",
+        "simpleExplanation": "The moving contact taps a position-dependent fraction of the fixed track voltage.",
         "memoryAid": null,
         "misconceptions": [
-          "The housing is not the movable electrical contact that taps the resistive track.",
-          "With a fixed supply, the end-to-end voltage does not vary with wiper position."
+          "The short clamps the wiper to ground instead of allowing its unloaded divider voltage to vary.",
+          "Their voltage remains the fixed supply, independent of the wiper position."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler."
+      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler.",
+      "revisionAuthors": [
+        "L52-v2-repair-author-20261019"
+      ]
     },
     {
       "id": "W11-L52-P1627-Q02",
@@ -2170,7 +2175,7 @@
     },
     {
       "id": "W11-L52-P1632-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L52-author-20261019",
       "stem": "On an explicitly stipulated 8-bit AVR with a multi-byte long count, why mask interrupts while obtaining its value?",
@@ -2215,8 +2220,19 @@
           "sourceId": "lectures",
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1632,
+          "kind": "code",
+          "locator": "Printed slide 13: volatile long count declaration and noInterrupts()/interrupts() surrounding the count/PPR snapshot",
+          "evidenceText": "•  Arduino Code\n                                     Code Explanation\n      volatile long count = 0;\n     const int PPR = 600;  // pulses per rotation          ― Interrupt ensures accurate counting\n     void setup() {                  ― Direction determined using Channel B      pinMode(2, INPUT_PULLUP);\n      pinMode(3, INPUT_PULLUP);              ― Used in precise motion control\n       attachInterrupt(digitalPinToInterrupt(2), encoderISR, RISING);\n       Serial.begin(9600);                ― Output give the number of rotation (1\n       }                                                    rotation is equal to 600 PPR)     void loop() {\n       float rotations;\n       noInterrupts();\n      rotations = (float)count / PPR;\n       interrupts();\n       Serial.print(\"Rotations: \");\n       Serial.println((int)rotations);\n      delay(50);\n       }\n     void encoderISR() {\n          if (digitalRead(3) == HIGH) count++;\n       else count--;\n       }\n\n                                                                                                          13",
+          "role": "conflict",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1632",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1632,
           "kind": "statement",
-          "locator": "Printed slide 13: volatile count and noInterrupts/interrupts block",
+          "locator": "Printed slide 13: Right-hand Code Explanation bullet: interrupt ensures accurate counting",
           "evidenceText": "•  Arduino Code\n                                     Code Explanation\n      volatile long count = 0;\n     const int PPR = 600;  // pulses per rotation          ― Interrupt ensures accurate counting\n     void setup() {                  ― Direction determined using Channel B      pinMode(2, INPUT_PULLUP);\n      pinMode(3, INPUT_PULLUP);              ― Used in precise motion control\n       attachInterrupt(digitalPinToInterrupt(2), encoderISR, RISING);\n       Serial.begin(9600);                ― Output give the number of rotation (1\n       }                                                    rotation is equal to 600 PPR)     void loop() {\n       float rotations;\n       noInterrupts();\n      rotations = (float)count / PPR;\n       interrupts();\n       Serial.print(\"Rotations: \");\n       Serial.println((int)rotations);\n      delay(50);\n       }\n     void encoderISR() {\n          if (digitalRead(3) == HIGH) count++;\n       else count--;\n       }\n\n                                                                                                          13",
           "role": "conflict",
           "region": null
@@ -2245,7 +2261,7 @@
       "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler.",
       "conflictResolution": {
         "status": "explicit-qualification-pending-independent-review",
-        "questionVersion": 1,
+        "questionVersion": 2,
         "sourceId": "lectures",
         "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
         "physicalPage": 1632,
@@ -2254,7 +2270,10 @@
         "method": "Trace the displayed interrupt-masked snapshot and note explicitly supplied AVR word size and event-rate assumptions.",
         "sourceIssueId": "L52-ISSUE-encoder-accuracy",
         "scope": "This version only; independent review required."
-      }
+      },
+      "revisionAuthors": [
+        "L52-v2-repair-author-20261019"
+      ]
     },
     {
       "id": "W11-L52-P1633-Q01",
@@ -5178,10 +5197,10 @@
     },
     {
       "id": "W11-L52-P1659-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L52-author-20261019",
-      "stem": "Which matching is correct?",
+      "stem": "Which IMU transducer-to-measured-quantity and unit mapping is correct, distinguishing raw signals from inferred pose?",
       "selectionMode": "single",
       "type": "match",
       "difficulty": "easy",
@@ -5251,7 +5270,7 @@
       "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler.",
       "conflictResolution": {
         "status": "explicit-qualification-pending-independent-review",
-        "questionVersion": 1,
+        "questionVersion": 2,
         "sourceId": "lectures",
         "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
         "physicalPage": 1659,
@@ -5260,7 +5279,10 @@
         "method": "Contrast static gravity-vector geometry with added translational acceleration; no sensor-fusion output is silently assumed.",
         "sourceIssueId": "L52-ISSUE-imu-specific-force",
         "scope": "This version only; independent review required."
-      }
+      },
+      "revisionAuthors": [
+        "L52-v2-repair-author-20261019"
+      ]
     },
     {
       "id": "W11-L52-P1659-Q02",
@@ -5433,10 +5455,10 @@
     },
     {
       "id": "W11-L52-P1660-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L52-author-20261019",
-      "stem": "Which distinction is correct?",
+      "stem": "For the shown Arduino Mega IMU connection, how do SDA/SCL pin numbers 20 and 21 differ from MPU_ADDR 0x68?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -5477,7 +5499,18 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1660,
           "kind": "table",
-          "locator": "Printed slide 41: SDA 20/SCL 21 table and MPU_ADDR 0x68",
+          "locator": "Printed slide 41: pin table rows SDA→20 and SCL→21",
+          "evidenceText": "•  Pin Diagram\n   MPU6500            Arduino Mega\n\n   VCC                5V\n\n   SDA                 20\n\n    SCL                 21\n\n   GND             GND\n                                                                   Source: https://lastminuteengineers.com/\n•  Arduino Mega Code\n\n     #include <Wire.h>\n     #define MPU_ADDR 0x68\n     int16_t ax, ay, az;\n      float tiltAngle;\n      float offset = 0;\n\n\n\n\n                                                                                                          41",
+          "role": "explicit",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1660",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1660,
+          "kind": "code",
+          "locator": "Printed slide 41: Lower code block: #define MPU_ADDR 0x68",
           "evidenceText": "•  Pin Diagram\n   MPU6500            Arduino Mega\n\n   VCC                5V\n\n   SDA                 20\n\n    SCL                 21\n\n   GND             GND\n                                                                   Source: https://lastminuteengineers.com/\n•  Arduino Mega Code\n\n     #include <Wire.h>\n     #define MPU_ADDR 0x68\n     int16_t ax, ay, az;\n      float tiltAngle;\n      float offset = 0;\n\n\n\n\n                                                                                                          41",
           "role": "explicit",
           "region": null
@@ -5503,7 +5536,10 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler."
+      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler.",
+      "revisionAuthors": [
+        "L52-v2-repair-author-20261019"
+      ]
     },
     {
       "id": "W11-L52-P1661-Q01",
@@ -5971,7 +6007,7 @@
     },
     {
       "id": "W11-L52-P1662-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L52-author-20261019",
       "stem": "What does the handheld setup demonstrate without establishing?",
@@ -6002,7 +6038,7 @@
         },
         {
           "id": "o3",
-          "text": "A calibrated translational position because the board is connected over I2C"
+          "text": "A demonstrated absolute tilt accuracy equal to the smallest displayed decimal increment"
         }
       ],
       "correctOptionIds": [
@@ -6026,7 +6062,7 @@
         "optionExplanations": {
           "o1": "Correct. The shown output is an angle display, not full position and orientation.",
           "o2": "Incorrect. Static acceleration does not directly resolve yaw.",
-          "o3": "Incorrect. Bus connectivity supplies no position calibration."
+          "o3": "Incorrect. Displayed resolution is not a calibration or accuracy measurement against a known angle reference."
         },
         "steps": [],
         "formulas": [],
@@ -6034,14 +6070,17 @@
         "memoryAid": null,
         "misconceptions": [
           "Static acceleration does not directly resolve yaw.",
-          "Bus connectivity supplies no position calibration."
+          "Displayed resolution is not a calibration or accuracy measurement against a known angle reference."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler."
+      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler.",
+      "revisionAuthors": [
+        "L52-v2-repair-author-20261019"
+      ]
     },
     {
       "id": "W11-L52-P1663-Q01",
@@ -6900,7 +6939,7 @@
     },
     {
       "id": "W11-L52-P1667-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L52-author-20261019",
       "stem": "ST’s cited API defines status 1 as Sigma Fail and status 0 as valid. What does the printed code do for status 1?",
@@ -6944,7 +6983,7 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1667,
           "kind": "code",
-          "locator": "Printed slide 48: RangeStatus predicate and ST status definitions",
+          "locator": "Printed slide 48: if (measure.RangeStatus != 4) numeric-print branch and else Out of range branch",
           "evidenceText": "•  Arduino Mega Code\n                                     Code Explanation\n     #include <Wire.h>\n     #include \"Adafruit_VL53L0X.h\"             ― Uses UART communication\n     Adafruit_VL53L0X lox = Adafruit_VL53L0X();          ― SoftwareSerial allows serial\n     void setup() {\n       Serial.begin(9600);                                 communication on any pin\n      Wire.begin(); // Uses Mega I2C pins 20 & 21 automatically\n          if (!lox.begin()) {                 ― Reads distance data from LiDAR\n        Serial.println(\"VL53L0X not detected\");          ― Displays distance on Serial Monitor\n       while (1);}\n      Serial.println(\"VL53L0X Ready\");}\n     void loop() {\n     VL53L0X_RangingMeasurementData_t measure;\n      lox.rangingTest(&measure, false);\n          if (measure.RangeStatus != 4) {\n        Serial.print(\"Distance: \");\n       Serial.print(measure.RangeMilliMeter / 10.0);\n        Serial.println(\" cm\");\n        } else { Serial.println(\"Out of range\");}\n      delay(300);}\n\n\n\n                                                                                                          48",
           "role": "conflict",
           "region": null
@@ -6977,7 +7016,7 @@
       "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler.",
       "conflictResolution": {
         "status": "explicit-qualification-pending-independent-review",
-        "questionVersion": 1,
+        "questionVersion": 2,
         "sourceId": "lectures",
         "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
         "physicalPage": 1667,
@@ -6995,6 +7034,9 @@
           "locator": "Section5.3.2, PDF page16 Table1: status0 valid;1 sigma fail;2 signal fail;3 min-range fail;4 phase fail;5 hardware fail;255 no update.",
           "checkedAt": "2026-10-19"
         }
+      ],
+      "revisionAuthors": [
+        "L52-v2-repair-author-20261019"
       ]
     },
     {
@@ -7762,10 +7804,10 @@
     },
     {
       "id": "W11-L52-P1672-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L52-author-20261019",
-      "stem": "Which distinction is correct?",
+      "stem": "How do the lecture’s stereo camera and event camera differ in the information they derive or report?",
       "selectionMode": "single",
       "type": "match",
       "difficulty": "easy",
@@ -7832,7 +7874,10 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler."
+      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler.",
+      "revisionAuthors": [
+        "L52-v2-repair-author-20261019"
+      ]
     },
     {
       "id": "W11-L52-P1672-Q03",
@@ -8060,7 +8105,7 @@
     },
     {
       "id": "W11-L52-P1673-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L52-author-20261019",
       "stem": "Why is a color filter array used over intensity-sensitive photodiodes in the described camera?",
@@ -8091,7 +8136,7 @@
         },
         {
           "id": "o3",
-          "text": "It replaces the ADC by encoding colors as purely optical labels"
+          "text": "It exposes every photodiode sequentially through full-frame red, green and blue filters in each capture"
         }
       ],
       "correctOptionIds": [
@@ -8115,7 +8160,7 @@
         "optionExplanations": {
           "o1": "Correct. A bare intensity measurement alone does not label the arriving wavelengths.",
           "o2": "Incorrect. A conventional color mosaic filters spectral samples; full color is reconstructed rather than measured in all bands at each site.",
-          "o3": "Incorrect. Optical filtering does not remove the need for electrical readout and digitization."
+          "o3": "Incorrect. The stated color-filter array spatially places different spectral filters over pixel sites; it is not a required temporal full-frame filter wheel."
         },
         "steps": [],
         "formulas": [],
@@ -8123,14 +8168,17 @@
         "memoryAid": null,
         "misconceptions": [
           "A conventional color mosaic filters spectral samples; full color is reconstructed rather than measured in all bands at each site.",
-          "Optical filtering does not remove the need for electrical readout and digitization."
+          "The stated color-filter array spatially places different spectral filters over pixel sites; it is not a required temporal full-frame filter wheel."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler."
+      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler.",
+      "revisionAuthors": [
+        "L52-v2-repair-author-20261019"
+      ]
     },
     {
       "id": "W11-L52-P1673-Q03",
@@ -8208,10 +8256,10 @@
     },
     {
       "id": "W11-L52-P1674-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L52-author-20261019",
-      "stem": "Which distinction matters when using enhanced images for robotic inspection?",
+      "stem": "For robotic defect inspection, denoising makes an image look smoother and contrast enhancement makes edges stronger. Which evaluation approach is justified?",
       "selectionMode": "single",
       "type": "scenario",
       "difficulty": "easy",
@@ -8227,19 +8275,21 @@
       "conceptIds": [
         "W11-L52-C-camera-applications"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "The smoothing and contrast choices are supplied inspection scenarios; the lecture lists enhancement and industrial inspection but no measured improvement guarantee."
+      ],
       "options": [
         {
           "id": "o1",
-          "text": "An object detector needs no labeled or reference evaluation once a camera is connected"
+          "text": "Choose the strongest smoothing because removing more fine texture necessarily preserves every thin crack"
         },
         {
           "id": "o2",
-          "text": "Increasing visual contrast proves every true defect is detected"
+          "text": "Choose the greatest global contrast because its strongest edges must correspond to true defects"
         },
         {
           "id": "o3",
-          "text": "An image may look cleaner without improving defect-detection accuracy; validate the task outcome"
+          "text": "Evaluate defect decisions against suitable references, because improved appearance need not improve task accuracy"
         }
       ],
       "correctOptionIds": [
@@ -8254,35 +8304,38 @@
           "kind": "statement",
           "locator": "Printed slide 55: Industrial inspection and image-processing roles",
           "evidenceText": "•  Applications\n    –  Smartphones – Taking photos and videos\n    –  Automotive – Reverse cameras, autonomous vehicles\n    –  Medical Imaging – Endoscopy, diagnostic equipment\n    –  Satellite Imaging – Earth observation\n    – CCTV & Security – Surveillance systems\n    –  Robotics & AI – Object detection and machine vision\n    –  Industrial Inspection – Quality control in factories\n•  Image processing is used to enhance images, detect\n   objects, extract useful information, and improve\n    visual quality.\n•   It is widely used in medical imaging,\n   security systems, autonomous vehicles, face\n   recognition, and surveillance\n\n\n\n                                                                                                          55",
-          "role": "explicit",
+          "role": "premise",
           "region": null
         }
       ],
       "solution": {
-        "justification": "Visual quality and decision accuracy are different objectives.",
+        "justification": "Image enhancement and successful quality-control decisions are related but distinct objectives.",
         "optionExplanations": {
-          "o1": "Incorrect. Connectivity does not validate task performance.",
-          "o2": "Incorrect. Contrast changes do not establish recall or correctness.",
-          "o3": "Correct. Visual quality and decision accuracy are different objectives."
+          "o1": "Incorrect. Fine defect features can resemble the detail that smoothing removes; visual smoothness alone cannot establish defect recall.",
+          "o2": "Incorrect. Global contrast can also emphasize texture or artifacts, so it does not identify which edges are defects.",
+          "o3": "Correct. Image enhancement and successful quality-control decisions are related but distinct objectives."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Visual quality and decision accuracy are different objectives.",
+        "simpleExplanation": "Image enhancement and successful quality-control decisions are related but distinct objectives.",
         "memoryAid": null,
         "misconceptions": [
-          "Connectivity does not validate task performance.",
-          "Contrast changes do not establish recall or correctness."
+          "Fine defect features can resemble the detail that smoothing removes; visual smoothness alone cannot establish defect recall.",
+          "Global contrast can also emphasize texture or artifacts, so it does not identify which edges are defects."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler."
+      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler.",
+      "revisionAuthors": [
+        "L52-v2-repair-author-20261019"
+      ]
     },
     {
       "id": "W11-L52-P1675-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L52-author-20261019",
       "stem": "Which output distinguishes object detection from image-level classification alone?",
@@ -8309,7 +8362,7 @@
         },
         {
           "id": "o2",
-          "text": "A calibrated depth value for every pixel by definition"
+          "text": "Only unlabeled candidate rectangles, without assigning an object category"
         },
         {
           "id": "o3",
@@ -8336,7 +8389,7 @@
         "justification": "Detection includes location as well as class information.",
         "optionExplanations": {
           "o1": "Correct. Detection includes location as well as class information.",
-          "o2": "Incorrect. Detection boxes do not inherently provide a depth map.",
+          "o2": "Incorrect. Region proposals can localize candidates, but the shown detection output also assigns object labels and confidence scores.",
           "o3": "Incorrect. That describes image-level classification."
         },
         "steps": [],
@@ -8344,7 +8397,7 @@
         "simpleExplanation": "Detection includes location as well as class information.",
         "memoryAid": null,
         "misconceptions": [
-          "Detection boxes do not inherently provide a depth map.",
+          "Region proposals can localize candidates, but the shown detection output also assigns object labels and confidence scores.",
           "That describes image-level classification."
         ],
         "examTraps": [],
@@ -8352,7 +8405,10 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler."
+      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler.",
+      "revisionAuthors": [
+        "L52-v2-repair-author-20261019"
+      ]
     },
     {
       "id": "W11-L52-P1675-Q02",
@@ -8430,10 +8486,10 @@
     },
     {
       "id": "W11-L52-P1676-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L52-author-20261019",
-      "stem": "What does the source’s approximately 600 classes label describe, and what does the inspected installed configuration contain?",
+      "stem": "The source labels its Open Images example “approximately 600 classes”. In the preserved Ultralytics 8.4.182 dataset YAML, what does the complete names mapping indexed 0–600 mean?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -8449,19 +8505,21 @@
       "conceptIds": [
         "W11-L52-C-vision-code-setup"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "Read the preserved metadata file linked in primaryEvidence; no claim is made about an uninspected checkpoint or fresh model inference."
+      ],
       "options": [
         {
           "id": "o1",
-          "text": "An exact universal 600-entry taxonomy; the installed 0–600 index range excludes one endpoint"
+          "text": "It contains 600 category names because the largest zero-based index equals the entry count"
         },
         {
           "id": "o2",
-          "text": "A category vocabulary; the installed configuration has 601 names indexed 0–600"
+          "text": "It contains 601 category names; the indices are vocabulary entries rather than per-frame object counts"
         },
         {
           "id": "o3",
-          "text": "Exactly 600 objects in every frame; configuration indices 0–600 still contain 600 entries"
+          "text": "It contains 600 object categories plus an unnamed background entry at index 0"
         }
       ],
       "correctOptionIds": [
@@ -8481,19 +8539,39 @@
         }
       ],
       "solution": {
-        "justification": "It describes labels, not simultaneous detections; the pinned YAML provides the exact current count.",
+        "justification": "The archived mapping includes both endpoints and names index 0 Accordion; it lists categories, not detected instances.",
         "optionExplanations": {
-          "o1": "Incorrect. The inspected YAML includes both endpoints, giving 601 entries.",
-          "o2": "Correct. It describes labels, not simultaneous detections; the pinned YAML provides the exact current count.",
-          "o3": "Incorrect. This confuses instances with categories and miscounts an inclusive zero-based range."
+          "o1": "Incorrect. For consecutive indices including both 0 and 600, the count is 600−0+1=601.",
+          "o2": "Correct. The archived mapping includes both endpoints and names index 0 Accordion; it lists categories, not detected instances.",
+          "o3": "Incorrect. Index 0 is explicitly named Accordion in the preserved mapping, so it is not an unnamed background slot."
         },
-        "steps": [],
-        "formulas": [],
-        "simpleExplanation": "It describes labels, not simultaneous detections; the pinned YAML provides the exact current count.",
+        "steps": [
+          "Inspect the preserved mapping: both index 0 and index 600 exist.",
+          "Count the consecutive keys: 600−0+1=601.",
+          "Check index 0 is Accordion rather than an unnamed background entry."
+        ],
+        "formulas": [
+          {
+            "expression": "N=b−a+1",
+            "variables": {
+              "N": "Number of entries in a consecutive inclusive index range",
+              "a": "Smallest included index",
+              "b": "Largest included index"
+            },
+            "units": {
+              "N": "entries",
+              "a,b": "dimensionless integer indices"
+            },
+            "assumptions": [
+              "Every integer from a through b is present exactly once; endpoints included; here a=0 and b=600."
+            ]
+          }
+        ],
+        "simpleExplanation": "The archived mapping includes both endpoints and names index 0 Accordion; it lists categories, not detected instances.",
         "memoryAid": null,
         "misconceptions": [
-          "The inspected YAML includes both endpoints, giving 601 entries.",
-          "This confuses instances with categories and miscounts an inclusive zero-based range."
+          "For consecutive indices including both 0 and 600, the count is 600−0+1=601.",
+          "Index 0 is explicitly named Accordion in the preserved mapping, so it is not an unnamed background slot."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -8503,13 +8581,13 @@
       "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler.",
       "conflictResolution": {
         "status": "explicit-qualification-pending-independent-review",
-        "questionVersion": 1,
+        "questionVersion": 2,
         "sourceId": "lectures",
         "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
         "physicalPage": 1676,
         "sourceClaim": "Code comments and window title say 600 classes.",
         "basis": "Preserve rounded source label; installed 8.4.182 YAML and current official guide contain 601 names indexed 0–600. This is not 600 detections or the content of an uninspected checkpoint.",
-        "method": "Count installed dataset configuration entries without downloading weights or running a webcam.",
+        "method": "Count the preserved dataset YAML entries in the permitted default Python, without importing Ultralytics, downloading weights, using a webcam or returning to the restricted runtime.",
         "sourceIssueId": "L52-ISSUE-openimages-count",
         "scope": "This version only; independent review required."
       },
@@ -8517,7 +8595,7 @@
         {
           "title": "Ultralytics Open Images V7 definition",
           "url": "https://docs.ultralytics.com/datasets/detect/open-images-v7",
-          "version": "Official guide accessed 2026-10-19; installed Ultralytics8.4.182",
+          "version": "Preserved dataset YAML from Ultralytics 8.4.182; metadata-only default-Python recount; original guide accessed 2026-10-19",
           "locator": "Dataset Structure and names0–600:601 entries; slide600 is rounded taxonomy shorthand, not observed object count.",
           "checkedAt": "2026-10-19",
           "localEvidence": {
@@ -8525,6 +8603,9 @@
             "sha256": "497468af9dc644d149101efc090727d3c6fd644591f4cc2e8c5adeb00f4ad848"
           }
         }
+      ],
+      "revisionAuthors": [
+        "L52-v2-repair-author-20261019"
       ]
     },
     {
@@ -8968,7 +9049,7 @@
     },
     {
       "id": "W11-L52-P1677-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L52-author-20261019",
       "stem": "A supplied run writes 100 frames in 50 s, with no drops, into the 20 fps file. What are average capture-processing throughput and nominal playback duration?",
@@ -9014,7 +9095,7 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1677,
           "kind": "code",
-          "locator": "Printed slide 58: 20 fps writer and independent interval counter",
+          "locator": "Printed slide 58: current_time/prev_time interval FPS calculation and out.write(annotated) loop",
           "evidenceText": "while True:\n  ret, frame = cap.read()\n   if not ret:\n    break\n  frame = cv2.resize(frame, (640, 480))\n  results = model(frame, device=device, conf=0.25)\n  annotated = results[0].plot()\n  # FPS counter\n  current_time = time.time()\n  fps_display = 1 / (current_time - prev_time) if prev_time else 0\n  prev_time = current_time\n  cv2.putText(annotated, f\"FPS: {int(fps_display)}\",\n         (20, 40), cv2.FONT_HERSHEY_SIMPLEX,\n         1, (0, 255, 0), 2)\n  out.write(annotated)\n  cv2.imshow(\"Max Objects Detection (600 classes)\", annotated)\n   if cv2.waitKey(1) & 0xFF == ord('q'):\n    break\ncap.release()\nout.release()\ncv2.destroyAllWindows()\n\n\n                                                                                                      58",
           "role": "premise",
           "region": null
@@ -9088,7 +9169,7 @@
       "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler.",
       "conflictResolution": {
         "status": "explicit-qualification-pending-independent-review",
-        "questionVersion": 1,
+        "questionVersion": 2,
         "sourceId": "lectures",
         "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
         "physicalPage": 1675,
@@ -9097,7 +9178,10 @@
         "method": "Compute loop FPS and playback duration using stipulated timings, without claiming fresh checkpoint inference.",
         "sourceIssueId": "L52-ISSUE-real-time-scope",
         "scope": "This version only; independent review required."
-      }
+      },
+      "revisionAuthors": [
+        "L52-v2-repair-author-20261019"
+      ]
     },
     {
       "id": "W11-L52-P1677-Q05",
@@ -9264,7 +9348,7 @@
     },
     {
       "id": "W11-L52-P1679-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L52-author-20261019",
       "stem": "Which output pairing is correct?",
@@ -9295,7 +9379,7 @@
         },
         {
           "id": "o3",
-          "text": "RGB pixel intensity is always its metric depth; the depth map gives only object names"
+          "text": "RGB gives appearance; depth pixels already give metric X and Y from their row and column indices without camera intrinsics"
         }
       ],
       "correctOptionIds": [
@@ -9319,7 +9403,7 @@
         "optionExplanations": {
           "o1": "Incorrect. Image samples still need geometric reconstruction and frame information.",
           "o2": "Correct. The representations differ and must handle invalid data.",
-          "o3": "Incorrect. This confuses appearance, geometry and semantics."
+          "o3": "Incorrect. Image indices are pixel coordinates, not metric lateral coordinates; calibrated geometry is needed to reconstruct 3D points."
         },
         "steps": [],
         "formulas": [],
@@ -9327,7 +9411,7 @@
         "memoryAid": null,
         "misconceptions": [
           "Image samples still need geometric reconstruction and frame information.",
-          "This confuses appearance, geometry and semantics."
+          "Image indices are pixel coordinates, not metric lateral coordinates; calibrated geometry is needed to reconstruct 3D points."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -9337,7 +9421,7 @@
       "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler.",
       "conflictResolution": {
         "status": "explicit-qualification-pending-independent-review",
-        "questionVersion": 1,
+        "questionVersion": 2,
         "sourceId": "lectures",
         "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
         "physicalPage": 1679,
@@ -9346,7 +9430,10 @@
         "method": "Compare the source output descriptions with actual black gaps in 1680 and an explicitly supplied calibrated pinhole model.",
         "sourceIssueId": "L52-ISSUE-depth-validity",
         "scope": "This version only; independent review required."
-      }
+      },
+      "revisionAuthors": [
+        "L52-v2-repair-author-20261019"
+      ]
     },
     {
       "id": "W11-L52-P1679-Q02",
@@ -9446,10 +9533,10 @@
     },
     {
       "id": "W11-L52-P1680-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L52-author-20261019",
-      "stem": "Why must color in the depth panel not be interpreted as the robot’s actual paint color?",
+      "stem": "In the lower-left RealSense Viewer panel labeled Colorized Depth Image, what does its blue-to-warm palette represent?",
       "selectionMode": "single",
       "type": "diagram",
       "difficulty": "easy",
@@ -9469,15 +9556,15 @@
       "options": [
         {
           "id": "o1",
-          "text": "Every black gap proves zero distance to the camera"
+          "text": "A confidence-score scale for how reliably each pixel was matched"
         },
         {
           "id": "o2",
-          "text": "It is a display mapping of depth values, unlike the RGB panel"
+          "text": "A display mapping of depth values, separate from the RGB appearance panel"
         },
         {
           "id": "o3",
-          "text": "All blue pixels are guaranteed physical blue surfaces"
+          "text": "A semantic-class palette assigning a separate color to each recognized object category"
         }
       ],
       "correctOptionIds": [
@@ -9497,26 +9584,29 @@
         }
       ],
       "solution": {
-        "justification": "The depth visualization encodes geometry with a palette.",
+        "justification": "The labeled depth view encodes scene geometry with a palette rather than recording the objects’ visible surface color.",
         "optionExplanations": {
-          "o1": "Incorrect. Black regions may represent missing or invalid measurements rather than zero physical range.",
-          "o2": "Correct. The depth visualization encodes geometry with a palette.",
-          "o3": "Incorrect. That confuses false-color encoding with appearance."
+          "o1": "Incorrect. Confidence is a distinct possible visualization; this panel is explicitly identified as the depth map, not a confidence map.",
+          "o2": "Correct. The labeled depth view encodes scene geometry with a palette rather than recording the objects’ visible surface color.",
+          "o3": "Incorrect. No class-segmentation legend is shown; the panel is identified as colorized depth, not semantic labels."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The depth visualization encodes geometry with a palette.",
+        "simpleExplanation": "The labeled depth view encodes scene geometry with a palette rather than recording the objects’ visible surface color.",
         "memoryAid": null,
         "misconceptions": [
-          "Black regions may represent missing or invalid measurements rather than zero physical range.",
-          "That confuses false-color encoding with appearance."
+          "Confidence is a distinct possible visualization; this panel is explicitly identified as the depth map, not a confidence map.",
+          "No class-segmentation legend is shown; the panel is identified as colorized depth, not semantic labels."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler."
+      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler.",
+      "revisionAuthors": [
+        "L52-v2-repair-author-20261019"
+      ]
     },
     {
       "id": "W11-L52-P1681-Q01",
@@ -9668,10 +9758,10 @@
     },
     {
       "id": "W11-L52-P1682-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L52-author-20261019",
-      "stem": "Which matching is correct?",
+      "stem": "Which mapping correctly matches strain-gauge, piezoelectric and capacitive force/torque sensors to their transduction mechanisms?",
       "selectionMode": "single",
       "type": "match",
       "difficulty": "easy",
@@ -9712,7 +9802,7 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1682,
           "kind": "statement",
-          "locator": "Printed slide 63: Strain-gauge, piezoelectric andcapacitive mechanisms",
+          "locator": "Printed slide 63: Strain Gauge F/T, Piezoelectric F/T and Capacitive F/T mechanism bullets",
           "evidenceText": "Force & Torque Sensors in Robot Manipulation\n\n•   6-axis F/T sensors at robot wrists measure three forces (Fx, Fy, Fz) and three moments\n   (Mx, My, Mz), enabling compliant control and safe human-robot collaboration.\n•   Strain Gauge F/T\n    – Wheatstone bridge of bonded gauges\n    –  High resolution; sub-mN sensitivity\n    –  Susceptible to temperature drift\n•   Piezoelectric F/T\n    – Charge proportional to applied force\n    –  Excellent dynamic response (>10 kHz)\n    – Not suited for static/DC loads (drift)\n•   Capacitive F/T\n    –  Capacitance changes with deflection\n    – Low noise; good for soft robotics\n    – Used in tactile array sensors\n\n                                                                                                          63",
           "role": "explicit",
           "region": null
@@ -9738,7 +9828,10 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler."
+      "optionCountRationale": "Three distinct technical alternatives avoid unrelated filler.",
+      "revisionAuthors": [
+        "L52-v2-repair-author-20261019"
+      ]
     },
     {
       "id": "W11-L52-P1682-Q03",
@@ -11170,6 +11263,567 @@
       },
       "origin": "generated",
       "reviewIds": []
+    },
+    {
+      "id": "W11-L52-P1638-Q03",
+      "version": 1,
+      "status": "draft",
+      "authorId": "L52-v2-repair-author-20261019",
+      "stem": "Which role assignment matches the LDR construction drawing?",
+      "selectionMode": "single",
+      "type": "diagram",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 11,
+      "lectureId": "L52",
+      "topic": "Sensors used in Robots",
+      "subtopic": "LDR resistance and illumination",
+      "tags": [
+        "sensors",
+        "bounded-coverage-gap",
+        "ldr"
+      ],
+      "conceptIds": [
+        "W11-L52-C-ldr"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Photoconductive layer: light-dependent conduction; electrodes: electrical contacts; ceramic: support; clear coating: top cover"
+        },
+        {
+          "id": "o2",
+          "text": "Photoconductive layer: mechanical support; electrodes: top cover; ceramic: light-dependent conduction; clear coating: electrical contacts"
+        },
+        {
+          "id": "o3",
+          "text": "Photoconductive layer: light-dependent conduction; electrodes: mechanical support; ceramic: electrical contacts; clear coating: top cover"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1638",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1638,
+          "kind": "figure",
+          "locator": "Printed slide 19: Labeled LDR cutaway: top photoconductive layer, electrodes, ceramic and clear coating",
+          "evidenceText": "Diagram labels: Electrodes; Photoconductive material over top surface; Ceramic; Clear coating over entire top surface; Wire terminals; Cold weld contacts.",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The drawing separates the light-responsive material and its electrical contacts from the supporting body and covering.",
+        "optionExplanations": {
+          "o1": "Correct. The drawing separates the light-responsive material and its electrical contacts from the supporting body and covering.",
+          "o2": "Incorrect. These are real parts assigned to the wrong roles: the labeled photoconductive layer is the responsive region, not the ceramic base.",
+          "o3": "Incorrect. The sensing and covering roles are right, but the electrodes and ceramic support have been interchanged."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The drawing separates the light-responsive material and its electrical contacts from the supporting body and covering.",
+        "memoryAid": null,
+        "misconceptions": [
+          "These are real parts assigned to the wrong roles: the labeled photoconductive layer is the responsive region, not the ceramic base.",
+          "The sensing and covering roles are right, but the electrodes and ceramic support have been interchanged."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "optionCountRationale": "Three parallel, technically plausible alternatives avoid unrelated filler."
+    },
+    {
+      "id": "W11-L52-P1646-Q03",
+      "version": 1,
+      "status": "draft",
+      "authorId": "L52-v2-repair-author-20261019",
+      "stem": "Select every statement that matches the labeled reed-switch construction drawing.",
+      "selectionMode": "multi",
+      "type": "diagram",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 11,
+      "lectureId": "L52",
+      "topic": "Sensors used in Robots",
+      "subtopic": "Magnetic reed contact sensing",
+      "tags": [
+        "sensors",
+        "bounded-coverage-gap",
+        "reed"
+      ],
+      "conceptIds": [
+        "W11-L52-C-reed"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o1",
+          "text": "The reed blades extend through the capsule ends and meet at an internal contact region."
+        },
+        {
+          "id": "o2",
+          "text": "The inert gas is inside the glass capsule rather than being a separate external housing."
+        },
+        {
+          "id": "o3",
+          "text": "The glass-to-metal bond label identifies the central opening and closing contact gap."
+        },
+        {
+          "id": "o4",
+          "text": "The contact-material arrow points to the glass capsule wall rather than the internal reed/contact region."
+        }
+      ],
+      "correctOptionIds": [
+        "o1",
+        "o2"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1646",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1646,
+          "kind": "figure",
+          "locator": "Printed slide 27: Reed-switch cross-section labels: glass capsule, inert gas, contact material, bond and reed blades",
+          "evidenceText": "Diagram labels: Glass Capsule; Inert Gas; Contact Material; Glass to Metal Bond; Reed Blade on both sides.",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The drawing distinguishes internal reed/contact structure and enclosed inert gas from the glass capsule and its metal feedthrough bonds.",
+        "optionExplanations": {
+          "o1": "Correct. The reed blades continue from the leads into the enclosed switching structure.",
+          "o2": "Correct. The gas label points to the space enclosed by the capsule; the diagram does not specify its chemical composition.",
+          "o3": "Incorrect. The bond is labeled at the capsule end where metal passes through glass, not at the central switching gap.",
+          "o4": "Incorrect. The contact-material label points to the internal metal region, not the enclosing glass wall."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The drawing distinguishes internal reed/contact structure and enclosed inert gas from the glass capsule and its metal feedthrough bonds.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The bond is labeled at the capsule end where metal passes through glass, not at the central switching gap.",
+          "The contact-material label points to the internal metal region, not the enclosing glass wall."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": []
+    },
+    {
+      "id": "W11-L52-P1655-Q03",
+      "version": 1,
+      "status": "draft",
+      "authorId": "L52-v2-repair-author-20261019",
+      "stem": "According to the lecture’s DHT11 signal-chain description, where does conversion occur and how do readings leave the sensor?",
+      "selectionMode": "single",
+      "type": "sequence",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 11,
+      "lectureId": "L52",
+      "topic": "Sensors used in Robots",
+      "subtopic": "Temperature and humidity sensing",
+      "tags": [
+        "sensors",
+        "bounded-coverage-gap",
+        "dht"
+      ],
+      "conceptIds": [
+        "W11-L52-C-dht"
+      ],
+      "assumptions": [
+        "This question is source-attributed to the lecture’s ADC/interface chain; it does not identify the humidity-element technology of every DHT11 revision."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "The sensor internally digitizes the signal, then requires separate I2C SDA and SCL lines for that described link"
+        },
+        {
+          "id": "o2",
+          "text": "The sensor sends its raw analog voltage to the Arduino ADC, which alone converts each temperature/humidity reading"
+        },
+        {
+          "id": "o3",
+          "text": "The sensor internally digitizes its sensed signal, then transmits digital data over the described single data wire"
+        }
+      ],
+      "correctOptionIds": [
+        "o3"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1655",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1655,
+          "kind": "statement",
+          "locator": "Printed slide 36: Working-principle bullets: internal ADC and single-wire serial data",
+          "evidenceText": "Temperature and Humidity Sensor (DHT11)\n\n•  Definition\n   – The DHT11 is a low-cost digital sensor used to measure ambient temperature\n      and relative humidity.\n•  Working Principle\n   – Uses a thermistor to measure temperature\n   – Uses a capacitive humidity sensor to detect moisture\n   –  Internal ADC converts data into digital format\n   – Data is sent using a single-wire serial communication\n•  Applications in Robotics\n   – Environment monitoring robots\n   – Smart agriculture robots\n   – Weather stations\n   –  Fire-safety and HVAC robots\n\n\n                                                                                                          36",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The slide places an ADC inside the sensor and separately names single-wire serial transmission; this is not the preceding raw analogRead pattern.",
+        "optionExplanations": {
+          "o1": "Incorrect. Internal digitization is right, but the slide explicitly describes a single-wire serial data link rather than the two I2C lines.",
+          "o2": "Incorrect. This confuses the described digital DHT interface with a raw analog-output sensor read through the controller ADC.",
+          "o3": "Correct. The slide places an ADC inside the sensor and separately names single-wire serial transmission; this is not the preceding raw analogRead pattern."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The slide places an ADC inside the sensor and separately names single-wire serial transmission; this is not the preceding raw analogRead pattern.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This confuses the described digital DHT interface with a raw analog-output sensor read through the controller ADC.",
+          "Internal digitization is right, but the slide explicitly describes a single-wire serial data link rather than the two I2C lines."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "optionCountRationale": "Three parallel, technically plausible alternatives avoid unrelated filler.",
+      "conflictResolution": {
+        "status": "source_attributed_qualification_pending_independent_review",
+        "questionVersion": 1,
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1655,
+        "sourceClaim": "Capacitive humidity element is specified without a sensor revision.",
+        "basis": "Preserve the slide description; legacy translated data sheet says resistive while vendor guide says capacitive. Do not declare the photographed device wrong without revision evidence.",
+        "method": "Compare the cited documentation; ask source-attributed architecture or version-aware interpretation, not a universal component claim.",
+        "sourceIssueId": "L52-ISSUE-dht-revision",
+        "scope": "This question version only; source-attributed drawing, not every hardware revision."
+      },
+      "primaryEvidence": [
+        {
+          "title": "DHT11 translated technical data sheet",
+          "url": "https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf",
+          "version": "Undated legacy translated manufacturer data sheet; exact pictured revision unknown",
+          "locator": "PDF page2 introduction describes resistive humidity component; page4 separates resolution and accuracy.",
+          "checkedAt": "2026-10-19"
+        },
+        {
+          "title": "Adafruit DHT sensor guide",
+          "url": "https://learn.adafruit.com/dht/overview",
+          "version": "Vendor guide accessed 2026-10-19",
+          "locator": "Overview describes capacitive humidity sensing; different documentation cannot identify the revision pictured in the lecture.",
+          "checkedAt": "2026-10-19"
+        }
+      ]
+    },
+    {
+      "id": "W11-L52-P1656-Q02",
+      "version": 1,
+      "status": "draft",
+      "authorId": "L52-v2-repair-author-20261019",
+      "stem": "Read the humidity-element exploded drawing as printed, without generalizing it to every DHT11 revision. What is the order from top to bottom?",
+      "selectionMode": "single",
+      "type": "diagram",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 11,
+      "lectureId": "L52",
+      "topic": "Sensors used in Robots",
+      "subtopic": "DHT pin map and thermistor figure",
+      "tags": [
+        "sensors",
+        "bounded-coverage-gap",
+        "dht-wiring"
+      ],
+      "conceptIds": [
+        "W11-L52-C-dht-wiring"
+      ],
+      "assumptions": [
+        "Interpret only the actual labeled source drawing; the separate documentation-revision qualification is retained."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Upper electrode → moisture-holding substrate → lower electrode → glass substrate"
+        },
+        {
+          "id": "o2",
+          "text": "Upper electrode → glass substrate → lower electrode → moisture-holding substrate"
+        },
+        {
+          "id": "o3",
+          "text": "Upper electrode → lower electrode → moisture-holding substrate → glass substrate"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1656",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1656,
+          "kind": "figure",
+          "locator": "Printed slide 37: Upper-left exploded humidity element: upper electrode, moisture-holding substrate, lower electrode and glass substrate",
+          "evidenceText": "Exploded drawing labels from top: Upper Electrode, Moisture Holding Substrate, Lower Electrode, Glass Substrate.",
+          "role": "explicit",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1655",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1655,
+          "kind": "statement",
+          "locator": "Printed slide 36: Humidity-element description, whose hardware revision is unspecified",
+          "evidenceText": "Temperature and Humidity Sensor (DHT11)\n\n•  Definition\n   – The DHT11 is a low-cost digital sensor used to measure ambient temperature\n      and relative humidity.\n•  Working Principle\n   – Uses a thermistor to measure temperature\n   – Uses a capacitive humidity sensor to detect moisture\n   –  Internal ADC converts data into digital format\n   – Data is sent using a single-wire serial communication\n•  Applications in Robotics\n   – Environment monitoring robots\n   – Smart agriculture robots\n   – Weather stations\n   –  Fire-safety and HVAC robots\n\n\n                                                                                                          36",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The responsive substrate is between the two electrodes, while the glass forms the supporting bottom layer in the drawing.",
+        "optionExplanations": {
+          "o1": "Correct. The responsive substrate is between the two electrodes, while the glass forms the supporting bottom layer in the drawing.",
+          "o2": "Incorrect. This places the named glass support between the electrodes and moves the moisture-holding layer below them.",
+          "o3": "Incorrect. This incorrectly puts both electrodes together above the moisture-holding layer instead of on opposite sides."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The responsive substrate is between the two electrodes, while the glass forms the supporting bottom layer in the drawing.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This places the named glass support between the electrodes and moves the moisture-holding layer below them.",
+          "This incorrectly puts both electrodes together above the moisture-holding layer instead of on opposite sides."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "optionCountRationale": "Three parallel, technically plausible alternatives avoid unrelated filler.",
+      "conflictResolution": {
+        "status": "source_attributed_qualification_pending_independent_review",
+        "questionVersion": 1,
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1655,
+        "sourceClaim": "Capacitive humidity element is specified without a sensor revision.",
+        "basis": "Preserve the slide description; legacy translated data sheet says resistive while vendor guide says capacitive. Do not declare the photographed device wrong without revision evidence.",
+        "method": "Compare the cited documentation; ask source-attributed architecture or version-aware interpretation, not a universal component claim.",
+        "sourceIssueId": "L52-ISSUE-dht-revision",
+        "scope": "This question version only; source-attributed drawing, not every hardware revision."
+      },
+      "primaryEvidence": [
+        {
+          "title": "DHT11 translated technical data sheet",
+          "url": "https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf",
+          "version": "Undated legacy translated manufacturer data sheet; exact pictured revision unknown",
+          "locator": "PDF page2 introduction describes resistive humidity component; page4 separates resolution and accuracy.",
+          "checkedAt": "2026-10-19"
+        },
+        {
+          "title": "Adafruit DHT sensor guide",
+          "url": "https://learn.adafruit.com/dht/overview",
+          "version": "Vendor guide accessed 2026-10-19",
+          "locator": "Overview describes capacitive humidity sensing; different documentation cannot identify the revision pictured in the lecture.",
+          "checkedAt": "2026-10-19"
+        }
+      ]
+    },
+    {
+      "id": "W11-L52-P1682-Q07",
+      "version": 1,
+      "status": "draft",
+      "authorId": "L52-v2-repair-author-20261019",
+      "stem": "Which pairing follows the lecture’s force/torque sensing applications without claiming that the sensor alone guarantees safe control?",
+      "selectionMode": "single",
+      "type": "scenario",
+      "difficulty": "easy",
+      "cognitiveSkill": "application",
+      "week": 11,
+      "lectureId": "L52",
+      "topic": "Sensors used in Robots",
+      "subtopic": "Six-axis force and torque sensing",
+      "tags": [
+        "sensors",
+        "bounded-coverage-gap",
+        "force-torque"
+      ],
+      "conceptIds": [
+        "W11-L52-C-force-torque"
+      ],
+      "assumptions": [
+        "These are source-listed applications, not universal noise specifications or a safety certification."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Low-noise capacitive sensing is listed only for rapid impacts; measured forces and moments replace the need to define a contact-control law"
+        },
+        {
+          "id": "o2",
+          "text": "Low-noise capacitive sensing is listed for soft-robotics tactile arrays; measured forces and moments can provide feedback for compliant control"
+        },
+        {
+          "id": "o3",
+          "text": "Low-noise capacitive sensing is listed for tactile arrays; compliant control should ignore the measured wrench and enforce a fixed motion regardless of contact"
+        }
+      ],
+      "correctOptionIds": [
+        "o2"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1682",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1682,
+          "kind": "statement",
+          "locator": "Printed slide 63: Capacitive F/T low-noise/soft-robotics/tactile-array bullets and opening compliant-control statement",
+          "evidenceText": "Force & Torque Sensors in Robot Manipulation\n\n•   6-axis F/T sensors at robot wrists measure three forces (Fx, Fy, Fz) and three moments\n   (Mx, My, Mz), enabling compliant control and safe human-robot collaboration.\n•   Strain Gauge F/T\n    – Wheatstone bridge of bonded gauges\n    –  High resolution; sub-mN sensitivity\n    –  Susceptible to temperature drift\n•   Piezoelectric F/T\n    – Charge proportional to applied force\n    –  Excellent dynamic response (>10 kHz)\n    – Not suited for static/DC loads (drift)\n•   Capacitive F/T\n    –  Capacitance changes with deflection\n    – Low noise; good for soft robotics\n    – Used in tactile array sensors\n\n                                                                                                          63",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The slide connects capacitive sensing with distributed touch and the measured wrist wrench with contact-responsive control; actual performance still depends on implementation.",
+        "optionExplanations": {
+          "o1": "Incorrect. The capacitive applications include tactile arrays, not just impacts, and measurement alone does not specify how the controller responds.",
+          "o2": "Correct. The slide connects capacitive sensing with distributed touch and the measured wrist wrench with contact-responsive control; actual performance still depends on implementation.",
+          "o3": "Incorrect. The tactile association is right, but disregarding force/moment feedback defeats the described role of wrench sensing in compliance."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The slide connects capacitive sensing with distributed touch and the measured wrist wrench with contact-responsive control; actual performance still depends on implementation.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The capacitive applications include tactile arrays, not just impacts, and measurement alone does not specify how the controller responds.",
+          "The tactile association is right, but disregarding force/moment feedback defeats the described role of wrench sensing in compliance."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "optionCountRationale": "Three parallel, technically plausible alternatives avoid unrelated filler."
+    },
+    {
+      "id": "W11-L52-P1683-Q07",
+      "version": 1,
+      "status": "draft",
+      "authorId": "L52-v2-repair-author-20261019",
+      "stem": "A supplied outdoor robot must operate from −10 to 50 °C in dust and splashes. Its available controller interface is 3.3 V I2C, with no adapters. A fixed-orientation mount allows at most 30×20 mm and 20 g. All candidates already meet range, error, update-rate and power needs. Which candidate meets the remaining constraints?",
+      "selectionMode": "single",
+      "type": "synthesis",
+      "difficulty": "medium",
+      "cognitiveSkill": "synthesis",
+      "week": 11,
+      "lectureId": "L52",
+      "topic": "Sensors used in Robots",
+      "subtopic": "Sensor selection under system constraints",
+      "tags": [
+        "sensors",
+        "bounded-coverage-gap",
+        "sensor-selection"
+      ],
+      "conceptIds": [
+        "W11-L52-C-sensor-selection"
+      ],
+      "assumptions": [
+        "All candidate specifications and limits are supplied, not product specifications from the slide; environmental qualification includes the full temperature interval plus dust/splash suitability; fixed orientation; no adapter or mount redesign."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Qualified for the full environment; 3.3 V I2C; 28×18 mm; 18 g"
+        },
+        {
+          "id": "o2",
+          "text": "Qualified for the full environment; 5 V UART only; 25×18 mm; 15 g"
+        },
+        {
+          "id": "o3",
+          "text": "Qualified only for dry indoor operation from 0 to 50 °C; 3.3 V I2C; 25×18 mm; 15 g"
+        },
+        {
+          "id": "o4",
+          "text": "Qualified for the full environment; 3.3 V I2C; 45×30 mm; 28 g"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1683",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1683,
+          "kind": "statement",
+          "locator": "Printed slide 64: Operating Environment, Interface & Computational Load, and Size, Weight & Power rows",
+          "evidenceText": "How to Select the Right Sensor\n\n•   Define the Measurement Need\n    – What physical quantity must be measured? What range, resolution, and update rate does\n        the task require?\n•   Consider Operating Environment\n    –  Indoor vs. outdoor? Temperature extremes? Dust, moisture, vibration? Lighting\n        conditions (camera)?\n•   Interface & Computational Load\n    –  I²C / SPI / UART / Ethernet / CAN? Processing latency budget? Edge vs. cloud inference for\n        AI models?\n•   Size, Weight & Power\n    –  Critical for UAVs and wearables. Total sensor power budget constrains fleet endurance.\n•   Cost vs. Redundancy\n    –  Quantify the risk of sensor failure. Use multiple cheap sensors\n         vs. one expensive redundant sensor?\n•   Calibration & Maintenance\n    – How often must the sensor be recalibrated?\n       Are in-field calibration methods available?\n\n\n\n                                                                                                          64",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "It satisfies environmental qualification, the directly supported interface, both mount dimensions and mass.",
+        "optionExplanations": {
+          "o1": "Correct. It satisfies environmental qualification, the directly supported interface, both mount dimensions and mass.",
+          "o2": "Incorrect. The environmental and mechanical conditions fit, but the stipulated controller offers only 3.3 V I2C and adapters are unavailable.",
+          "o3": "Incorrect. The interface, dimensions and mass fit, but the operating environment does not include the required cold, dusty and splash-exposed conditions.",
+          "o4": "Incorrect. The environment and interface fit, but both physical size and mass exceed the stated limits."
+        },
+        "steps": [
+          "Require the rated environment to cover all task conditions.",
+          "Require a directly compatible 3.3 V I2C interface.",
+          "Compare each width and height with 30 mm and 20 mm, respectively, and each mass with 20 g.",
+          "Only the 28×18 mm, 18 g, fully qualified I2C candidate passes every condition."
+        ],
+        "formulas": [
+          {
+            "expression": "eligible=E AND I AND (w≤w_max) AND (h≤h_max) AND (m≤m_max)",
+            "variables": {
+              "eligible": "Boolean satisfaction of every remaining selection constraint",
+              "E": "Environmental rating covers the required temperature interval, dust and splashes",
+              "I": "Controller and sensor electrical/protocol interfaces are directly compatible",
+              "w,h": "Candidate width and height in the fixed mounting orientation",
+              "w_max,h_max": "Maximum allowed mount dimensions",
+              "m": "Candidate mass",
+              "m_max": "Maximum allowed mass"
+            },
+            "units": {
+              "eligible,E,I": "Boolean",
+              "w,h,w_max,h_max": "mm",
+              "m,m_max": "g"
+            },
+            "assumptions": [
+              "Fixed orientation; no adapter; all omitted measurement and power constraints already satisfied; all bounds inclusive."
+            ]
+          }
+        ],
+        "simpleExplanation": "It satisfies environmental qualification, the directly supported interface, both mount dimensions and mass.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The interface, dimensions and mass fit, but the operating environment does not include the required cold, dusty and splash-exposed conditions.",
+          "The environmental and mechanical conditions fit, but the stipulated controller offers only 3.3 V I2C and adapters are unavailable.",
+          "The environment and interface fit, but both physical size and mass exceed the stated limits."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": []
     }
   ],
   "concepts": [
@@ -11510,7 +12164,8 @@
       ],
       "questionIds": [
         "W11-L52-P1638-Q01",
-        "W11-L52-P1638-Q02"
+        "W11-L52-P1638-Q02",
+        "W11-L52-P1638-Q03"
       ],
       "status": "drafted",
       "topic": "Sensors used in Robots",
@@ -11521,7 +12176,8 @@
         "Graph units and qualitative evidence",
         "Divider conversion",
         "Component structure",
-        "Application limits"
+        "Application limits",
+        "L52-GAP-01: Labeled LDR cutaway: top photoconductive layer, electrodes, ceramic and clear coating"
       ]
     },
     {
@@ -11647,7 +12303,8 @@
       ],
       "questionIds": [
         "W11-L52-P1646-Q01",
-        "W11-L52-P1646-Q02"
+        "W11-L52-P1646-Q02",
+        "W11-L52-P1646-Q03"
       ],
       "status": "drafted",
       "topic": "Sensors used in Robots",
@@ -11658,7 +12315,8 @@
         "Normally-open contact mechanism",
         "Glass capsule structure",
         "Wheel event counting",
-        "Binary field threshold"
+        "Binary field threshold",
+        "L52-GAP-02: Reed-switch cross-section labels: glass capsule, inert gas, contact material, bond and reed blades"
       ]
     },
     {
@@ -11810,7 +12468,8 @@
       ],
       "questionIds": [
         "W11-L52-P1655-Q01",
-        "W11-L52-P1655-Q02"
+        "W11-L52-P1655-Q02",
+        "W11-L52-P1655-Q03"
       ],
       "status": "drafted",
       "topic": "Sensors used in Robots",
@@ -11821,7 +12480,8 @@
         "Internal conversion and digital interface",
         "Humidity-element source qualification",
         "Single-wire versus I2C",
-        "Environmental application limits"
+        "Environmental application limits",
+        "L52-GAP-03: Working-principle bullets: internal ADC and single-wire serial data"
       ]
     },
     {
@@ -11832,7 +12492,8 @@
         "lectures-p1656"
       ],
       "questionIds": [
-        "W11-L52-P1656-Q01"
+        "W11-L52-P1656-Q01",
+        "W11-L52-P1656-Q02"
       ],
       "status": "drafted",
       "topic": "Sensors used in Robots",
@@ -11842,7 +12503,8 @@
         "Pin7 and unused NC",
         "NTC trend",
         "Schematic curve versus rated range",
-        "Humidity diagram and source qualification"
+        "Humidity diagram and source qualification",
+        "L52-GAP-04: Upper-left exploded humidity element: upper electrode, moisture-holding substrate, lower electrode and glass substrate"
       ]
     },
     {
@@ -12398,7 +13060,8 @@
         "W11-L52-P1682-Q03",
         "W11-L52-P1682-Q04",
         "W11-L52-P1682-Q05",
-        "W11-L52-P1682-Q06"
+        "W11-L52-P1682-Q06",
+        "W11-L52-P1682-Q07"
       ],
       "status": "drafted",
       "topic": "Sensors used in Robots",
@@ -12410,7 +13073,8 @@
         "Piezo dynamics versusDC",
         "Capacitive deflection",
         "Frame/origin dependence",
-        "Performance scope"
+        "Performance scope",
+        "L52-GAP-05: Capacitive F/T low-noise/soft-robotics/tactile-array bullets and opening compliant-control statement"
       ]
     },
     {
@@ -12426,7 +13090,8 @@
         "W11-L52-P1683-Q03",
         "W11-L52-P1683-Q04",
         "W11-L52-P1683-Q05",
-        "W11-L52-P1683-Q06"
+        "W11-L52-P1683-Q06",
+        "W11-L52-P1683-Q07"
       ],
       "status": "drafted",
       "topic": "Sensors used in Robots",
@@ -12439,9 +13104,10 @@
         "Size/weight/power",
         "Redundancy/commoncause",
         "Calibrationmaintenance",
-        "Coupled numeric selection"
+        "Coupled numeric selection",
+        "L52-GAP-06: Operating Environment, Interface & Computational Load, and Size, Weight & Power rows"
       ]
     }
   ],
-  "coverageNote": "132 drafts; all65 actual source pages inspected. Source transcriptions and explicitly supplied hardware/API models distinguished; independent review pending."
+  "coverageNote": "138 current objects: 117 accepted objects preserved exactly; 15 v2 repairs and six bounded gap drafts require independent review. Historical restricted-runtime checks remain excluded from validation."
 }

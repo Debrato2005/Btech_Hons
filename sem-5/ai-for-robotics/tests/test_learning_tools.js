@@ -233,10 +233,10 @@ function syntheticLearningBank() {
     {id:'f',status:'verified',week:1,expression:'x+y',citations:[{sourceId:'test-source',physicalPage:2,locator:'test equation'}],questionIds:['q']}
   ],confusionPairs:[],traps:[]}};
 }
-test('formula/confusion/trap views use explicit verified data and preserve citations', () => {
+test('formula/confusion/trap views require hash-bound approval, not a verified label', () => {
   const bank=syntheticLearningBank(),views=tools.buildLearningViews(bank);
-  assert.equal(views.formulas.length,1);assert.equal(views.formulasByWeek[1].length,1);
-  assert.equal(views.formulas[0].sourceRefs[0].physicalPage,2);assert.equal(views.diagnostics.length,0);
+  assert.equal(views.formulas.length,0);assert.equal(views.diagnostics.length,1);
+  assert.equal(tools.buildLearningViews(bank,{includeDrafts:true}).formulas[0].sourceRefs[0].physicalPage,2);
   bank.learningTools.formulaSheet[0].status='draft';assert.equal(tools.buildLearningViews(bank).formulas.length,0);
   assert.equal(tools.buildLearningViews(bank,{includeDrafts:true}).formulas.length,1);
   bank.learningTools.formulaSheet[0].synthetic=true;assert.equal(tools.buildLearningViews(bank,{includeDrafts:true}).formulas.length,0);

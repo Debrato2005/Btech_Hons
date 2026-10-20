@@ -36,6 +36,8 @@ def apply_review_gate(questions, reviews, slides, sources):
         accepted = [r for r in usable if r.get('decision') == 'verified'
                     and r.get('reviewerId') not in authors
                     and all(r.get('checks', {}).get(key) is True for key in CHECK_KEYS)
+                    and bool(r.get('independentAnswerOptionIds'))
+                    and set(r.get('independentAnswerOptionIds', [])) <= {o['id'] for o in question['options']}
                     and set(r.get('independentAnswerOptionIds', [])) == set(question['correctOptionIds'])
                     and required_slides <= set(r.get('reviewedSlideIds', []))]
         reasons = []

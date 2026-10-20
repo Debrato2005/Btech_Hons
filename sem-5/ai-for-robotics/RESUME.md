@@ -15,7 +15,7 @@
 
 ## Checkpoint authorization and remote state
 
-The user explicitly authorized this and future validated checkpoint pushes to main on19October2026 at22:47UTC. Inspect main and use expected-SHA protection before updates. The last verified main at 23:28 UTC before this snapshot was eb3e2a77028c15e6097d4644606c14a7d58d12a8. Older unreferenced commit080eee36f72d244176dd16a082757648385901a6 is superseded by the newer coherent snapshot, not a completion claim. Only validated independent reviews enter the default pool; drafts and flagged items remain excluded.
+The user explicitly authorized this and future validated checkpoint pushes to main on19October2026 at22:47UTC. Inspect main and use expected-SHA protection before updates. The last verified main at23:50:28UTC on19October2026 before this snapshot was9abe1fad15bf0bd3ae5300acb0fa4aa1ab874be6. Older unreferenced commit080eee36f72d244176dd16a082757648385901a6 is superseded by the newer coherent snapshot, not a completion claim. Only validated independent reviews enter the default pool; drafts and flagged items remain excluded.
 
 ## Next actions
 

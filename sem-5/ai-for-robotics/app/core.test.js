@@ -24,8 +24,9 @@ test('global shortcuts never hijack native Enter/Space activation or typing',()=
 test('algorithm selector is fail-closed on provenance and draft-gated',()=>{
   const sha='a'.repeat(64);
   const refs=[{sourceId:'test-source',slideId:'test-slide',sourceSha256:sha,physicalPage:1}];
-  const bank={sources:[{id:'test-source',sha256:sha,retrievalStatus:'ready',pageCount:1}],slides:[{id:'test-slide',sourceId:'test-source',sourceSha256:sha,physicalPage:1,visualInspection:{status:'complete'},disposition:'examinable'}]};
+  let bank={sources:[{id:'test-source',sha256:sha,retrievalStatus:'ready',pageCount:1}],slides:[{id:'test-slide',sourceId:'test-source',sourceSha256:sha,physicalPage:1,visualInspection:{status:'complete'},disposition:'examinable'}]};
   const records=[{id:'approved',status:'verified',sourceRefs:refs},{id:'draft',status:'draft',sourceRefs:refs},{id:'flagged',status:'flagged',sourceRefs:refs},{id:'unlinked',status:'verified',sourceRefs:[]},{id:'synthetic',status:'verified',sourceRefs:refs,synthetic:true},{id:'nested-synthetic',status:'verified',sourceRefs:refs,provenance:{synthetic:true}}];
+  const F=require('../tests/fixtures/learning-resource-bank.js');bank=F.fixture();records.forEach(r=>{if(r.sourceRefs.length)r.sourceRefs=structuredClone(bank.questions[0].citations);});F.approveTool(bank,records[0]);
   assert.deepEqual(C.selectAlgorithmRecords(records,{bank}).map(r=>r.id),['approved']);
   assert.deepEqual(C.selectAlgorithmRecords(records,{bank,includeUnverified:true}).map(r=>r.id),['approved','draft','flagged']);
   assert.deepEqual(C.selectAlgorithmRecords(records,{bank,includeUnverified:false}).map(r=>r.id),['approved']);
@@ -39,7 +40,7 @@ test('algorithm selector is fail-closed on provenance and draft-gated',()=>{
   }
   const conflict={...records[0],sourceRefs:[{...refs[0],role:'conflict'}]};
   assert.deepEqual(C.selectAlgorithmRecords([conflict],{bank}),[]);
-  assert.equal(C.selectAlgorithmRecords([{...conflict,conflictResolution:{basis:'Documented resolution'}}],{bank}).length,1);
+  assert.equal(C.selectAlgorithmRecords([{...conflict,conflictResolution:{basis:'Documented resolution'}}],{bank}).length,0); // Corrected content still needs a new hash-bound review.
 });
 
 test('base presentation removes cyclic author positions without consulting answers',()=>{

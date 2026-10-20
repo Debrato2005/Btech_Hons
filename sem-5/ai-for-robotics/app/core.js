@@ -85,7 +85,8 @@
     const slides = new Map(array(bank.slides).map(slide => [slide.id, slide]));
     return array(records).filter(record => record && !record.synthetic && !record.provenance?.synthetic
       && Array.isArray(record.sourceRefs) && record.sourceRefs.length > 0
-      && (record.status === 'verified' || includeUnverified)
+      && (includeUnverified || (root.RoboticsLearningResources ||
+        (typeof module === 'object' && module.exports ? require('./learning-resources.js') : null))?.toolRecordAllowed(record, bank))
       && record.sourceRefs.every(ref => {
         if (!ref || typeof ref.sourceSha256 !== 'string' || !/^[a-f0-9]{64}$/.test(ref.sourceSha256)) return false;
         const source = sources.get(ref.sourceId), slide = slides.get(ref.slideId);

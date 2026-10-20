@@ -362,5 +362,151 @@
     "exclusionReason": null,
     "incrementalChangesChecked": false,
     "repeatsSlideIds": []
+  },
+  "1795": {
+    "footer": "19",
+    "inspectedAt": "2026-10-19T23:44:43.784884+00:00",
+    "notes": "Actual rqt_graph inspected: five oval nodes /camera_node,/face_detection_node,/emotion_node,/tara_node,/visualization_node. /camera_node publishes /camera/depth/image_rect_raw and /camera/color/image_raw; both feed face detection; color also feeds emotion. Detector publishes /human_face and /human_face/annotated; human_face feeds emotion; annotated feeds visualization. Emotion→/human_emotion→tara and visualization. Tara→/chatgpt_response and /speech_text→visualization. Nested rectangles are namespaces/topics, not extra processing nodes. Prose: pub/sub, asynchronous, QoS, launch parameters, modularity. Message passing removes direct calls but not topic/type/QoS/semantic contracts; independent ROS nodes need not be separate OS processes. Footer19.",
+    "concepts": {
+      "ros-graph": {
+        "title": "ROS2 graph, interfaces and modularity",
+        "description": "Exact displayed nodes/topics and functional publish-subscribe boundaries.",
+        "angles": [
+          "Read oval nodes versus topic/namespace boxes",
+          "Trace color/depth and annotation paths",
+          "Trace emotion to conversation and visualization",
+          "Distinguish architecture six roles from five displayed nodes",
+          "Launch versus runtime messaging",
+          "Interface/QoS contracts remain despite decoupling"
+        ]
+      }
+    },
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "incrementalChangesChecked": false,
+    "repeatsSlideIds": []
+  },
+  "1796": {
+    "footer": "20",
+    "inspectedAt": "2026-10-19T23:44:43.784896+00:00",
+    "notes": "Actual execution sequence and all bullets inspected: unified launch initializes nodes; camera/detection/DeepFace/emotiontopic/API/speaker. Microphone captured concurrently; emotion before response. Concurrency does not synchronize timestamps or guarantee deadlines. The launch-file box is not provided source code. Footer20.",
+    "concepts": {
+      "execution": {
+        "title": "Launch and concurrent execution",
+        "description": "Startup configuration versus runtime causal data flow.",
+        "angles": [
+          "Launch initialization versus message flow",
+          "Concurrent branches versus timestamp consistency",
+          "Missing perception should not silently reuse unbounded stale emotion",
+          "No source launch file or executable code supplied"
+        ]
+      }
+    },
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "incrementalChangesChecked": false,
+    "repeatsSlideIds": []
+  },
+  "1797": {
+    "footer": "21",
+    "inspectedAt": "2026-10-19T23:44:43.784901+00:00",
+    "notes": "Actual demonstration photo inspected. Person seated facing humanoid with an extended arm, chest display, torso camera and wheeled base. Caption inside photo reads Detects Human emotion and greets accordingly; [1] references robot design. Static image demonstrates setup/claimed behavior, not measured accuracy, latency, autonomous navigation or safety. No video execution or hidden audio inferred. Footer21.",
+    "concepts": {
+      "demonstration": {
+        "title": "Experimental evidence and application claims",
+        "description": "Visible setup and caption versus quantitative validation.",
+        "angles": [
+          "Read in-image greeting caption",
+          "Distinguish a demonstration from a controlled evaluation",
+          "Do not infer hidden trajectory/latency from still photo"
+        ]
+      }
+    },
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "incrementalChangesChecked": false,
+    "repeatsSlideIds": []
+  },
+  "1798": {
+    "footer": "22",
+    "inspectedAt": "2026-10-19T23:44:43.784905+00:00",
+    "notes": "Actual engineering bullets inspected: USB shared bandwidth, dependencies, embedded drivers, asynchronous synchronization, cloud network, resource optimization, modular maintenance. No throughput, timing or exact versions beyond earlier OS/ROS supplied here; all numeric examples must explicitly stipulate values. Distinguish camera USB bottleneck from cloud latency and inference compute. Footer22.",
+    "concepts": {
+      "optimization": {
+        "title": "Bandwidth, timing and deployment constraints",
+        "description": "Shared I/O, compatibility, asynchronous freshness and network dependencies.",
+        "angles": [
+          "RGB/depth/audio bandwidth budget with stated encoding",
+          "Pipeline critical path and bottleneck throughput",
+          "Observation freshness and clock assumptions",
+          "Cloud outage versus local perception continuity",
+          "Version/driver compatibility versus algorithm error"
+        ]
+      }
+    },
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "incrementalChangesChecked": false,
+    "repeatsSlideIds": []
+  },
+  "1799": {
+    "footer": "23",
+    "inspectedAt": "2026-10-19T23:44:43.784908+00:00",
+    "notes": "Actual applications bullets inspected: healthcare personalized assistance; education engagement/confusion/frustration; service/hospitality; elderly companion communication; industrial operator attention/emotion; reception/info at hospitals/airports/public facilities; research. These are proposed domains, not proof seven-way expression classifier directly measures confusion/attention or provides diagnosis. Footer23.",
+    "concepts": {
+      "applications": {
+        "title": "Emotion-aware application mapping and limits",
+        "description": "Domain-specific uses of uncertain supplementary interaction context.",
+        "angles": [
+          "Match education, companion, reception, industry and service goals",
+          "Seven expression labels versus richer engagement/attention states",
+          "Healthcare support is not diagnosis from facial score",
+          "Evaluate actual user outcome rather than interface appearance"
+        ]
+      }
+    },
+    "disposition": "examinable",
+    "exclusionReason": null,
+    "incrementalChangesChecked": false,
+    "repeatsSlideIds": []
+  },
+  "1800": {
+    "footer": "24",
+    "inspectedAt": "2026-10-19T23:44:43.784910+00:00",
+    "notes": "Actual nine-bullet summary inspected. Repeats HRI, vision/speech fusion, DeepFace/Realtime/ROS2/prompting/modularity from prior pages; no new source code/formula/quantitative result. Repeated reliable/effective claims retain earlier calibration and evaluation caveats. Footer24.",
+    "concepts": {},
+    "disposition": "repeated",
+    "exclusionReason": "Summary repeats previously mapped substantive concepts; no incremental examinable mechanism found.",
+    "incrementalChangesChecked": true,
+    "repeatsSlideIds": [
+      "lectures-p1779",
+      "lectures-p1780",
+      "lectures-p1783",
+      "lectures-p1786",
+      "lectures-p1788",
+      "lectures-p1793",
+      "lectures-p1795",
+      "lectures-p1798"
+    ]
+  },
+  "1801": {
+    "footer": "25",
+    "inspectedAt": "2026-10-19T23:44:43.784913+00:00",
+    "notes": "Actual references page inspected: humanoid design application454576-001(2025), NVIDIA Orin Nano Super page, DeepFace GitHub, OpenAI docs, ROS2Humble docs, RealSense docs, DJI MicMini. These are bibliographic pointers, no notebook/source-program link or examinable derivation. Footer25.",
+    "concepts": {},
+    "disposition": "excluded",
+    "exclusionReason": "Bibliography only; references preserved for provenance, not treated as measured performance or taught code.",
+    "incrementalChangesChecked": false,
+    "repeatsSlideIds": []
+  },
+  "1802": {
+    "footer": "26",
+    "inspectedAt": "2026-10-19T23:44:43.784915+00:00",
+    "notes": "Actual Thank You page inspected, no substantive text/figure beyond branding and footer26.",
+    "concepts": {},
+    "disposition": "excluded",
+    "exclusionReason": "Closing thank-you page only.",
+    "incrementalChangesChecked": false,
+    "repeatsSlideIds": []
   }
 }

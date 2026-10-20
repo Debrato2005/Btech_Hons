@@ -1,11 +1,20 @@
 """Assemble, validate and test with actual exits; persist a hash-bound receipt."""
 from pathlib import Path
 import json,subprocess,sys,hashlib,datetime,re
-R=Path(__file__).resolve().parents[1];tag=datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ');out=R/'audits';logs=Path('/tmp')/('robotics-milestone-'+tag);logs.mkdir()
+R=Path(__file__).resolve().parents[1];tag=datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ');out=R/'audits';logs=Path('/workspace/shared/robotics-verification-logs')/('robotics-milestone-'+tag);logs.mkdir(parents=True)
 hashfile=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
-inputs={str(p.relative_to(R)):hashfile(p) for folder in ['data/question-batches','data/reviews','data/inspection-batches'] for p in sorted((R/folder).glob('*.json'))}
+def input_manifest():
+ paths=set()
+ for folder in ['data/question-batches','data/reviews','data/inspection-batches']:
+  paths.update((R/folder).glob('*.json'))
+ for folder in ['app','scripts','tests']:
+  paths.update(p for p in (R/folder).rglob('*') if p.is_file() and '__pycache__' not in p.parts and p.suffix not in ['.pyc','.log'])
+ paths.update((R/'data').glob('schema.*.json'))
+ paths.update((R/'data').glob('learning-*.json'))
+ return {str(p.relative_to(R)):hashfile(p) for p in sorted(paths)}
+inputs=input_manifest()
 receipt={'recordedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'inputManifest':inputs,'processResults':{},'complete':False,'limitations':['Integrity validation does not certify scientific correctness or complete-course coverage.','Actual downloaded-file offline browser QA remains blocked.']}
-steps=[('assembly',['python3','scripts/assemble_bank.py']),('validator',['python3','scripts/validate.py','--report','audits/integrity-latest.json']),('build',['python3','scripts/build.py']),('pythonTests',['python3','-m','unittest','discover','-s','tests','-p','test_*.py']),('nodeTests',['node','--test','app/core.test.js','app/algorithm-selector.test.js','tests/test_learning_tools.js'])]
+steps=[('assembly',['python3','scripts/assemble_bank.py']),('validator',['python3','scripts/validate.py','--report','audits/integrity-latest.json']),('build',['python3','scripts/build.py']),('pythonTests',['python3','-m','unittest','discover','-s','tests','-p','test_*.py']),('nodeTests',['node','--test','app/core.test.js','app/algorithm-selector.test.js','tests/test_learning_tools.js','tests/test_learning_resources.js'])]
 for name,cmd in steps:
  log=logs/(name+'.log')
  with log.open('w') as f:r=subprocess.run(cmd,cwd=R,stdout=f,stderr=subprocess.STDOUT)
@@ -22,7 +31,7 @@ for name,cmd in steps:
  if name=='nodeTests':
   m=re.search(r'(?:#|ℹ) pass (\d+)',log.read_text());receipt['nodeTestsPassed']=int(m.group(1)) if m else None
  if receipt.get('bankSha256') and hashfile(R/'data/bank.json')!=receipt['bankSha256']:raise RuntimeError('Bank mutated during milestone verification')
-final_inputs={str(p.relative_to(R)):hashfile(p) for folder in ['data/question-batches','data/reviews','data/inspection-batches'] for p in sorted((R/folder).glob('*.json'))}
+final_inputs=input_manifest()
 receipt['inputManifestChangedDuringRun']=sorted(p for p in set(inputs)|set(final_inputs) if inputs.get(p)!=final_inputs.get(p))
 path=out/('validated-milestone-'+tag+'.json');path.write_text(json.dumps(receipt,indent=2)+'\n')
 print(json.dumps({k:v for k,v in receipt.items() if k!='inputManifest'},indent=2));print('receipt',path)

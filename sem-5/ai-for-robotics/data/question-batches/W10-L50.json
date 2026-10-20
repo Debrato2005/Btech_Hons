@@ -5,10 +5,10 @@
   "questions": [
     {
       "id": "W10-L50-Q001",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
-      "stem": "Why can recognizing the words in an utterance be insufficient for an appropriate social-robot response?",
+      "stem": "Two speakers say “That is fine” with the same transcript but different delivery and situations. Which response-planning approach addresses the lecture’s text-only limitation?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -27,19 +27,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "A word transcript necessarily retains every acoustic property"
+          "text": "Use the identical transcripts to select the same tone, because wording alone supplies the difference needed here."
         },
         {
           "id": "o2",
-          "text": "An emotion label determines the exact semantic meaning without context"
+          "text": "Use the difference in loudness as the intended task, replacing interpretation of the words and situation."
         },
         {
           "id": "o3",
-          "text": "The same words can occur with different tone, context and expressed affect"
+          "text": "Keep the words as linguistic evidence and consider prosody and context before choosing the response style."
         },
         {
           "id": "o4",
-          "text": "A speech recognizer directly measures the speaker’s internal feelings"
+          "text": "Treat the estimated expression as the intended task, rather than combining it with the words and situation."
         }
       ],
       "correctOptionIds": [
@@ -59,31 +59,34 @@
         }
       ],
       "solution": {
-        "justification": "Words alone can omit cues relevant to how an utterance is expressed and interpreted.",
+        "justification": "The words, delivery and situation provide different evidence for interpreting the utterance and choosing a response style.",
         "optionExplanations": {
-          "o1": "A transcript usually loses pitch, timing and other acoustic detail.",
-          "o2": "A label does not replace semantic or situational context.",
-          "o3": "Words alone can omit cues relevant to how an utterance is expressed and interpreted.",
-          "o4": "Speech recognition estimates words, not private feelings."
+          "o1": "Identical words do not capture the stipulated difference in delivery or situation.",
+          "o2": "Acoustic delivery can inform interpretation but does not replace the task meaning.",
+          "o3": "This combines complementary evidence without treating an affect estimate as certain private knowledge.",
+          "o4": "An expression estimate is not itself the complete intended task."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Words alone can omit cues relevant to how an utterance is expressed and interpreted.",
+        "simpleExplanation": "The words, delivery and situation provide different evidence for interpreting the utterance and choosing a response style.",
         "memoryAid": null,
         "misconceptions": [
-          "A transcript usually loses pitch, timing and other acoustic detail.",
-          "A label does not replace semantic or situational context.",
-          "Speech recognition estimates words, not private feelings."
+          "Identical words do not capture the stipulated difference in delivery or situation.",
+          "Acoustic delivery can inform interpretation but does not replace the task meaning.",
+          "An expression estimate is not itself the complete intended task."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q002",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "Which sequence follows the shown voice-assistant diagram?",
@@ -105,19 +108,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "STT → intent parsing → LLM, then TTS or ROS state machine → robot action"
+          "text": "STT → intent parsing → LLM, with separate paths to TTS and to the ROS state machine → robot action."
         },
         {
           "id": "o3",
-          "text": "Robot action → TTS → intent parsing, with no speech input"
+          "text": "STT → intent parsing, with a direct robot-action branch and an LLM used only after TTS."
         },
         {
           "id": "o4",
-          "text": "LLM → microphone → ROS state machine → input transcript"
+          "text": "STT → intent parsing → LLM → TTS → ROS state machine → robot action, as one compulsory serial output path."
         },
         {
           "id": "o1",
-          "text": "TTS → intent parsing → STT, then robot action → LLM"
+          "text": "STT → LLM → intent parsing, with TTS and the ROS state machine branching from the parser."
         }
       ],
       "correctOptionIds": [
@@ -139,25 +142,28 @@
       "solution": {
         "justification": "Speech is transcribed and interpreted before response generation, with speech and action output branches.",
         "optionExplanations": {
-          "o1": "This reverses speech recognition and synthesis.",
-          "o2": "Speech is transcribed and interpreted before response generation, with speech and action output branches.",
-          "o3": "The diagram starts with user speech, not an action output.",
-          "o4": "The microphone supplies input rather than a post-LLM transcript."
+          "o1": "The shown parser precedes the LLM, not the reverse.",
+          "o2": "This preserves the diagram’s input stages and separate speech/action output paths.",
+          "o3": "The diagram routes the action path through the LLM and ROS state machine.",
+          "o4": "TTS and the state-machine path branch from the LLM; TTS is not an obligatory action intermediary."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Speech is transcribed and interpreted before response generation, with speech and action output branches.",
         "memoryAid": null,
         "misconceptions": [
-          "The diagram starts with user speech, not an action output.",
-          "The microphone supplies input rather than a post-LLM transcript.",
-          "This reverses speech recognition and synthesis."
+          "The diagram routes the action path through the LLM and ROS state machine.",
+          "TTS and the state-machine path branch from the LLM; TTS is not an obligatory action intermediary.",
+          "The shown parser precedes the LLM, not the reverse."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q003",
@@ -239,7 +245,7 @@
     },
     {
       "id": "W10-L50-Q004",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "What does an internally maintained HAPPY state establish about Albert?",
@@ -261,19 +267,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "The state is a clinical measurement of the conversation partner"
+          "text": "HAPPY is the linguistic intent selected from the request, rather than a state used by the response policy."
         },
         {
           "id": "o1",
-          "text": "The user must also be happy"
+          "text": "HAPPY is the latest estimated user label, so the robot policy necessarily copied that label unchanged."
         },
         {
           "id": "o2",
-          "text": "The robot has acquired human consciousness"
+          "text": "HAPPY is the outward facial expression, so no separate internal state is represented."
         },
         {
           "id": "o3",
-          "text": "Its software has entered a named simulated state, not that it experiences happiness"
+          "text": "HAPPY names a simulated software state that can guide a response and need not equal the estimated user state."
         }
       ],
       "correctOptionIds": [
@@ -293,31 +299,34 @@
         }
       ],
       "solution": {
-        "justification": "The lecture explicitly describes simulation rather than evidence of subjective experience.",
+        "justification": "A named software state is distinct from the user estimate, task intent and generated expression.",
         "optionExplanations": {
-          "o1": "The robot state need not copy the user estimate.",
-          "o2": "A state label does not establish consciousness.",
-          "o3": "The lecture explicitly describes simulation rather than evidence of subjective experience.",
-          "o4": "A software state is not a clinical measurement."
+          "o1": "The human estimate and robot policy state are separate; the policy need not copy the label.",
+          "o2": "An internal state can guide an expression without being identical to that output.",
+          "o3": "The lecture explicitly distinguishes the simulated robot state and human model.",
+          "o4": "Task intent and simulated affect state have different roles."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The lecture explicitly describes simulation rather than evidence of subjective experience.",
+        "simpleExplanation": "A named software state is distinct from the user estimate, task intent and generated expression.",
         "memoryAid": null,
         "misconceptions": [
-          "A software state is not a clinical measurement.",
-          "The robot state need not copy the user estimate.",
-          "A state label does not establish consciousness."
+          "Task intent and simulated affect state have different roles.",
+          "The human estimate and robot policy state are separate; the policy need not copy the label.",
+          "An internal state can guide an expression without being identical to that output."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q005",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "A frustration cue causes a robot to change from neutral to supportive and soften its voice; which mapping is correct?",
@@ -339,19 +348,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "All three are the same state with no transition"
+          "text": "Cue: source state; neutral→supportive: trigger; soft voice: transition."
         },
         {
           "id": "o2",
-          "text": "Cue: trigger; neutral→supportive: transition; soft voice: output action"
+          "text": "Cue: trigger; neutral→supportive: transition; soft voice: output action."
         },
         {
           "id": "o3",
-          "text": "Cue: transition; neutral→supportive: input microphone; soft voice: state identifier"
+          "text": "Cue: output action; neutral→supportive: transition; soft voice: destination state."
         },
         {
           "id": "o4",
-          "text": "Cue: output; soft voice: trigger; neutral→supportive: stored sensor image"
+          "text": "Cue: trigger; neutral→supportive: output action; soft voice: transition."
         }
       ],
       "correctOptionIds": [
@@ -373,25 +382,28 @@
       "solution": {
         "justification": "A trigger activates a state transition, whose resulting state can select an expressive action.",
         "optionExplanations": {
-          "o1": "The scenario explicitly includes a state change.",
-          "o2": "A trigger activates a state transition, whose resulting state can select an expressive action.",
-          "o3": "A transition is a change between states, not the microphone.",
-          "o4": "This reverses the input trigger and output action."
+          "o1": "The cue causes a change; it is not the source state itself.",
+          "o2": "The cue triggers the transition, and softened speech is generated behavior.",
+          "o3": "The cue is an input, and the destination state is supportive rather than the voice output.",
+          "o4": "The state change is the transition; the voice change is the output."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "A trigger activates a state transition, whose resulting state can select an expressive action.",
         "memoryAid": null,
         "misconceptions": [
-          "The scenario explicitly includes a state change.",
-          "A transition is a change between states, not the microphone.",
-          "This reverses the input trigger and output action."
+          "The cue causes a change; it is not the source state itself.",
+          "The cue is an input, and the destination state is supportive rather than the voice output.",
+          "The state change is the transition; the voice change is the output."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q006",
@@ -551,7 +563,7 @@
     },
     {
       "id": "W10-L50-Q008",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "In the displayed polar model, which placement matches the named axes?",
@@ -575,19 +587,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "The axes are ordered alphabetically around the circle"
+          "text": "Friend and sad lie on the left; stranger and happy lie on the right."
         },
         {
           "id": "o1",
-          "text": "Happy/friend on the right and sad/stranger on the left"
+          "text": "Happy and friend lie on the right; sad and stranger lie on the left."
         },
         {
           "id": "o2",
-          "text": "All emotions lie only on the vertical axis"
+          "text": "Happy and stranger lie on the left; sad and friend lie on the right."
         },
         {
           "id": "o3",
-          "text": "Happy/friend on the left and sad/stranger on the right"
+          "text": "Happy and friend lie on the left; sad and stranger lie on the right."
         }
       ],
       "correctOptionIds": [
@@ -609,25 +621,28 @@
       "solution": {
         "justification": "The supplied illustration places open-feeling labels to the left and closed-feeling labels to the right.",
         "optionExplanations": {
-          "o1": "This reverses the displayed arrangement.",
-          "o2": "Several diagonal axes are drawn.",
-          "o3": "The supplied illustration places open-feeling labels to the left and closed-feeling labels to the right.",
-          "o4": "The arrangement is not alphabetical."
+          "o1": "This reverses the diagram’s left and right groups.",
+          "o2": "This exchanges friend and stranger relative to their displayed sides.",
+          "o3": "These are the named left/right placements in this diagram, not the different notebook angles.",
+          "o4": "This exchanges happy and sad relative to their displayed sides."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The supplied illustration places open-feeling labels to the left and closed-feeling labels to the right.",
         "memoryAid": null,
         "misconceptions": [
-          "The arrangement is not alphabetical.",
-          "This reverses the displayed arrangement.",
-          "Several diagonal axes are drawn."
+          "This exchanges happy and sad relative to their displayed sides.",
+          "This reverses the diagram’s left and right groups.",
+          "This exchanges friend and stranger relative to their displayed sides."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q009",
@@ -978,7 +993,7 @@
     },
     {
       "id": "W10-L50-Q013",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "What does the rule active+opposite=100 mean in this emotion engine?",
@@ -1000,19 +1015,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "It proves mixed human emotions cannot occur"
+          "text": "The pair is independent, so raising one value leaves its opposite unchanged."
         },
         {
           "id": "o2",
-          "text": "It is an experimentally universal law of human emotion"
+          "text": "The sum of every emotion across all pairs is100, so updating one pair rescales all the others."
         },
         {
           "id": "o3",
-          "text": "It is a chosen constraint on two software state values"
+          "text": "Each paired software value complements the other to100; this is a modeling constraint rather than a measured law of human affect."
         },
         {
           "id": "o4",
-          "text": "It means every robot emotion has the same value"
+          "text": "A sum of100 requires the two members of every pair to be equal, regardless of updates."
         }
       ],
       "correctOptionIds": [
@@ -1034,19 +1049,19 @@
       "solution": {
         "justification": "The complement rule defines this model; it does not establish a psychological law.",
         "optionExplanations": {
-          "o1": "Human mixed emotions are separately listed as a challenge.",
-          "o2": "The slide supplies a design rule, not universal psychological evidence.",
-          "o3": "The complement rule defines this model; it does not establish a psychological law.",
-          "o4": "Different complementary pairs may have different values."
+          "o1": "The chosen rule explicitly couples the two members.",
+          "o2": "The constraint is per opposite pair, not a shared total over all pairs.",
+          "o3": "It specifies how the demonstration updates its state values, not an empirical psychological identity.",
+          "o4": "Many unequal pairs sum to100, such as75 and25."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The complement rule defines this model; it does not establish a psychological law.",
         "memoryAid": null,
         "misconceptions": [
-          "Human mixed emotions are separately listed as a challenge.",
-          "The slide supplies a design rule, not universal psychological evidence.",
-          "Different complementary pairs may have different values."
+          "The chosen rule explicitly couples the two members.",
+          "The constraint is per opposite pair, not a shared total over all pairs.",
+          "Many unequal pairs sum to100, such as75 and25."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -1058,11 +1073,14 @@
         "sourceClaim": "The phrase emotional balance can be mistaken for a universal human constraint; the rule is a deliberate artificial-state design.",
         "basis": "The complement rule defines this model; it does not establish a psychological law.",
         "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction."
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q014",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "What quantities does the described control-cycle scan collect?",
@@ -1084,19 +1102,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "Minimum and maximum radial values and their associated angles"
+          "text": "The minimum and maximum radial values, retaining the angle associated with each extremum."
         },
         {
           "id": "o3",
-          "text": "Mean radial value and mean response length, without retaining any axis angles"
+          "text": "The mean radius and a mean of all angles, without preserving either radial boundary."
         },
         {
           "id": "o4",
-          "text": "Only the largest radial value, discarding the lower boundary and its direction"
+          "text": "Only the maximum radius and its angle, treating the opposite direction as the minimum without scanning it."
         },
         {
           "id": "o1",
-          "text": "A separate maximum for each text token, rather than extrema over the active emotion axes"
+          "text": "The smallest and largest polar angles, followed by radial values found independently of those directions."
         }
       ],
       "correctOptionIds": [
@@ -1118,25 +1136,28 @@
       "solution": {
         "justification": "The scan identifies radial boundaries together with their locations in the polar representation.",
         "optionExplanations": {
-          "o1": "The scan traverses emotional axes, not token positions.",
-          "o2": "The scan identifies radial boundaries together with their locations in the polar representation.",
-          "o3": "The stated scan uses minimum/maximum radial boundaries and their angles.",
-          "o4": "Both bounds and corresponding angles are identified."
+          "o1": "The stated scan finds radial extrema and their corresponding angles, not independent angle extrema.",
+          "o2": "The slide names both radial boundaries and their associated directions.",
+          "o3": "A mean does not identify the two specified extrema.",
+          "o4": "The source requires both extrema rather than deriving the minimum from an assumed opposite direction."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The scan identifies radial boundaries together with their locations in the polar representation.",
         "memoryAid": null,
         "misconceptions": [
-          "The stated scan uses minimum/maximum radial boundaries and their angles.",
-          "Both bounds and corresponding angles are identified.",
-          "The scan traverses emotional axes, not token positions."
+          "A mean does not identify the two specified extrema.",
+          "The source requires both extrema rather than deriving the minimum from an assumed opposite direction.",
+          "The stated scan finds radial extrema and their corresponding angles, not independent angle extrema."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q015",
@@ -1218,7 +1239,7 @@
     },
     {
       "id": "W10-L50-Q016",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "What does starting the human model at the middle of both axes establish?",
@@ -1240,19 +1261,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "Proof that every person begins emotionally neutral"
+          "text": "A calibrated population measurement establishing the person’s most likely state from labeled data."
         },
         {
           "id": "o1",
-          "text": "An initial software estimate before sufficient conversational evidence"
+          "text": "A chosen initial estimate that can later change when conversational evidence arrives."
         },
         {
           "id": "o2",
-          "text": "A requirement that the estimate can never change"
+          "text": "A fresh observation inferred from the first utterance, even though no utterance has yet arrived."
         },
         {
           "id": "o3",
-          "text": "A direct sensor measurement of the person’s affect"
+          "text": "The final estimate carried over from this person’s preceding conversation, whether or not one exists."
         }
       ],
       "correctOptionIds": [
@@ -1274,29 +1295,32 @@
       "solution": {
         "justification": "Initialization provides a starting state and does not establish the person’s actual feelings.",
         "optionExplanations": {
-          "o1": "Initialization provides a starting state and does not establish the person’s actual feelings.",
-          "o2": "Later language cues update the model.",
-          "o3": "No direct internal-state measurement is shown.",
-          "o4": "The initial value is an assumption, not a fact about all people."
+          "o1": "The middle values are initialization assumptions, not measurements.",
+          "o2": "No current conversational evidence has yet been processed.",
+          "o3": "The shown initialization does not restore a prior conversation state.",
+          "o4": "The demonstration supplies no calibration or population-data calculation for initialization."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Initialization provides a starting state and does not establish the person’s actual feelings.",
         "memoryAid": null,
         "misconceptions": [
-          "The initial value is an assumption, not a fact about all people.",
-          "Later language cues update the model.",
-          "No direct internal-state measurement is shown."
+          "The demonstration supplies no calibration or population-data calculation for initialization.",
+          "No current conversational evidence has yet been processed.",
+          "The shown initialization does not restore a prior conversation state."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q017",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "Which order matches the displayed Albert pseudocode after user input arrives?",
@@ -1318,19 +1342,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Update visualization → generate response → initialize the model again on every turn"
+          "text": "Estimate emotion → generate response from the old robot state → update both states → save the conversation."
         },
         {
           "id": "o2",
-          "text": "Save an ungenerated response → detect emotion → obtain the user input"
+          "text": "Estimate emotion → update human state → save the current input as a complete pair → generate response → update robot state."
         },
         {
           "id": "o3",
-          "text": "Generate response → discard memory → estimate emotion → stop"
+          "text": "Estimate emotion → update robot state from the old human state → generate response → update human state → save the conversation."
         },
         {
           "id": "o4",
-          "text": "Estimate emotion → update human state → update robot state → generate response → save conversation"
+          "text": "Estimate emotion → update human state → update robot state → generate response → save the conversation."
         }
       ],
       "correctOptionIds": [
@@ -1352,25 +1376,33 @@
       "solution": {
         "justification": "The estimate and both state updates occur before response generation; the completed exchange is then saved.",
         "optionExplanations": {
-          "o1": "The model is loaded before the conversation loop, not reinitialized each turn.",
-          "o2": "The response is generated before it is saved.",
-          "o3": "The displayed sequence uses memory and updates before generation.",
-          "o4": "The estimate and both state updates occur before response generation; the completed exchange is then saved."
+          "o1": "The displayed response uses the updated states, not the old robot state.",
+          "o2": "A complete pair is saved after its response exists; the robot state is updated before generation.",
+          "o3": "The human state update precedes the robot-state update in the displayed pseudocode.",
+          "o4": "This follows the displayed dependencies before response generation and memory storage."
         },
-        "steps": [],
+        "steps": [
+          "Infer the current estimate from the input.",
+          "Update the human model, then the robot state.",
+          "Generate the response using the updated state and prior memory.",
+          "Store the input and generated response, then display them."
+        ],
         "formulas": [],
         "simpleExplanation": "The estimate and both state updates occur before response generation; the completed exchange is then saved.",
         "memoryAid": null,
         "misconceptions": [
-          "The model is loaded before the conversation loop, not reinitialized each turn.",
-          "The response is generated before it is saved.",
-          "The displayed sequence uses memory and updates before generation."
+          "The displayed response uses the updated states, not the old robot state.",
+          "A complete pair is saved after its response exists; the robot state is updated before generation.",
+          "The human state update precedes the robot-state update in the displayed pseudocode."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q018",
@@ -1734,7 +1766,7 @@
     },
     {
       "id": "W10-L50-Q022",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "What happens when RobotEmotionEngine.change(\"happy\",150) is called?",
@@ -1756,19 +1788,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "happy becomes150 and sad becomes−50"
+          "text": "Assign happy150 and its complement sad−50 without applying a clamp."
         },
         {
           "id": "o3",
-          "text": "happy becomes100 and sad becomes0"
+          "text": "Clamp happy to100, then assign its complement sad0."
         },
         {
           "id": "o4",
-          "text": "The input is silently treated as a150° angle"
+          "text": "Compute sad−50 from the original input, then clamp only happy to100."
         },
         {
           "id": "o1",
-          "text": "Both values become50"
+          "text": "Reject the out-of-range input and leave the previous happy/sad pair unchanged."
         }
       ],
       "correctOptionIds": [
@@ -1790,19 +1822,23 @@
       "solution": {
         "justification": "The code clips the active value to[0,100] before setting its complement.",
         "optionExplanations": {
-          "o1": "Clipping does not reset a valid endpoint to neutral.",
-          "o2": "The clipping step prevents these out-of-range values.",
-          "o3": "The code clips the active value to[0,100] before setting its complement.",
-          "o4": "The value is a magnitude, not an angle."
+          "o1": "The method clips rather than rejecting a recognized emotion’s numeric value.",
+          "o2": "The code clips the supplied value before assignment.",
+          "o3": "The complement is computed from the clipped value.",
+          "o4": "The complement is not computed from the unbounded input."
         },
-        "steps": [],
+        "steps": [
+          "Clip150 to the allowed interval0–100, giving100.",
+          "Assign happy100.",
+          "Assign sad=100−100=0 and recompute the mood."
+        ],
         "formulas": [],
         "simpleExplanation": "The code clips the active value to[0,100] before setting its complement.",
         "memoryAid": null,
         "misconceptions": [
-          "The clipping step prevents these out-of-range values.",
-          "The value is a magnitude, not an angle.",
-          "Clipping does not reset a valid endpoint to neutral."
+          "The code clips the supplied value before assignment.",
+          "The complement is not computed from the unbounded input.",
+          "The method clips rather than rejecting a recognized emotion’s numeric value."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -1818,11 +1854,14 @@
           "checkedAt": "2026-10-19T22:26:00+00:00",
           "locator": "Cell 9, RobotEmotionEngine.change."
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
       ]
     },
     {
       "id": "W10-L50-Q023",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "For valence0.6, arousal−0.4 and confidence0.5, what happy and friendly values does the notebook assign?",
@@ -1881,7 +1920,7 @@
           "o1": "These reverse both signed effects.",
           "o2": "The formulas simplify to happy=50+50cv and friendly=50−50ca, giving65 and60.",
           "o3": "These omit attenuation by confidence.",
-          "o4": "These omit the neutral offset50."
+          "o4": "30 and20 are the unweighted deviations50*v and−50*a; this omits both confidence0.5 and the neutral offset50."
         },
         "steps": [
           "50+50×0.5×0.6=65.",
@@ -1908,7 +1947,7 @@
         "memoryAid": null,
         "misconceptions": [
           "These omit attenuation by confidence.",
-          "These omit the neutral offset50.",
+          "30 and20 are the unweighted deviations50*v and−50*a; this omits both confidence0.5 and the neutral offset50.",
           "These reverse both signed effects."
         ],
         "examTraps": [],
@@ -1925,6 +1964,9 @@
           "checkedAt": "2026-10-19T22:26:00+00:00",
           "locator": "Cell 17, apply_analysis_to_human_engine."
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
       ]
     },
     {
@@ -2017,7 +2059,7 @@
     },
     {
       "id": "W10-L50-Q025",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "How should the notebook’s mapping from lower arousal to a higher friendly value be interpreted?",
@@ -2039,19 +2081,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "As evidence that an angry person cannot speak calmly"
+          "text": "Treat the friendly-axis number as a calibrated probability that the person will cooperate."
         },
         {
           "id": "o2",
-          "text": "As a validated psychological identity for every person"
+          "text": "Treat the arousal-to-friendly relation as a direct consequence of the facial classifier’s categorical label vocabulary."
         },
         {
           "id": "o3",
-          "text": "As a conversion from arousal directly into motor torque"
+          "text": "Treat the friendly-axis number as the arousal value itself, without a sign or scale change."
         },
         {
           "id": "o4",
-          "text": "As a handcrafted demonstration policy, not proof that calmness and friendliness are equivalent"
+          "text": "Treat it as a chosen social-response mapping that needs separate justification, rather than equating calmness with friendliness."
         }
       ],
       "correctOptionIds": [
@@ -2073,19 +2115,19 @@
       "solution": {
         "justification": "The code deliberately uses calmness for one social-state axis; that choice needs evaluation and is not a universal equivalence.",
         "optionExplanations": {
-          "o1": "The implementation cannot establish such a claim about people.",
-          "o2": "The mapping alone supplies no universal validation.",
-          "o3": "This function updates state values, not torque.",
-          "o4": "The code deliberately uses calmness for one social-state axis; that choice needs evaluation and is not a universal equivalence."
+          "o1": "The code supplies a handcrafted state value, not a calibrated cooperation probability.",
+          "o2": "A label vocabulary does not derive this numerical policy.",
+          "o3": "The code reverses and scales arousal, then weights the deviation by confidence.",
+          "o4": "The numerical transformation implements a demonstration policy, not a psychological equivalence."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The code deliberately uses calmness for one social-state axis; that choice needs evaluation and is not a universal equivalence.",
         "memoryAid": null,
         "misconceptions": [
-          "The implementation cannot establish such a claim about people.",
-          "The mapping alone supplies no universal validation.",
-          "This function updates state values, not torque."
+          "The code supplies a handcrafted state value, not a calibrated cooperation probability.",
+          "A label vocabulary does not derive this numerical policy.",
+          "The code reverses and scales arousal, then weights the deviation by confidence."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -2107,11 +2149,14 @@
           "checkedAt": "2026-10-19T22:26:00+00:00",
           "locator": "Cell 17, comment Map calmness to friendly as a social state."
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
       ]
     },
     {
       "id": "W10-L50-Q026",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "With confidence0.2 and emotion=\"sad\", which branch runs in update_robot_policy?",
@@ -2133,19 +2178,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "Skip every state change because confidence is below1"
+          "text": "Set curious62, then continue into the sad branch and assign welcome88 and friend82."
         },
         {
           "id": "o3",
-          "text": "Set happy to80 through the happy branch"
+          "text": "Assign the default neutral branch’s welcome60 and curious62 because any confidence below1 is neutral."
         },
         {
           "id": "o4",
-          "text": "Set welcome to88 and friend to82 through the sad branch"
+          "text": "Execute the sad branch because the confidence guard includes only values strictly below0.2."
         },
         {
           "id": "o1",
-          "text": "Set curious to62 and return before the sad-specific branch"
+          "text": "Set curious62 and return, leaving the sad-specific welcome/friend assignments unexecuted."
         }
       ],
       "correctOptionIds": [
@@ -2167,19 +2212,19 @@
       "solution": {
         "justification": "The confidence<0.30 condition is checked first and returns immediately after setting curiosity.",
         "optionExplanations": {
-          "o1": "The confidence<0.30 condition is checked first and returns immediately after setting curiosity.",
-          "o2": "The low-confidence path still changes curiosity.",
-          "o3": "The categorical input is not happy and the early branch has priority.",
-          "o4": "The early return prevents this branch."
+          "o1": "0.2<0.30 triggers the early return before label-specific branches.",
+          "o2": "The return prevents fall-through into the sad branch.",
+          "o3": "The actual low-confidence branch differs from the later default label branch.",
+          "o4": "The guard is confidence<0.30, not confidence<0.2."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The confidence<0.30 condition is checked first and returns immediately after setting curiosity.",
         "memoryAid": null,
         "misconceptions": [
-          "The low-confidence path still changes curiosity.",
-          "The categorical input is not happy and the early branch has priority.",
-          "The early return prevents this branch."
+          "The return prevents fall-through into the sad branch.",
+          "The actual low-confidence branch differs from the later default label branch.",
+          "The guard is confidence<0.30, not confidence<0.2."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -2195,14 +2240,17 @@
           "checkedAt": "2026-10-19T22:26:00+00:00",
           "locator": "Cell 17, update_robot_policy early return."
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
       ]
     },
     {
       "id": "W10-L50-Q027",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
-      "stem": "For a sufficiently confident sad label, what does the demonstration policy do?",
+      "stem": "With confidence0.8 and a sad label, what does update_robot_policy assign, regardless of the previous robot state?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -2221,19 +2269,19 @@
       "options": [
         {
           "id": "o3",
-          "text": "Set sad to 88 and distant to 82 to mirror the human label"
+          "text": "Assign sad88, distant82 and frustrated62 so that the robot directly mirrors the user label."
         },
         {
           "id": "o4",
-          "text": "Set only welcome to 88 and return before updating friend or curious"
+          "text": "Assign welcome88 but retain the preceding friend and curious values because only one axis may change per turn."
         },
         {
           "id": "o1",
-          "text": "Increase welcome, friend and curious rather than simply setting the robot sad"
+          "text": "Assign welcome88, friend82 and curious62; this can lower a value that was already above its assigned target."
         },
         {
           "id": "o2",
-          "text": "Apply the low-confidence curiosity-only branch even when confidence is 0.8"
+          "text": "Add88,82 and62 to the previous welcome, friend and curious values, respectively."
         }
       ],
       "correctOptionIds": [
@@ -2253,21 +2301,21 @@
         }
       ],
       "solution": {
-        "justification": "The sad branch sets welcome88, friend82 and curious62 as a supportive artificial response policy.",
+        "justification": "The sad branch sets welcome88, friend82 and curious62; the direction of each change depends on its previous value.",
         "optionExplanations": {
-          "o1": "The sad branch sets welcome88, friend82 and curious62 as a supportive artificial response policy.",
-          "o2": "The early branch applies only below 0.30.",
-          "o3": "The actual policy increases welcoming and friendly responses instead of copying sadness.",
-          "o4": "The sad branch performs all three changes."
+          "o1": "These are fixed assignments in the sad branch, not guaranteed increases.",
+          "o2": "The code calls change with target values, not nudge with increments.",
+          "o3": "The policy chooses supportive robot targets rather than copying the sad label.",
+          "o4": "The branch updates all three named dimensions and their complements."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The sad branch sets welcome88, friend82 and curious62 as a supportive artificial response policy.",
+        "simpleExplanation": "The sad branch sets welcome88, friend82 and curious62; the direction of each change depends on its previous value.",
         "memoryAid": null,
         "misconceptions": [
-          "The actual policy increases welcoming and friendly responses instead of copying sadness.",
-          "The sad branch performs all three changes.",
-          "The early branch applies only below 0.30."
+          "The policy chooses supportive robot targets rather than copying the sad label.",
+          "The branch updates all three named dimensions and their complements.",
+          "The code calls change with target values, not nudge with increments."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -2283,14 +2331,17 @@
           "checkedAt": "2026-10-19T22:26:00+00:00",
           "locator": "Cell 17, sad branch of update_robot_policy."
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
       ]
     },
     {
       "id": "W10-L50-Q028",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
-      "stem": "After eight calls to ConversationMemory.add_turn, how much paired history remains in its12-entry list?",
+      "stem": "Starting with empty memory, eight numbered input/reply pairs are added through add_turn. Which history and counter remain?",
       "selectionMode": "single",
       "type": "numerical",
       "difficulty": "easy",
@@ -2309,19 +2360,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "The last12 user–assistant pairs, while turn_count is8"
+          "text": "The last8 pairs remain, beginning with pair1, and turn_count is8 because the cap counts pairs rather than messages."
         },
         {
           "id": "o1",
-          "text": "Only the last user message, while turn_count is12"
+          "text": "The last6 pairs remain, beginning with pair3, and turn_count is6 because trimming resets the counter."
         },
         {
           "id": "o2",
-          "text": "All8 pairs, because12 refers to tokens"
+          "text": "The last4 pairs remain, beginning with pair5, and turn_count is8 because the list cap counts three entries per pair."
         },
         {
           "id": "o3",
-          "text": "The last6 user–assistant pairs, while turn_count is8"
+          "text": "The last6 pairs remain, beginning with pair3, and turn_count is8 because the lifetime counter is not trimmed."
         }
       ],
       "correctOptionIds": [
@@ -2343,10 +2394,10 @@
       "solution": {
         "justification": "Each call appends two messages, so the last12 message entries represent6 complete pairs.",
         "optionExplanations": {
-          "o1": "Each pair is retained together under this append-and-slice pattern.",
-          "o2": "The slice counts list entries, not tokens.",
-          "o3": "Each call appends two messages, so the last12 message entries represent6 complete pairs.",
-          "o4": "Twelve entries are messages, not12 pairs."
+          "o1": "The list is trimmed, but the separate counter retains all eight calls.",
+          "o2": "Each pair adds two role-tagged messages, not three.",
+          "o3": "Twelve messages contain six complete pairs; the counter increments on every add_turn call.",
+          "o4": "The cap is twelve message entries, not twelve pairs."
         },
         "steps": [
           "Eight calls create16 message entries.",
@@ -2357,9 +2408,9 @@
         "simpleExplanation": "Each call appends two messages, so the last12 message entries represent6 complete pairs.",
         "memoryAid": null,
         "misconceptions": [
-          "Twelve entries are messages, not12 pairs.",
-          "Each pair is retained together under this append-and-slice pattern.",
-          "The slice counts list entries, not tokens."
+          "The cap is twelve message entries, not twelve pairs.",
+          "The list is trimmed, but the separate counter retains all eight calls.",
+          "Each pair adds two role-tagged messages, not three."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -2381,6 +2432,9 @@
           "checkedAt": "2026-10-19T22:26:00+00:00",
           "locator": "Cell 13, add_turn appends two dictionaries and slices history[-12:]."
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
       ]
     },
     {
@@ -2659,10 +2713,10 @@
     },
     {
       "id": "W10-L50-Q032",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
-      "stem": "Which result satisfies the notebook’s EmotionAnalysis constraints?",
+      "stem": "Each candidate includes the required explanation string \"demo\"; only the other four fields are shown. Which candidate satisfies the notebook’s EmotionAnalysis label and numeric constraints?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -2743,11 +2797,14 @@
           "checkedAt": "2026-10-19T22:26:00+00:00",
           "locator": "Cell 7, EmotionAnalysis schema."
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
       ]
     },
     {
       "id": "W10-L50-Q033",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "If the LLM call fails, what does the notebook’s neutral/confidence0 fallback mean?",
@@ -2769,19 +2826,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "No valid classification was obtained; it does not establish actual human neutrality"
+          "text": "A failed classification has been replaced by a neutral label with zero confidence; the label does not establish the person’s actual state."
         },
         {
           "id": "o2",
-          "text": "A neutral label always has perfect calibration"
+          "text": "The previous valid human estimate has been retained unchanged, with its confidence copied into the new result."
         },
         {
           "id": "o3",
-          "text": "The system has measured a neutral internal emotion with certainty"
+          "text": "The neutral label is a successful classification whose zero confidence disables all subsequent human-state mapping."
         },
         {
           "id": "o4",
-          "text": "The failed call proves the user was deceptive"
+          "text": "The service failure is represented by adding an unknown label outside the schema’s permitted labels."
         }
       ],
       "correctOptionIds": [
@@ -2803,19 +2860,19 @@
       "solution": {
         "justification": "The fallback marks unavailable or invalid classifier output with zero confidence.",
         "optionExplanations": {
-          "o1": "The fallback marks unavailable or invalid classifier output with zero confidence.",
-          "o2": "A label and numeric field do not establish calibration.",
-          "o3": "A failed call provides no measurement of actual feeling.",
-          "o4": "No such conclusion follows from a service error."
+          "o1": "The exception handler supplies explicit fallback fields rather than a valid affect observation.",
+          "o2": "The handler constructs a new neutral, zero-confidence result.",
+          "o3": "The fallback still reaches state mapping; zero confidence drives mapped human axes to their midpoint.",
+          "o4": "The fallback uses the permitted neutral label, not an out-of-schema value."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The fallback marks unavailable or invalid classifier output with zero confidence.",
         "memoryAid": null,
         "misconceptions": [
-          "A label and numeric field do not establish calibration.",
-          "A failed call provides no measurement of actual feeling.",
-          "No such conclusion follows from a service error."
+          "The handler constructs a new neutral, zero-confidence result.",
+          "The fallback still reaches state mapping; zero confidence drives mapped human axes to their midpoint.",
+          "The fallback uses the permitted neutral label, not an out-of-schema value."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -2831,6 +2888,9 @@
           "checkedAt": "2026-10-19T22:26:00+00:00",
           "locator": "Cell 15, analyse_emotion exception handler."
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
       ]
     },
     {
@@ -2913,7 +2973,7 @@
     },
     {
       "id": "W10-L50-Q035",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "Which pairing matches affective computing’s recognition and synthesis roles?",
@@ -2935,19 +2995,19 @@
       "options": [
         {
           "id": "o3",
-          "text": "Recognize patterns in observed cues; synthesize expressive behavior"
+          "text": "Call inference from observed cues recognition and generation of expressive behavior synthesis."
         },
         {
           "id": "o4",
-          "text": "Recognize the intended robot expression from its motor command; synthesize the estimated human label from a sensor"
+          "text": "Call selection of a motor command recognition and extraction of a facial feature vector synthesis."
         },
         {
           "id": "o1",
-          "text": "Recognize a label and call that same label an expressive action without generating a response"
+          "text": "Call the estimated user label synthesis and the generated vocal expression recognition."
         },
         {
           "id": "o2",
-          "text": "Synthesize the observed cue before it is sensed, then recognize only a stored robot state"
+          "text": "Call the text transcript affect recognition and the unchanged stored label affect synthesis."
         }
       ],
       "correctOptionIds": [
@@ -2969,29 +3029,32 @@
       "solution": {
         "justification": "Recognition estimates affect from observations, while synthesis generates an expression or response.",
         "optionExplanations": {
-          "o1": "An estimate and an expressed behavior serve different roles.",
-          "o2": "Recognition consumes available observations; synthesis produces outputs.",
-          "o3": "Recognition estimates affect from observations, while synthesis generates an expression or response.",
-          "o4": "This confuses generating an output with recognizing observed human cues."
+          "o1": "This exchanges the inference and generation roles.",
+          "o2": "A transcript alone is not an affect estimate, and storing a label is not generating an expression.",
+          "o3": "Recognition estimates a pattern from evidence; synthesis produces an expressive pattern.",
+          "o4": "Feature extraction supports recognition, while expressive motor output belongs to synthesis."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Recognition estimates affect from observations, while synthesis generates an expression or response.",
         "memoryAid": null,
         "misconceptions": [
-          "This confuses generating an output with recognizing observed human cues.",
-          "An estimate and an expressed behavior serve different roles.",
-          "Recognition consumes available observations; synthesis produces outputs."
+          "Feature extraction supports recognition, while expressive motor output belongs to synthesis.",
+          "This exchanges the inference and generation roles.",
+          "A transcript alone is not an affect estimate, and storing a label is not generating an expression."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q036",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "What follows from the slide’s goal of recognizing affect as accurately as another human observer?",
@@ -3013,19 +3076,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "It guarantees100% accuracy for every person"
+          "text": "Compare the model’s confidence scores directly with the fraction of cases on which observers agree."
         },
         {
           "id": "o1",
-          "text": "It establishes direct access to an unobservable internal state"
+          "text": "Match the number of human-provided label names, then infer that model and observer accuracy are equal."
         },
         {
           "id": "o2",
-          "text": "It removes the need to define labels and evaluation data"
+          "text": "Compare training-set agreement with an observer’s performance on different, unseen cases."
         },
         {
           "id": "o3",
-          "text": "It defines a comparison target, not proof that the system already meets it"
+          "text": "Define comparable cases and labels, then measure whether the model meets the observer comparison target."
         }
       ],
       "correctOptionIds": [
@@ -3045,21 +3108,21 @@
         }
       ],
       "solution": {
-        "justification": "A stated success criterion still requires an operational evaluation and evidence.",
+        "justification": "A stated observer-level goal is not an achieved result; it requires a defined and comparable evaluation.",
         "optionExplanations": {
-          "o1": "Observer agreement is not direct internal-state access.",
-          "o2": "A meaningful comparison needs a defined task and evaluation protocol.",
-          "o3": "A stated success criterion still requires an operational evaluation and evidence.",
-          "o4": "Human-observer comparison is not a universal perfect-accuracy guarantee."
+          "o1": "Sharing a label vocabulary does not establish comparable accuracy.",
+          "o2": "Different evaluation populations and training exposure confound that comparison.",
+          "o3": "The statement supplies a goal that requires an appropriate empirical comparison.",
+          "o4": "Confidence scores and observer agreement are different quantities; matching their values is not an accuracy test."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "A stated success criterion still requires an operational evaluation and evidence.",
+        "simpleExplanation": "A stated observer-level goal is not an achieved result; it requires a defined and comparable evaluation.",
         "memoryAid": null,
         "misconceptions": [
-          "Human-observer comparison is not a universal perfect-accuracy guarantee.",
-          "Observer agreement is not direct internal-state access.",
-          "A meaningful comparison needs a defined task and evaluation protocol."
+          "Confidence scores and observer agreement are different quantities; matching their values is not an accuracy test.",
+          "Sharing a label vocabulary does not establish comparable accuracy.",
+          "Different evaluation populations and training exposure confound that comparison."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -3071,7 +3134,10 @@
         "sourceClaim": "The success criterion is aspirational; the slide reports no validation result establishing achievement.",
         "basis": "A stated success criterion still requires an operational evaluation and evidence.",
         "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction."
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q037",
@@ -3153,10 +3219,10 @@
     },
     {
       "id": "W10-L50-Q038",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
-      "stem": "When choosing among the three transfer strategies, which split use gives an honest final comparison?",
+      "stem": "The FER slide depicts a “Test FER Model” loop but does not distinguish a separate validation set. Which methodological refinement, supported by the cited scikit-learn evaluation guidance, separates strategy selection from final assessment?",
       "selectionMode": "single",
       "type": "scenario",
       "difficulty": "easy",
@@ -3175,19 +3241,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "Train every strategy directly on the final test labels"
+          "text": "Select a strategy on validation data, then repeatedly tune it against the final test labels before reporting."
         },
         {
           "id": "o3",
-          "text": "Choose with validation data, then assess the chosen system once on untouched test data"
+          "text": "Select settings using training/validation data or cross-validation, then evaluate the chosen system on a held-out final test set."
         },
         {
           "id": "o4",
-          "text": "Use the training score alone because pretrained weights remove overfitting"
+          "text": "Fit preprocessing on all available examples before splitting, then use validation selection and a held-out final score."
         },
         {
           "id": "o1",
-          "text": "Choose whichever strategy performs best on the final test set and report that same score as untouched evaluation"
+          "text": "Choose the strategy with the best final-test score and report that same score as untouched evaluation."
         }
       ],
       "correctOptionIds": [
@@ -3207,21 +3273,21 @@
         }
       ],
       "solution": {
-        "justification": "Validation supports model selection; a held-out test set estimates performance after that selection.",
+        "justification": "Use selection data for tuning and preserve held-out data for final assessment; this is an explicitly sourced refinement, not a literal reading of the slide loop.",
         "optionExplanations": {
-          "o1": "Repeatedly selecting on the test set makes it part of model selection.",
-          "o2": "Fitting test labels destroys the holdout.",
-          "o3": "Validation supports model selection; a held-out test set estimates performance after that selection.",
-          "o4": "Pretraining does not eliminate overfitting or the need for evaluation."
+          "o1": "Selection on the final test set makes it part of the selection process.",
+          "o2": "Repeated tuning against the final test labels also leaks information into selection.",
+          "o3": "This separates model selection from the final assessment, as the cited documentation explains.",
+          "o4": "Learning preprocessing from all examples can leak held-out information before evaluation."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Validation supports model selection; a held-out test set estimates performance after that selection.",
+        "simpleExplanation": "Use selection data for tuning and preserve held-out data for final assessment; this is an explicitly sourced refinement, not a literal reading of the slide loop.",
         "memoryAid": null,
         "misconceptions": [
-          "Fitting test labels destroys the holdout.",
-          "Pretraining does not eliminate overfitting or the need for evaluation.",
-          "Repeatedly selecting on the test set makes it part of model selection."
+          "Repeated tuning against the final test labels also leaks information into selection.",
+          "Learning preprocessing from all examples can leak held-out information before evaluation.",
+          "Selection on the final test set makes it part of the selection process."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -3233,7 +3299,19 @@
         "sourceClaim": "The flow loops through strategies after a box named Test FER Model; strategy selection must not silently consume the final independent test set.",
         "basis": "Validation supports model selection; a held-out test set estimates performance after that selection.",
         "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction."
-      }
+      },
+      "primaryEvidence": [
+        {
+          "title": "scikit-learn cross-validation guide",
+          "url": "https://scikit-learn.org/stable/modules/cross_validation.html",
+          "version": "1.9.1 as retrieved on 2026-10-19",
+          "locator": "Section3.1: hyperparameter selection, validation set and final test set; Data transformation with held-out data.",
+          "checkedAt": "2026-10-19T23:44:14+00:00"
+        }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q039",
@@ -3393,7 +3471,7 @@
     },
     {
       "id": "W10-L50-Q041",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "Why should the slide’s full-fine-tuning accuracy statement not be treated as an unconditional rule?",
@@ -3415,19 +3493,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "The full-tuning result can be ranked by training accuracy alone because its backbone was pretrained"
+          "text": "The larger trainable model should be selected from training accuracy alone, even when its held-out score is lower."
         },
         {
           "id": "o2",
-          "text": "A larger trainable parameter set guarantees no overfitting once a classifier is added"
+          "text": "A frozen backbone is preferable whenever its parameter count is larger, regardless of feature mismatch or available data."
         },
         {
           "id": "o3",
-          "text": "Freezing all backbone layers and fully tuning them must yield identical held-out predictions"
+          "text": "The original pretraining score determines the ranking among new-task tuning strategies without a new-task comparison."
         },
         {
           "id": "o4",
-          "text": "Its outcome depends on data, optimization and validation; more trainable weights can overfit"
+          "text": "Data quantity, feature mismatch, optimization and held-out performance determine the trade-off; additional trainable capacity can overfit."
         }
       ],
       "correctOptionIds": [
@@ -3449,19 +3527,19 @@
       "solution": {
         "justification": "Allowing more layers to adapt gives flexibility, but does not guarantee the best held-out result.",
         "optionExplanations": {
-          "o1": "Training fit alone does not establish generalization.",
-          "o2": "Additional trainable capacity can overfit despite pretraining.",
-          "o3": "Different trainable representations can yield different results.",
-          "o4": "Allowing more layers to adapt gives flexibility, but does not guarantee the best held-out result."
+          "o1": "Training fit alone does not establish performance on unseen target examples.",
+          "o2": "Parameter count alone does not resolve whether the inherited features suit the target data.",
+          "o3": "Pretraining performance does not determine the ranking after adaptation to another task.",
+          "o4": "This respects the slide’s sufficient-data qualification and avoids an unconditional strategy ranking."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Allowing more layers to adapt gives flexibility, but does not guarantee the best held-out result.",
         "memoryAid": null,
         "misconceptions": [
-          "Training fit alone does not establish generalization.",
-          "Additional trainable capacity can overfit despite pretraining.",
-          "Different trainable representations can yield different results."
+          "Training fit alone does not establish performance on unseen target examples.",
+          "Parameter count alone does not resolve whether the inherited features suit the target data.",
+          "Pretraining performance does not determine the ranking after adaptation to another task."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -3473,11 +3551,14 @@
         "sourceClaim": "The statement full fine-tuning generally has the highest accuracy with enough data is conditional, not a universal ordering.",
         "basis": "Allowing more layers to adapt gives flexibility, but does not guarantee the best held-out result.",
         "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction."
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q042",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "Which sequence matches the displayed custom classifier after its feature-map reduction?",
@@ -3499,19 +3580,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "Dense256 → Dense128 → a single continuous valence value only"
+          "text": "Dense128 → dropout0.2 → Dense256 → dropout0.2 → Dense8 → softmax."
         },
         {
           "id": "o3",
-          "text": "Dense256 → dropout0.2 → Dense128 → dropout0.2 → Dense8 → softmax"
+          "text": "Dense256 → dropout0.2 → Dense128 → dropout0.2 → Dense8 → softmax."
         },
         {
           "id": "o4",
-          "text": "Dense8 → dropout0.8 → Dense128 → Dense256 → sigmoid"
+          "text": "Dense256 → dropout0.8 → Dense128 → dropout0.8 → Dense8 → softmax."
         },
         {
           "id": "o1",
-          "text": "Five convolutional blocks → Dense1000 with no custom head"
+          "text": "Dense256 → dropout0.2 → Dense128 → dropout0.2 → Dense8 → sigmoid."
         }
       ],
       "correctOptionIds": [
@@ -3533,29 +3614,32 @@
       "solution": {
         "justification": "The shown head has two hidden dense layers, two0.2 dropout stages and an eight-class softmax output.",
         "optionExplanations": {
-          "o1": "The diagram explicitly replaces the task head.",
-          "o2": "The shown output has eight classes, not one regression value.",
-          "o3": "The shown head has two hidden dense layers, two0.2 dropout stages and an eight-class softmax output.",
-          "o4": "This reverses dimensions, changes dropout and substitutes a different output activation."
+          "o1": "The displayed final activation is softmax rather than sigmoid.",
+          "o2": "The diagram orders256 units before128 units.",
+          "o3": "This preserves both dense widths, both stated dropout rates, the eight outputs and softmax.",
+          "o4": "The displayed dropout rate is0.2, not0.8."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The shown head has two hidden dense layers, two0.2 dropout stages and an eight-class softmax output.",
         "memoryAid": null,
         "misconceptions": [
-          "The shown output has eight classes, not one regression value.",
-          "This reverses dimensions, changes dropout and substitutes a different output activation.",
-          "The diagram explicitly replaces the task head."
+          "The diagram orders256 units before128 units.",
+          "The displayed dropout rate is0.2, not0.8.",
+          "The displayed final activation is softmax rather than sigmoid."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q043",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "With128 inputs and8 outputs, how many weights plus one bias per output are in the final dense layer?",
@@ -3616,7 +3700,7 @@
           "o1": "This omits the biases.",
           "o2": "Adding input and output counts does not count all pairwise weights.",
           "o3": "The layer has128×8=1,024 weights plus8 biases.",
-          "o4": "This roughly doubles the layer rather than counting one matrix."
+          "o4": "2,056 equals2×(128×8)+8: it doubles the weight count but adds only one set of eight biases; the single layer has1,024+8=1,032."
         },
         "steps": [
           "128×8=1,024.",
@@ -3627,7 +3711,7 @@
         "simpleExplanation": "The layer has128×8=1,024 weights plus8 biases.",
         "memoryAid": null,
         "misconceptions": [
-          "This roughly doubles the layer rather than counting one matrix.",
+          "2,056 equals2×(128×8)+8: it doubles the weight count but adds only one set of eight biases; the single layer has1,024+8=1,032.",
           "This omits the biases.",
           "Adding input and output counts does not count all pairwise weights."
         ],
@@ -3635,11 +3719,14 @@
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q044",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "If the intended label schema has exactly the seven displayed categories, what must be checked about the eight-output classifier illustration?",
@@ -3661,19 +3748,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "The extra output automatically becomes a valid eighth emotion without a label"
+          "text": "Add an eighth class name after training without providing corresponding targets or specifying what it represents."
         },
         {
           "id": "o1",
-          "text": "The seven labels must be interpreted as eight because a dense layer exists"
+          "text": "Keep eight softmax outputs and assign the unused index to an arbitrary existing label, without changing the seven-label targets."
         },
         {
           "id": "o2",
-          "text": "The output head and label mapping must be made consistent with the selected seven-class task"
+          "text": "Choose a seven-class head or explicitly define a different task and compatible labels; make training targets and output mapping agree."
         },
         {
           "id": "o3",
-          "text": "Softmax silently removes an unused output without any design change"
+          "text": "Keep the eight-output normalization but drop its eighth probability only when computing the seven-class training loss."
         }
       ],
       "correctOptionIds": [
@@ -3706,19 +3793,19 @@
       "solution": {
         "justification": "An eight-output diagram cannot define a seven-class label mapping by itself; the task schema determines the output dimension.",
         "optionExplanations": {
-          "o1": "The number of explicitly defined labels remains seven.",
-          "o2": "An eight-output diagram cannot define a seven-class label mapping by itself; the task schema determines the output dimension.",
-          "o3": "Softmax normalizes all supplied logits and does not delete a class.",
-          "o4": "An output index needs an explicitly defined target meaning."
+          "o1": "An arbitrary duplicate index does not establish a coherent task and target mapping.",
+          "o2": "The head, target encoding and interpretation must describe the same defined classification task.",
+          "o3": "Ignoring an output without redesigning the loss/normalization does not make the pictured task automatically seven-class.",
+          "o4": "A post-hoc class name does not supply a defined trained class."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "An eight-output diagram cannot define a seven-class label mapping by itself; the task schema determines the output dimension.",
         "memoryAid": null,
         "misconceptions": [
-          "An output index needs an explicitly defined target meaning.",
-          "The number of explicitly defined labels remains seven.",
-          "Softmax normalizes all supplied logits and does not delete a class."
+          "A post-hoc class name does not supply a defined trained class.",
+          "An arbitrary duplicate index does not establish a coherent task and target mapping.",
+          "Ignoring an output without redesigning the loss/normalization does not make the pictured task automatically seven-class."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -3730,7 +3817,10 @@
         "sourceClaim": "Page1580 shows Dense Output8, while page1582 presents a seven-label example; these are not silently the same task.",
         "basis": "An eight-output diagram cannot define a seven-class label mapping by itself; the task schema determines the output dimension.",
         "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction."
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q045",
@@ -3892,7 +3982,7 @@
     },
     {
       "id": "W10-L50-Q047",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "How should the slide’s seven-label list that includes neutral be described accurately?",
@@ -3914,19 +4004,19 @@
       "options": [
         {
           "id": "o3",
-          "text": "As a list that contains no non-emotion baseline class"
+          "text": "This example includes both contempt and neutral, giving the eight categories required by the preceding head illustration."
         },
         {
           "id": "o4",
-          "text": "As evidence that every dataset must use precisely these seven labels"
+          "text": "This example’s seven names are the six schema labels in the Albert notebook plus a second spelling of happy."
         },
         {
           "id": "o1",
-          "text": "As proof that neutral and contempt are interchangeable labels"
+          "text": "This example uses contempt, fear, anger, sadness, happiness, disgust and surprise, with neutral omitted."
         },
         {
           "id": "o2",
-          "text": "As this classifier example’s label set, not an exact statement of Ekman’s seven universal-emotion list"
+          "text": "This example includes neutral with six other listed categories; distinguish its classifier label set from Ekman’s seven-emotion list."
         }
       ],
       "correctOptionIds": [
@@ -3948,19 +4038,19 @@
       "solution": {
         "justification": "The example includes neutral; Ekman’s seven-emotion list includes contempt instead, so the task label set and historical theory must be distinguished.",
         "optionExplanations": {
-          "o1": "Neutral and contempt are not interchangeable categories.",
-          "o2": "The example includes neutral; Ekman’s seven-emotion list includes contempt instead, so the task label set and historical theory must be distinguished.",
-          "o3": "Neutral is a baseline label in this example.",
-          "o4": "Different datasets define different label schemas."
+          "o1": "The slide includes neutral, not contempt.",
+          "o2": "The local classifier labels and the cited theoretical list should not be conflated.",
+          "o3": "Contempt is not listed here, and the mismatch with the eight-output head remains separate.",
+          "o4": "The notebook’s labels include frustrated and differ from this facial-classifier list."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The example includes neutral; Ekman’s seven-emotion list includes contempt instead, so the task label set and historical theory must be distinguished.",
         "memoryAid": null,
         "misconceptions": [
-          "Neutral is a baseline label in this example.",
-          "Different datasets define different label schemas.",
-          "Neutral and contempt are not interchangeable categories."
+          "Contempt is not listed here, and the mismatch with the eight-output head remains separate.",
+          "The notebook’s labels include frustrated and differ from this facial-classifier list.",
+          "The slide includes neutral, not contempt."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -3980,6 +4070,9 @@
           "locator": "The six basic emotions and the seventh addition, contempt.",
           "checkedAt": "2026-10-19T22:26:00+00:00"
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
       ]
     },
     {
@@ -4156,7 +4249,7 @@
     },
     {
       "id": "W10-L50-Q050",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "The left/right examples vary V from negative to positive and the bottom/top examples vary A; which mapping follows these numeric annotations?",
@@ -4178,19 +4271,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "Both axes: classifier confidence"
+          "text": "Horizontal: valence increasing rightward; vertical: arousal decreasing upward."
         },
         {
           "id": "o3",
-          "text": "Horizontal: valence; vertical: arousal"
+          "text": "Horizontal: valence increasing rightward; vertical: arousal increasing upward."
         },
         {
           "id": "o4",
-          "text": "Horizontal: arousal; vertical: valence"
+          "text": "Horizontal: arousal increasing rightward; vertical: valence increasing upward."
         },
         {
           "id": "o1",
-          "text": "Both axes: valence"
+          "text": "Horizontal: valence decreasing from left to right; vertical: arousal increasing upward."
         }
       ],
       "correctOptionIds": [
@@ -4212,19 +4305,19 @@
       "solution": {
         "justification": "The printed V and A values vary across horizontal and vertical position respectively, contradicting the swapped outer labels.",
         "optionExplanations": {
-          "o1": "The second coordinate varies independently as A.",
-          "o2": "The annotations are affect coordinates, not confidence.",
-          "o3": "The printed V and A values vary across horizontal and vertical position respectively, contradicting the swapped outer labels.",
-          "o4": "This follows the inconsistent outer labels rather than the numeric examples."
+          "o1": "The printed V values become more positive toward the right.",
+          "o2": "The printed A values become more positive toward the top.",
+          "o3": "This follows the numeric V/A annotations despite the conflicting outer labels.",
+          "o4": "This follows the swapped outer labels, not the numeric annotations asked about."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The printed V and A values vary across horizontal and vertical position respectively, contradicting the swapped outer labels.",
         "memoryAid": null,
         "misconceptions": [
-          "The annotations are affect coordinates, not confidence.",
-          "This follows the inconsistent outer labels rather than the numeric examples.",
-          "The second coordinate varies independently as A."
+          "The printed A values become more positive toward the top.",
+          "This follows the swapped outer labels, not the numeric annotations asked about.",
+          "The printed V values become more positive toward the right."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -4244,6 +4337,9 @@
           "locator": "Figure1: sample images in the valence-arousal circumplex.",
           "checkedAt": "2026-10-19T22:26:00+00:00"
         }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
       ]
     },
     {
@@ -4484,7 +4580,7 @@
     },
     {
       "id": "W10-L50-Q054",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "Which order follows the speech-emotion diagram?",
@@ -4506,19 +4602,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "Speech waveform → acoustic feature representation → learned model → estimated emotion"
+          "text": "Waveform → acoustic feature representation → learned pattern model → estimated emotion."
         },
         {
           "id": "o3",
-          "text": "Speech waveform → final emotion label → feature extraction → learned model"
+          "text": "Waveform → acoustic feature representation → fixed loudness-threshold label, with no learned model."
         },
         {
           "id": "o4",
-          "text": "Speech waveform → word transcript only → a categorical emotion label, discarding acoustic delivery"
+          "text": "Waveform → acoustic feature representation → phoneme transcript, treating transcription as the final affect output."
         },
         {
           "id": "o1",
-          "text": "Speech waveform → hand-assigned true internal emotion → model score"
+          "text": "Waveform → word transcript → text sentiment model → estimated emotion, using no acoustic feature path."
         }
       ],
       "correctOptionIds": [
@@ -4540,25 +4636,28 @@
       "solution": {
         "justification": "The model operates on features obtained from observed speech before producing an estimate.",
         "optionExplanations": {
-          "o1": "The diagram does not obtain direct ground truth about private feeling from the waveform.",
-          "o2": "The model operates on features obtained from observed speech before producing an estimate.",
-          "o3": "Feature extraction and model evaluation precede the predicted label.",
-          "o4": "That text-only path omits the displayed acoustic feature stage."
+          "o1": "This is a text-only route, not the illustrated acoustic SER route.",
+          "o2": "The diagram extracts speech features and applies a learned model to estimate affect.",
+          "o3": "The illustrated path includes a learned model, not only a fixed threshold.",
+          "o4": "Phoneme transcription is not the diagram’s estimated affect output."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The model operates on features obtained from observed speech before producing an estimate.",
         "memoryAid": null,
         "misconceptions": [
-          "Feature extraction and model evaluation precede the predicted label.",
-          "That text-only path omits the displayed acoustic feature stage.",
-          "The diagram does not obtain direct ground truth about private feeling from the waveform."
+          "The illustrated path includes a learned model, not only a fixed threshold.",
+          "Phoneme transcription is not the diagram’s estimated affect output.",
+          "This is a text-only route, not the illustrated acoustic SER route."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q055",
@@ -4646,10 +4745,10 @@
     },
     {
       "id": "W10-L50-Q056",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
-      "stem": "Which design most directly matches a joint multimodal representation?",
+      "stem": "The design goal is a learned joint feature representation, rather than merely combining independent final scores. Which multimodal design most directly meets that goal?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -4668,19 +4767,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "Combine aligned face, voice and language features so the model can use their relationships"
+          "text": "Learn from aligned face, voice and language features together so that cross-modal relationships can influence the representation."
         },
         {
           "id": "o1",
-          "text": "Train independent channel models and use only the facial argmax regardless of the other observations"
+          "text": "Train three independent predictors and average only their final class scores, without a shared learned feature representation."
         },
         {
           "id": "o2",
-          "text": "Average raw waveform samples and RGB pixels directly without aligned learned representations"
+          "text": "Train on synchronized features but shuffle the voice-to-face pairing at inference while retaining the original timestamps."
         },
         {
           "id": "o3",
-          "text": "Use the text estimate as a ground-truth target that must override every conflicting channel"
+          "text": "Use one modality to select a label and feed that fixed label to the others without allowing their features to affect it."
         }
       ],
       "correctOptionIds": [
@@ -4702,32 +4801,35 @@
       "solution": {
         "justification": "Joint representations let information from different observed channels influence the estimate together.",
         "optionExplanations": {
-          "o1": "That selection does not use the remaining channels jointly.",
-          "o2": "The modalities need meaningful feature representations and alignment.",
-          "o3": "Text inference is not automatically ground truth for the other observations.",
-          "o4": "Joint representations let information from different observed channels influence the estimate together."
+          "o1": "This is score-level late combination, not the joint feature representation asked for.",
+          "o2": "Shuffling destroys the stipulated correspondence between observations.",
+          "o3": "A fixed one-way decision does not learn the requested joint representation.",
+          "o4": "This directly matches the lecture’s joint-representation description."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Joint representations let information from different observed channels influence the estimate together.",
         "memoryAid": null,
         "misconceptions": [
-          "That selection does not use the remaining channels jointly.",
-          "The modalities need meaningful feature representations and alignment.",
-          "Text inference is not automatically ground truth for the other observations."
+          "This is score-level late combination, not the joint feature representation asked for.",
+          "Shuffling destroys the stipulated correspondence between observations.",
+          "A fixed one-way decision does not learn the requested joint representation."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q057",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
-      "stem": "A camera is obscured while speech remains available; which claim about a multimodal system is justified?",
+      "stem": "A fusion model has been trained and evaluated with an explicit camera-missing mask. Its camera is now obscured while speech remains available. Which handling respects that supported design without claiming unchanged accuracy?",
       "selectionMode": "single",
       "type": "scenario",
       "difficulty": "easy",
@@ -4746,19 +4848,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "The absent image should be treated as confident neutral expression"
+          "text": "Feed zero-valued pixels to the complete-input model and interpret its usual confidence as evidence of unchanged reliability."
         },
         {
           "id": "o2",
-          "text": "Audio becomes a direct measurement of private feelings when video is missing"
+          "text": "Keep the last facial estimate as if it were a simultaneous observation, without marking its age or missingness."
         },
         {
           "id": "o3",
-          "text": "It may use remaining cues if trained and designed for missing inputs, with uncertainty preserved"
+          "text": "Use the supported missing-input pathway with available cues and its evaluated uncertainty limits."
         },
         {
           "id": "o4",
-          "text": "Fusion guarantees unchanged accuracy even without missing-input support"
+          "text": "Treat the missing camera as a neutral facial-class vote and combine it as an ordinary confident observation."
         }
       ],
       "correctOptionIds": [
@@ -4780,19 +4882,19 @@
       "solution": {
         "justification": "Complementary inputs can help, but missing-modality robustness is a system property that must be tested.",
         "optionExplanations": {
-          "o1": "Missing evidence is not a confident neutral observation.",
-          "o2": "Audio still supplies indirect cues rather than direct internal-state access.",
-          "o3": "Complementary inputs can help, but missing-modality robustness is a system property that must be tested.",
-          "o4": "The architecture label alone does not guarantee robustness."
+          "o1": "A zero image is not automatically equivalent to a modeled missing-input condition.",
+          "o2": "A stale estimate is not a current observed face and needs explicit treatment.",
+          "o3": "The premise supplies actual missing-input support; performance still needs bounded interpretation.",
+          "o4": "Missing evidence is not a confident neutral observation."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Complementary inputs can help, but missing-modality robustness is a system property that must be tested.",
         "memoryAid": null,
         "misconceptions": [
-          "Missing evidence is not a confident neutral observation.",
-          "Audio still supplies indirect cues rather than direct internal-state access.",
-          "The architecture label alone does not guarantee robustness."
+          "A zero image is not automatically equivalent to a modeled missing-input condition.",
+          "A stale estimate is not a current observed face and needs explicit treatment.",
+          "Missing evidence is not a confident neutral observation."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -4804,7 +4906,10 @@
         "sourceClaim": "Multimodal fusion can improve robustness, but improvement and missing-channel tolerance are not automatic guarantees.",
         "basis": "Complementary inputs can help, but missing-modality robustness is a system property that must be tested.",
         "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction."
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q058",
@@ -4886,10 +4991,10 @@
     },
     {
       "id": "W10-L50-Q059",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
-      "stem": "How are conversation memory and the current emotion estimate used together?",
+      "stem": "Memory says a user previously liked enthusiastic greetings, but the current message asks for a quiet response. Which planning approach uses memory and current evidence together?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -4908,19 +5013,19 @@
       "options": [
         {
           "id": "o3",
-          "text": "Use stored context only and ignore a current estimate that conflicts with it"
+          "text": "Replace the stored preference with the current affect label, losing the fact that it concerned a different situation."
         },
         {
           "id": "o4",
-          "text": "Overwrite all conversation memory with the latest single emotion label"
+          "text": "Average the names of the old preference and new label without checking what either refers to."
         },
         {
           "id": "o1",
-          "text": "Treat a stored old estimate as permanent ground truth for every future interaction"
+          "text": "Use the earlier preference as a fixed affect label, so a new request for quiet cannot alter the response."
         },
         {
           "id": "o2",
-          "text": "They supply prior context and current cues for planning an appropriate response"
+          "text": "Use the earlier preference as context and the current request as new evidence when choosing a response."
         }
       ],
       "correctOptionIds": [
@@ -4942,29 +5047,32 @@
       "solution": {
         "justification": "Past interaction context and current estimates jointly inform response planning.",
         "optionExplanations": {
-          "o1": "Estimates are time-dependent and uncertain.",
-          "o2": "Past interaction context and current estimates jointly inform response planning.",
-          "o3": "Current cues can change the appropriate response.",
-          "o4": "The memory includes interaction context, not only one label."
+          "o1": "A context-specific remembered preference does not override all later evidence.",
+          "o2": "This combines prior context with the latest cue rather than treating either as permanent certainty.",
+          "o3": "An affect label and a factual preference are different records with different scope.",
+          "o4": "Combining records requires their meanings and contexts, not arithmetic over label names."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Past interaction context and current estimates jointly inform response planning.",
         "memoryAid": null,
         "misconceptions": [
-          "Current cues can change the appropriate response.",
-          "The memory includes interaction context, not only one label.",
-          "Estimates are time-dependent and uncertain."
+          "An affect label and a factual preference are different records with different scope.",
+          "Combining records requires their meanings and contexts, not arithmetic over label names.",
+          "A context-specific remembered preference does not override all later evidence."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q060",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "Which interpretation of the slide’s social-robot distinction is defensible?",
@@ -4986,19 +5094,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "Conversational memory alone is sufficient to define a social robot, even with no interaction capability"
+          "text": "A robot with an affect classifier but no response planner necessarily implements the full illustrated dialogue-planning pipeline."
         },
         {
           "id": "o1",
-          "text": "Conversation memory and affect-aware planning are emphasized here, but memory is not exclusive to social robots"
+          "text": "A warehouse robot may maintain task memory, while the social-robot example additionally emphasizes conversational context and affect-aware dialogue."
         },
         {
           "id": "o2",
-          "text": "General-purpose robots cannot maintain state because memory belongs only to social robots"
+          "text": "A warehouse robot with stored task history is already the same dialogue architecture, even if it has no conversational input or output."
         },
         {
           "id": "o3",
-          "text": "Emotion-aware planning removes the need for current observations once memory exists"
+          "text": "A conversational robot with a fixed stateless script necessarily implements the illustrated conversation-memory stage."
         }
       ],
       "correctOptionIds": [
@@ -5020,19 +5128,19 @@
       "solution": {
         "justification": "The slide highlights a role in social interaction rather than a universal exclusion of memory from other robots.",
         "optionExplanations": {
-          "o1": "The slide highlights a role in social interaction rather than a universal exclusion of memory from other robots.",
-          "o2": "Non-social systems can also retain state and history.",
-          "o3": "Memory supplements rather than replaces current input.",
-          "o4": "Storage alone does not establish the relevant social interaction capabilities."
+          "o1": "Memory is not exclusive to social robots; the example emphasizes its conversational use.",
+          "o2": "Task memory alone does not establish conversational or affect-aware functionality.",
+          "o3": "A stateless script does not by itself provide conversation memory.",
+          "o4": "An input classifier alone does not supply the response-planning stage."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The slide highlights a role in social interaction rather than a universal exclusion of memory from other robots.",
         "memoryAid": null,
         "misconceptions": [
-          "Storage alone does not establish the relevant social interaction capabilities.",
-          "Non-social systems can also retain state and history.",
-          "Memory supplements rather than replaces current input."
+          "An input classifier alone does not supply the response-planning stage.",
+          "Task memory alone does not establish conversational or affect-aware functionality.",
+          "A stateless script does not by itself provide conversation memory."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -5044,7 +5152,10 @@
         "sourceClaim": "The opening distinction can be read too absolutely; conversation-oriented use is the emphasis, not exclusive ownership of memory.",
         "basis": "The slide highlights a role in social interaction rather than a universal exclusion of memory from other robots.",
         "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction."
-      }
+      },
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q061",
@@ -5126,10 +5237,10 @@
     },
     {
       "id": "W10-L50-Q062",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
-      "stem": "Why should speech style, facial display and gesture be coordinated with the planned response?",
+      "stem": "A robot has planned a calm explanation after a request to slow down. Which output plan best applies the lecture’s coordination principle?",
       "selectionMode": "single",
       "type": "scenario",
       "difficulty": "easy",
@@ -5148,19 +5259,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "The channels can be designed independently because contradictory gestures cannot affect interpretation"
+          "text": "Use the calm wording but retain an unrelated celebration gesture because gestures are controlled by a separate output module."
         },
         {
           "id": "o3",
-          "text": "The strongest possible expression should be used for every response to maximize clarity"
+          "text": "Use the calm wording with the preceding turn’s excited speech style, ignoring the changed context."
         },
         {
           "id": "o4",
-          "text": "A matching facial display makes the wording and conversational context irrelevant"
+          "text": "Match the gesture to an earlier keyword while matching the spoken response to the current request, without checking consistency."
         },
         {
           "id": "o1",
-          "text": "Conflicting output cues can undermine an otherwise appropriate verbal response"
+          "text": "Use the calm wording with a compatible restrained voice and gesture chosen for the current conversational goal."
         }
       ],
       "correctOptionIds": [
@@ -5182,32 +5293,35 @@
       "solution": {
         "justification": "Expressive channels should support rather than contradict the intended communicative style.",
         "optionExplanations": {
-          "o1": "Expressive channels should support rather than contradict the intended communicative style.",
-          "o2": "Contradictory nonverbal cues can change how a response is perceived.",
-          "o3": "Appropriate intensity depends on context.",
-          "o4": "Expression should support the verbal message and context."
+          "o1": "Coordinated output channels help express the intended current response.",
+          "o2": "Separate implementation modules can still produce cues that need coordination.",
+          "o3": "A stale style can conflict with the intended current response.",
+          "o4": "Independently matched cues can communicate inconsistent intentions."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Expressive channels should support rather than contradict the intended communicative style.",
         "memoryAid": null,
         "misconceptions": [
-          "Contradictory nonverbal cues can change how a response is perceived.",
-          "Appropriate intensity depends on context.",
-          "Expression should support the verbal message and context."
+          "Separate implementation modules can still produce cues that need coordination.",
+          "A stale style can conflict with the intended current response.",
+          "Independently matched cues can communicate inconsistent intentions."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q063",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
-      "stem": "Which issue directly challenges a single-label facial classifier in real interactions?",
+      "stem": "A face classifier uses consistently decoded, uniformly sized images and a shared label vocabulary. Which statement best describes limits that remain when expressions differ across people and include mixed affect?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -5226,19 +5340,19 @@
       "options": [
         {
           "id": "o3",
-          "text": "A single category always represents the full intensity and mixture of the underlying experience"
+          "text": "Using one category removes ambiguity from the underlying interaction rather than only choosing a simplified representation."
         },
         {
           "id": "o4",
-          "text": "Different people and cultures express affect differently, and mixed states may not fit one label"
+          "text": "Expressions vary across people and contexts, while one category can omit mixtures and intensity even with standardized input and labels."
         },
         {
           "id": "o1",
-          "text": "A model trained on well-lit posed faces can be assumed equally reliable under occlusion"
+          "text": "A common label list makes the affect-to-face mapping identical for each person, so only class frequency remains relevant."
         },
         {
           "id": "o2",
-          "text": "Using identical class names guarantees equivalent expression patterns across cultures"
+          "text": "A large winning softmax probability directly measures expression intensity, so the single winning category preserves mixtures and strength."
         }
       ],
       "correctOptionIds": [
@@ -5260,32 +5374,35 @@
       "solution": {
         "justification": "Variation, partial observations and mixtures limit how well a fixed categorical model represents real interactions.",
         "optionExplanations": {
-          "o1": "Changed observations require evaluation rather than assumed transfer.",
-          "o2": "Shared labels do not eliminate expression variation.",
-          "o3": "One categorical label can lose mixture and intensity information.",
-          "o4": "Variation, partial observations and mixtures limit how well a fixed categorical model represents real interactions."
+          "o1": "Common class names do not establish identical expression patterns across people.",
+          "o2": "Class probability, intensity and a mixture of expressed states are different quantities.",
+          "o3": "A representation choice does not remove ambiguity from the underlying observation.",
+          "o4": "These limits concern variation and representation, not only preprocessing."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Variation, partial observations and mixtures limit how well a fixed categorical model represents real interactions.",
         "memoryAid": null,
         "misconceptions": [
-          "One categorical label can lose mixture and intensity information.",
-          "Changed observations require evaluation rather than assumed transfer.",
-          "Shared labels do not eliminate expression variation."
+          "A representation choice does not remove ambiguity from the underlying observation.",
+          "Common class names do not establish identical expression patterns across people.",
+          "Class probability, intensity and a mixture of expressed states are different quantities."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q064",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
-      "stem": "Which design response directly addresses the lecture’s privacy and ethical concerns?",
+      "stem": "A project specifies session-only affect estimation, no raw-media storage, no secondary profiling and clear uncertainty notices. Which design meets those stated requirements while addressing the lecture’s privacy concern?",
       "selectionMode": "single",
       "type": "scenario",
       "difficulty": "easy",
@@ -5304,19 +5421,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "Hide emotion-estimation behavior because the model uses a public architecture"
+          "text": "Retain the same temporary estimate as planned but present its category as a certain fact about the person."
         },
         {
           "id": "o1",
-          "text": "Treat an inferred emotion as permission for unrelated profiling"
+          "text": "Store encrypted face recordings for a month even though the agreed purpose needs only a temporary estimate during this session."
         },
         {
           "id": "o2",
-          "text": "Limit collected/stored cues to the intended task and communicate uncertainty and retention choices"
+          "text": "Keep only the temporary estimate needed for this session and explain its uncertainty and deletion at session end."
         },
         {
           "id": "o3",
-          "text": "Store every raw face and voice recording indefinitely because estimates may improve"
+          "text": "Delete raw recordings at session end but retain person-linked estimates for a new long-term profiling purpose that was not agreed."
         }
       ],
       "correctOptionIds": [
@@ -5336,34 +5453,37 @@
         }
       ],
       "solution": {
-        "justification": "Data minimization, clear purpose and transparent uncertainty reduce avoidable privacy and misuse risks.",
+        "justification": "The requirements are explicit premises of this design exercise, not a privacy-law claim attributed to the slide.",
         "optionExplanations": {
-          "o1": "An inferred state is not consent for a new purpose.",
-          "o2": "Data minimization, clear purpose and transparent uncertainty reduce avoidable privacy and misuse risks.",
-          "o3": "Indefinite collection is not justified merely by possible improvement.",
-          "o4": "Architecture availability does not remove privacy responsibilities."
+          "o1": "Encryption does not satisfy the stated session-only collection/retention requirement.",
+          "o2": "This meets the supplied purpose, retention and uncertainty requirements.",
+          "o3": "Removing raw media does not authorize a new purpose for person-linked estimates.",
+          "o4": "The supplied requirement includes communicating uncertainty, not only limiting retention."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Data minimization, clear purpose and transparent uncertainty reduce avoidable privacy and misuse risks.",
+        "simpleExplanation": "The requirements are explicit premises of this design exercise, not a privacy-law claim attributed to the slide.",
         "memoryAid": null,
         "misconceptions": [
-          "Architecture availability does not remove privacy responsibilities.",
-          "An inferred state is not consent for a new purpose.",
-          "Indefinite collection is not justified merely by possible improvement."
+          "The supplied requirement includes communicating uncertainty, not only limiting retention.",
+          "Encryption does not satisfy the stated session-only collection/retention requirement.",
+          "Removing raw media does not authorize a new purpose for person-linked estimates."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
     },
     {
       "id": "W10-L50-Q065",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
-      "stem": "For a healthcare or educational companion, which use stays within the lecture’s bounded emotion-aware role?",
+      "stem": "Which response policy follows Albert’s actual notebook response-generation constraints, rather than inferring a professional role from the applications slide?",
       "selectionMode": "single",
       "type": "scenario",
       "difficulty": "easy",
@@ -5382,19 +5502,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Rank a learner’s ability solely from an arousal estimate"
+          "text": "Offer a certain interpretation of the user’s feelings and select advice from that interpretation without acknowledging uncertainty."
         },
         {
           "id": "o2",
-          "text": "Adapt communication cautiously while leaving consequential judgments to appropriate human oversight"
+          "text": "Adapt wording cautiously, avoid claiming certain knowledge of feelings, and direct situations outside the demo’s role to an appropriate qualified person."
         },
         {
           "id": "o3",
-          "text": "Treat a low-confidence label as authorization to disclose private recordings"
+          "text": "Avoid naming an emotion but present the demonstration robot as a qualified professional whenever the user requests it."
         },
         {
           "id": "o4",
-          "text": "Diagnose a disorder from one facial category without further assessment"
+          "text": "Use a low-confidence estimate to select the most assertive reply style, rather than preserving ambiguity."
         }
       ],
       "correctOptionIds": [
@@ -5414,21 +5534,724 @@
         }
       ],
       "solution": {
-        "justification": "The examples motivate supportive interaction, not unsupported diagnoses, eligibility judgments or disclosure.",
+        "justification": "The notebook bounds Albert as a demonstration and asks it to adapt cautiously without claiming certainty or professional authority.",
         "optionExplanations": {
-          "o1": "Arousal is not a valid sole measure of ability.",
-          "o2": "The examples motivate supportive interaction, not unsupported diagnoses, eligibility judgments or disclosure.",
-          "o3": "A model output supplies no disclosure permission.",
-          "o4": "A facial-expression category is not a diagnosis."
+          "o1": "The notebook explicitly forbids claiming exact knowledge of the user’s feelings.",
+          "o2": "This matches the response-generation constraints in the cited notebook cell.",
+          "o3": "The notebook says not to pretend to be a professional in those situations.",
+          "o4": "The response rules call for cautious adaptation rather than confident assertions from weak evidence."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The examples motivate supportive interaction, not unsupported diagnoses, eligibility judgments or disclosure.",
+        "simpleExplanation": "The notebook bounds Albert as a demonstration and asks it to adapt cautiously without claiming certainty or professional authority.",
         "memoryAid": null,
         "misconceptions": [
-          "Arousal is not a valid sole measure of ability.",
-          "A model output supplies no disclosure permission.",
-          "A facial-expression category is not a diagnosis."
+          "The notebook explicitly forbids claiming exact knowledge of the user’s feelings.",
+          "The notebook says not to pretend to be a professional in those situations.",
+          "The response rules call for cautious adaptation rather than confident assertions from weak evidence."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "primaryEvidence": [
+        {
+          "title": "Official Lecture 50 Albert notebook, pinned source",
+          "url": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+          "localEvidence": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+          "executionEvidence": "audits/W10-L50-author-checks.json",
+          "checkedAt": "2026-10-19T22:26:00+00:00",
+          "locator": "Cell15, generate_reply system prompt: cautious adaptation, no exact-feelings claim, and qualified-person referral for situations outside the demonstration role."
+        }
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-v2-author"
+      ]
+    },
+    {
+      "id": "W10-L50-Q066",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_robotics_study_app:L50-v2-author",
+      "stem": "Use the notebook convention, not the different slide half-range formula. Begin with all eight angular-axis values50, then set happy80, welcome90 and friend70 and their complements. Angles in degrees are happy112, welcome22, friend67, curious157, sad292, distant202, strange247 and frustrated337. Sum each centered value(v−50) times its unit vector. The mood is the nearest named axis for radius≥10, with first dictionary entry breaking an exact tie. Which result is correct, rounded to two decimals?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "hard",
+      "cognitiveSkill": "numerical",
+      "week": 10,
+      "lectureId": "L50",
+      "topic": "Emotion engines for robots",
+      "subtopic": "Multi-axis centered resultant and plotting limit",
+      "tags": [
+        "coverage-gap-66"
+      ],
+      "conceptIds": [
+        "W10-L50-C-gap-66"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o1",
+          "text": "x67.33, y122.42, raw radius139.71, angle61.19°, FRIEND, plotted radius100."
+        },
+        {
+          "id": "o2",
+          "text": "x33.66, y61.21, raw radius69.86, angle61.19°, FRIEND, plotted radius69.86."
+        },
+        {
+          "id": "o3",
+          "text": "x67.33, y122.42, raw radius139.71, angle28.81°, WELCOME, plotted radius100."
+        },
+        {
+          "id": "o4",
+          "text": "x67.33, y122.42, raw radius100, angle61.19°, FRIEND, plotted radius100."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1572",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1572,
+          "kind": "derivation",
+          "locator": "Lecture50, physical page1572, printed footer7: Multi-axis centered resultant and plotting limit; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook.",
+          "evidenceText": "Robot Emotion State Machine\n•  Robots maintain an internal emotional state.\n•  Each emotional element has a vector or\n   direction.\n    – Open feelings are on the left side of the plot\n        (happy, friendly), and closed feelings (sad) are on\n       the right side.\n    – The distance from the center indicates the\n                                                                                                  [1]        strength of the emotions.\n    – The yellow circles are the robot’s current value on each axis.\n    – The purple line is the vector sum of those emotions, which\n        gives us the overall mood of the robot. The arcs show the\n      minimum and maximum magnitude of emotion.\n•  Robot behaviour changes as these states evolve.\n\n                                                                                                           7",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1573",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1573,
+          "kind": "derivation",
+          "locator": "Lecture50, physical page1573, printed footer8: Multi-axis centered resultant and plotting limit; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook.",
+          "evidenceText": "Representing Emotional Spaces on a Polar Coordinate System\n•  The robot's overall mood vector [𝑟𝑠𝑡𝑎𝑡𝑒, 𝜃𝑠𝑡𝑎𝑡𝑒] is calculated by finding the\n   geometric center of this active emotional space.\n                                    𝑟𝑚𝑎𝑥 −𝑟𝑚𝑖𝑛\n                         𝑟𝑠𝑡𝑎𝑡𝑒=                                        2\n                                 𝜃𝑚𝑎𝑥 −𝜃𝑚𝑖𝑛\n                       𝜃𝑠𝑡𝑎𝑡𝑒=                                        2\n•  Neutral threshold: If the resultant vector magnitude 𝑟𝑠𝑡𝑎𝑡𝑒 falls near the\n   absolute center of the graph (between 45 and 55), the robot's qualitative state\n    is designated as Neutral.\n•    If 𝑟𝑠𝑡𝑎𝑡𝑒​ exceeds 55 (indicating strong emotional bias), the\n   system maps the angle 𝜃𝑠𝑡𝑎𝑡𝑒 to the closest named\n   emotional axis quadrant, shifting the robot’s behavior to\n   that primary mood.\n\n\n                                                                                                           8",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1574",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1574,
+          "kind": "derivation",
+          "locator": "Lecture50, physical page1574, printed footer9: Multi-axis centered resultant and plotting limit; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook.",
+          "evidenceText": "Representing Emotional Spaces on a Polar Coordinate System\n•  Emotions are organized as opposite pairs (e.g., Happy    Sad), maintaining a\n   Dual-Axis Equilibrium.\n•  Increasing one emotion automatically decreases its opposite, maintaining\n   emotional balance.\n                     OppositeMagnitude = 100 −ActiveValue\n•    If an interaction drives |happy| to 75, |sad| is instantaneously balanced down to\n   25.\n•  During every control update cycle, the emotional engine\n   scans all active emotional axes to find the boundaries of\n   the emotional footprint, identifying the min and max\n    radial magnitudes (𝑟𝑚𝑖𝑛, 𝑟𝑚𝑎𝑥​) and their corresponding\n   polar angles (𝜃𝑚𝑖𝑛, 𝜃𝑚𝑎𝑥​).\n\n\n                                                                                                           9",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1576",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1576,
+          "kind": "derivation",
+          "locator": "Lecture50, physical page1576, printed footer11: Multi-axis centered resultant and plotting limit; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook.",
+          "evidenceText": "Demo: Building an Emotion-aware Chatbot Albert\n                                            •   In this code:\n                                   – A local LLM is used to estimate the user's\n                                            emotional state from text.\n                                  – The estimated emotion updates the\n                                                  robot's internal Emotion Engine before\n                                               generating a response.\n                                   – Only the core pseudocode is shown here;\n                                             the complete implementation is available\n                                                 here.\n\n\n\n\n\n                                                                                                          11",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Opposite centered members reinforce their paired direction; the computed raw radius is retained even though the plot clips its arrow to100.",
+        "optionExplanations": {
+          "o1": "Opposite centered members reinforce their paired direction; the computed raw radius is retained even though the plot clips its arrow to100.",
+          "o2": "This counts only one centered member of each complementary pair and halves both vector components.",
+          "o3": "28.81° swaps the x/y roles in the angular calculation; atan2(y,x) gives61.19°.",
+          "o4": "The plotting clip does not replace the engine’s stored raw radius."
+        },
+        "steps": [
+          "Complement values are sad20, distant10 and strange30; curious and frustrated stay50.",
+          "Each opposite pair contributes twice the active centered value along its active axis.",
+          "Compute x=60cos112°+80cos22°+40cos67°=67.3276 and y=60sin112°+80sin22°+40sin67°=122.4198.",
+          "Use hypot(x,y)=139.7125 and atan2(y,x)=61.1904°.",
+          "The closest axis is friend67°; clipping only the displayed radius gives100."
+        ],
+        "formulas": [
+          {
+            "expression": "x=Σ(v_i−50)cos θ_i; y=Σ(v_i−50)sin θ_i; r=hypot(x,y); θ=atan2(y,x) mod360°",
+            "variables": {
+              "v_i": "State value on axis i",
+              "θ_i": "Assigned axis direction",
+              "x,y": "Resultant Cartesian components",
+              "r": "Raw resultant magnitude",
+              "θ": "Resultant direction"
+            },
+            "units": {
+              "v_i,x,y,r": "Demonstration state units",
+              "θ_i,θ": "Degrees"
+            },
+            "assumptions": [
+              "Use all eight angular axes and their stated complements; convert degrees appropriately for trigonometric functions.",
+              "No clipping of r occurs in the state update; only the plot clips to100."
+            ]
+          }
+        ],
+        "simpleExplanation": "Opposite centered members reinforce their paired direction; the computed raw radius is retained even though the plot clips its arrow to100.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This counts only one centered member of each complementary pair and halves both vector components.",
+          "28.81° swaps the x/y roles in the angular calculation; atan2(y,x) gives61.19°.",
+          "The plotting clip does not replace the engine’s stored raw radius."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "primaryEvidence": [
+        {
+          "title": "Official Lecture 50 Albert notebook, pinned source",
+          "url": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+          "localEvidence": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+          "executionEvidence": "audits/W10-L50-v2-author-checks.json",
+          "checkedAt": "2026-10-20T00:00:04.379309+00:00",
+          "locator": "Cells9 and19: RobotEmotionEngine.update and _plot_engine."
+        }
+      ]
+    },
+    {
+      "id": "W10-L50-Q067",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_robotics_study_app:L50-v2-author",
+      "stem": "Run the pinned notebook’s state-mapping and policy functions with synthetic results, not live inference. Start the robot at default state and fresh80. Process (fearful, confidence0.8, valence−0.5, arousal0.5), then (sad,0.30,−0.6,−0.4), then the failure fallback (neutral,0,0,0). Each turn maps the human state, updates robot policy, then drains fresh by2. Which final values follow?",
+      "selectionMode": "single",
+      "type": "scenario",
+      "difficulty": "hard",
+      "cognitiveSkill": "conceptual",
+      "week": 10,
+      "lectureId": "L50",
+      "topic": "Emotion engines for robots",
+      "subtopic": "Three-turn state persistence and confidence boundary",
+      "tags": [
+        "coverage-gap-67"
+      ],
+      "conceptIds": [
+        "W10-L50-C-gap-67"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Human happy50/friendly50; robot welcome60/friend82/curious62/happy50/fresh74."
+        },
+        {
+          "id": "o2",
+          "text": "Human happy50/friendly50; robot welcome88/friend82/curious62/happy50/fresh74."
+        },
+        {
+          "id": "o3",
+          "text": "Human happy41/friendly56; robot welcome88/friend82/curious62/happy50/fresh74."
+        },
+        {
+          "id": "o4",
+          "text": "Human happy50/friendly50; robot welcome92/friend85/curious62/happy50/fresh74."
+        }
+      ],
+      "correctOptionIds": [
+        "o2"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1576",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1576,
+          "kind": "statement",
+          "locator": "Lecture50, physical page1576, printed footer11: Three-turn state persistence and confidence boundary; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook.",
+          "evidenceText": "Demo: Building an Emotion-aware Chatbot Albert\n                                            •   In this code:\n                                   – A local LLM is used to estimate the user's\n                                            emotional state from text.\n                                  – The estimated emotion updates the\n                                                  robot's internal Emotion Engine before\n                                               generating a response.\n                                   – Only the core pseudocode is shown here;\n                                             the complete implementation is available\n                                                 here.\n\n\n\n\n\n                                                                                                          11",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1588",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1588,
+          "kind": "statement",
+          "locator": "Lecture50, physical page1588, printed footer23: Three-turn state persistence and confidence boundary; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook.",
+          "evidenceText": "Memory and Emotion-aware Dialogue Planning\n•  What differentiates social robots from general-purpose robots is their ability to\n   maintain conversation memory and perform emotion-aware dialogue planning.\n\n\n\n\n•  The robot stores user information and previous\n   interactions in a conversation memory.\n•  Estimated emotions and stored context are jointly used\n   to plan an appropriate response.\n•  This enables personalized, emotionally-aware\n   conversations and avoids repetitive interactions.\n\n\n\n                                                                                                          23",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The confidence0.30 sad turn sets88/82, and the failure fallback resets human mapped axes while preserving those unrelated robot dimensions.",
+        "optionExplanations": {
+          "o1": "The zero-confidence fallback returns from the early curiosity branch; it does not execute the default label branch’s welcome60 assignment.",
+          "o2": "The confidence0.30 sad turn sets88/82, and the failure fallback resets human mapped axes while preserving those unrelated robot dimensions.",
+          "o3": "41/56 are the second turn’s human values; the zero-confidence third mapping returns them to50/50.",
+          "o4": "The guard is strictly below0.30, so the second turn executes the sad branch and replaces the earlier fearful targets."
+        },
+        "steps": [
+          "Fearful0.8 sets robot welcome92, friend85, curious58; fresh becomes78.",
+          "Sad0.30 is not below0.30, so it sets welcome88, friend82, curious62; fresh becomes76.",
+          "Fallback confidence0 maps human happy/friendly to50 and enters only the early curiosity branch.",
+          "Other robot axes persist; the third battery drain gives fresh74 and tired26."
+        ],
+        "formulas": [],
+        "simpleExplanation": "The confidence0.30 sad turn sets88/82, and the failure fallback resets human mapped axes while preserving those unrelated robot dimensions.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The zero-confidence fallback returns from the early curiosity branch; it does not execute the default label branch’s welcome60 assignment.",
+          "41/56 are the second turn’s human values; the zero-confidence third mapping returns them to50/50.",
+          "The guard is strictly below0.30, so the second turn executes the sad branch and replaces the earlier fearful targets."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "primaryEvidence": [
+        {
+          "title": "Official Lecture 50 Albert notebook, pinned source",
+          "url": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+          "localEvidence": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+          "executionEvidence": "audits/W10-L50-v2-author-checks.json",
+          "checkedAt": "2026-10-20T00:00:04.379704+00:00",
+          "locator": "Cells9,11,17 and21; synthetic source-cell trace recorded in W10-L50-v2-author-checks."
+        }
+      ]
+    },
+    {
+      "id": "W10-L50-Q068",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_robotics_study_app:L50-v2-author",
+      "stem": "Memory starts empty and stores seven complete input/reply pairs before preparing reply8. In the notebook, add_turn retains the last12 message entries; analyse_emotion packs history[-6:] inside one user prompt plus a system message; generate_reply sends a system message, history[-8:] and the current input. Which counts apply before reply8, and which pairs remain after it is saved?",
+      "selectionMode": "single",
+      "type": "scenario",
+      "difficulty": "hard",
+      "cognitiveSkill": "conceptual",
+      "week": 10,
+      "lectureId": "L50",
+      "topic": "Emotion engines for robots",
+      "subtopic": "Memory cap versus prompt transport messages",
+      "tags": [
+        "coverage-gap-68"
+      ],
+      "conceptIds": [
+        "W10-L50-C-gap-68"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Classifier:8 transport messages; reply:10 transport messages; after saving, pairs3–8 remain and turn_count8."
+        },
+        {
+          "id": "o2",
+          "text": "Classifier:2 transport messages; reply:8 transport messages; after saving, pairs3–8 remain and turn_count8."
+        },
+        {
+          "id": "o3",
+          "text": "Classifier:2 transport messages; reply:10 transport messages; after saving, pairs3–8 remain and turn_count8."
+        },
+        {
+          "id": "o4",
+          "text": "Classifier:2 transport messages; reply:10 transport messages; after saving, pairs1–8 remain and turn_count6."
+        }
+      ],
+      "correctOptionIds": [
+        "o3"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1576",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1576,
+          "kind": "statement",
+          "locator": "Lecture50, physical page1576, printed footer11: Memory cap versus prompt transport messages; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook.",
+          "evidenceText": "Demo: Building an Emotion-aware Chatbot Albert\n                                            •   In this code:\n                                   – A local LLM is used to estimate the user's\n                                            emotional state from text.\n                                  – The estimated emotion updates the\n                                                  robot's internal Emotion Engine before\n                                               generating a response.\n                                   – Only the core pseudocode is shown here;\n                                             the complete implementation is available\n                                                 here.\n\n\n\n\n\n                                                                                                          11",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1588",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1588,
+          "kind": "statement",
+          "locator": "Lecture50, physical page1588, printed footer23: Memory cap versus prompt transport messages; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook.",
+          "evidenceText": "Memory and Emotion-aware Dialogue Planning\n•  What differentiates social robots from general-purpose robots is their ability to\n   maintain conversation memory and perform emotion-aware dialogue planning.\n\n\n\n\n•  The robot stores user information and previous\n   interactions in a conversation memory.\n•  Estimated emotions and stored context are jointly used\n   to plan an appropriate response.\n•  This enables personalized, emotionally-aware\n   conversations and avoids repetitive interactions.\n\n\n\n                                                                                                          23",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Classification uses two transport messages, reply generation uses ten, and trimming retains six pairs while the lifetime counter reaches eight.",
+        "optionExplanations": {
+          "o1": "Six history entries are serialized inside one prompt; they are not six additional transport messages for classification.",
+          "o2": "The reply has eight historical messages plus one system and one current user message.",
+          "o3": "Classification uses two transport messages, reply generation uses ten, and trimming retains six pairs while the lifetime counter reaches eight.",
+          "o4": "The list cap retains twelve messages, or six pairs, but does not reset turn_count."
+        },
+        "steps": [
+          "Before reply8, history stores pairs2–7, which is12 messages.",
+          "Classification embeds the last three pairs inside its user prompt and sends2 messages total.",
+          "Reply generation includes the last four pairs plus system/current input:8+2=10.",
+          "Adding pair8 trims pair2, retaining pairs3–8 with turn_count8."
+        ],
+        "formulas": [],
+        "simpleExplanation": "Classification uses two transport messages, reply generation uses ten, and trimming retains six pairs while the lifetime counter reaches eight.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Six history entries are serialized inside one prompt; they are not six additional transport messages for classification.",
+          "The reply has eight historical messages plus one system and one current user message.",
+          "The list cap retains twelve messages, or six pairs, but does not reset turn_count."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "primaryEvidence": [
+        {
+          "title": "Official Lecture 50 Albert notebook, pinned source",
+          "url": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+          "localEvidence": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+          "executionEvidence": "audits/W10-L50-v2-author-checks.json",
+          "checkedAt": "2026-10-20T00:00:04.379806+00:00",
+          "locator": "Cells13 and15: ConversationMemory.add_turn, analyse_emotion and generate_reply."
+        }
+      ]
+    },
+    {
+      "id": "W10-L50-Q069",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_robotics_study_app:L50-v2-author",
+      "stem": "For the pinned demonstration, compare submitting whitespace-only input, adding a normal input/reply pair, and pressing Reset. Which behavior follows the actual code?",
+      "selectionMode": "single",
+      "type": "scenario",
+      "difficulty": "medium",
+      "cognitiveSkill": "conceptual",
+      "week": 10,
+      "lectureId": "L50",
+      "topic": "Emotion engines for robots",
+      "subtopic": "Blank input, reset and stored facts",
+      "tags": [
+        "coverage-gap-69"
+      ],
+      "conceptIds": [
+        "W10-L50-C-gap-69"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Whitespace returns before analysis or memory change; adding a pair does not extract known_facts; Reset creates fresh engines/memory and clears last_analysis."
+        },
+        {
+          "id": "o2",
+          "text": "Whitespace adds a neutral turn; adding a pair does not extract known_facts; Reset creates fresh engines and memory."
+        },
+        {
+          "id": "o3",
+          "text": "Whitespace returns before analysis; add_turn extracts the user’s name into known_facts whenever the input contains “name”; Reset preserves that fact."
+        },
+        {
+          "id": "o4",
+          "text": "Whitespace returns before analysis; adding a pair does not extract known_facts; Reset clears only the visible log while keeping turn_count and engine state."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1576",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1576,
+          "kind": "statement",
+          "locator": "Lecture50, physical page1576, printed footer11: Blank input, reset and stored facts; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook.",
+          "evidenceText": "Demo: Building an Emotion-aware Chatbot Albert\n                                            •   In this code:\n                                   – A local LLM is used to estimate the user's\n                                            emotional state from text.\n                                  – The estimated emotion updates the\n                                                  robot's internal Emotion Engine before\n                                               generating a response.\n                                   – Only the core pseudocode is shown here;\n                                             the complete implementation is available\n                                                 here.\n\n\n\n\n\n                                                                                                          11",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1588",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1588,
+          "kind": "statement",
+          "locator": "Lecture50, physical page1588, printed footer23: Blank input, reset and stored facts; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook.",
+          "evidenceText": "Memory and Emotion-aware Dialogue Planning\n•  What differentiates social robots from general-purpose robots is their ability to\n   maintain conversation memory and perform emotion-aware dialogue planning.\n\n\n\n\n•  The robot stores user information and previous\n   interactions in a conversation memory.\n•  Estimated emotions and stored context are jointly used\n   to plan an appropriate response.\n•  This enables personalized, emotionally-aware\n   conversations and avoids repetitive interactions.\n\n\n\n                                                                                                          23",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The early return, explicit add_turn implementation and reset assignments establish these three separate behaviors.",
+        "optionExplanations": {
+          "o1": "The early return, explicit add_turn implementation and reset assignments establish these three separate behaviors.",
+          "o2": "The blank-input guard returns before analysis and add_turn.",
+          "o3": "No fact-extraction code runs inside add_turn, and reset replaces memory with a new object.",
+          "o4": "reset_demo reconstructs the engines and memory and sets last_analysis=None."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The early return, explicit add_turn implementation and reset assignments establish these three separate behaviors.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The blank-input guard returns before analysis and add_turn.",
+          "No fact-extraction code runs inside add_turn, and reset replaces memory with a new object.",
+          "reset_demo reconstructs the engines and memory and sets last_analysis=None."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "primaryEvidence": [
+        {
+          "title": "Official Lecture 50 Albert notebook, pinned source",
+          "url": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+          "localEvidence": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+          "executionEvidence": "audits/W10-L50-v2-author-checks.json",
+          "checkedAt": "2026-10-20T00:00:04.379891+00:00",
+          "locator": "Cells13 and21: add_turn, submit_message blank-input guard and reset_demo."
+        }
+      ]
+    },
+    {
+      "id": "W10-L50-Q070",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_robotics_study_app:L50-v2-author",
+      "stem": "Suppose the five-block feature extractor in the illustration outputs7×7×512 values. Compare Flatten with global average pooling to512 features before the shown256→128→8 dense head. Each dense output has one bias; dropout has no trainable parameters. Which head totals and training-scope statement are correct?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "hard",
+      "cognitiveSkill": "numerical",
+      "week": 10,
+      "lectureId": "L50",
+      "topic": "Emotion engines for robots",
+      "subtopic": "Full classifier head and trainable scope",
+      "tags": [
+        "coverage-gap-70"
+      ],
+      "conceptIds": [
+        "W10-L50-C-gap-70"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Flatten6,456,712; pooling165,256; classifier-only training also updates all five convolutional blocks."
+        },
+        {
+          "id": "o2",
+          "text": "Flatten6,456,320; pooling164,864; classifier-only training leaves the backbone weights fixed."
+        },
+        {
+          "id": "o3",
+          "text": "Flatten165,256; pooling6,456,712; partial tuning updates the final convolutional block plus the head."
+        },
+        {
+          "id": "o4",
+          "text": "Flatten6,456,712; pooling165,256; classifier-only training freezes the backbone, while the illustrated partial strategy also tunes its last block."
+        }
+      ],
+      "correctOptionIds": [
+        "o4"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1579",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1579,
+          "kind": "derivation",
+          "locator": "Lecture50, physical page1579, printed footer14: Full classifier head and trainable scope; supplied scenario derives from the displayed concept.",
+          "evidenceText": "Facial Emotion Recognition (FER)\n                                            •  FER enables robots to estimate a user's emotional\n                                          state from facial expressions captured by a camera.\n                                            •   Rather than training a CNN from scratch, modern\n                                  FER systems use transfer learning by fine-tuning\n                                        pre-trained Deep CNN models on labelled facial\n                                       expression datasets.\n                                            •  The resulting model classifies facial expressions into\n                                          discrete emotion categories such as happiness,\n                                       sadness, anger, fear and surprise.\n                                            •  One of the most widely\n                                  used perception modules\n                                            in social robots.\n\n\n\n\n\n                                                                                                          14",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1580",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1580,
+          "kind": "derivation",
+          "locator": "Lecture50, physical page1580, printed footer15: Full classifier head and trainable scope; supplied scenario derives from the displayed concept.",
+          "evidenceText": "Facial Emotion Recognition (FER)\n                                    •  Large facial expression datasets are often limited.\n                                   Transfer learning reuses knowledge learned from\n                                   large datasets (e.g., ImageNet).\n                                    •  Three common strategies:\n                             –  Feature Extraction: Train only the classifier.\n                             –  Partial Fine-tuning: Fine-tune the last\n                                         convolutional block.\n                             –  Full Fine-tuning: Fine-tune the entire network.\n                                     •  Full fine-tuning generally\n                                 provides the highest\n                                  recognition accuracy when\n                                      sufficient training data are\n                                     available.\n\n                                                                                                          15",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Count each dense layer’s weights and biases; the source distinguishes head-only, last-block and full-network trainable scopes without guaranteeing their performance order.",
+        "optionExplanations": {
+          "o1": "The totals are correct, but classifier-only training does not update the backbone blocks.",
+          "o2": "These totals omit the256+128+8=392 dense biases.",
+          "o3": "The totals are exchanged: flattening retains25,088 features, while averaging leaves512.",
+          "o4": "Count each dense layer’s weights and biases; the source distinguishes head-only, last-block and full-network trainable scopes without guaranteeing their performance order."
+        },
+        "steps": [
+          "Flatten produces7×7×512=25,088 inputs; global averaging produces512.",
+          "The later layers contribute(256+1)×128+(128+1)×8=33,928 parameters.",
+          "Flatten head:25,089×256+33,928=6,456,712.",
+          "Pooled head:513×256+33,928=165,256.",
+          "Dropout adds no trainable parameters; changing trainable scope does not by itself guarantee accuracy."
+        ],
+        "formulas": [
+          {
+            "expression": "P=(d+1)×256+(256+1)×128+(128+1)×8",
+            "variables": {
+              "P": "Total trainable parameters in the three dense layers",
+              "d": "Input feature count after reduction"
+            },
+            "units": {
+              "P": "Parameter count",
+              "d": "Feature count"
+            },
+            "assumptions": [
+              "Each output has one bias.",
+              "Dropout and feature reduction add no trainable parameters in this exercise.",
+              "Feature-map dimensions are supplied, not inferred from an unspecified input image size."
+            ]
+          }
+        ],
+        "simpleExplanation": "Count each dense layer’s weights and biases; the source distinguishes head-only, last-block and full-network trainable scopes without guaranteeing their performance order.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The totals are correct, but classifier-only training does not update the backbone blocks.",
+          "These totals omit the256+128+8=392 dense biases.",
+          "The totals are exchanged: flattening retains25,088 features, while averaging leaves512."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": []
+    },
+    {
+      "id": "W10-L50-Q071",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_robotics_study_app:L50-v2-author",
+      "stem": "A course exercise needs facial-expression classes plus continuous valence/arousal targets. Use only the slide’s displayed dataset descriptions, not undocumented benchmark claims. Which source-and-evaluation plan fits those requirements?",
+      "selectionMode": "single",
+      "type": "scenario",
+      "difficulty": "medium",
+      "cognitiveSkill": "conceptual",
+      "week": 10,
+      "lectureId": "L50",
+      "topic": "Emotion engines for robots",
+      "subtopic": "Dataset targets, representation and domain limits",
+      "tags": [
+        "coverage-gap-71"
+      ],
+      "conceptIds": [
+        "W10-L50-C-gap-71"
+      ],
+      "assumptions": [
+        "Dataset channel descriptions are reported as displayed in this lecture, not a verified claim about every distribution or preprocessing variant.",
+        "No photographed person’s private internal state is inferred in this exercise."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Use FER2013 because grayscale pixels alone define continuous valence and arousal targets, then assume color conversion supplies any missing labels."
+        },
+        {
+          "id": "o2",
+          "text": "Use the displayed AffectNet targets; distinguish FER2013’s grayscale and RAF-DB’s listed grayscale/RGB descriptions, align labels and test new lighting/occlusion conditions rather than assuming transfer."
+        },
+        {
+          "id": "o3",
+          "text": "Use the RAF-DB categorical example and replace each class number with the same numeric value for both valence and arousal without annotation or a stated mapping."
+        },
+        {
+          "id": "o4",
+          "text": "Use speech MFCCs as if they were the facial-image labels, then treat a shared category name as proof of performance under new camera conditions."
+        }
+      ],
+      "correctOptionIds": [
+        "o2"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1581",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1581,
+          "kind": "statement",
+          "locator": "Lecture50, physical page1581, printed footer16: Dataset targets, representation and domain limits; supplied scenario derives from the displayed concept.",
+          "evidenceText": "FER Datasets\n•  AI models require labelled emotion datasets.\n•  Popular datasets include:\n   – FER2013 (grayscale)\n   – RAF-DB (grayscale+RGB)\n   – AffectNet (grayscale+RGB)\n•  AffectNet also provides:\n   – Emotion labels\n   – Valence\n   – Arousal\n\n\n\n\n\n                                                                                                          16",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1582",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1582,
+          "kind": "statement",
+          "locator": "Lecture50, physical page1582, printed footer17: Dataset targets, representation and domain limits; supplied scenario derives from the displayed concept.",
+          "evidenceText": "Representing Emotion from Facial Expressions\n•  To build systems that understand emotion, we must first choose how to\n   represent it computationally.\n•  There are two primary approaches:\n     1. Discrete Categories: Classifying emotions into a small set of basic emotions.\n          • For example, Ekman identified seven basic emotions: neutral, fear, anger,\n          sadness, happiness, disgust, and surprise.\n\n\n\n\n\n         1-Neutral, 2-Anger, 3-Sadness, 4 Surprise,\n              5- Happiness, 6- Disgust, 7- Fear\n\n\n                                                                                                          17",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1583",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1583,
+          "kind": "statement",
+          "locator": "Lecture50, physical page1583, printed footer18: Dataset targets, representation and domain limits; supplied scenario derives from the displayed concept.",
+          "evidenceText": "Representing1. f        Emotion from Facial Expressions\n 2. Continuous Dimensions: Mapping emotions across a continuous space.\n   – The two most common dimensions are Arousal and Valence\n   – They range between [-1,1]\n   – Both measure the energy levels of an image\n   – Arousal: indicates calmness\n   – Valence: decides positive/negative emotion\n   – Captures emotion intensity better than discrete labels.\n                                                       Valance:\n                                                     0.63    A Happy\n                                                        Arousal:  sample from:\n                                                     0.77\n                 Discrete label from     Continuous label\n                   RAF-DB          from Affectnet\n\n                                                                                                          18",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1585",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1585,
+          "kind": "statement",
+          "locator": "Lecture50, physical page1585, printed footer20: Dataset targets, representation and domain limits; supplied scenario derives from the displayed concept.",
+          "evidenceText": "Speech Emotion Recognition (SER)\n•  Human emotions are reflected not only in what is\n    said, but also in how it is spoken.\n•  Speech features such as pitch, speaking rate, energy,\n   and MFCCs provide important emotional cues.\n•  Deep Learning models learn these patterns to\n   estimate the speaker's emotional state.\n•  SER complements language understanding and\n   improves emotion-aware Human-Robot Interaction.\n•  Future emotion-aware robots combine text\n   understanding with Speech Emotion Recognition (SER)\n   and Facial Emotion Recognition (FER) to obtain a more\n    reliable estimate of the user's emotional state.\n\n\n                                                                                                          20",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1590",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1590,
+          "kind": "statement",
+          "locator": "Lecture50, physical page1590, printed footer25: Dataset targets, representation and domain limits; supplied scenario derives from the displayed concept.",
+          "evidenceText": "Applications and Challenges\n•   Social robots are gaining popularity as healthcare assistants, educational\n   robots, customer service, home companion robots and in elderly care\n   environments.\n•  Challenges include:\n   –  Facial expressions vary across individuals.\n   – Emotions are often mixed rather than pure.\n   – Occlusion and poor lighting reduce accuracy.\n   – Cultural differences influence emotional expression.\n   – Privacy and ethical concerns must be considered.\n\n\n\n\n\n                                                                                                          25",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The slide explicitly lists AffectNet class and valence/arousal targets; representation compatibility and target-domain evaluation remain separate requirements.",
+        "optionExplanations": {
+          "o1": "Pixel channels do not create missing supervised target annotations.",
+          "o2": "The slide explicitly lists AffectNet class and valence/arousal targets; representation compatibility and target-domain evaluation remain separate requirements.",
+          "o3": "A category code is not automatically a valid continuous affect annotation.",
+          "o4": "Acoustic features are a different input modality, and shared label names do not establish camera-domain performance."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The slide explicitly lists AffectNet class and valence/arousal targets; representation compatibility and target-domain evaluation remain separate requirements.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Pixel channels do not create missing supervised target annotations.",
+          "A category code is not automatically a valid continuous affect annotation.",
+          "Acoustic features are a different input modality, and shared label names do not establish camera-domain performance."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -6607,6 +7430,125 @@
       "prerequisiteConceptIds": [],
       "examinationAngles": [
         "scenario"
+      ]
+    },
+    {
+      "id": "W10-L50-C-gap-66",
+      "title": "Multi-axis centered resultant and plotting limit",
+      "description": "Opposite centered members reinforce their paired direction; the computed raw radius is retained even though the plot clips its arrow to100.",
+      "slideIds": [
+        "lectures-p1572",
+        "lectures-p1573",
+        "lectures-p1574",
+        "lectures-p1576"
+      ],
+      "questionIds": [
+        "W10-L50-Q066"
+      ],
+      "status": "drafted",
+      "topic": "Emotion engines for robots",
+      "subtopic": "Multi-axis centered resultant and plotting limit",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "numerical"
+      ]
+    },
+    {
+      "id": "W10-L50-C-gap-67",
+      "title": "Three-turn state persistence and confidence boundary",
+      "description": "The confidence0.30 sad turn sets88/82, and the failure fallback resets human mapped axes while preserving those unrelated robot dimensions.",
+      "slideIds": [
+        "lectures-p1576",
+        "lectures-p1588"
+      ],
+      "questionIds": [
+        "W10-L50-Q067"
+      ],
+      "status": "drafted",
+      "topic": "Emotion engines for robots",
+      "subtopic": "Three-turn state persistence and confidence boundary",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "conceptual"
+      ]
+    },
+    {
+      "id": "W10-L50-C-gap-68",
+      "title": "Memory cap versus prompt transport messages",
+      "description": "Classification uses two transport messages, reply generation uses ten, and trimming retains six pairs while the lifetime counter reaches eight.",
+      "slideIds": [
+        "lectures-p1576",
+        "lectures-p1588"
+      ],
+      "questionIds": [
+        "W10-L50-Q068"
+      ],
+      "status": "drafted",
+      "topic": "Emotion engines for robots",
+      "subtopic": "Memory cap versus prompt transport messages",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "conceptual"
+      ]
+    },
+    {
+      "id": "W10-L50-C-gap-69",
+      "title": "Blank input, reset and stored facts",
+      "description": "The early return, explicit add_turn implementation and reset assignments establish these three separate behaviors.",
+      "slideIds": [
+        "lectures-p1576",
+        "lectures-p1588"
+      ],
+      "questionIds": [
+        "W10-L50-Q069"
+      ],
+      "status": "drafted",
+      "topic": "Emotion engines for robots",
+      "subtopic": "Blank input, reset and stored facts",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "conceptual"
+      ]
+    },
+    {
+      "id": "W10-L50-C-gap-70",
+      "title": "Full classifier head and trainable scope",
+      "description": "Count each dense layer’s weights and biases; the source distinguishes head-only, last-block and full-network trainable scopes without guaranteeing their performance order.",
+      "slideIds": [
+        "lectures-p1579",
+        "lectures-p1580"
+      ],
+      "questionIds": [
+        "W10-L50-Q070"
+      ],
+      "status": "drafted",
+      "topic": "Emotion engines for robots",
+      "subtopic": "Full classifier head and trainable scope",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "numerical"
+      ]
+    },
+    {
+      "id": "W10-L50-C-gap-71",
+      "title": "Dataset targets, representation and domain limits",
+      "description": "The slide explicitly lists AffectNet class and valence/arousal targets; representation compatibility and target-domain evaluation remain separate requirements.",
+      "slideIds": [
+        "lectures-p1581",
+        "lectures-p1582",
+        "lectures-p1583",
+        "lectures-p1585",
+        "lectures-p1590"
+      ],
+      "questionIds": [
+        "W10-L50-Q071"
+      ],
+      "status": "drafted",
+      "topic": "Emotion engines for robots",
+      "subtopic": "Dataset targets, representation and domain limits",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "conceptual"
       ]
     }
   ],

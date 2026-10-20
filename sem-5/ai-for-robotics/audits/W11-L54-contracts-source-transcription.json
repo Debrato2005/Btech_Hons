@@ -1,0 +1,23 @@
+{
+  "reviewerId": "robotics-contracts-reviewer-L54",
+  "transcribedAt": "2026-10-19T23:55:34.246818+00:00",
+  "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+  "sourcePages": {
+    "svm": [
+      1727,
+      1728,
+      1729,
+      1730
+    ],
+    "ik": [
+      1736,
+      1737,
+      1738,
+      1739,
+      1740
+    ]
+  },
+  "svm": "np.random.seed(0)\nN = 600\nX_norm = np.column_stack([\n    np.random.normal(2.0, 0.2, N//2),\n    np.random.normal(1500, 50, N//2),\n    np.random.normal(45, 3, N//2),\n])\nX_over = np.column_stack([\n    np.random.normal(5.5, 0.5, N//2),\n    np.random.normal(900, 100, N//2),\n    np.random.normal(72, 5, N//2),\n])\nX = np.vstack([X_norm, X_over])\ny = np.array([0]*len(X_norm) + [1]*len(X_over))\nX_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)\nsvm = Pipeline([\n    ('sc', StandardScaler()),\n    ('svc', SVC(kernel='rbf', C=10, gamma='scale', class_weight='balanced'))\n])\nsvm.fit(X_tr, y_tr)\ny_pred = svm.predict(X_te)\nprint(classification_report(y_te, y_pred, target_names=['normal', 'overload']))\n",
+  "ik": "L1, L2 = 1.0, 1.0\nN = 40000\nt1 = np.random.uniform(-np.pi, np.pi, N)\nt2 = np.random.uniform(0, np.pi, N)\nx = L1*np.cos(t1) + L2*np.cos(t1+t2)\ny = L1*np.sin(t1) + L2*np.sin(t1+t2)\nX = np.column_stack([x, y])\nY = np.column_stack([t1, t2])\nX_tr, X_te, Y_tr, Y_te = train_test_split(X, Y, test_size=0.1)\nmodel = Pipeline([\n    ('sc', StandardScaler()),\n    ('mlp', MLPRegressor(hidden_layer_sizes=(256,256,128),\n        activation='tanh', max_iter=300,\n        learning_rate_init=1e-3, random_state=42))\n])\nmodel.fit(X_tr, Y_tr)\npred = model.predict(X_te)\nxp = L1*np.cos(pred[:,0]) + L2*np.cos(pred[:,0]+pred[:,1])\nyp = L1*np.sin(pred[:,0]) + L2*np.sin(pred[:,0]+pred[:,1])\nerr = np.sqrt((xp-X_te[:,0])**2 + (yp-X_te[:,1])**2)\nprint(f'Mean position error: {err.mean()*100:.2f} cm')\nprediction = model.predict([[-1.0, 1.0]])\ntheta1_rad = prediction[0][0]\ntheta2_rad = prediction[0][1]\nprint(f'Theta 1: {theta1_rad:.4f} radians -> {np.degrees(theta1_rad):.2f} degrees')\nprint(f'Theta 2: {theta2_rad:.4f} radians -> {np.degrees(theta2_rad):.2f} degrees')\n",
+  "qualification": "Transcribed directly from actual pixels. Imports shared above; spacing normalized only. IK source has no generator or split seed. This run executes it after the SVM source in the same default interpreter so its initial random state is documented, not claimed historically identical. No model or dependency retrieval. Illustration-only mglearn call is not a model-training program."
+}
