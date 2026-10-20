@@ -1,0 +1,16 @@
+import json,pathlib,datetime,hashlib,random,math
+import numpy as np
+P=pathlib.Path(__file__).resolve().parents[1];A=P/'audits';q=json.load(open(A/'blind-W11-L55-v2.json'));now=datetime.datetime.now(datetime.timezone.utc).isoformat()
+ans=[('o3','The source validation box requires novel driving torques, predicted accelerations, ODE integration into motion and comparison with the real system.'),('o2','The literal source order is prediction/loss, zero_grad, backward, optimizer.step. Clearing first is valid but not the printed order.'),('o2','Under the added detached-compatible premise, the missing requirement is CPU placement; clone, contiguous and detach alone leave the tensor on CUDA.'),('o1','The forward diagram states sigmoid and standard backpropagation; the distinct inverse sklearn code sets tanh and1e-3.'),('o1','Ha=(5,0), Hdot=[[1,2],[2,4]], Hdot v=(5,10), gradK=(.5,6), so tau=(13.5,7). H is symmetric with leading minor3 and determinant5, locallySPD; fit error alone does not impose structure.')]
+blind={'reviewerId':'robotics-integration-L55-v2-independent','solvedAt':now,'packetSha256':hashlib.sha256((A/'blind-W11-L55-v2.json').read_bytes()).hexdigest(),'sourceVersion':'2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c','priorVersionExposure':'Reviewed the three original flagged versions and their keys. Current revisions were re-solved before revised keys; the two new gap questions were fresh source-first solves.','actualPagesInspected':sorted({c['physicalPage'] for x in q for c in x['citations']}),'answers':[{'questionId':x['id'],'independentAnswerOptionIds':[a[0]],'reasoning':a[1],'priorVersionKeyExposure':int(x['id'][-3:])<73} for x,a in zip(q,ans)]};fp=A/'blind-answers-W11-L55-v2-integration.json';
+if not fp.exists(): fp.write_text(json.dumps(blind,ensure_ascii=False,indent=2)+'\n')
+H=np.array([[3.,1.],[1.,2.]]);Ds=np.array([[[1.,0.],[0.,0.]],[[0.,1.],[1.,2.]]]);v=np.array([1.,2.]);a=np.array([2.,-1.]);g=np.array([4.,3.]);hd=np.einsum('i,ijk->jk',v,Ds);grad=np.array([.5*v@D@v for D in Ds]);tau=H@a+hd@v-grad+g;assert np.allclose(tau,[13.5,7]);assert math.isclose(np.linalg.det(H),5) and np.all(np.linalg.eigvalsh(H)>0)
+r=np.random.default_rng(5502);eps=1e-6
+for _ in range(1000):
+ q0=r.uniform(-.1,.1,2);vel=r.uniform(-3,3,2);acc=r.uniform(-2,2,2)
+ def hm(x):return H+np.einsum('i,ijk->jk',x,Ds)
+ m=hm(q0);hdt=np.einsum('i,ijk->jk',vel,Ds);kg=np.array([.5*vel@D@vel for D in Ds]);t=m@acc+hdt@vel-kg+g
+ pdot=(hm(q0+eps*vel)@(vel+eps*acc)-hm(q0-eps*vel)@(vel-eps*acc))/(2*eps)
+ gradfd=np.array([(.5*vel@hm(q0+eps*np.eye(2)[i])@vel-.5*vel@hm(q0-eps*np.eye(2)[i])@vel)/(2*eps) for i in range(2)])
+ assert np.allclose(t,pdot-gradfd+g,rtol=1e-7,atol=1e-7);assert np.allclose(kg,gradfd,rtol=1e-7,atol=1e-7);assert np.all(np.linalg.eigvalsh(m)>0)
+checks={'passed':True,'named':{'Ha':(H@a).tolist(),'Hdot':hd.tolist(),'HdotV':(hd@v).tolist(),'gradK':grad.tolist(),'tau':tau.tolist(),'detH':float(np.linalg.det(H))},'variedCases':1000,'variedAssertions':3000,'runtime':'Default installed NumPy finite-difference and algebra only; no PyTorch/GPU/model/hardware execution.'};(A/'W11-L55-v2-integration-independent-checks.json').write_text(json.dumps(checks,indent=2)+'\n');print({'blindSha256':hashlib.sha256(fp.read_bytes()).hexdigest(),'checksPassed':True})

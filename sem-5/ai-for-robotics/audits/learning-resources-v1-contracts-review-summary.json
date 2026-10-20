@@ -1,0 +1,120 @@
+{
+  "reviewerId": "robotics-contracts-independent-reviewer",
+  "frozenAt": "2026-10-20T00:34:24.946385+00:00",
+  "packetPath": "audits/blind-learning-resources-v1.json",
+  "packetSha256": "04ff5ce53239ebbf58648c4bdeb1c486da94735b1d337c980d4b2f7c2788c24f",
+  "toolReviewPath": "data/learning-tool-reviews.json",
+  "toolReviewSha256": "fd54941b9376b68b052c0742fce2d2006c84a9abdda4378fed5bce54a6ad5e8c",
+  "toolCounts": {
+    "verifiedComputationalRecords": 18,
+    "algorithmConfigurations": 5,
+    "numericalFamilies": 13,
+    "newFixedExamples": 39
+  },
+  "policyReviewPath": "data/learning-resource-policy-reviews.json",
+  "policyReviewSha256": "4c1d62de9f870c080d710c5211c55cd819f974ac3d3aaaf276b76e254feec8d2",
+  "policyDecision": "flagged",
+  "activation": "All course projections/tools remain inactive until repaired code/policy receives an independent exact-hash approval. Tool approvals cannot override the separate policy gate.",
+  "sourcePagesViewed": 34,
+  "findings": [
+    {
+      "id": "LR-P01",
+      "severity": "blocking",
+      "area": "stale numerical activation",
+      "targets": [
+        "app/learning-tools.js:registerBankNumericalFamilies",
+        "app/app.js:renderNumerical/renderVariant"
+      ],
+      "finding": "Register an approved course family, remove that record from bank.learningTools.numericalFamilies, then register the new bank. The absent family remains in the module registry and listNumericalFamilies still labels it verified. The current state.variant renderer also trusts cached provenance.status and can display/save that old verified variant without rechecking current eligibility.",
+      "requiredRepair": "Evict every bank-registered family absent or ineligible in the current bank. Fail closed for generation/restoration/display of a cached course variant when its current family, content, question, source, policy or review binding is absent/stale. Keep historical attempts as historical, not current approvals. Add record-removal, bank-switch and cached-variant revocation tests.",
+      "evidence": "audits/learning-resources-v1-contracts-independent-checks.json: failClosedProbes; current renderVariant implementation inspected statically, not in a browser."
+    },
+    {
+      "id": "LR-P02",
+      "severity": "blocking",
+      "area": "context/source provenance loss",
+      "targets": [
+        "app/learning-resources.js:context",
+        "app/learning-resource-ui.js:contextPanel"
+      ],
+      "finding": "The projection drops supplementalProvenance, externalEvidence, primaryImplementationEvidence, experimentProvenance and diagramSourceSlideIds. In the sampled canonical bank this is71 omissions across51 distinct questions. For example W07-L34-P1052-Q08 loses its exact notebook URL, SHA256 and cell8 binding; the remaining slide hyperlink does not replace that evidence.",
+      "requiredRepair": "Copy and render the relevant exact supplemental/implementation/experiment and diagram provenance with its original source qualifications, without inventing new source claims. Preserve full solution/premise context where necessary rather than only a generic source button. Test real notebook-derived and source-conflict fixtures as well as text-only questions.",
+      "evidence": "audits/learning-resources-v1-contracts-projection-checks.json: contextOmissions"
+    },
+    {
+      "id": "LR-P03",
+      "severity": "blocking-defense-in-depth",
+      "area": "literal-answer and identity gate parity",
+      "targets": [
+        "app/learning-resources.js:eligibleQuestions/sameSet",
+        "scripts/learning_resources.py:tool_reasons"
+      ],
+      "finding": "Under otherwise current synthetic test bindings, the JS projection accepts empty keys plus empty independent answers, nonexistent key IDs plus matching review IDs, duplicate independent IDs, and a whitespace-only reviewerId. The Python linked-question check likewise lacks valid-option membership and duplicate validation. The canonical bank validator normally rejects such malformed records, but the separate fail-closed resource gate must not convert them into projected approvals.",
+      "requiredRepair": "Require nonempty unique literal key and independent answer arrays containing only the question’s valid stable option IDs; require a nonblank independent reviewer identity; never substitute conditional intended IDs. Align JS/Python checks and test the rejected cases.",
+      "evidence": "audits/learning-resources-v1-contracts-independent-checks.json and additionalGateProbes in this summary"
+    },
+    {
+      "id": "LR-P04",
+      "severity": "blocking-defense-in-depth",
+      "area": "source-page domain validation",
+      "targets": [
+        "app/learning-resources.js:eligibleQuestions/toolRecordAllowed",
+        "scripts/learning_resources.py:tool_reasons"
+      ],
+      "finding": "The resource gates reject only unreviewed/unresolved dispositions, so an unknown disposition passes. A consistently mutated physicalPage0 also passes JS eligibility. The algorithm selector already uses a positive bounded physical-page check and an explicit disposition allowlist, but the projection/numerical gates do not.",
+      "requiredRepair": "Require one-based integer physicalPage within source.pageCount and an explicit supported disposition, with complete source/hash/sourceId/inspection consistency. Apply the same requirements to linked question citations as well as resource sourceRefs, in both language layers.",
+      "evidence": "audits/learning-resources-v1-contracts-independent-checks.json and additionalGateProbes in this summary"
+    }
+  ],
+  "additionalGateProbes": [
+    {
+      "case": "duplicate independent IDs [o1,o1]",
+      "expectedEligible": 0,
+      "actualEligible": 1
+    },
+    {
+      "case": "whitespace-only reviewer identity",
+      "expectedEligible": 0,
+      "actualEligible": 1
+    },
+    {
+      "case": "physicalPage0 in citation and slide with refreshed runtime digest",
+      "expectedEligible": 0,
+      "actualEligible": 1
+    }
+  ],
+  "acceptedResourceHashes": {
+    "course.algorithm.road-network.bfs": "3df333576fca661763c946f20cced5bd09c26ee2bef6fae59d479d6cea22f80f",
+    "course.algorithm.road-network.ucs": "f419080448f59396d4626b560317e77af70fabde0ec68d4d349f933af237eb60",
+    "course.algorithm.road-network.astar": "cc9351731f2853775bd7f6adad58a0897276a5f9926c6dc01406214b7271de1c",
+    "course.algorithm.road-network.dfs": "4b1f6116cb29c379560f708a38615735933498a88499050a5eaa9e5e15bb71a2",
+    "course.algorithm.q-learning.sequential": "f56079303526389e1613b1ed805715ec565a1224810e741439cf50694f1e5e4b",
+    "course.numerical.bayes-two-hypotheses": "54e4f0d7dea2202f88d339a5adf72dce3ed37a9492fcb943ce3e89917e768070",
+    "course.numerical.q-learning-update": "e75342308fc0822c3ff7e2fdd745243997dd0c71355a6df3d1a9c5fb1f12b55c",
+    "course.numerical.rotated-vector-x": "3e3af6c2085083ee86ca4e64d360735ccb2cb3b79812db40cdc17444d44e01c7",
+    "course.numerical.net-force-component": "3f0c4a53cdf6e5e9b2f04fd3277919eb9ce28451ab6d5b34c78f9f6aa0945e28",
+    "course.numerical.series-stiffness": "04e67c62b87e4ef07408492e13dc5af1c0df14637b3782506018ef82230451a9",
+    "course.numerical.coupled-inertia-torque": "371e2d171217c616eedcf4c11623313df4a383b27816ed7b267e9b7d67d6a682",
+    "course.numerical.epsilon-greedy-probability": "3ecfee9788b0cc9b06c1711ee37bf1320c0b4f1ebe293bc5e439deb302e74ae4",
+    "course.numerical.pinhole-image-x": "7f42a03ee8a3f593fdbe4da095eb2811a6a3b65772540cba633f1fea6bb1e20c",
+    "course.numerical.convolution-output-size": "2eda215b227c045291172c95187cb2812424702675ffeeb2b7eb12863bfcf8dd",
+    "course.numerical.octile-grid-distance": "6608b89e710c99857271282ebe0d118ad33d2a5b3a7fa1134add63bb6086feae",
+    "course.numerical.lidar-roundtrip-range": "d6a49d738267206a53f93250204258473c2ef9464992e2ac5692231d5a2171b9",
+    "course.numerical.uniform-sample-count": "df36d44fc5abc8d1210d5d98be7b966a8b87c17f3a1246a18887cfa8ff337952",
+    "course.numerical.adc-uniform-bin-width": "7a49e6de86ac54bd1aa18ef934bdfc66f759560be63deb0042f6a2a4fc75dc21"
+  },
+  "preservation": "No authored question/tool/policy/code objects or canonical bank/Git were edited. All18 frozen resource hashes and all11 code hashes rechecked immediately before freezing. A repair to shared implementation files must refresh affected resource implementation bindings and obtain current-hash review.",
+  "browserQA": "Blocked by prior socket permission denial; no browser retries or alternate routes.",
+  "coverageBoundary": "The source-grounded18-tool packet is independently checked. Exact projection is not a claim that every lecture formula, comparison or trap has been authored or semantically re-reviewed. Parent owns the full source/assignment completeness reconciliation.",
+  "nextQueue": [
+    "L50 residual v3: three revisions, preserve68 accepted hashes",
+    "Resource repair packet when parent routes it"
+  ],
+  "restrictions": [
+    "Never use /tmp/robotics-l35-venv or L48 incident temporary environment.",
+    "No new dependencies, model/checkpoint/audio/NLTK retrieval or denied original L49 notebook route.",
+    "All denied downloads stay stopped; no browser bypass or alternate restricted route.",
+    "Only default installed Python/Node, local sources and deterministic checks permitted.",
+    "No Git or canonical bank writes."
+  ]
+}

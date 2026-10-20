@@ -1,0 +1,172 @@
+[
+  {
+    "id": "L58-ISSUE-classic-scope",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1848,
+    "kind": "statement",
+    "finding": "Building and Model Editor workflows are presented under the general Gazebo name.",
+    "handling": "Attribute these screenshots and editor menus to Gazebo Classic; do not imply identical menus in all newer Gazebo releases.",
+    "method": "Match the actual interface and cited Classic tutorial; preserve the January2025 end-of-life notice as historical version evidence.",
+    "primaryEvidence": [
+      {
+        "title": "Gazebo Classic Building Editor",
+        "url": "https://classic.gazebosim.org/tutorials?tut=building_editor",
+        "locator": "Classic editor and saving a building as SDF/config; January2025 end-of-life banner.",
+        "version": "Gazebo Classic documentation inspected 2026-10-20",
+        "checkedAt": "2026-10-20"
+      }
+    ],
+    "status": "qualification_pending_independent_review"
+  },
+  {
+    "id": "L58-ISSUE-sdf-scope",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1851,
+    "kind": "statement",
+    "finding": "URDF is paired with robot structure and SDF with simulation environment.",
+    "handling": "The comparison describes emphasis, not exclusivity: SDF also describes individual models.",
+    "method": "Cross-check the actual Model Editor page1849 and official SDF-based editor description.",
+    "primaryEvidence": [
+      {
+        "title": "Gazebo Classic Model Editor",
+        "url": "https://classic.gazebosim.org/tutorials?cat=guided_b&tut=guided_b3",
+        "locator": "Model Editor creates individual models using SDF.",
+        "version": "Gazebo Classic documentation inspected 2026-10-20",
+        "checkedAt": "2026-10-20"
+      }
+    ],
+    "status": "qualification_pending_independent_review"
+  },
+  {
+    "id": "L58-ISSUE-nav2-version-scope",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1859,
+    "kind": "figure",
+    "finding": "The list says Recovery Server, while the diagram says Behavior Server and includes a Route Server.",
+    "handling": "Treat the diagram as a general later Nav2 architecture, not a complete inventory guaranteed in the Humble demo. Behavior Server is not restricted to recovery; the docking prose is not itself a proven error.",
+    "method": "Compare actual diagram labels with the Humble behavior API and Kilted Route-server roadmap, without silently rewriting the lecture.",
+    "primaryEvidence": [
+      {
+        "title": "Nav2 Humble Behaviors",
+        "url": "https://api.nav2.org/nav2-humble/html/md_nav2_behaviors_README.html",
+        "locator": "Behavior plugins and shared costmap/TF resources; Backup, DriveOnHeading, Spin, Wait.",
+        "version": "ROS2 Humble API documentation",
+        "checkedAt": "2026-10-20"
+      },
+      {
+        "title": "Nav2 Roadmaps",
+        "url": "https://docs.nav2.org/rolling/community/roadmaps/",
+        "locator": "Kilted roadmap: release of Route server.",
+        "version": "Rolling documentation inspected 2026-10-20; historical distro comparison",
+        "checkedAt": "2026-10-20"
+      }
+    ],
+    "status": "qualification_pending_independent_review"
+  },
+  {
+    "id": "L58-ISSUE-global-static-simplification",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1863,
+    "kind": "statement",
+    "finding": "Global Costmap is described as static map representation, contrasting local dynamic updates.",
+    "handling": "A global costmap may combine a static map with live obstacle layers; global does not mean permanently static.",
+    "method": "Use sensor arrows into both maps on1858/1859 and the primary global_costmap example.",
+    "primaryEvidence": [
+      {
+        "title": "Nav2 Mapping and Localization",
+        "url": "https://docs.nav2.org/rolling/configuration_and_development/first_time_robot_setup_guide/sensors/mapping_localization/",
+        "locator": "global_costmap example includes static, obstacle and inflation plugins, with LaserScan observations.",
+        "version": "Rolling documentation inspected 2026-10-20; configuration example, not claimed Humble default",
+        "checkedAt": "2026-10-20"
+      }
+    ],
+    "status": "qualification_pending_independent_review"
+  },
+  {
+    "id": "L58-ISSUE-controller-example-scope",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1862,
+    "kind": "statement",
+    "finding": "DWA and TEB are listed as local planner/controller algorithms.",
+    "handling": "Treat them as illustrative algorithm families, not proof that those exact plugins are installed or default in the Humble example.",
+    "method": "Keep source examples distinct from an unspecified deployment configuration; no plugin binary or parameter file is supplied.",
+    "primaryEvidence": [],
+    "status": "qualification_pending_independent_review"
+  },
+  {
+    "id": "L58-ISSUE-model-period",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1867,
+    "kind": "code",
+    "finding": "The displayed export line ends TURTLEBOT3_MODEL=waffle. including a black period.",
+    "handling": "Literal copying sets waffle. rather than the recognized model name waffle; remove the punctuation only in an explicitly repaired command.",
+    "method": "Parse the literal assignment and compare the exact value with the primary model-name list.",
+    "primaryEvidence": [
+      {
+        "title": "ROBOTIS TurtleBot3 model selection",
+        "url": "https://emanual.robotis.com/docs/en/platform/turtlebot3/export_turtlebot3_model/",
+        "locator": "Exact environment choices burger, waffle and waffle_pi.",
+        "version": "ROBOTIS e-Manual inspected 2026-10-20",
+        "checkedAt": "2026-10-20"
+      }
+    ],
+    "status": "qualification_pending_independent_review"
+  },
+  {
+    "id": "L58-ISSUE-shell-wrap",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1867,
+    "kind": "code",
+    "finding": "The apt command is visually split between ros-humble-navigation2 and ros-humble-nav2-bringup without a continuation character.",
+    "handling": "The intended single command needs one logical line; executing the two display lines separately is not equivalent. No installation is attempted.",
+    "method": "Separate exact visual transcription from an explicitly joined command, using shell token/newline semantics.",
+    "primaryEvidence": [],
+    "status": "qualification_pending_independent_review"
+  },
+  {
+    "id": "L58-ISSUE-map-path-placeholder",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1870,
+    "kind": "code",
+    "finding": "Navigation launch contains map:=path/to/my_map.yaml.",
+    "handling": "This is a placeholder, not an automatically resolved saved-map path; substitute an existing YAML file and its referenced image.",
+    "method": "Compare the printed placeholder with the e-Manual example and Humble map metadata contract.",
+    "primaryEvidence": [
+      {
+        "title": "ROBOTIS TurtleBot3 navigation simulation",
+        "url": "https://emanual.robotis.com/docs/en/platform/turtlebot3/nav_simulation/",
+        "locator": "ROS2 launch with map YAML and simulation clock; initial-pose and goal tools; avoid simultaneous command publishers.",
+        "version": "ROS2 section inspected 2026-10-20",
+        "checkedAt": "2026-10-20"
+      },
+      {
+        "title": "Nav2 Humble Map Server",
+        "url": "https://api.nav2.org/nav2-humble/html/md_nav2_map_server_README.html",
+        "locator": "Map YAML metadata retained; map_saver_cli saves occupancy grids.",
+        "version": "ROS2 Humble API documentation",
+        "checkedAt": "2026-10-20"
+      }
+    ],
+    "status": "qualification_pending_independent_review"
+  },
+  {
+    "id": "L58-ISSUE-demo-model-mismatch",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1873,
+    "kind": "figure",
+    "finding": "Gazebo tree in the demonstration still names burger, while setup page1867 specifies waffle.",
+    "handling": "Do not infer that the screenshot proves execution of the earlier waffle command or a single unchanged model configuration.",
+    "method": "Compare the actual two page regions; preserve both rather than silently choose one model.",
+    "primaryEvidence": [],
+    "status": "qualification_pending_independent_review"
+  }
+]

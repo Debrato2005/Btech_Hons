@@ -107,10 +107,11 @@ def build(args):
         'LEARNING_RESOURCES': (ROOT / 'app' / 'learning-resources.js').read_text(encoding='utf-8'),
         'LEARNING_RESOURCE_UI': (ROOT / 'app' / 'learning-resource-ui.js').read_text(encoding='utf-8'),
         'APP': (ROOT / 'app' / 'app.js').read_text(encoding='utf-8'),
+        'COURSE_NUMERICAL': (ROOT / 'app' / 'course-numerical.js').read_text(encoding='utf-8'),
         'LEARNING_TOOLS': (ROOT / 'app' / 'learning-tools.js').read_text(encoding='utf-8') if (ROOT / 'app' / 'learning-tools.js').exists() else '/* No learning-tools engine packaged. */',
         'BANK': script_json(bank),
     }
-    for key in ('CORE', 'APP', 'LEARNING_TOOLS'):
+    for key in ('CORE', 'APP', 'LEARNING_TOOLS', 'LEARNING_RESOURCES', 'LEARNING_RESOURCE_UI', 'COURSE_NUMERICAL'):
         if re.search(r'</script', replacements[key], flags=re.I):
             raise ValueError(f'Unescaped closing script tag in {key}.')
     if re.search(r'(?:src|href)\s*=\s*["\']https?://', template, flags=re.I):

@@ -27,3 +27,14 @@ print('isolated-file-import-passed')
  def test_verified_tool_without_integrity_metadata_rejected(self):
   spec=importlib.util.spec_from_file_location('isolated_lr2',ROOT/'scripts/learning_resources.py');lr=importlib.util.module_from_spec(spec);spec.loader.exec_module(lr)
   self.assertTrue(lr.integrity_errors({'learningTools':{'formulaSheet':[{'status':'verified'}]}},ROOT))
+ def test_real_authored_records_are_inactive_without_separate_approval(self):
+  spec=importlib.util.spec_from_file_location('isolated_lr3',ROOT/'scripts/learning_resources.py');lr=importlib.util.module_from_spec(spec);spec.loader.exec_module(lr)
+  b=json.loads((ROOT/'data/bank.json').read_text());new=json.loads((ROOT/'data/learning-tools-course.json').read_text())['learningTools'];b['learningTools']=new
+  before={q['id']:lr.question_hash(q) for q in b['questions']}
+  # Explicitly model missing approval, even after genuine reviews are integrated.
+  original_read=lr.read
+  lr.read=lambda path,default=None: [] if path.name=='learning-tool-reviews.json' else original_read(path,default)
+  diagnostics=lr.apply_tool_gate(b,ROOT)
+  self.assertEqual(len(diagnostics),18)
+  self.assertTrue(all(r['status']=='draft' for rows in new.values() for r in rows))
+  self.assertEqual(before,{q['id']:lr.question_hash(q) for q in b['questions']})

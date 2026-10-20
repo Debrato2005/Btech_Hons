@@ -278,7 +278,8 @@ test('bank numerical registration is allowlisted, source-linked, versioned and d
     generatorKind:'q-learning-update',generatorVersion:'1.0.0',sourceRefs:[{sourceId:'test-source',physicalPage:2,locator:'test equation'}]}];
   assert.deepEqual(tools.registerBankNumericalFamilies(bank).registered,[]);
   assert.deepEqual(tools.registerBankNumericalFamilies(bank,{includeDrafts:true}).registered,['test.source-linked-q']);
-  const variant=tools.generateVariant('test.source-linked-q',{seed:'source-linked'});
+  assert.throws(()=>tools.generateVariant('test.source-linked-q',{seed:'source-linked'}),{code:'STALE_RESOURCE'});
+  const variant=tools.generateVariant('test.source-linked-q',{seed:'source-linked',allowDrafts:true});
   assert.equal(variant.provenance.synthetic,false);assert.equal(variant.provenance.status,'draft');
   assert.equal(variant.provenance.sourceRefs[0].physicalPage,2);
   bank.learningTools.numericalFamilies[0].generatorVersion='9';

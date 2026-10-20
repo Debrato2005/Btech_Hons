@@ -15,7 +15,7 @@
 
 ## Checkpoint authorization and remote state
 
-The user explicitly authorized this and future validated checkpoint pushes to main on19October2026 at22:47UTC. Inspect main and use expected-SHA protection before updates. The last verified main at23:50:28UTC on19October2026 before this snapshot was9abe1fad15bf0bd3ae5300acb0fa4aa1ab874be6. Older unreferenced commit080eee36f72d244176dd16a082757648385901a6 is superseded by the newer coherent snapshot, not a completion claim. Only validated independent reviews enter the default pool; drafts and flagged items remain excluded.
+The user explicitly authorized continued validated checkpoint pushes to main, including the latest20October2026 direction. Inspect main and use expected-SHA protection before updates. The last verified main before this snapshot is6ee5b75e312c28e7e7a6bcac3ee2de5640ce2150, confirmed00:21:18UTC on20October2026 and unchanged00:43UTC. Only this Robotics project path is authorized; preserve unrelated files and the separate OncoSyn document. All drafts/flags remain excluded from ordinary study. This snapshot is incomplete.
 
 ## Next actions
 
@@ -28,3 +28,7 @@ Use `git ls-remote origin refs/heads/main` and compare with the intended commit.
 ## Runtime boundaries
 
 Do not use /tmp/robotics-l35-venv, install or retrieve models through denied routes, retrieve the denied L49 notebook, download NLTK corpora after its access denial, or bypass offline-browser restrictions. Read audits/W10-L48-independent-runtime-boundary.json and audits/W11-L52-runtime-boundary.json. Historical computations are not pretrained inference or hardware validation. Default installed Python deterministic analysis remains permitted.
+
+## Pending final verification
+
+All59assignment-solution pages currently lack source-bound bank questions and concept links; inspection alone did not close assignment scope. Complete the item ledger, author all substantive items and independently verify them, preserving printed-key conflicts. Audit lecture concept ledgers for analogous gaps. A permitted actual-browser environment must be able to launch a browser, open the exact downloaded single HTML as a local file, disable network access, exercise interactions/storage and capture screenshots. Existing cloud file-policy and executor socket denials remain; do not retry or tunnel around them. Prepare a reproducible runner and finish all unaffected work. Logic/unit tests are not actual browser verification.

@@ -1,0 +1,256 @@
+[
+  {
+    "id": "W11-L55-Q019",
+    "version": 2,
+    "stem": "Which option gives the complete novel-input, integration and real-system comparison sequence in the validation box on physical page 1753?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Apply novel driving torques, predict accelerations, integrate them through an ODE solver to velocities/positions, and compare the resulting motion with the real system."
+      },
+      {
+        "id": "o4",
+        "text": "Recompute only training loss after fitting, without new input or motion integration."
+      },
+      {
+        "id": "o1",
+        "text": "Measure held-out one-step acceleration error, but do not integrate or compare trajectories."
+      },
+      {
+        "id": "o2",
+        "text": "Integrate responses to novel inputs but compare only with the same nominal model, not real behavior."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1753",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1753,
+        "kind": "figure",
+        "locator": "Lecture L55, physical PDF page 1753, printed footer 9: Validation and integration box.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L55-Q056",
+    "version": 2,
+    "stem": "Which sequence exactly matches the printed order inside one minibatch update on physical page 1769?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Clear old gradients → calculate prediction and loss → backpropagate → update parameters."
+      },
+      {
+        "id": "o1",
+        "text": "Calculate prediction and loss → backpropagate → clear gradients → update parameters."
+      },
+      {
+        "id": "o2",
+        "text": "Calculate prediction and loss → clear old gradients → backpropagate the loss → update parameters."
+      },
+      {
+        "id": "o3",
+        "text": "Calculate prediction and loss → update parameters → clear gradients → backpropagate."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1769",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1769,
+        "kind": "code",
+        "locator": "Lecture L55, physical PDF page 1769, printed footer 25: minibatch lines tau_pred, loss, optimizer.zero_grad(), loss.backward(), optimizer.step(), in that printed order.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L55-Q060",
+    "version": 2,
+    "stem": "In an added GPU deployment, t is a detached CUDA float32 prediction tensor with NumPy-compatible dense strided layout and no conjugate or negative view bit. Using the default numpy(force=False), which operation makes conversion valid?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "t.detach().numpy() while t remains on CUDA."
+      },
+      {
+        "id": "o1",
+        "text": "t.clone().numpy() while the clone remains on CUDA."
+      },
+      {
+        "id": "o2",
+        "text": "t.cpu().numpy()."
+      },
+      {
+        "id": "o3",
+        "text": "t.contiguous().numpy() while the result remains on CUDA."
+      }
+    ],
+    "assumptions": [
+      "Added CUDA deployment. The printed source creates CPU tensors; default numpy(force=False) is explicitly required here.",
+      "t already requires no gradient, has compatible float32/layout and no conjugate/negative view bit."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1771",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1771,
+        "kind": "code",
+        "locator": "Lecture L55, physical PDF page 1771, printed footer 27: predict(q,dq,ddq) returns model(...).detach(); no device transfer is shown.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1772",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1772,
+        "kind": "code",
+        "locator": "Lecture L55, physical PDF page 1772, printed footer 28: predict(...).numpy() on trajectory tensors.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L55-Q073",
+    "version": 1,
+    "stem": "Which pairing matches the two distinct source examples without assuming an unshown output activation?",
+    "selectionMode": "single",
+    "type": "code",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "Forward identifier diagram: sigmoid and derivative-free evolution; inverse MLPRegressor code: tanh with learning_rate_init=0.001."
+      },
+      {
+        "id": "o3",
+        "text": "Forward identifier diagram: sigmoid and standard backpropagation; inverse MLPRegressor code: tanh with learning_rate_init=0.0001."
+      },
+      {
+        "id": "o1",
+        "text": "Forward identifier diagram: sigmoid activation and standard backpropagation; inverse MLPRegressor code: tanh with learning_rate_init=0.001."
+      },
+      {
+        "id": "o2",
+        "text": "Forward identifier diagram: tanh and standard backpropagation; inverse MLPRegressor code: sigmoid with learning_rate_init=0.001."
+      }
+    ],
+    "assumptions": [
+      "Do not infer a sigmoid output layer or an unprinted scaling scheme from the diagram’s generic activation label."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1752",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1752,
+        "kind": "figure",
+        "locator": "Lecture L55, physical PDF page 1752, printed footer 8: Neural Identifier Setup box, Activation: Sigmoid and Training: Standard backpropagation.",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1760",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1760,
+        "kind": "code",
+        "locator": "Lecture L55, physical PDF page 1760, printed footer 16: MLPRegressor arguments activation=tanh and learning_rate_init=1e-3.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L55-Q074",
+    "version": 1,
+    "stem": "Use an explicitly added local conservative two-joint model at q=(0,0): H=[[3,1],[1,2]] kg·m², D1=∂H/∂q1=[[1,0],[0,0]], D2=∂H/∂q2=[[0,1],[1,2]], in kg·m²/rad. Let v=q̇=(1,2) rad/s, a=q̈=(2,−1) rad/s² and g=∇V=(4,3) N·m. Use physical kinetic energy K=½vᵀHv and the explicitly corrected relation τ=Ha+Ḣv−∇K+g, where Ḣ=D1v1+D2v2. Which combined torque and physical-consistency conclusion is correct?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "hard",
+    "options": [
+      {
+        "id": "o2",
+        "text": "τ=(13.75,10) N·m; H is symmetric positive definite at this state, but a low black-box torque-fit error alone does not guarantee that structure."
+      },
+      {
+        "id": "o4",
+        "text": "τ=(13.5,7) N·m; low black-box torque-fit error itself guarantees a symmetric positive-definite implicit inertia matrix at all configurations."
+      },
+      {
+        "id": "o3",
+        "text": "τ=(8.5,−3) N·m; H is symmetric positive definite at this state, but a low black-box torque-fit error alone does not guarantee that structure."
+      },
+      {
+        "id": "o1",
+        "text": "τ=(13.5,7) N·m; H is symmetric positive definite at this state, but a low black-box torque-fit error alone does not guarantee that structure."
+      }
+    ],
+    "assumptions": [
+      "All numerical coefficients and the local state are added, not measurements or output from the omitted DeLaN2R implementation.",
+      "The stated corrected formula uses physical K with one-half. p1764 calls the doubled quadratic T kinetic energy, while p1765 halves a gradient of already physical energy; those source qualifications remain explicit.",
+      "D1 and D2 are local derivatives of a smooth symmetric H. The supplied SPD test is local and does not certify H at arbitrary configurations."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1761",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1761,
+        "kind": "statement",
+        "locator": "Lecture L55, physical PDF page 1761, printed footer 17: MLP limitations: no guarantee of a physical positive-definite inertia representation.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1763",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1763,
+        "kind": "equation",
+        "locator": "Lecture L55, physical PDF page 1763, printed footer 19: H and V subnetworks; H described as symmetric positive definite.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1764",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1764,
+        "kind": "equation",
+        "locator": "Lecture L55, physical PDF page 1764, printed footer 20: T=vᵀHv labelled kinetic energy and torque equation with half-gradient.",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1765",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1765,
+        "kind": "figure",
+        "locator": "Lecture L55, physical PDF page 1765, printed footer 21: Kinetic-energy block includes one-half but the Coriolis block halves its gradient again.",
+        "role": "conflict",
+        "region": null
+      }
+    ]
+  }
+]

@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "namedChecks": {
+    "gridDimensions": [
+      4.0,
+      2.0
+    ],
+    "gridCenter": [
+      -0.5249999999999999,
+      2.175
+    ],
+    "routeCosts": {
+      "A": 5,
+      "B": 6,
+      "C": 7
+    },
+    "stoppingDistance": 0.31999999999999995,
+    "corridorRequired": 0.5,
+    "corridorSideMargin": 0.024999999999999994,
+    "weights": [
+      0.2,
+      0.3,
+      0.5
+    ],
+    "clockRatio": 0.6,
+    "simSpeed": 0.19999999999999998,
+    "etaSpeed": 0.215,
+    "sequenceTrace": [
+      "Plan:FAILURE",
+      "Recover:SUCCESS"
+    ],
+    "fallbackResult": "SUCCESS"
+  },
+  "commandTokensParsedNotExecuted": [
+    [
+      "sudo",
+      "apt",
+      "install",
+      "ros-humble-navigation2",
+      "ros-humble-nav2-bringup"
+    ],
+    [
+      "export",
+      "TURTLEBOT3_MODEL=waffle."
+    ],
+    [
+      "ros2",
+      "launch",
+      "turtlebot3_gazebo",
+      "turtlebot3_world.launch.py"
+    ],
+    [
+      "ros2",
+      "launch",
+      "turtlebot3_cartographer",
+      "cartographer.launch.py",
+      "use_sim_time:=True"
+    ],
+    [
+      "ros2",
+      "run",
+      "turtlebot3_teleop",
+      "teleop_keyboard"
+    ],
+    [
+      "ros2",
+      "run",
+      "nav2_map_server",
+      "map_saver_cli",
+      "-f",
+      "my_map"
+    ],
+    [
+      "ros2",
+      "launch",
+      "turtlebot3_navigation2",
+      "navigation2.launch.py",
+      "use_sim_time:=True",
+      "map:=path/to/my_map.yaml"
+    ]
+  ],
+  "variedCases": 1000,
+  "variedAssertions": 7000,
+  "runtime": "Default Python standard-library arithmetic, random, math and shlex parsing only; no subprocess ROS/Gazebo/install execution."
+}

@@ -4991,7 +4991,7 @@
     },
     {
       "id": "W10-L50-Q059",
-      "version": 2,
+      "version": 3,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-author",
       "stem": "Memory says a user previously liked enthusiastic greetings, but the current message asks for a quiet response. Which planning approach uses memory and current evidence together?",
@@ -5013,15 +5013,15 @@
       "options": [
         {
           "id": "o3",
-          "text": "Replace the stored preference with the current affect label, losing the fact that it concerned a different situation."
+          "text": "Replace the old preference permanently with a general quiet-response rule for every future situation."
         },
         {
           "id": "o4",
-          "text": "Average the names of the old preference and new label without checking what either refers to."
+          "text": "Retrieve the past greeting that best matches the current topic and reuse its tone without incorporating the present quiet-response request."
         },
         {
           "id": "o1",
-          "text": "Use the earlier preference as a fixed affect label, so a new request for quiet cannot alter the response."
+          "text": "Give the stored long-term greeting preference priority until that memory record is formally updated, even for the present request."
         },
         {
           "id": "o2",
@@ -5047,19 +5047,19 @@
       "solution": {
         "justification": "Past interaction context and current estimates jointly inform response planning.",
         "optionExplanations": {
-          "o1": "A context-specific remembered preference does not override all later evidence.",
-          "o2": "This combines prior context with the latest cue rather than treating either as permanent certainty.",
-          "o3": "An affect label and a factual preference are different records with different scope.",
-          "o4": "Combining records requires their meanings and contexts, not arithmetic over label names."
+          "o1": "The present explicit request can guide this response without requiring a permanent memory update first.",
+          "o2": "This combines prior context with the latest request while preserving their different scopes.",
+          "o3": "One situation-specific request does not establish a permanent preference for every context.",
+          "o4": "Topic similarity alone does not incorporate the current requested tone."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Past interaction context and current estimates jointly inform response planning.",
         "memoryAid": null,
         "misconceptions": [
-          "An affect label and a factual preference are different records with different scope.",
-          "Combining records requires their meanings and contexts, not arithmetic over label names.",
-          "A context-specific remembered preference does not override all later evidence."
+          "The present explicit request can guide this response without requiring a permanent memory update first.",
+          "One situation-specific request does not establish a permanent preference for every context.",
+          "Topic similarity alone does not incorporate the current requested tone."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -5067,7 +5067,8 @@
       "origin": "generated",
       "reviewIds": [],
       "revisionAuthors": [
-        "build_robotics_study_app:L50-v2-author"
+        "build_robotics_study_app:L50-v2-author",
+        "build_robotics_study_app:L50-residual-v3"
       ]
     },
     {
@@ -5571,7 +5572,7 @@
     },
     {
       "id": "W10-L50-Q066",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-v2-author",
       "stem": "Use the notebook convention, not the different slide half-range formula. Begin with all eight angular-axis values50, then set happy80, welcome90 and friend70 and their complements. Angles in degrees are happy112, welcome22, friend67, curious157, sad292, distant202, strange247 and frustrated337. Sum each centered value(v−50) times its unit vector. The mood is the nearest named axis for radius≥10, with first dictionary entry breaking an exact tie. Which result is correct, rounded to two decimals?",
@@ -5617,8 +5618,8 @@
           "sourceId": "lectures",
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1572,
-          "kind": "derivation",
-          "locator": "Lecture50, physical page1572, printed footer7: Multi-axis centered resultant and plotting limit; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook.",
+          "kind": "figure",
+          "locator": "Lecture50, physical PDF page1572, printed footer7: Named angular axes, yellow per-axis values and purple vector-sum illustration; no exact notebook angles or plotting clip are printed here.",
           "evidenceText": "Robot Emotion State Machine\n•  Robots maintain an internal emotional state.\n•  Each emotional element has a vector or\n   direction.\n    – Open feelings are on the left side of the plot\n        (happy, friendly), and closed feelings (sad) are on\n       the right side.\n    – The distance from the center indicates the\n                                                                                                  [1]        strength of the emotions.\n    – The yellow circles are the robot’s current value on each axis.\n    – The purple line is the vector sum of those emotions, which\n        gives us the overall mood of the robot. The arcs show the\n      minimum and maximum magnitude of emotion.\n•  Robot behaviour changes as these states evolve.\n\n                                                                                                           7",
           "role": "premise",
           "region": null
@@ -5628,10 +5629,10 @@
           "sourceId": "lectures",
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1573,
-          "kind": "derivation",
-          "locator": "Lecture50, physical page1573, printed footer8: Multi-axis centered resultant and plotting limit; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook.",
+          "kind": "equation",
+          "locator": "Lecture50, physical PDF page1573, printed footer8: Printed half-range radius/angle formulas and45–55neutral threshold, which differ from the explicitly requested notebook convention.",
           "evidenceText": "Representing Emotional Spaces on a Polar Coordinate System\n•  The robot's overall mood vector [𝑟𝑠𝑡𝑎𝑡𝑒, 𝜃𝑠𝑡𝑎𝑡𝑒] is calculated by finding the\n   geometric center of this active emotional space.\n                                    𝑟𝑚𝑎𝑥 −𝑟𝑚𝑖𝑛\n                         𝑟𝑠𝑡𝑎𝑡𝑒=                                        2\n                                 𝜃𝑚𝑎𝑥 −𝜃𝑚𝑖𝑛\n                       𝜃𝑠𝑡𝑎𝑡𝑒=                                        2\n•  Neutral threshold: If the resultant vector magnitude 𝑟𝑠𝑡𝑎𝑡𝑒 falls near the\n   absolute center of the graph (between 45 and 55), the robot's qualitative state\n    is designated as Neutral.\n•    If 𝑟𝑠𝑡𝑎𝑡𝑒​ exceeds 55 (indicating strong emotional bias), the\n   system maps the angle 𝜃𝑠𝑡𝑎𝑡𝑒 to the closest named\n   emotional axis quadrant, shifting the robot’s behavior to\n   that primary mood.\n\n\n                                                                                                           8",
-          "role": "premise",
+          "role": "conflict",
           "region": null
         },
         {
@@ -5639,8 +5640,8 @@
           "sourceId": "lectures",
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1574,
-          "kind": "derivation",
-          "locator": "Lecture50, physical page1574, printed footer9: Multi-axis centered resultant and plotting limit; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook.",
+          "kind": "equation",
+          "locator": "Lecture50, physical PDF page1574, printed footer9: OppositeMagnitude=100−ActiveValue complement rule; the boundary-scan prose is not the notebook centered-sum implementation.",
           "evidenceText": "Representing Emotional Spaces on a Polar Coordinate System\n•  Emotions are organized as opposite pairs (e.g., Happy    Sad), maintaining a\n   Dual-Axis Equilibrium.\n•  Increasing one emotion automatically decreases its opposite, maintaining\n   emotional balance.\n                     OppositeMagnitude = 100 −ActiveValue\n•    If an interaction drives |happy| to 75, |sad| is instantaneously balanced down to\n   25.\n•  During every control update cycle, the emotional engine\n   scans all active emotional axes to find the boundaries of\n   the emotional footprint, identifying the min and max\n    radial magnitudes (𝑟𝑚𝑖𝑛, 𝑟𝑚𝑎𝑥​) and their corresponding\n   polar angles (𝜃𝑚𝑖𝑛, 𝜃𝑚𝑎𝑥​).\n\n\n                                                                                                           9",
           "role": "premise",
           "region": null
@@ -5650,8 +5651,8 @@
           "sourceId": "lectures",
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1576,
-          "kind": "derivation",
-          "locator": "Lecture50, physical page1576, printed footer11: Multi-axis centered resultant and plotting limit; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook.",
+          "kind": "code",
+          "locator": "Lecture50, physical PDF page1576, printed footer11: Albert demonstration pseudocode and hyperlink to the complete notebook; exact computations are in pinned notebook cells9and19.",
           "evidenceText": "Demo: Building an Emotion-aware Chatbot Albert\n                                            •   In this code:\n                                   – A local LLM is used to estimate the user's\n                                            emotional state from text.\n                                  – The estimated emotion updates the\n                                                  robot's internal Emotion Engine before\n                                               generating a response.\n                                   – Only the core pseudocode is shown here;\n                                             the complete implementation is available\n                                                 here.\n\n\n\n\n\n                                                                                                          11",
           "role": "premise",
           "region": null
@@ -5713,7 +5714,21 @@
           "checkedAt": "2026-10-20T00:00:04.379309+00:00",
           "locator": "Cells9 and19: RobotEmotionEngine.update and _plot_engine."
         }
-      ]
+      ],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-residual-v3"
+      ],
+      "conflictResolution": {
+        "status": "explicit-qualification-awaiting-independent-review",
+        "sourceClaim": "Page1573prints half-range formulas and a45–55neutral threshold, unlike the notebook centered vector sum and radius10threshold.",
+        "basis": "The stem explicitly selects the pinned notebook convention; cells9and19 provide the exact sum and plotting-only clipping.",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPages": [
+          1573
+        ],
+        "method": "Preserve the conflicting slide as conflict evidence, not as support for the notebook algorithm."
+      }
     },
     {
       "id": "W10-L50-Q067",
@@ -6136,7 +6151,7 @@
     },
     {
       "id": "W10-L50-Q071",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_robotics_study_app:L50-v2-author",
       "stem": "A course exercise needs facial-expression classes plus continuous valence/arousal targets. Use only the slide’s displayed dataset descriptions, not undocumented benchmark claims. Which source-and-evaluation plan fits those requirements?",
@@ -6161,19 +6176,19 @@
       "options": [
         {
           "id": "o1",
-          "text": "Use FER2013 because grayscale pixels alone define continuous valence and arousal targets, then assume color conversion supplies any missing labels."
+          "text": "Use FER2013 class labels, assign each image the AffectNet class-mean valence and arousal, and treat those imputed means as its directly annotated continuous targets."
         },
         {
           "id": "o2",
-          "text": "Use the displayed AffectNet targets; distinguish FER2013’s grayscale and RAF-DB’s listed grayscale/RGB descriptions, align labels and test new lighting/occlusion conditions rather than assuming transfer."
+          "text": "Use AffectNet’s listed class and valence/arousal targets, align label meanings and image representation, and test lighting and occlusion changes separately."
         },
         {
           "id": "o3",
-          "text": "Use the RAF-DB categorical example and replace each class number with the same numeric value for both valence and arousal without annotation or a stated mapping."
+          "text": "Use AffectNet’s listed targets, combine class labels from the three datasets by their numeric index without checking category order, and evaluate the merged classes."
         },
         {
           "id": "o4",
-          "text": "Use speech MFCCs as if they were the facial-image labels, then treat a shared category name as proof of performance under new camera conditions."
+          "text": "Use AffectNet’s listed targets and a random held-out split from the same image collection, then treat that score alone as evidence of performance under new lighting and occlusion."
         }
       ],
       "correctOptionIds": [
@@ -6186,7 +6201,7 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1581,
           "kind": "statement",
-          "locator": "Lecture50, physical page1581, printed footer16: Dataset targets, representation and domain limits; supplied scenario derives from the displayed concept.",
+          "locator": "Lecture50, physical PDF page1581, printed footer16: Displayed dataset channel descriptions and AffectNet emotion, valence and arousal target list.",
           "evidenceText": "FER Datasets\n•  AI models require labelled emotion datasets.\n•  Popular datasets include:\n   – FER2013 (grayscale)\n   – RAF-DB (grayscale+RGB)\n   – AffectNet (grayscale+RGB)\n•  AffectNet also provides:\n   – Emotion labels\n   – Valence\n   – Arousal\n\n\n\n\n\n                                                                                                          16",
           "role": "premise",
           "region": null
@@ -6197,7 +6212,7 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1582,
           "kind": "statement",
-          "locator": "Lecture50, physical page1582, printed footer17: Dataset targets, representation and domain limits; supplied scenario derives from the displayed concept.",
+          "locator": "Lecture50, physical PDF page1582, printed footer17: Discrete category names and numbered example labels; category meanings must not be inferred from an arbitrary shared numeric index.",
           "evidenceText": "Representing Emotion from Facial Expressions\n•  To build systems that understand emotion, we must first choose how to\n   represent it computationally.\n•  There are two primary approaches:\n     1. Discrete Categories: Classifying emotions into a small set of basic emotions.\n          • For example, Ekman identified seven basic emotions: neutral, fear, anger,\n          sadness, happiness, disgust, and surprise.\n\n\n\n\n\n         1-Neutral, 2-Anger, 3-Sadness, 4 Surprise,\n              5- Happiness, 6- Disgust, 7- Fear\n\n\n                                                                                                          17",
           "role": "premise",
           "region": null
@@ -6208,19 +6223,8 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1583,
           "kind": "statement",
-          "locator": "Lecture50, physical page1583, printed footer18: Dataset targets, representation and domain limits; supplied scenario derives from the displayed concept.",
+          "locator": "Lecture50, physical PDF page1583, printed footer18: Lower comparison of a RAF-DB discrete label with AffectNet continuous labels; this item does not adopt the inaccurate energy/calmness descriptions above.",
           "evidenceText": "Representing1. f        Emotion from Facial Expressions\n 2. Continuous Dimensions: Mapping emotions across a continuous space.\n   – The two most common dimensions are Arousal and Valence\n   – They range between [-1,1]\n   – Both measure the energy levels of an image\n   – Arousal: indicates calmness\n   – Valence: decides positive/negative emotion\n   – Captures emotion intensity better than discrete labels.\n                                                       Valance:\n                                                     0.63    A Happy\n                                                        Arousal:  sample from:\n                                                     0.77\n                 Discrete label from     Continuous label\n                   RAF-DB          from Affectnet\n\n                                                                                                          18",
-          "role": "premise",
-          "region": null
-        },
-        {
-          "slideId": "lectures-p1585",
-          "sourceId": "lectures",
-          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-          "physicalPage": 1585,
-          "kind": "statement",
-          "locator": "Lecture50, physical page1585, printed footer20: Dataset targets, representation and domain limits; supplied scenario derives from the displayed concept.",
-          "evidenceText": "Speech Emotion Recognition (SER)\n•  Human emotions are reflected not only in what is\n    said, but also in how it is spoken.\n•  Speech features such as pitch, speaking rate, energy,\n   and MFCCs provide important emotional cues.\n•  Deep Learning models learn these patterns to\n   estimate the speaker's emotional state.\n•  SER complements language understanding and\n   improves emotion-aware Human-Robot Interaction.\n•  Future emotion-aware robots combine text\n   understanding with Speech Emotion Recognition (SER)\n   and Facial Emotion Recognition (FER) to obtain a more\n    reliable estimate of the user's emotional state.\n\n\n                                                                                                          20",
           "role": "premise",
           "region": null
         },
@@ -6230,7 +6234,7 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1590,
           "kind": "statement",
-          "locator": "Lecture50, physical page1590, printed footer25: Dataset targets, representation and domain limits; supplied scenario derives from the displayed concept.",
+          "locator": "Lecture50, physical PDF page1590, printed footer25: Challenges from individual variation, occlusion and poor lighting.",
           "evidenceText": "Applications and Challenges\n•   Social robots are gaining popularity as healthcare assistants, educational\n   robots, customer service, home companion robots and in elderly care\n   environments.\n•  Challenges include:\n   –  Facial expressions vary across individuals.\n   – Emotions are often mixed rather than pure.\n   – Occlusion and poor lighting reduce accuracy.\n   – Cultural differences influence emotional expression.\n   – Privacy and ethical concerns must be considered.\n\n\n\n\n\n                                                                                                          25",
           "role": "premise",
           "region": null
@@ -6239,25 +6243,28 @@
       "solution": {
         "justification": "The slide explicitly lists AffectNet class and valence/arousal targets; representation compatibility and target-domain evaluation remain separate requirements.",
         "optionExplanations": {
-          "o1": "Pixel channels do not create missing supervised target annotations.",
-          "o2": "The slide explicitly lists AffectNet class and valence/arousal targets; representation compatibility and target-domain evaluation remain separate requirements.",
-          "o3": "A category code is not automatically a valid continuous affect annotation.",
-          "o4": "Acoustic features are a different input modality, and shared label names do not establish camera-domain performance."
+          "o1": "A category-level mean is an imputed target, not evidence that the individual image has the directly annotated continuous supervision required. The source only explicitly lists these targets for AffectNet.",
+          "o2": "The displayed AffectNet targets fit the requirements; label meaning, input representation and changed-domain testing still need separate checks.",
+          "o3": "Equal numeric indices do not establish equal category meanings or ordering across datasets.",
+          "o4": "A same-collection held-out score does not by itself test the separate lighting and occlusion changes identified in the lecture."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The slide explicitly lists AffectNet class and valence/arousal targets; representation compatibility and target-domain evaluation remain separate requirements.",
         "memoryAid": null,
         "misconceptions": [
-          "Pixel channels do not create missing supervised target annotations.",
-          "A category code is not automatically a valid continuous affect annotation.",
-          "Acoustic features are a different input modality, and shared label names do not establish camera-domain performance."
+          "A category-level mean is an imputed target, not evidence that the individual image has the directly annotated continuous supervision required. The source only explicitly lists these targets for AffectNet.",
+          "Equal numeric indices do not establish equal category meanings or ordering across datasets.",
+          "A same-collection held-out score does not by itself test the separate lighting and occlusion changes identified in the lecture."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
-      "reviewIds": []
+      "reviewIds": [],
+      "revisionAuthors": [
+        "build_robotics_study_app:L50-residual-v3"
+      ]
     }
   ],
   "concepts": [

@@ -3,6 +3,7 @@
 import json,copy
 from pathlib import Path
 R=Path(__file__).resolve().parents[1];B='W12-L58';A='L58-author-20261020'
+assert not (R/f'audits/{B}-review-manifest.json').exists(),'Frozen: do not overwrite reviewed inspections/batch'
 def read(p):return json.loads((R/p).read_text())
 def write(p,x):(R/p).write_text(json.dumps(x,ensure_ascii=False,indent=2)+'\n')
 notes=read('audits/L58-page-observations.json');bpath=R/f'data/question-batches/{B}.json';b=read(f'data/question-batches/{B}.json')if bpath.exists()else{'schemaVersion':'1.0.0','batchId':B,'authorId':A,'questions':[],'concepts':[],'coverageNote':'Work in progress, authoring and actual inspection incomplete.'}

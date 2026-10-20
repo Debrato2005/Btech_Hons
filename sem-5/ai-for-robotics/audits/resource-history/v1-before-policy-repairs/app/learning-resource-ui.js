@@ -1,0 +1,36 @@
+/* Read-only, textContent-only rendering of exact question projections. */
+(function(root){'use strict';
+const filters={};
+function node(tag,text,attrs={}){const n=document.createElement(tag);if(text!==null&&text!==undefined)n.textContent=String(text);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,String(v));return n;}
+function button(label,fn){const n=node('button',label,{type:'button'});n.addEventListener('click',fn);return n;}
+function block(title,value){const n=node('div',null,{class:'solution-block'});n.append(node('h4',title),node('div',typeof value==='string'?value:JSON.stringify(value,null,2)));return n;}
+function list(title,values){const wrap=node('div');if(!values?.length)return wrap;wrap.append(node('h4',title));const ul=node('ul');for(const v of values)ul.append(node('li',typeof v==='string'?v:JSON.stringify(v)));wrap.append(ul);return wrap;}
+function details(label,fill){const d=node('details'),s=node('summary',label);d.append(s);let filled=false;d.addEventListener('toggle',()=>{if(d.open&&!filled){filled=true;fill(d);}});return d;}
+function render(kind,container,bank,actions){
+ const R=root.RoboticsLearningResources;if(!R)return false;
+ // Recompute the current hash/review gate on every render, never reuse stale approvals.
+ const all=R.project(bank);
+ if(!R.policyAllowed(bank)){container.append(node('div','Exact source-linked learning views are prepared but remain closed until the extractor policy receives independent exact-hash review.',{class:'audit-warning'}));return false;}
+ const rows=kind==='formulas'?all.formulas:kind==='confusion'?all.confusionPairs:all.traps;
+ const f=filters[kind]||(filters[kind]={week:'',lecture:'',search:'',page:0,pageSize:20});
+ const panel=node('section',null,{class:'card'}),toolbar=node('div',null,{class:'toolbar'}),results=node('div'),status=node('p',null,{class:'muted','aria-live':'polite'});
+ panel.append(node('h2',kind==='formulas'?'Week-wise formula sheet':kind==='confusion'?'Discriminating concepts and common confusions':'Question-linked examination traps'));
+ panel.append(node('p','Exact projections of approved question evidence, not newly authored factual summaries. Each card retains its question premises, assumptions, source qualifications and review binding. Counts are resource records, not unique concepts.',{class:'muted'}));
+ const week=node('select',null,{'aria-label':'Learning tool week'}),lecture=node('select',null,{'aria-label':'Learning tool lecture'}),search=node('input',null,{'aria-label':'Search learning resources',placeholder:'Search formulas, variables, context or mistakes',type:'search'});
+ week.append(node('option','All weeks',{value:''}));for(const w of [...new Set(rows.flatMap(r=>r.weeks||[r.week]))].sort((a,b)=>a-b))week.append(node('option','Week '+w,{value:w}));
+ lecture.append(node('option','All lectures',{value:''}));for(const l of [...new Set(rows.flatMap(r=>r.lectureIds||[r.lectureId]))].sort((a,b)=>Number(a.slice(1))-Number(b.slice(1))))lecture.append(node('option',l,{value:l}));
+ week.value=f.week;lecture.value=f.lecture;search.value=f.search;
+ toolbar.append(week,lecture,search);panel.append(toolbar,status,results);container.append(panel);
+ function contextPanel(card,article){article.append(details('Exact question context, qualifications and source evidence ('+card.contexts.length+')',d=>{let page=0;const box=node('div');d.append(box);const paint=()=>{box.replaceChildren();const start=page*10,contexts=card.contexts.slice(start,start+10);for(const c of contexts){const sec=node('section',null,{class:'tool-record'});sec.append(button(c.questionId+' · open approved question',()=>actions.onQuestion(c.questionId)),block('Exact premise',c.stem),list('Question assumptions',c.assumptions),list('Correct alternative(s) in this premise',c.correctOptions.map(o=>o.text)),block('Original justification',c.justification));if(c.conflictResolution)sec.append(block('Retained source qualification',c.conflictResolution));if(c.primaryEvidence.length)sec.append(block('Primary qualification evidence',c.primaryEvidence));for(const ref of c.sourceRefs)sec.append(button('Source '+ref.sourceId+' · PDF page '+ref.physicalPage,()=>actions.onSource(ref)));sec.append(details('Exact approval binding',x=>x.append(block('Binding',{questionId:c.questionId,version:c.questionVersion,questionSha256:c.questionSha256,reviewIds:c.reviewIds}))));box.append(sec);}if(card.contexts.length>10){const prev=button('Previous contexts',()=>{page--;paint();}),next=button('Next contexts',()=>{page++;paint();});prev.disabled=page===0;next.disabled=start+10>=card.contexts.length;box.append(prev,node('span',' '+(start+1)+'–'+Math.min(start+10,card.contexts.length)+' / '+card.contexts.length+' '),next);}};paint();}));}
+ function paint(){const p=R.filterPage(rows,f);f.page=p.page;results.replaceChildren();status.textContent=p.total+' matching records; page '+(p.page+1)+' / '+p.pages+'. '+all.eligibleQuestionCount+' questions pass the current source/review gate.';
+ for(const card of p.rows){const article=node('article',null,{class:'tool-record'});article.append(node('h3',card.title),node('p','Projected from approved question evidence · Week '+(card.weeks||[card.week]).join(', ')+' · '+(card.lectureIds||[card.lectureId]).join(', '),{class:'badge verified'}));
+ if(kind==='formulas'){article.append(node('div',card.expression,{class:'formula'}),block('Variable meanings',card.variables),block('Units',card.units),list('Formula assumptions',card.assumptions),details('Applications and question-specific mistake notes',d=>d.append(list('Exact application premises',card.applications),list('Copied misconception notes',card.commonMistakes))));}
+ else if(kind==='confusion'){article.append(block('Discriminating question',card.discriminator),node('p',card.description,{class:'muted'}));const pair=node('div',null,{class:'comparison'}),right=node('div'),wrong=node('div');right.append(node('h4','Correct distinction under this premise'));wrong.append(node('h4','Tempting alternatives · incorrect'));for(const o of card.correctAlternatives)right.append(block(o.text,card.optionExplanations[o.id]||''));for(const o of card.incorrectAlternatives)wrong.append(block(o.text,card.optionExplanations[o.id]||''));pair.append(right,wrong);article.append(pair);}
+ else article.append(block('Original question premise',card.contexts[0].stem),list('Explicit examination traps',card.explicitTraps),list('Copied misconception explanations',card.misconceptions),block('Correct reasoning',card.explanation));
+ contextPanel(card,article);results.append(article);}
+ const nav=node('div',null,{class:'toolbar'}),prev=button('Previous resource page',()=>{f.page--;paint();}),next=button('Next resource page',()=>{f.page++;paint();});prev.disabled=p.page===0;next.disabled=p.page+1>=p.pages;nav.append(prev,node('span','Page '+(p.page+1)+' / '+p.pages),next);results.append(nav);
+ }
+ for(const s of [week,lecture])s.addEventListener('change',()=>{f.week=week.value;f.lecture=lecture.value;f.page=0;paint();});let timer;search.addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(()=>{f.search=search.value;f.page=0;paint();},180);});paint();return true;
+}
+root.RoboticsLearningResourceUI=Object.freeze({render});
+}(typeof globalThis!=='undefined'?globalThis:this));

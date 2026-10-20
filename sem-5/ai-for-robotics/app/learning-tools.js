@@ -4,13 +4,15 @@
  */
 (function (root, factory) {
   'use strict';
-  const api = factory(typeof module === 'object' && module.exports ? require('./learning-resources.js') : root.RoboticsLearningResources);
+  const api = factory(typeof module === 'object' && module.exports ? require('./learning-resources.js') : root.RoboticsLearningResources,
+    typeof module === 'object' && module.exports ? require('./course-numerical.js') : root.RoboticsCourseNumerical);
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (root) root.RoboticsLearningTools = api;
-}(typeof globalThis !== 'undefined' ? globalThis : this, function (resourceGate) {
+}(typeof globalThis !== 'undefined' ? globalThis : this, function (resourceGate, courseNumerical) {
   'use strict';
   const ENGINE_VERSION = '1.0.0';
   const families = new Map();
+  let currentBank = null;
   const own = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
   const clone = value => JSON.parse(JSON.stringify(value));
   const compareText = (a, b) => String(a) < String(b) ? -1 : String(a) > String(b) ? 1 : 0;
@@ -139,6 +141,10 @@
       status,
       courseSupported: !record.synthetic && sourceRefs.length > 0,
       sourceRefs: clone(sourceRefs),
+      questionIds: clone(record.questionIds || []), questionBindings: clone(record.questionBindings || []),
+      conflictResolution: clone(record.conflictResolution || null), sourceQualifications: clone(record.sourceQualifications || []),
+      primaryEvidence: clone(record.primaryEvidence || []), reviewIds: clone(record.reviewIds || []),
+      resourceBinding: record.resourceBinding ? clone(record.resourceBinding) : null,
       review: record.review ? clone(record.review) : null
     };
   }
@@ -153,16 +159,29 @@
     families.set(definition.id, Object.freeze({ ...definition }));
     return definition.id;
   }
+  function familyCurrent(family, {allowDrafts = false} = {}) {
+    if (family.synthetic) return true;
+    if (!family.bankRegistered || !currentBank) return false;
+    const records = currentBank.learningTools?.numericalFamilies || [];
+    const matching = records.filter(r => r?.id === family.id);
+    if (matching.length !== 1 || resourceGate.runtimeQuestionDigest(matching[0]) !== family.recordRuntimeSha256) return false;
+    // The explicit author/audit mode may evaluate a DRAFT, never promote it.
+    if (allowDrafts && family.status === 'draft') return true;
+    return family.status === 'verified' &&
+      currentBank.learningResourceIntegrity?.runtimePolicySha256 === family.resourceBinding?.runtimePolicySha256 &&
+      resourceGate.toolRecordAllowed(matching[0], currentBank);
+  }
   function listNumericalFamilies({ includeSynthetic = false, includeDrafts = false } = {}) {
     return [...families.values()].filter(f => (includeSynthetic || !f.synthetic) &&
-      (f.synthetic || includeDrafts || f.status === 'verified')).map(f => ({
+      familyCurrent(f,{allowDrafts:includeDrafts}) && (f.synthetic || includeDrafts || f.status === 'verified')).map(f => ({
       id: f.id, title: f.title, version: f.version, description: f.description || '',
       parameterDomains: clone(f.parameterDomains || {}), provenance: provenance(f)
     }));
   }
-  function generateVariant(familyId, { seed, parameters, shuffleOptions = true, maxAttempts = 200 } = {}) {
+  function generateVariant(familyId, { seed, parameters, shuffleOptions = true, maxAttempts = 200, allowDrafts = false } = {}) {
     const family = families.get(familyId);
     assert(family, 'Unknown numerical family: ' + familyId);
+    assert(familyCurrent(family,{allowDrafts}), 'The numerical family is no longer currently eligible.', 'STALE_RESOURCE');
     const normalizedSeed = normalizeSeed(seed), rng = createRng(seed);
     integer(maxAttempts, 'maxAttempts', 1, 1000);
     const fixedParameters = parameters !== undefined;
@@ -203,6 +222,8 @@
     assert(saved && saved.engineVersion === ENGINE_VERSION, 'Unsupported numerical engine version.', 'VERSION_MISMATCH');
     const family = families.get(saved.familyId);
     assert(family && family.version === saved.generatorVersion, 'The saved generator version is unavailable.', 'VERSION_MISMATCH');
+    assert(familyCurrent(family), 'The saved course family is no longer currently eligible.', 'STALE_RESOURCE');
+    if (!family.synthetic) assert(stableStringify(saved.provenance?.resourceBinding) === stableStringify(family.resourceBinding), 'The saved course resource/policy binding is stale.', 'STALE_RESOURCE');
     const restored = generateVariant(saved.familyId, { seed: saved.seed, parameters: saved.parameters, shuffleOptions: false });
     assert(restored.id === saved.id, 'Variant identity does not match its seed and parameters.', 'CORRUPT_VARIANT');
     assert(Array.isArray(saved.optionOrder) && saved.optionOrder.length === restored.options.length &&
@@ -217,6 +238,10 @@
   }
   function registerBankNumericalFamilies(bank, { includeDrafts = false } = {}) {
     const registered = [], diagnostics = [];
+    currentBank = bank;
+    // Replace, rather than append, the entire current bank-owned registry.
+    // This evicts removed records and all families from a previous bank.
+    for (const [id,family] of families) if (family.bankRegistered) families.delete(id);
     const records = (bank.learningTools && bank.learningTools.numericalFamilies) || [];
     const implementationIds = {
       'bayes-two-hypotheses': 'synthetic.bayes-two-hypotheses',
@@ -225,7 +250,7 @@
     for (const record of records) {
       const errors = validateReferences(getRefs(record), bank);
       const implementationId = implementationIds[record.generatorKind];
-      const implementation = implementationId && families.get(implementationId);
+      const implementation = (implementationId && families.get(implementationId)) || courseNumerical?.getImplementation(record.generatorKind);
       if (!implementation) errors.push('Unknown allowlisted generatorKind.');
       if (!record.id || !record.generatorVersion) errors.push('A family requires id and generatorVersion.');
       if (record.synthetic) errors.push('Synthetic records cannot be registered as course families.');
@@ -236,16 +261,18 @@
         diagnostics.push({id:record.id,errors}); continue;
       }
       const previous = families.get(record.id);
-      if (previous) {
-        if (previous.version !== record.generatorVersion || stableStringify(previous.sourceRefs) !== stableStringify(getRefs(record))) {
-          diagnostics.push({id:record.id,errors:['Registered family identity/version/source references conflict.']});
-          continue;
-        }
-      } else {
+      if (previous && !previous.bankRegistered) {
+        diagnostics.push({id:record.id,errors:['A non-bank family already uses this ID.']}); continue;
+      }
+      if (previous) families.delete(record.id);
+      {
         registerNumericalFamily({ ...implementation, id:record.id, version:record.generatorVersion,
           title:record.title || implementation.title.replace(' (synthetic)', ''),
           description:record.description || 'Generated numerical exercise derived from the cited course premises under the stated assumptions.',
-          synthetic:false, bankRegistered:true, status:resourceGate?.toolRecordAllowed(record, bank)?'verified':'draft', sourceRefs:clone(getRefs(record)), review:record.review || null });
+          synthetic:false, bankRegistered:true, recordRuntimeSha256:resourceGate.runtimeQuestionDigest(record),
+          resourceBinding:{toolId:record.id,toolVersion:record.version,toolSha256:bank.learningResourceIntegrity?.toolBindings?.[record.id]?.sha256||null,toolRuntimeSha256:resourceGate.runtimeQuestionDigest(record),policyId:bank.learningResourceIntegrity?.policy?.id||null,policyVersion:bank.learningResourceIntegrity?.policy?.version||null,policySha256:bank.learningResourceIntegrity?.policySha256||null,runtimePolicySha256:bank.learningResourceIntegrity?.runtimePolicySha256||null}, status:resourceGate?.toolRecordAllowed(record, bank)?'verified':'draft', sourceRefs:clone(getRefs(record)), review:record.review || null,
+          questionIds:clone(record.questionIds||[]),questionBindings:clone(record.questionBindings||[]),reviewIds:clone(record.reviewIds||[]),
+          conflictResolution:clone(record.conflictResolution||null),sourceQualifications:clone(record.sourceQualifications||[]),primaryEvidence:clone(record.primaryEvidence||[]) });
       }
       registered.push(record.id);
     }

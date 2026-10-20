@@ -4,7 +4,7 @@
  */
 (function(root,factory){'use strict';const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;if(root)root.RoboticsLearningResources=api;}(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
-const VERSION='1.0.0';
+const VERSION='1.0.1';
 const CHECKS=['sourceSupport','assumptions','answerSet','distractors','calculations','figureFidelity','explanation','difficulty','duplication'];
 const POLICY_CHECKS=['exactProjection','contextPreservation','sourceAndReviewBinding','failClosedMutationTests','runtimeTests'];
 const clone=x=>JSON.parse(JSON.stringify(x));
@@ -24,12 +24,26 @@ function sha256(text){
  return H.map(v=>v.toString(16).padStart(8,'0')).join('');
 }
 function runtimeQuestionDigest(q){const copy={...q};delete copy.status;delete copy.reviewIds;return sha256(stableJSON(copy));}
-function sameSet(a,b){return Array.isArray(a)&&Array.isArray(b)&&new Set(a).size===new Set(b).size&&a.every(x=>b.includes(x));}
+const nonblank=x=>typeof x==='string'&&x.trim().length>0;
+function uniqueIds(a){return Array.isArray(a)&&a.length>0&&a.every(nonblank)&&new Set(a).size===a.length;}
+function sameSet(a,b){return uniqueIds(a)&&uniqueIds(b)&&a.length===b.length&&a.every(x=>b.includes(x));}
+function literalAnswerValid(q,answer){
+ const options=q.options;if(!Array.isArray(options)||options.length<2||options.some(o=>!o||!nonblank(o.id)))return false;
+ const ids=options.map(o=>o.id);
+ return uniqueIds(ids)&&uniqueIds(answer)&&answer.every(id=>ids.includes(id))&&
+  (q.selectionMode==='single'?answer.length===1:q.selectionMode==='multi');
+}
+function independentReviewer(id,record){return nonblank(id)&&![record.authorId,...(record.revisionAuthors||[])].some(a=>nonblank(a)&&a.trim()===id.trim());}
+function sourceRefAllowed(c,sources,slides){
+ if(!c||typeof c!=='object')return false;
+ const s=sources.get(c.sourceId),p=slides.get(c.slideId);
+ return !!(s&&p&&s.retrievalStatus==='ready'&&/^[a-f0-9]{64}$/.test(c.sourceSha256||'')&&s.sha256===c.sourceSha256&&p.sourceSha256===c.sourceSha256&&p.sourceId===c.sourceId&&Number.isInteger(s.pageCount)&&s.pageCount>0&&Number.isInteger(c.physicalPage)&&c.physicalPage>0&&c.physicalPage<=s.pageCount&&p.physicalPage===c.physicalPage&&p.visualInspection?.status==='complete'&&['examinable','repeated','excluded'].includes(p.disposition));
+}
 function policyAllowed(bank){
  const x=bank.learningResourceIntegrity;if(!x||x.policyEligible!==true||x.policy?.version!==VERSION)return false;
  if(x.runtimePolicySha256!==sha256(stableJSON(x.policy)))return false;
  const current=(x.policyReviews||[]).filter(r=>r.resourceId===x.policy.id&&r.resourceVersion===x.policy.version&&r.resourceSha256===x.policySha256);
- return !current.some(r=>['flagged','rejected'].includes(r.decision))&&current.some(r=>r.decision==='verified'&&r.reviewerId&&r.reviewerId!==x.policy.authorId&&POLICY_CHECKS.every(k=>r.checks?.[k]===true));
+ return !current.some(r=>['flagged','rejected'].includes(r.decision))&&current.some(r=>r.decision==='verified'&&independentReviewer(r.reviewerId,x.policy)&&POLICY_CHECKS.every(k=>r.checks?.[k]===true));
 }
 function eligibleQuestions(bank){
  const diagnostics=[];if(!policyAllowed(bank))return {questions:[],diagnostics:[{id:'projection-policy',reason:'No current independent extractor-policy approval.'}]};
@@ -41,17 +55,25 @@ function eligibleQuestions(bank){
   const bind=bank.learningResourceIntegrity.bindings?.[q.id],reasons=[];
   if(q.synthetic||q.origin==='synthetic')reasons.push('Synthetic question is not course evidence.');
   if(!bind||bind.questionVersion!==q.version||bind.runtimeSha256!==runtimeQuestionDigest(q)||!/^[a-f0-9]{64}$/.test(bind.questionSha256||''))reasons.push('Missing or stale content binding.');
-  const cs=q.citations||[];if(!cs.length)reasons.push('No citations.');
-  for(const c of cs){const s=sources.get(c.sourceId),p=slides.get(c.slideId);if(!s||!p||s.retrievalStatus!=='ready'||s.sha256!==c.sourceSha256||p.sourceSha256!==c.sourceSha256||p.sourceId!==c.sourceId||p.physicalPage!==c.physicalPage||p.visualInspection?.status!=='complete'||['unreviewed','unresolved'].includes(p.disposition))reasons.push('Source/page/inspection mismatch.');if(c.role==='conflict'&&!q.conflictResolution)reasons.push('Unqualified source conflict.');}
+  const cs=Array.isArray(q.citations)?q.citations:[];if(!cs.length)reasons.push('No citations.');
+  if(!literalAnswerValid(q,q.correctOptionIds))reasons.push('Invalid literal answer key.');
+  for(const c of cs){if(!sourceRefAllowed(c,sources,slides))reasons.push('Source/page/inspection mismatch.');if(c?.role==='conflict'&&!q.conflictResolution)reasons.push('Unqualified source conflict.');}
+  if(cs.some(c=>!c||typeof c!=='object')){diagnostics.push({id:q.id,reasons});continue;}
   const rs=(reviews.get(q.id)||[]).filter(r=>r.questionVersion===q.version&&r.questionSha256===bind?.questionSha256&&cs.every(c=>r.sourceVersions?.[c.sourceId]===c.sourceSha256)&&Object.entries(r.sourceVersions||{}).every(([id,h])=>sources.get(id)?.sha256===h));
   if(rs.some(r=>['flagged','rejected'].includes(r.decision)))reasons.push('Current independent dispute.');
-  const accepted=rs.filter(r=>r.decision==='verified'&&r.reviewerId&&![q.authorId,...(q.revisionAuthors||[])].includes(r.reviewerId)&&CHECKS.every(k=>r.checks?.[k]===true)&&sameSet(r.independentAnswerOptionIds,q.correctOptionIds)&&cs.every(c=>r.reviewedSlideIds?.includes(c.slideId)));
+  const accepted=rs.filter(r=>r.decision==='verified'&&independentReviewer(r.reviewerId,q)&&CHECKS.every(k=>r.checks?.[k]===true)&&literalAnswerValid(q,r.independentAnswerOptionIds)&&sameSet(r.independentAnswerOptionIds,q.correctOptionIds)&&cs.every(c=>r.reviewedSlideIds?.includes(c.slideId)));
   if(!accepted.length)reasons.push('No current full independent approval.');
   if(reasons.length)diagnostics.push({id:q.id,reasons});else questions.push({question:q,binding:bind,reviewIds:accepted.map(r=>r.id)});
  }
  return {questions,diagnostics};
 }
-function context(entry){const q=entry.question;return {questionId:q.id,week:q.week,lectureId:q.lectureId,questionVersion:q.version,questionSha256:entry.binding.questionSha256,reviewIds:entry.reviewIds,stem:q.stem,assumptions:clone(q.assumptions||[]),correctOptions:clone(q.options.filter(o=>q.correctOptionIds.includes(o.id))),justification:q.solution.justification,sourceRefs:clone(q.citations),conflictResolution:clone(q.conflictResolution||null),primaryEvidence:clone(q.primaryEvidence||[])};}
+function context(entry){
+ // Retain every original field, including supplemental notebooks, experiments,
+ // implementation versions and diagram provenance. Shared aliases refer to the
+ // same detached clone, not a lossy list of currently known extension fields.
+ const q=clone(entry.question);
+ return {...q,questionId:q.id,questionVersion:q.version,questionSha256:entry.binding.questionSha256,reviewIds:clone(entry.reviewIds),correctOptions:q.options.filter(o=>q.correctOptionIds.includes(o.id)),justification:q.solution.justification,sourceRefs:q.citations,conflictResolution:q.conflictResolution||null,primaryEvidence:q.primaryEvidence||[]};
+}
 function base(entry,kind,id){const q=entry.question;return {id,kind,provenanceKind:'exact-question-projection',status:'projected-from-verified',week:q.week,lectureId:q.lectureId,title:q.subtopic||q.topic||q.id,questionIds:[q.id],conceptIds:clone(q.conceptIds||[]),slideIds:[...new Set(q.citations.map(c=>c.slideId))],sourceRefs:clone(q.citations),contexts:[context(entry)],projectionVersion:VERSION};}
 function project(bank){
  const eligible=eligibleQuestions(bank),formulas=[],confusionPairs=[],traps=[],formulaMap=new Map();
@@ -72,18 +94,18 @@ function toolRecordAllowed(record,bank){
  if(record?.status!=='verified'||record.synthetic||!policyAllowed(bank))return false;
  const x=bank.learningResourceIntegrity,b=x.toolBindings?.[record.id];
  if(!b||b.version!==record.version||!/^[a-f0-9]{64}$/.test(b.sha256||'')||b.runtimeSha256!==runtimeQuestionDigest(record))return false;
- const refs=record.sourceRefs||[],links=record.questionBindings||[];if(!refs.length||!links.length||!sameSet(record.questionIds,links.map(l=>l.questionId)))return false;
+ const refs=record.sourceRefs,links=record.questionBindings;if(!Array.isArray(refs)||!Array.isArray(links)||!refs.length||!links.length||links.some(l=>!l||typeof l!=='object')||!sameSet(record.questionIds,links.map(l=>l.questionId)))return false;
  const qmap=new Map((bank.questions||[]).map(q=>[q.id,q])),linked=links.map(l=>qmap.get(l.questionId));if(linked.some(q=>!q))return false;
  for(const l of links){const q=qmap.get(l.questionId),qb=x.bindings?.[l.questionId];if(q.version!==l.questionVersion||qb?.questionSha256!==l.questionSha256)return false;}
  if(eligibleQuestions({...bank,questions:linked}).questions.length!==linked.length)return false;
  const sources=new Map((bank.sources||[]).map(s=>[s.id,s])),slides=new Map((bank.slides||[]).map(s=>[s.id,s]));
- for(const c of refs){const source=sources.get(c.sourceId),slide=slides.get(c.slideId);if(!source||!slide||source.retrievalStatus!=='ready'||source.sha256!==c.sourceSha256||slide.sourceSha256!==c.sourceSha256||slide.physicalPage!==c.physicalPage||slide.sourceId!==c.sourceId||slide.visualInspection?.status!=='complete'||['unreviewed','unresolved'].includes(slide.disposition)||(c.role==='conflict'&&!record.conflictResolution))return false;}
+ for(const c of refs){if(!sourceRefAllowed(c,sources,slides)||(c.role==='conflict'&&!record.conflictResolution))return false;}
  const rs=(x.toolReviews||[]).filter(r=>r.toolId===record.id&&r.toolVersion===record.version&&r.toolSha256===b.sha256);
- return !rs.some(r=>['flagged','rejected'].includes(r.decision))&&rs.some(r=>r.decision==='verified'&&r.reviewerId&&![record.authorId,...(record.revisionAuthors||[])].includes(r.reviewerId)&&TOOL_CHECKS.every(k=>r.checks?.[k]===true)&&refs.every(c=>r.sourceVersions?.[c.sourceId]===c.sourceSha256&&r.reviewedSlideIds?.includes(c.slideId))&&Object.entries(r.sourceVersions||{}).every(([id,h])=>sources.get(id)?.sha256===h));
+ return !rs.some(r=>['flagged','rejected'].includes(r.decision))&&rs.some(r=>r.decision==='verified'&&independentReviewer(r.reviewerId,record)&&TOOL_CHECKS.every(k=>r.checks?.[k]===true)&&refs.every(c=>r.sourceVersions?.[c.sourceId]===c.sourceSha256&&r.reviewedSlideIds?.includes(c.slideId))&&Object.entries(r.sourceVersions||{}).every(([id,h])=>sources.get(id)?.sha256===h));
 }
 function filterPage(rows,{week='',lecture='',search='',page=0,pageSize=20}={}){
  if(!Number.isInteger(page)||page<0||!Number.isInteger(pageSize)||pageSize<1||pageSize>100)throw Error('Invalid page bounds');
  const needle=String(search).trim().toLocaleLowerCase(),filtered=rows.filter(r=>(!week||String(r.week)===String(week)||(r.weeks||[]).some(w=>String(w)===String(week)))&&(!lecture||r.lectureId===lecture||(r.lectureIds||[]).includes(lecture))&&(!needle||JSON.stringify(r).toLocaleLowerCase().includes(needle)));const pages=Math.max(1,Math.ceil(filtered.length/pageSize)),current=Math.min(page,pages-1);return {rows:filtered.slice(current*pageSize,(current+1)*pageSize),total:filtered.length,page:current,pages};
 }
-return Object.freeze({VERSION,CHECKS,POLICY_CHECKS,stableJSON,sha256,runtimeQuestionDigest,policyAllowed,eligibleQuestions,project,filterPage,TOOL_CHECKS,toolRecordAllowed});
+return Object.freeze({VERSION,CHECKS,POLICY_CHECKS,literalAnswerValid,sourceRefAllowed,stableJSON,sha256,runtimeQuestionDigest,policyAllowed,eligibleQuestions,project,filterPage,TOOL_CHECKS,toolRecordAllowed});
 }));

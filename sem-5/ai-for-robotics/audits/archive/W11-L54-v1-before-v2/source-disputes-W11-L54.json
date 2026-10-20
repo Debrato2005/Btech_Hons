@@ -1,0 +1,197 @@
+[
+  {
+    "id": "L54-ISSUE-taxonomy-scope",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1719,
+    "finding": "Redundancy is summarized as based on number of DOF.",
+    "handling": "Redundancy is relative to the task constraints and local Jacobian rank, not a universal absolute joint count.",
+    "method": "Use a stipulated task dimension/rank and distinguish the diagram’s overlapping classification axes.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L54-ISSUE-imu-position",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1720,
+    "finding": "The lower table lists end-effector Cartesian position with IMU as the sensor.",
+    "handling": "An IMU supplies inertial channels; position requires integration, initial conditions and usually additional constraints or observations.",
+    "method": "Distinguish direct measured signals from inferred Cartesian state; do not claim drift-free position from a label.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L54-ISSUE-force-units",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1721,
+    "finding": "Surgical instrument row says sub-millimetre force sensing.",
+    "handling": "Millimetres describe length, not force resolution. Retain the wording as a dimensional caveat.",
+    "method": "Compare dimensions of spatial resolution, force and signal processing; do not invent a force specification.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L54-ISSUE-support-vector-scope",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1725,
+    "finding": "Support vectors are said to lie exactly on the margin and non-support removal never changes the final model.",
+    "handling": "The margin-only description is the separable hard-margin picture; soft-margin support vectors can violate the margin. Removal invariance presumes fixed preprocessing and optimization setup.",
+    "method": "Contrast the pictured canonical hard-margin planes with the later soft-margin pipeline and supplied fixed-preprocessing conditions.",
+    "primaryEvidence": [
+      {
+        "title": "SVM mathematical formulation",
+        "url": "https://scikit-learn.org/1.8/modules/svm.html",
+        "version": "scikit-learn 1.8.0",
+        "locator": "Sections 1.4.6 and 1.4.7: RBF kernel and soft-margin SVC.",
+        "checkedAt": "2026-10-19"
+      },
+      {
+        "title": "StandardScaler",
+        "url": "https://scikit-learn.org/1.8/modules/generated/sklearn.preprocessing.StandardScaler.html",
+        "version": "scikit-learn 1.8.0",
+        "locator": "Per-feature training statistics, standard score and zero-variance handling.",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L54-ISSUE-scaler-cleaning",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1727,
+    "finding": "StandardScaler is described as cleaning data.",
+    "handling": "It centers/scales features, not a general correction for sensor faults, bad labels or outliers.",
+    "method": "Inspect the actual StandardScaler transform and separately identify missing validity/quality checks.",
+    "primaryEvidence": [
+      {
+        "title": "StandardScaler",
+        "url": "https://scikit-learn.org/1.8/modules/generated/sklearn.preprocessing.StandardScaler.html",
+        "version": "scikit-learn 1.8.0",
+        "locator": "Per-feature training statistics, standard score and zero-variance handling.",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L54-ISSUE-real-score",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1730,
+    "finding": "The page says real sensor data score will be lower.",
+    "handling": "The synthetic result does not guarantee any particular real-data score, including a strict decrease on every finite test set.",
+    "method": "Separate the shown demonstration from a deployment claim requiring representative held-out evaluation.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L54-ISSUE-learned-ik-scope",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1731,
+    "finding": "ML is motivated as overcoming multiple solutions and computational cost.",
+    "handling": "A learned regressor still needs branch/angle representation choices and measured accuracy/runtime; it does not remove geometric nonuniqueness.",
+    "method": "Compare the stated motivation with the branch restriction and actual forward-kinematic validation.",
+    "primaryEvidence": [],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L54-ISSUE-illustrative-update",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1733,
+    "finding": "The teaching diagram shows ReLU and a plain gradient-descent update.",
+    "handling": "The later configured model uses hidden tanh and the API-default Adam optimizer. The diagram is illustrative, not a literal trace of that estimator.",
+    "method": "Compare the diagram with the exact constructor and pinned API defaults.",
+    "primaryEvidence": [
+      {
+        "title": "MLPRegressor parameters",
+        "url": "https://scikit-learn.org/1.8/modules/generated/sklearn.neural_network.MLPRegressor.html",
+        "version": "scikit-learn 1.8.0",
+        "locator": "Hidden activation, default Adam, max_iter, random_state, tol and early_stopping.",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L54-ISSUE-uniform-scope",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1736,
+    "finding": "Uniform random numbers are described as evenly spread; 40000 points are called training data.",
+    "handling": "They are stochastic angle samples, not equally spaced points or uniform Cartesian coverage; only36000 remain for fitting after the split.",
+    "method": "Trace the generated arrays and split, and derive radial mapping from the stated forward kinematics.",
+    "primaryEvidence": [
+      {
+        "title": "NumPy uniform sampling",
+        "url": "https://numpy.org/doc/2.3/reference/random/generated/numpy.random.uniform.html",
+        "version": "NumPy 2.3",
+        "locator": "Random samples from an interval; not an equally spaced deterministic grid.",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L54-ISSUE-ik-rng-scope",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1736,
+    "finding": "The IK generator and later split have no explicit random seed in the shown fragments.",
+    "handling": "random_state=42 in the MLP does not fix earlier NumPy draws or the split. Historical outputs are not exact reproducibility guarantees.",
+    "method": "Run the unchanged statements under an explicitly supplied external RNG seed and record that extra context separately.",
+    "primaryEvidence": [
+      {
+        "title": "MLPRegressor parameters",
+        "url": "https://scikit-learn.org/1.8/modules/generated/sklearn.neural_network.MLPRegressor.html",
+        "version": "scikit-learn 1.8.0",
+        "locator": "Hidden activation, default Adam, max_iter, random_state, tol and early_stopping.",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L54-ISSUE-iteration-count",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1738,
+    "finding": "max_iter=300 is explained as learning from mistakes300times.",
+    "handling": "It is an upper limit on iterations/epochs in this solver, not a guarantee of exactly300 updates; a minibatch epoch may contain many updates.",
+    "method": "Inspect the pinned estimator defaults and record the actual n_iter_ from a fully labeled source-code run.",
+    "primaryEvidence": [
+      {
+        "title": "MLPRegressor parameters",
+        "url": "https://scikit-learn.org/1.8/modules/generated/sklearn.neural_network.MLPRegressor.html",
+        "version": "scikit-learn 1.8.0",
+        "locator": "Hidden activation, default Adam, max_iter, random_state, tol and early_stopping.",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualified_pending_independent_review"
+  },
+  {
+    "id": "L54-ISSUE-stopping-scope",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1741,
+    "finding": "Convergence checking is suggested as a new addition to stop training early.",
+    "handling": "The default estimator already has tolerance/no-improvement stopping; validation-based early_stopping is a separate disabled-by-default option.",
+    "method": "Distinguish training-loss stopping, validation stopping and the maximum iteration limit using pinned API evidence.",
+    "primaryEvidence": [
+      {
+        "title": "MLPRegressor parameters",
+        "url": "https://scikit-learn.org/1.8/modules/generated/sklearn.neural_network.MLPRegressor.html",
+        "version": "scikit-learn 1.8.0",
+        "locator": "Hidden activation, default Adam, max_iter, random_state, tol and early_stopping.",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualified_pending_independent_review"
+  }
+]

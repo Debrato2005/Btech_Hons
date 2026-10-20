@@ -10,7 +10,7 @@ Run its checks with:
 node --test tests/test_learning_tools.js
 ```
 
-The current suite includes 2,000 generated numerical variants, save/replay checks,
+The original engine suite includes 2,000 generated numerical variants, save/replay checks,
 100 random graph comparisons with an independent Floyd–Warshall calculation,
 the lecture's BFS/UCS/A* worked example, repeated-state reopening, terminal
 Q-learning updates, input validation, and mastery/revision boundary conditions.
@@ -22,8 +22,10 @@ independent inspection of course evidence or certify comprehensive coverage.
 - The canonical course envelope is in `docs/DATA_CONTRACT.md`.
 - `bank.learningTools.formulaSheet`, `confusionPairs`, and `traps` contain explicit
   authored records, not facts inferred from generic JavaScript algorithms.
-- `buildLearningViews(bank)` includes only records labeled `verified`, with
-  valid one-based source references. `includeDrafts:true` is for the audit area.
+- `buildLearningViews(bank)` now requires a current independent extractor-policy
+  approval and a separate exact-hash tool approval, current source references
+  and linked question approvals. A `verified` label alone does not activate it.
+  `includeDrafts:true` is for the explicitly labeled audit area.
 - A synthetic record is never included in a course view, even with drafts enabled.
 - The main bank validator remains responsible for version-bound review records,
   source hashes, reciprocal concept links, and reference integrity. A learning
@@ -269,3 +271,29 @@ agree with the p1133/p1134 tables under cardinal cost 1, diagonal cost 1.4 and
 strict no-corner-cutting. This corroborates arithmetic, not independent answer
 review. `audits/search-source-disputes.json` retains p1135's contradictory start
 g=1.0 versus p1133's g=0.0; it is not silently corrected in the source.
+
+
+## Exact question projections and additional course tools
+
+See `docs/LEARNING_RESOURCE_REVIEW_HANDOFF.md` for the frozen review packet,
+separate approval schema, code hashes and permission/runtime boundary.
+`app/learning-resources.js` projects full formula objects, discriminating-question
+comparisons and trap/misconception examples directly from current independently
+approved questions. `app/learning-resource-ui.js` preserves each exact question
+context and qualification, uses text-only DOM writes and paginates records and
+source contexts. These projections are disabled until the extractor policy has
+a separate independent exact-hash approval.
+
+The 18 added draft records in `data/learning-tools-course.json` comprise five
+algorithm configurations and 13 numerical families. Eleven additional static,
+allowlisted numerical implementations are in `app/course-numerical.js`; no
+executable code is loaded from data. They add 11,000 seeded author oracle checks
+to the original two families' 2,000. These are not independent approval or
+exhaustive mathematical coverage. Every new tool separately requires current
+source/approved-question bindings, implementation hashes and independent review.
+The original 24 draft records are not deleted or silently relabeled verified.
+
+Browser component QA was attempted but blocked before any page opened by a local
+socket permission error. No browser screenshots or interaction passes are claimed.
+Default Python/Node tests and HTML build checks do not stand in for browser QA.
+The restriction and stopped outcome are recorded in the review handoff.

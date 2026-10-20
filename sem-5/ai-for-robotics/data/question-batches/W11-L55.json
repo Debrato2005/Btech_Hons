@@ -1743,10 +1743,10 @@
     },
     {
       "id": "W11-L55-Q019",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L55-author",
-      "stem": "Which check goes beyond testing the network only on its training torque samples?",
+      "stem": "Which option gives the complete novel-input, integration and real-system comparison sequence in the validation box on physical page 1753?",
       "selectionMode": "single",
       "type": "scenario",
       "difficulty": "easy",
@@ -1765,19 +1765,19 @@
       "options": [
         {
           "id": "o3",
-          "text": "Apply novel test inputs, integrate predicted accelerations, and compare the resulting motion against the real system."
+          "text": "Apply novel driving torques, predict accelerations, integrate them through an ODE solver to velocities/positions, and compare the resulting motion with the real system."
         },
         {
           "id": "o4",
-          "text": "Recompute only the training loss on the same samples after fitting."
+          "text": "Recompute only training loss after fitting, without new input or motion integration."
         },
         {
           "id": "o1",
-          "text": "Compare only one-step acceleration error, without checking the integrated motion."
+          "text": "Measure held-out one-step acceleration error, but do not integrate or compare trajectories."
         },
         {
           "id": "o2",
-          "text": "Validate exclusively on synthetic nominal labels and treat that as a comparison with real behavior."
+          "text": "Integrate responses to novel inputs but compare only with the same nominal model, not real behavior."
         }
       ],
       "correctOptionIds": [
@@ -1797,28 +1797,39 @@
         }
       ],
       "solution": {
-        "justification": "This is the displayed validation sequence and checks accumulated motion prediction.",
+        "justification": "This includes every stage in the displayed validation box, not merely a held-out one-step prediction test.",
         "optionExplanations": {
-          "o1": "That misses accumulated trajectory error in the stated validation sequence.",
-          "o2": "A nominal-model comparison does not replace the source’s real-system motion comparison.",
-          "o3": "This is the displayed validation sequence and checks accumulated motion prediction.",
-          "o4": "That does not provide the described novel-input motion comparison."
+          "o3": "This includes every stage in the displayed validation box, not merely a held-out one-step prediction test.",
+          "o4": "This omits the novel test inputs, integrated motion and real-system comparison.",
+          "o1": "This can test unseen samples, but it is not the complete source validation sequence because it omits integrated motion.",
+          "o2": "This contains a trajectory test but omits the real-system comparison explicitly included in the box."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "This is the displayed validation sequence and checks accumulated motion prediction.",
+        "simpleExplanation": "This includes every stage in the displayed validation box, not merely a held-out one-step prediction test.",
         "memoryAid": null,
         "misconceptions": [
-          "That misses accumulated trajectory error in the stated validation sequence.",
-          "A nominal-model comparison does not replace the source’s real-system motion comparison.",
-          "That does not provide the described novel-input motion comparison."
+          "This omits the novel test inputs, integrated motion and real-system comparison.",
+          "This can test unseen samples, but it is not the complete source validation sequence because it omits integrated motion.",
+          "This contains a trajectory test but omits the real-system comparison explicitly included in the box."
         ],
-        "examTraps": [],
+        "examTraps": [
+          "A held-out one-step test is genuinely beyond training data, but is still not the complete source trajectory-validation sequence."
+        ],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct source distinction or one short specified operation."
+      "difficultyRationale": "Direct recognition of explicitly printed settings or literal code order.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L55-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W11-L55-v2-author-checks.json",
+        "sha256": "1873614075139b687c91a8d66649a28ad06ed9923ef9e57ba9879e7c2548dd90",
+        "independentReview": false,
+        "scope": "Author-only deterministic source-order stubs, settings, local Euler–Lagrange derivation and random algebra. Pinned PyTorch documentation confirms the qualified default conversion; no torch, GPU, omitted DeLaN class or robot runtime executed."
+      }
     },
     {
       "id": "W11-L55-Q020",
@@ -5744,10 +5755,10 @@
     },
     {
       "id": "W11-L55-Q056",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L55-author",
-      "stem": "Which sequence matches one minibatch update in the source?",
+      "stem": "Which sequence exactly matches the printed order inside one minibatch update on physical page 1769?",
       "selectionMode": "single",
       "type": "code",
       "difficulty": "easy",
@@ -5766,19 +5777,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "Backpropagate first, then clear gradients, then update parameters."
+          "text": "Clear old gradients → calculate prediction and loss → backpropagate → update parameters."
         },
         {
           "id": "o1",
-          "text": "Calculate only the scalar loss and call eval to update the weights."
+          "text": "Calculate prediction and loss → backpropagate → clear gradients → update parameters."
         },
         {
           "id": "o2",
-          "text": "Clear old gradients, calculate prediction/loss, backpropagate the loss, then update parameters."
+          "text": "Calculate prediction and loss → clear old gradients → backpropagate the loss → update parameters."
         },
         {
           "id": "o3",
-          "text": "Update parameters, then calculate the loss, then clear the newly computed gradients without backpropagation."
+          "text": "Calculate prediction and loss → update parameters → clear gradients → backpropagate."
         }
       ],
       "correctOptionIds": [
@@ -5791,41 +5802,48 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1769,
           "kind": "code",
-          "locator": "Lecture L55, physical PDF page 1769, printed footer 25: zero_grad, loss.backward and optimizer.step ordering.",
+          "locator": "Lecture L55, physical PDF page 1769, printed footer 25: minibatch lines tau_pred, loss, optimizer.zero_grad(), loss.backward(), optimizer.step(), in that printed order.",
           "evidenceText": "DeLAN Implementation : 2R Planar Robotic Arm: Training\n                                     Model is built as a class, which is later initiated\n\n                                   Adam for NN optimization\n\n\n                                                     Training the model on the dataset\n\n\n\n\n\n                                                                                                          25",
           "role": "explicit",
           "region": null
         }
       ],
       "solution": {
-        "justification": "zero_grad prevents unintended accumulation; backward computes gradients; step applies the optimizer update.",
+        "justification": "The source computes tau_pred and loss first, then calls zero_grad, backward and step. Clearing before backward avoids accumulating old parameter gradients.",
         "optionExplanations": {
-          "o1": "eval does not optimize parameters or replace backward/step.",
-          "o2": "zero_grad prevents unintended accumulation; backward computes gradients; step applies the optimizer update.",
-          "o3": "This lacks the current minibatch gradients before the update.",
-          "o4": "Clearing after backward would discard the gradients needed by step."
+          "o2": "The source computes tau_pred and loss first, then calls zero_grad, backward and step. Clearing before backward avoids accumulating old parameter gradients.",
+          "o4": "This is a conventional equivalent order when the forward/loss calculation does not use old parameter gradients, but it is not the literal order printed here.",
+          "o1": "This clears the newly calculated gradients before the optimizer step.",
+          "o3": "This updates before computing the current loss gradients and leaves those gradients for a later step."
         },
-        "steps": [],
+        "steps": [
+          "Read tau_pred=model(...) and loss=loss_fn(...) before optimizer.zero_grad().",
+          "Read loss.backward() after zero_grad(), then optimizer.step().",
+          "Do not confuse a valid equivalent convention with the literal source order."
+        ],
         "formulas": [],
-        "simpleExplanation": "zero_grad prevents unintended accumulation; backward computes gradients; step applies the optimizer update.",
+        "simpleExplanation": "The source computes tau_pred and loss first, then calls zero_grad, backward and step. Clearing before backward avoids accumulating old parameter gradients.",
         "memoryAid": null,
         "misconceptions": [
-          "eval does not optimize parameters or replace backward/step.",
-          "This lacks the current minibatch gradients before the update.",
-          "Clearing after backward would discard the gradients needed by step."
+          "This is a conventional equivalent order when the forward/loss calculation does not use old parameter gradients, but it is not the literal order printed here.",
+          "This clears the newly calculated gradients before the optimizer step.",
+          "This updates before computing the current loss gradients and leaves those gradients for a later step."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct source distinction or one short specified operation.",
+      "difficultyRationale": "Direct recognition of explicitly printed settings or literal code order.",
       "authorCheckEvidence": {
-        "path": "audits/W11-L55-author-checks.json",
-        "sha256": "4272c4e4cc2c977e4fda67e7a9915f4bef9b47464bb8af506549f5bd24d9d936",
+        "path": "audits/W11-L55-v2-author-checks.json",
+        "sha256": "1873614075139b687c91a8d66649a28ad06ed9923ef9e57ba9879e7c2548dd90",
         "independentReview": false,
-        "scope": "Author-only symbolic/NumPy equation checks and source-transcribed MLP runtime with an explicit added seed. No omitted DeLaN class or hardware execution."
-      }
+        "scope": "Author-only deterministic source-order stubs, settings, local Euler–Lagrange derivation and random algebra. Pinned PyTorch documentation confirms the qualified default conversion; no torch, GPU, omitted DeLaN class or robot runtime executed."
+      },
+      "revisionAuthors": [
+        "build_offline_study_interface:L55-v2-repair"
+      ]
     },
     {
       "id": "W11-L55-Q057",
@@ -6119,10 +6137,10 @@
     },
     {
       "id": "W11-L55-Q060",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L55-author",
-      "stem": "For a detached prediction tensor on a GPU in an added deployment, what extra step is needed before NumPy conversion?",
+      "stem": "In an added GPU deployment, t is a detached CUDA float32 prediction tensor with NumPy-compatible dense strided layout and no conjugate or negative view bit. Using the default numpy(force=False), which operation makes conversion valid?",
       "selectionMode": "single",
       "type": "code",
       "difficulty": "easy",
@@ -6138,24 +6156,25 @@
         "W11-L55-C-detach-cpu"
       ],
       "assumptions": [
-        "Added GPU deployment qualification; the printed example uses CPU tensors."
+        "Added CUDA deployment. The printed source creates CPU tensors; default numpy(force=False) is explicitly required here.",
+        "t already requires no gradient, has compatible float32/layout and no conjugate/negative view bit."
       ],
       "options": [
         {
           "id": "o4",
-          "text": "Remove detach and convert the gradient-tracking GPU tensor directly."
+          "text": "t.detach().numpy() while t remains on CUDA."
         },
         {
           "id": "o1",
-          "text": "Convert every torque to an integer class before calling numpy."
+          "text": "t.clone().numpy() while the clone remains on CUDA."
         },
         {
           "id": "o2",
-          "text": "Move it to CPU, then call numpy; detaching alone does not change its device."
+          "text": "t.cpu().numpy()."
         },
         {
           "id": "o3",
-          "text": "Call eval again to move all values to CPU."
+          "text": "t.contiguous().numpy() while the result remains on CUDA."
         }
       ],
       "correctOptionIds": [
@@ -6168,9 +6187,9 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1771,
           "kind": "code",
-          "locator": "Lecture L55, physical PDF page 1771, printed footer 27: Prediction returns detached torque and later converts to NumPy.",
+          "locator": "Lecture L55, physical PDF page 1771, printed footer 27: predict(q,dq,ddq) returns model(...).detach(); no device transfer is shown.",
           "evidenceText": "DeLAN Implementation : 2R Planar Robotic Arm: Prediction\n\nFunction for model Prediction\n\n\n\n\n                                                             Evaluation happens here.\n\n\n Testing the Model with Random Test Dataset:\n\n\n\n\n\nOutput (RSME):                          Significantly Lower than MLP\n                                   with 10x smaller dataset\n\n                                                                                                            27",
-          "role": "explicit",
+          "role": "premise",
           "region": null
         },
         {
@@ -6181,26 +6200,29 @@
           "kind": "code",
           "locator": "Lecture L55, physical PDF page 1772, printed footer 28: predict(...).numpy() on trajectory tensors.",
           "evidenceText": "DeLAN Implementation : 2R Planar Robotic Arm: Prediction\n\n•  Sinusoidal Trajectory Test:\n\n\n\n                                                                         Sinusoidal Data\n                                                                  Generation\n\n\n\n\n\n                                   Sinusoidal Torque Prediction\n\n\n\n\n\n                                                                                                          28",
-          "role": "explicit",
+          "role": "premise",
           "region": null
         }
       ],
       "solution": {
-        "justification": "The source creates CPU tensors, but a GPU variant must explicitly transfer the detached result to CPU.",
+        "justification": "The remaining requirement is CPU storage; moving the already detached compatible tensor to CPU permits the default conversion.",
         "optionExplanations": {
-          "o1": "Torque regression values need not become integer labels.",
-          "o2": "The source creates CPU tensors, but a GPU variant must explicitly transfer the detached result to CPU.",
-          "o3": "eval changes module mode, not device placement.",
-          "o4": "That does not solve the device or gradient-tracking boundary."
+          "o2": "The remaining requirement is CPU storage; moving the already detached compatible tensor to CPU permits the default conversion.",
+          "o4": "Detaching again does not move the storage to CPU.",
+          "o1": "Cloning copies data on its current device by default; it does not solve the CPU requirement.",
+          "o3": "Making a tensor contiguous does not move it to CPU, and compatible layout was already assumed."
         },
-        "steps": [],
+        "steps": [
+          "Check default conversion requirements: no gradient tracking, compatible type/layout, no special view bit, CPU storage.",
+          "The stem already satisfies all but device; cpu() supplies the remaining transfer."
+        ],
         "formulas": [],
-        "simpleExplanation": "The source creates CPU tensors, but a GPU variant must explicitly transfer the detached result to CPU.",
+        "simpleExplanation": "The remaining requirement is CPU storage; moving the already detached compatible tensor to CPU permits the default conversion.",
         "memoryAid": null,
         "misconceptions": [
-          "Torque regression values need not become integer labels.",
-          "eval changes module mode, not device placement.",
-          "That does not solve the device or gradient-tracking boundary."
+          "Detaching again does not move the storage to CPU.",
+          "Cloning copies data on its current device by default; it does not solve the CPU requirement.",
+          "Making a tensor contiguous does not move it to CPU, and compatible layout was already assumed."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -6209,23 +6231,26 @@
       "reviewIds": [],
       "primaryEvidence": [
         {
-          "url": "https://docs.pytorch.org/docs/2.9/notes/autograd.html",
-          "locator": "Locally disabling gradient computation and evaluation mode: eval does not disable autograd.",
-          "checkedAt": "2026-10-19T23:56:42+00:00"
+          "url": "https://docs.pytorch.org/docs/2.9/generated/torch.Tensor.numpy.html",
+          "locator": "Default force=False device, gradient, dtype/layout and view-bit requirements; force=True is a distinct shorthand not requested here.",
+          "checkedAt": "2026-10-20T00:23:30+00:00"
         },
         {
-          "url": "https://docs.pytorch.org/docs/2.9/generated/torch.Tensor.numpy.html",
-          "locator": "Default conversion requires CPU storage and no gradient tracking; detach does not move device.",
-          "checkedAt": "2026-10-19T23:56:42+00:00"
+          "url": "https://docs.pytorch.org/docs/2.9/generated/torch.Tensor.detach.html",
+          "locator": "Detach removes autograd tracking while sharing storage, not a device transfer.",
+          "checkedAt": "2026-10-20T00:23:30+00:00"
         }
       ],
-      "difficultyRationale": "Direct source distinction or one short specified operation.",
+      "difficultyRationale": "Direct recognition of explicitly printed settings or literal code order.",
       "authorCheckEvidence": {
-        "path": "audits/W11-L55-author-checks.json",
-        "sha256": "4272c4e4cc2c977e4fda67e7a9915f4bef9b47464bb8af506549f5bd24d9d936",
+        "path": "audits/W11-L55-v2-author-checks.json",
+        "sha256": "1873614075139b687c91a8d66649a28ad06ed9923ef9e57ba9879e7c2548dd90",
         "independentReview": false,
-        "scope": "Author-only symbolic/NumPy equation checks and source-transcribed MLP runtime with an explicit added seed. No omitted DeLaN class or hardware execution."
-      }
+        "scope": "Author-only deterministic source-order stubs, settings, local Euler–Lagrange derivation and random algebra. Pinned PyTorch documentation confirms the qualified default conversion; no torch, GPU, omitted DeLaN class or robot runtime executed."
+      },
+      "revisionAuthors": [
+        "build_offline_study_interface:L55-v2-repair"
+      ]
     },
     {
       "id": "W11-L55-Q061",
@@ -7563,6 +7588,314 @@
       "origin": "generated",
       "reviewIds": [],
       "difficultyRationale": "Direct source distinction or one short specified operation."
+    },
+    {
+      "id": "W11-L55-Q073",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:L55-v2-repair",
+      "stem": "Which pairing matches the two distinct source examples without assuming an unshown output activation?",
+      "selectionMode": "single",
+      "type": "code",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 11,
+      "lectureId": "L55",
+      "topic": "Implementation of AI to Robot Dynamics",
+      "subtopic": "Distinct forward and inverse neural examples",
+      "tags": [
+        "paired-settings"
+      ],
+      "conceptIds": [
+        "W11-L55-C-paired-settings"
+      ],
+      "assumptions": [
+        "Do not infer a sigmoid output layer or an unprinted scaling scheme from the diagram’s generic activation label."
+      ],
+      "options": [
+        {
+          "id": "o4",
+          "text": "Forward identifier diagram: sigmoid and derivative-free evolution; inverse MLPRegressor code: tanh with learning_rate_init=0.001."
+        },
+        {
+          "id": "o3",
+          "text": "Forward identifier diagram: sigmoid and standard backpropagation; inverse MLPRegressor code: tanh with learning_rate_init=0.0001."
+        },
+        {
+          "id": "o1",
+          "text": "Forward identifier diagram: sigmoid activation and standard backpropagation; inverse MLPRegressor code: tanh with learning_rate_init=0.001."
+        },
+        {
+          "id": "o2",
+          "text": "Forward identifier diagram: tanh and standard backpropagation; inverse MLPRegressor code: sigmoid with learning_rate_init=0.001."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1752",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1752,
+          "kind": "figure",
+          "locator": "Lecture L55, physical PDF page 1752, printed footer 8: Neural Identifier Setup box, Activation: Sigmoid and Training: Standard backpropagation.",
+          "evidenceText": "Typical FFNN Pipeline for Forward Dynamics\n\n\n\n                Phase 1\n\n\n\n\n\n                                                                                                           8",
+          "role": "explicit",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1760",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1760,
+          "kind": "code",
+          "locator": "Lecture L55, physical PDF page 1760, printed footer 16: MLPRegressor arguments activation=tanh and learning_rate_init=1e-3.",
+          "evidenceText": "Inverse Dynamics: 2R Planar Robotic Arm (Code)\n\n Code (Part 3): Pipeline and Training:          • StandardScaler normalizes all 6 input features\n                                                   to zero mean, unit variance.\n                                                               • hidden_layer_sizes=(256, 256, 128)\n                                                      builds 3 hidden layers:\n                                                                     •   First layer: 256 neurons\n                                                                     •  Second layer: 256 neurons\n                                                                     •   Third layer: 128 neurons\n\n\n\n• activation=‘tanh’ — tanh introduces nonlinearity.\n• max_iter=500 — model learns from its mistakes 500 times\n• learning_rate_init=1e-3 — sets initial learning rate to 0.001\n• model.fit(X_tr, Y_tr) — feeds 45,000 training samples\n                                into the model\n\n\n                                                                                                           16",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The forward identifier diagram explicitly lists sigmoid and standard backpropagation, while the later inverse-regression code sets activation=tanh and learning_rate_init=1e-3. These are distinct examples; the forward diagram does not identify which particular output-layer activation is used.",
+        "optionExplanations": {
+          "o1": "The two configurations are kept separate and the exponent conversion is correct.",
+          "o2": "This reverses the printed sigmoid/tanh labels.",
+          "o3": "1e-3 is 0.001, not 0.0001.",
+          "o4": "The diagram explicitly says standard backpropagation rather than derivative-free evolution."
+        },
+        "steps": [
+          "Read the activation/training entries of the forward neural-identifier box.",
+          "Read activation=tanh and learning_rate_init=1e-3 from the separate inverse-model code."
+        ],
+        "formulas": [],
+        "simpleExplanation": "The forward identifier diagram explicitly lists sigmoid and standard backpropagation, while the later inverse-regression code sets activation=tanh and learning_rate_init=1e-3. These are distinct examples; the forward diagram does not identify which particular output-layer activation is used.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This reverses the printed sigmoid/tanh labels.",
+          "1e-3 is 0.001, not 0.0001.",
+          "The diagram explicitly says standard backpropagation rather than derivative-free evolution."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "gapChallengeIds": [
+        "L55-G1"
+      ],
+      "revisionAuthors": [
+        "build_offline_study_interface:L55-v2-repair"
+      ],
+      "difficultyRationale": "Direct recognition of explicitly printed settings or literal code order.",
+      "authorCheckEvidence": {
+        "path": "audits/W11-L55-v2-author-checks.json",
+        "sha256": "1873614075139b687c91a8d66649a28ad06ed9923ef9e57ba9879e7c2548dd90",
+        "independentReview": false,
+        "scope": "Author-only deterministic source-order stubs, settings, local Euler–Lagrange derivation and random algebra. Pinned PyTorch documentation confirms the qualified default conversion; no torch, GPU, omitted DeLaN class or robot runtime executed."
+      }
+    },
+    {
+      "id": "W11-L55-Q074",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:L55-v2-repair",
+      "stem": "Use an explicitly added local conservative two-joint model at q=(0,0): H=[[3,1],[1,2]] kg·m², D1=∂H/∂q1=[[1,0],[0,0]], D2=∂H/∂q2=[[0,1],[1,2]], in kg·m²/rad. Let v=q̇=(1,2) rad/s, a=q̈=(2,−1) rad/s² and g=∇V=(4,3) N·m. Use physical kinetic energy K=½vᵀHv and the explicitly corrected relation τ=Ha+Ḣv−∇K+g, where Ḣ=D1v1+D2v2. Which combined torque and physical-consistency conclusion is correct?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "hard",
+      "cognitiveSkill": "numerical",
+      "week": 11,
+      "lectureId": "L55",
+      "topic": "Implementation of AI to Robot Dynamics",
+      "subtopic": "Two-joint structured torque and physical constraints",
+      "tags": [
+        "integrated-energy"
+      ],
+      "conceptIds": [
+        "W11-L55-C-integrated-energy"
+      ],
+      "assumptions": [
+        "All numerical coefficients and the local state are added, not measurements or output from the omitted DeLaN2R implementation.",
+        "The stated corrected formula uses physical K with one-half. p1764 calls the doubled quadratic T kinetic energy, while p1765 halves a gradient of already physical energy; those source qualifications remain explicit.",
+        "D1 and D2 are local derivatives of a smooth symmetric H. The supplied SPD test is local and does not certify H at arbitrary configurations."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "τ=(13.75,10) N·m; H is symmetric positive definite at this state, but a low black-box torque-fit error alone does not guarantee that structure."
+        },
+        {
+          "id": "o4",
+          "text": "τ=(13.5,7) N·m; low black-box torque-fit error itself guarantees a symmetric positive-definite implicit inertia matrix at all configurations."
+        },
+        {
+          "id": "o3",
+          "text": "τ=(8.5,−3) N·m; H is symmetric positive definite at this state, but a low black-box torque-fit error alone does not guarantee that structure."
+        },
+        {
+          "id": "o1",
+          "text": "τ=(13.5,7) N·m; H is symmetric positive definite at this state, but a low black-box torque-fit error alone does not guarantee that structure."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1761",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1761,
+          "kind": "statement",
+          "locator": "Lecture L55, physical PDF page 1761, printed footer 17: MLP limitations: no guarantee of a physical positive-definite inertia representation.",
+          "evidenceText": "Inverse Dynamics: 2R Planar Robotic Arm (Code)\n Code (Part 4): Evaluation:\n  •  RMSE on random test set:\n                                            feeds 5,000 hidden test states into the trained model\n\n                                                               Error metric:\n\n                                                                                      2\n                                                             𝜏𝑡𝑟𝑢𝑒−𝜏𝑝𝑟𝑒𝑑\n  Output:  Test RMSE τ₁: 0.6311 Nm\n          Test RMSE τ₂: 0.3734 Nm\n\nLimitations of MLP:\n•  The NN learns the torque mapping, but does not know, if it is\n   learning a physical system.\n•   It cannot guarantee that the mass matrix it implicitly represents is\n   positive definite.\n\n\n\n\n                                                                                                            17",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1763",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1763,
+          "kind": "equation",
+          "locator": "Lecture L55, physical PDF page 1763, printed footer 19: H and V subnetworks; H described as symmetric positive definite.",
+          "evidenceText": "Deep Lagrangian NN: Physics into the Network Architecture\n\nDeep Lagrangian Neural Network is a learning approach\nwhere it learns the physics structure that generates\ntorque rather than directly learning torque from input data.\n\nThe Central Idea of DeLaN:\nInstead of learning: NN(Θ, ሶΘ, ሷΘ) → τ (black box)\nDeLaN learns:\n        NN₁(Θ) → H(𝜣) — Symmetric and Positive Definite\n                     mass matrix\n       NN₂(Θ) → V(𝜣) — the potential energy\nAnd then derives τ from these using the Euler-Lagrange\nequation.\n• DeLaN only requires configuration(Θ) as input.\n\n\n                                                                                                          19",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1764",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1764,
+          "kind": "equation",
+          "locator": "Lecture L55, physical PDF page 1764, printed footer 20: T=vᵀHv labelled kinetic energy and torque equation with half-gradient.",
+          "evidenceText": "Deep Lagrangian NN: Equation of Motion\n\n•   Lagrangian Mechanics show us that Torque equation of a system can be described only\n   using Inertia matrix 𝐇𝚯 and potential Energy 𝐕𝚯.\n                𝜏= 𝑀Θ ሷΘ + 𝐶Θ, ሶΘ + 𝐺Θ        (Newton-Euler)\n\n\n\n                                                       𝑇                                                     1  𝜕𝑇      𝜕𝑉\n                𝜏= 𝐻Θ ሷΘ + ሶ𝐻Θ ሶΘ −     +   (Euler-Lagrange)\n                                                     2 𝜕Θ     𝜕Θ\n  H(Θ)· ሷΘ                  Inertial           Resistance to acceleration\n  Ḣ(Θ)· ሶΘ−½·(∂T/∂Θ)T   C(Θ, ሶΘ)            Coriolis & centripetal\n\n  G(Θ) = ∂V/∂Θ         Gravity         From potential energy\n\n T = ሶΘᵀ H(Θ) ሶΘ is kinetic energy\n•  Hence, DeLaN is able to derive torque by only learning H and V.\n•  The respective terms are calculated via calculus.\n\n                                                                                                          20",
+          "role": "conflict",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1765",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1765,
+          "kind": "figure",
+          "locator": "Lecture L55, physical PDF page 1765, printed footer 21: Kinetic-energy block includes one-half but the Coriolis block halves its gradient again.",
+          "evidenceText": "Deep Lagrangian NN: Forward Pass (Flow chart)\n\n\n\n\n\n                                                                                                      𝑻\n                                                                          𝝏𝑻                                                                  ሶ𝑯𝜽 ሶ𝜽−𝟏\n                                                                         𝟐 𝝏𝜽\n\n\n\n\n\n                  τ = H(𝜣)· ሷ𝛩 + [Ḣ(𝜣)· ሶ𝛩 − ½·(∂T/∂𝛩)T] +\n            ∂V/∂𝛩\n\n\n                                                                                                          21",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Ḣ=[[1,2],[2,4]], so Ḣv=(5,10). The kinetic gradient is (0.5,6), giving c=(4.5,4). Since Ha=(5,0), torque is (13.5,7). H is symmetric with leading minor 3>0 and determinant 5>0. This checks the supplied local matrix, not every configuration, and low black-box fitting error alone does not enforce those structural conditions.",
+        "optionExplanations": {
+          "o1": "The corrected physical-energy calculation and the limited structural conclusion are both satisfied.",
+          "o2": "This subtracts only half of the already physical kinetic-energy gradient, reproducing the extra-half error from p1765.",
+          "o3": "This omits Ḣv while retaining the kinetic gradient, losing the full velocity-product term.",
+          "o4": "The torque is correct, but fitting accuracy is not a guarantee of an implicit symmetric positive-definite inertia representation everywhere."
+        },
+        "steps": [
+          "Ḣ=D1+2D2=[[1,2],[2,4]], hence Ḣv=(5,10).",
+          "∂K/∂q1=½vᵀD1v=0.5 and ∂K/∂q2=½vᵀD2v=6.",
+          "c=(5,10)−(0.5,6)=(4.5,4).",
+          "Ha=(5,0); add c and g to obtain (13.5,7) N·m.",
+          "H=Hᵀ, H11=3>0 and det(H)=5>0, so this two-by-two matrix is positive definite. The black-box fit criterion does not impose these properties."
+        ],
+        "formulas": [
+          {
+            "expression": "K=½vᵀHv; Ḣ=Σj Dj vj; k_j=∂K/∂qj=½vᵀDjv; c=Ḣv−k; τ=Ha+c+g",
+            "variables": {
+              "q": "two-component joint-angle vector",
+              "v": "joint angular velocity vector q̇",
+              "a": "joint angular acceleration vector q̈",
+              "H": "symmetric 2×2 inertia matrix evaluated at the stated configuration",
+              "Dj": "partial derivative ∂H/∂qj at that configuration",
+              "vj": "component j of v",
+              "Ḣ": "total time derivative of H along v",
+              "K": "physical kinetic energy",
+              "k": "two-component configuration gradient of K with velocity held fixed",
+              "c": "velocity-product torque vector",
+              "g": "configuration gradient of potential energy V",
+              "τ": "required joint torque vector",
+              "j": "joint index 1 or 2"
+            },
+            "units": {
+              "q": "rad",
+              "v,vj": "rad/s",
+              "a": "rad/s²",
+              "H": "kg·m²",
+              "Dj": "kg·m²/rad",
+              "Ḣ": "kg·m²/s",
+              "K": "J",
+              "k,c,g,τ": "N·m",
+              "j": "dimensionless index"
+            },
+            "assumptions": [
+              "Added local two-revolute-joint conservative model in consistent SI/radian convention; no friction or other forces. Physical K contains one-half, so its gradient is not halved again."
+            ]
+          },
+          {
+            "expression": "H=Hᵀ; H11>0 and det(H)>0 for a symmetric 2×2 H",
+            "variables": {
+              "H": "local 2×2 inertia matrix",
+              "H11": "first diagonal entry",
+              "det(H)": "matrix determinant"
+            },
+            "units": {
+              "H,H11": "kg·m²",
+              "det(H)": "(kg·m²)²"
+            },
+            "assumptions": [
+              "Sylvester criterion applied only to the supplied symmetric 2×2 matrix."
+            ]
+          }
+        ],
+        "simpleExplanation": "Ḣ=[[1,2],[2,4]], so Ḣv=(5,10). The kinetic gradient is (0.5,6), giving c=(4.5,4). Since Ha=(5,0), torque is (13.5,7). H is symmetric with leading minor 3>0 and determinant 5>0. This checks the supplied local matrix, not every configuration, and low black-box fitting error alone does not enforce those structural conditions.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This subtracts only half of the already physical kinetic-energy gradient, reproducing the extra-half error from p1765.",
+          "This omits Ḣv while retaining the kinetic gradient, losing the full velocity-product term.",
+          "The torque is correct, but fitting accuracy is not a guarantee of an implicit symmetric positive-definite inertia representation everywhere."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "conflictResolution": {
+        "status": "explicit-qualification-awaiting-independent-review",
+        "sourceClaim": "p1764 labels T=vᵀHv as kinetic energy; p1765 uses physical T=½vᵀHv but retains an extra one-half before its gradient. The added exercise explicitly uses physical K and the corrected full −∇K term, without globally resolving the source.",
+        "basis": "Ḣ=[[1,2],[2,4]], so Ḣv=(5,10). The kinetic gradient is (0.5,6), giving c=(4.5,4). Since Ha=(5,0), torque is (13.5,7). H is symmetric with leading minor 3>0 and determinant 5>0. This checks the supplied local matrix, not every configuration, and low black-box fitting error alone does not enforce those structural conditions.",
+        "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction.",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPages": [
+          1764,
+          1765
+        ]
+      },
+      "gapChallengeIds": [
+        "L55-G2"
+      ],
+      "revisionAuthors": [
+        "build_offline_study_interface:L55-v2-repair"
+      ],
+      "primaryEvidence": [
+        {
+          "url": "https://arxiv.org/html/1907.04490v1",
+          "locator": "Section 3 physical kinetic energy and Euler–Lagrange torque relation; supplementary confirmation, not an executed missing class.",
+          "checkedAt": "2026-10-20T00:23:30+00:00"
+        }
+      ],
+      "difficultyRationale": "Combines local inertia derivatives, physical kinetic energy, Euler–Lagrange torque and a limited positive-definiteness conclusion.",
+      "authorCheckEvidence": {
+        "path": "audits/W11-L55-v2-author-checks.json",
+        "sha256": "1873614075139b687c91a8d66649a28ad06ed9923ef9e57ba9879e7c2548dd90",
+        "independentReview": false,
+        "scope": "Author-only deterministic source-order stubs, settings, local Euler–Lagrange derivation and random algebra. Pinned PyTorch documentation confirms the qualified default conversion; no torch, GPU, omitted DeLaN class or robot runtime executed."
+      }
     }
   ],
   "concepts": [
@@ -7903,7 +8236,7 @@
     {
       "id": "W11-L55-C-validation",
       "title": "Trajectory validation",
-      "description": "This is the displayed validation sequence and checks accumulated motion prediction.",
+      "description": "This includes every stage in the displayed validation box, not merely a held-out one-step prediction test.",
       "slideIds": [
         "lectures-p1753"
       ],
@@ -8561,7 +8894,7 @@
     {
       "id": "W11-L55-C-optimizer-order",
       "title": "Gradient update sequence",
-      "description": "zero_grad prevents unintended accumulation; backward computes gradients; step applies the optimizer update.",
+      "description": "The source computes tau_pred and loss first, then calls zero_grad, backward and step. Clearing before backward avoids accumulating old parameter gradients.",
       "slideIds": [
         "lectures-p1769"
       ],
@@ -8633,7 +8966,7 @@
     {
       "id": "W11-L55-C-detach-cpu",
       "title": "Autograd boundary and NumPy conversion",
-      "description": "The source creates CPU tensors, but a GPU variant must explicitly transfer the detached result to CPU.",
+      "description": "The remaining requirement is CPU storage; moving the already detached compatible tensor to CPU permits the default conversion.",
       "slideIds": [
         "lectures-p1771",
         "lectures-p1772"
@@ -8867,6 +9200,48 @@
       "prerequisiteConceptIds": [],
       "examinationAngles": [
         "scenario"
+      ]
+    },
+    {
+      "id": "W11-L55-C-paired-settings",
+      "title": "Distinct forward and inverse neural examples",
+      "description": "The forward identifier diagram explicitly lists sigmoid and standard backpropagation, while the later inverse-regression code sets activation=tanh and learning_rate_init=1e-3. These are distinct examples; the forward diagram does not identify which particular output-layer activation is used.",
+      "slideIds": [
+        "lectures-p1752",
+        "lectures-p1760"
+      ],
+      "questionIds": [
+        "W11-L55-Q073"
+      ],
+      "status": "drafted",
+      "topic": "Implementation of AI to Robot Dynamics",
+      "subtopic": "Distinct forward and inverse neural examples",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "code",
+        "integrated-application"
+      ]
+    },
+    {
+      "id": "W11-L55-C-integrated-energy",
+      "title": "Two-joint structured torque and physical constraints",
+      "description": "Ḣ=[[1,2],[2,4]], so Ḣv=(5,10). The kinetic gradient is (0.5,6), giving c=(4.5,4). Since Ha=(5,0), torque is (13.5,7). H is symmetric with leading minor 3>0 and determinant 5>0. This checks the supplied local matrix, not every configuration, and low black-box fitting error alone does not enforce those structural conditions.",
+      "slideIds": [
+        "lectures-p1761",
+        "lectures-p1763",
+        "lectures-p1764",
+        "lectures-p1765"
+      ],
+      "questionIds": [
+        "W11-L55-Q074"
+      ],
+      "status": "drafted",
+      "topic": "Implementation of AI to Robot Dynamics",
+      "subtopic": "Two-joint structured torque and physical constraints",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "numerical",
+        "integrated-application"
       ]
     }
   ],

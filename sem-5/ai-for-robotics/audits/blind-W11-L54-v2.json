@@ -1,0 +1,966 @@
+[
+  {
+    "id": "W11-L54-P1720-Q02",
+    "version": 2,
+    "stem": "Which three sensor-to-application pairings match the table’s listed examples? Treat these as examples, not exclusive sensor capabilities.",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Encoder angle → IK data; torque → fault detection; load-cell force → grasp control"
+      },
+      {
+        "id": "o2",
+        "text": "Encoder angle → fault detection; torque → grasp control; load-cell force → IK data"
+      },
+      {
+        "id": "o3",
+        "text": "Encoder angle → grasp control; torque → IK data; load-cell force → fault detection"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1720",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1720,
+        "kind": "table",
+        "locator": "Printed slide 6: Encoder, strain gauge and load-cell application rows",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1721-Q01",
+    "version": 2,
+    "stem": "Which pair reproduces the listed measurements for the vacuum gripper and welding torch, rather than proposing a different sensing scheme?",
+    "selectionMode": "single",
+    "type": "match",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Vacuum gripper: air-flow rate for seal inference; welding torch: current, voltage and wire-feed rate"
+      },
+      {
+        "id": "o2",
+        "text": "Vacuum gripper: suction pressure; welding torch: current, voltage and wire-feed rate"
+      },
+      {
+        "id": "o3",
+        "text": "Vacuum gripper: suction pressure; welding torch: torch position and orientation"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1721",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1721,
+        "kind": "table",
+        "locator": "Printed slide 7: Five end-effector table rows and vacuum/welding photographs",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1728-Q03",
+    "version": 2,
+    "stem": "In the motor-fault train_test_split call, how do stratify=y and random_state=42 differ in their roles?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "random_state alone guarantees a balanced class count for every possible dataset"
+      },
+      {
+        "id": "o2",
+        "text": "stratify fixes the pseudorandom assignment; random_state preserves class proportions"
+      },
+      {
+        "id": "o3",
+        "text": "stratify preserves class proportions; random_state fixes the split’s pseudorandom choices"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1728",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1728,
+        "kind": "code",
+        "locator": "Printed slide 14: stratify=y versus random_state=42",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1729-Q01",
+    "version": 2,
+    "stem": "To avoid held-out-data leakage, where should scaler statistics be fitted?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "On X_tr during pipeline fitting, then reused unchanged for X_te"
+      },
+      {
+        "id": "o2",
+        "text": "On the combined X_tr and X_te because labels are not used"
+      },
+      {
+        "id": "o3",
+        "text": "Separately on every test sample before classification"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1729",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1729,
+        "kind": "code",
+        "locator": "Printed slide 15: StandardScaler first pipeline step",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1730",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1730,
+        "kind": "code",
+        "locator": "Printed slide 16: Upper training/prediction block: fit on training arrays, predict on held-out features",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "externalSources": [
+      {
+        "title": "StandardScaler",
+        "url": "https://scikit-learn.org/1.8/modules/generated/sklearn.preprocessing.StandardScaler.html",
+        "version": "scikit-learn 1.8.0"
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1729-Q07",
+    "version": 2,
+    "stem": "Why can the code’s RBF SVC have a nonlinear input-space boundary even though the introductory SVM picture shows a straight separator?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "StandardScaler alone changes every affine boundary into a curved boundary"
+      },
+      {
+        "id": "o2",
+        "text": "The RBF kernel is the dot product of the standardized sensor vectors, so its input-space boundary must remain a plane"
+      },
+      {
+        "id": "o3",
+        "text": "The kernel represents a linear separator in an implicit feature space, which can correspond to a nonlinear boundary in the original inputs"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1729",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1729,
+        "kind": "statement",
+        "locator": "Printed slide 15: RBF kernel explanation and nonlinear-boundary bullet",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1724",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1724,
+        "kind": "figure",
+        "locator": "Printed slide 10: Straight solid separator and dashed margin lines",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "externalSources": [
+      {
+        "title": "SVM mathematical formulation",
+        "url": "https://scikit-learn.org/1.8/modules/svm.html",
+        "version": "scikit-learn 1.8.0"
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1729-Q08",
+    "version": 1,
+    "stem": "A supplied RBF decision-rule demonstration uses training means μ=(2 A, 1500 rpm, 40 °C) and scales σ=(0.5 A, 100 rpm, 5 °C). A new measurement is x=(2.5 A, 1400 rpm, 45 °C). Compute z_j=(x_j−μ_j)/σ_j, then K(z,v)=exp(−γ||z−v||²) with standardized support vectors v1=(1, −1, 1), v2=(0, 0, 0), γ=ln(2)/3, signed coefficients c1=2, c2=−1, and intercept b=−1.25. Score s=c1 K(z,v1)+c2 K(z,v2)+b; classify overload for s>0, otherwise normal. Which complete trace is correct?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "z=(1, −1, 1); kernels (1, 0.5); score 0.25; overload"
+      },
+      {
+        "id": "o2",
+        "text": "z=(2.5, 1400, 45); kernels approximately (0, 0); score −1.25; normal"
+      },
+      {
+        "id": "o3",
+        "text": "z=(1, −1, 1); kernels (1, 0.5); score 1.25; overload"
+      }
+    ],
+    "assumptions": [
+      "All statistics, support vectors, coefficients, intercept and score convention are supplied for this hand-checkable exercise, not recovered parameters or output of the source-trained model.",
+      "The supplied fixed gamma deliberately replaces gamma=\"scale\" for this exercise.",
+      "The supplied coefficients define this hand-checkable score; no claim is made that they solve the SVC training optimization problem.",
+      "Feature order is current, speed, temperature; statistics are training-only and fixed; all three positive scales are supplied.",
+      "Temperature differences use degrees Celsius; standardized coordinates, kernel values and scores are dimensionless."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1729",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1729,
+        "kind": "code",
+        "locator": "Printed slide 15: Pipeline constructor: StandardScaler followed by RBF SVC",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1730",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1730,
+        "kind": "code",
+        "locator": "Printed slide 16: Upper training/prediction block: fit on training arrays, predict on held-out features",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "externalSources": [
+      {
+        "title": "StandardScaler feature transformation",
+        "url": "https://scikit-learn.org/1.8/modules/generated/sklearn.preprocessing.StandardScaler.html",
+        "version": "scikit-learn 1.8.0"
+      },
+      {
+        "title": "SVC kernel decision function",
+        "url": "https://scikit-learn.org/1.8/modules/svm.html",
+        "version": "scikit-learn 1.8.0"
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1730-Q07",
+    "version": 2,
+    "stem": "The source labels normal as 0 and overload as 1 and passes target_names=[\"normal\", \"overload\"] to classification_report without labels=. Which report-row interpretation is correct?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The overload row reports class 0 metrics because target_names is paired with classes in descending numeric order"
+      },
+      {
+        "id": "o2",
+        "text": "Reversing target_names would still leave normal on class 0 because display names are sorted alphabetically"
+      },
+      {
+        "id": "o3",
+        "text": "The overload row reports class 1 precision, recall, F1 and true-label support"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1730",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1730,
+        "kind": "code",
+        "locator": "Printed slide 16: classification_report (y_te, y_pred, target_names=[normal, overload])",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1728",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1728,
+        "kind": "code",
+        "locator": "Printed slide 14: zeros/ones label construction",
+        "role": "explicit",
+        "region": null
+      }
+    ],
+    "externalSources": [
+      {
+        "title": "Classification report",
+        "url": "https://scikit-learn.org/1.8/modules/generated/sklearn.metrics.classification_report.html",
+        "version": "scikit-learn1.8.0"
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1730-Q08",
+    "version": 1,
+    "stem": "For a supplied held-out report, normal has support 80 and recall 0.90, while overload has support 20 and recall 0.50. Macro recall gives each class equal weight; support-weighted recall uses true-label supports. What are (macro recall, support-weighted recall)?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "(0.82, 0.70)"
+      },
+      {
+        "id": "o2",
+        "text": "(0.70, 0.70)"
+      },
+      {
+        "id": "o3",
+        "text": "(0.70, 0.82)"
+      }
+    ],
+    "assumptions": [
+      "The supports and recalls are supplied for a new example, not values read from a printed table or fresh training output.",
+      "Both classes have positive support and the recall values are exact for this exercise; normal is label 0, overload label 1."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1730",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1730,
+        "kind": "code",
+        "locator": "Printed slide 16: classification_report call and target_names argument",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "externalSources": [
+      {
+        "title": "classification_report averaging definitions",
+        "url": "https://scikit-learn.org/1.8/modules/generated/sklearn.metrics.classification_report.html",
+        "version": "scikit-learn 1.8.0"
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1732-Q02",
+    "version": 2,
+    "stem": "What does the displayed mglearn.plot_single_hidden_layer_graph() call establish, separate from importing MLPRegressor?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It creates an unfitted MLPRegressor configured with the later 256, 256, 128 hidden widths"
+      },
+      {
+        "id": "o2",
+        "text": "It visualizes the fitted connection weights of the later robot-arm regressor"
+      },
+      {
+        "id": "o3",
+        "text": "It displays a generic architecture graph, without configuring or fitting the later robot-arm regressor"
+      }
+    ],
+    "assumptions": [
+      "The snippet presumes mglearn and display are available; their setup is not shown, and no execution of that unavailable plotting dependency is claimed."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1732",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1732,
+        "kind": "code",
+        "locator": "Printed slide 18: mglearn.plot_single_hidden_layer_graph display snippet",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1734-Q01",
+    "version": 2,
+    "stem": "For L1=L2=1 m, θ1=π/6 and relative θ2=π/3, what endpoint is obtained?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "(√3/2, 1.5) m"
+      },
+      {
+        "id": "o2",
+        "text": "((√3+1)/2, (1+√3)/2) m"
+      },
+      {
+        "id": "o3",
+        "text": "(1.5, √3/2) m"
+      }
+    ],
+    "assumptions": [
+      "Angles are radians; source relative-elbow convention and base frame.",
+      "L1=L2=1 m; all Cartesian coordinates are in metres."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1734",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1734,
+        "kind": "equation",
+        "locator": "Printed slide 20: Two displayed forward-kinematics equations",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1731",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1731,
+        "kind": "statement",
+        "locator": "Printed slide 17: Two-link example dimensions and input/output description",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1734-Q02",
+    "version": 2,
+    "stem": "For L1=L2=1 m, which supplied angle pair (θ1, θ2), in radians, reaches (1, 1) m and belongs to the lecture’s nonnegative-elbow branch?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "(π/2, −π/2)"
+      },
+      {
+        "id": "o2",
+        "text": "(0, π/2)"
+      },
+      {
+        "id": "o3",
+        "text": "(π/2, π/2)"
+      }
+    ],
+    "assumptions": [
+      "Source branch naming convention; θ1∈[−π, π], θ2∈[0, π]; fixed planar base.",
+      "All Cartesian coordinates are metres; L1=L2=1 m."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1734",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1734,
+        "kind": "equation",
+        "locator": "Printed slide 20: Positive theta 2 elbow-down restriction and two-branch diagram",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1731",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1731,
+        "kind": "statement",
+        "locator": "Printed slide 17: Two-link example dimensions and input/output description",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1734",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1734,
+        "kind": "equation",
+        "locator": "Printed slide 20: Displayed x and y forward-kinematics equations",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1734-Q03",
+    "version": 2,
+    "stem": "For a fixed-base arm with L1=L2=1 m, an IK regressor returns angles for target (1.5, 1.5) m. What must be recognized before accepting those angles as a solution?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The target is outside the 2 m radial reach because its base distance is √4.5≈2.12 m"
+      },
+      {
+        "id": "o2",
+        "text": "The target is reachable because each coordinate separately has magnitude below 2 m"
+      },
+      {
+        "id": "o3",
+        "text": "Clipping each requested coordinate into [−2, 2] m is sufficient to make this target reachable"
+      }
+    ],
+    "assumptions": [
+      "Rigid planar links of length 1 m each; no translating base or extra axis; target is expressed in the base frame."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1734",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1734,
+        "kind": "equation",
+        "locator": "Printed slide 20: Displayed x and y forward-kinematics equations",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1731",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1731,
+        "kind": "statement",
+        "locator": "Printed slide 17: Two-link example dimensions and input/output description",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1735-Q02",
+    "version": 2,
+    "stem": "The panel shows 1 m links, angles 27.9° and 90.1°, and endpoint (0.415, 1.351) m. Treating the rounded angles as inputs gives approximately (0.4143, 1.3509) m by FK. How should this small difference be interpreted?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Both displayed angles can be treated as exact while requiring every other printed digit to agree exactly"
+      },
+      {
+        "id": "o2",
+        "text": "The small difference proves that the displayed elbow angle is absolute rather than relative"
+      },
+      {
+        "id": "o3",
+        "text": "Allow for differing display precisions and unshown underlying angles; do not infer an exact contradiction"
+      }
+    ],
+    "assumptions": [
+      "The angle labels are rounded to 0.1°; the underlying slider state is not provided.",
+      "The two coordinates and link lengths are in metres, as labeled on the panel; relative elbow angle and fixed base frame."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1735",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1735,
+        "kind": "figure",
+        "locator": "Printed slide 21: 27.9°/90.1° angles, 0.415/1.351 m panel and rounded plot labels",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1734",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1734,
+        "kind": "equation",
+        "locator": "Printed slide 20: Displayed x and y forward-kinematics equations",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1737-Q01",
+    "version": 2,
+    "stem": "For a fixed-base 2R arm with L1=L2=1 m, target (1, 1) m has reference angles q*=(0, π/2). Three supplied regressor outputs in radians are A=(π/2, −π/2), B=(π/6, π/2), and C=(0, π/3). First reject outputs outside θ1∈[−π, π], θ2∈[0, π]; among the rest choose the smallest Euclidean Cartesian error after FK. For comparison, angle MSE is ((θ1−θ1*)²+(θ2−θ2*)²)/2 without angle wrapping. Which assessment is correct?",
+    "selectionMode": "single",
+    "type": "synthesis",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Choose A: its Cartesian error is zero, so it wins even though its elbow angle is negative"
+      },
+      {
+        "id": "o2",
+        "text": "Choose C: B and C have equal angle MSE, but their position errors are about 0.732 m and 0.518 m; A fails the branch filter"
+      },
+      {
+        "id": "o3",
+        "text": "Treat B and C as tied: equal angle MSE forces equal Cartesian position error, while A fails the branch filter"
+      }
+    ],
+    "assumptions": [
+      "All three angle outputs are supplied examples, not fresh model predictions or accuracy claims.",
+      "Rigid planar links; all Cartesian positions are metres in the same base frame; positive counterclockwise shoulder and relative elbow angles.",
+      "Only the stated joint ranges and position-error criterion are imposed; no additional obstacles or actuator constraints.",
+      "The reference and MSE use the stated angle representatives, with no wrap minimization."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1731",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1731,
+        "kind": "statement",
+        "locator": "Printed slide 17: Two-link example dimensions and input/output description",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1734",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1734,
+        "kind": "equation",
+        "locator": "Printed slide 20: Displayed x and y forward-kinematics equations",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1734",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1734,
+        "kind": "statement",
+        "locator": "Printed slide 20: Specified shoulder/elbow sampling ranges",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1733",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1733,
+        "kind": "statement",
+        "locator": "Printed slide 19: Loss computation stage of training diagram",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1737",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1737,
+        "kind": "code",
+        "locator": "Printed slide 23: X and Y column_stack assignments",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1739",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1739,
+        "kind": "code",
+        "locator": "Printed slide 25: Predicted-angle FK and Euclidean error evaluation",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1738-Q01",
+    "version": 2,
+    "stem": "For the fully connected architecture 2→256→256→128→2, with one bias per non-input neuron, how many trainable weights plus biases are there?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "99714"
+      },
+      {
+        "id": "o2",
+        "text": "99456"
+      },
+      {
+        "id": "o3",
+        "text": "99072"
+      }
+    ],
+    "assumptions": [
+      "Fully connected layers 2→256→256→128→2; one bias per hidden/output neuron; no shared parameters."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1738",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1738,
+        "kind": "code",
+        "locator": "Printed slide 24: hidden_layer_sizes=(256, 256, 128) in MLPRegressor constructor",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1731",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1731,
+        "kind": "statement",
+        "locator": "Printed slide 17: Two-link example dimensions and input/output description",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1739-Q03",
+    "version": 2,
+    "stem": "Two supplied Cartesian residual vectors are (0.03, 0.04) mm and (0, 0) mm. Their raw numeric components are passed unchanged to the slide’s Euclidean-distance code, then to print(f\"{err.mean()*100:.2f} cm\"). What pair gives the literal printed output and the physically correct mean error in centimetres?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Literal print: 0.00 cm; physical mean: 0.0025 cm"
+      },
+      {
+        "id": "o2",
+        "text": "Literal print: 2.50 cm; physical mean: 0.0025 cm"
+      },
+      {
+        "id": "o3",
+        "text": "Literal print: 2.50 cm; physical mean: 2.50 cm"
+      }
+    ],
+    "assumptions": [
+      "This is a deliberately unit-inappropriate supplied-input scenario; the source itself uses metre-valued Cartesian geometry.",
+      "The two residual vectors share the same base frame; arithmetic has no automatic unit metadata; exactly two samples are averaged."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1739",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1739,
+        "kind": "code",
+        "locator": "Printed slide 25: Euclidean norm, mean, and literal *100 centimetre print",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1731",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1731,
+        "kind": "statement",
+        "locator": "Printed slide 17: Two-link example dimensions and input/output description",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1740-Q02",
+    "version": 2,
+    "stem": "For L1=L2=1 m and the source branch θ2∈[0, π], which angle pair (θ1, θ2), in radians, exactly reaches (−1, 1) m?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "(π/2, −π/2)"
+      },
+      {
+        "id": "o2",
+        "text": "(π/2, π/2)"
+      },
+      {
+        "id": "o3",
+        "text": "(π, 0)"
+      }
+    ],
+    "assumptions": [
+      "Base origin at (0, 0); relative elbow angle; positive counterclockwise convention.",
+      "Both links are 1 m long and all Cartesian coordinates are metres."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1740",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1740,
+        "kind": "figure",
+        "locator": "Printed slide 26: Ideal target diagram and positive-elbow solution",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1731",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1731,
+        "kind": "statement",
+        "locator": "Printed slide 17: Two-link example dimensions and input/output description",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1734",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1734,
+        "kind": "equation",
+        "locator": "Printed slide 20: Displayed x and y forward-kinematics equations",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1740-Q04",
+    "version": 2,
+    "stem": "Using the historical rounded prediction θ1=1.6773 rad, θ2=1.5809 rad for L1=L2=1 m gives FK endpoint approximately (−1.09951, 0.87799) m. Relative to target (−1, 1) m, what is the single-sample Euclidean position error, rounded to 0.01 cm?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "9.82 cm"
+      },
+      {
+        "id": "o2",
+        "text": "15.74 cm"
+      },
+      {
+        "id": "o3",
+        "text": "10.00 cm"
+      }
+    ],
+    "assumptions": [
+      "Use the source unit links and supplied rounded predicted angles; result is a calculation from historical values, not the newly executed model’s output."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1740",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1740,
+        "kind": "code",
+        "locator": "Printed slide 26: Historical predicted angles and approximate component shifts",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1734",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1734,
+        "kind": "equation",
+        "locator": "Printed slide 20: Displayed x and y forward-kinematics equations",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1731",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1731,
+        "kind": "statement",
+        "locator": "Printed slide 17: Two-link example dimensions and input/output description",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1739",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1739,
+        "kind": "code",
+        "locator": "Printed slide 25: Cartesian Euclidean norm used for predicted-angle validation",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W11-L54-P1741-Q01",
+    "version": 2,
+    "stem": "For the source planar two-revolute-joint arm, det (J)=L1·L2·sin (θ2). At which endpoint elbow configurations is this Jacobian singular?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Every θ1 regardless of θ2"
+      },
+      {
+        "id": "o2",
+        "text": "θ2=0 and θ2=π"
+      },
+      {
+        "id": "o3",
+        "text": "Only θ2=π/2"
+      }
+    ],
+    "assumptions": [
+      "Task is planar Cartesian position; nonzero positive links; source relative-angle convention."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1741",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1741,
+        "kind": "statement",
+        "locator": "Printed slide 27: Singularities at maximum length and near center",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1734",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1734,
+        "kind": "equation",
+        "locator": "Printed slide 20: Displayed x and y forward-kinematics equations",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  }
+]

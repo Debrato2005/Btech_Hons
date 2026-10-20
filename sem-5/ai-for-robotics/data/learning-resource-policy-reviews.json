@@ -1,0 +1,88 @@
+[
+  {
+    "id": "contracts-learning-resource-policy-v1",
+    "reviewerId": "robotics-contracts-independent-reviewer",
+    "reviewedAt": "2026-10-20T00:34:24.946385+00:00",
+    "resourceId": "robotics.exact-question-learning-projection",
+    "resourceVersion": "1.0.0",
+    "resourceSha256": "6cdb73bb280557f7b072332d19a575e04c988312bbbfd284c5d0cb3db1a34787",
+    "decision": "flagged",
+    "checks": {
+      "exactProjection": true,
+      "contextPreservation": false,
+      "sourceAndReviewBinding": false,
+      "failClosedMutationTests": false,
+      "runtimeTests": false
+    },
+    "findings": [
+      {
+        "id": "LR-P01",
+        "severity": "blocking",
+        "area": "stale numerical activation",
+        "targets": [
+          "app/learning-tools.js:registerBankNumericalFamilies",
+          "app/app.js:renderNumerical/renderVariant"
+        ],
+        "finding": "Register an approved course family, remove that record from bank.learningTools.numericalFamilies, then register the new bank. The absent family remains in the module registry and listNumericalFamilies still labels it verified. The current state.variant renderer also trusts cached provenance.status and can display/save that old verified variant without rechecking current eligibility.",
+        "requiredRepair": "Evict every bank-registered family absent or ineligible in the current bank. Fail closed for generation/restoration/display of a cached course variant when its current family, content, question, source, policy or review binding is absent/stale. Keep historical attempts as historical, not current approvals. Add record-removal, bank-switch and cached-variant revocation tests.",
+        "evidence": "audits/learning-resources-v1-contracts-independent-checks.json: failClosedProbes; current renderVariant implementation inspected statically, not in a browser."
+      },
+      {
+        "id": "LR-P02",
+        "severity": "blocking",
+        "area": "context/source provenance loss",
+        "targets": [
+          "app/learning-resources.js:context",
+          "app/learning-resource-ui.js:contextPanel"
+        ],
+        "finding": "The projection drops supplementalProvenance, externalEvidence, primaryImplementationEvidence, experimentProvenance and diagramSourceSlideIds. In the sampled canonical bank this is71 omissions across51 distinct questions. For example W07-L34-P1052-Q08 loses its exact notebook URL, SHA256 and cell8 binding; the remaining slide hyperlink does not replace that evidence.",
+        "requiredRepair": "Copy and render the relevant exact supplemental/implementation/experiment and diagram provenance with its original source qualifications, without inventing new source claims. Preserve full solution/premise context where necessary rather than only a generic source button. Test real notebook-derived and source-conflict fixtures as well as text-only questions.",
+        "evidence": "audits/learning-resources-v1-contracts-projection-checks.json: contextOmissions"
+      },
+      {
+        "id": "LR-P03",
+        "severity": "blocking-defense-in-depth",
+        "area": "literal-answer and identity gate parity",
+        "targets": [
+          "app/learning-resources.js:eligibleQuestions/sameSet",
+          "scripts/learning_resources.py:tool_reasons"
+        ],
+        "finding": "Under otherwise current synthetic test bindings, the JS projection accepts empty keys plus empty independent answers, nonexistent key IDs plus matching review IDs, duplicate independent IDs, and a whitespace-only reviewerId. The Python linked-question check likewise lacks valid-option membership and duplicate validation. The canonical bank validator normally rejects such malformed records, but the separate fail-closed resource gate must not convert them into projected approvals.",
+        "requiredRepair": "Require nonempty unique literal key and independent answer arrays containing only the question’s valid stable option IDs; require a nonblank independent reviewer identity; never substitute conditional intended IDs. Align JS/Python checks and test the rejected cases.",
+        "evidence": "audits/learning-resources-v1-contracts-independent-checks.json and additionalGateProbes in this summary"
+      },
+      {
+        "id": "LR-P04",
+        "severity": "blocking-defense-in-depth",
+        "area": "source-page domain validation",
+        "targets": [
+          "app/learning-resources.js:eligibleQuestions/toolRecordAllowed",
+          "scripts/learning_resources.py:tool_reasons"
+        ],
+        "finding": "The resource gates reject only unreviewed/unresolved dispositions, so an unknown disposition passes. A consistently mutated physicalPage0 also passes JS eligibility. The algorithm selector already uses a positive bounded physical-page check and an explicit disposition allowlist, but the projection/numerical gates do not.",
+        "requiredRepair": "Require one-based integer physicalPage within source.pageCount and an explicit supported disposition, with complete source/hash/sourceId/inspection consistency. Apply the same requirements to linked question citations as well as resource sourceRefs, in both language layers.",
+        "evidence": "audits/learning-resources-v1-contracts-independent-checks.json and additionalGateProbes in this summary"
+      }
+    ],
+    "codeHashes": {
+      "app/learning-resources.js": "fdcfd91813f9fc863d4d448c3928f7e35d86998e84d37cbff22a28448e5d14f7",
+      "app/learning-resource-ui.js": "a451055df7cd02433c0cf48a01d9e2940af1a2862726f1690b9c07a96680d710",
+      "scripts/learning_resources.py": "a50a6ea38fd2cfdc62b4c15f5d298162df10ad4bf9a453666986b6abd404d8a3",
+      "app/learning-tools.js": "dcc58816b4d6689389d8f384a76e3b7755c9bf3c28a66479d970cd1218229427",
+      "app/course-numerical.js": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a",
+      "app/core.js": "df6b00cc3dbe8df737826b501ab3b90dc8a897d896cd757e10ce2353514966f5",
+      "app/app.js": "69e118b091a7e394846c3a0d45b66425ccb6e7ef6216cbdfff244a585d1dc313",
+      "scripts/build.py": "2b43c3b18d0703cf527b44fa78f86a058426e5894c058f0fadd2d06d73dfa89f",
+      "scripts/assemble_bank.py": "68ce4ef092f6ece200b3ad53bb89d33edb2c89539acf9622eef7740f49b8798d",
+      "scripts/validate.py": "85566aabb6a714a9ad787437786f7b26f181a3472002d2cf88b1c17a9668396f",
+      "app/index.html": "9857b52d21b35e3927b16293c8b59a1ce61dd61f90c2d281491065f5557f55e0"
+    },
+    "evidencePaths": [
+      "audits/learning-resources-v1-contracts-independent-checks.json",
+      "audits/learning-resources-v1-contracts-projection-checks.json",
+      "audits/run_learning_resources_contracts_node.js",
+      "audits/check_learning_resource_projection_contracts.js"
+    ],
+    "runtimeExplanation": "39 fixed numerical answers,5 complete traces,13000 new-seed arithmetic cases,13000 distinct-option checks and13000 variant replays passed. Existing targeted39 Node and4 Python tests passed. Inert Node structural DOM tests passed11 assertions, not browser tests. Runtime activation still fails record-removal/revocation tests, so the policy runtime check is false. Actual browser rendering/layout remains independently blocked, not failed or passed."
+  }
+]
