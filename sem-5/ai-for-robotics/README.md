@@ -1,6 +1,6 @@
 # AI for Robotics study bank and offline app
 
-Status: recorded source coverage, independent content/input review and application implementation are closed; exact offline browser acceptance and the newest Git checkpoint remain pending.
+Status: recorded source coverage, independent content/input review and application implementation are closed; the source checkpoint is published, while exact offline browser acceptance remains pending.
 
 This Semester 5 project is separate from OncoSyn. The sources contain 1,953 lecture pages and 59 assignment pages across 12 weeks and 60 lectures. All 2,012 physical pages have recorded distributed visual inspections.
 
