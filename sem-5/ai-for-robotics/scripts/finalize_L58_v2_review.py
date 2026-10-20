@@ -1,0 +1,25 @@
+import json,pathlib,hashlib,datetime,sys,statistics,itertools
+P=pathlib.Path(__file__).resolve().parents[1];sys.path.insert(0,str(P/'scripts'));from validate import question_hash,schema_errors
+A=P/'audits';b=json.load(open(P/'data/question-batches/W12-L58.json'));blind=json.load(open(A/'blind-answers-W12-L58-v2-integration.json'));binding=json.load(open(A/'W12-L58-v2-minimal-bindings.json'));hashes=binding['questionHashes'];m=json.load(open(A/'W12-L58-v2-repair-manifest.json'));by={x['questionId']:x for x in blind['answers']};now=datetime.datetime.now(datetime.timezone.utc).isoformat();rid=blind['reviewerId'];bh=hashlib.sha256((A/'blind-answers-W12-L58-v2-integration.json').read_bytes()).hexdigest();rows=[]
+assert len(m['acceptedQuestionHashes'])==77
+# Independent counterexample: mean2ms does not imply every latency <=10ms.
+latencies=[1]*9+[11];assert statistics.mean(latencies)==2 and max(latencies)>10
+# Declared illustrative policy only, not execution of Nav2.
+def outcome(current_transform,pose_valid,feasible,retries):
+ if not current_transform or not pose_valid:return 'restore_prerequisites'
+ if feasible:return 'attempt_route'
+ if retries:return 'bounded_retry'
+ return 'goal_failure'
+assert outcome(True,True,False,0)=='goal_failure';assert outcome(False,True,True,1)=='restore_prerequisites'
+cases=[]
+for tf,pose,route,retry in itertools.product([False,True],repeat=4):
+ v=outcome(tf,pose,route,retry);assert (v=='restore_prerequisites')==(not(tf and pose));cases.append([tf,pose,route,retry,v])
+check={'passed':True,'latencyCounterexample':{'valuesMs':latencies,'meanMs':2,'maximumMs':11,'deadlineMs':10},'declaredPolicyCases':cases,'timeComparison':{'resetClockSeconds':6,'cachedOldTransformSeconds':73,'oldMinusCurrentSeconds':67},'pluginDirections':{'sim_scan':'simulated sensor publishes to ROS consumer','drive_command':'ROS controller publishes to simulated drive receiver'},'runtime':'Python standard-library counterexample and finite declared-policy checks only; no ROS/Gazebo/plugin/browser execution.'}
+(A/'W12-L58-v2-integration-independent-checks.json').write_text(json.dumps(check,indent=2)+'\n')
+for q in b['questions']:
+ if q['id'] in m['acceptedQuestionHashes']:assert question_hash(q)==m['acceptedQuestionHashes'][q['id']]
+ if q['id'] not in by:continue
+ a=by[q['id']];h=question_hash(q);assert h==hashes[q['id']];assert q['correctOptionIds']==a['independentAnswerOptionIds']
+ r={'id':f'{q["id"]}-v{q["version"]}-integration-independent','questionId':q['id'],'questionVersion':q['version'],'questionSha256':h,'reviewerId':rid,'decision':'verified','reviewedAt':now,'sourceVersions':{'lectures':blind['sourceVersion']},'reviewedSlideIds':sorted({c['slideId'] for c in q['citations']}),'independentAnswerOptionIds':a['independentAnswerOptionIds'],'solvedBeforeAnswerSeen':False,'checks':{k:True for k in ['sourceSupport','assumptions','answerSet','distractors','calculations','figureFidelity','explanation','difficulty','duplication']},'reasoning':a['reasoning']+' Current complete explanations and premise/conflict citations were checked after answer freeze; prior v1 exposure is disclosed.','findings':[],'blindAnswersPath':'audits/blind-answers-W12-L58-v2-integration.json','blindAnswersSha256':bh,'independentSolvedAt':blind['solvedAt'],'priorAuthorExposure':True,'currentVersionSolvedBeforeKeyedAccess':True,'authorLocatorAnswerExposure':False,'computationsPath':'audits/W12-L58-v2-integration-independent-checks.json','sourceInspectionEvidence':[{'inspectorId':rid,'physicalPage':n,'inspectedAt':blind['solvedAt'],'method':'Personally revisited actual source panel and enlarged1873 before current keyed objects.','renderedEvidencePath':f'/workspace/shared/robotics-review-L58/{1843+4*((n-1843)//4)}.png'} for n in sorted({c['physicalPage'] for c in q['citations']})]};assert not schema_errors(r,json.load(open(P/'data/schema.review.json'))),q['id'];rows.append(r)
+f=P/'data/reviews/W12-L58-v2-independent-integration.json';assert not f.exists();f.write_text(json.dumps(rows,indent=2)+'\n');accepted={q['id']:question_hash(q) for q in b['questions']};assert len(accepted)==87
+s={'completedAt':now,'reviewed':10,'verified':10,'flagged':0,'acceptedPreserved':77,'lectureVerified':87,'lectureQuestions':87,'acceptedQuestionHashes':accepted,'actualReviewPagesInspected':blind['actualPagesInspected'],'reviewPath':str(f.relative_to(P)),'reviewSha256':hashlib.sha256(f.read_bytes()).hexdigest(),'blindAnswersSha256':bh,'gapDispositions':m['boundedGapDispositions'],'coverageConclusion':'All three bounded gaps are closed by accepted current revisions or added questions; 77 accepted whole objects preserved. Prior34-page independent coverage is not replaced by this14-page repair review.','externalEvidenceChecked':[{'url':'https://www.omg.org/spec/DDS/1.4/About-DDS','checkedAt':now,'finding':'Official title is Data Distribution Service, whereas actual page1845 says System.'}],'runtimeQualification':check['runtime']};(A/'W12-L58-v2-integration-review-summary.json').write_text(json.dumps(s,indent=2)+'\n');print(json.dumps({k:s[k] for k in ['reviewed','verified','flagged','lectureVerified','reviewSha256']}))

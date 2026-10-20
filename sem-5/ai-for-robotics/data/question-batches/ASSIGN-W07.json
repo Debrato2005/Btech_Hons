@@ -1,0 +1,1428 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "ASSIGN-W07",
+  "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+  "questions": [
+    {
+      "id": "ASSIGN-W07-Q001",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "For the assignment’s points A=(1,0,2) m and B=(1,0,4) m, explicitly assume the stated world frame coincides with the camera frame. With f=20 mm and x=fX/Z, y=fY/Z, what is their image-plane separation?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
+      "week": 7,
+      "lectureId": null,
+      "topic": "Assignment Week 7",
+      "subtopic": "Camera-frame projection",
+      "tags": [
+        "assignment",
+        "week-7"
+      ],
+      "conceptIds": [
+        "ASSIGN-W07-C001"
+      ],
+      "assumptions": [
+        "World and camera frames coincide; ideal pinhole projection; the same principal-point offset would cancel in the separation."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "10 mm"
+        },
+        {
+          "id": "o3",
+          "text": "15 mm"
+        },
+        {
+          "id": "o4",
+          "text": "2 mm"
+        },
+        {
+          "id": "o1",
+          "text": "5 mm"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0029",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 29,
+          "kind": "equation",
+          "locator": "Assignment physical page 29: Week 7 Q1, world-coordinate premise and projection working",
+          "evidenceText": "A=(1,0,2)m, B=(1,0,4)m, f=20 mm; x=fX/Z, y=fY/Z.",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The 5 mm result is valid with the added world-to-camera alignment assumption; the original does not specify camera extrinsics.",
+        "optionExplanations": {
+          "o1": "The image positions are (10,0) and (5,0) mm, giving 5 mm separation.",
+          "o2": "10 mm is A’s image coordinate, not the separation.",
+          "o3": "15 mm adds the two positive coordinates instead of subtracting them.",
+          "o4": "2 m is the world-depth difference; copying its numeral into millimetres is not image projection."
+        },
+        "steps": [
+          "X/Z is dimensionless: 1/2 and 1/4.",
+          "A projects to (20/2,0)=(10,0) mm; B projects to (20/4,0)=(5,0) mm.",
+          "Euclidean separation is |10−5|=5 mm."
+        ],
+        "formulas": [
+          {
+            "expression": "x=f X/Z; y=f Y/Z; d=sqrt((x_A-x_B)^2+(y_A-y_B)^2)",
+            "variables": {
+              "x": "horizontal image coordinate",
+              "y": "vertical image coordinate",
+              "f": "focal length",
+              "X": "camera-frame horizontal coordinate",
+              "Y": "camera-frame vertical coordinate",
+              "Z": "positive camera-frame depth",
+              "d": "image-plane Euclidean separation",
+              "x_A": "image horizontal coordinate of A",
+              "x_B": "image horizontal coordinate of B",
+              "y_A": "image vertical coordinate of A",
+              "y_B": "image vertical coordinate of B"
+            },
+            "units": {
+              "x": "mm",
+              "y": "mm",
+              "f": "mm",
+              "X": "m",
+              "Y": "m",
+              "Z": "m",
+              "d": "mm",
+              "x_A": "mm",
+              "x_B": "mm",
+              "y_A": "mm",
+              "y_B": "mm"
+            },
+            "assumptions": [
+              "Ideal pinhole model; common image plane and camera coordinates; Z>0."
+            ]
+          }
+        ],
+        "simpleExplanation": "The 5 mm result is valid with the added world-to-camera alignment assumption; the original does not specify camera extrinsics.",
+        "memoryAid": null,
+        "misconceptions": [
+          "10 mm is A’s image coordinate, not the separation.",
+          "15 mm adds the two positive coordinates instead of subtracting them.",
+          "2 m is the world-depth difference; copying its numeral into millimetres is not image projection."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W07-Q01",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W07-Q01.json",
+      "originalRecordSha256": "326041518b2d8d437a1b72e559d65aa32cecff456d71faea4a2d73d8390c66d6",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "projection_working",
+        "frame_assumption",
+        "units"
+      ],
+      "conflictResolution": {
+        "issue": "The original supplies world coordinates without camera extrinsics.",
+        "resolution": "The adaptation explicitly identifies world and camera frames before using the source formula.",
+        "method": "Apply the printed pinhole equation only after supplying the missing frame premise.",
+        "status": "qualification_pending_independent_review",
+        "questionVersion": 1,
+        "sourceId": "assignments",
+        "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+        "physicalPage": 29,
+        "sourceClaim": "The original supplies world coordinates without camera extrinsics.",
+        "basis": "The adaptation explicitly identifies world and camera frames before using the source formula."
+      }
+    },
+    {
+      "id": "ASSIGN-W07-Q002",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "Two frontoparallel squares have equal physical side length H and depths Z and 2Z. Separately, two distinct parallel straight lines lie in one plane at fixed camera depth Z0>0, parallel to the image plane. In an ideal pinhole camera, which paired conclusion is correct?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 7,
+      "lectureId": null,
+      "topic": "Assignment Week 7",
+      "subtopic": "Perspective scale",
+      "tags": [
+        "assignment",
+        "week-7"
+      ],
+      "conceptIds": [
+        "ASSIGN-W07-C002"
+      ],
+      "assumptions": [
+        "Same physical H, orientation and focal length; no distortion; Z>0."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "The farther square has half the image side length; the two lines meet at a finite image vanishing point."
+        },
+        {
+          "id": "o4",
+          "text": "The farther square has one quarter of the image side length; the two lines remain parallel in the image."
+        },
+        {
+          "id": "o3",
+          "text": "The squares have equal image side lengths; the two lines remain parallel in the image."
+        },
+        {
+          "id": "o1",
+          "text": "The farther square has half the image side length; the two lines remain parallel in the image."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0029",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 29,
+          "kind": "statement",
+          "locator": "Assignment physical page 29: Week 7 Q2 explanation, parallel-edge convergence and nearer/farther cube faces",
+          "evidenceText": "Parallel edges in the world are projected as lines that converge toward a vanishing point; the farther cube face appears smaller.",
+          "role": "conflict",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0029",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 29,
+          "kind": "equation",
+          "locator": "Assignment physical page 29: Week 7 Q1 explanation, pinhole equations",
+          "evidenceText": "x=fX/Z and y=fY/Z.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Perspective size varies inversely with depth. The source explanation overgeneralizes parallel-line convergence: lines parallel to the image plane remain parallel, so the finite vanishing-point claim requires a direction with nonzero depth component.",
+        "optionExplanations": {
+          "o1": "Inverse depth halves side length, while projection at common fixed depth is a uniform scale that preserves these parallel lines.",
+          "o2": "The size conclusion is right, but lines parallel to the image plane have no finite vanishing point.",
+          "o3": "The parallel-line conclusion is right, but equal physical size at different depths does not imply equal image size.",
+          "o4": "One quarter is the projected area ratio, not the image side-length ratio."
+        },
+        "steps": [
+          "For the squares, h(2Z)=fH/(2Z)=h(Z)/2.",
+          "For the lines at Z0, each point maps by (X,Y) → (fX/Z0,fY/Z0), a uniform scaling of their common plane.",
+          "Uniform scaling preserves their parallel directions and distinct offsets."
+        ],
+        "formulas": [
+          {
+            "expression": "h=fH/Z; h(2Z)/h(Z)=1/2",
+            "variables": {
+              "h": "image side length",
+              "f": "focal length",
+              "H": "physical side length",
+              "Z": "camera depth"
+            },
+            "units": {
+              "h": "mm",
+              "f": "mm",
+              "H": "m",
+              "Z": "m"
+            },
+            "assumptions": [
+              "Frontoparallel square and ideal pinhole camera."
+            ]
+          },
+          {
+            "expression": "(x,y)=(fX/Z0,fY/Z0)",
+            "variables": {
+              "x": "horizontal image coordinate",
+              "y": "vertical image coordinate",
+              "f": "focal length",
+              "X": "camera-frame horizontal coordinate",
+              "Y": "camera-frame vertical coordinate",
+              "Z0": "common fixed positive depth of both lines"
+            },
+            "units": {
+              "x": "mm",
+              "y": "mm",
+              "f": "mm",
+              "X": "m",
+              "Y": "m",
+              "Z0": "m"
+            },
+            "assumptions": [
+              "Both lines lie in a common plane parallel to the image plane."
+            ]
+          }
+        ],
+        "simpleExplanation": "Perspective size varies inversely with depth. The source explanation overgeneralizes parallel-line convergence: lines parallel to the image plane remain parallel, so the finite vanishing-point claim requires a direction with nonzero depth component.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The size conclusion is right, but lines parallel to the image plane have no finite vanishing point.",
+          "The parallel-line conclusion is right, but equal physical size at different depths does not imply equal image size.",
+          "One quarter is the projected area ratio, not the image side-length ratio."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W07-Q02",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W07-Q02.json",
+      "originalRecordSha256": "f0bd040fc90b49b6224012a570b03bd4f4c842b48bf1afb9e4e1c049f8cc61bc",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "perspective_scale",
+        "equal_size_assumption",
+        "length_vs_area",
+        "parallel_image_plane_exception"
+      ],
+      "conflictResolution": {
+        "status": "qualification_pending_independent_review",
+        "questionVersion": 1,
+        "sourceId": "assignments",
+        "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+        "physicalPage": 29,
+        "sourceClaim": "Q2 explanation does not exclude world-parallel lines parallel to the image plane from its finite convergence statement.",
+        "basis": "The adaptation supplies fixed common depth and applies the printed pinhole model, exposing the parallel-image-line exception.",
+        "method": "Substitute Z=Z0 into the source projection equations; the mapping is uniform planar scaling."
+      }
+    },
+    {
+      "id": "ASSIGN-W07-Q003",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "A NumPy array is created as I=np.array([230], dtype=np.uint8). Compare a uint8 addition of 50 with an explicit float conversion before addition. What values result from (I+np.uint8(50))[0] and (I.astype(float)+50)[0], respectively?",
+      "selectionMode": "single",
+      "type": "algorithm_trace",
+      "difficulty": "easy",
+      "cognitiveSkill": "algorithm",
+      "week": 7,
+      "lectureId": null,
+      "topic": "Assignment Week 7",
+      "subtopic": "Unsigned image overflow",
+      "tags": [
+        "assignment",
+        "week-7"
+      ],
+      "conceptIds": [
+        "ASSIGN-W07-C003"
+      ],
+      "assumptions": [
+        "One-element uint8 array; both addends of the first operation are uint8; float conversion occurs before the second addition."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "24 and 24.0"
+        },
+        {
+          "id": "o2",
+          "text": "255 and 280.0"
+        },
+        {
+          "id": "o4",
+          "text": "280 and 280.0"
+        },
+        {
+          "id": "o1",
+          "text": "24 and 280.0"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0029",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 29,
+          "kind": "code",
+          "locator": "Assignment physical page 29: Week 7 Q3, uint8 value and addition premise",
+          "evidenceText": "uint8 image I contains a pixel with value 230; O=I+50.",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0030",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 30,
+          "kind": "equation",
+          "locator": "Assignment physical page 30: Week 7 Q3 continuation, modular working and conversion note",
+          "evidenceText": "230+50=280; 280 mod 256=24; conversion from uint8 to floating point is important.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The arithmetic path, not merely the displayed output type, determines whether overflow is retained.",
+        "optionExplanations": {
+          "o1": "The uint8 result wraps modulo 256; conversion before addition preserves the real-valued sum.",
+          "o2": "255 is saturation, not the stated modular uint8 array addition.",
+          "o3": "Casting before addition avoids the wrap; casting the already-wrapped result would give 24.0.",
+          "o4": "280 cannot be represented by uint8; the first addition retains that dtype."
+        },
+        "steps": [
+          "Unsigned 8-bit integers have 256 residue values, 0 through 255.",
+          "230+50=280, and 280−256=24.",
+          "Converting 230 to float before adding yields 280.0, without uint8 overflow."
+        ],
+        "formulas": [
+          {
+            "expression": "u=(a+b) mod 256",
+            "variables": {
+              "u": "uint8 result",
+              "a": "input intensity code",
+              "b": "added intensity code"
+            },
+            "units": {
+              "u": "dimensionless intensity code",
+              "a": "dimensionless",
+              "b": "dimensionless"
+            },
+            "assumptions": [
+              "Unsigned 8-bit modular addition."
+            ]
+          }
+        ],
+        "simpleExplanation": "The arithmetic path, not merely the displayed output type, determines whether overflow is retained.",
+        "memoryAid": null,
+        "misconceptions": [
+          "255 is saturation, not the stated modular uint8 array addition.",
+          "Casting before addition avoids the wrap; casting the already-wrapped result would give 24.0.",
+          "280 cannot be represented by uint8; the first addition retains that dtype."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W07-Q03",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W07-Q03.json",
+      "originalRecordSha256": "558e8cef73831e2821ebe0ccebcc317d1be08976937b35235ff06905e062593e",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "uint8_overflow",
+        "cast_timing",
+        "saturation_distinction"
+      ],
+      "externalSources": [
+        {
+          "title": "NumPy 2.3 manual: Data types, array conversion and overflow",
+          "url": "https://numpy.org/doc/2.3/user/basics.types.html",
+          "version": "NumPy 2.3 documentation; author runtime NumPy 2.3.5",
+          "accessedAt": "2026-10-20T01:12:41.992230+00:00",
+          "support": "Explicit uint8 arrays, astype conversion and fixed-width integer overflow. Exact two expressions checked in the permitted default runtime."
+        }
+      ]
+    },
+    {
+      "id": "ASSIGN-W07-Q004",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "At one centered valid window, I=[[1,2,3],[4,5,6],[7,8,9]] and K=[[1,2,0],[0,−1,1],[2,0,−2]]. Define correlation by direct elementwise products and convolution by rotating K by 180° first. What are the two sums, in that order?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "medium",
+      "cognitiveSkill": "numerical",
+      "week": 7,
+      "lectureId": null,
+      "topic": "Assignment Week 7",
+      "subtopic": "Correlation and convolution",
+      "tags": [
+        "assignment",
+        "week-7"
+      ],
+      "conceptIds": [
+        "ASSIGN-W07-C004"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o4",
+          "text": "−2 and 28"
+        },
+        {
+          "id": "o3",
+          "text": "2 and −28"
+        },
+        {
+          "id": "o1",
+          "text": "2 and 28"
+        },
+        {
+          "id": "o2",
+          "text": "28 and 2"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0030",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 30,
+          "kind": "equation",
+          "locator": "Assignment physical page 30: Week 7 Q4, printed I/K matrices and two worked product sums",
+          "evidenceText": "I=[[1,2,3],[4,5,6],[7,8,9]], K=[[1,2,0],[0,−1,1],[2,0,−2]]; K_flip=[[-2,0,2],[1,-1,0],[0,2,1]].",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "An asymmetric kernel distinguishes correlation from convolution because a 180° rotation changes its arrangement.",
+        "optionExplanations": {
+          "o1": "Direct products total 2; the rotated-kernel products total 28.",
+          "o2": "This exchanges the operations’ kernel conventions.",
+          "o3": "The convolution is positive 28; a rotation does not negate the sum.",
+          "o4": "The direct sum is positive 2; this changes the correlation sign."
+        },
+        "steps": [
+          "Correlation: 1+4+0+0−5+6+14+0−18=2.",
+          "Rotate both kernel axes: [[−2,0,2],[1,−1,0],[0,2,1]].",
+          "Convolution: −2+0+6+4−5+0+0+16+9=28."
+        ],
+        "formulas": [
+          {
+            "expression": "R=sum_i sum_j I[i,j]K[i,j]; V=sum_i sum_j I[i,j]K[2−i,2−j]",
+            "variables": {
+              "R": "correlation sum",
+              "V": "convolution sum",
+              "I": "3×3 image sample array",
+              "K": "3×3 kernel array",
+              "i": "zero-based row index 0..2",
+              "j": "zero-based column index 0..2"
+            },
+            "units": {
+              "R": "arbitrary response units",
+              "V": "arbitrary response units",
+              "I": "arbitrary intensity units",
+              "K": "dimensionless",
+              "i": "dimensionless",
+              "j": "dimensionless"
+            },
+            "assumptions": [
+              "One valid window; no boundary padding or normalization."
+            ]
+          }
+        ],
+        "simpleExplanation": "An asymmetric kernel distinguishes correlation from convolution because a 180° rotation changes its arrangement.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This exchanges the operations’ kernel conventions.",
+          "The convolution is positive 28; a rotation does not negate the sum.",
+          "The direct sum is positive 2; this changes the correlation sign."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W07-Q04",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W07-Q04.json",
+      "originalRecordSha256": "556fa500e1f1e73abef4b029f720df76f6c81b0b323533e1323da85d88d2e23c",
+      "difficultyRationale": "Requires combining multiple operations or assumptions.",
+      "testedAssignmentAngles": [
+        "matrix_transcription",
+        "kernel_flip",
+        "signed_working"
+      ]
+    },
+    {
+      "id": "ASSIGN-W07-Q005",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "Using corrected area units, a region has A=100 pixel² and perimeter P=40 pixels. Which statement correctly combines circularity ρ=4πA/P² with the strength of shape inference?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
+      "week": 7,
+      "lectureId": null,
+      "topic": "Assignment Week 7",
+      "subtopic": "Circularity and shape inference",
+      "tags": [
+        "assignment",
+        "week-7"
+      ],
+      "conceptIds": [
+        "ASSIGN-W07-C005"
+      ],
+      "assumptions": [
+        "Ideal continuous-shape formula applied to supplied area/perimeter; digital boundary estimation effects are outside this example."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "ρ=π/4≈0.785; every region with this value must be a square."
+        },
+        {
+          "id": "o1",
+          "text": "ρ=π/4≈0.785; an ideal square matches, but this scalar alone does not uniquely identify an arbitrary shape."
+        },
+        {
+          "id": "o2",
+          "text": "ρ=1; the region must be a perfect circle."
+        },
+        {
+          "id": "o4",
+          "text": "ρ=π≈3.142; the region is more circular than an ideal circle."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0030",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 30,
+          "kind": "statement",
+          "locator": "Assignment physical page 30: Week 7 Q5, area and perimeter premise",
+          "evidenceText": "Area=100 pixels; Perimeter=40 pixels.",
+          "role": "conflict",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0031",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 31,
+          "kind": "equation",
+          "locator": "Assignment physical page 31: Week 7 Q5 continuation, circularity and closest-choice qualification",
+          "evidenceText": "ρ=4π(100)/40²=π/4≈0.785; closest to a square among the given choices.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The adaptation uses pixel² for area and retains the original explanation’s closest-choice limitation instead of claiming unique identification.",
+        "optionExplanations": {
+          "o1": "The computed value equals a square’s circularity, while area and perimeter alone do not encode the full boundary.",
+          "o2": "The calculation is π/4, not 1; a circle at that area has a different perimeter.",
+          "o3": "The numerical value is right, but a single shape descriptor is not a unique shape identifier.",
+          "o4": "This fails to square the full perimeter or otherwise mis-scales the ratio; the given formula yields π/4."
+        },
+        "steps": [
+          "P²=1600 pixel².",
+          "ρ=400π/1600=π/4≈0.785.",
+          "An ideal square has A=s² and P=4s, hence the same ratio; matching the ratio does not reconstruct a unique contour."
+        ],
+        "formulas": [
+          {
+            "expression": "ρ=4πA/P²",
+            "variables": {
+              "ρ": "circularity",
+              "A": "region area",
+              "P": "region perimeter"
+            },
+            "units": {
+              "ρ": "dimensionless",
+              "A": "pixel²",
+              "P": "pixels"
+            },
+            "assumptions": [
+              "Area and perimeter expressed in compatible units."
+            ]
+          }
+        ],
+        "simpleExplanation": "The adaptation uses pixel² for area and retains the original explanation’s closest-choice limitation instead of claiming unique identification.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The calculation is π/4, not 1; a circle at that area has a different perimeter.",
+          "The numerical value is right, but a single shape descriptor is not a unique shape identifier.",
+          "This fails to square the full perimeter or otherwise mis-scales the ratio; the given formula yields π/4."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W07-Q05",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W07-Q05.json",
+      "originalRecordSha256": "83108d94cac367a44e2e234cfe4d3315534e3e4b5cb5f1be1758ebc53f05cb50",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "circularity_working",
+        "area_units",
+        "nonunique_descriptor"
+      ],
+      "conflictResolution": {
+        "issue": "The source labels area in pixels rather than square pixels.",
+        "resolution": "The adaptation explicitly uses pixel² and preserves the closest-choice, nonunique interpretation.",
+        "method": "Dimensional check of the printed circularity ratio.",
+        "status": "qualification_pending_independent_review",
+        "questionVersion": 1,
+        "sourceId": "assignments",
+        "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+        "physicalPage": 30,
+        "sourceClaim": "The source labels area in pixels rather than square pixels.",
+        "basis": "The adaptation explicitly uses pixel² and preserves the closest-choice, nonunique interpretation."
+      }
+    },
+    {
+      "id": "ASSIGN-W07-Q006",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "On a common structure-tensor scale, P has eigenvalues (0.01,0.02), Q has (0.01,5.00), and R has (4.50,5.20). Treat values near 0.01 as small and values near 5 as large. Which classification is consistent with local intensity variation?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 7,
+      "lectureId": null,
+      "topic": "Assignment Week 7",
+      "subtopic": "Structure tensor classification",
+      "tags": [
+        "assignment",
+        "week-7"
+      ],
+      "conceptIds": [
+        "ASSIGN-W07-C006"
+      ],
+      "assumptions": [
+        "Same image normalization, window and tensor scale for all three locations."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "P: flat; Q: corner; R: edge."
+        },
+        {
+          "id": "o2",
+          "text": "P: corner; Q: edge; R: flat."
+        },
+        {
+          "id": "o4",
+          "text": "P: edge; Q: flat; R: corner."
+        },
+        {
+          "id": "o1",
+          "text": "P: flat; Q: edge; R: corner."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0031",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 31,
+          "kind": "table",
+          "locator": "Assignment physical page 31: Week 7 Q6, eigenvalue table rows P/Q/R and corner explanation",
+          "evidenceText": "P:(0.01,0.02); Q:(0.01,5.00); R:(4.50,5.20). In R both eigenvalues are large → corner.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "A corner needs appreciable variation in both principal directions, not merely a large maximum eigenvalue.",
+        "optionExplanations": {
+          "o1": "Both small means weak variation; one large means directional variation; both large means variation in both principal directions.",
+          "o2": "This reverses the meanings of two-small and two-large eigenvalues.",
+          "o3": "One large eigenvalue indicates an edge rather than a corner; two large values indicate a corner.",
+          "o4": "P has no large direction; Q has one strong direction and is not flat."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "A corner needs appreciable variation in both principal directions, not merely a large maximum eigenvalue.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This reverses the meanings of two-small and two-large eigenvalues.",
+          "One large eigenvalue indicates an edge rather than a corner; two large values indicate a corner.",
+          "P has no large direction; Q has one strong direction and is not flat."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W07-Q06",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W07-Q06.json",
+      "originalRecordSha256": "0007748b3139d4f0f2b0e44e1570c1f723f8b846f52178e0cd9a3297228171db",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "all_table_rows",
+        "corner_edge_flat",
+        "shared_scale"
+      ]
+    },
+    {
+      "id": "ASSIGN-W07-Q007",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "For one gradient-descent training step on a fixed batch, no current predictions or gradients have been computed. Which order respects the dependencies among the four operations?",
+      "selectionMode": "single",
+      "type": "algorithm_trace",
+      "difficulty": "easy",
+      "cognitiveSkill": "algorithm",
+      "week": 7,
+      "lectureId": null,
+      "topic": "Assignment Week 7",
+      "subtopic": "Training dependencies",
+      "tags": [
+        "assignment",
+        "week-7"
+      ],
+      "conceptIds": [
+        "ASSIGN-W07-C007"
+      ],
+      "assumptions": [
+        "Standard supervised gradient-descent step; no reused stale gradients or pipelined asynchronous update."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "Forward prediction → parameter update → loss evaluation → backpropagation of gradients."
+        },
+        {
+          "id": "o4",
+          "text": "Loss evaluation → forward prediction → backpropagation of gradients → parameter update."
+        },
+        {
+          "id": "o1",
+          "text": "Forward prediction → loss evaluation → backpropagation of gradients → parameter update."
+        },
+        {
+          "id": "o3",
+          "text": "Backpropagation of gradients → forward prediction → loss evaluation → parameter update."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0031",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 31,
+          "kind": "statement",
+          "locator": "Assignment physical page 31: Week 7 Q7, four training-cycle options",
+          "evidenceText": "Forward pass → Loss calculation → Backpropagation → Gradient descent.",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0032",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 32,
+          "kind": "statement",
+          "locator": "Assignment physical page 32: Week 7 Q7 continuation, explanation of stage roles",
+          "evidenceText": "Prediction through forward propagation, loss evaluation, gradient calculation through backpropagation, and parameter update using gradient descent.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Backpropagation computes gradients; gradient descent uses them to change parameters.",
+        "optionExplanations": {
+          "o1": "The current loss needs predictions, gradients need that loss/computation graph, and the update uses those gradients.",
+          "o2": "This updates parameters before obtaining the current loss gradient.",
+          "o3": "This attempts current-batch backpropagation before constructing its forward computation.",
+          "o4": "The prediction-dependent loss cannot be evaluated before current predictions exist."
+        },
+        "steps": [
+          "Compute the batch predictions.",
+          "Evaluate prediction-dependent loss.",
+          "Backpropagate to obtain current parameter gradients.",
+          "Apply the gradient-descent update."
+        ],
+        "formulas": [],
+        "simpleExplanation": "Backpropagation computes gradients; gradient descent uses them to change parameters.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This updates parameters before obtaining the current loss gradient.",
+          "This attempts current-batch backpropagation before constructing its forward computation.",
+          "The prediction-dependent loss cannot be evaluated before current predictions exist."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W07-Q07",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W07-Q07.json",
+      "originalRecordSha256": "317ef5c6c41ff2cfa2fe367cd91383e9b504a0de338f14cd1c848c0942e9b014",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "training_order",
+        "backprop_vs_update"
+      ]
+    },
+    {
+      "id": "ASSIGN-W07-Q008",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "For x=(2,3), w=(0.5,−1) and b=1, compare two explicitly defined nets: z_add=w·x+b and z_threshold=w·x−b. Both use y=1 when z≥0 and y=0 otherwise. Which pair (z_add,y_add; z_threshold,y_threshold) is correct?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
+      "week": 7,
+      "lectureId": null,
+      "topic": "Assignment Week 7",
+      "subtopic": "Bias versus threshold convention",
+      "tags": [
+        "assignment",
+        "week-7"
+      ],
+      "conceptIds": [
+        "ASSIGN-W07-C008"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o4",
+          "text": "(1,1; 3,1)"
+        },
+        {
+          "id": "o3",
+          "text": "(−1,1; −3,1)"
+        },
+        {
+          "id": "o1",
+          "text": "(−1,0; −3,0)"
+        },
+        {
+          "id": "o2",
+          "text": "(−3,0; −1,0)"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0032",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 32,
+          "kind": "equation",
+          "locator": "Assignment physical page 32: Week 7 Q8, b=1 premise, step rule and w0=−b explanation",
+          "evidenceText": "x1=2, x2=3, w1=0.5, w2=−1, b=1; output 1 if weighted sum≥0; explanation sets x0=1 and w0=−b.",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The source’s subtractive-threshold calculation and an additive-bias convention produce different nets but the same output here. The adaptation makes both conventions explicit.",
+        "optionExplanations": {
+          "o1": "The dot product is −2; adding b gives −1 and subtracting b gives −3, both below zero.",
+          "o2": "This swaps the additive-bias and subtractive-threshold definitions.",
+          "o3": "Both nets are negative, so neither activates the stated step function.",
+          "o4": "This reverses the sign of the weighted input and does not follow either explicit definition."
+        },
+        "steps": [
+          "w·x=0.5×2−1×3=−2.",
+          "z_add=−2+1=−1 and z_threshold=−2−1=−3.",
+          "Both values are negative, hence both step outputs are 0."
+        ],
+        "formulas": [
+          {
+            "expression": "z_add=w·x+b; z_threshold=w·x−b; y=1 if z≥0 else 0",
+            "variables": {
+              "z_add": "additive-bias net",
+              "z_threshold": "subtractive-threshold net",
+              "w": "weight vector",
+              "x": "input vector",
+              "b": "specified bias or threshold parameter",
+              "z": "net supplied to step activation",
+              "y": "binary output"
+            },
+            "units": {
+              "z_add": "dimensionless",
+              "z_threshold": "dimensionless",
+              "w": "dimensionless",
+              "x": "dimensionless",
+              "b": "dimensionless",
+              "z": "dimensionless",
+              "y": "dimensionless"
+            },
+            "assumptions": [
+              "The two conventions are separately defined rather than silently interchanged."
+            ]
+          }
+        ],
+        "simpleExplanation": "The source’s subtractive-threshold calculation and an additive-bias convention produce different nets but the same output here. The adaptation makes both conventions explicit.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This swaps the additive-bias and subtractive-threshold definitions.",
+          "Both nets are negative, so neither activates the stated step function.",
+          "This reverses the sign of the weighted input and does not follow either explicit definition."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W07-Q08",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W07-Q08.json",
+      "originalRecordSha256": "4c59ef19c0257915dfb98889d6a16c167a038a12c800050b6b6e0c26df0f1a8f",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "bias_convention",
+        "weighted_sum",
+        "step_output"
+      ],
+      "conflictResolution": {
+        "issue": "The source calls b a bias but its working uses w0=−b.",
+        "resolution": "Both additive-bias and subtractive-threshold nets are explicitly compared without changing the original record.",
+        "method": "Evaluate each stated affine expression and then apply the same printed step rule.",
+        "status": "qualification_pending_independent_review",
+        "questionVersion": 1,
+        "sourceId": "assignments",
+        "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+        "physicalPage": 32,
+        "sourceClaim": "The source calls b a bias but its working uses w0=−b.",
+        "basis": "Both additive-bias and subtractive-threshold nets are explicitly compared without changing the original record."
+      }
+    },
+    {
+      "id": "ASSIGN-W07-Q009",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "A 28×28×1 input passes through 16 square convolution filters with stride 1, zero padding and dilation 1. The output spatial size is 24×24. What are the kernel spatial size and full output shape?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
+      "week": 7,
+      "lectureId": null,
+      "topic": "Assignment Week 7",
+      "subtopic": "Convolution shape inversion",
+      "tags": [
+        "assignment",
+        "week-7"
+      ],
+      "conceptIds": [
+        "ASSIGN-W07-C009"
+      ],
+      "assumptions": [
+        "Standard valid convolution with unit dilation; channel-last shape notation."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "5×5; 24×24×16"
+        },
+        {
+          "id": "o4",
+          "text": "16×16; 24×24×5"
+        },
+        {
+          "id": "o3",
+          "text": "5×5; 24×24×1"
+        },
+        {
+          "id": "o2",
+          "text": "4×4; 24×24×16"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0032",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 32,
+          "kind": "equation",
+          "locator": "Assignment physical page 32: Week 7 Q9, convolution dimensions and worked output",
+          "evidenceText": "Input 28×28×1; stride 1; padding 0; 16 kernels; output spatial dimensions 24×24; K=5 and output 24×24×16.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Spatial size is determined by kernel geometry, stride and padding; channel count is determined by the number of filters.",
+        "optionExplanations": {
+          "o1": "24=28−K+1 gives K=5; each of 16 filters produces one output channel.",
+          "o2": "K=4 would produce 25×25 at these stride/padding settings.",
+          "o3": "The spatial kernel is right, but output channels count filters, not input channels.",
+          "o4": "This confuses number of filters with kernel width; K=16 would give 13×13 spatial output."
+        },
+        "steps": [
+          "Use O=floor((I+2P−K)/S)+1 with I=28,P=0,S=1.",
+          "24=28−K+1, so K=5.",
+          "Sixteen filters give sixteen output channels: 24×24×16."
+        ],
+        "formulas": [
+          {
+            "expression": "O=floor((I+2P−K)/S)+1; C_out=N_filters",
+            "variables": {
+              "O": "output side length",
+              "I": "input side length",
+              "P": "padding per side",
+              "K": "kernel side length",
+              "S": "stride",
+              "C_out": "output channel count",
+              "N_filters": "number of filters"
+            },
+            "units": {
+              "O": "pixels",
+              "I": "pixels",
+              "P": "pixels",
+              "K": "pixels",
+              "S": "pixels",
+              "C_out": "channels",
+              "N_filters": "filters"
+            },
+            "assumptions": [
+              "Dilation 1; square input/kernel; independent output channel per filter."
+            ]
+          }
+        ],
+        "simpleExplanation": "Spatial size is determined by kernel geometry, stride and padding; channel count is determined by the number of filters.",
+        "memoryAid": null,
+        "misconceptions": [
+          "K=4 would produce 25×25 at these stride/padding settings.",
+          "The spatial kernel is right, but output channels count filters, not input channels.",
+          "This confuses number of filters with kernel width; K=16 would give 13×13 spatial output."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W07-Q09",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W07-Q09.json",
+      "originalRecordSha256": "e64c2a4682694135663a8730b877ace3708f67a92efaf5491f0020404073ea84",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "inverse_shape",
+        "filter_count_vs_size"
+      ]
+    },
+    {
+      "id": "ASSIGN-W07-Q010",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "In the assignment’s YOLOv8-versus-YOLOv5 comparison, what does the change to an anchor-free detection head remove the need to predefine?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 7,
+      "lectureId": null,
+      "topic": "Assignment Week 7",
+      "subtopic": "Anchor-free head distinction",
+      "tags": [
+        "assignment",
+        "week-7"
+      ],
+      "conceptIds": [
+        "ASSIGN-W07-C010"
+      ],
+      "assumptions": [
+        "Interpret the particular YOLOv8/YOLOv5 architecture comparison printed in this course, not all model variants or current runtime behavior."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "The input image’s pixel-coordinate system."
+        },
+        {
+          "id": "o1",
+          "text": "A set of anchor-box shapes used as detection priors."
+        },
+        {
+          "id": "o4",
+          "text": "The separate object-class labels learned by the detector."
+        },
+        {
+          "id": "o2",
+          "text": "Every spatial prediction location on the feature maps."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0033",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 33,
+          "kind": "statement",
+          "locator": "Assignment physical page 33: Week 7 Q10, highlighted comparison option B",
+          "evidenceText": "YOLOv8 uses an anchor-free detection head, reducing the need for predefined anchor boxes.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Anchor-free refers to avoiding predefined box priors, not eliminating spatial prediction or object classification.",
+        "optionExplanations": {
+          "o1": "The contrast concerns predefined anchor-box templates, not the absence of locations or classes.",
+          "o2": "Anchor-free heads still predict at spatial locations; locations and anchor-box shapes are different ideas.",
+          "o3": "Predicted boxes still need coordinates in an image or corresponding feature representation.",
+          "o4": "The detector still predicts classes; anchor freedom is not class-free learning."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "Anchor-free refers to avoiding predefined box priors, not eliminating spatial prediction or object classification.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Anchor-free heads still predict at spatial locations; locations and anchor-box shapes are different ideas.",
+          "Predicted boxes still need coordinates in an image or corresponding feature representation.",
+          "The detector still predicts classes; anchor freedom is not class-free learning."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W07-Q10",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W07-Q10.json",
+      "originalRecordSha256": "aa08c2d4356ce9bc5e3f6c43c7b0aa01e153131490599d9817af6bedb88ba2be",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "anchor_box_prior",
+        "anchor_points_distinction"
+      ]
+    }
+  ],
+  "concepts": [
+    {
+      "id": "ASSIGN-W07-C001",
+      "title": "Camera-frame projection",
+      "description": "The 5 mm result is valid with the added world-to-camera alignment assumption; the original does not specify camera extrinsics.",
+      "slideIds": [
+        "assignments-p0029"
+      ],
+      "questionIds": [
+        "ASSIGN-W07-Q001"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 7",
+      "subtopic": "Camera-frame projection",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "frame_assumption",
+        "projection_working",
+        "units"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W07-C002",
+      "title": "Perspective scale",
+      "description": "Perspective size varies inversely with depth. The source explanation overgeneralizes parallel-line convergence: lines parallel to the image plane remain parallel, so the finite vanishing-point claim requires a direction with nonzero depth component.",
+      "slideIds": [
+        "assignments-p0029"
+      ],
+      "questionIds": [
+        "ASSIGN-W07-Q002"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 7",
+      "subtopic": "Perspective scale",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "equal_size_assumption",
+        "length_vs_area",
+        "parallel_image_plane_exception",
+        "perspective_scale"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W07-C003",
+      "title": "Unsigned image overflow",
+      "description": "The arithmetic path, not merely the displayed output type, determines whether overflow is retained.",
+      "slideIds": [
+        "assignments-p0029",
+        "assignments-p0030"
+      ],
+      "questionIds": [
+        "ASSIGN-W07-Q003"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 7",
+      "subtopic": "Unsigned image overflow",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "cast_timing",
+        "saturation_distinction",
+        "uint8_overflow"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W07-C004",
+      "title": "Correlation and convolution",
+      "description": "An asymmetric kernel distinguishes correlation from convolution because a 180° rotation changes its arrangement.",
+      "slideIds": [
+        "assignments-p0030"
+      ],
+      "questionIds": [
+        "ASSIGN-W07-Q004"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 7",
+      "subtopic": "Correlation and convolution",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "kernel_flip",
+        "matrix_transcription",
+        "signed_working"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W07-C005",
+      "title": "Circularity and shape inference",
+      "description": "The adaptation uses pixel² for area and retains the original explanation’s closest-choice limitation instead of claiming unique identification.",
+      "slideIds": [
+        "assignments-p0030",
+        "assignments-p0031"
+      ],
+      "questionIds": [
+        "ASSIGN-W07-Q005"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 7",
+      "subtopic": "Circularity and shape inference",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "area_units",
+        "circularity_working",
+        "nonunique_descriptor"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W07-C006",
+      "title": "Structure tensor classification",
+      "description": "A corner needs appreciable variation in both principal directions, not merely a large maximum eigenvalue.",
+      "slideIds": [
+        "assignments-p0031"
+      ],
+      "questionIds": [
+        "ASSIGN-W07-Q006"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 7",
+      "subtopic": "Structure tensor classification",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "all_table_rows",
+        "corner_edge_flat",
+        "shared_scale"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W07-C007",
+      "title": "Training dependencies",
+      "description": "Backpropagation computes gradients; gradient descent uses them to change parameters.",
+      "slideIds": [
+        "assignments-p0031",
+        "assignments-p0032"
+      ],
+      "questionIds": [
+        "ASSIGN-W07-Q007"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 7",
+      "subtopic": "Training dependencies",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "backprop_vs_update",
+        "training_order"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W07-C008",
+      "title": "Bias versus threshold convention",
+      "description": "The source’s subtractive-threshold calculation and an additive-bias convention produce different nets but the same output here. The adaptation makes both conventions explicit.",
+      "slideIds": [
+        "assignments-p0032"
+      ],
+      "questionIds": [
+        "ASSIGN-W07-Q008"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 7",
+      "subtopic": "Bias versus threshold convention",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "bias_convention",
+        "step_output",
+        "weighted_sum"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W07-C009",
+      "title": "Convolution shape inversion",
+      "description": "Spatial size is determined by kernel geometry, stride and padding; channel count is determined by the number of filters.",
+      "slideIds": [
+        "assignments-p0032"
+      ],
+      "questionIds": [
+        "ASSIGN-W07-Q009"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 7",
+      "subtopic": "Convolution shape inversion",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "filter_count_vs_size",
+        "inverse_shape"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W07-C010",
+      "title": "Anchor-free head distinction",
+      "description": "Anchor-free refers to avoiding predefined box priors, not eliminating spatial prediction or object classification.",
+      "slideIds": [
+        "assignments-p0033"
+      ],
+      "questionIds": [
+        "ASSIGN-W07-Q010"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 7",
+      "subtopic": "Anchor-free head distinction",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "anchor_box_prior",
+        "anchor_points_distinction"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    }
+  ],
+  "coverageNote": "All ten original items represented; immutable originals remain outside the approved pool. Meaningful assumptions and calculation angles are explicitly stated."
+}

@@ -1,0 +1,1196 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "ASSIGN-W06",
+  "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+  "questions": [
+    {
+      "id": "ASSIGN-W06-Q001",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "A k-NN classifier uses Euclidean distance on two raw features, one measured in metres and one in millimetres. What should be checked before interpreting “nearest” as useful similarity?",
+      "selectionMode": "single",
+      "type": "scenario",
+      "difficulty": "easy",
+      "cognitiveSkill": "application",
+      "week": 6,
+      "lectureId": null,
+      "topic": "Assignment Week 6",
+      "subtopic": "Nearest-neighbour metric",
+      "tags": [
+        "assignment",
+        "week-6",
+        "nearest-neighbour-metric"
+      ],
+      "conceptIds": [
+        "ASSIGN-W06-C001"
+      ],
+      "assumptions": [
+        "Added mixed-unit example; no claim that a particular scaling method is always optimal."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "Whether increasing k makes all distance-unit choices equivalent."
+        },
+        {
+          "id": "o4",
+          "text": "Whether feature scaling and the chosen metric reflect the task’s intended similarity."
+        },
+        {
+          "id": "o1",
+          "text": "Whether a numeric class label can be added to every test feature vector before measuring distance."
+        },
+        {
+          "id": "o2",
+          "text": "Whether the largest raw numeric feature should always dominate, regardless of its unit."
+        }
+      ],
+      "correctOptionIds": [
+        "o4"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0024",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 24,
+          "kind": "statement",
+          "locator": "Assignment physical PDF page 24, printed footer 1: Week 6, printed item 1: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "NPTEL Online Certification Course\n             Indian Institute of Technology Roorkee\nCourse Name: Introduction to Application of Artificial Intelligence to Robotics\n                         Instructor: Prof. Prof. Pushparaj Mani Pathak\n\n\n           WEEK 6: ASSIGNMENT 6\n\n\n     1. What  is  the fundamental assumption behind  the  k-Nearest\n       Neighbors (k-NN) algorithm?\n      A) Data points far apart in feature space will have similar outputs\n       B) Similar instances are located near each other in feature space\n       and will have similar outputs\n       C) All data points have equal probability of any class\n      D) The algorithm needs no training data at all\n       Answer: B\n       Refer to Lecture 26: Fundamentals of Machine Learning-I Slide\n       15\n\n\n     2. What distinguishes classification from regression as two types of\n        supervised learning?\n      A) Classification predicts continuous numeric values; regression\n        predicts class labels\n       B) Classification predicts a class label; regression predicts a\n        continuous numerical value\n       C) Both predict continuous numeric values\n      D) Both predict continuous class labels\n       Answer: B\n       Refer to Lecture 26: Fundamentals of Machine Learning-I Slide\n       14\n\n\n     3. What fundamentally distinguishes unsupervised learning from\n        supervised learning?\n      A) Unsupervised learning uses more computational power\n       B) Unsupervised learning is used only for classification, while\n        supervised learning is used only for clustering.\n       C) Unsupervised learning learns from unlabeled  data, while\n        supervised learning learns from labeled data.\n\n\n\n                                                                                   1 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The source’s local-similarity idea is conditional on a suitable distance representation, not raw numerical closeness under arbitrary units.",
+        "optionExplanations": {
+          "o4": "Raw mixed-unit scales can dominate distance; metric and preprocessing choices matter.",
+          "o1": "Adding the unknown test label leaks target information and is not a legitimate similarity construction.",
+          "o2": "Numerical magnitude from unit choice need not reflect importance.",
+          "o3": "Changing neighbour count does not remove the scale dependence of the metric."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The source’s local-similarity idea is conditional on a suitable distance representation, not raw numerical closeness under arbitrary units.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Changing neighbour count does not remove the scale dependence of the metric.",
+          "Adding the unknown test label leaks target information and is not a legitimate similarity construction.",
+          "Numerical magnitude from unit choice need not reflect importance."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W06-Q01",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W06-Q01.json",
+      "originalRecordSha256": "ed942042922237c8d9df7bdf22eb3669ec683ccd1398fe970389ed8b5dfd570c",
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+    },
+    {
+      "id": "ASSIGN-W06-Q002",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "A terrain model predicts codes 0,1,2 that denote sand, grass and rock rather than ordered measurements. Which task is this, and why?",
+      "selectionMode": "single",
+      "type": "scenario",
+      "difficulty": "easy",
+      "cognitiveSkill": "application",
+      "week": 6,
+      "lectureId": null,
+      "topic": "Assignment Week 6",
+      "subtopic": "Classification target meaning",
+      "tags": [
+        "assignment",
+        "week-6",
+        "classification-target-meaning"
+      ],
+      "conceptIds": [
+        "ASSIGN-W06-C002"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Classification, because the target is a categorical label despite its numeric encoding."
+        },
+        {
+          "id": "o2",
+          "text": "Regression, because any integer-coded output is a continuous quantity."
+        },
+        {
+          "id": "o3",
+          "text": "Regression, because three classes require fitting three numerical distances."
+        },
+        {
+          "id": "o4",
+          "text": "Unsupervised clustering, because the class names can be replaced by numbers."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0024",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 24,
+          "kind": "statement",
+          "locator": "Assignment physical PDF page 24, printed footer 1: Week 6, printed item 2: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "NPTEL Online Certification Course\n             Indian Institute of Technology Roorkee\nCourse Name: Introduction to Application of Artificial Intelligence to Robotics\n                         Instructor: Prof. Prof. Pushparaj Mani Pathak\n\n\n           WEEK 6: ASSIGNMENT 6\n\n\n     1. What  is  the fundamental assumption behind  the  k-Nearest\n       Neighbors (k-NN) algorithm?\n      A) Data points far apart in feature space will have similar outputs\n       B) Similar instances are located near each other in feature space\n       and will have similar outputs\n       C) All data points have equal probability of any class\n      D) The algorithm needs no training data at all\n       Answer: B\n       Refer to Lecture 26: Fundamentals of Machine Learning-I Slide\n       15\n\n\n     2. What distinguishes classification from regression as two types of\n        supervised learning?\n      A) Classification predicts continuous numeric values; regression\n        predicts class labels\n       B) Classification predicts a class label; regression predicts a\n        continuous numerical value\n       C) Both predict continuous numeric values\n      D) Both predict continuous class labels\n       Answer: B\n       Refer to Lecture 26: Fundamentals of Machine Learning-I Slide\n       14\n\n\n     3. What fundamentally distinguishes unsupervised learning from\n        supervised learning?\n      A) Unsupervised learning uses more computational power\n       B) Unsupervised learning is used only for classification, while\n        supervised learning is used only for clustering.\n       C) Unsupervised learning learns from unlabeled  data, while\n        supervised learning learns from labeled data.\n\n\n\n                                                                                   1 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Numerical class codes remain categorical targets.",
+        "optionExplanations": {
+          "o1": "Target meaning, not its storage type, distinguishes class prediction from numerical regression.",
+          "o2": "Integer representation does not turn category codes into a continuous measurement.",
+          "o3": "Class count does not require a distance-valued target.",
+          "o4": "Encoding labeled targets differently does not remove their supervision."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "Numerical class codes remain categorical targets.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Integer representation does not turn category codes into a continuous measurement.",
+          "Class count does not require a distance-valued target.",
+          "Encoding labeled targets differently does not remove their supervision."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W06-Q02",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W06-Q02.json",
+      "originalRecordSha256": "be36837240fa64d75c7d5a6841511abb6317d233c241eb1c4b31fe5fb803e065",
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+    },
+    {
+      "id": "ASSIGN-W06-Q003",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "Dataset A pairs terrain images with known terrain labels. Dataset B contains only images and is grouped by feature similarity without labels. Which pairing matches the source’s supervised/unsupervised distinction?",
+      "selectionMode": "single",
+      "type": "scenario",
+      "difficulty": "easy",
+      "cognitiveSkill": "application",
+      "week": 6,
+      "lectureId": null,
+      "topic": "Assignment Week 6",
+      "subtopic": "Supervision versus clustering",
+      "tags": [
+        "assignment",
+        "week-6",
+        "supervision-versus-clustering"
+      ],
+      "conceptIds": [
+        "ASSIGN-W06-C003"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o3",
+          "text": "A is unsupervised because images are complex; B is supervised because groups are produced."
+        },
+        {
+          "id": "o4",
+          "text": "Both are supervised because an algorithm processes the images."
+        },
+        {
+          "id": "o1",
+          "text": "Both are unsupervised because terrain labels are stored as text."
+        },
+        {
+          "id": "o2",
+          "text": "A is supervised classification; B is unsupervised clustering."
+        }
+      ],
+      "correctOptionIds": [
+        "o2"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0024",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 24,
+          "kind": "statement",
+          "locator": "Assignment physical PDF page 24, printed footer 1: Week 6, printed item 3: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "NPTEL Online Certification Course\n             Indian Institute of Technology Roorkee\nCourse Name: Introduction to Application of Artificial Intelligence to Robotics\n                         Instructor: Prof. Prof. Pushparaj Mani Pathak\n\n\n           WEEK 6: ASSIGNMENT 6\n\n\n     1. What  is  the fundamental assumption behind  the  k-Nearest\n       Neighbors (k-NN) algorithm?\n      A) Data points far apart in feature space will have similar outputs\n       B) Similar instances are located near each other in feature space\n       and will have similar outputs\n       C) All data points have equal probability of any class\n      D) The algorithm needs no training data at all\n       Answer: B\n       Refer to Lecture 26: Fundamentals of Machine Learning-I Slide\n       15\n\n\n     2. What distinguishes classification from regression as two types of\n        supervised learning?\n      A) Classification predicts continuous numeric values; regression\n        predicts class labels\n       B) Classification predicts a class label; regression predicts a\n        continuous numerical value\n       C) Both predict continuous numeric values\n      D) Both predict continuous class labels\n       Answer: B\n       Refer to Lecture 26: Fundamentals of Machine Learning-I Slide\n       14\n\n\n     3. What fundamentally distinguishes unsupervised learning from\n        supervised learning?\n      A) Unsupervised learning uses more computational power\n       B) Unsupervised learning is used only for classification, while\n        supervised learning is used only for clustering.\n       C) Unsupervised learning learns from unlabeled  data, while\n        supervised learning learns from labeled data.\n\n\n\n                                                                                   1 | P a g e",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0025",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 25,
+          "kind": "statement",
+          "locator": "Assignment physical PDF page 25, printed footer 2: Week 6, printed item 3: continued item or explanation.",
+          "evidenceText": "D) There is no difference between supervised and unsupervised\n   learning.\n   Answer: C\n   Refer to Lecture 27: Fundamentals of Machine Learning-II Slide\n   11\n\n\n4. What is the geometric shape the linear regression algorithm aims\n   to create when there are two input features?\n  A) A straight line\n   B) A plane\n   C) A hyperplane\n  D) A cluster centroid\n   Answer: B\n   Refer to Lecture 27: Fundamentals of Machine Learning-II Slide\n   6\n\n\n5. In the supervised learning, what is the specific purpose of the\n  command .fit(X, y)?\n  A) To generate new synthetic data for training.\n   B) To import the supervised learning algorithm from the library.\n   C) Feed (X,y) labeled data into model for training\n  D) To test the model's accuracy on a separate dataset.\n   Answer: C\n\n   The .fit() method in Scikit-Learn is the standard way to train a\n   model. It takes the input data (features X) and the known correct\n   answers (targets y) and feed indo model for training.\n\n\n6. What is the main difference between NumPy arrays and pandas\n   DataFrames regarding data types?\n  A) NumPy arrays can only contain integers, while DataFrames\n   can only contain strings.\n   B) NumPy arrays require all elements to be the same type, while\n   DataFrames allow each column to have a different type.\n   C) DataFrames require all elements to be the same type, while\n  NumPy arrays allow each column to have a different type.\n\n                                                                            2 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The defining distinction is whether target labels supervise fitting, not input complexity or label encoding.",
+        "optionExplanations": {
+          "o2": "The known target labels supervise A; B forms groups without supplied targets.",
+          "o3": "Data complexity and outputting a group do not determine supervision.",
+          "o4": "Running an algorithm does not imply labeled supervision.",
+          "o1": "Label storage as text does not remove its supervisory role."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The defining distinction is whether target labels supervise fitting, not input complexity or label encoding.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Data complexity and outputting a group do not determine supervision.",
+          "Running an algorithm does not imply labeled supervision.",
+          "Label storage as text does not remove its supervisory role."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W06-Q03",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W06-Q03.json",
+      "originalRecordSha256": "a10b675889c71a8ffeda85175c29fbbca6f359d21bff964da8476306b2fb3602",
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+    },
+    {
+      "id": "ASSIGN-W06-Q004",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "For ŷ=b₀+b₁x₁+b₂x₂ plotted as a graph in (x₁,x₂,ŷ) space, which geometrical statement avoids the original overlapping choices “plane” and “hyperplane”?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 6,
+      "lectureId": null,
+      "topic": "Assignment Week 6",
+      "subtopic": "Plane and hyperplane overlap",
+      "tags": [
+        "assignment",
+        "week-6",
+        "plane-and-hyperplane-overlap"
+      ],
+      "conceptIds": [
+        "ASSIGN-W06-C004"
+      ],
+      "assumptions": [
+        "Inputs vary independently over R²; graph of the fitted scalar linear model, not a thresholded decision region."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "It is a three-dimensional volume because three coordinate names appear."
+        },
+        {
+          "id": "o2",
+          "text": "It is a plane only when it is not a hyperplane."
+        },
+        {
+          "id": "o3",
+          "text": "It is a two-dimensional affine plane in R³, and that plane is also a hyperplane."
+        },
+        {
+          "id": "o4",
+          "text": "It is a one-dimensional line in R³ for every pair of coefficients."
+        }
+      ],
+      "correctOptionIds": [
+        "o3"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0025",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 25,
+          "kind": "statement",
+          "locator": "Assignment physical PDF page 25, printed footer 2: Week 6, printed item 4: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "D) There is no difference between supervised and unsupervised\n   learning.\n   Answer: C\n   Refer to Lecture 27: Fundamentals of Machine Learning-II Slide\n   11\n\n\n4. What is the geometric shape the linear regression algorithm aims\n   to create when there are two input features?\n  A) A straight line\n   B) A plane\n   C) A hyperplane\n  D) A cluster centroid\n   Answer: B\n   Refer to Lecture 27: Fundamentals of Machine Learning-II Slide\n   6\n\n\n5. In the supervised learning, what is the specific purpose of the\n  command .fit(X, y)?\n  A) To generate new synthetic data for training.\n   B) To import the supervised learning algorithm from the library.\n   C) Feed (X,y) labeled data into model for training\n  D) To test the model's accuracy on a separate dataset.\n   Answer: C\n\n   The .fit() method in Scikit-Learn is the standard way to train a\n   model. It takes the input data (features X) and the known correct\n   answers (targets y) and feed indo model for training.\n\n\n6. What is the main difference between NumPy arrays and pandas\n   DataFrames regarding data types?\n  A) NumPy arrays can only contain integers, while DataFrames\n   can only contain strings.\n   B) NumPy arrays require all elements to be the same type, while\n   DataFrames allow each column to have a different type.\n   C) DataFrames require all elements to be the same type, while\n  NumPy arrays allow each column to have a different type.\n\n                                                                            2 | P a g e",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The most specific description is a two-dimensional affine plane in R³; the generic hyperplane description is also true.",
+        "optionExplanations": {
+          "o3": "The graph has two free input coordinates and codimension one in R³, so both names apply.",
+          "o4": "A model with two independently variable inputs has a two-dimensional graph, even if some slopes vanish.",
+          "o1": "The output is constrained by the equation, so the graph does not fill a 3D volume.",
+          "o2": "A plane in R³ is a hyperplane; these labels are not exclusive."
+        },
+        "steps": [],
+        "formulas": [
+          {
+            "expression": "ŷ=b₀+b₁x₁+b₂x₂",
+            "variables": {
+              "ŷ": "predicted scalar response",
+              "x₁,x₂": "two independent features",
+              "b₀": "intercept",
+              "b₁,b₂": "feature coefficients"
+            },
+            "units": {
+              "ŷ,b₀": "response units",
+              "x₁,x₂": "respective feature units",
+              "b₁,b₂": "response units per respective feature unit"
+            },
+            "assumptions": [
+              "Affine scalar regression with two free inputs."
+            ]
+          }
+        ],
+        "simpleExplanation": "The most specific description is a two-dimensional affine plane in R³; the generic hyperplane description is also true.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The output is constrained by the equation, so the graph does not fill a 3D volume.",
+          "A plane in R³ is a hyperplane; these labels are not exclusive.",
+          "A model with two independently variable inputs has a two-dimensional graph, even if some slopes vanish."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W06-Q04",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W06-Q04.json",
+      "originalRecordSha256": "058ab2ce512bde67ac03c5baeb7438ba4c342db1deabca31e17fda675de3d1f9",
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions.",
+      "conflictResolution": {
+        "status": "explicit-qualification-awaiting-independent-review",
+        "sourceId": "assignments",
+        "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+        "questionVersion": 1,
+        "sourceClaim": "Week 6 Q4 offers both a plane and a hyperplane as separate alternatives for the two-input regression graph; both are mathematically true in R³.",
+        "basis": "The most specific description is a two-dimensional affine plane in R³; the generic hyperplane description is also true.",
+        "method": "Preserve the literal original outside the study pool and assess only this explicitly qualified adaptation. No global source resolution."
+      }
+    },
+    {
+      "id": "ASSIGN-W06-Q005",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "In the assignment’s scikit-learn-style linear-regression workflow, which call learns model parameters from labeled feature/target pairs X and y?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 6,
+      "lectureId": null,
+      "topic": "Assignment Week 6",
+      "subtopic": "Estimator fitting versus inference",
+      "tags": [
+        "assignment",
+        "week-6",
+        "estimator-fitting-versus-inference"
+      ],
+      "conceptIds": [
+        "ASSIGN-W06-C005"
+      ],
+      "assumptions": [
+        "Source-scoped estimator API workflow; X contains sample features and y the corresponding target values."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "model.get_params()."
+        },
+        {
+          "id": "o4",
+          "text": "model.fit(X,y)."
+        },
+        {
+          "id": "o1",
+          "text": "model.predict(X)."
+        },
+        {
+          "id": "o2",
+          "text": "model.score(X,y)."
+        }
+      ],
+      "correctOptionIds": [
+        "o4"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0025",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 25,
+          "kind": "statement",
+          "locator": "Assignment physical PDF page 25, printed footer 2: Week 6, printed item 5: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "D) There is no difference between supervised and unsupervised\n   learning.\n   Answer: C\n   Refer to Lecture 27: Fundamentals of Machine Learning-II Slide\n   11\n\n\n4. What is the geometric shape the linear regression algorithm aims\n   to create when there are two input features?\n  A) A straight line\n   B) A plane\n   C) A hyperplane\n  D) A cluster centroid\n   Answer: B\n   Refer to Lecture 27: Fundamentals of Machine Learning-II Slide\n   6\n\n\n5. In the supervised learning, what is the specific purpose of the\n  command .fit(X, y)?\n  A) To generate new synthetic data for training.\n   B) To import the supervised learning algorithm from the library.\n   C) Feed (X,y) labeled data into model for training\n  D) To test the model's accuracy on a separate dataset.\n   Answer: C\n\n   The .fit() method in Scikit-Learn is the standard way to train a\n   model. It takes the input data (features X) and the known correct\n   answers (targets y) and feed indo model for training.\n\n\n6. What is the main difference between NumPy arrays and pandas\n   DataFrames regarding data types?\n  A) NumPy arrays can only contain integers, while DataFrames\n   can only contain strings.\n   B) NumPy arrays require all elements to be the same type, while\n   DataFrames allow each column to have a different type.\n   C) DataFrames require all elements to be the same type, while\n  NumPy arrays allow each column to have a different type.\n\n                                                                            2 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The training step is fit(X,y); prediction, scoring and parameter inspection have distinct roles.",
+        "optionExplanations": {
+          "o4": "fit uses the training features and targets to estimate the model.",
+          "o1": "predict applies an already fitted model to features.",
+          "o2": "score evaluates a fitted model against targets; it does not replace the fitting step.",
+          "o3": "get_params exposes estimator configuration rather than fitting coefficients."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The training step is fit(X,y); prediction, scoring and parameter inspection have distinct roles.",
+        "memoryAid": null,
+        "misconceptions": [
+          "get_params exposes estimator configuration rather than fitting coefficients.",
+          "predict applies an already fitted model to features.",
+          "score evaluates a fitted model against targets; it does not replace the fitting step."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W06-Q05",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W06-Q05.json",
+      "originalRecordSha256": "4d98fbdba57b057dabed651d075311f709d59cbc813ab6635da88139886b9df1",
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+    },
+    {
+      "id": "ASSIGN-W06-Q006",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "A NumPy array is explicitly created with dtype=object and stores the Python values 1 and \"red\". Which statement correctly qualifies the assignment’s array-versus-DataFrame comparison?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 6,
+      "lectureId": null,
+      "topic": "Assignment Week 6",
+      "subtopic": "Array dtype qualification",
+      "tags": [
+        "assignment",
+        "week-6",
+        "array-dtype-qualification"
+      ],
+      "conceptIds": [
+        "ASSIGN-W06-C006"
+      ],
+      "assumptions": [
+        "Added object-array counterexample; structured dtypes also require care, but no claim that every array stores one primitive numeric type is made."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "The array still has one array dtype, object, while its referenced Python objects can have different types; DataFrame columns can each have their own dtype."
+        },
+        {
+          "id": "o2",
+          "text": "The array must have two separate top-level array dtypes because its Python objects differ."
+        },
+        {
+          "id": "o3",
+          "text": "Creating an object array forces every stored object to become a floating-point number."
+        },
+        {
+          "id": "o4",
+          "text": "A DataFrame must convert all columns to the same dtype whenever one column contains text."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0025",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 25,
+          "kind": "statement",
+          "locator": "Assignment physical PDF page 25, printed footer 2: Week 6, printed item 6: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "D) There is no difference between supervised and unsupervised\n   learning.\n   Answer: C\n   Refer to Lecture 27: Fundamentals of Machine Learning-II Slide\n   11\n\n\n4. What is the geometric shape the linear regression algorithm aims\n   to create when there are two input features?\n  A) A straight line\n   B) A plane\n   C) A hyperplane\n  D) A cluster centroid\n   Answer: B\n   Refer to Lecture 27: Fundamentals of Machine Learning-II Slide\n   6\n\n\n5. In the supervised learning, what is the specific purpose of the\n  command .fit(X, y)?\n  A) To generate new synthetic data for training.\n   B) To import the supervised learning algorithm from the library.\n   C) Feed (X,y) labeled data into model for training\n  D) To test the model's accuracy on a separate dataset.\n   Answer: C\n\n   The .fit() method in Scikit-Learn is the standard way to train a\n   model. It takes the input data (features X) and the known correct\n   answers (targets y) and feed indo model for training.\n\n\n6. What is the main difference between NumPy arrays and pandas\n   DataFrames regarding data types?\n  A) NumPy arrays can only contain integers, while DataFrames\n   can only contain strings.\n   B) NumPy arrays require all elements to be the same type, while\n   DataFrames allow each column to have a different type.\n   C) DataFrames require all elements to be the same type, while\n  NumPy arrays allow each column to have a different type.\n\n                                                                            2 | P a g e",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0026",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 26,
+          "kind": "statement",
+          "locator": "Assignment physical PDF page 26, printed footer 3: Week 6, printed item 6: continued item or explanation.",
+          "evidenceText": "D) There is no difference; both enforce the same data type for the\n   entire structure.\n   Answer: B\n   Lecture 28: Libraries and tools for ML implementation in Python\n   24\n\n7. During the  training of a Regression Tree, a  test condition\n    partitions the training data. At a particular leaf node (terminal\n   node), the following 5 training instances are grouped together\n   based on their target values 𝑦= [12,15,18,20,25].\n    If a new test sample follows the decision tree rules and lands in\n    this leaf node, its predicted target value 𝑦̂ will be _________.\n   Answer: 18.0\n   Refer to Lecture 29: Introduction to Decision Trees and Random\n   Forests Slide 8\n\n   For Regression tree: prediction is the mean (average) of the\n    training instances that fall within that specific region (leaf node)\n\n\n                                  12+15+18+20+25   90\n   Predicted Value 𝑦̂ = 𝑚𝑒𝑎𝑛(𝑦) =         =  = 18.0\n                                           5           5\n\n8. Consider the following trained Decision Tree with features 𝑥1 and\n   𝑥2.\n\n\n\n\n\n                                                                            3 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Distinguish the array’s dtype descriptor from the types of objects stored under dtype=object. The source’s short “same type” claim needs that qualification.",
+        "optionExplanations": {
+          "o1": "One ndarray dtype does not mean identical Python object types; DataFrames support columnwise dtypes.",
+          "o2": "A single ndarray has one dtype descriptor, even when that dtype is object or structured.",
+          "o3": "An explicit object dtype stores object references rather than requiring numeric coercion.",
+          "o4": "A DataFrame can retain heterogeneous column dtypes."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "Distinguish the array’s dtype descriptor from the types of objects stored under dtype=object. The source’s short “same type” claim needs that qualification.",
+        "memoryAid": null,
+        "misconceptions": [
+          "A single ndarray has one dtype descriptor, even when that dtype is object or structured.",
+          "An explicit object dtype stores object references rather than requiring numeric coercion.",
+          "A DataFrame can retain heterogeneous column dtypes."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W06-Q06",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W06-Q06.json",
+      "originalRecordSha256": "e2a8a9b91c86d95fdf079eaf17abf82131c1331e6d6c7b6119c8922e3c748d2f",
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+    },
+    {
+      "id": "ASSIGN-W06-Q007",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "A regression-tree leaf contains unweighted training targets [12,15,18,20,25]. Under a squared-error constant-leaf model, what prediction minimizes the leaf loss?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
+      "week": 6,
+      "lectureId": null,
+      "topic": "Assignment Week 6",
+      "subtopic": "Squared-error regression leaf",
+      "tags": [
+        "assignment",
+        "week-6",
+        "squared-error-regression-leaf"
+      ],
+      "conceptIds": [
+        "ASSIGN-W06-C007"
+      ],
+      "assumptions": [
+        "Unweighted scalar targets and squared-error loss; do not generalize this prediction rule to every tree criterion."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "20."
+        },
+        {
+          "id": "o4",
+          "text": "12."
+        },
+        {
+          "id": "o1",
+          "text": "25."
+        },
+        {
+          "id": "o2",
+          "text": "18."
+        }
+      ],
+      "correctOptionIds": [
+        "o2"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0026",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 26,
+          "kind": "equation",
+          "locator": "Assignment physical PDF page 26, printed footer 3: Week 6, printed item 7: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "D) There is no difference; both enforce the same data type for the\n   entire structure.\n   Answer: B\n   Lecture 28: Libraries and tools for ML implementation in Python\n   24\n\n7. During the  training of a Regression Tree, a  test condition\n    partitions the training data. At a particular leaf node (terminal\n   node), the following 5 training instances are grouped together\n   based on their target values 𝑦= [12,15,18,20,25].\n    If a new test sample follows the decision tree rules and lands in\n    this leaf node, its predicted target value 𝑦̂ will be _________.\n   Answer: 18.0\n   Refer to Lecture 29: Introduction to Decision Trees and Random\n   Forests Slide 8\n\n   For Regression tree: prediction is the mean (average) of the\n    training instances that fall within that specific region (leaf node)\n\n\n                                  12+15+18+20+25   90\n   Predicted Value 𝑦̂ = 𝑚𝑒𝑎𝑛(𝑦) =         =  = 18.0\n                                           5           5\n\n8. Consider the following trained Decision Tree with features 𝑥1 and\n   𝑥2.\n\n\n\n\n\n                                                                            3 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The unweighted mean minimizes the sum of squared deviations. This rule depends on the stated loss and weighting.",
+        "optionExplanations": {
+          "o2": "The mean is (12+15+18+20+25)/5=18.",
+          "o3": "Twenty is one sample, not the loss-minimizing mean.",
+          "o4": "The minimum sample is not generally the squared-error minimizer.",
+          "o1": "The maximum sample is not generally the squared-error minimizer."
+        },
+        "steps": [
+          "Sum the targets: 90.",
+          "Divide by five: 18."
+        ],
+        "formulas": [
+          {
+            "expression": "ŷ_leaf=(1/n)Σ_i y_i",
+            "variables": {
+              "ŷ_leaf": "constant prediction in the leaf",
+              "n": "number of leaf training samples",
+              "y_i": "target of sample i",
+              "i": "sample index from 1 to n"
+            },
+            "units": {
+              "ŷ_leaf,y_i": "target units",
+              "n,i": "dimensionless"
+            },
+            "assumptions": [
+              "Unweighted squared-error constant prediction; n>0."
+            ]
+          }
+        ],
+        "simpleExplanation": "The unweighted mean minimizes the sum of squared deviations. This rule depends on the stated loss and weighting.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Twenty is one sample, not the loss-minimizing mean.",
+          "The minimum sample is not generally the squared-error minimizer.",
+          "The maximum sample is not generally the squared-error minimizer."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W06-Q07",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W06-Q07.json",
+      "originalRecordSha256": "1d83b2abfa40fba3767b79d9f7a8be9e17bf307ab66e8d24210f471de209cd36",
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+    },
+    {
+      "id": "ASSIGN-W06-Q008",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "Use the assignment tree: root test x₁≤10 has true leaf [3,5,7]; its false branch tests x₂≤5, with true leaf [10,14,18] and false leaf [30,40]. For (x₁,x₂)=(12,3), what is the unweighted squared-error prediction?",
+      "selectionMode": "single",
+      "type": "diagram",
+      "difficulty": "medium",
+      "cognitiveSkill": "application",
+      "week": 6,
+      "lectureId": null,
+      "topic": "Assignment Week 6",
+      "subtopic": "Tree route and leaf average",
+      "tags": [
+        "assignment",
+        "week-6",
+        "tree-route-and-leaf-average"
+      ],
+      "conceptIds": [
+        "ASSIGN-W06-C008"
+      ],
+      "assumptions": [
+        "The source tree is restated to remain usable without opening the preview; ordinary unweighted squared-error leaf predictions."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "35."
+        },
+        {
+          "id": "o2",
+          "text": "10."
+        },
+        {
+          "id": "o3",
+          "text": "14."
+        },
+        {
+          "id": "o4",
+          "text": "5."
+        }
+      ],
+      "correctOptionIds": [
+        "o3"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0026",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 26,
+          "kind": "figure",
+          "locator": "Assignment physical PDF page 26, printed footer 3: Week 6 item 8, complete regression-tree diagram and its two branch tests.",
+          "evidenceText": "D) There is no difference; both enforce the same data type for the\n   entire structure.\n   Answer: B\n   Lecture 28: Libraries and tools for ML implementation in Python\n   24\n\n7. During the  training of a Regression Tree, a  test condition\n    partitions the training data. At a particular leaf node (terminal\n   node), the following 5 training instances are grouped together\n   based on their target values 𝑦= [12,15,18,20,25].\n    If a new test sample follows the decision tree rules and lands in\n    this leaf node, its predicted target value 𝑦̂ will be _________.\n   Answer: 18.0\n   Refer to Lecture 29: Introduction to Decision Trees and Random\n   Forests Slide 8\n\n   For Regression tree: prediction is the mean (average) of the\n    training instances that fall within that specific region (leaf node)\n\n\n                                  12+15+18+20+25   90\n   Predicted Value 𝑦̂ = 𝑚𝑒𝑎𝑛(𝑦) =         =  = 18.0\n                                           5           5\n\n8. Consider the following trained Decision Tree with features 𝑥1 and\n   𝑥2.\n\n\n\n\n\n                                                                            3 | P a g e",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0027",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 27,
+          "kind": "derivation",
+          "locator": "Assignment physical PDF page 27, printed footer 4: Week 6 item 8, continued input and leaf-mean calculation.",
+          "evidenceText": "The output for a new data point with features 𝑥1 = 12 and 𝑥2 =\n  3 is _______________.\n   Answer: 14\n   At Root Node: 𝑥1 ≤10?, it will Right (as 12 ≤10 is False)\n   At Decision Node: 𝑥2 ≤5?, it will go Left (as 3 ≤5 is True)\n   Target Location: Leaf Node 2\n\n   For Regression tree: prediction is the mean (average) of the\n    training instances that fall within that specific region (leaf node)\n\n\n                                  10+14+18   42\n   Predicted Value 𝑦̂ = 𝑚𝑒𝑎𝑛(𝑦) =     =  = 14.0\n                                        3       3\n\n\n\n9. The \"brain\" of the agent, which defines its behavior by mapping\n   environmental states to actions, is known as the:\n   A) Reward Function\n   B) Policy\n   C) Value Function\n   D) Mode\n   Answer: B\n   Refer to Lecture 30: Reinforcement Learning Slide 11\n\n10 An agent uses the Q-learning algorithm to update its Q-table. At\n   time step 𝑡:\n\n   Current estimate: 𝑄̂(𝑠𝑡, 𝑎𝑡) = 4.0\n   Immediate reward received: 𝑟𝑡+1 = 3.0\n   Discount factor: 𝛾= 0.9\n   Learning rate: 𝜂= 0.1\n  Maximum predicted reward in state 𝑠𝑡+1: 𝑚𝑎𝑥 𝑄̂ (𝑠𝑡+1, 𝑎𝑡+1) =\n                                                 𝑎𝑡+1\n   10.0\n\n   The new updated estimate for 𝑄̂𝑛𝑒𝑤(𝑠𝑡, 𝑎𝑡) is ____________.\n   Answer: 4.8\n\n\n\n\n                                                                            4 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Follow both inequalities in order, then average only the samples in the reached leaf.",
+        "optionExplanations": {
+          "o3": "12 fails the root test and 3 passes the second test; mean(10,14,18)=14.",
+          "o4": "This chooses the root’s true leaf despite x₁=12.",
+          "o1": "This reverses the second branch despite x₂=3≤5.",
+          "o2": "This selects one target instead of averaging the selected leaf."
+        },
+        "steps": [
+          "12≤10 is false, so move to the x₂ test.",
+          "3≤5 is true, so reach [10,14,18].",
+          "Prediction=(10+14+18)/3=14."
+        ],
+        "formulas": [
+          {
+            "expression": "ŷ_leaf=(1/n)Σ_i y_i",
+            "variables": {
+              "ŷ_leaf": "constant prediction in the reached leaf",
+              "n": "sample count in that leaf",
+              "y_i": "training target in that leaf",
+              "i": "sample index"
+            },
+            "units": {
+              "ŷ_leaf,y_i": "target units",
+              "n,i": "dimensionless"
+            },
+            "assumptions": [
+              "Use only the reached leaf and unweighted squared error."
+            ]
+          }
+        ],
+        "simpleExplanation": "Follow both inequalities in order, then average only the samples in the reached leaf.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This reverses the second branch despite x₂=3≤5.",
+          "This selects one target instead of averaging the selected leaf.",
+          "This chooses the root’s true leaf despite x₁=12."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W06-Q08",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W06-Q08.json",
+      "originalRecordSha256": "99ba6b98ac121452d135293bf96da7e541715418bdaf1e770d0168e1982a8709",
+      "difficultyRationale": "Requires combining the stated model, multiple operations or a nontrivial source qualification."
+    },
+    {
+      "id": "ASSIGN-W06-Q009",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "Which RL object specifies how an agent selects an action in a state, possibly by assigning probabilities to available actions?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 6,
+      "lectureId": null,
+      "topic": "Assignment Week 6",
+      "subtopic": "Policy versus reward and value",
+      "tags": [
+        "assignment",
+        "week-6",
+        "policy-versus-reward-and-value"
+      ],
+      "conceptIds": [
+        "ASSIGN-W06-C009"
+      ],
+      "assumptions": [
+        "s is a state, a an action and s′ a subsequent state. Deterministic policies are a special case."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "The transition model P(s′|s,a)."
+        },
+        {
+          "id": "o4",
+          "text": "A policy π(a|s)."
+        },
+        {
+          "id": "o1",
+          "text": "The immediate reward function r(s,a)."
+        },
+        {
+          "id": "o2",
+          "text": "The state-value function V(s)."
+        }
+      ],
+      "correctOptionIds": [
+        "o4"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0027",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 27,
+          "kind": "statement",
+          "locator": "Assignment physical PDF page 27, printed footer 4: Week 6, printed item 9: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "The output for a new data point with features 𝑥1 = 12 and 𝑥2 =\n  3 is _______________.\n   Answer: 14\n   At Root Node: 𝑥1 ≤10?, it will Right (as 12 ≤10 is False)\n   At Decision Node: 𝑥2 ≤5?, it will go Left (as 3 ≤5 is True)\n   Target Location: Leaf Node 2\n\n   For Regression tree: prediction is the mean (average) of the\n    training instances that fall within that specific region (leaf node)\n\n\n                                  10+14+18   42\n   Predicted Value 𝑦̂ = 𝑚𝑒𝑎𝑛(𝑦) =     =  = 14.0\n                                        3       3\n\n\n\n9. The \"brain\" of the agent, which defines its behavior by mapping\n   environmental states to actions, is known as the:\n   A) Reward Function\n   B) Policy\n   C) Value Function\n   D) Mode\n   Answer: B\n   Refer to Lecture 30: Reinforcement Learning Slide 11\n\n10 An agent uses the Q-learning algorithm to update its Q-table. At\n   time step 𝑡:\n\n   Current estimate: 𝑄̂(𝑠𝑡, 𝑎𝑡) = 4.0\n   Immediate reward received: 𝑟𝑡+1 = 3.0\n   Discount factor: 𝛾= 0.9\n   Learning rate: 𝜂= 0.1\n  Maximum predicted reward in state 𝑠𝑡+1: 𝑚𝑎𝑥 𝑄̂ (𝑠𝑡+1, 𝑎𝑡+1) =\n                                                 𝑎𝑡+1\n   10.0\n\n   The new updated estimate for 𝑄̂𝑛𝑒𝑤(𝑠𝑡, 𝑎𝑡) is ____________.\n   Answer: 4.8\n\n\n\n\n                                                                            4 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "A policy maps states to actions or action probabilities; it is distinct from rewards, values and dynamics.",
+        "optionExplanations": {
+          "o4": "A policy is an action-selection rule or conditional action distribution.",
+          "o1": "Reward evaluates an outcome or state-action situation, rather than specifying action selection by itself.",
+          "o2": "Value estimates expected return under a policy, not the action-selection distribution itself.",
+          "o3": "The transition model predicts next states given state/action rather than choosing actions."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "A policy maps states to actions or action probabilities; it is distinct from rewards, values and dynamics.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The transition model predicts next states given state/action rather than choosing actions.",
+          "Reward evaluates an outcome or state-action situation, rather than specifying action selection by itself.",
+          "Value estimates expected return under a policy, not the action-selection distribution itself."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W06-Q09",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W06-Q09.json",
+      "originalRecordSha256": "126bec13117d71649a221f40afbb5dbf29fe6180c031d86c3cdddce3d0c880f9",
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+    },
+    {
+      "id": "ASSIGN-W06-Q010",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "The assignment gives Q_old=4, reward r=3, learning rate α=0.1, discount γ=0.9 and max_a Q(s′,a)=10. What are the updated values for (i) a nonterminal next state and (ii) an added terminal-transition version that does not bootstrap?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "medium",
+      "cognitiveSkill": "numerical",
+      "week": 6,
+      "lectureId": null,
+      "topic": "Assignment Week 6",
+      "subtopic": "Q update and terminal target",
+      "tags": [
+        "assignment",
+        "week-6",
+        "q-update-and-terminal-target"
+      ],
+      "conceptIds": [
+        "ASSIGN-W06-C010"
+      ],
+      "assumptions": [
+        "Original supplied next-state value is nonterminal; the second case is an explicitly added terminal comparison. Values and reward use consistent units."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "(i) 4.8; (ii) 3.9."
+        },
+        {
+          "id": "o2",
+          "text": "(i) 12; (ii) 3."
+        },
+        {
+          "id": "o3",
+          "text": "(i) 4.8; (ii) 4.8."
+        },
+        {
+          "id": "o4",
+          "text": "(i) 5.2; (ii) 4.3."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0027",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 27,
+          "kind": "equation",
+          "locator": "Assignment physical PDF page 27, printed footer 4: Week 6, printed item 10: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "The output for a new data point with features 𝑥1 = 12 and 𝑥2 =\n  3 is _______________.\n   Answer: 14\n   At Root Node: 𝑥1 ≤10?, it will Right (as 12 ≤10 is False)\n   At Decision Node: 𝑥2 ≤5?, it will go Left (as 3 ≤5 is True)\n   Target Location: Leaf Node 2\n\n   For Regression tree: prediction is the mean (average) of the\n    training instances that fall within that specific region (leaf node)\n\n\n                                  10+14+18   42\n   Predicted Value 𝑦̂ = 𝑚𝑒𝑎𝑛(𝑦) =     =  = 14.0\n                                        3       3\n\n\n\n9. The \"brain\" of the agent, which defines its behavior by mapping\n   environmental states to actions, is known as the:\n   A) Reward Function\n   B) Policy\n   C) Value Function\n   D) Mode\n   Answer: B\n   Refer to Lecture 30: Reinforcement Learning Slide 11\n\n10 An agent uses the Q-learning algorithm to update its Q-table. At\n   time step 𝑡:\n\n   Current estimate: 𝑄̂(𝑠𝑡, 𝑎𝑡) = 4.0\n   Immediate reward received: 𝑟𝑡+1 = 3.0\n   Discount factor: 𝛾= 0.9\n   Learning rate: 𝜂= 0.1\n  Maximum predicted reward in state 𝑠𝑡+1: 𝑚𝑎𝑥 𝑄̂ (𝑠𝑡+1, 𝑎𝑡+1) =\n                                                 𝑎𝑡+1\n   10.0\n\n   The new updated estimate for 𝑄̂𝑛𝑒𝑤(𝑠𝑡, 𝑎𝑡) is ____________.\n   Answer: 4.8\n\n\n\n\n                                                                            4 | P a g e",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0028",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 28,
+          "kind": "derivation",
+          "locator": "Assignment physical PDF page 28, printed footer 5: Week 6, printed item 10: continued item or explanation.",
+          "evidenceText": "Refer to Lecture 30: Reinforcement Learning Slide 18\n\n\n𝑄̂𝑛𝑒𝑤(𝑠𝑡, 𝑎𝑡) = 𝑄̂(𝑠𝑡, 𝑎𝑡) + 𝜂(𝑟𝑡+1 + 𝛾𝑚𝑎𝑥 𝑄̂ (𝑠𝑡+1, 𝑎𝑡+1) −𝑄̂(𝑠𝑡, 𝑎𝑡))\n                                            𝑎𝑡+1\n       𝑄̂𝑛𝑒𝑤(𝑠𝑡, 𝑎𝑡) = 4.0 + 0.1(3.0 + 0.9 × 10.0 −4.0)\n          = 4.0 + 0.1 × 8.0 = 4.8\n\n\n\n\n\n               ***END****\n\n\n\n\n\n                                                                        5 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Use the old estimate plus a learning-rate-scaled target error; the terminal version drops only the bootstrap term, not the reward.",
+        "optionExplanations": {
+          "o1": "The nonterminal target is 12 and error 8, giving 4.8; the terminal target is 3 and error −1, giving 3.9.",
+          "o2": "This replaces the old estimate entirely with each target and ignores α=0.1.",
+          "o3": "This incorrectly retains a next-state value for the declared terminal case.",
+          "o4": "This adds α times the target without subtracting the old estimate in the TD error."
+        },
+        "steps": [
+          "Nonterminal target=3+0.9·10=12, so Q_new=4+0.1(12−4)=4.8.",
+          "Terminal target=3, so Q_new=4+0.1(3−4)=3.9."
+        ],
+        "formulas": [
+          {
+            "expression": "Q_new=Q_old+α[r+γ max_a Q(s′,a)−Q_old]",
+            "variables": {
+              "Q_new,Q_old": "updated and prior state-action estimates",
+              "α": "learning rate",
+              "r": "immediate reward",
+              "γ": "discount factor",
+              "s′": "next state",
+              "a": "available next-state action",
+              "Q(s′,a)": "next-state action-value estimate"
+            },
+            "units": {
+              "Q_new,Q_old,r,Q(s′,a)": "consistent reward/value units",
+              "α,γ": "dimensionless",
+              "s′,a": "state/action identifiers"
+            },
+            "assumptions": [
+              "For terminal next states replace the bootstrap term γ max_a Q(s′,a) by zero."
+            ]
+          }
+        ],
+        "simpleExplanation": "Use the old estimate plus a learning-rate-scaled target error; the terminal version drops only the bootstrap term, not the reward.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This replaces the old estimate entirely with each target and ignores α=0.1.",
+          "This incorrectly retains a next-state value for the declared terminal case.",
+          "This adds α times the target without subtracting the old estimate in the TD error."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W06-Q10",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W06-Q10.json",
+      "originalRecordSha256": "7d40f416172e4d498f75cc12d4e04b5524cb0279707ad08e522e36d8a166abc4",
+      "difficultyRationale": "Requires combining the stated model, multiple operations or a nontrivial source qualification."
+    }
+  ],
+  "concepts": [
+    {
+      "id": "ASSIGN-W06-C001",
+      "title": "Nearest-neighbour metric",
+      "description": "The source’s local-similarity idea is conditional on a suitable distance representation, not raw numerical closeness under arbitrary units.",
+      "slideIds": [
+        "assignments-p0024"
+      ],
+      "questionIds": [
+        "ASSIGN-W06-Q001"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 6",
+      "subtopic": "Nearest-neighbour metric",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "scenario",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W06-C002",
+      "title": "Classification target meaning",
+      "description": "Numerical class codes remain categorical targets.",
+      "slideIds": [
+        "assignments-p0024"
+      ],
+      "questionIds": [
+        "ASSIGN-W06-Q002"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 6",
+      "subtopic": "Classification target meaning",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "scenario",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W06-C003",
+      "title": "Supervision versus clustering",
+      "description": "The defining distinction is whether target labels supervise fitting, not input complexity or label encoding.",
+      "slideIds": [
+        "assignments-p0024",
+        "assignments-p0025"
+      ],
+      "questionIds": [
+        "ASSIGN-W06-Q003"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 6",
+      "subtopic": "Supervision versus clustering",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "scenario",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W06-C004",
+      "title": "Plane and hyperplane overlap",
+      "description": "The most specific description is a two-dimensional affine plane in R³; the generic hyperplane description is also true.",
+      "slideIds": [
+        "assignments-p0025"
+      ],
+      "questionIds": [
+        "ASSIGN-W06-Q004"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 6",
+      "subtopic": "Plane and hyperplane overlap",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "conceptual",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W06-C005",
+      "title": "Estimator fitting versus inference",
+      "description": "The training step is fit(X,y); prediction, scoring and parameter inspection have distinct roles.",
+      "slideIds": [
+        "assignments-p0025"
+      ],
+      "questionIds": [
+        "ASSIGN-W06-Q005"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 6",
+      "subtopic": "Estimator fitting versus inference",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "conceptual",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W06-C006",
+      "title": "Array dtype qualification",
+      "description": "Distinguish the array’s dtype descriptor from the types of objects stored under dtype=object. The source’s short “same type” claim needs that qualification.",
+      "slideIds": [
+        "assignments-p0025",
+        "assignments-p0026"
+      ],
+      "questionIds": [
+        "ASSIGN-W06-Q006"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 6",
+      "subtopic": "Array dtype qualification",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "conceptual",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W06-C007",
+      "title": "Squared-error regression leaf",
+      "description": "The unweighted mean minimizes the sum of squared deviations. This rule depends on the stated loss and weighting.",
+      "slideIds": [
+        "assignments-p0026"
+      ],
+      "questionIds": [
+        "ASSIGN-W06-Q007"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 6",
+      "subtopic": "Squared-error regression leaf",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "numerical",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W06-C008",
+      "title": "Tree route and leaf average",
+      "description": "Follow both inequalities in order, then average only the samples in the reached leaf.",
+      "slideIds": [
+        "assignments-p0026",
+        "assignments-p0027"
+      ],
+      "questionIds": [
+        "ASSIGN-W06-Q008"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 6",
+      "subtopic": "Tree route and leaf average",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "diagram",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W06-C009",
+      "title": "Policy versus reward and value",
+      "description": "A policy maps states to actions or action probabilities; it is distinct from rewards, values and dynamics.",
+      "slideIds": [
+        "assignments-p0027"
+      ],
+      "questionIds": [
+        "ASSIGN-W06-Q009"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 6",
+      "subtopic": "Policy versus reward and value",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "conceptual",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W06-C010",
+      "title": "Q update and terminal target",
+      "description": "Use the old estimate plus a learning-rate-scaled target error; the terminal version drops only the bootstrap term, not the reward.",
+      "slideIds": [
+        "assignments-p0027",
+        "assignments-p0028"
+      ],
+      "questionIds": [
+        "ASSIGN-W06-Q010"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 6",
+      "subtopic": "Q update and terminal target",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "numerical",
+        "assumption_or_misconception"
+      ]
+    }
+  ],
+  "coverageNote": "Every original item has a source-linked qualified adaptation. Immutable original records preserve supplied prompts, options and keys. All adaptations remain drafts pending independent review."
+}

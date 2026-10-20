@@ -14,7 +14,7 @@ def input_manifest():
  return {str(p.relative_to(R)):hashfile(p) for p in sorted(paths)}
 inputs=input_manifest()
 receipt={'recordedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'inputManifest':inputs,'processResults':{},'complete':False,'limitations':['Integrity validation does not certify scientific correctness or complete-course coverage.','Actual downloaded-file offline browser QA remains blocked.']}
-steps=[('assembly',['python3','scripts/assemble_bank.py']),('validator',['python3','scripts/validate.py','--report','audits/integrity-latest.json']),('build',['python3','scripts/build.py']),('pythonTests',['python3','-m','unittest','discover','-s','tests','-p','test_*.py']),('nodeTests',['node','--test','app/core.test.js','app/algorithm-selector.test.js','tests/test_learning_tools.js','tests/test_learning_resources.js'])]
+steps=[('assembly',['python3','scripts/assemble_bank.py']),('validator',['python3','scripts/validate.py','--report','audits/integrity-latest.json']),('build',['python3','scripts/build.py']),('pythonTests',['python3','-m','unittest','discover','-s','tests','-p','test_*.py']),('nodeTests',['node','--test','app/core.test.js','app/algorithm-selector.test.js','tests/test_learning_tools.js','tests/test_learning_resources.js','tests/test_course_numerical.js','tests/test_learning_resource_revocation.js'])]
 for name,cmd in steps:
  log=logs/(name+'.log')
  with log.open('w') as f:r=subprocess.run(cmd,cwd=R,stdout=f,stderr=subprocess.STDOUT)

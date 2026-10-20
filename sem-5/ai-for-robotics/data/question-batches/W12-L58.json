@@ -79,10 +79,10 @@
     },
     {
       "id": "W12-L58-P1845-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L58-author-20261020",
-      "stem": "A team uses ROS2 to communicate between robot processes. What follows from the stated real-time support?",
+      "stem": "An added ROS2 timing test reports a mean end-to-end latency of 2 ms for a task with a 10 ms deadline, but supplies no worst-case bound or scheduler/workload analysis. Which conclusion follows from the source’s real-time support claim?",
       "selectionMode": "single",
       "type": "scenario",
       "difficulty": "easy",
@@ -99,20 +99,20 @@
         "W12-L58-C-ros-foundations"
       ],
       "assumptions": [
-        "No measured latency bound, scheduler configuration or network guarantee is supplied."
+        "The timing values are added illustration, not measured source performance. No worst-case latency, jitter bound or workload/configuration proof is supplied."
       ],
       "options": [
         {
           "id": "o1",
-          "text": "Every message necessarily arrives before any deadline chosen by the application"
+          "text": "The 2 ms mean establishes that every message meets the 10 ms deadline."
         },
         {
           "id": "o2",
-          "text": "DDS-based transport alone guarantees hard deadlines even if the executor and operating system are not configured for them"
+          "text": "Selecting reliable message delivery establishes the 10 ms deadline even without a timing bound."
         },
         {
           "id": "o3",
-          "text": "It supports real-time-oriented designs, but a deadline guarantee still depends on the complete configuration and workload"
+          "text": "ROS2 supports real-time-oriented design, but the mean alone does not establish a 10 ms deadline guarantee for the complete system."
         }
       ],
       "correctOptionIds": [
@@ -127,31 +127,41 @@
           "kind": "statement",
           "locator": "Printed slide 3: DDS, distributed systems and real-time support bullets",
           "evidenceText": "Introduction to ROS2\n\n•  ROS2 stands for Robot Operating System 2.\n•  Open-source middleware for robotics.\n•  Provides communication framework for robots.\n•  Supports distributed systems.\n•  Real-time communication support.\n•  Data Distribution System (DDS) - based communication\n   architecture.\n•  Multi-robot communication.\n•  Widely used in research and industry.\n\n\n\n\n\n                                                                                                           3",
-          "role": "explicit",
+          "role": "premise",
           "region": null
         }
       ],
       "solution": {
-        "justification": "A support capability is not an unconditional timing guarantee for every application.",
+        "justification": "An average can be below a deadline while some messages exceed it; end-to-end guarantees require the appropriate complete configuration and workload analysis.",
         "optionExplanations": {
-          "o1": "Incorrect. The slide does not promise arbitrary deadlines regardless of transport, scheduling and load.",
-          "o2": "Incorrect. Communication support is only part of the end-to-end timing design.",
-          "o3": "Correct. A support capability is not an unconditional timing guarantee for every application."
+          "o3": "An average can be below a deadline while some messages exceed it; end-to-end guarantees require the appropriate complete configuration and workload analysis.",
+          "o1": "A mean constrains an average, not each latency or worst-case jitter.",
+          "o2": "Delivery reliability and bounded delivery time are different properties; a reliability choice alone does not supply the missing end-to-end bound."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "A support capability is not an unconditional timing guarantee for every application.",
+        "simpleExplanation": "An average can be below a deadline while some messages exceed it; end-to-end guarantees require the appropriate complete configuration and workload analysis.",
         "memoryAid": null,
         "misconceptions": [
-          "The slide does not promise arbitrary deadlines regardless of transport, scheduling and load.",
-          "Communication support is only part of the end-to-end timing design."
+          "A mean constrains an average, not each latency or worst-case jitter.",
+          "Delivery reliability and bounded delivery time are different properties; a reliability choice alone does not supply the missing end-to-end bound."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three parallel, technically plausible alternatives avoid a filler distractor."
+      "optionCountRationale": "Three distinct same-domain alternatives test the stated distinction without filler.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L58-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L58-v2-author-checks.json",
+        "sha256": "a163b7333765b5498a52d03acf9d21b81d2237209fb5ea63f15fb51a8a87ab37",
+        "independentReview": false,
+        "scope": "Author-only explicit latency counterexamples, added finite diagnostic policy, inert plugin-interface graph and well-formed illustrative XML. These do not execute or validate ROS/Gazebo APIs, SDF schema conformance, deployment deadlines or hardware. Actual source pixels and official specification titles were inspected separately."
+      },
+      "difficultyRationale": "Direct source recognition or a single stated distinction."
     },
     {
       "id": "W12-L58-P1846-Q01",
@@ -229,14 +239,14 @@
     },
     {
       "id": "W12-L58-P1846-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L58-author-20261020",
-      "stem": "Which conclusion follows from the listed warehouse, service and delivery applications?",
+      "stem": "A team adapts a ROS2 warehouse robot to a delivery environment with different sensors and obstacles. Which integration plan is best supported by the source’s modularity, sensor and simulation claims?",
       "selectionMode": "single",
-      "type": "conceptual",
+      "type": "scenario",
       "difficulty": "easy",
-      "cognitiveSkill": "conceptual",
+      "cognitiveSkill": "application",
       "week": 12,
       "lectureId": "L58",
       "topic": "Demonstration in ROS",
@@ -248,19 +258,21 @@
       "conceptIds": [
         "W12-L58-C-ros-navigation-role"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "Added adaptation scenario; the page lists capabilities rather than a validated ready-made deployment."
+      ],
       "options": [
         {
           "id": "o1",
-          "text": "ROS2 can support their software integration, but each still needs task-specific sensing, planning and validation"
+          "text": "Reuse suitable ROS2 components, adapt sensor interfaces and navigation configuration, and validate the new task/environment."
         },
         {
           "id": "o2",
-          "text": "An application using machine learning no longer needs a navigation controller"
+          "text": "Reuse the original sensor calibration, map and planner parameters unchanged because the middleware version is unchanged."
         },
         {
           "id": "o3",
-          "text": "Installing ROS2 alone provides a finished navigation policy for every listed environment"
+          "text": "Retrain the perception model but retain the old sensor-frame transforms and navigation configuration without checking them."
         }
       ],
       "correctOptionIds": [
@@ -275,31 +287,41 @@
           "kind": "statement",
           "locator": "Printed slide 4: Application list and simulation support bullet",
           "evidenceText": "Why ROS2 for Autonomous Navigation?\n\n•  Modular architecture.\n•  Large robotics ecosystem.\n•  Sensor integration support.\n•  Real-time navigation capabilities.\n•  Strong simulation support.\n•  Supports AI and machine learning integration.\n•  Applications\n   –  Autonomous mobile robots\n   –  Warehouse robots\n   –  Service robots\n   –  Delivery robots\n\n                                                                                                           4",
-          "role": "explicit",
+          "role": "premise",
           "region": null
         }
       ],
       "solution": {
-        "justification": "The middleware enables an application; it does not supply a complete validated robot by itself.",
+        "justification": "The listed modularity and ecosystem support reuse, while different sensors and environments still require integration and validation.",
         "optionExplanations": {
-          "o1": "Correct. The middleware enables an application; it does not supply a complete validated robot by itself.",
-          "o2": "Incorrect. AI integration does not eliminate control and execution responsibilities.",
-          "o3": "Incorrect. The list is not evidence of a universally configured policy."
+          "o1": "The listed modularity and ecosystem support reuse, while different sensors and environments still require integration and validation.",
+          "o2": "Middleware compatibility does not establish that physical calibration, maps or task-specific parameters transfer unchanged.",
+          "o3": "Learning-based perception does not remove the need to validate geometry, interfaces and motion configuration."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The middleware enables an application; it does not supply a complete validated robot by itself.",
+        "simpleExplanation": "The listed modularity and ecosystem support reuse, while different sensors and environments still require integration and validation.",
         "memoryAid": null,
         "misconceptions": [
-          "AI integration does not eliminate control and execution responsibilities.",
-          "The list is not evidence of a universally configured policy."
+          "Middleware compatibility does not establish that physical calibration, maps or task-specific parameters transfer unchanged.",
+          "Learning-based perception does not remove the need to validate geometry, interfaces and motion configuration."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three parallel, technically plausible alternatives avoid a filler distractor."
+      "optionCountRationale": "Three distinct same-domain alternatives test the stated distinction without filler.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L58-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L58-v2-author-checks.json",
+        "sha256": "a163b7333765b5498a52d03acf9d21b81d2237209fb5ea63f15fb51a8a87ab37",
+        "independentReview": false,
+        "scope": "Author-only explicit latency counterexamples, added finite diagnostic policy, inert plugin-interface graph and well-formed illustrative XML. These do not execute or validate ROS/Gazebo APIs, SDF schema conformance, deployment deadlines or hardware. Actual source pixels and official specification titles were inspected separately."
+      },
+      "difficultyRationale": "Direct source recognition or a single stated distinction."
     },
     {
       "id": "W12-L58-P1847-Q01",
@@ -451,10 +473,10 @@
     },
     {
       "id": "W12-L58-P1847-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L58-author-20261020",
-      "stem": "What is supported by the empty-world Gazebo screenshot?",
+      "stem": "Which interpretation matches the visible scene in the Gazebo screenshot on physical page 1847?",
       "selectionMode": "single",
       "type": "diagram",
       "difficulty": "easy",
@@ -474,15 +496,15 @@
       "options": [
         {
           "id": "o1",
-          "text": "The visible scene proves the robot already has a SLAM map"
+          "text": "The screenshot shows a completed individual robot model with its link-joint structure open for editing."
         },
         {
           "id": "o2",
-          "text": "The grid itself proves that simulated dynamics match every real robot"
+          "text": "The screenshot shows a sensor-output calibration plot comparing simulated range residuals with real measurements."
         },
         {
           "id": "o3",
-          "text": "It illustrates the simulator interface, not a measured match between simulated and physical sensor errors"
+          "text": "A generic simulation scene/interface is displayed; the view does not show a quantitative simulated-versus-real sensor comparison."
         }
       ],
       "correctOptionIds": [
@@ -502,26 +524,36 @@
         }
       ],
       "solution": {
-        "justification": "A visible scene does not validate sensor realism quantitatively.",
+        "justification": "The visible grid and scene UI illustrate the simulator; no comparison measurements or noise curves are shown.",
         "optionExplanations": {
-          "o1": "Incorrect. A simulator world view is not evidence of a mapping algorithm’s output.",
-          "o2": "Incorrect. No calibration or comparison experiment is shown.",
-          "o3": "Correct. A visible scene does not validate sensor realism quantitatively."
+          "o3": "The visible grid and scene UI illustrate the simulator; no comparison measurements or noise curves are shown.",
+          "o1": "The pictured scene is a largely empty world grid, not a displayed robot link-joint model editor.",
+          "o2": "There is no sensor-residual plot or paired measured dataset in the visible scene."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "A visible scene does not validate sensor realism quantitatively.",
+        "simpleExplanation": "The visible grid and scene UI illustrate the simulator; no comparison measurements or noise curves are shown.",
         "memoryAid": null,
         "misconceptions": [
-          "A simulator world view is not evidence of a mapping algorithm’s output.",
-          "No calibration or comparison experiment is shown."
+          "The pictured scene is a largely empty world grid, not a displayed robot link-joint model editor.",
+          "There is no sensor-residual plot or paired measured dataset in the visible scene."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three parallel, technically plausible alternatives avoid a filler distractor."
+      "optionCountRationale": "Three distinct same-domain alternatives test the stated distinction without filler.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L58-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L58-v2-author-checks.json",
+        "sha256": "a163b7333765b5498a52d03acf9d21b81d2237209fb5ea63f15fb51a8a87ab37",
+        "independentReview": false,
+        "scope": "Author-only explicit latency counterexamples, added finite diagnostic policy, inert plugin-interface graph and well-formed illustrative XML. These do not execute or validate ROS/Gazebo APIs, SDF schema conformance, deployment deadlines or hardware. Actual source pixels and official specification titles were inspected separately."
+      },
+      "difficultyRationale": "Direct source recognition or a single stated distinction."
     },
     {
       "id": "W12-L58-P1848-Q01",
@@ -1216,7 +1248,7 @@
     },
     {
       "id": "W12-L58-P1851-Q02",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L58-author-20261020",
       "stem": "Which interpretation avoids overreading the URDF/SDF comparison?",
@@ -1239,15 +1271,15 @@
       "options": [
         {
           "id": "o1",
-          "text": "SDF can describe entire worlds, but each robot must always remain in a separate URDF-only representation"
+          "text": "SDF is only a world container; an individual model cannot appear directly under its root."
         },
         {
           "id": "o2",
-          "text": "SDF supports simulation descriptions and can also describe individual models"
+          "text": "SDF supports simulation descriptions and can also describe individual models."
         },
         {
           "id": "o3",
-          "text": "An individual robot can never be represented in SDF"
+          "text": "The source comparison means URDF and SDF have identical environment/physics scope and differ only in file extension."
         }
       ],
       "correctOptionIds": [
@@ -1278,34 +1310,34 @@
         }
       ],
       "solution": {
-        "justification": "The Model Editor explicitly generates SDF models, so SDF is not restricted to entire worlds.",
+        "justification": "The Model Editor explicitly generates SDF models; the robot-versus-world comparison is emphasis, not an exclusive restriction.",
         "optionExplanations": {
-          "o1": "Incorrect. The individual-model SDF output on page 1849 disproves the proposed restriction.",
-          "o2": "Correct. The Model Editor explicitly generates SDF models, so SDF is not restricted to entire worlds.",
-          "o3": "Incorrect. The source’s Model Editor page directly contradicts that restriction."
+          "o2": "The Model Editor explicitly generates SDF models; the robot-versus-world comparison is emphasis, not an exclusive restriction.",
+          "o1": "The official SDF root specification permits a model, and the source Model Editor creates individual SDF models.",
+          "o3": "The source distinguishes their emphasis and richer SDF simulation support; neither it nor the specification reduces the distinction to an extension change."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The Model Editor explicitly generates SDF models, so SDF is not restricted to entire worlds.",
+        "simpleExplanation": "The Model Editor explicitly generates SDF models; the robot-versus-world comparison is emphasis, not an exclusive restriction.",
         "memoryAid": null,
         "misconceptions": [
-          "The individual-model SDF output on page1849 disproves the proposed restriction.",
-          "The source’s Model Editor page directly contradicts that restriction."
+          "The official SDF root specification permits a model, and the source Model Editor creates individual SDF models.",
+          "The source distinguishes their emphasis and richer SDF simulation support; neither it nor the specification reduces the distinction to an extension change."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three parallel, technically plausible alternatives avoid a filler distractor.",
+      "optionCountRationale": "Three distinct same-domain alternatives test the stated distinction without filler.",
       "conflictResolution": {
         "status": "qualification_pending_independent_review",
-        "questionVersion": 1,
+        "questionVersion": 2,
         "sourceId": "lectures",
         "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
         "physicalPage": 1851,
         "sourceClaim": "URDF is paired with robot structure and SDF with simulation environment.",
-        "basis": "The comparison describes emphasis, not exclusivity: SDF also describes individual models.",
+        "basis": "The Model Editor explicitly generates SDF models; the robot-versus-world comparison is emphasis, not an exclusive restriction.",
         "method": "Cross-check the actual Model Editor page1849 and official SDF-based editor description.",
         "sourceIssueId": "L58-ISSUE-sdf-scope",
         "scope": "This question version only; separate review required."
@@ -1317,8 +1349,25 @@
           "locator": "Model Editor creates individual models using SDF.",
           "version": "Gazebo Classic documentation inspected 2026-10-20",
           "checkedAt": "2026-10-20"
+        },
+        {
+          "title": "SDFormat root specification",
+          "url": "https://sdformat.org/spec/",
+          "locator": "Root sdf may contain a model or world; model describes a complete robot or physical object.",
+          "version": "Displayed specification 1.12",
+          "checkedAt": "2026-10-20T00:43:57+00:00"
         }
-      ]
+      ],
+      "revisionAuthors": [
+        "build_offline_study_interface:L58-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L58-v2-author-checks.json",
+        "sha256": "a163b7333765b5498a52d03acf9d21b81d2237209fb5ea63f15fb51a8a87ab37",
+        "independentReview": false,
+        "scope": "Author-only explicit latency counterexamples, added finite diagnostic policy, inert plugin-interface graph and well-formed illustrative XML. These do not execute or validate ROS/Gazebo APIs, SDF schema conformance, deployment deadlines or hardware. Actual source pixels and official specification titles were inspected separately."
+      },
+      "difficultyRationale": "Direct source recognition or a single stated distinction."
     },
     {
       "id": "W12-L58-P1852-Q01",
@@ -1855,7 +1904,7 @@
     },
     {
       "id": "W12-L58-P1854-Q04",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L58-author-20261020",
       "stem": "What does the curved back-end-to-front-end arrow support?",
@@ -1878,15 +1927,15 @@
       "options": [
         {
           "id": "o1",
-          "text": "The architecture permits estimation results to inform subsequent front-end processing"
+          "text": "Back-end estimation results can feed back to inform subsequent front-end processing."
         },
         {
           "id": "o2",
-          "text": "The estimate flows forward only, and the curved line represents an unrelated display border"
+          "text": "The curved arrow is the main forward path carrying extracted constraints from front end to back end."
         },
         {
           "id": "o3",
-          "text": "The back end eliminates the need for data association permanently"
+          "text": "The curved arrow sends raw sensor measurements from the output map directly into the back end, bypassing front-end association."
         }
       ],
       "correctOptionIds": [
@@ -1906,26 +1955,36 @@
         }
       ],
       "solution": {
-        "justification": "The drawing is not merely a one-way pipeline with no feedback.",
+        "justification": "The curved arrow runs from the back end toward the front end; the forward constraint path remains a separate arrow.",
         "optionExplanations": {
-          "o1": "Correct. The drawing is not merely a one-way pipeline with no feedback.",
-          "o2": "Incorrect. The curved arrow explicitly connects the back end to the front end.",
-          "o3": "Incorrect. Association remains explicitly inside the front-end block."
+          "o1": "The curved arrow runs from the back end toward the front end; the forward constraint path remains a separate arrow.",
+          "o2": "That direction is represented by the separate straight front-to-back arrow; the curved arrow points back toward the front end.",
+          "o3": "Raw sensor input enters the front-end side, while the curved connection returns from estimation to front-end processing."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The drawing is not merely a one-way pipeline with no feedback.",
+        "simpleExplanation": "The curved arrow runs from the back end toward the front end; the forward constraint path remains a separate arrow.",
         "memoryAid": null,
         "misconceptions": [
-          "The curved arrow explicitly connects the back end to the front end.",
-          "Association remains explicitly inside the front-end block."
+          "That direction is represented by the separate straight front-to-back arrow; the curved arrow points back toward the front end.",
+          "Raw sensor input enters the front-end side, while the curved connection returns from estimation to front-end processing."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three parallel, technically plausible alternatives avoid a filler distractor."
+      "optionCountRationale": "Three distinct same-domain alternatives test the stated distinction without filler.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L58-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L58-v2-author-checks.json",
+        "sha256": "a163b7333765b5498a52d03acf9d21b81d2237209fb5ea63f15fb51a8a87ab37",
+        "independentReview": false,
+        "scope": "Author-only explicit latency counterexamples, added finite diagnostic policy, inert plugin-interface graph and well-formed illustrative XML. These do not execute or validate ROS/Gazebo APIs, SDF schema conformance, deployment deadlines or hardware. Actual source pixels and official specification titles were inspected separately."
+      },
+      "difficultyRationale": "Direct source recognition or a single stated distinction."
     },
     {
       "id": "W12-L58-P1855-Q01",
@@ -5949,10 +6008,10 @@
     },
     {
       "id": "W12-L58-P1870-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L58-author-20261020",
-      "stem": "A simulator is already running correctly. What must be clarified before blindly repeating its launch command during the navigation phase?",
+      "stem": "A Gazebo simulation is already running correctly when the source workflow says to start the robot again before navigation. Which plan handles the existing instance without assuming unprinted restart behavior?",
       "selectionMode": "single",
       "type": "scenario",
       "difficulty": "easy",
@@ -5972,15 +6031,15 @@
       "options": [
         {
           "id": "o1",
-          "text": "Whether the previous simulation should be stopped or reused, so duplicate worlds/nodes are not unintentionally started"
+          "text": "Explicitly decide to stop/restart the existing simulation or reuse it and launch only the missing navigation components, while checking for duplicate instances."
         },
         {
           "id": "o2",
-          "text": "Whether the second launch automatically attaches to the existing process without creating another instance"
+          "text": "Repeat the same simulator launch and rely on the launch tool to attach automatically to the existing process."
         },
         {
           "id": "o3",
-          "text": "Whether sending a second launch command automatically merges all process state"
+          "text": "Stop only RViz, then repeat the simulator launch on the assumption that closing the visualizer stopped the simulation."
         }
       ],
       "correctOptionIds": [
@@ -6000,26 +6059,26 @@
         }
       ],
       "solution": {
-        "justification": "The workflow’s restart wording is not permission to create conflicting duplicate instances.",
+        "justification": "The workflow does not establish automatic reuse, state merging or required process termination; an explicit lifecycle decision avoids accidental duplication.",
         "optionExplanations": {
-          "o1": "Correct. The workflow’s restart wording is not permission to create conflicting duplicate instances.",
-          "o2": "Incorrect. No such attachment behavior is established by simply repeating the launch command.",
-          "o3": "Incorrect. Repeated launch does not establish an automatic state merge."
+          "o1": "The workflow does not establish automatic reuse, state merging or required process termination; an explicit lifecycle decision avoids accidental duplication.",
+          "o2": "The printed command does not establish automatic attachment or singleton reuse.",
+          "o3": "The page does not establish that closing RViz terminates the simulator; visualization and simulation lifecycle must be checked separately."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The workflow’s restart wording is not permission to create conflicting duplicate instances.",
+        "simpleExplanation": "The workflow does not establish automatic reuse, state merging or required process termination; an explicit lifecycle decision avoids accidental duplication.",
         "memoryAid": null,
         "misconceptions": [
-          "No such attachment behavior is established by simply repeating the launch command.",
-          "Repeated launch does not establish an automatic state merge."
+          "The printed command does not establish automatic attachment or singleton reuse.",
+          "The page does not establish that closing RViz terminates the simulator; visualization and simulation lifecycle must be checked separately."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three parallel, technically plausible alternatives avoid a filler distractor.",
+      "optionCountRationale": "Three distinct same-domain alternatives test the stated distinction without filler.",
       "primaryEvidence": [
         {
           "title": "ROBOTIS TurtleBot3 navigation simulation",
@@ -6028,7 +6087,17 @@
           "version": "ROS2 section inspected 2026-10-20",
           "checkedAt": "2026-10-20"
         }
-      ]
+      ],
+      "revisionAuthors": [
+        "build_offline_study_interface:L58-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L58-v2-author-checks.json",
+        "sha256": "a163b7333765b5498a52d03acf9d21b81d2237209fb5ea63f15fb51a8a87ab37",
+        "independentReview": false,
+        "scope": "Author-only explicit latency counterexamples, added finite diagnostic policy, inert plugin-interface graph and well-formed illustrative XML. These do not execute or validate ROS/Gazebo APIs, SDF schema conformance, deployment deadlines or hardware. Actual source pixels and official specification titles were inspected separately."
+      },
+      "difficultyRationale": "Direct source recognition or a single stated distinction."
     },
     {
       "id": "W12-L58-P1871-Q01",
@@ -6458,7 +6527,7 @@
     },
     {
       "id": "W12-L58-P1873-Q01",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L58-author-20261020",
       "stem": "What evidence does the side-by-side Gazebo/RViz demonstration still provide?",
@@ -6481,15 +6550,15 @@
       "options": [
         {
           "id": "o1",
-          "text": "The source displays a simulated scene and RViz reporting reached at that captured moment"
+          "text": "The still shows a simulated scene and RViz with navigation/localization active and feedback reached at the captured moment."
         },
         {
           "id": "o2",
-          "text": "It proves every submitted goal is reachable for all robot models"
+          "text": "The still shows active navigation/localization but feedback remains unknown, so only readiness is displayed."
         },
         {
           "id": "o3",
-          "text": "It supplies a measured distribution of localization error over repeated trials"
+          "text": "The still shows feedback active and a nonzero distance remaining, so the depicted goal is still being pursued."
         }
       ],
       "correctOptionIds": [
@@ -6509,26 +6578,36 @@
         }
       ],
       "solution": {
-        "justification": "It supports the shown status, not a newly executed run or a complete trajectory record.",
+        "justification": "These are visible status fields in the captured source image; they do not constitute a newly executed run or a full trajectory record.",
         "optionExplanations": {
-          "o1": "Correct. It supports the shown status, not a newly executed run or a complete trajectory record.",
-          "o2": "Incorrect. One captured successful state is not a universal feasibility result.",
-          "o3": "Incorrect. No repeated-trial error data or ground-truth comparison are shown."
+          "o1": "These are visible status fields in the captured source image; they do not constitute a newly executed run or a full trajectory record.",
+          "o2": "That is a plausible earlier workflow state, but this captured page visibly says reached in the feedback field.",
+          "o3": "The captured feedback instead says reached and the remaining-distance display is zero."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "It supports the shown status, not a newly executed run or a complete trajectory record.",
+        "simpleExplanation": "These are visible status fields in the captured source image; they do not constitute a newly executed run or a full trajectory record.",
         "memoryAid": null,
         "misconceptions": [
-          "One captured successful state is not a universal feasibility result.",
-          "No repeated-trial error data or ground-truth comparison are shown."
+          "That is a plausible earlier workflow state, but this captured page visibly says reached in the feedback field.",
+          "The captured feedback instead says reached and the remaining-distance display is zero."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three parallel, technically plausible alternatives avoid a filler distractor."
+      "optionCountRationale": "Three distinct same-domain alternatives test the stated distinction without filler.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L58-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L58-v2-author-checks.json",
+        "sha256": "a163b7333765b5498a52d03acf9d21b81d2237209fb5ea63f15fb51a8a87ab37",
+        "independentReview": false,
+        "scope": "Author-only explicit latency counterexamples, added finite diagnostic policy, inert plugin-interface graph and well-formed illustrative XML. These do not execute or validate ROS/Gazebo APIs, SDF schema conformance, deployment deadlines or hardware. Actual source pixels and official specification titles were inspected separately."
+      },
+      "difficultyRationale": "Direct source recognition or a single stated distinction."
     },
     {
       "id": "W12-L58-P1873-Q02",
@@ -6782,10 +6861,10 @@
     },
     {
       "id": "W12-L58-P1866-Q03",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "L58-author-20261020",
-      "stem": "A valid map is loaded, AMCL is active, and a valid goal is sent. A new obstacle blocks the planned route; the controller reports failure. Under a supplied policy to recover once, replan once, then report failure if no feasible path exists, which outcome is correct?",
+      "stem": "Compare two added navigation logs. Run A: one simulator, correct loaded map, initialized AMCL with aligned scans, current transforms on simulation time 40 s, and an accepted goal; a newly sensed barrier blocks the route. The allowed one recovery and one replan have completed, and the planner returns NO_VALID_PATH. Run B: after a simulator reset, /clock is 6 s but the only cached transform is stamped 73 s from the previous run; the map is loaded and the stack reports active, but the controller is waiting for a time-consistent transform. Which diagnosis/action pair is supported?",
       "selectionMode": "single",
       "type": "synthesis",
       "difficulty": "medium",
@@ -6802,20 +6881,22 @@
         "W12-L58-C-navigation-workflow"
       ],
       "assumptions": [
-        "This recovery-count policy is supplied, not an exact Nav2 default tree; no collision-free path after the retry; no physical movement is executed."
+        "Both logs and the one-recovery/one-replan budget are added, not the exact Nav2 default tree or source experiment.",
+        "Time-consistent transforms are required before executing a command. Run B has no current valid transform; the old transform must not be treated as current merely because the static map is unchanged.",
+        "Run A has no remaining feasible route after its permitted retry. Stack active, goal accepted and goal reached are distinct states. No physical or simulated robot is operated."
       ],
       "options": [
         {
           "id": "o1",
-          "text": "Erase the obstacle from the static map without new evidence and report reached"
+          "text": "A: reset the initial AMCL pose despite aligned scans and retry without a limit. B: clear obstacle costmaps but keep the pre-reset transform for control."
         },
         {
           "id": "o2",
-          "text": "Invoke the permitted recovery/replan sequence, then report failure if the route remains infeasible"
+          "text": "A: report this goal’s route failure after the exhausted retry. B: restore consistent simulation-time/state data and localization transforms before attempting motion."
         },
         {
           "id": "o3",
-          "text": "Report reached immediately because localization is active"
+          "text": "A: keep issuing controller commands along the old path because the goal was accepted. B: restart only the planner and reuse the 73 s transform because the map is unchanged."
         }
       ],
       "correctOptionIds": [
@@ -6823,35 +6904,68 @@
       ],
       "citations": [
         {
-          "slideId": "lectures-p1866",
-          "sourceId": "lectures",
-          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-          "physicalPage": 1866,
-          "kind": "statement",
-          "locator": "Printed slide 24: End-to-end map-based navigation, linked roles and status panels",
-          "evidenceText": "NAV2 Demonstration Steps\n\n Step 1: Launch Gazebo simulation\n Step 2: Generate or load map\n Step 3: Start localization using AMCL\n Step 4: Set initial robot pose\n Step 5: Send navigation goal\n Step 6: Robot autonomously reaches goal\n\n\n\n\n\n                                                                                                          24",
-          "role": "premise",
-          "region": null
-        },
-        {
           "slideId": "lectures-p1860",
           "sourceId": "lectures",
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1860,
           "kind": "statement",
-          "locator": "Printed slide 18: Recovery and replanning tasks",
+          "locator": "Lecture L58, physical PDF page 1860, printed footer 18: Decision-making purpose and recovery/replanning task list.",
           "evidenceText": "Behavior Trees in NAV2\n\nPurpose\n   –  Decision-making framework\n   –  Controls navigation sequence\nAdvantages\n   –  Modular execution\n   –  Easy debugging\n   –  Flexible task handling\nExample Tasks\n   –  Navigate to pose\n   –  Recovery behavior\n   –  Replanning\n\n                                                                                                          18",
           "role": "premise",
           "region": null
         },
         {
-          "slideId": "lectures-p1862",
+          "slideId": "lectures-p1864",
           "sourceId": "lectures",
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
-          "physicalPage": 1862,
+          "physicalPage": 1864,
           "kind": "statement",
-          "locator": "Printed slide 20: Controller sensor/state inputs",
-          "evidenceText": "Local Planner / Controller\n\n •  For motion control\n •  Purpose\n    –  Follow global path safely\n    –  Generate velocity commands\n •  Popular Local Planners\n    –  Dynamic Window Approach (DWA)\n    –  Timed Elastic Band (TEB)\n •  Inputs\n    –  Global path\n    –  Sensor data\n    –  Robot state\n\n                                                                                                          20",
+          "locator": "Lecture L58, physical PDF page 1864, printed footer 22: AMCL pose-estimation purpose and input list.",
+          "evidenceText": "Localization using Adaptive Monte Carlo Localization (AMCL)\n\n Adaptive Monte Carlo Localization\n •  Purpose\n    –  Estimate robot pose\n •  Inputs\n    –  LiDAR scan\n    –  Occupancy map\n    –  Odometry\n •  Method\n    –  Particle filter localization\n\n\n\n\n\n                                                                                                          22",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1866",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1866,
+          "kind": "statement",
+          "locator": "Lecture L58, physical PDF page 1866, printed footer 24: Navigation demonstration sequence.",
+          "evidenceText": "NAV2 Demonstration Steps\n\n Step 1: Launch Gazebo simulation\n Step 2: Generate or load map\n Step 3: Start localization using AMCL\n Step 4: Set initial robot pose\n Step 5: Send navigation goal\n Step 6: Robot autonomously reaches goal\n\n\n\n\n\n                                                                                                          24",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1870",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1870,
+          "kind": "code",
+          "locator": "Lecture L58, physical PDF page 1870, printed footer 28: Navigation launch arguments, including simulation-time setting.",
+          "evidenceText": "NAV2 in ROS2\n\nStart Navigation 2 for the robot\n   – Now, start the robot again.\n    $ ros2 launch turtlebot3_gazebo\n    turtlebot3_world.launch.py\n   –  In another terminal, start the\n    Navigation stack, and provide\n    the map as an argument.\n    $ ros2 launch turtlebot3_navigation2\n    navigation2.launch.py use_sim_time:=True\n    map:=path/to/my_map.yaml\n\n\n\n\n                                                                                                          28",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1871",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1871,
+          "kind": "figure",
+          "locator": "Lecture L58, physical PDF page 1871, printed footer 29: Navigation2 status panel after pose-estimate step.",
+          "evidenceText": "NAV2 in ROS2\n\n2D pose estimate and Navigation goals\n   –  Use the “2D Pose Estimate” button on RViz.\n\n\n\n\n\n                                                                                                          29",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1872",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1872,
+          "kind": "figure",
+          "locator": "Lecture L58, physical PDF page 1872, printed footer 30: Navigation2 status panel during goal execution.",
+          "evidenceText": "NAV2 in ROS2\n\n2D pose estimate and Navigation goals\n   –  Finally, you can give navigation commands.\n   –  Click on “Nav2 Goal”, then click on the map to select\n       a position + orientation.\n\n\n\n\n\n                                                                                                          30",
           "role": "premise",
           "region": null
         },
@@ -6861,37 +6975,50 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1873,
           "kind": "figure",
-          "locator": "Printed slide 31: Reached feedback is a goal status, not merely active localization",
+          "locator": "Lecture L58, physical PDF page 1873, printed footer 31: Navigation2 feedback/status panel in simulation still.",
           "evidenceText": "NAV2 in ROS2\n\n2D pose estimate and Navigation goals\n   –  Simulation Video: Click on “Nav2 Goal”, then click on the\n     map to select a position + orientation.\n\n\n\n\n\n                                                                                                          31",
           "role": "premise",
           "region": null
         }
       ],
       "solution": {
-        "justification": "The workflow combines task coordination, current obstacle handling and honest goal status.",
+        "justification": "Run A isolates an updated route-feasibility failure with timing/localization already consistent and retry budget exhausted. Run B instead fails the time/state prerequisite; an active stack or unchanged map does not make a pre-reset transform current.",
         "optionExplanations": {
-          "o1": "Incorrect. Changing map evidence to satisfy a goal is not the supplied failure policy.",
-          "o2": "Correct. The workflow combines task coordination, current obstacle handling and honest goal status.",
-          "o3": "Incorrect. Localization readiness is not goal completion."
+          "o2": "Run A isolates an updated route-feasibility failure with timing/localization already consistent and retry budget exhausted. Run B instead fails the time/state prerequisite; an active stack or unchanged map does not make a pre-reset transform current.",
+          "o1": "A discards valid localization evidence and ignores the explicit retry budget; B changes obstacle data without fixing the timestamp inconsistency.",
+          "o3": "Goal acceptance does not override a newly infeasible route. Planner restart alone does not establish a current transform after the simulation clock reset."
         },
         "steps": [
-          "Use the controller failure to trigger the supplied recovery action.",
-          "Replan once using the updated environmental representation.",
-          "If no feasible path exists, report navigation failure rather than reached."
+          "Separate readiness, goal acceptance and actual goal completion.",
+          "For A, use the aligned current pose/time evidence to rule out the stated prerequisite faults; the barrier and exhausted NO_VALID_PATH replan justify a goal-level failure.",
+          "For B, compare the reset simulation clock with the cached pre-reset transform and repair the time/state consistency before motion; changing a costmap alone is not that repair."
         ],
         "formulas": [],
-        "simpleExplanation": "The workflow combines task coordination, current obstacle handling and honest goal status.",
+        "simpleExplanation": "Run A isolates an updated route-feasibility failure with timing/localization already consistent and retry budget exhausted. Run B instead fails the time/state prerequisite; an active stack or unchanged map does not make a pre-reset transform current.",
         "memoryAid": null,
         "misconceptions": [
-          "Changing map evidence to satisfy a goal is not the supplied failure policy.",
-          "Localization readiness is not goal completion."
+          "A discards valid localization evidence and ignores the explicit retry budget; B changes obstacle data without fixing the timestamp inconsistency.",
+          "Goal acceptance does not override a newly infeasible route. Planner restart alone does not establish a current transform after the simulation clock reset."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "optionCountRationale": "Three parallel, technically plausible alternatives avoid a filler distractor."
+      "optionCountRationale": "Three distinct same-domain alternatives test the stated distinction without filler.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L58-v2-repair"
+      ],
+      "gapChallengeIds": [
+        "L58-GAP-integrated-navigation-diagnosis"
+      ],
+      "difficultyRationale": "Medium: compare two multi-component logs, distinguish route infeasibility from a time/state prerequisite failure, and choose separate actions without confusing active stack with goal completion.",
+      "authorCheckEvidence": {
+        "path": "audits/W12-L58-v2-author-checks.json",
+        "sha256": "a163b7333765b5498a52d03acf9d21b81d2237209fb5ea63f15fb51a8a87ab37",
+        "independentReview": false,
+        "scope": "Author-only explicit latency counterexamples, added finite diagnostic policy, inert plugin-interface graph and well-formed illustrative XML. These do not execute or validate ROS/Gazebo APIs, SDF schema conformance, deployment deadlines or hardware. Actual source pixels and official specification titles were inspected separately."
+      }
     },
     {
       "id": "W12-L58-P1861-Q04",
@@ -7053,6 +7180,218 @@
       "origin": "generated",
       "reviewIds": [],
       "optionCountRationale": "Three parallel, technically plausible alternatives avoid a filler distractor."
+    },
+    {
+      "id": "W12-L58-P1845-Q03",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:L58-v2-repair",
+      "stem": "The slide writes “Data Distribution System (DDS)”. When distinguishing the literal slide from the official OMG standard name, which combined statement is correct?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 12,
+      "lectureId": "L58",
+      "topic": "Demonstration in ROS",
+      "subtopic": "DDS standard name and middleware role",
+      "tags": [
+        "dds-expansion-gap"
+      ],
+      "conceptIds": [
+        "W12-L58-C-dds-expansion-gap"
+      ],
+      "assumptions": [
+        "Compare the actual source wording with the official OMG DDS 1.4 title; do not silently substitute the corrected word into the slide."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "The slide says System; OMG’s standard is Data Distribution Service, and the source describes ROS2 as robotics middleware rather than a replacement OS kernel."
+        },
+        {
+          "id": "o4",
+          "text": "The slide says Service and OMG says Data Distribution System; both names denote the Linux kernel used for navigation."
+        },
+        {
+          "id": "o2",
+          "text": "The slide and OMG both use Data Distribution System; ROS2 is middleware rather than a replacement OS kernel."
+        },
+        {
+          "id": "o3",
+          "text": "The slide says System and OMG says Data Distribution Service; therefore DDS supplies the operating-system kernel for the robot."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1845",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1845,
+          "kind": "statement",
+          "locator": "Lecture L58, physical PDF page 1845, printed footer 3: ROS2 introduction bullets, including middleware and DDS nomenclature.",
+          "evidenceText": "Introduction to ROS2\n\n•  ROS2 stands for Robot Operating System 2.\n•  Open-source middleware for robotics.\n•  Provides communication framework for robots.\n•  Supports distributed systems.\n•  Real-time communication support.\n•  Data Distribution System (DDS) - based communication\n   architecture.\n•  Multi-robot communication.\n•  Widely used in research and industry.\n\n\n\n\n\n                                                                                                           3",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The original wording System is retained as a source discrepancy. OMG names DDS Data Distribution Service; the slide separately identifies ROS2 as open-source robotics middleware. This nomenclature correction does not turn middleware into an operating-system kernel.",
+        "optionExplanations": {
+          "o1": "Both the literal-source/standard-name distinction and the middleware role are correct.",
+          "o2": "This fails to preserve the official Service expansion.",
+          "o3": "The expansion correction does not imply an operating-system kernel role.",
+          "o4": "This reverses the source/standard names and adds an unsupported kernel interpretation."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The original wording System is retained as a source discrepancy. OMG names DDS Data Distribution Service; the slide separately identifies ROS2 as open-source robotics middleware. This nomenclature correction does not turn middleware into an operating-system kernel.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This fails to preserve the official Service expansion.",
+          "The expansion correction does not imply an operating-system kernel role.",
+          "This reverses the source/standard names and adds an unsupported kernel interpretation."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "conflictResolution": {
+        "status": "explicit-qualification-awaiting-independent-review",
+        "sourceClaim": "Physical page 1845 expands DDS as Data Distribution System; the official OMG DDS 1.4 standard title uses Data Distribution Service.",
+        "basis": "The original wording System is retained as a source discrepancy. OMG names DDS Data Distribution Service; the slide separately identifies ROS2 as open-source robotics middleware. This nomenclature correction does not turn middleware into an operating-system kernel.",
+        "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction.",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPages": [
+          1845
+        ],
+        "questionVersion": 1
+      },
+      "gapChallengeIds": [
+        "L58-GAP-DDS-expansion"
+      ],
+      "revisionAuthors": [
+        "build_offline_study_interface:L58-v2-repair"
+      ],
+      "primaryEvidence": [
+        {
+          "title": "About the Data Distribution Service Specification Version 1.4",
+          "url": "https://www.omg.org/spec/DDS/1.4/About-DDS",
+          "locator": "Official specification title and DDS1.4 normative-document link.",
+          "version": "DDS 1.4",
+          "checkedAt": "2026-10-20T00:43:57+00:00"
+        }
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L58-v2-author-checks.json",
+        "sha256": "a163b7333765b5498a52d03acf9d21b81d2237209fb5ea63f15fb51a8a87ab37",
+        "independentReview": false,
+        "scope": "Author-only explicit latency counterexamples, added finite diagnostic policy, inert plugin-interface graph and well-formed illustrative XML. These do not execute or validate ROS/Gazebo APIs, SDF schema conformance, deployment deadlines or hardware. Actual source pixels and official specification titles were inspected separately."
+      },
+      "difficultyRationale": "Direct source recognition or a single stated distinction."
+    },
+    {
+      "id": "W12-L58-P1852-Q03",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:L58-v2-repair",
+      "stem": "In an added Gazebo robot design, the declared topic /sim_scan carries simulated range observations out to ROS navigation, while /drive_command carries ROS velocity requests into the simulated drive. Which plugin arrangement preserves the source’s sensor-output and motor-input distinction?",
+      "selectionMode": "single",
+      "type": "scenario",
+      "difficulty": "medium",
+      "cognitiveSkill": "application",
+      "week": 12,
+      "lectureId": "L58",
+      "topic": "Demonstration in ROS",
+      "subtopic": "Bidirectional Gazebo and ROS plugin interface",
+      "tags": [
+        "plugin-interface-gap"
+      ],
+      "conceptIds": [
+        "W12-L58-C-plugin-interface-gap"
+      ],
+      "assumptions": [
+        "/sim_scan and /drive_command are explicitly added illustrative topic names, not names printed in the slides or an executed package.",
+        "Message contents/types, timestamps, frames and controller-to-plugin conversion must be compatible as declared; no inference of a specific existing plugin API."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "The range plugin publishes its measured distances on /drive_command as if they were commanded velocity, while the drive plugin subscribes to /sim_scan for actuation."
+        },
+        {
+          "id": "o4",
+          "text": "A GUI-only plugin changes the visible robot colour when /drive_command arrives, while no plugin feeds sensor observations to navigation."
+        },
+        {
+          "id": "o1",
+          "text": "A sensor-side plugin publishes /sim_scan to ROS consumers, while a drive/model plugin receives /drive_command and applies it to the simulated robot."
+        },
+        {
+          "id": "o2",
+          "text": "A sensor-side plugin subscribes to /sim_scan as its only data source, while the drive plugin publishes /drive_command without receiving a controller request."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1852",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1852,
+          "kind": "statement",
+          "locator": "Lecture L58, physical PDF page 1852, printed footer 10: Second paragraph on ROS messages/service calls and the model/sensor plugin role list.",
+          "evidenceText": "Gazebo Plugins\n\n•  A plugin is a chunk of code (in C/C++) that is compiled as\n   a shared library and inserted into the simulation.\n•  Gazebo  plugins  give  your  URDF  models  greater\n   functionality and can tie in ROS messages and service\n    calls for sensor output and motor input.\n•  World Plugins: Affect simulation world\n•  Model Plugins: Control robot models\n•  Sensor Plugins: Sensor-specific functionality\n•  GUI Plugins: Extend graphical interface\n\n\n\n\n\n                                                                                                          10",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The directions are simulation sensing to ROS consumers, and ROS controller requests to simulated actuation. The source explicitly identifies ROS messages/service integration for sensor output and motor input; the supplied names and this specific arrangement are added.",
+        "optionExplanations": {
+          "o1": "Both declared signal directions and plugin responsibilities are maintained.",
+          "o2": "This reverses the required production/consumption directions for the declared interfaces.",
+          "o3": "This swaps observation and command semantics even though the names exist.",
+          "o4": "Visual changes do not supply the declared motion-command application or sensor-output path."
+        },
+        "steps": [
+          "Identify /sim_scan as simulated observation output, not motor input.",
+          "Identify /drive_command as a request to actuate the simulated drive, not a sensor reading.",
+          "Match publishers/receivers to those directions and the sensor/model plugin roles."
+        ],
+        "formulas": [],
+        "simpleExplanation": "The directions are simulation sensing to ROS consumers, and ROS controller requests to simulated actuation. The source explicitly identifies ROS messages/service integration for sensor output and motor input; the supplied names and this specific arrangement are added.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This reverses the required production/consumption directions for the declared interfaces.",
+          "This swaps observation and command semantics even though the names exist.",
+          "Visual changes do not supply the declared motion-command application or sensor-output path."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "gapChallengeIds": [
+        "L58-GAP-plugin-ROS-interface"
+      ],
+      "revisionAuthors": [
+        "build_offline_study_interface:L58-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L58-v2-author-checks.json",
+        "sha256": "a163b7333765b5498a52d03acf9d21b81d2237209fb5ea63f15fb51a8a87ab37",
+        "independentReview": false,
+        "scope": "Author-only explicit latency counterexamples, added finite diagnostic policy, inert plugin-interface graph and well-formed illustrative XML. These do not execute or validate ROS/Gazebo APIs, SDF schema conformance, deployment deadlines or hardware. Actual source pixels and official specification titles were inspected separately."
+      },
+      "difficultyRationale": "Apply explicit added premises and distinguish competing interface or diagnostic actions."
     }
   ],
   "concepts": [
@@ -7198,7 +7537,8 @@
       "title": "URDF and SDF scope",
       "description": "URDF and SDF scope.",
       "slideIds": [
-        "lectures-p1851"
+        "lectures-p1851",
+        "lectures-p1849"
       ],
       "questionIds": [
         "W12-L58-P1851-Q01",
@@ -7242,7 +7582,8 @@
       "title": "SLAM versus known-map localization",
       "description": "SLAM versus known-map localization.",
       "slideIds": [
-        "lectures-p1853"
+        "lectures-p1853",
+        "lectures-p1854"
       ],
       "questionIds": [
         "W12-L58-P1853-Q01",
@@ -7313,7 +7654,8 @@
       "title": "Mapping workflow and saved map files",
       "description": "Mapping workflow and saved map files.",
       "slideIds": [
-        "lectures-p1856"
+        "lectures-p1856",
+        "lectures-p1868"
       ],
       "questionIds": [
         "W12-L58-P1856-Q01",
@@ -7336,7 +7678,8 @@
       "title": "Legacy navigation stack components",
       "description": "Legacy navigation stack components.",
       "slideIds": [
-        "lectures-p1857"
+        "lectures-p1857",
+        "lectures-p1859"
       ],
       "questionIds": [
         "W12-L58-P1857-Q01",
@@ -7384,7 +7727,8 @@
       "title": "NAV2 servers, orchestration and command path",
       "description": "NAV2 servers, orchestration and command path.",
       "slideIds": [
-        "lectures-p1859"
+        "lectures-p1859",
+        "lectures-p1865"
       ],
       "questionIds": [
         "W12-L58-P1859-Q01",
@@ -7433,7 +7777,8 @@
       "title": "Global navigation planning",
       "description": "Global navigation planning.",
       "slideIds": [
-        "lectures-p1861"
+        "lectures-p1861",
+        "lectures-p1862"
       ],
       "questionIds": [
         "W12-L58-P1861-Q01",
@@ -7481,7 +7826,8 @@
       "title": "Navigation costmap layers",
       "description": "Navigation costmap layers.",
       "slideIds": [
-        "lectures-p1863"
+        "lectures-p1863",
+        "lectures-p1859"
       ],
       "questionIds": [
         "W12-L58-P1863-Q01",
@@ -7527,7 +7873,9 @@
       "title": "Versioned simulation platform",
       "description": "Versioned simulation platform.",
       "slideIds": [
-        "lectures-p1865"
+        "lectures-p1865",
+        "lectures-p1847",
+        "lectures-p1864"
       ],
       "questionIds": [
         "W12-L58-P1865-Q01",
@@ -7549,7 +7897,13 @@
       "title": "Map-based navigation workflow",
       "description": "Map-based navigation workflow.",
       "slideIds": [
-        "lectures-p1866"
+        "lectures-p1866",
+        "lectures-p1860",
+        "lectures-p1864",
+        "lectures-p1870",
+        "lectures-p1871",
+        "lectures-p1872",
+        "lectures-p1873"
       ],
       "questionIds": [
         "W12-L58-P1866-Q01",
@@ -7565,7 +7919,8 @@
         "Initial pose versus navigation goal",
         "Pose orientation and common frame",
         "Reachability and configuration conditions",
-        "Failure and recovery rather than guaranteed arrival"
+        "Failure and recovery rather than guaranteed arrival",
+        "integrated-application"
       ]
     },
     {
@@ -7645,7 +8000,9 @@
       "title": "Saved-map navigation launch",
       "description": "Saved-map navigation launch.",
       "slideIds": [
-        "lectures-p1870"
+        "lectures-p1870",
+        "lectures-p1867",
+        "lectures-p1868"
       ],
       "questionIds": [
         "W12-L58-P1870-Q01",
@@ -7670,7 +8027,9 @@
       "title": "Initial pose versus active navigation state",
       "description": "Initial pose versus active navigation state.",
       "slideIds": [
-        "lectures-p1871"
+        "lectures-p1871",
+        "lectures-p1863",
+        "lectures-p1855"
       ],
       "questionIds": [
         "W12-L58-P1871-Q01",
@@ -7715,7 +8074,8 @@
       "title": "Simulation demonstration evidence and limitations",
       "description": "Simulation demonstration evidence and limitations.",
       "slideIds": [
-        "lectures-p1873"
+        "lectures-p1873",
+        "lectures-p1867"
       ],
       "questionIds": [
         "W12-L58-P1873-Q01",
@@ -7730,6 +8090,44 @@
         "Gazebo versus RViz side-by-side",
         "Burger screenshot versus waffle setup discrepancy",
         "Still image not full video or new execution"
+      ]
+    },
+    {
+      "id": "W12-L58-C-dds-expansion-gap",
+      "title": "DDS standard name and middleware role",
+      "description": "The original wording System is retained as a source discrepancy. OMG names DDS Data Distribution Service; the slide separately identifies ROS2 as open-source robotics middleware. This nomenclature correction does not turn middleware into an operating-system kernel.",
+      "slideIds": [
+        "lectures-p1845"
+      ],
+      "questionIds": [
+        "W12-L58-P1845-Q03"
+      ],
+      "status": "drafted",
+      "topic": "Demonstration in ROS",
+      "subtopic": "DDS standard name and middleware role",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "conceptual",
+        "integrated-application"
+      ]
+    },
+    {
+      "id": "W12-L58-C-plugin-interface-gap",
+      "title": "Bidirectional Gazebo and ROS plugin interface",
+      "description": "The directions are simulation sensing to ROS consumers, and ROS controller requests to simulated actuation. The source explicitly identifies ROS messages/service integration for sensor output and motor input; the supplied names and this specific arrangement are added.",
+      "slideIds": [
+        "lectures-p1852"
+      ],
+      "questionIds": [
+        "W12-L58-P1852-Q03"
+      ],
+      "status": "drafted",
+      "topic": "Demonstration in ROS",
+      "subtopic": "Bidirectional Gazebo and ROS plugin interface",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "scenario",
+        "integrated-application"
       ]
     }
   ],

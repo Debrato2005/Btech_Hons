@@ -163,10 +163,10 @@
     },
     {
       "id": "W12-L57-Q003",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L57-author",
-      "stem": "Which pair correctly separates the source’s software layer from optional integrated hardware?",
+      "stem": "Which description correctly combines the source’s KSS, controller–manipulator cables and optional integration hardware?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -185,19 +185,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "KSS is the robot software environment; external axes and sensors are integration options."
+          "text": "KSS supplies the robot software environment; the cables carry communication and power; external axes and sensors are integration options."
         },
         {
           "id": "o4",
-          "text": "KSS is a single user-written task program; an external axis is a saved waypoint in that program."
+          "text": "KSS is limited to offline program editing; the cables carry communication and power; external axes and sensors are integration options."
         },
         {
           "id": "o3",
-          "text": "KSS is the external PC vision application; sensors and end effectors are its intrinsic camera parameters."
+          "text": "KSS supplies the robot software environment; the cables carry communication only, with no power-transmission role; external axes and sensors are integration options."
         },
         {
           "id": "o1",
-          "text": "KSS is the operator pendant hardware; technology packages are interchangeable tool flanges."
+          "text": "KSS supplies the robot software environment; the cables carry communication and power; external axes and sensors are mandatory components of every pictured basic robot."
         }
       ],
       "correctOptionIds": [
@@ -210,35 +210,47 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1807,
           "kind": "statement",
-          "locator": "Lecture L57, physical page 1807, printed footer 5: Cables and KSS roles, optional external axes/sensors/tools.",
+          "locator": "Lecture L57, physical PDF page 1807, printed footer 5: Connecting Cables, KSS and Additional Options and Accessories bullets.",
           "evidenceText": "KUKA Industrial Robot Architecture :\n4.  Connecting Cables\n   – Communication and power transmission\n      between controller and manipulator.\n•  KUKA System Software (KSS)\n   – Real-time robot operating system.\n   –  It provides the interface between the user,\n       the KR C4 controller and the robot,                                                    Kuka Robot Architecture [1]\n   – Enables safe and efficient operation of industrial\n       robotic systems.\n•  Additional Options and Accessories\n    – External axes, Sensors, End effectors, Technology\n       packages.\n\n                                                                                                           5",
           "role": "explicit",
           "region": null
         }
       ],
       "solution": {
-        "justification": "The slide distinguishes the software system from optional external components.",
+        "justification": "The page separates the software environment from the cable bundle’s two explicit functions and the optional integrated hardware.",
         "optionExplanations": {
-          "o2": "The slide distinguishes the software system from optional external components.",
-          "o4": "KSS is the software environment, and an external axis is additional hardware, not a waypoint.",
-          "o1": "This confuses software with the HMI hardware and mechanical attachments.",
-          "o3": "The source places KSS at the robot system, and the options are integrated components, not intrinsic parameters."
+          "o2": "The page separates the software environment from the cable bundle’s two explicit functions and the optional integrated hardware.",
+          "o4": "The cable and hardware descriptions fit, but KSS is the real-time robot software environment, not only an offline editor.",
+          "o3": "The page explicitly gives the controller–manipulator cable bundle both communication and power-transmission roles.",
+          "o1": "The source lists external axes and sensors under additional options/accessories, not mandatory components of every basic configuration."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The slide distinguishes the software system from optional external components.",
+        "simpleExplanation": "The page separates the software environment from the cable bundle’s two explicit functions and the optional integrated hardware.",
         "memoryAid": null,
         "misconceptions": [
-          "KSS is the software environment, and an external axis is additional hardware, not a waypoint.",
-          "The source places KSS at the robot system, and the options are integrated components, not intrinsic parameters.",
-          "This confuses software with the HMI hardware and mechanical attachments."
+          "The cable and hardware descriptions fit, but KSS is the real-time robot software environment, not only an offline editor.",
+          "The page explicitly gives the controller–manipulator cable bundle both communication and power-transmission roles.",
+          "The source lists external axes and sensors under additional options/accessories, not mandatory components of every basic configuration."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct recognition or a single short stated operation."
+      "difficultyRationale": "Direct recognition or a single short stated operation.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L57-v2-repair"
+      ],
+      "gapChallengeIds": [
+        "L57-G1"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L57-v2-author-checks.json",
+        "sha256": "2c9238e0b1470bc56a642b793f6e32d72aa814af0440c2d075da6f964d07bec5",
+        "independentReview": false,
+        "scope": "Author-only added linear algebra, planar-calibration constraint-rank example, explicit force counterexamples and inert exhaustive concurrency model. No OpenCV, robot/controller/network, omitted robosync.src or video runtime executed. Official OpenCV 4.13.0 pose prerequisites were read separately."
+      }
     },
     {
       "id": "W12-L57-Q004",
@@ -321,14 +333,14 @@
     },
     {
       "id": "W12-L57-Q005",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L57-author",
-      "stem": "Which pairing is correct?",
+      "stem": "In the source’s KSS responsibility groups, an engineer must store a corrected tool frame/calibration and separately edit and archive a robot task program. Which assignment matches these two activities?",
       "selectionMode": "single",
-      "type": "conceptual",
+      "type": "scenario",
       "difficulty": "easy",
-      "cognitiveSkill": "conceptual",
+      "cognitiveSkill": "application",
       "week": 12,
       "lectureId": "L57",
       "topic": "Demonstration on KUKA KR5 Industrial Robot",
@@ -339,23 +351,25 @@
       "conceptIds": [
         "W12-L57-C-kss-matching"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "Added maintenance scenario illustrating the printed responsibility groups; no robot configuration or program is actually changed."
+      ],
       "options": [
         {
           "id": "o1",
-          "text": "Frames/calibration belong to diagnostics; create/edit/archive belong to program management."
+          "text": "Store the frame/calibration under diagnostic functions; edit and archive the task under program management."
         },
         {
           "id": "o4",
-          "text": "Frames/calibration belong to program management; create/edit/archive belong to system-data calibration."
+          "text": "Store the frame/calibration under data management; edit and archive the task under I/O management."
         },
         {
           "id": "o2",
-          "text": "Frames/calibration belong to system data; create/edit/archive belong to program management."
+          "text": "Store the frame/calibration under data management; edit and archive the task under program management."
         },
         {
           "id": "o3",
-          "text": "Frames/calibration belong to system data; create/edit/archive belong to I/O management."
+          "text": "Store the frame/calibration under program management; edit and archive the task under data management."
         }
       ],
       "correctOptionIds": [
@@ -370,33 +384,42 @@
           "kind": "statement",
           "locator": "Lecture L57, physical page 1808, printed footer 6: Program-management, I/O-management and system-data bullets.",
           "evidenceText": "KUKA System Software (KSS)\n\n•  KSS is the real-time software environment responsible for robot operation.\n•  Core Responsibilities\n   – Motion Control: Path planning, Trajectory interpolation, Motion execution\n   – I/O Management: Digital inputs, Digital outputs, Analog channels,\n      Communication signals.\n   – Program Management: Program creation, Editing, Execution, and archiving\n   – Data Management: Variables, Frames, Calibration data, Configuration files\n\n   – Diagnostic Functions: Logbook, Error handling,\n       Variable monitoring.\n\n\n\n\n\n                                                                                                           6",
-          "role": "explicit",
+          "role": "premise",
           "region": null
         }
       ],
       "solution": {
-        "justification": "The slide separates configuration data from program lifecycle functions.",
+        "justification": "The slide assigns variables, frames and calibration to data management, while creation, editing, execution and archiving belong to program management.",
         "optionExplanations": {
-          "o2": "The slide separates configuration data from program lifecycle functions.",
-          "o1": "The program group is correct, but frame/calibration definitions are system data rather than diagnostics.",
-          "o3": "The configuration group is correct, but program editing/archiving is not I/O management.",
-          "o4": "This exchanges configuration definitions and program-lifecycle operations."
+          "o2": "The slide assigns variables, frames and calibration to data management, while creation, editing, execution and archiving belong to program management.",
+          "o1": "Diagnostics cover logbooks, error handling and variable monitoring; they do not replace the listed data-management role for frame definitions.",
+          "o4": "I/O management handles digital/analog channels and communication signals, rather than the program lifecycle.",
+          "o3": "This exchanges the two explicitly listed responsibilities."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The slide separates configuration data from program lifecycle functions.",
+        "simpleExplanation": "The slide assigns variables, frames and calibration to data management, while creation, editing, execution and archiving belong to program management.",
         "memoryAid": null,
         "misconceptions": [
-          "The program group is correct, but frame/calibration definitions are system data rather than diagnostics.",
-          "This exchanges configuration definitions and program-lifecycle operations.",
-          "The configuration group is correct, but program editing/archiving is not I/O management."
+          "Diagnostics cover logbooks, error handling and variable monitoring; they do not replace the listed data-management role for frame definitions.",
+          "I/O management handles digital/analog channels and communication signals, rather than the program lifecycle.",
+          "This exchanges the two explicitly listed responsibilities."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct recognition or a single short stated operation."
+      "difficultyRationale": "Direct recognition or a single short stated operation.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L57-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L57-v2-author-checks.json",
+        "sha256": "2c9238e0b1470bc56a642b793f6e32d72aa814af0440c2d075da6f964d07bec5",
+        "independentReview": false,
+        "scope": "Author-only added linear algebra, planar-calibration constraint-rank example, explicit force counterexamples and inert exhaustive concurrency model. No OpenCV, robot/controller/network, omitted robosync.src or video runtime executed. Official OpenCV 4.13.0 pose prerequisites were read separately."
+      }
     },
     {
       "id": "W12-L57-Q006",
@@ -1101,10 +1124,10 @@
     },
     {
       "id": "W12-L57-Q014",
-      "version": 1,
+      "version": 3,
       "status": "draft",
       "authorId": "build_offline_study_interface:L57-author",
-      "stem": "If four calibration observations repeat exactly the same flange orientation and the same contact pose, what happens to the difference equations for p?",
+      "stem": "Use the added ideal TCP contact model R_i p + t_i = c, where R_i maps flange vectors to the base frame, p is the unknown fixed TCP offset in flange coordinates, t_i is the flange origin in base coordinates, and c is the unknown fixed contact point in base coordinates. Four observations repeat exactly the same flange orientation and contact pose. After subtracting observation 1 from the others to eliminate c, what can these equations establish about p?",
       "selectionMode": "single",
       "type": "scenario",
       "difficulty": "medium",
@@ -1119,7 +1142,9 @@
       "conceptIds": [
         "W12-L57-C-pivot-degenerate"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "Added ideal model of a rigid tool touching the same stationary point; all quantities are expressed in consistent frames and length units. Observations are exact and contain no measurement noise."
+      ],
       "options": [
         {
           "id": "o2",
@@ -1173,7 +1198,11 @@
           "o4": "Averaging can reduce noise but cannot restore missing geometric rank.",
           "o1": "Changing the common coordinate origin does not create orientation diversity."
         },
-        "steps": [],
+        "steps": [
+          "Subtract R_1 p + t_1 = c from each R_i p + t_i = c to eliminate the unknown contact point c.",
+          "For identical orientations R_i=R_1, each rotation-difference block is zero.",
+          "For the same contact pose t_i=t_1, each right-hand difference is also zero; 0p=0 supplies no unique offset."
+        ],
         "formulas": [
           {
             "expression": "R_i p+t_i=c; (R_i−R_1)p=t_1−t_i",
@@ -1189,7 +1218,8 @@
               "p,t_i,t_1,c": "same length unit"
             },
             "assumptions": [
-              "Rigid tool, same physical contact point, sufficiently independent orientations; estimated poses may contain noise. Equations are an added derivation of the four-point procedure."
+              "Rigid tool and the same physical contact point. The contact and difference equations hold for repeated or varied orientations; full column rank of the stacked rotation differences is required for unique recovery of the TCP offset, and is absent in this repeated-pose case.",
+              "The ideal equations are an added derivation of the source four-point procedure; practical observations may contain noise."
             ]
           }
         ],
@@ -1205,14 +1235,24 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Combines stated conventions, multiple operations or a realistic failure diagnosis."
+      "difficultyRationale": "Medium: form difference equations from a self-contained contact model, then infer identifiability under repeated geometry rather than recalling an answer-bearing rank assumption.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L57-v2-repair",
+        "build_offline_study_interface:L57-final-v3-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L57-v2-author-checks.json",
+        "sha256": "2c9238e0b1470bc56a642b793f6e32d72aa814af0440c2d075da6f964d07bec5",
+        "independentReview": false,
+        "scope": "Author-only added linear algebra, planar-calibration constraint-rank example, explicit force counterexamples and inert exhaustive concurrency model. No OpenCV, robot/controller/network, omitted robosync.src or video runtime executed. Official OpenCV 4.13.0 pose prerequisites were read separately."
+      }
     },
     {
       "id": "W12-L57-Q015",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L57-author",
-      "stem": "Why does the source retain a verification step after calculating TCP coordinates?",
+      "stem": "Which plan preserves the source procedure’s tool-number association and verifies the computed TCP instead of treating the fit as sufficient?",
       "selectionMode": "single",
       "type": "scenario",
       "difficulty": "easy",
@@ -1231,19 +1271,19 @@
       "options": [
         {
           "id": "o2",
-          "text": "It determines the tool-point orientation uniquely without any further geometric reference."
+          "text": "Collect poses under any tool number, then select whichever stored tool gives the smallest fitting residual and skip the motion check."
         },
         {
           "id": "o4",
-          "text": "It proves that the four recorded contact observations were exactly noiseless."
+          "text": "Select the desired tool number first, then omit verification because four recorded contacts already establish an error-free calibration."
         },
         {
           "id": "o1",
-          "text": "It replaces the calculated tool offset with an arbitrary point on the flange."
+          "text": "Select the desired tool number first, then treat one linear-motion check as a unique calibration of the tool’s full orientation."
         },
         {
           "id": "o3",
-          "text": "A fitted offset may still have measurement, pose or modelling errors that appear in a separate motion check."
+          "text": "Select the desired tool number before collecting the four contact poses, then check positional deviations in a separate linear-motion verification."
         }
       ],
       "correctOptionIds": [
@@ -1256,35 +1296,47 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1812,
           "kind": "statement",
-          "locator": "Lecture L57, physical page 1812, printed footer 10: Step 8: verify through a linear trajectory and check deviations.",
+          "locator": "Lecture L57, physical PDF page 1812, printed footer 10: Step 1 tool-number selection and Steps 7–8 coordinate calculation and positional verification.",
           "evidenceText": "Calibration Procedure :\n\n•  Step 1: Select the desired tool number in the Tool/Base calibration menu.\n•  Step 2: Choose a fixed reference point on the worktable or calibration pin.\n•  Step 3: Move the tool tip to the reference point and record the first position.\n•  Step 4: Change the robot orientation while keeping the tool tip on the same\n   point and record the second position.\n•  Step 5: Repeat the process for the third orientation.\n•  Step 6: Record a fourth pose with a different orientation.\n•  Step 7: KUKA System Software automatically calculates\n   the TCP coordinates (X, Y, Z) relative to the robot flange.\n•  Step 8: Verify the calibration by performing linear\n   motions and checking for positional deviations.\n\n\n                                                                                                          10",
           "role": "premise",
           "region": null
         }
       ],
       "solution": {
-        "justification": "Computing parameters is not proof that the practical calibration has negligible error.",
+        "justification": "Step 1 associates the calibration with the desired tool number; Step 8 checks linear-motion deviations after coordinates are calculated. A fitted offset alone is not proof of negligible practical error.",
         "optionExplanations": {
-          "o3": "Computing parameters is not proof that the practical calibration has negligible error.",
-          "o2": "A position verification is not a complete orientation-calibration method.",
-          "o4": "A later check cannot establish exact absence of noise in the original observations.",
-          "o1": "Verification checks a calibration rather than discarding it for an arbitrary offset."
+          "o3": "Step 1 associates the calibration with the desired tool number; Step 8 checks linear-motion deviations after coordinates are calculated. A fitted offset alone is not proof of negligible practical error.",
+          "o2": "The source selects the intended tool before collecting poses, and retains verification rather than choosing a configuration merely by residual.",
+          "o4": "The configuration association is correct, but the source still requires a separate check and does not establish noiseless calibration from sample count.",
+          "o1": "The listed verification checks positional deviations; it does not establish a full orientation calibration from one linear motion."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Computing parameters is not proof that the practical calibration has negligible error.",
+        "simpleExplanation": "Step 1 associates the calibration with the desired tool number; Step 8 checks linear-motion deviations after coordinates are calculated. A fitted offset alone is not proof of negligible practical error.",
         "memoryAid": null,
         "misconceptions": [
-          "A position verification is not a complete orientation-calibration method.",
-          "A later check cannot establish exact absence of noise in the original observations.",
-          "Verification checks a calibration rather than discarding it for an arbitrary offset."
+          "The source selects the intended tool before collecting poses, and retains verification rather than choosing a configuration merely by residual.",
+          "The configuration association is correct, but the source still requires a separate check and does not establish noiseless calibration from sample count.",
+          "The listed verification checks positional deviations; it does not establish a full orientation calibration from one linear motion."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct recognition or a single short stated operation."
+      "difficultyRationale": "Direct recognition or a single short stated operation.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L57-v2-repair"
+      ],
+      "gapChallengeIds": [
+        "L57-G2"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L57-v2-author-checks.json",
+        "sha256": "2c9238e0b1470bc56a642b793f6e32d72aa814af0440c2d075da6f964d07bec5",
+        "independentReview": false,
+        "scope": "Author-only added linear algebra, planar-calibration constraint-rank example, explicit force counterexamples and inert exhaustive concurrency model. No OpenCV, robot/controller/network, omitted robosync.src or video runtime executed. Official OpenCV 4.13.0 pose prerequisites were read separately."
+      }
     },
     {
       "id": "W12-L57-Q016",
@@ -1367,7 +1419,7 @@
     },
     {
       "id": "W12-L57-Q017",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L57-author",
       "stem": "What can be concluded from the static demonstration frame labelled “Speed:4x”?",
@@ -1397,7 +1449,7 @@
         },
         {
           "id": "o3",
-          "text": "The calibration error is reduced by exactly a factor of four."
+          "text": "The controller’s physical velocity override was set to 400% during the recorded motion."
         },
         {
           "id": "o2",
@@ -1426,7 +1478,7 @@
           "o2": "No distance/time trajectory or controller velocity is specified by that label.",
           "o1": "A dimensionless playback multiplier is not a physical speed.",
           "o4": "The label does not give joint angular velocities.",
-          "o3": "The playback label does not quantify calibration accuracy."
+          "o3": "A playback annotation does not identify the controller override or prove that the physical robot motion was commanded four times faster."
         },
         "steps": [],
         "formulas": [],
@@ -1435,25 +1487,34 @@
         "misconceptions": [
           "A dimensionless playback multiplier is not a physical speed.",
           "The label does not give joint angular velocities.",
-          "The playback label does not quantify calibration accuracy."
+          "A playback annotation does not identify the controller override or prove that the physical robot motion was commanded four times faster."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct recognition or a single short stated operation."
+      "difficultyRationale": "Direct recognition or a single short stated operation.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L57-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L57-v2-author-checks.json",
+        "sha256": "2c9238e0b1470bc56a642b793f6e32d72aa814af0440c2d075da6f964d07bec5",
+        "independentReview": false,
+        "scope": "Author-only added linear algebra, planar-calibration constraint-rank example, explicit force counterexamples and inert exhaustive concurrency model. No OpenCV, robot/controller/network, omitted robosync.src or video runtime executed. Official OpenCV 4.13.0 pose prerequisites were read separately."
+      }
     },
     {
       "id": "W12-L57-Q018",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L57-author",
-      "stem": "Which mapping is correct for the pictured parallel gripper?",
+      "stem": "In an added gripper design change, the existing actuation, jaw stroke and robot-flange attachment must stay unchanged; only the shape touching the object is to be adapted. Which source-described component is the direct target?",
       "selectionMode": "single",
-      "type": "conceptual",
+      "type": "scenario",
       "difficulty": "easy",
-      "cognitiveSkill": "conceptual",
+      "cognitiveSkill": "application",
       "week": 12,
       "lectureId": "L57",
       "topic": "Demonstration on KUKA KR5 Industrial Robot",
@@ -1464,23 +1525,25 @@
       "conceptIds": [
         "W12-L57-C-gripper-parts"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "Added component-selection scenario, not a claim about a specific installed replacement part or a performed hardware modification."
+      ],
       "options": [
         {
           "id": "o4",
-          "text": "Fingertips connect the gripper to the robot flange; mounting interface contacts the object."
+          "text": "The mounting interface connecting the gripper to the robot flange."
         },
         {
           "id": "o2",
-          "text": "Structural body is the replaceable contact pad; fingertips are the actuator housing."
+          "text": "The gripper body housing the internal actuation mechanism."
         },
         {
           "id": "o3",
-          "text": "Air ports form the object-contact surfaces; fingertips distribute the two air supplies."
+          "text": "The air-port arrangement supplying opening and closing pressure."
         },
         {
           "id": "o1",
-          "text": "Fingertips contact the object; mounting interface connects the gripper to the robot flange."
+          "text": "The fingertips that contact the object."
         }
       ],
       "correctOptionIds": [
@@ -1495,33 +1558,42 @@
           "kind": "statement",
           "locator": "Lecture L57, physical page 1815, printed footer 13: Body, jaws, pneumatic actuation, mounting interface, ports and fingertips.",
           "evidenceText": "Schunk Two-Finger Parallel Gripper :\n\n1.  Gripper Body – Provides structural support and\n    houses the internal actuation mechanism.\n2.   Parallel Fingers (Jaws) – Move simultaneously to\n    grasp and release objects.\n3.  Pneumatic Actuation System – Converts compressed\n     air into linear jaw motion.                                                  SCHUNK Gripper   [3]\n4.  Mounting Interface – Connects the gripper to the\n    robot flange.\n5.   Air Ports – Supply compressed air for opening and\n     closing operations.\n6.  Finger Tips – Contact the object and provide gripping\n     force.\n\n                                                                                                          13",
-          "role": "explicit",
+          "role": "premise",
           "region": null
         }
       ],
       "solution": {
-        "justification": "The source separates object-contact and robot-attachment components.",
+        "justification": "The source assigns object contact to the fingertips; the mounting interface and internal actuation have different roles that the scenario keeps unchanged.",
         "optionExplanations": {
-          "o1": "The source separates object-contact and robot-attachment components.",
-          "o4": "This exchanges object-contact and attachment roles.",
-          "o3": "Ports supply air; fingertips are the contact surfaces.",
-          "o2": "The body houses/supports the mechanism while fingertips contact the object."
+          "o1": "The source assigns object contact to the fingertips; the mounting interface and internal actuation have different roles that the scenario keeps unchanged.",
+          "o4": "That changes the attachment interface rather than directly tailoring the object-contact surface, contrary to the fixed-attachment premise.",
+          "o2": "That targets structural support and the actuator housing rather than the identified contact component.",
+          "o3": "That changes pneumatic supply interfaces rather than the shape of the surface touching the object."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The source separates object-contact and robot-attachment components.",
+        "simpleExplanation": "The source assigns object contact to the fingertips; the mounting interface and internal actuation have different roles that the scenario keeps unchanged.",
         "memoryAid": null,
         "misconceptions": [
-          "This exchanges object-contact and attachment roles.",
-          "The body houses/supports the mechanism while fingertips contact the object.",
-          "Ports supply air; fingertips are the contact surfaces."
+          "That changes the attachment interface rather than directly tailoring the object-contact surface, contrary to the fixed-attachment premise.",
+          "That targets structural support and the actuator housing rather than the identified contact component.",
+          "That changes pneumatic supply interfaces rather than the shape of the surface touching the object."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct recognition or a single short stated operation."
+      "difficultyRationale": "Direct recognition or a single short stated operation.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L57-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L57-v2-author-checks.json",
+        "sha256": "2c9238e0b1470bc56a642b793f6e32d72aa814af0440c2d075da6f964d07bec5",
+        "independentReview": false,
+        "scope": "Author-only added linear algebra, planar-calibration constraint-rank example, explicit force counterexamples and inert exhaustive concurrency model. No OpenCV, robot/controller/network, omitted robosync.src or video runtime executed. Official OpenCV 4.13.0 pose prerequisites were read separately."
+      }
     },
     {
       "id": "W12-L57-Q019",
@@ -1685,7 +1757,7 @@
     },
     {
       "id": "W12-L57-Q021",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L57-author",
       "stem": "Which qualification is necessary for the source’s statement that parallel motion ensures uniform gripping force?",
@@ -1707,15 +1779,15 @@
       "options": [
         {
           "id": "o2",
-          "text": "Parallel jaws necessarily generate equal friction coefficients on unlike surfaces."
+          "text": "Equal supply pressure alone establishes equal contact forces even with unequal effective areas and mechanical transmission ratios."
         },
         {
           "id": "o3",
-          "text": "Equal jaw travel fixes the gripping force independently of pressure."
+          "text": "Equal jaw travel alone establishes equal contact forces even when the two contacts have different compliance."
         },
         {
           "id": "o4",
-          "text": "Parallel jaws make object weight irrelevant to holding requirements."
+          "text": "Identical fingertip shapes alone establish equal contact forces even with unequal actuator pressure and asymmetric external loading."
         },
         {
           "id": "o1",
@@ -1739,21 +1811,21 @@
         }
       ],
       "solution": {
-        "justification": "Motion symmetry is not by itself a force-balance measurement.",
+        "justification": "Motion symmetry is not by itself a force-balance measurement; pressure, mechanism loading, contact geometry and external loads must support any equality claim.",
         "optionExplanations": {
-          "o1": "Motion symmetry is not by itself a force-balance measurement.",
-          "o2": "Friction depends on contact materials and conditions.",
-          "o3": "Actuation pressure and mechanism loading still affect force.",
-          "o4": "The grasp must still support relevant external loads."
+          "o1": "Motion symmetry is not by itself a force-balance measurement; pressure, mechanism loading, contact geometry and external loads must support any equality claim.",
+          "o2": "Equal pressure does not imply equal delivered contact force when effective areas or force-transmission geometry differ.",
+          "o3": "Matching displacement does not establish equal force for contacts with different stiffness or loading.",
+          "o4": "Matching contact shape does not remove asymmetric actuation or load effects."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Motion symmetry is not by itself a force-balance measurement.",
+        "simpleExplanation": "Motion symmetry is not by itself a force-balance measurement; pressure, mechanism loading, contact geometry and external loads must support any equality claim.",
         "memoryAid": null,
         "misconceptions": [
-          "Friction depends on contact materials and conditions.",
-          "Actuation pressure and mechanism loading still affect force.",
-          "The grasp must still support relevant external loads."
+          "Equal pressure does not imply equal delivered contact force when effective areas or force-transmission geometry differ.",
+          "Matching displacement does not establish equal force for contacts with different stiffness or loading.",
+          "Matching contact shape does not remove asymmetric actuation or load effects."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -1763,15 +1835,25 @@
       "conflictResolution": {
         "status": "explicit-qualification-awaiting-independent-review",
         "sourceClaim": "The slide says parallel motion ensures uniform gripping force without specifying contact, pressure or mechanical symmetry conditions.",
-        "basis": "Motion symmetry is not by itself a force-balance measurement.",
+        "basis": "Motion symmetry is not by itself a force-balance measurement; pressure, mechanism loading, contact geometry and external loads must support any equality claim.",
         "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction.",
         "sourceId": "lectures",
         "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
         "physicalPages": [
           1816
-        ]
+        ],
+        "questionVersion": 2
       },
-      "difficultyRationale": "Direct recognition or a single short stated operation."
+      "difficultyRationale": "Direct recognition or a single short stated operation.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L57-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L57-v2-author-checks.json",
+        "sha256": "2c9238e0b1470bc56a642b793f6e32d72aa814af0440c2d075da6f964d07bec5",
+        "independentReview": false,
+        "scope": "Author-only added linear algebra, planar-calibration constraint-rank example, explicit force counterexamples and inert exhaustive concurrency model. No OpenCV, robot/controller/network, omitted robosync.src or video runtime executed. Official OpenCV 4.13.0 pose prerequisites were read separately."
+      }
     },
     {
       "id": "W12-L57-Q022",
@@ -2544,13 +2626,13 @@
     },
     {
       "id": "W12-L57-Q031",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L57-author",
-      "stem": "A camera is calibrated from checkerboard images. Why is a camera-to-robot transform not automatically known?",
+      "stem": "Which statement correctly combines the source’s checkerboard-view requirement with the limit of camera calibration for robot-frame localization?",
       "selectionMode": "single",
       "type": "scenario",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "application",
       "week": 12,
       "lectureId": "L57",
@@ -2562,23 +2644,25 @@
       "conceptIds": [
         "W12-L57-C-extrinsic-scope"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "Same fixed camera/lens configuration across calibration images. Varied views should be suitable for the calibration model; merely different images do not guarantee accuracy."
+      ],
       "options": [
         {
           "id": "o1",
-          "text": "The intrinsic matrix can be substituted directly for a camera-to-robot rigid transform."
+          "text": "Repeated copies of one checkerboard image supply the same geometric diversity as varied orientations; relating the board to the robot still needs a separate relationship."
         },
         {
           "id": "o4",
-          "text": "The estimated checkerboard-to-camera poses need an additional relationship to the robot frame."
+          "text": "Use checkerboard images from varied orientations to constrain the calibration; relating its board-to-camera poses to the robot still needs a board/marker-to-robot relationship."
         },
         {
           "id": "o2",
-          "text": "The board-to-camera translation becomes camera-to-base translation just by changing its unit to millimetres."
+          "text": "Use checkerboard images from varied orientations; their first estimated board-to-camera pose is automatically the camera-to-robot transform."
         },
         {
           "id": "o3",
-          "text": "The extrinsic pose from the first checkerboard image is always the robot-base pose."
+          "text": "Use varied orientations; because the target moves, each image must have a different intrinsic matrix even when the camera and lens settings stay fixed."
         }
       ],
       "correctOptionIds": [
@@ -2591,7 +2675,7 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1820,
           "kind": "statement",
-          "locator": "Lecture L57, physical page 1820, printed footer 18: Camera-calibration extrinsic parameters R,t.",
+          "locator": "Lecture L57, physical PDF page 1820, printed footer 18: Multiple checkerboard orientations and the listed intrinsic/extrinsic parameters.",
           "evidenceText": "Camera Calibration :\n•  Camera calibration is the process of determining the intrinsic and extrinsic\n   parameters of the camera to establish the relationship between image\n   coordinates and real-world coordinates.\n•  Accurate calibration improves measurement precision and enables reliable\n    object localization in robotic applications.\n•  The calibration procedure is typically performed using a checkerboard pattern\n   and OpenCV calibration algorithms.\n•  Multiple images of the calibration target are captured from different\n    orientations to compute the camera parameters and\n   minimize reprojection error.\n•  Parameters Obtained\n   – Focal length (𝑓𝑥, 𝑓𝑦), Principal point (𝑐𝑥, 𝑐𝑦), Distortion\n        coefficients, Rotation matrix, Translation vector.\n\n                                                                                                          18",
           "role": "premise",
           "region": null
@@ -2602,28 +2686,28 @@
           "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
           "physicalPage": 1830,
           "kind": "statement",
-          "locator": "Lecture L57, physical page 1830, printed footer 28: Camera/marker/robot frame relation.",
+          "locator": "Lecture L57, physical PDF page 1830, printed footer 28: Camera-to-marker-to-robot coordinate relationship.",
           "evidenceText": "Coordinate Transformation :\n\n•  Coordinate transformation is the process of converting object positions\n   obtained from the camera coordinate system into the robot coordinate system.\n•  Since the camera and robot operate in different reference frames, a common\n   transformation framework is required to ensure accurate object localization and\n   manipulation.\n•   In the present system, the ArUco marker acts as an intermediate reference\n   frame between the Intel RealSense camera and the KUKA robot.\n•  The object coordinates are first determined in the camera\n   frame and then transformed into the marker frame.\n•  After applying the marker offset, the final coordinates are\n   obtained in the robot base frame, which are used for\n   motion execution.\n\n                                                                                                          28",
           "role": "premise",
           "region": null
         }
       ],
       "solution": {
-        "justification": "Per-view calibration extrinsics relate the observed board to the camera, not an unobserved robot base.",
+        "justification": "The page explicitly calls for multiple target orientations. Exact repeated views add no new geometric constraints, while the estimated target-to-camera extrinsics do not by themselves identify an unobserved robot base.",
         "optionExplanations": {
-          "o4": "Per-view calibration extrinsics relate the observed board to the camera, not an unobserved robot base.",
-          "o3": "That requires an established board-to-base registration, not merely the first view.",
-          "o1": "Intrinsics and inter-frame pose have different geometric roles.",
-          "o2": "Unit conversion does not change the referenced frames."
+          "o4": "The page explicitly calls for multiple target orientations. Exact repeated views add no new geometric constraints, while the estimated target-to-camera extrinsics do not by themselves identify an unobserved robot base.",
+          "o1": "Repeating identical image geometry does not supply the new geometric constraints of varied target orientations, even if extra noisy samples can help averaging.",
+          "o2": "View diversity supports calibration but does not establish the missing board-to-robot registration.",
+          "o3": "Target motion changes per-view extrinsics, not necessarily the fixed camera’s intrinsics. The premise holds camera/lens configuration fixed."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Per-view calibration extrinsics relate the observed board to the camera, not an unobserved robot base.",
+        "simpleExplanation": "The page explicitly calls for multiple target orientations. Exact repeated views add no new geometric constraints, while the estimated target-to-camera extrinsics do not by themselves identify an unobserved robot base.",
         "memoryAid": null,
         "misconceptions": [
-          "Intrinsics and inter-frame pose have different geometric roles.",
-          "Unit conversion does not change the referenced frames.",
-          "That requires an established board-to-base registration, not merely the first view."
+          "Repeating identical image geometry does not supply the new geometric constraints of varied target orientations, even if extra noisy samples can help averaging.",
+          "View diversity supports calibration but does not establish the missing board-to-robot registration.",
+          "Target motion changes per-view extrinsics, not necessarily the fixed camera’s intrinsics. The premise holds camera/lens configuration fixed."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -2637,7 +2721,19 @@
           "checkedAt": "2026-10-20T00:10:00+00:00"
         }
       ],
-      "difficultyRationale": "Combines stated conventions, multiple operations or a realistic failure diagnosis."
+      "difficultyRationale": "Easy: distinguish the stated calibration-view prerequisite and the frames related by camera extrinsics, without calculation.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L57-v2-repair"
+      ],
+      "gapChallengeIds": [
+        "L57-G3"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L57-v2-author-checks.json",
+        "sha256": "2c9238e0b1470bc56a642b793f6e32d72aa814af0440c2d075da6f964d07bec5",
+        "independentReview": false,
+        "scope": "Author-only added linear algebra, planar-calibration constraint-rank example, explicit force counterexamples and inert exhaustive concurrency model. No OpenCV, robot/controller/network, omitted robosync.src or video runtime executed. Official OpenCV 4.13.0 pose prerequisites were read separately."
+      }
     },
     {
       "id": "W12-L57-Q032",
@@ -2904,7 +3000,7 @@
     },
     {
       "id": "W12-L57-Q035",
-      "version": 1,
+      "version": 3,
       "status": "draft",
       "authorId": "build_offline_study_interface:L57-author",
       "stem": "What should a sorting implementation use from the labelled photograph rather than assuming that a destination bin must have the same visible hue as its assigned object class?",
@@ -2930,7 +3026,7 @@
         },
         {
           "id": "o2",
-          "text": "Use one destination for all classes because both bins lie in the same robot base frame."
+          "text": "Assign each object to whichever bin is nearest to its current pick location, regardless of its detected class."
         },
         {
           "id": "o4",
@@ -2963,7 +3059,7 @@
           "o4": "The labels identify intended destinations; physical bin colour alone is not the assignment rule.",
           "o1": "That invents a mapping that need not agree with the labelled destinations.",
           "o3": "Detection order is not the displayed colour-class assignment.",
-          "o2": "A shared coordinate frame does not erase separate class destinations."
+          "o2": "Nearest-bin routing may shorten travel, but it need not respect the labelled colour-class destinations; proximity is not the specified sorting assignment."
         },
         "steps": [],
         "formulas": [],
@@ -2971,7 +3067,7 @@
         "memoryAid": null,
         "misconceptions": [
           "Detection order is not the displayed colour-class assignment.",
-          "A shared coordinate frame does not erase separate class destinations.",
+          "Nearest-bin routing may shorten travel, but it need not respect the labelled colour-class destinations; proximity is not the specified sorting assignment.",
           "That invents a mapping that need not agree with the labelled destinations."
         ],
         "examTraps": [],
@@ -2979,11 +3075,21 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct recognition or a single short stated operation."
+      "difficultyRationale": "Direct recognition or a single short stated operation.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L57-v2-repair",
+        "build_offline_study_interface:L57-Q035-v3-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L57-v2-author-checks.json",
+        "sha256": "2c9238e0b1470bc56a642b793f6e32d72aa814af0440c2d075da6f964d07bec5",
+        "independentReview": false,
+        "scope": "Author-only added linear algebra, planar-calibration constraint-rank example, explicit force counterexamples and inert exhaustive concurrency model. No OpenCV, robot/controller/network, omitted robosync.src or video runtime executed. Official OpenCV 4.13.0 pose prerequisites were read separately."
+      }
     },
     {
       "id": "W12-L57-Q036",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L57-author",
       "stem": "Besides ordered detected corners, which information supports a metric marker pose estimate?",
@@ -3001,7 +3107,9 @@
       "conceptIds": [
         "W12-L57-C-pnp-input"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "Metric pose prerequisites are made explicit using the official OpenCV 4.13.0 pose-estimation documentation; pages 1823–1824 show detection/PnP and the pipeline but do not print all camera/marker-size prerequisites."
+      ],
       "options": [
         {
           "id": "o4",
@@ -3032,7 +3140,7 @@
           "kind": "statement",
           "locator": "Lecture L57, physical page 1823, printed footer 21: Detect marker corners and ID, then estimate pose by PnP.",
           "evidenceText": "ArUco Marker Detection and Pose Estimation\n\n•  ArUco markers are square binary fiducial markers\n   used to establish reference coordinate systems in\n   robotic applications.\n•   In the present system, a ArUco marker serves\n   as the common reference frame between the\n    Intel RealSense camera and the KUKA robot.\n\n\n•  OpenCV's ArUco library detects the marker corners and\n   decodes its unique identifier.\n•  After which pose estimation is performed using the\n   Perspective-n-Point (PnP) algorithm.\n\n                                                                                                          21",
-          "role": "explicit",
+          "role": "premise",
           "region": null
         },
         {
@@ -3043,7 +3151,29 @@
           "kind": "figure",
           "locator": "Lecture L57, physical page 1824, printed footer 22: RGB/grayscale/corner-ID/rotation-translation flowchart.",
           "evidenceText": "Acquire RGB image fromDetection Procedure\n                                    RealSense camera.\n\n\n                                    Convert image to\n                                            grayscale\n\n\n                                   Detect marker corners\n                                  and marker ID.\n\n\n                                    Estimate rotation and\n                                         translation vectors\n\n\n                                  Generate the marker\n                                      coordinate frame\n\n\n                                                                                                          22",
-          "role": "explicit",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1820",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1820,
+          "kind": "statement",
+          "locator": "Lecture L57, physical PDF page 1820, printed footer 18: Camera-calibration procedure and obtained focal length, principal point and distortion parameters.",
+          "evidenceText": "Camera Calibration :\n•  Camera calibration is the process of determining the intrinsic and extrinsic\n   parameters of the camera to establish the relationship between image\n   coordinates and real-world coordinates.\n•  Accurate calibration improves measurement precision and enables reliable\n    object localization in robotic applications.\n•  The calibration procedure is typically performed using a checkerboard pattern\n   and OpenCV calibration algorithms.\n•  Multiple images of the calibration target are captured from different\n    orientations to compute the camera parameters and\n   minimize reprojection error.\n•  Parameters Obtained\n   – Focal length (𝑓𝑥, 𝑓𝑦), Principal point (𝑐𝑥, 𝑐𝑦), Distortion\n        coefficients, Rotation matrix, Translation vector.\n\n                                                                                                          18",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1839",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1839,
+          "kind": "statement",
+          "locator": "Lecture L57, physical PDF page 1839, printed footer 37: Marker-related error list, including incorrect physical marker size.",
+          "evidenceText": "Sources of Error in Vision-Guided Robotics :\n\n•  The accuracy of a vision-guided robotic system depends on several factors\n   related to sensing, calibration and communication.\n•  Small errors introduced at any stage can propagate through the system and\n    affect the final pick-and-place performance.\n•  Camera-Related Errors: Illumination variations, Depth measurement noise,\n   Lens distortion.\n•  Marker-Related Errors: Incorrect marker size specification, Improper marker\n   placement. Partial marker occlusion.\n•  Robot-Related Errors: Incorrect TCP calibration, Tool\n   mounting inaccuracies, Mechanical backlash.\n•  Communication Errors: Network latency, Synchronization\n   delays, Variable update timing.\n\n                                                                                                          37",
+          "role": "premise",
           "region": null
         }
       ],
@@ -3073,10 +3203,19 @@
         {
           "url": "https://docs.opencv.org/4.13.0/d5/dae/tutorial_aruco_detection.html",
           "locator": "Markers/dictionaries and pose estimation: ordered corners, calibrated camera and physical side length, marker-to-camera pose.",
-          "checkedAt": "2026-10-20T00:10:00+00:00"
+          "checkedAt": "2026-10-20T00:51:23+00:00"
         }
       ],
-      "difficultyRationale": "Direct recognition or a single short stated operation."
+      "difficultyRationale": "Direct recognition or a single short stated operation.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L57-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L57-v2-author-checks.json",
+        "sha256": "2c9238e0b1470bc56a642b793f6e32d72aa814af0440c2d075da6f964d07bec5",
+        "independentReview": false,
+        "scope": "Author-only added linear algebra, planar-calibration constraint-rank example, explicit force counterexamples and inert exhaustive concurrency model. No OpenCV, robot/controller/network, omitted robosync.src or video runtime executed. Official OpenCV 4.13.0 pose prerequisites were read separately."
+      }
     },
     {
       "id": "W12-L57-Q037",
@@ -3367,7 +3506,7 @@
     },
     {
       "id": "W12-L57-Q040",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L57-author",
       "stem": "Which stage directly follows successful corner/ID detection in the source marker pipeline?",
@@ -3393,7 +3532,7 @@
         },
         {
           "id": "o1",
-          "text": "Treat the marker ID itself as its translation vector."
+          "text": "Use the calibrated intrinsic matrix as the marker pose without solving the image-to-object correspondences."
         },
         {
           "id": "o2",
@@ -3424,7 +3563,7 @@
         "justification": "The diagram moves from identified image corners to a spatial pose estimate.",
         "optionExplanations": {
           "o3": "The diagram moves from identified image corners to a spatial pose estimate.",
-          "o1": "An identifier does not supply pose.",
+          "o1": "The intrinsic projection parameters are not the marker’s rotation and translation; pose estimation still uses the detected correspondences and object geometry.",
           "o2": "A single image centre is not a complete spatial pose.",
           "o4": "Image corners first need the calibrated pose calculation; metric offsets cannot be added directly to pixels."
         },
@@ -3433,7 +3572,7 @@
         "simpleExplanation": "The diagram moves from identified image corners to a spatial pose estimate.",
         "memoryAid": null,
         "misconceptions": [
-          "An identifier does not supply pose.",
+          "The intrinsic projection parameters are not the marker’s rotation and translation; pose estimation still uses the detected correspondences and object geometry.",
           "A single image centre is not a complete spatial pose.",
           "Image corners first need the calibrated pose calculation; metric offsets cannot be added directly to pixels."
         ],
@@ -3442,7 +3581,16 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct recognition or a single short stated operation."
+      "difficultyRationale": "Direct recognition or a single short stated operation.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L57-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L57-v2-author-checks.json",
+        "sha256": "2c9238e0b1470bc56a642b793f6e32d72aa814af0440c2d075da6f964d07bec5",
+        "independentReview": false,
+        "scope": "Author-only added linear algebra, planar-calibration constraint-rank example, explicit force counterexamples and inert exhaustive concurrency model. No OpenCV, robot/controller/network, omitted robosync.src or video runtime executed. Official OpenCV 4.13.0 pose prerequisites were read separately."
+      }
     },
     {
       "id": "W12-L57-Q041",
@@ -5191,7 +5339,7 @@
     },
     {
       "id": "W12-L57-Q059",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L57-author",
       "stem": "An added protocol writes X, Y and Z separately while the controller may read between writes. Which design best prevents execution of a pose mixing different observations?",
@@ -5210,24 +5358,25 @@
         "W12-L57-C-atomic-pose"
       ],
       "assumptions": [
-        "Added protocol-design scenario, not claimed implementation of the omitted robosync.src. No actual network/controller writes."
+        "Added concurrency model, not the implementation of the omitted robosync.src. Individual scalar reads/writes are atomic, but arbitrary interleavings are possible; no implicit atomic multi-field update or bounded scheduling gap is assumed.",
+        "A staged record can be kept immutable until acknowledgement, and publishing its record identifier can be implemented atomically under the proposed correct protocol. No actual network/controller writes."
       ],
       "options": [
         {
           "id": "o1",
-          "text": "Increase each coordinate’s decimal precision but keep the same unsynchronized reads."
+          "text": "Acknowledge each coordinate write separately while allowing the controller to execute as soon as it reads X."
         },
         {
           "id": "o3",
-          "text": "Write a complete staged record with sequence number, then atomically publish/acknowledge that record under a defined protocol."
+          "text": "Finish an immutable staged X/Y/Z record with a sequence identifier, atomically publish its identifier, and wait for acknowledgement before reusing its storage."
         },
         {
           "id": "o2",
-          "text": "Change millimetres to metres while keeping independent unsynchronized reads."
+          "text": "Write a new sequence number before X/Y/Z, then let the controller read that number only once and trust the following fields."
         },
         {
           "id": "o4",
-          "text": "Read the latest X immediately and reuse arbitrarily old Y and Z without a sequence check."
+          "text": "Send X/Y/Z in one transport message, then let the controller update and read the individual variables independently without a record-level commit."
         }
       ],
       "correctOptionIds": [
@@ -5258,28 +5407,41 @@
         }
       ],
       "solution": {
-        "justification": "A coherent handoff prevents the reader from combining fields from different records; atomic publication must actually be implemented.",
+        "justification": "The reader selects a complete immutable record through an atomic publication point. Waiting before storage reuse prevents a later write from changing fields while that selected record is read.",
         "optionExplanations": {
-          "o3": "A coherent handoff prevents the reader from combining fields from different records; atomic publication must actually be implemented.",
-          "o1": "Precision does not provide record consistency.",
-          "o2": "Unit conversion does not make a multi-field update atomic.",
-          "o4": "This is exactly a mixed-observation risk."
+          "o3": "The reader selects a complete immutable record through an atomic publication point. Waiting before storage reuse prevents a later write from changing fields while that selected record is read.",
+          "o1": "Per-field acknowledgement does not make the three fields one snapshot; the controller can still combine a new X with old Y and Z.",
+          "o2": "Publication before the payload is complete lets a reader observe the new identifier alongside an incomplete or mixed record.",
+          "o4": "Message packaging alone does not make separately applied application-variable updates atomic under the stated read/write model."
         },
-        "steps": [],
+        "steps": [
+          "Identify the interleaving risk: three individually atomic fields are not one atomic pose.",
+          "Complete the staged record before publishing an identifier.",
+          "Keep the published record immutable while it is consumed, then use acknowledgement to permit safe storage reuse."
+        ],
         "formulas": [],
-        "simpleExplanation": "A coherent handoff prevents the reader from combining fields from different records; atomic publication must actually be implemented.",
+        "simpleExplanation": "The reader selects a complete immutable record through an atomic publication point. Waiting before storage reuse prevents a later write from changing fields while that selected record is read.",
         "memoryAid": null,
         "misconceptions": [
-          "Precision does not provide record consistency.",
-          "Unit conversion does not make a multi-field update atomic.",
-          "This is exactly a mixed-observation risk."
+          "Per-field acknowledgement does not make the three fields one snapshot; the controller can still combine a new X with old Y and Z.",
+          "Publication before the payload is complete lets a reader observe the new identifier alongside an incomplete or mixed record.",
+          "Message packaging alone does not make separately applied application-variable updates atomic under the stated read/write model."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Combines stated conventions, multiple operations or a realistic failure diagnosis."
+      "difficultyRationale": "Combines stated conventions, multiple operations or a realistic failure diagnosis.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L57-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L57-v2-author-checks.json",
+        "sha256": "2c9238e0b1470bc56a642b793f6e32d72aa814af0440c2d075da6f964d07bec5",
+        "independentReview": false,
+        "scope": "Author-only added linear algebra, planar-calibration constraint-rank example, explicit force counterexamples and inert exhaustive concurrency model. No OpenCV, robot/controller/network, omitted robosync.src or video runtime executed. Official OpenCV 4.13.0 pose prerequisites were read separately."
+      }
     },
     {
       "id": "W12-L57-Q060",
@@ -5755,7 +5917,7 @@
     },
     {
       "id": "W12-L57-Q065",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L57-author",
       "stem": "From T_W_R T_R_F T_F_TCP T_TCP_O=T_W_R T_R_M T_M_C T_C_O, what valid step removes the common world transform?",
@@ -5777,15 +5939,15 @@
       "options": [
         {
           "id": "o4",
-          "text": "Divide each translation component by its world-frame coordinate."
+          "text": "Premultiply both sides by the full 4×4 transpose (T_W_R)ᵀ."
         },
         {
           "id": "o2",
-          "text": "Subtract T_W_R from both products entry by entry."
+          "text": "Postmultiply both sides by (T_W_R)⁻¹."
         },
         {
           "id": "o3",
-          "text": "Postmultiply both sides by (T_W_R)⁻¹ and delete every W label."
+          "text": "Premultiply both sides by (T_R_F)⁻¹, then cancel T_W_R by commuting it past the flange transform."
         },
         {
           "id": "o1",
@@ -5809,12 +5971,12 @@
         }
       ],
       "solution": {
-        "justification": "Matrix cancellation must occur on the same side as the common left factor.",
+        "justification": "The shared world transform is the leftmost factor, so its inverse must multiply both sides on the left to cancel it.",
         "optionExplanations": {
-          "o1": "Matrix cancellation must occur on the same side as the common left factor.",
-          "o3": "Right multiplication does not cancel a leftmost noncommuting factor.",
-          "o2": "The transform is a multiplicative factor, not an additive term.",
-          "o4": "Componentwise division is not rigid-transform inversion."
+          "o1": "The shared world transform is the leftmost factor, so its inverse must multiply both sides on the left to cancel it.",
+          "o4": "Only the rotation block’s transpose is its inverse; a homogeneous transform with nonzero translation is not inverted by transposing the whole matrix.",
+          "o2": "A right-side inverse does not cancel a leftmost noncommuting factor in a general transform chain.",
+          "o3": "Rigid transforms do not generally commute, and the flange inverse is not the inverse of the shared leftmost world factor."
         },
         "steps": [
           "Use (T_W_R)⁻¹ T_W_R=I on the left of both equations."
@@ -5838,12 +6000,12 @@
             ]
           }
         ],
-        "simpleExplanation": "Matrix cancellation must occur on the same side as the common left factor.",
+        "simpleExplanation": "The shared world transform is the leftmost factor, so its inverse must multiply both sides on the left to cancel it.",
         "memoryAid": null,
         "misconceptions": [
-          "Componentwise division is not rigid-transform inversion.",
-          "The transform is a multiplicative factor, not an additive term.",
-          "Right multiplication does not cancel a leftmost noncommuting factor."
+          "Only the rotation block’s transpose is its inverse; a homogeneous transform with nonzero translation is not inverted by transposing the whole matrix.",
+          "A right-side inverse does not cancel a leftmost noncommuting factor in a general transform chain.",
+          "Rigid transforms do not generally commute, and the flange inverse is not the inverse of the shared leftmost world factor."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -5852,11 +6014,14 @@
       "reviewIds": [],
       "difficultyRationale": "Direct recognition or a single short stated operation.",
       "authorCheckEvidence": {
-        "path": "audits/W12-L57-author-checks.json",
-        "sha256": "d0ae71d503dc052d2343defa3b5da451bce42c57fe62b2ddd45d41496e50a7d0",
+        "path": "audits/W12-L57-v2-author-checks.json",
+        "sha256": "2c9238e0b1470bc56a642b793f6e32d72aa814af0440c2d075da6f964d07bec5",
         "independentReview": false,
-        "scope": "Author-only explicit numerical geometry, threshold and synthetic morphology/state-machine checks. No OpenCV, KRL, original implementation, video or hardware execution."
-      }
+        "scope": "Author-only added linear algebra, planar-calibration constraint-rank example, explicit force counterexamples and inert exhaustive concurrency model. No OpenCV, robot/controller/network, omitted robosync.src or video runtime executed. Official OpenCV 4.13.0 pose prerequisites were read separately."
+      },
+      "revisionAuthors": [
+        "build_offline_study_interface:L57-v2-repair"
+      ]
     },
     {
       "id": "W12-L57-Q066",
@@ -6988,10 +7153,10 @@
     },
     {
       "id": "W12-L57-Q078",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L57-author",
-      "stem": "Which claim is supported by the provided static frame without a time-resolved video or measured log?",
+      "stem": "Which description matches the visible arrangement in the source’s static demonstration frame on physical page 1838?",
       "selectionMode": "single",
       "type": "diagram",
       "difficulty": "easy",
@@ -7010,19 +7175,19 @@
       "options": [
         {
           "id": "o4",
-          "text": "The worst-case placement error is below one millimetre."
+          "text": "The wrist gripper is visibly carrying the magenta object away while both white supports are empty."
         },
         {
           "id": "o1",
-          "text": "The full cycle takes exactly four seconds."
+          "text": "Both coloured objects have already been placed inside the bins, leaving their white supports empty."
         },
         {
           "id": "o3",
-          "text": "It depicts the robot cell with an arm, wrist gripper, objects and bins."
+          "text": "The arm’s empty wrist gripper is above the work area, with upright coloured objects on white supports and separate bins in front."
         },
         {
           "id": "o2",
-          "text": "Exactly ten consecutive pick cycles succeeded without error."
+          "text": "The visible ArUco marker boards are attached at the moving wrist next to the gripper rather than near the robot base."
         }
       ],
       "correctOptionIds": [
@@ -7042,28 +7207,37 @@
         }
       ],
       "solution": {
-        "justification": "Those physical elements are visible, while cycle times and success rates require additional evidence.",
+        "justification": "The still visibly shows the gripper above the work area and the two coloured objects upright on their supports, with separate bins; it is not a record of completed cycles.",
         "optionExplanations": {
-          "o3": "Those physical elements are visible, while cycle times and success rates require additional evidence.",
-          "o2": "A single frame provides no such temporal count.",
-          "o1": "No measured cycle-time record is provided in the frame.",
-          "o4": "A static scene does not establish a quantitative error bound."
+          "o3": "The still visibly shows the gripper above the work area and the two coloured objects upright on their supports, with separate bins; it is not a record of completed cycles.",
+          "o4": "The coloured objects remain on the supports and the visible gripper is not carrying the magenta object.",
+          "o1": "The still shows the coloured objects upright on the white supports, not already deposited in the bins.",
+          "o2": "The marker boards are visible near the base region; they are not the wrist-mounted contact tool."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Those physical elements are visible, while cycle times and success rates require additional evidence.",
+        "simpleExplanation": "The still visibly shows the gripper above the work area and the two coloured objects upright on their supports, with separate bins; it is not a record of completed cycles.",
         "memoryAid": null,
         "misconceptions": [
-          "A static scene does not establish a quantitative error bound.",
-          "No measured cycle-time record is provided in the frame.",
-          "A single frame provides no such temporal count."
+          "The coloured objects remain on the supports and the visible gripper is not carrying the magenta object.",
+          "The still shows the coloured objects upright on the white supports, not already deposited in the bins.",
+          "The marker boards are visible near the base region; they are not the wrist-mounted contact tool."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct recognition or a single short stated operation."
+      "difficultyRationale": "Direct recognition or a single short stated operation.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L57-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L57-v2-author-checks.json",
+        "sha256": "2c9238e0b1470bc56a642b793f6e32d72aa814af0440c2d075da6f964d07bec5",
+        "independentReview": false,
+        "scope": "Author-only added linear algebra, planar-calibration constraint-rank example, explicit force counterexamples and inert exhaustive concurrency model. No OpenCV, robot/controller/network, omitted robosync.src or video runtime executed. Official OpenCV 4.13.0 pose prerequisites were read separately."
+      }
     },
     {
       "id": "W12-L57-Q079",
@@ -7886,7 +8060,7 @@
     {
       "id": "W12-L57-C-software-options",
       "title": "KSS and optional hardware",
-      "description": "The slide distinguishes the software system from optional external components.",
+      "description": "The page separates the software environment from the cable bundle’s two explicit functions and the optional integrated hardware.",
       "slideIds": [
         "lectures-p1807"
       ],
@@ -7922,7 +8096,7 @@
     {
       "id": "W12-L57-C-kss-matching",
       "title": "Configuration versus program management",
-      "description": "The slide separates configuration data from program lifecycle functions.",
+      "description": "The slide assigns variables, frames and calibration to data management, while creation, editing, execution and archiving belong to program management.",
       "slideIds": [
         "lectures-p1808"
       ],
@@ -8104,7 +8278,7 @@
     {
       "id": "W12-L57-C-tcp-verify",
       "title": "Calibration fit versus verification",
-      "description": "Computing parameters is not proof that the practical calibration has negligible error.",
+      "description": "Step 1 associates the calibration with the desired tool number; Step 8 checks linear-motion deviations after coordinates are calculated. A fitted offset alone is not proof of negligible practical error.",
       "slideIds": [
         "lectures-p1812"
       ],
@@ -8158,7 +8332,7 @@
     {
       "id": "W12-L57-C-gripper-parts",
       "title": "Gripper component roles",
-      "description": "The source separates object-contact and robot-attachment components.",
+      "description": "The source assigns object contact to the fingertips; the mounting interface and internal actuation have different roles that the scenario keeps unchanged.",
       "slideIds": [
         "lectures-p1815"
       ],
@@ -8212,7 +8386,7 @@
     {
       "id": "W12-L57-C-grip-qualification",
       "title": "Parallel motion and force",
-      "description": "Motion symmetry is not by itself a force-balance measurement.",
+      "description": "Motion symmetry is not by itself a force-balance measurement; pressure, mechanism loading, contact geometry and external loads must support any equality claim.",
       "slideIds": [
         "lectures-p1816"
       ],
@@ -8394,7 +8568,7 @@
     {
       "id": "W12-L57-C-extrinsic-scope",
       "title": "Checkerboard pose versus robot registration",
-      "description": "Per-view calibration extrinsics relate the observed board to the camera, not an unobserved robot base.",
+      "description": "The page explicitly calls for multiple target orientations. Exact repeated views add no new geometric constraints, while the estimated target-to-camera extrinsics do not by themselves identify an unobserved robot base.",
       "slideIds": [
         "lectures-p1820",
         "lectures-p1830"
@@ -8488,7 +8662,9 @@
       "description": "Image observations need camera geometry and a metric object model for a metric pose.",
       "slideIds": [
         "lectures-p1823",
-        "lectures-p1824"
+        "lectures-p1824",
+        "lectures-p1820",
+        "lectures-p1839"
       ],
       "questionIds": [
         "W12-L57-Q036"
@@ -8906,7 +9082,7 @@
     {
       "id": "W12-L57-C-atomic-pose",
       "title": "Avoid mixed coordinate updates",
-      "description": "A coherent handoff prevents the reader from combining fields from different records; atomic publication must actually be implemented.",
+      "description": "The reader selects a complete immutable record through an atomic publication point. Waiting before storage reuse prevents a later write from changing fields while that selected record is read.",
       "slideIds": [
         "lectures-p1828",
         "lectures-p1839"
@@ -9016,7 +9192,7 @@
     {
       "id": "W12-L57-C-cancel-world",
       "title": "Eliminate the world transform",
-      "description": "Matrix cancellation must occur on the same side as the common left factor.",
+      "description": "The shared world transform is the leftmost factor, so its inverse must multiply both sides on the left to cancel it.",
       "slideIds": [
         "lectures-p1832"
       ],
@@ -9252,7 +9428,7 @@
     {
       "id": "W12-L57-C-demo-evidence",
       "title": "What the static demonstration frame shows",
-      "description": "Those physical elements are visible, while cycle times and success rates require additional evidence.",
+      "description": "The still visibly shows the gripper above the work area and the two coloured objects upright on their supports, with separate bins; it is not a record of completed cycles.",
       "slideIds": [
         "lectures-p1838"
       ],

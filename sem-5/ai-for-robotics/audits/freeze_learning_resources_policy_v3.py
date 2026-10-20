@@ -1,0 +1,26 @@
+"""One-time narrow author policy freeze, no approvals or bank mutation."""
+from pathlib import Path
+import json,hashlib,sys,datetime,importlib.util
+R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'scripts'));import learning_resources as LR
+read=lambda p:json.loads((R/p).read_text());sha=lambda p:hashlib.sha256((R/p).read_bytes()).hexdigest();write=lambda p,j:(R/p).write_text(json.dumps(j,ensure_ascii=False,indent=2)+'\n')
+policy=read('data/learning-resource-policy.json');assert policy['version']=='1.0.2' and policy['status']=='draft';assert LR.code_errors(policy,R)==[]
+hist=R/'audits/resource-history/v2-before-python-parity-repair';assert (R/'data/learning-tools-course.json').read_bytes()==(hist/'data/learning-tools-course.json').read_bytes()
+old=read('audits/blind-binding-learning-resources-policy-v2.json');tools=read('data/learning-tools-course.json');records=[t for group in tools['learningTools'].values() for t in group];oldbind={x['id']:x for x in old['resourceBindings']};resourcebind=[{'id':r['id'],'version':r['version'],'sha256':LR.question_hash(r)}for r in records];assert resourcebind==old['resourceBindings']
+assert (R/'app/learning-resources.js').read_text()==(hist/'app/learning-resources.js').read_text().replace("VERSION='1.0.1'","VERSION='1.0.2'")
+codeFiles=[{'path':p,'sha256':sha(p)}for p in policy['codeHashes']]
+extraPaths=[x['path']for x in old['additionalReviewFiles']]+['docs/LEARNING_RESOURCE_POLICY_V3_HANDOFF.md']
+extra=[{'path':p,'sha256':sha(p)}for p in extraPaths]
+packet={'packetVersion':3,'createdAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'authorId':policy['authorId'],'reviewType':'Narrow nonblind Python implementation-policy parity repair. No new computations, keys or tool-object changes.','policyPath':'data/learning-resource-policy.json','policy':policy,'priorPacketPath':old['packetPath'],'priorFrozenVersionRoot':'audits/resource-history/v2-before-python-parity-repair','reviewTasks':['Independently compare tool implementation membership/equality in policy.codeHashes across Python and JavaScript, including omitted and conflicting entries despite current actual file bytes.','Check pre-assembly candidate-policy lookup and fail-closed handling of missing or malformed embedded bank policy, without fallback to a different filesystem policy.','Confirm integrity_errors exposes this defect for a verified synthetic tool and that the matching positive control remains accepted.','Confirm all 18 tool objects, directly bound implementation files and computational payloads remain unchanged; preserve separate computation acceptance without assuming policy acceptance.'],'changedCodePaths':['scripts/learning_resources.py','app/learning-resources.js'],'javascriptChangeScope':'Supported policy-version constant only, 1.0.1 to1.0.2; logic unchanged.','regressionTestPath':'tests/test_learning_resource_gate_parity.py','resourceBindings':resourcebind,'codeFiles':codeFiles,'additionalReviewFiles':extra,'activation':'Closed pending current policy independent approval; no approval authored here.','runtimeBoundary':'Default installed Python/Node deterministic software checks only. No canonical assembly or browser execution; prior denials and restricted environments remain stopped.'}
+path='audits/blind-learning-resources-policy-v3.json';assert not (R/path).exists();write(path,packet)
+binding={'packetPath':path,'packetSha256':sha(path),'policy':{'id':policy['id'],'version':policy['version'],'sha256':LR.digest(policy)},'resourceBindings':resourcebind,'codeFiles':codeFiles,'additionalReviewFiles':extra}
+write('audits/blind-binding-learning-resources-policy-v3.json',binding)
+# Explicit author checks, not independent review or activation.
+spec=importlib.util.spec_from_file_location('author_parity_probe',R/'tests/test_learning_resource_gate_parity.py');mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod);tester=mod.LearningResourceGateParityTests();results=[]
+for mode in ['matching','omitted','conflicting']:
+ b,t,r,path0,h=tester.implementation_fixture()
+ if mode=='omitted':b['learningResourceIntegrity']['policy']['codeHashes'].pop(path0)
+ if mode=='conflicting':b['learningResourceIntegrity']['policy']['codeHashes'][path0]='f'*64
+ tester.refresh_policy(b)
+ results.append({'case':mode,'syntheticFixtureOnly':True,'pythonToolReasons':LR.tool_reasons(t,b,R,[r])[0],'pythonIntegrityErrors':LR.integrity_errors(b,R),'javascriptToolAllowed':tester.javascript_tool_allowed(b)})
+write('audits/learning-resources-v3-author-parity-checks.json',{'createdAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'independentApproval':False,'cases':results,'fullTests':{'python':98,'node':96},'unchangedToolCount':18,'wholeToolFileSha256':sha('data/learning-tools-course.json'),'policyCodeErrors':LR.code_errors(policy,R),'currentPolicyApproved':LR.policy_approval(policy,read('data/learning-resource-policy-reviews.json')),'noCanonicalAssembly':True,'actualBrowserExecuted':False})
+print(json.dumps({'packetPath':binding['packetPath'],'packetSha256':binding['packetSha256'],'bindingPath':'audits/blind-binding-learning-resources-policy-v3.json','bindingSha256':sha('audits/blind-binding-learning-resources-policy-v3.json'),'policy':binding['policy'],'unchangedToolCount':18}))

@@ -106,7 +106,15 @@ def tool_reasons(record,bank,root,reviews):
   accepted_question=any(r.get('decision')=='verified' and independent_reviewer(r.get('reviewerId'),q) and all(r.get('checks',{}).get(k) is True for k in _validator.CHECK_KEYS) and literal_answer_valid(q,r.get('independentAnswerOptionIds')) and literal_answer_valid(q,q.get('correctOptionIds')) and set(r['independentAnswerOptionIds'])==set(q['correctOptionIds']) and all(c['slideId'] in r.get('reviewedSlideIds',[]) for c in qrefs) for r in current)
   if not qrefs or not accepted_question or any(r.get('decision') in ('flagged','rejected') for r in current):reasons.append('Linked question lacks current complete independent approval.')
  if (record.get('generatorKind') or record.get('config') or record.get('qLearningConfig')) and not record.get('implementationFiles'):reasons.append('Executable tool requires hash-bound implementation files.')
+ # Before assembly, use the on-disk candidate policy. Once integrity metadata
+ # exists, only that bank's policy is authoritative: never fall back from a
+ # malformed or missing embedded policy to a different filesystem policy.
+ integrity=bank.get('learningResourceIntegrity')
+ policy=read(Path(root)/'data/learning-resource-policy.json',{}) if 'learningResourceIntegrity' not in bank else (integrity.get('policy',{}) if isinstance(integrity,dict) else {})
+ policy_hashes=policy.get('codeHashes',{}) if isinstance(policy,dict) else {}
+ if not isinstance(policy_hashes,dict):policy_hashes={}
  for impl in record.get('implementationFiles',[]):
+  if policy_hashes.get(impl['path'])!=impl['sha256']:reasons.append('Tool implementation is absent from or conflicts with policy code hashes.')
   p=(Path(root)/impl['path']).resolve()
   if not p.is_relative_to(Path(root).resolve()) or not p.is_file() or hashlib.sha256(p.read_bytes()).hexdigest()!=impl['sha256']:reasons.append('Tool implementation hash changed.')
  return sorted(set(reasons)),accepted

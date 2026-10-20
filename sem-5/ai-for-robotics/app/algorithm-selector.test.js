@@ -25,7 +25,7 @@ function laboratory() {
   const draft={...verified,id:'draft-example',title:'Draft example',status:'draft'};
   const state={algorithmAudit:false,algorithmTrace:null,algorithmGraph:null,algorithmStep:0};
   const w=el('div');
-  const context={C,el,state,w,rawBank:{sources:[{id:'test',sha256:sha,retrievalStatus:'ready',pageCount:1}],slides:[{id:'test-page',sourceId:'test',sourceSha256:sha,physicalPage:1,visualInspection:{status:'complete'},disposition:'examinable'}],learningTools:{algorithmVisualizations:[verified,draft]}},
+  const context={C,el,state,w,window:{RoboticsLearningResources:require('./learning-resources.js')},rawBank:{sources:[{id:'test',sha256:sha,retrievalStatus:'ready',pageCount:1}],slides:[{id:'test-page',sourceId:'test',sourceSha256:sha,physicalPage:1,visualInspection:{status:'complete'},disposition:'examinable'}],learningTools:{algorithmVisualizations:[verified,draft]}},
     button:(label,action,attrs)=>{const node=el('button',attrs,label);node.events.click=action;if(attrs?.['data-testid'])nodes.set(attrs['data-testid'],node);return node;},
     toolLinks:record=>el('span',{text:record.id}),
     renderTrace:output=>output.append('trace'),

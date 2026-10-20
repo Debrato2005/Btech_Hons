@@ -1,0 +1,1304 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "ASSIGN-W03",
+  "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+  "questions": [
+    {
+      "id": "ASSIGN-W03-Q001",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "A rigid body has mass 2 kg and centroidal I_C,zz = 0.10 kg·m². The parallel z-axis through A is displaced from the COM by (x_c,y_c,z_c) = (0.30,0.40,0.50) m. What is I_A,zz?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
+      "week": 3,
+      "lectureId": null,
+      "topic": "Assignment Week 3",
+      "subtopic": "Parallel-axis inertia",
+      "tags": [
+        "assignment",
+        "week-3",
+        "parallel-axis-inertia"
+      ],
+      "conceptIds": [
+        "ASSIGN-W03-C001"
+      ],
+      "assumptions": [
+        "Added numeric values; axes have the same orientation, and I_C,zz is about the COM axis."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "0.60 kg·m²."
+        },
+        {
+          "id": "o2",
+          "text": "1.10 kg·m²."
+        },
+        {
+          "id": "o3",
+          "text": "0.10 kg·m²."
+        },
+        {
+          "id": "o4",
+          "text": "0.42 kg·m²."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0008",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 8,
+          "kind": "equation",
+          "locator": "Assignment physical PDF page 8, printed footer 1: Week 3, printed item 1: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "NPTEL Online Certification Course\n             Indian Institute of Technology Roorkee\nCourse Name: Introduction to Application of Artificial Intelligence to Robotics\n                         Instructor: Prof. Prof. Pushparaj Mani Pathak\n\n\n           WEEK 3: ASSIGNMENT 3\n\n  Q.1   If 𝑃𝑐= [𝑥𝑐, 𝑦𝑐, 𝑧𝑐]𝑇locates the Center of mass of a rigid body\n         relative to {𝐴}. Then the Parallel-axis Theorem, relates the\n         inertia tensor in a frame {𝐶} with origin at the center of mass\n         to the inertia tensor with respect to another arbitrarily translated\n        reference frame {𝐴} as,\n\n      A) ᴬ𝐼𝑧𝑧 = ᶜ𝐼𝑧𝑧 − 𝑚(𝑥𝑐² + 𝑦𝑐²)\n\n       B) ᴬ𝐼𝑧𝑧 = ᶜ𝐼𝑧𝑧 + 𝑚(𝑥𝑐² + 𝑦𝑐²)\n\n       C) ᴬ𝐼𝑧𝑧 = ᶜ𝐼𝑧𝑧 × 𝑚(𝑥𝑐² + 𝑦𝑐²)\n\n      D) ᴬ𝐼𝑧𝑧 = ᶜ𝐼𝑧𝑧 / 𝑚(𝑥𝑐² + 𝑦𝑐²)\n\n       Answer: B\n        Refer to Lecture 11: Acceleration of a Rigid Body Slide 17\n\n\n  Q.2  For a Solid Cylinder with radius (𝑅) and mass 𝑚, its moment\n        of  inertia about  its geometrical axis as shown  in Figure\n        is________.\n\n\n\n\n\n      A) (1/2) 𝑚𝑅2\n\n       B) (1/12) 𝑚𝑅2\n\n       C) (1/3) 𝑚𝑅2\n\n      D) (1/4) 𝑚𝑅2\n\n\n                                                                                   1 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Use distance perpendicular to the parallel axis, not the full three-dimensional displacement.",
+        "optionExplanations": {
+          "o1": "Only the perpendicular squared distance contributes: 0.10+2(0.30²+0.40²)=0.60.",
+          "o2": "This incorrectly includes displacement along the parallel z-axis.",
+          "o3": "Translation away from the axis changes the moment; retaining the centroidal value omits the correction.",
+          "o4": "This uses only y_c² and drops x_c²."
+        },
+        "steps": [
+          "d_perp² = 0.30² + 0.40² = 0.25 m².",
+          "I_A,zz = 0.10 + 2·0.25 = 0.60 kg·m²."
+        ],
+        "formulas": [
+          {
+            "expression": "I_A,zz=I_C,zz+m(x_c²+y_c²)",
+            "variables": {
+              "I_A,zz": "moment about the translated z-axis through A",
+              "I_C,zz": "moment about the parallel COM z-axis",
+              "m": "body mass",
+              "x_c,y_c,z_c": "COM displacement components from A in the shared axis orientation"
+            },
+            "units": {
+              "I_A,zz,I_C,zz": "kg·m²",
+              "m": "kg",
+              "x_c,y_c,z_c": "m"
+            },
+            "assumptions": [
+              "Parallel axes; z_c is along the rotation axis and does not enter the correction."
+            ]
+          }
+        ],
+        "simpleExplanation": "Use distance perpendicular to the parallel axis, not the full three-dimensional displacement.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This incorrectly includes displacement along the parallel z-axis.",
+          "Translation away from the axis changes the moment; retaining the centroidal value omits the correction.",
+          "This uses only y_c² and drops x_c²."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W03-Q01",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W03-Q01.json",
+      "originalRecordSha256": "e94a717f311362d135b088b75dd5f04e99ae2ad3075cb3af6aa09094fb6c563c",
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+    },
+    {
+      "id": "ASSIGN-W03-Q002",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "Using the assignment figure’s central longitudinal rotation axis, a uniform solid cylinder has mass 6 kg, radius 0.20 m and length 0.40 m. What is its axial moment of inertia?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
+      "week": 3,
+      "lectureId": null,
+      "topic": "Assignment Week 3",
+      "subtopic": "Cylinder axis from the figure",
+      "tags": [
+        "assignment",
+        "week-3",
+        "cylinder-axis-from-the-figure"
+      ],
+      "conceptIds": [
+        "ASSIGN-W03-C002"
+      ],
+      "assumptions": [
+        "Added mass and dimensions; homogeneous solid cylinder, not a hollow shell."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "0.24 kg·m²."
+        },
+        {
+          "id": "o4",
+          "text": "0.14 kg·m²."
+        },
+        {
+          "id": "o1",
+          "text": "0.06 kg·m²."
+        },
+        {
+          "id": "o2",
+          "text": "0.12 kg·m²."
+        }
+      ],
+      "correctOptionIds": [
+        "o2"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0008",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 8,
+          "kind": "figure",
+          "locator": "Assignment physical PDF page 8, printed footer 1: Week 3, printed item 2: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "NPTEL Online Certification Course\n             Indian Institute of Technology Roorkee\nCourse Name: Introduction to Application of Artificial Intelligence to Robotics\n                         Instructor: Prof. Prof. Pushparaj Mani Pathak\n\n\n           WEEK 3: ASSIGNMENT 3\n\n  Q.1   If 𝑃𝑐= [𝑥𝑐, 𝑦𝑐, 𝑧𝑐]𝑇locates the Center of mass of a rigid body\n         relative to {𝐴}. Then the Parallel-axis Theorem, relates the\n         inertia tensor in a frame {𝐶} with origin at the center of mass\n         to the inertia tensor with respect to another arbitrarily translated\n        reference frame {𝐴} as,\n\n      A) ᴬ𝐼𝑧𝑧 = ᶜ𝐼𝑧𝑧 − 𝑚(𝑥𝑐² + 𝑦𝑐²)\n\n       B) ᴬ𝐼𝑧𝑧 = ᶜ𝐼𝑧𝑧 + 𝑚(𝑥𝑐² + 𝑦𝑐²)\n\n       C) ᴬ𝐼𝑧𝑧 = ᶜ𝐼𝑧𝑧 × 𝑚(𝑥𝑐² + 𝑦𝑐²)\n\n      D) ᴬ𝐼𝑧𝑧 = ᶜ𝐼𝑧𝑧 / 𝑚(𝑥𝑐² + 𝑦𝑐²)\n\n       Answer: B\n        Refer to Lecture 11: Acceleration of a Rigid Body Slide 17\n\n\n  Q.2  For a Solid Cylinder with radius (𝑅) and mass 𝑚, its moment\n        of  inertia about  its geometrical axis as shown  in Figure\n        is________.\n\n\n\n\n\n      A) (1/2) 𝑚𝑅2\n\n       B) (1/12) 𝑚𝑅2\n\n       C) (1/3) 𝑚𝑅2\n\n      D) (1/4) 𝑚𝑅2\n\n\n                                                                                   1 | P a g e",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0009",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 9,
+          "kind": "equation",
+          "locator": "Assignment physical PDF page 9, printed footer 2: Week 3, printed item 2: continued item or explanation.",
+          "evidenceText": "Answer: A\n      Refer to Lecture 11: Acceleration of a Rigid Body Slide 20\n\n\nQ.3  In Euler's equation 𝑁 = ᶜ𝐼𝜔̇ + 𝜔 × ᶜ𝐼𝜔, what does the term\n     ᶜ𝐼𝜔 physically represent?\n\n     A) Linear momentum of the body\n\n     B) Angular momentum of the body\n\n     C) Gravitational torque on the body\n\n     D) Total kinetic energy of the body\n\n     Answer: B\n      Refer to Lecture 12: Newton – Euler’s Equation Slide 9\n\n\nQ.4  Using Newton's equation 𝐹 = 𝑚𝑣̇𝑐, if a link has mass m = 4\n     kg and its center-of-mass linear acceleration is 𝑣̇𝑐 = (3, 0, 4)\n      m/s², what is the magnitude of the force F acting at the center\n      of mass?\n\n     A) 12 N\n\n     B) 16 N\n\n     C) 20 N\n\n     D) 28 N\n\n     Answer: C\n     Using 𝐹 = 𝑚𝑣̇𝑐: F = (4×3, 4×0, 4×4) = (12, 0, 16) N\n     Magnitude = √(12² + 0² + 16²) = √(144+256) = √400 = 20 N\n\n\n\n\n\n                                                                                2 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The pictured axis passes lengthwise through the center, so use ½mR², not the transverse-axis formula.",
+        "optionExplanations": {
+          "o2": "For this solid-cylinder axis, I=½mR²=0.12.",
+          "o3": "mR² is the thin cylindrical shell result, not the uniform solid cylinder.",
+          "o4": "This is the stated cylinder’s transverse COM inertia m(3R²+L²)/12, about a different axis.",
+          "o1": "This uses ¼mR² and omits the relevant axial factor."
+        },
+        "steps": [
+          "Identify the longitudinal COM axis in the source diagram.",
+          "I = 0.5·6·0.20² = 0.12 kg·m²."
+        ],
+        "formulas": [
+          {
+            "expression": "I_axial=½mR²",
+            "variables": {
+              "I_axial": "moment about the central longitudinal axis",
+              "m": "cylinder mass",
+              "R": "cylinder radius"
+            },
+            "units": {
+              "I_axial": "kg·m²",
+              "m": "kg",
+              "R": "m"
+            },
+            "assumptions": [
+              "Uniform solid cylinder. Length does not enter this axial moment."
+            ]
+          }
+        ],
+        "simpleExplanation": "The pictured axis passes lengthwise through the center, so use ½mR², not the transverse-axis formula.",
+        "memoryAid": null,
+        "misconceptions": [
+          "mR² is the thin cylindrical shell result, not the uniform solid cylinder.",
+          "This is the stated cylinder’s transverse COM inertia m(3R²+L²)/12, about a different axis.",
+          "This uses ¼mR² and omits the relevant axial factor."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W03-Q02",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W03-Q02.json",
+      "originalRecordSha256": "caf97afb3ab8a4fb8ced4ec5a3084e9dbbe679c1c04ec37aa91df5812f3097ba",
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+    },
+    {
+      "id": "ASSIGN-W03-Q003",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "In N = I_C α + ω×(I_C ω), what does I_C ω represent when I_C and ω are expressed in the same body frame about the COM?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 3,
+      "lectureId": null,
+      "topic": "Assignment Week 3",
+      "subtopic": "Angular momentum and Euler moment",
+      "tags": [
+        "assignment",
+        "week-3",
+        "angular-momentum-and-euler-moment"
+      ],
+      "conceptIds": [
+        "ASSIGN-W03-C003"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o1",
+          "text": "The resultant moment N, without the other terms."
+        },
+        {
+          "id": "o2",
+          "text": "Linear momentum of the COM."
+        },
+        {
+          "id": "o3",
+          "text": "Angular momentum about the COM, expressed in that frame."
+        },
+        {
+          "id": "o4",
+          "text": "Angular acceleration about the COM."
+        }
+      ],
+      "correctOptionIds": [
+        "o3"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0009",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 9,
+          "kind": "equation",
+          "locator": "Assignment physical PDF page 9, printed footer 2: Week 3, printed item 3: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "Answer: A\n      Refer to Lecture 11: Acceleration of a Rigid Body Slide 20\n\n\nQ.3  In Euler's equation 𝑁 = ᶜ𝐼𝜔̇ + 𝜔 × ᶜ𝐼𝜔, what does the term\n     ᶜ𝐼𝜔 physically represent?\n\n     A) Linear momentum of the body\n\n     B) Angular momentum of the body\n\n     C) Gravitational torque on the body\n\n     D) Total kinetic energy of the body\n\n     Answer: B\n      Refer to Lecture 12: Newton – Euler’s Equation Slide 9\n\n\nQ.4  Using Newton's equation 𝐹 = 𝑚𝑣̇𝑐, if a link has mass m = 4\n     kg and its center-of-mass linear acceleration is 𝑣̇𝑐 = (3, 0, 4)\n      m/s², what is the magnitude of the force F acting at the center\n      of mass?\n\n     A) 12 N\n\n     B) 16 N\n\n     C) 20 N\n\n     D) 28 N\n\n     Answer: C\n     Using 𝐹 = 𝑚𝑣̇𝑐: F = (4×3, 4×0, 4×4) = (12, 0, 16) N\n     Magnitude = √(12² + 0² + 16²) = √(144+256) = √400 = 20 N\n\n\n\n\n\n                                                                                2 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "I_Cω is COM angular momentum; the cross product accounts for its rotating-frame transport in the body-frame Euler equation.",
+        "optionExplanations": {
+          "o3": "Inertia times angular velocity is angular momentum about the chosen point.",
+          "o4": "Angular acceleration is α, not inertia times angular velocity.",
+          "o1": "The moment includes the acceleration and cross-product contributions.",
+          "o2": "Linear momentum is mass times COM translational velocity, not I_Cω."
+        },
+        "steps": [],
+        "formulas": [
+          {
+            "expression": "H_C=I_Cω; N=I_Cα+ω×H_C",
+            "variables": {
+              "H_C": "angular momentum about COM",
+              "I_C": "constant body-frame COM inertia tensor",
+              "ω": "body angular velocity",
+              "α": "angular acceleration",
+              "N": "net applied moment about COM"
+            },
+            "units": {
+              "H_C": "kg·m²/s",
+              "I_C": "kg·m²",
+              "ω": "rad/s",
+              "α": "rad/s²",
+              "N": "N·m"
+            },
+            "assumptions": [
+              "All vector components in the same body-fixed frame; rigid body and moment about COM."
+            ]
+          }
+        ],
+        "simpleExplanation": "I_Cω is COM angular momentum; the cross product accounts for its rotating-frame transport in the body-frame Euler equation.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The moment includes the acceleration and cross-product contributions.",
+          "Linear momentum is mass times COM translational velocity, not I_Cω.",
+          "Angular acceleration is α, not inertia times angular velocity."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W03-Q03",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W03-Q03.json",
+      "originalRecordSha256": "9f0fcda2d069b61f5838f8de881577323220fa1acbe813d99be358593b58f7f1",
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+    },
+    {
+      "id": "ASSIGN-W03-Q004",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "A body of mass 4 kg has COM acceleration (3,0,4) m/s². What is the magnitude of its NET external force?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
+      "week": 3,
+      "lectureId": null,
+      "topic": "Assignment Week 3",
+      "subtopic": "Net force magnitude",
+      "tags": [
+        "assignment",
+        "week-3",
+        "net-force-magnitude"
+      ],
+      "conceptIds": [
+        "ASSIGN-W03-C004"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o3",
+          "text": "100 N."
+        },
+        {
+          "id": "o4",
+          "text": "20 N."
+        },
+        {
+          "id": "o1",
+          "text": "28 N."
+        },
+        {
+          "id": "o2",
+          "text": "16 N."
+        }
+      ],
+      "correctOptionIds": [
+        "o4"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0009",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 9,
+          "kind": "equation",
+          "locator": "Assignment physical PDF page 9, printed footer 2: Week 3, printed item 4: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "Answer: A\n      Refer to Lecture 11: Acceleration of a Rigid Body Slide 20\n\n\nQ.3  In Euler's equation 𝑁 = ᶜ𝐼𝜔̇ + 𝜔 × ᶜ𝐼𝜔, what does the term\n     ᶜ𝐼𝜔 physically represent?\n\n     A) Linear momentum of the body\n\n     B) Angular momentum of the body\n\n     C) Gravitational torque on the body\n\n     D) Total kinetic energy of the body\n\n     Answer: B\n      Refer to Lecture 12: Newton – Euler’s Equation Slide 9\n\n\nQ.4  Using Newton's equation 𝐹 = 𝑚𝑣̇𝑐, if a link has mass m = 4\n     kg and its center-of-mass linear acceleration is 𝑣̇𝑐 = (3, 0, 4)\n      m/s², what is the magnitude of the force F acting at the center\n      of mass?\n\n     A) 12 N\n\n     B) 16 N\n\n     C) 20 N\n\n     D) 28 N\n\n     Answer: C\n     Using 𝐹 = 𝑚𝑣̇𝑐: F = (4×3, 4×0, 4×4) = (12, 0, 16) N\n     Magnitude = √(12² + 0² + 16²) = √(144+256) = √400 = 20 N\n\n\n\n\n\n                                                                                2 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The net force vector is (12,0,16) N and its magnitude is 20 N; gravity is not added again to a net-force calculation.",
+        "optionExplanations": {
+          "o4": "The acceleration norm is 5 m/s², so the force norm is 4·5=20 N.",
+          "o1": "This adds component magnitudes 12+16 instead of taking a Euclidean norm.",
+          "o2": "This retains only the z component of the force.",
+          "o3": "This uses m(a_x²+a_z²) without taking the square root."
+        },
+        "steps": [
+          "F_net = m a = (12,0,16) N.",
+          "||F_net|| = √(12²+16²) = 20 N."
+        ],
+        "formulas": [
+          {
+            "expression": "F_net=ma; ||F_net||=m√(a_x²+a_y²+a_z²)",
+            "variables": {
+              "F_net": "sum of all external forces",
+              "m": "mass",
+              "a_x,a_y,a_z": "COM acceleration components",
+              "||F_net||": "Euclidean magnitude"
+            },
+            "units": {
+              "F_net,||F_net||": "N",
+              "m": "kg",
+              "a_x,a_y,a_z": "m/s²"
+            },
+            "assumptions": [
+              "Inertial frame; positive mass; acceleration already results from all forces."
+            ]
+          }
+        ],
+        "simpleExplanation": "The net force vector is (12,0,16) N and its magnitude is 20 N; gravity is not added again to a net-force calculation.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This uses m(a_x²+a_z²) without taking the square root.",
+          "This adds component magnitudes 12+16 instead of taking a Euclidean norm.",
+          "This retains only the z component of the force."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W03-Q04",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W03-Q04.json",
+      "originalRecordSha256": "d878fb4e0ae88f90236b3057a85a835c784510a13296617fafc92d5bdaea59bb",
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+    },
+    {
+      "id": "ASSIGN-W03-Q005",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "The assignment figure has +Y₀ upward. To account for physical gravity g_phys = −g Ŷ₀ by fictitious base acceleration in the stated Newton–Euler recursion, which initialization is appropriate?",
+      "selectionMode": "single",
+      "type": "diagram",
+      "difficulty": "easy",
+      "cognitiveSkill": "application",
+      "week": 3,
+      "lectureId": null,
+      "topic": "Assignment Week 3",
+      "subtopic": "Gravity in recursive initialization",
+      "tags": [
+        "assignment",
+        "week-3",
+        "gravity-in-recursive-initialization"
+      ],
+      "conceptIds": [
+        "ASSIGN-W03-C005"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o1",
+          "text": "v̇₀ = +g Ŷ₀."
+        },
+        {
+          "id": "o2",
+          "text": "v̇₀ = −g Ŷ₀."
+        },
+        {
+          "id": "o3",
+          "text": "v̇₀ = 0 while also omitting gravity everywhere else."
+        },
+        {
+          "id": "o4",
+          "text": "v̇₀ = +g X̂₀."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0010",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 10,
+          "kind": "figure",
+          "locator": "Assignment physical PDF page 10, printed footer 3: Week 3, printed item 5: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "Q.5  Which of the following boundary conditions is used in the 2\n    DOF planar manipulator example shown below to correctly\n      incorporate  the  effect  of  gravity  into  the Newton-Euler\n      recursion?\n\n\n\n\n\n     A) Setting 𝜔0 = 0\n\n     B) Setting 𝑓3 = 0, 𝑛3 = 0\n\n     C) Setting 0𝑣̇0 = 𝑔𝑌̂0\n\n     D) Setting 𝜔̇ 0 = 0\n\n     Answer: C\n      Refer to Lecture 13: Newton – Euler’s Equation: Examples\n      Slide 5\n\n\nQ.6  Why is 3𝑓3 = 0 and 3𝑛 3 = 0 used as a boundary condition\n      in the inward iteration of 2 DOF planar manipulator example\n     shown below?\n\n\n\n\n\n                                                                                3 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "With physical gravity downward along −Y₀, the compensating recursion initialization is upward +g Ŷ₀.",
+        "optionExplanations": {
+          "o1": "The recursion injects the negative of the physical gravitational acceleration.",
+          "o2": "This uses gravity’s physical direction instead of the fictitious opposite acceleration in this convention.",
+          "o3": "Omitting both terms removes the gravity contribution.",
+          "o4": "This changes the axis contrary to the depicted vertical direction."
+        },
+        "steps": [],
+        "formulas": [
+          {
+            "expression": "v̇₀ = −g_phys = +g Ŷ₀",
+            "variables": {
+              "v̇₀": "fictitious base translational acceleration used by the recursion",
+              "g_phys": "physical gravitational acceleration vector",
+              "g": "positive gravity magnitude",
+              "Ŷ₀": "upward unit vector of the base frame"
+            },
+            "units": {
+              "v̇₀,g_phys,g": "m/s²",
+              "Ŷ₀": "dimensionless"
+            },
+            "assumptions": [
+              "The source convention embeds gravity through base acceleration instead of adding body weight separately."
+            ]
+          }
+        ],
+        "simpleExplanation": "With physical gravity downward along −Y₀, the compensating recursion initialization is upward +g Ŷ₀.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This uses gravity’s physical direction instead of the fictitious opposite acceleration in this convention.",
+          "Omitting both terms removes the gravity contribution.",
+          "This changes the axis contrary to the depicted vertical direction."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W03-Q05",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W03-Q05.json",
+      "originalRecordSha256": "d8306fca761b462963d001f1025c5a7182179d727579c81fbecf0e68bf5246b1",
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+    },
+    {
+      "id": "ASSIGN-W03-Q006",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "In the shown two-link Newton–Euler recursion, the boundary values f₃ = 0 and n₃ = 0 are used. What do these values state?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 3,
+      "lectureId": null,
+      "topic": "Assignment Week 3",
+      "subtopic": "Terminal wrench boundary",
+      "tags": [
+        "assignment",
+        "week-3",
+        "terminal-wrench-boundary"
+      ],
+      "conceptIds": [
+        "ASSIGN-W03-C006"
+      ],
+      "assumptions": [
+        "The index 3 is the source’s terminal frame after its two modeled links."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "Every internal joint force and torque must be zero."
+        },
+        {
+          "id": "o4",
+          "text": "Both links must have zero mass and inertia."
+        },
+        {
+          "id": "o1",
+          "text": "All joint accelerations must be zero."
+        },
+        {
+          "id": "o2",
+          "text": "No external tip force or moment is transmitted at that terminal boundary."
+        }
+      ],
+      "correctOptionIds": [
+        "o2"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0010",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 10,
+          "kind": "figure",
+          "locator": "Assignment physical PDF page 10, printed footer 3: Week 3, printed item 6: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "Q.5  Which of the following boundary conditions is used in the 2\n    DOF planar manipulator example shown below to correctly\n      incorporate  the  effect  of  gravity  into  the Newton-Euler\n      recursion?\n\n\n\n\n\n     A) Setting 𝜔0 = 0\n\n     B) Setting 𝑓3 = 0, 𝑛3 = 0\n\n     C) Setting 0𝑣̇0 = 𝑔𝑌̂0\n\n     D) Setting 𝜔̇ 0 = 0\n\n     Answer: C\n      Refer to Lecture 13: Newton – Euler’s Equation: Examples\n      Slide 5\n\n\nQ.6  Why is 3𝑓3 = 0 and 3𝑛 3 = 0 used as a boundary condition\n      in the inward iteration of 2 DOF planar manipulator example\n     shown below?\n\n\n\n\n\n                                                                                3 | P a g e",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0011",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 11,
+          "kind": "statement",
+          "locator": "Assignment physical PDF page 11, printed footer 4: Week 3, printed item 6: continued item or explanation.",
+          "evidenceText": "A) Because link 2 is assumed massless\n\n     B) Because there is no external force or moment applied by the\n     environment at the end-effector\n\n     C) Because the base is not rotating\n\n     D) Because the manipulator is in static equilibrium\n\n     Answer: B\n      Refer to Lecture 13: Newton – Euler’s Equation: Examples\n      Slide 5\n\n\nQ.7  In         the          final        torque        expression\n   𝜏= 𝑀(𝛩)𝛩̈ + 𝑉(𝛩, 𝛩̇ ) + 𝐺(𝛩)\n      derived for the RP manipulator, what distinguishes the vector\n     𝑉(𝛩, 𝛩̇) from 𝐺(𝛩)?\n\n     A) 𝑉(𝛩, 𝛩̇)depends only on  joint  position, while  𝐺(𝛩)\n     depends only on joint velocity.\n\n     B)  𝑉(𝛩, 𝛩̇ )  represents  centrifugal  and  Coriolis  terms\n     depending on joint velocities, while 𝐺(𝛩) represents gravity\n      terms depending only on joint position.\n\n\n\n\n                                                                                4 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "A zero terminal wrench is a load boundary condition, not a statement of static or massless motion.",
+        "optionExplanations": {
+          "o2": "The boundary removes an externally applied terminal wrench, not the links’ dynamic loads.",
+          "o3": "Internal reactions can still balance inertia and gravity.",
+          "o4": "Zero terminal load does not remove link mass or inertia.",
+          "o1": "A robot can accelerate with no external tip contact wrench."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "A zero terminal wrench is a load boundary condition, not a statement of static or massless motion.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Internal reactions can still balance inertia and gravity.",
+          "Zero terminal load does not remove link mass or inertia.",
+          "A robot can accelerate with no external tip contact wrench."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W03-Q06",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W03-Q06.json",
+      "originalRecordSha256": "65cea788ef840eb43e7d109bbe12a21e69365f587effaa4b1f78d49ce339bdda",
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+    },
+    {
+      "id": "ASSIGN-W03-Q007",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "For τ = M(q)q̈ + V(q,q̇) + G(q), compare two trials at the same q and q̈ but different q̇, with unchanged gravity. Which term can change solely because the joint rates change?",
+      "selectionMode": "single",
+      "type": "scenario",
+      "difficulty": "easy",
+      "cognitiveSkill": "application",
+      "week": 3,
+      "lectureId": null,
+      "topic": "Assignment Week 3",
+      "subtopic": "Configuration and velocity terms",
+      "tags": [
+        "assignment",
+        "week-3",
+        "configuration-and-velocity-terms"
+      ],
+      "conceptIds": [
+        "ASSIGN-W03-C007"
+      ],
+      "assumptions": [
+        "Standard rigid manipulator model shown, with fixed parameters and gravity; “can change” does not mean every possible rate change produces a different V."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "M(q), solely because the rate changes at fixed q."
+        },
+        {
+          "id": "o2",
+          "text": "All three terms must change by the same multiplicative factor."
+        },
+        {
+          "id": "o3",
+          "text": "V(q,q̇), while M(q) and G(q) remain evaluated at the same configuration."
+        },
+        {
+          "id": "o4",
+          "text": "G(q), while V(q,q̇) must remain unchanged."
+        }
+      ],
+      "correctOptionIds": [
+        "o3"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0011",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 11,
+          "kind": "equation",
+          "locator": "Assignment physical PDF page 11, printed footer 4: Week 3, printed item 7: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "A) Because link 2 is assumed massless\n\n     B) Because there is no external force or moment applied by the\n     environment at the end-effector\n\n     C) Because the base is not rotating\n\n     D) Because the manipulator is in static equilibrium\n\n     Answer: B\n      Refer to Lecture 13: Newton – Euler’s Equation: Examples\n      Slide 5\n\n\nQ.7  In         the          final        torque        expression\n   𝜏= 𝑀(𝛩)𝛩̈ + 𝑉(𝛩, 𝛩̇ ) + 𝐺(𝛩)\n      derived for the RP manipulator, what distinguishes the vector\n     𝑉(𝛩, 𝛩̇) from 𝐺(𝛩)?\n\n     A) 𝑉(𝛩, 𝛩̇)depends only on  joint  position, while  𝐺(𝛩)\n     depends only on joint velocity.\n\n     B)  𝑉(𝛩, 𝛩̇ )  represents  centrifugal  and  Coriolis  terms\n     depending on joint velocities, while 𝐺(𝛩) represents gravity\n      terms depending only on joint position.\n\n\n\n\n                                                                                4 | P a g e",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0012",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 12,
+          "kind": "statement",
+          "locator": "Assignment physical PDF page 12, printed footer 5: Week 3, printed item 7: continued item or explanation.",
+          "evidenceText": "C) 𝑉(𝛩, 𝛩̇ )and 𝐺(𝛩) are identical and represent the same\n      physical effect.\n\n     D) 𝑉(𝛩, 𝛩̇) is the mass matrix, while 𝐺(𝛩) is the damping\n      matrix.\n\n     Answer: B\n      Refer to Lecture 14: Lagrangian Formulation of Manipulator\n     Dynamics Slide 19\n\n\nQ.8  In the expression for the kinetic energy of the i-th link, 𝑘𝑖 =\n                                                 𝑐𝑖                          𝑇·   𝐼𝑖 · ⁱ𝜔𝑖, what do the two terms    ½𝑚𝑖· 𝑣𝑐𝑖𝑇· 𝑣𝐶𝑖 + ½ · ⁱ𝜔𝑖\n      physically represent?\n\n     A) Both terms represent kinetic energy due to linear velocity,\n     computed in different reference frames\n\n     B) The first term is KE due to linear velocity of the link's center\n      of mass; the second term is KE due to angular velocity of the\n      link\n\n     C) The first term is potential energy due to height; the second\n     term is kinetic energy due to rotation\n\n     D) The  first term represents  actuator  torque; the second\n      represents joint friction\n\n     Answer: B\n      Refer to Lecture 14: Lagrangian Formulation of Manipulator\n     Dynamics Slide 8\n\n\nQ.9  For the manipulator shown below, the mass matrix, 𝑀(𝛩) is\n     given by\n\n\n\n\n\n                                                                                5 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The Coriolis/centrifugal vector may change with q̇ even when the configuration-dependent inertia and gravity quantities do not.",
+        "optionExplanations": {
+          "o3": "Velocity-product terms depend on joint rates; inertia and gravity retain their configuration arguments.",
+          "o4": "Gravity at a fixed configuration and fixed field is not a joint-rate term.",
+          "o1": "In this stated model M depends on q, which is unchanged.",
+          "o2": "No common scaling law follows from changing rates."
+        },
+        "steps": [],
+        "formulas": [
+          {
+            "expression": "τ=M(q)q̈+V(q,q̇)+G(q)",
+            "variables": {
+              "τ": "joint generalized force vector",
+              "q,q̇,q̈": "joint coordinates, rates and accelerations",
+              "M": "joint inertia matrix",
+              "V": "Coriolis/centrifugal generalized-force vector",
+              "G": "gravity generalized-force vector"
+            },
+            "units": {
+              "q": "rad for revolute joints, m for prismatic joints",
+              "q̇,q̈": "corresponding units per s and per s²",
+              "τ,V,G": "N·m for revolute components, N for prismatic components",
+              "M": "compatible inertia mapping units"
+            },
+            "assumptions": [
+              "Rigid links; fixed parameters; all terms in the same generalized coordinates."
+            ]
+          }
+        ],
+        "simpleExplanation": "The Coriolis/centrifugal vector may change with q̇ even when the configuration-dependent inertia and gravity quantities do not.",
+        "memoryAid": null,
+        "misconceptions": [
+          "In this stated model M depends on q, which is unchanged.",
+          "No common scaling law follows from changing rates.",
+          "Gravity at a fixed configuration and fixed field is not a joint-rate term."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W03-Q07",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W03-Q07.json",
+      "originalRecordSha256": "0f227bfa0412235c50344d5b9156df002e5da5b0e1eb562a184402fdb6f3b347",
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+    },
+    {
+      "id": "ASSIGN-W03-Q008",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "An added rigid-body example has mass 2 kg, COM velocity (3,4,0) m/s, angular velocity (0,0,2) rad/s and COM I_zz = 0.50 kg·m² in the same axes. What is its total kinetic energy?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "medium",
+      "cognitiveSkill": "numerical",
+      "week": 3,
+      "lectureId": null,
+      "topic": "Assignment Week 3",
+      "subtopic": "COM kinetic-energy decomposition",
+      "tags": [
+        "assignment",
+        "week-3",
+        "com-kinetic-energy-decomposition"
+      ],
+      "conceptIds": [
+        "ASSIGN-W03-C008"
+      ],
+      "assumptions": [
+        "Added numerical values; angular velocity has only a z component, so other inertia entries do not contribute."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "51 J."
+        },
+        {
+          "id": "o4",
+          "text": "26 J."
+        },
+        {
+          "id": "o1",
+          "text": "25 J."
+        },
+        {
+          "id": "o2",
+          "text": "27 J."
+        }
+      ],
+      "correctOptionIds": [
+        "o4"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0012",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 12,
+          "kind": "equation",
+          "locator": "Assignment physical PDF page 12, printed footer 5: Week 3, printed item 8: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "C) 𝑉(𝛩, 𝛩̇ )and 𝐺(𝛩) are identical and represent the same\n      physical effect.\n\n     D) 𝑉(𝛩, 𝛩̇) is the mass matrix, while 𝐺(𝛩) is the damping\n      matrix.\n\n     Answer: B\n      Refer to Lecture 14: Lagrangian Formulation of Manipulator\n     Dynamics Slide 19\n\n\nQ.8  In the expression for the kinetic energy of the i-th link, 𝑘𝑖 =\n                                                 𝑐𝑖                          𝑇·   𝐼𝑖 · ⁱ𝜔𝑖, what do the two terms    ½𝑚𝑖· 𝑣𝑐𝑖𝑇· 𝑣𝐶𝑖 + ½ · ⁱ𝜔𝑖\n      physically represent?\n\n     A) Both terms represent kinetic energy due to linear velocity,\n     computed in different reference frames\n\n     B) The first term is KE due to linear velocity of the link's center\n      of mass; the second term is KE due to angular velocity of the\n      link\n\n     C) The first term is potential energy due to height; the second\n     term is kinetic energy due to rotation\n\n     D) The  first term represents  actuator  torque; the second\n      represents joint friction\n\n     Answer: B\n      Refer to Lecture 14: Lagrangian Formulation of Manipulator\n     Dynamics Slide 8\n\n\nQ.9  For the manipulator shown below, the mass matrix, 𝑀(𝛩) is\n     given by\n\n\n\n\n\n                                                                                5 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Use translation of the COM plus rotation about the COM to obtain 25+1=26 J, without double counting motion.",
+        "optionExplanations": {
+          "o4": "Translational energy is 25 J and rotational energy is 1 J.",
+          "o1": "This drops the rotational contribution.",
+          "o2": "This omits the factor ½ in the rotational contribution.",
+          "o3": "This omits the factor ½ in translational energy, giving 50+1."
+        },
+        "steps": [
+          "K_trans = ½·2·(3²+4²) = 25 J.",
+          "K_rot = ½·0.50·2² = 1 J.",
+          "K = 26 J."
+        ],
+        "formulas": [
+          {
+            "expression": "K=½m v_Cᵀv_C+½ωᵀI_Cω",
+            "variables": {
+              "K": "total kinetic energy",
+              "m": "mass",
+              "v_C": "COM velocity in inertial coordinates",
+              "ω": "angular velocity",
+              "I_C": "inertia about COM in the same axes as ω"
+            },
+            "units": {
+              "K": "J",
+              "m": "kg",
+              "v_C": "m/s",
+              "ω": "rad/s",
+              "I_C": "kg·m²"
+            },
+            "assumptions": [
+              "Rigid body; translational speed evaluated in an inertial frame."
+            ]
+          }
+        ],
+        "simpleExplanation": "Use translation of the COM plus rotation about the COM to obtain 25+1=26 J, without double counting motion.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This omits the factor ½ in translational energy, giving 50+1.",
+          "This drops the rotational contribution.",
+          "This omits the factor ½ in the rotational contribution."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W03-Q08",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W03-Q08.json",
+      "originalRecordSha256": "75b02a1e88fd95c820b3d85a2f5ba8b9906184a9335402cb202f770e28177509",
+      "difficultyRationale": "Requires combining the stated model, multiple operations or a nontrivial source qualification."
+    },
+    {
+      "id": "ASSIGN-W03-Q009",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "Use the assignment diagram: massless planar links of lengths l₁,l₂, point mass m₁ at the elbow and m₂ at the tip, with relative elbow angle q₂. For m₁ = 2 kg, m₂ = 3 kg, l₁ = 1 m, l₂ = 2 m and q₂ = 60°, derive M from K = ½ q̇ᵀM q̇. Which matrix is obtained?",
+      "selectionMode": "single",
+      "type": "derivation",
+      "difficulty": "medium",
+      "cognitiveSkill": "synthesis",
+      "week": 3,
+      "lectureId": null,
+      "topic": "Assignment Week 3",
+      "subtopic": "Two-point-mass manipulator inertia",
+      "tags": [
+        "assignment",
+        "week-3",
+        "two-point-mass-manipulator-inertia"
+      ],
+      "conceptIds": [
+        "ASSIGN-W03-C009"
+      ],
+      "assumptions": [
+        "Added parameter values; both generalized coordinates are revolute angles, rods have zero mass, and no distributed-link inertia is added."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "[[23,15],[15,12]] kg·m²."
+        },
+        {
+          "id": "o2",
+          "text": "[[23,12],[12,12]] kg·m²."
+        },
+        {
+          "id": "o3",
+          "text": "[[17,15],[15,12]] kg·m²."
+        },
+        {
+          "id": "o4",
+          "text": "[[12,15],[15,23]] kg·m²."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0012",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 12,
+          "kind": "figure",
+          "locator": "Assignment physical PDF page 12, printed footer 5: Week 3 item 9, two-link point-mass geometry and relative-angle labels.",
+          "evidenceText": "C) 𝑉(𝛩, 𝛩̇ )and 𝐺(𝛩) are identical and represent the same\n      physical effect.\n\n     D) 𝑉(𝛩, 𝛩̇) is the mass matrix, while 𝐺(𝛩) is the damping\n      matrix.\n\n     Answer: B\n      Refer to Lecture 14: Lagrangian Formulation of Manipulator\n     Dynamics Slide 19\n\n\nQ.8  In the expression for the kinetic energy of the i-th link, 𝑘𝑖 =\n                                                 𝑐𝑖                          𝑇·   𝐼𝑖 · ⁱ𝜔𝑖, what do the two terms    ½𝑚𝑖· 𝑣𝑐𝑖𝑇· 𝑣𝐶𝑖 + ½ · ⁱ𝜔𝑖\n      physically represent?\n\n     A) Both terms represent kinetic energy due to linear velocity,\n     computed in different reference frames\n\n     B) The first term is KE due to linear velocity of the link's center\n      of mass; the second term is KE due to angular velocity of the\n      link\n\n     C) The first term is potential energy due to height; the second\n     term is kinetic energy due to rotation\n\n     D) The  first term represents  actuator  torque; the second\n      represents joint friction\n\n     Answer: B\n      Refer to Lecture 14: Lagrangian Formulation of Manipulator\n     Dynamics Slide 8\n\n\nQ.9  For the manipulator shown below, the mass matrix, 𝑀(𝛩) is\n     given by\n\n\n\n\n\n                                                                                5 | P a g e",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0013",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 13,
+          "kind": "equation",
+          "locator": "Assignment physical PDF page 13, printed footer 6: Week 3 item 9, candidate inertia matrices and explanation.",
+          "evidenceText": "2 + 2𝑚2𝑙1𝑙2𝑐2 + (𝑚1 + 𝑚2)𝑙12  𝑚2𝑙22 + 𝑚2𝑙1𝑙2𝑐2      A) [𝑚2𝑙2                                                    ]\n                 𝑚2𝑙22 + 𝑚2𝑙1𝑙2𝑐2              𝑚2𝑙22\n\n              𝑚2𝑙22              𝑚2𝑙22 + 𝑚2𝑙1𝑙2𝑐2       B) [               2                  2                           2]          𝑚2𝑙2 + 𝑚2𝑙1𝑙2𝑐2  𝑚2𝑙2 + 2𝑚2𝑙1𝑙2𝑐2 + (𝑚1 + 𝑚2)𝑙1\n\n               2 + 𝑚2𝑙1𝑙2𝑐2              𝑚2𝑙22       C) [𝑚2𝑙2               2                  2                           2]          𝑚2𝑙2 + 𝑚2𝑙1𝑙2𝑐2  𝑚2𝑙2 + 2𝑚2𝑙1𝑙2𝑐2 + (𝑚1 + 𝑚2)𝑙1\n\n               2 + 2𝑚2𝑙1𝑙2𝑐2 + (𝑚1 + 𝑚2)𝑙12       𝑚2𝑙22      D) [𝑚2𝑙2                                                    ]\n                     𝑚2𝑙22              𝑚2𝑙22 + 𝑚2𝑙1𝑙2𝑐2\n\n     Answer: A\n     Refer to Lecture 15: Manipulator Dynamic Equations in State\n     Space Form Slide 6\n\n\nQ.10  In  𝜏 = 𝑀(𝛩)𝛩̈ + 𝐵(𝛩)[𝛩̇𝛩̇] + 𝐶(𝛩)[𝛩̇²] + 𝐺(𝛩),  the\n      matrix 𝐵(𝛩) has dimension:\n\n     A) 𝑛× 𝑛\n\n     B) 𝑛× 𝑛(𝑛−1)/2\n\n     C) [𝑛(𝑛−1)/2] × [𝑛(𝑛−1)/2]\n\n\n\n\n                                                                                6 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Collect the q̇₁², 2q̇₁q̇₂ and q̇₂² coefficients of the complete two-mass kinetic energy; the symmetric matrix is [[23,15],[15,12]].",
+        "optionExplanations": {
+          "o1": "The tip speed contributes both squared rates and their coupling, producing M11=23, M12=M21=15 and M22=12.",
+          "o2": "This omits m₂l₁l₂cos q₂ from the off-diagonal coupling.",
+          "o3": "This omits the 2m₂l₁l₂cos q₂ contribution in M11.",
+          "o4": "This swaps the diagonal roles of base and elbow rates."
+        },
+        "steps": [
+          "v₁²=l₁² q̇₁².",
+          "v₂²=l₁²q̇₁²+l₂²(q̇₁+q̇₂)²+2l₁l₂ cos q₂·q̇₁(q̇₁+q̇₂).",
+          "Expand K=½m₁v₁²+½m₂v₂² and collect the quadratic coefficients.",
+          "M11=(m₁+m₂)l₁²+m₂l₂²+2m₂l₁l₂cos q₂=23; M12=M21=m₂l₂²+m₂l₁l₂cos q₂=15; M22=m₂l₂²=12."
+        ],
+        "formulas": [
+          {
+            "expression": "M11=(m₁+m₂)l₁²+m₂l₂²+2m₂l₁l₂cos q₂; M12=M21=m₂l₂²+m₂l₁l₂cos q₂; M22=m₂l₂²",
+            "variables": {
+              "Mij": "row i, column j element of the 2 by 2 generalized inertia matrix",
+              "m₁,m₂": "point masses at elbow and tip",
+              "l₁,l₂": "link lengths",
+              "q₂": "relative elbow angle",
+              "q̇₁,q̇₂": "base and relative elbow angular rates",
+              "K": "total kinetic energy"
+            },
+            "units": {
+              "Mij": "kg·m²",
+              "m₁,m₂": "kg",
+              "l₁,l₂": "m",
+              "q₂": "angle",
+              "q̇₁,q̇₂": "rad/s",
+              "K": "J"
+            },
+            "assumptions": [
+              "Massless planar 2R rods; point masses only at the displayed locations; K=½q̇ᵀMq̇."
+            ]
+          }
+        ],
+        "simpleExplanation": "Collect the q̇₁², 2q̇₁q̇₂ and q̇₂² coefficients of the complete two-mass kinetic energy; the symmetric matrix is [[23,15],[15,12]].",
+        "memoryAid": null,
+        "misconceptions": [
+          "This omits m₂l₁l₂cos q₂ from the off-diagonal coupling.",
+          "This omits the 2m₂l₁l₂cos q₂ contribution in M11.",
+          "This swaps the diagonal roles of base and elbow rates."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W03-Q09",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W03-Q09.json",
+      "originalRecordSha256": "ad9e0835305a3a02f69363482d3da7cbdc2bf09cdfab4165800190ff4be6ca5e",
+      "difficultyRationale": "Requires combining the stated model, multiple operations or a nontrivial source qualification."
+    },
+    {
+      "id": "ASSIGN-W03-Q010",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:assignments-W01-W06-author",
+      "stem": "The source groups distinct mixed products q̇_i q̇_j with i<j into one vector, separate from squared rates. For four joints and four generalized-force outputs, what is the size of its coefficient matrix B?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
+      "week": 3,
+      "lectureId": null,
+      "topic": "Assignment Week 3",
+      "subtopic": "Mixed velocity-product dimension",
+      "tags": [
+        "assignment",
+        "week-3",
+        "mixed-velocity-product-dimension"
+      ],
+      "conceptIds": [
+        "ASSIGN-W03-C010"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o3",
+          "text": "4×4."
+        },
+        {
+          "id": "o4",
+          "text": "4×12."
+        },
+        {
+          "id": "o1",
+          "text": "6×4."
+        },
+        {
+          "id": "o2",
+          "text": "4×6."
+        }
+      ],
+      "correctOptionIds": [
+        "o2"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0013",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 13,
+          "kind": "equation",
+          "locator": "Assignment physical PDF page 13, printed footer 6: Week 3, printed item 10: item region beginning with the prompt, including the content visible on this page.",
+          "evidenceText": "2 + 2𝑚2𝑙1𝑙2𝑐2 + (𝑚1 + 𝑚2)𝑙12  𝑚2𝑙22 + 𝑚2𝑙1𝑙2𝑐2      A) [𝑚2𝑙2                                                    ]\n                 𝑚2𝑙22 + 𝑚2𝑙1𝑙2𝑐2              𝑚2𝑙22\n\n              𝑚2𝑙22              𝑚2𝑙22 + 𝑚2𝑙1𝑙2𝑐2       B) [               2                  2                           2]          𝑚2𝑙2 + 𝑚2𝑙1𝑙2𝑐2  𝑚2𝑙2 + 2𝑚2𝑙1𝑙2𝑐2 + (𝑚1 + 𝑚2)𝑙1\n\n               2 + 𝑚2𝑙1𝑙2𝑐2              𝑚2𝑙22       C) [𝑚2𝑙2               2                  2                           2]          𝑚2𝑙2 + 𝑚2𝑙1𝑙2𝑐2  𝑚2𝑙2 + 2𝑚2𝑙1𝑙2𝑐2 + (𝑚1 + 𝑚2)𝑙1\n\n               2 + 2𝑚2𝑙1𝑙2𝑐2 + (𝑚1 + 𝑚2)𝑙12       𝑚2𝑙22      D) [𝑚2𝑙2                                                    ]\n                     𝑚2𝑙22              𝑚2𝑙22 + 𝑚2𝑙1𝑙2𝑐2\n\n     Answer: A\n     Refer to Lecture 15: Manipulator Dynamic Equations in State\n     Space Form Slide 6\n\n\nQ.10  In  𝜏 = 𝑀(𝛩)𝛩̈ + 𝐵(𝛩)[𝛩̇𝛩̇] + 𝐶(𝛩)[𝛩̇²] + 𝐺(𝛩),  the\n      matrix 𝐵(𝛩) has dimension:\n\n     A) 𝑛× 𝑛\n\n     B) 𝑛× 𝑛(𝑛−1)/2\n\n     C) [𝑛(𝑛−1)/2] × [𝑛(𝑛−1)/2]\n\n\n\n\n                                                                                6 | P a g e",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0014",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 14,
+          "kind": "derivation",
+          "locator": "Assignment physical PDF page 14, printed footer 7: Week 3, printed item 10: continued item or explanation.",
+          "evidenceText": "D) [𝑛(𝑛−1)/2] × 1\n\nAnswer: B\nRefer to Lecture 15: Manipulator Dynamic Equations in State\nSpace Form Slide 8\n\n\n\n\n\n               ***END****\n\n\n\n\n\n                                                                        7 | P a g e",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Four output components times six distinct mixed-rate products gives a 4×6 matrix.",
+        "optionExplanations": {
+          "o2": "There are 4·3/2=6 unordered distinct pairs and four output rows.",
+          "o3": "Four is the number of squared-rate terms, not distinct mixed pairs.",
+          "o4": "Twelve double-counts each pair as (i,j) and (j,i).",
+          "o1": "This transposes the input-product and output dimensions."
+        },
+        "steps": [
+          "Count unordered pairs: (1,2),(1,3),(1,4),(2,3),(2,4),(3,4).",
+          "A four-component output equals B times this six-component product vector, so B is 4×6."
+        ],
+        "formulas": [
+          {
+            "expression": "B ∈ R^[n × n(n−1)/2]",
+            "variables": {
+              "B": "coefficient matrix multiplying the vector of distinct mixed joint-rate products",
+              "n": "number of joint coordinates and generalized-force outputs",
+              "i,j": "joint indices with i<j"
+            },
+            "units": {
+              "n,i,j": "dimensionless",
+              "B": "force/rate-product-compatible units"
+            },
+            "assumptions": [
+              "Squared-rate terms are collected separately; unordered mixed pairs counted once."
+            ]
+          }
+        ],
+        "simpleExplanation": "Four output components times six distinct mixed-rate products gives a 4×6 matrix.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Four is the number of squared-rate terms, not distinct mixed pairs.",
+          "Twelve double-counts each pair as (i,j) and (j,i).",
+          "This transposes the input-product and output dimensions."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W03-Q10",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W03-Q10.json",
+      "originalRecordSha256": "7fce10e3163dc3538befb5d7bdb216ebd78bd9eaee49ecb9a3875b179b23629e",
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+    }
+  ],
+  "concepts": [
+    {
+      "id": "ASSIGN-W03-C001",
+      "title": "Parallel-axis inertia",
+      "description": "Use distance perpendicular to the parallel axis, not the full three-dimensional displacement.",
+      "slideIds": [
+        "assignments-p0008"
+      ],
+      "questionIds": [
+        "ASSIGN-W03-Q001"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 3",
+      "subtopic": "Parallel-axis inertia",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "numerical",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W03-C002",
+      "title": "Cylinder axis from the figure",
+      "description": "The pictured axis passes lengthwise through the center, so use ½mR², not the transverse-axis formula.",
+      "slideIds": [
+        "assignments-p0008",
+        "assignments-p0009"
+      ],
+      "questionIds": [
+        "ASSIGN-W03-Q002"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 3",
+      "subtopic": "Cylinder axis from the figure",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "numerical",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W03-C003",
+      "title": "Angular momentum and Euler moment",
+      "description": "I_Cω is COM angular momentum; the cross product accounts for its rotating-frame transport in the body-frame Euler equation.",
+      "slideIds": [
+        "assignments-p0009"
+      ],
+      "questionIds": [
+        "ASSIGN-W03-Q003"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 3",
+      "subtopic": "Angular momentum and Euler moment",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "conceptual",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W03-C004",
+      "title": "Net force magnitude",
+      "description": "The net force vector is (12,0,16) N and its magnitude is 20 N; gravity is not added again to a net-force calculation.",
+      "slideIds": [
+        "assignments-p0009"
+      ],
+      "questionIds": [
+        "ASSIGN-W03-Q004"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 3",
+      "subtopic": "Net force magnitude",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "numerical",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W03-C005",
+      "title": "Gravity in recursive initialization",
+      "description": "With physical gravity downward along −Y₀, the compensating recursion initialization is upward +g Ŷ₀.",
+      "slideIds": [
+        "assignments-p0010"
+      ],
+      "questionIds": [
+        "ASSIGN-W03-Q005"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 3",
+      "subtopic": "Gravity in recursive initialization",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "diagram",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W03-C006",
+      "title": "Terminal wrench boundary",
+      "description": "A zero terminal wrench is a load boundary condition, not a statement of static or massless motion.",
+      "slideIds": [
+        "assignments-p0010",
+        "assignments-p0011"
+      ],
+      "questionIds": [
+        "ASSIGN-W03-Q006"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 3",
+      "subtopic": "Terminal wrench boundary",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "conceptual",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W03-C007",
+      "title": "Configuration and velocity terms",
+      "description": "The Coriolis/centrifugal vector may change with q̇ even when the configuration-dependent inertia and gravity quantities do not.",
+      "slideIds": [
+        "assignments-p0011",
+        "assignments-p0012"
+      ],
+      "questionIds": [
+        "ASSIGN-W03-Q007"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 3",
+      "subtopic": "Configuration and velocity terms",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "scenario",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W03-C008",
+      "title": "COM kinetic-energy decomposition",
+      "description": "Use translation of the COM plus rotation about the COM to obtain 25+1=26 J, without double counting motion.",
+      "slideIds": [
+        "assignments-p0012"
+      ],
+      "questionIds": [
+        "ASSIGN-W03-Q008"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 3",
+      "subtopic": "COM kinetic-energy decomposition",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "numerical",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W03-C009",
+      "title": "Two-point-mass manipulator inertia",
+      "description": "Collect the q̇₁², 2q̇₁q̇₂ and q̇₂² coefficients of the complete two-mass kinetic energy; the symmetric matrix is [[23,15],[15,12]].",
+      "slideIds": [
+        "assignments-p0012",
+        "assignments-p0013"
+      ],
+      "questionIds": [
+        "ASSIGN-W03-Q009"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 3",
+      "subtopic": "Two-point-mass manipulator inertia",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "derivation",
+        "assumption_or_misconception"
+      ]
+    },
+    {
+      "id": "ASSIGN-W03-C010",
+      "title": "Mixed velocity-product dimension",
+      "description": "Four output components times six distinct mixed-rate products gives a 4×6 matrix.",
+      "slideIds": [
+        "assignments-p0013",
+        "assignments-p0014"
+      ],
+      "questionIds": [
+        "ASSIGN-W03-Q010"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 3",
+      "subtopic": "Mixed velocity-product dimension",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "numerical",
+        "assumption_or_misconception"
+      ]
+    }
+  ],
+  "coverageNote": "Every original item has a source-linked qualified adaptation. Immutable original records preserve supplied prompts, options and keys. All adaptations remain drafts pending independent review."
+}

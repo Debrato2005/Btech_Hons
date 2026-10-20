@@ -1,0 +1,70 @@
+{
+  "frozenAt": "2026-10-20T01:05:44.642646+00:00",
+  "packetSha256": "be641f29463f2bda9dd9d7bc2148048876e920601c45d0d9f1d4fe0f8a66995d",
+  "policyVersion": "1.0.1",
+  "policySha256": "0da2b6ad1da5828b592f3bad025872c37be2f5411094c6b067cc0ea80877471d",
+  "policyDecision": "flagged",
+  "toolReviewsAppended": 18,
+  "toolVersions": 2,
+  "toolReviewFile": "data/learning-tool-reviews.json",
+  "toolReviewFileSha256": "1e1d2c6472023d3f2a44e670d8807bef939a422dee220c1156ecac3538e0ad28",
+  "policyReviewFile": "data/learning-resource-policy-reviews.json",
+  "policyReviewFileSha256": "48956a6ed0a85a66d3a7a6d471a6b8648d4651c1fa6caa69576c0ef6bb51a1aa",
+  "priorObjectsPreserved": true,
+  "findings": [
+    {
+      "id": "LR-P05",
+      "severity": "blocking-defense-in-depth",
+      "area": "Python implementation-policy binding parity",
+      "targets": [
+        "scripts/learning_resources.py:tool_reasons",
+        "scripts/learning_resources.py:integrity_errors"
+      ],
+      "finding": "For a correctly hashed actual implementation file with a distinct current tool approval, Python tool_reasons and integrity_errors accept when that file is omitted from or conflicts with approved policy.codeHashes. JavaScript rejects the identical tool. The complete omitted-file reproduction has no policy code errors and valid current policy approval, so this is not merely a malformed policy fixture.",
+      "requiredRepair": "Require every implementationFiles path/hash pair to match the active approved policy code inventory in the Python gate, including missing inventories, omissions and mismatches; preserve on-disk hash checks. Add end-to-end Python/JS parity regressions. Advance the policy version and hash after the source change. Tool objects need not change if their bound JS files remain exact.",
+      "evidence": "audits/resource-policy-v2-review/policy-linkage-reproduction.json"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "audits/resource-policy-v2-review/binding-and-payload-checks.json",
+      "sha256": "130d222454ed3bacbf5d6b5977a7f858cc50b9d2619ef65ac47ab740305329ff"
+    },
+    {
+      "path": "audits/resource-policy-v2-review/runtime-mutation-checks.json",
+      "sha256": "2674722567597eb44cddb095b2726c049ae5668672348cddc211a4d701303eb0"
+    },
+    {
+      "path": "audits/resource-policy-v2-review/python-mutation-checks.json",
+      "sha256": "b0ae593c693fc447e4545d2d784a2cbcfa30bf8960e164c9114a592b0e360a30"
+    },
+    {
+      "path": "audits/resource-policy-v2-review/policy-linkage-reproduction.json",
+      "sha256": "87a6555ac132851ee372a0bc49861500fc39afd116f22f3108e2269897d8edb5"
+    },
+    {
+      "path": "audits/resource-policy-v2-review/independent-math-checks.json",
+      "sha256": "66f005183a8d8ed9e6d815f48c1554dfc69784a18009195a4c5fdff6c6795370"
+    }
+  ],
+  "passed": {
+    "payloadIdentity": 18,
+    "frozenFiles": 19,
+    "independentNodeGroups": 49,
+    "independentPythonGroups": 27,
+    "fixedExamples": 39,
+    "completeTraces": 5,
+    "newSeedCases": 13000,
+    "projectionContexts": 6398,
+    "contextOmissions": 0
+  },
+  "activation": "All course resources remain inactive until an exact-hash repaired policy is independently approved.",
+  "next": "Author repairs Python policy linkage; reviewer proceeds to lecture concept-ledger challenge while awaiting the narrow new packet.",
+  "restrictions": [
+    "Never use /tmp/robotics-l35-venv or the L48 incident environment.",
+    "No new dependencies/models/checkpoints/audio/NLTK or denied original L49 notebook retrieval.",
+    "No browser retry, installation, alternate restricted route or bypass. Actual browser layout remains unverified after socket denial.",
+    "No denied ROS 2 Humble QoS page retry/mirror.",
+    "Default installed Python/Node and local source inspection only. No Git/canonical bank writes."
+  ]
+}

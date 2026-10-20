@@ -195,6 +195,7 @@
         const options = validateNumericOptions(solved.options, solved.answer, precision, solved.units || '');
         const ordered = shuffleOptions ? rng.shuffle(options) : options;
         const identity = { familyId, generatorVersion: family.version, seed, parameters: sampled };
+        if (!family.synthetic) identity.resourceBinding = family.resourceBinding; // Keep old attempts historical across reapproval.
         return {
           id: familyId + ':' + hash32(stableStringify(identity)).toString(16).padStart(8, '0'),
           engineVersion: ENGINE_VERSION, familyId, generatorVersion: family.version,

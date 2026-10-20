@@ -1,0 +1,2915 @@
+{
+  "schemaVersion": "1.0.0",
+  "authorId": "robotics-learning-resource-projection-author-20261019",
+  "status": "draft",
+  "scope": "Separately authored source-linked algorithms and numerical families. No independent approval implied. Original 24 draft resources are preserved.",
+  "learningTools": {
+    "formulaSheet": [],
+    "confusionPairs": [],
+    "traps": [],
+    "algorithmVisualizations": [
+      {
+        "id": "course.algorithm.road-network.bfs",
+        "title": "BFS on the lecture road network",
+        "status": "draft",
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "week": 8,
+        "lectureId": "L36",
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p1107",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1107,
+            "kind": "statement",
+            "locator": "Physical PDF page 1107, printed slide 20; main text and labeled diagram as applicable",
+            "evidenceText": "1. Breadth-First Search (BFS)\n\n•  Breadth-First Search (BFS) is a systematic\n   graph search algorithm used in robot\n   navigation to find a path between two\n   points on a graph-based map.\n•  Data Structures: It uses a FIFO (First-In,\n   First-Out) queue to manage the\n   \"frontier\" (the open set of scheduled\n   vertices) and an \"explored\" set (the\n   closed set of visited vertices) to prevent\n   backtracking.\n•   It ignores the actual weight (distance) on\n   the edges, effectively treating all edge\n   costs as equal.\n\n\n\n                                                                                                          20",
+            "role": "explicit",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1108",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1108,
+            "kind": "statement",
+            "locator": "Physical PDF page 1108, printed slide 21; main text and labeled diagram as applicable",
+            "evidenceText": "1. Breadth-First Search (BFS)\n\nStep-by-Step Execution\n•   Initialize:\n   –  Frontier: [A]\n   – Explored: []\n•  Step 1: Expand A. Add its\n   neighbors B and C to the frontier.\n   –  Frontier: [B, C]\n   – Explored: [A]\n•  Step 2: Expand the first node in the\n   queue, B. Add its unvisited\n   neighbors D and E.\n   –  Frontier: [C, D, E]\n   – Explored: [A, B]\n\n                                                                                                          21",
+            "role": "explicit",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1109",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1109,
+            "kind": "statement",
+            "locator": "Physical PDF page 1109, printed slide 22; main text and labeled diagram as applicable",
+            "evidenceText": "1. Breadth-First Search (BFS)\n\nStep-by-Step Execution\n•  Step 3: Expand C. Add its unvisited\n  neighbor F.\n   – Frontier: [D, E, F]\n   – Explored: [A, B, C]\n•  Step 4: Expand D. Add its unvisited\n  neighbor G (the goal).\n   – Frontier: [E, F, G]\n   – Explored: [A, B, C, D]\n   – The goal G is now generated on the frontier.\n\n\n\n\n                                                                                                          22",
+            "role": "explicit",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1110",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1110,
+            "kind": "statement",
+            "locator": "Physical PDF page 1110, printed slide 23; main text and labeled diagram as applicable",
+            "evidenceText": "1. Breadth-First Search (BFS)\n\nStep-by-Step Execution\n•  Step 5: Expand E and F, eventually\n  popping G from the frontier queue.\n\n•  Final Path Found: A→B→D→G(3 hops)\n•  Total Cost: 5+6+6=17\n• Nodes Explored: 6 nodes (A,B,C,D,E,F)\n\n\n\n\n\n                                                                                                          23",
+            "role": "explicit",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1110",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1110,
+            "kind": "equation",
+            "locator": "Physical PDF page 1110, printed slide 23; main text and labeled diagram as applicable",
+            "evidenceText": "1. Breadth-First Search (BFS)\n\nStep-by-Step Execution\n•  Step 5: Expand E and F, eventually\n  popping G from the frontier queue.\n\n•  Final Path Found: A→B→D→G(3 hops)\n•  Total Cost: 5+6+6=17\n• Nodes Explored: 6 nodes (A,B,C,D,E,F)\n\n\n\n\n\n                                                                                                          23",
+            "role": "explicit",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p1107",
+          "lectures-p1108",
+          "lectures-p1109",
+          "lectures-p1110"
+        ],
+        "questionIds": [
+          "W08-L36-P1107-Q01",
+          "W08-L36-P1108-Q02",
+          "W08-L36-P1109-Q02",
+          "W08-L36-P1110-Q01",
+          "W08-L36-P1110-Q02"
+        ],
+        "conceptIds": [
+          "search.bfs-structure",
+          "search.bfs-trace",
+          "search.network",
+          "search.tie-convention"
+        ],
+        "reviewIds": [],
+        "graph": {
+          "directed": false,
+          "nodes": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ],
+          "edges": [
+            {
+              "to": "B",
+              "cost": 5,
+              "from": "A"
+            },
+            {
+              "to": "C",
+              "cost": 2,
+              "from": "A"
+            },
+            {
+              "to": "D",
+              "cost": 6,
+              "from": "B"
+            },
+            {
+              "to": "E",
+              "cost": 3,
+              "from": "B"
+            },
+            {
+              "to": "F",
+              "cost": 4,
+              "from": "C"
+            },
+            {
+              "to": "E",
+              "cost": 2,
+              "from": "D"
+            },
+            {
+              "to": "G",
+              "cost": 6,
+              "from": "D"
+            },
+            {
+              "to": "F",
+              "cost": 1,
+              "from": "E"
+            },
+            {
+              "to": "G",
+              "cost": 3,
+              "from": "F"
+            }
+          ]
+        },
+        "config": {
+          "algorithm": "bfs",
+          "start": "A",
+          "goal": "G",
+          "neighborOrder": "lexicographic",
+          "tieBreak": "lexicographic",
+          "heuristic": {
+            "A": 7,
+            "B": 6,
+            "C": 5,
+            "D": 4,
+            "E": 3,
+            "F": 2,
+            "G": 0
+          }
+        },
+        "generatedExplanation": "The original graph topology and edge labels are preserved; display positions are illustrative, not geographic coordinates.",
+        "assumptions": [
+          "Undirected graph as drawn, positive edge costs in kilometres.",
+          "Goal test on removal; do not count successful goal removal as successor expansion.",
+          "Alphabetical successor order. Weighted priority ties resolve alphabetically; p1116 shows D before G.",
+          "BFS/DFS mark discovered on insertion; UCS/A* allow strictly cheaper replacements and reopening."
+        ],
+        "revisionOf": "algorithm.road-network.bfs",
+        "description": "The original graph topology and edge labels are preserved; display positions are illustrative, not geographic coordinates.",
+        "questionBindings": [
+          {
+            "questionId": "W08-L36-P1107-Q01",
+            "questionVersion": 1,
+            "questionSha256": "44db1721b9e7d7a8e8b3541ddc03448320c80137ca54cd94f005c5549562723e"
+          },
+          {
+            "questionId": "W08-L36-P1108-Q02",
+            "questionVersion": 1,
+            "questionSha256": "51ae21c7eb3427ba1857c977aa320127599d68d02be889e07691f23932f3f8aa"
+          },
+          {
+            "questionId": "W08-L36-P1109-Q02",
+            "questionVersion": 1,
+            "questionSha256": "6f9f8dea76294a50d78374b2f8a5f34743cb46a0bb14d88247bb7f590384e0c2"
+          },
+          {
+            "questionId": "W08-L36-P1110-Q01",
+            "questionVersion": 1,
+            "questionSha256": "b8edc44acf66dcdc5b60fa997a3ab049203bbd216254599685ea4895f84eda6b"
+          },
+          {
+            "questionId": "W08-L36-P1110-Q02",
+            "questionVersion": 1,
+            "questionSha256": "86bf91838854828466b38cd74f56168dabdfe69d10af2a5ae7c6ed52800b6e75"
+          }
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W08-L36-P1107-Q01",
+            "stem": "Which frontier discipline is used by BFS in the slides?",
+            "assumptions": [],
+            "exactFormulas": []
+          },
+          {
+            "questionId": "W08-L36-P1108-Q02",
+            "stem": "After BFS expands A and then B, using neighbor order B before C and D before E, what is the frontier from front to back?",
+            "assumptions": [
+              "Undirected graph as drawn.",
+              "Neighbors are considered alphabetically.",
+              "BFS marks discovered on insertion; weighted search replaces only strictly cheaper paths.",
+              "Goal test occurs on removal from the frontier, before successor expansion."
+            ],
+            "exactFormulas": []
+          },
+          {
+            "questionId": "W08-L36-P1109-Q02",
+            "stem": "After D generates goal G, the lecture BFS frontier is [E, F, G]. Under its stopping convention, what happens next?",
+            "assumptions": [
+              "Undirected graph as drawn.",
+              "Neighbors are considered alphabetically.",
+              "BFS marks discovered on insertion; weighted search replaces only strictly cheaper paths.",
+              "Goal test occurs on removal from the frontier, before successor expansion."
+            ],
+            "exactFormulas": []
+          },
+          {
+            "questionId": "W08-L36-P1110-Q01",
+            "stem": "The BFS route is A→B→D→G with edge lengths 5, 6 and 6 km. What are its hop count and total cost?",
+            "assumptions": [],
+            "exactFormulas": [
+              {
+                "expression": "g(child) = g(parent) + edgeCost(parent,child)",
+                "variables": {
+                  "g": "accumulated path cost",
+                  "edgeCost": "one road length"
+                },
+                "units": {
+                  "g": "km",
+                  "edgeCost": "km"
+                },
+                "assumptions": [
+                  "Costs are added along the chosen path."
+                ]
+              }
+            ]
+          },
+          {
+            "questionId": "W08-L36-P1110-Q02",
+            "stem": "With the slide convention that successful goal removal is not a successor expansion, which nodes are counted as explored in the BFS result?",
+            "assumptions": [
+              "Undirected graph as drawn.",
+              "Neighbors are considered alphabetically.",
+              "BFS marks discovered on insertion; weighted search replaces only strictly cheaper paths.",
+              "Goal test occurs on removal from the frontier, before successor expansion."
+            ],
+            "exactFormulas": []
+          }
+        ],
+        "sourceQualifications": [],
+        "primaryEvidence": [],
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      },
+      {
+        "id": "course.algorithm.road-network.ucs",
+        "title": "UCS on the lecture road network",
+        "status": "draft",
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "week": 8,
+        "lectureId": "L36",
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p1112",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1112,
+            "kind": "figure",
+            "locator": "Printed slide 25: Original nine undirected edges and weights",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n•  UCS is an optimal graph search algorithm.\n   Instead of expanding nodes level-by-level,\n    it prioritizes vertices based on the lowest\n   cumulative cost from the start vertex.\n\n                Cost: Distance (in km)\n•  Mathematical Notation: Minimizes f(v)=g(v),\n  where g(v) is the cumulative cost (distance) from the\n   start to the current vertex v.\n•  Data Structures: It uses a priority queue ordered\n   from smallest to largest value of g(v).\n\n\n\n                                                                                                            25",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1112",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1112,
+            "kind": "statement",
+            "locator": "Printed slide 25: UCS lowest cumulative g priority",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n•  UCS is an optimal graph search algorithm.\n   Instead of expanding nodes level-by-level,\n    it prioritizes vertices based on the lowest\n   cumulative cost from the start vertex.\n\n                Cost: Distance (in km)\n•  Mathematical Notation: Minimizes f(v)=g(v),\n  where g(v) is the cumulative cost (distance) from the\n   start to the current vertex v.\n•  Data Structures: It uses a priority queue ordered\n   from smallest to largest value of g(v).\n\n\n\n                                                                                                            25",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1113",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1113,
+            "kind": "statement",
+            "locator": "Printed slide 26: Initial A expansion frontier",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Initialize:\n   – Frontier: [A(0)]\n   – Explored: []\n•  Step 1: Expand A(0). Add neighbors with\n   cumulative costs: B (cost 5) and C (cost\n   2).\n   – Frontier: [C(2), B(5)]\n   – Explored: [A]\n\n\n\n\n                                                                                                          26",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1114",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1114,
+            "kind": "statement",
+            "locator": "Printed slide 27: C then B expansions",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 2: Expand cheapest node, C(2).\n  Add neighbor F (cost 2+4=6).\n   – Frontier: [B(5), F(6)]\n   – Explored: [A, C]\n•  Step 3: Expand cheapest node, B(5).\n  Add neighbors D (cost 5+6=11) and E\n   (cost 5+3=8).\n   – Frontier: [F(6), E(8), D(11)]\n   – Explored: [A, C, B]\n\n\n\n\n                                                                                                          27",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1115",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1115,
+            "kind": "statement",
+            "locator": "Printed slide 28: E improvement through F",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 4: Expand cheapest node, F(6).\n   – Add neighbor G (cost 6+3=9).\n   – Evaluate neighbor E (cost 6+1=7). Since\n      7 is cheaper than the existing path to E\n      (which was 8), we select E to go through\n      F instead of B.\n   – Frontier: [E(7), G(9), D(11)]\n   – Explored: [A, C, B, F]\n\n\n\n\n\n                                                                                                          28",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1116",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1116,
+            "kind": "statement",
+            "locator": "Printed slide 29: D improvement and D/G priority tie",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 5: Expand cheapest node, E(7).\n   – Evaluate neighbor D (cost 7+2=9). Since 9\n          is cheaper than the existing path to D\n       (which was 11), we select D to go through\n        E.\n   –  Frontier: [D(9), G(9)]\n   – Explored: [A, C, B, F, E]\n•  Step 6: Expand cheapest node, D(9).\n   –  Neighbor G via D has a cost of 9+6=15,\n      which is worse than the existing cost to G\n         (9), so we do not update.\n   –  Frontier: [G(9)]\n   – Explored: [A, C, B, F, E, D]\n\n                                                                                                          29",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1117",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1117,
+            "kind": "statement",
+            "locator": "Printed slide 30: Final reconstructed UCS path",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 7: Expand G(9). The goal is\n   reached.\n\n•  Final Path Found: A→C→F→G\n•  Total Cost: 2+4+3=9\n• Nodes Explored: 6 nodes\n   (A,C,B,F,E,D)\n\n\n\n\n\n                                                                                                          30",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1119",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1119,
+            "kind": "equation",
+            "locator": "Printed slide 32: A-star priority f=g+h",
+            "evidenceText": "3. A-Star\n•  The A* (A-star) search algorithm is a widely used\n   graph search technique in robot navigation that\n   finds the optimal path between two points by\n   using a heuristic to guide its search.\n\n•  Mathematical Notation: Minimizes f(v)=g(v)+h(v),\n   where:\n   – g(v) is the path cost from the start to vertex v\n      (cost-to-come).\n   – h(v) is a heuristic estimating the distance from v\n      to the goal (cost-to-go).\n\n\n\n                                                                                                            32",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1119",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1119,
+            "kind": "figure",
+            "locator": "Printed slide 32: Seven heuristic labels",
+            "evidenceText": "3. A-Star\n•  The A* (A-star) search algorithm is a widely used\n   graph search technique in robot navigation that\n   finds the optimal path between two points by\n   using a heuristic to guide its search.\n\n•  Mathematical Notation: Minimizes f(v)=g(v)+h(v),\n   where:\n   – g(v) is the path cost from the start to vertex v\n      (cost-to-come).\n   – h(v) is a heuristic estimating the distance from v\n      to the goal (cost-to-go).\n\n\n\n                                                                                                            32",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1121",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1121,
+            "kind": "statement",
+            "locator": "Printed slide 34: A-star initial frontier",
+            "evidenceText": "3. A-Star\n\nStep-by-Step Execution\n•  Initialize:\n   – Frontier: [A(0 + 7 = 7)]\n   – Explored: []\n•  Step 1: Expand A.\n   – Neighbor B: g(B)=5,h(B)=6→f(B)=11\n   – Neighbor C: g(C)=2,h(C)=5→f(C)=7\n   – Frontier: [C(7), B(11)]\n   – Explored: [A]\n\n\n\n\n                                                                                                          34",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1122",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1122,
+            "kind": "statement",
+            "locator": "Printed slide 35: A-star C and F updates",
+            "evidenceText": "3. A-Star\n\nStep-by-Step Execution\n•  Step 2: Expand cheapest node, C(7).\n   – Neighbor F: g(F)=2+4=6,h(F)=2→f(F)=8\n   – Frontier: [F(8), B(11)]\n   – Explored: [A, C]\n•  Step 3: Expand cheapest node, F(8).\n   – Neighbor G:\n      g(G)=6+3=9,h(G)=0→f(G)=9\n   – Neighbor E:g(E)=6+1=7,h(E)=3→f(E)=10\n   – Frontier: [G(9), E(10), B(11)]\n   – Explored: [A, C, F]\n\n\n                                                                                                          35",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1123",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1123,
+            "kind": "statement",
+            "locator": "Printed slide 36: Final reconstructed A-star path",
+            "evidenceText": "3. A-Star\n\nStep-by-Step Execution\n•  Step 4: Expand cheapest node, G(9).\n  Goal reached!\n\n•  Final Path Found: A→C→F→G\n•  Total Cost: 2+4+3=9\n• Nodes Explored: Only 3 nodes (A,C,F)\n\n\n\n\n\n                                                                                                          36",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1112",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1112,
+            "kind": "statement",
+            "locator": "Physical PDF page 1112, printed slide 25; main text and labeled diagram as applicable",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n•  UCS is an optimal graph search algorithm.\n   Instead of expanding nodes level-by-level,\n    it prioritizes vertices based on the lowest\n   cumulative cost from the start vertex.\n\n                Cost: Distance (in km)\n•  Mathematical Notation: Minimizes f(v)=g(v),\n  where g(v) is the cumulative cost (distance) from the\n   start to the current vertex v.\n•  Data Structures: It uses a priority queue ordered\n   from smallest to largest value of g(v).\n\n\n\n                                                                                                            25",
+            "role": "explicit",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p1112",
+          "lectures-p1113",
+          "lectures-p1114",
+          "lectures-p1115",
+          "lectures-p1116",
+          "lectures-p1117",
+          "lectures-p1119",
+          "lectures-p1121",
+          "lectures-p1122",
+          "lectures-p1123"
+        ],
+        "questionIds": [
+          "W08-L36-P1117-Q02",
+          "W08-L36-P1112-Q01"
+        ],
+        "conceptIds": [
+          "W08-L36-P1117-Q02-COVERAGE",
+          "search.ucs-priority"
+        ],
+        "reviewIds": [],
+        "graph": {
+          "directed": false,
+          "nodes": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ],
+          "edges": [
+            {
+              "to": "B",
+              "cost": 5,
+              "from": "A"
+            },
+            {
+              "to": "C",
+              "cost": 2,
+              "from": "A"
+            },
+            {
+              "to": "D",
+              "cost": 6,
+              "from": "B"
+            },
+            {
+              "to": "E",
+              "cost": 3,
+              "from": "B"
+            },
+            {
+              "to": "F",
+              "cost": 4,
+              "from": "C"
+            },
+            {
+              "to": "E",
+              "cost": 2,
+              "from": "D"
+            },
+            {
+              "to": "G",
+              "cost": 6,
+              "from": "D"
+            },
+            {
+              "to": "F",
+              "cost": 1,
+              "from": "E"
+            },
+            {
+              "to": "G",
+              "cost": 3,
+              "from": "F"
+            }
+          ]
+        },
+        "config": {
+          "algorithm": "ucs",
+          "start": "A",
+          "goal": "G",
+          "neighborOrder": "lexicographic",
+          "tieBreak": "lexicographic",
+          "heuristic": {
+            "A": 7,
+            "B": 6,
+            "C": 5,
+            "D": 4,
+            "E": 3,
+            "F": 2,
+            "G": 0
+          }
+        },
+        "generatedExplanation": "The original graph topology and edge labels are preserved; display positions are illustrative, not geographic coordinates.",
+        "assumptions": [
+          "Undirected graph as drawn, positive edge costs in kilometres.",
+          "Goal test on removal; do not count successful goal removal as successor expansion.",
+          "Alphabetical successor order. Weighted priority ties resolve alphabetically; p1116 shows D before G.",
+          "BFS/DFS mark discovered on insertion; UCS/A* allow strictly cheaper replacements and reopening."
+        ],
+        "revisionOf": "algorithm.road-network.ucs",
+        "description": "The original graph topology and edge labels are preserved; display positions are illustrative, not geographic coordinates.",
+        "questionBindings": [
+          {
+            "questionId": "W08-L36-P1117-Q02",
+            "questionVersion": 1,
+            "questionSha256": "50bc2771590b84f0fb5d938be4670bcf2f9162f6b95c4239bcf35d5d544c2628"
+          },
+          {
+            "questionId": "W08-L36-P1112-Q01",
+            "questionVersion": 1,
+            "questionSha256": "f4c4b32b85fd2e44a7a59cc3cd84fcd4ca6e63eaf6891e3cebdabc9a9086c965"
+          }
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W08-L36-P1117-Q02",
+            "stem": "Run UCS and A* from A to G on the undirected graph with edges AB=5, AC=2, BD=6, BE=3, CF=4, EF=1, ED=2, DG=6 and FG=3 km. For A*, use h(A,B,C,D,E,F,G)=(7,6,5,4,3,2,0) km. Each algorithm relaxes a vertex only for a strictly smaller g, breaks equal priorities alphabetically, and stops when G is popped. Count only non-goal expansions. Which complete record is correct?",
+            "assumptions": [
+              "Weights and heuristic labels are transcribed from the source graph; all distances use km. Both directions of each listed undirected edge are permitted.",
+              "Initialize g(A)=0 and all other g values to infinity. Use a minimum-priority frontier: g for UCS, g+h for A*. Update parent on every strictly cheaper route; do not overwrite on equal or worse routes.",
+              "Ignore stale priority entries and already-expanded vertices; the supplied heuristic is consistent on this graph, so no reopening is needed. Test the goal immediately after a valid pop, before expanding successors."
+            ],
+            "exactFormulas": [
+              {
+                "expression": "g_new(v)=g(u)+c(u,v); update iff g_new(v)<g(v); f_UCS(v)=g(v); f_A*(v)=g(v)+h(v)",
+                "variables": {
+                  "u,v": "Current vertex and a neighboring vertex",
+                  "c(u,v)": "Listed undirected edge length",
+                  "g(v)": "Best recorded start-to-vertex distance",
+                  "g_new(v)": "Candidate distance through u",
+                  "h(v)": "Specified remaining-distance heuristic",
+                  "f_UCS,f_A*": "Frontier priority in each algorithm"
+                },
+                "units": {
+                  "c,g,g_new,h,f_UCS,f_A*": "km",
+                  "u,v": "vertex labels"
+                },
+                "assumptions": [
+                  "All edge weights positive; start g=0; alphabetical ties; goal test on pop; only non-goal pops count as expansions."
+                ]
+              }
+            ]
+          },
+          {
+            "questionId": "W08-L36-P1112-Q01",
+            "stem": "Which quantity determines the next UCS frontier removal?",
+            "assumptions": [],
+            "exactFormulas": [
+              {
+                "expression": "g(child) = g(parent) + edgeCost(parent,child)",
+                "variables": {
+                  "g": "accumulated path cost",
+                  "edgeCost": "one road length"
+                },
+                "units": {
+                  "g": "km",
+                  "edgeCost": "km"
+                },
+                "assumptions": [
+                  "Costs are added along the chosen path."
+                ]
+              }
+            ]
+          }
+        ],
+        "sourceQualifications": [],
+        "primaryEvidence": [],
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      },
+      {
+        "id": "course.algorithm.road-network.astar",
+        "title": "A* on the lecture road network",
+        "status": "draft",
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "week": 8,
+        "lectureId": "L36",
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p1112",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1112,
+            "kind": "figure",
+            "locator": "Printed slide 25: Original nine undirected edges and weights",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n•  UCS is an optimal graph search algorithm.\n   Instead of expanding nodes level-by-level,\n    it prioritizes vertices based on the lowest\n   cumulative cost from the start vertex.\n\n                Cost: Distance (in km)\n•  Mathematical Notation: Minimizes f(v)=g(v),\n  where g(v) is the cumulative cost (distance) from the\n   start to the current vertex v.\n•  Data Structures: It uses a priority queue ordered\n   from smallest to largest value of g(v).\n\n\n\n                                                                                                            25",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1112",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1112,
+            "kind": "statement",
+            "locator": "Printed slide 25: UCS lowest cumulative g priority",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n•  UCS is an optimal graph search algorithm.\n   Instead of expanding nodes level-by-level,\n    it prioritizes vertices based on the lowest\n   cumulative cost from the start vertex.\n\n                Cost: Distance (in km)\n•  Mathematical Notation: Minimizes f(v)=g(v),\n  where g(v) is the cumulative cost (distance) from the\n   start to the current vertex v.\n•  Data Structures: It uses a priority queue ordered\n   from smallest to largest value of g(v).\n\n\n\n                                                                                                            25",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1113",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1113,
+            "kind": "statement",
+            "locator": "Printed slide 26: Initial A expansion frontier",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Initialize:\n   – Frontier: [A(0)]\n   – Explored: []\n•  Step 1: Expand A(0). Add neighbors with\n   cumulative costs: B (cost 5) and C (cost\n   2).\n   – Frontier: [C(2), B(5)]\n   – Explored: [A]\n\n\n\n\n                                                                                                          26",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1114",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1114,
+            "kind": "statement",
+            "locator": "Printed slide 27: C then B expansions",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 2: Expand cheapest node, C(2).\n  Add neighbor F (cost 2+4=6).\n   – Frontier: [B(5), F(6)]\n   – Explored: [A, C]\n•  Step 3: Expand cheapest node, B(5).\n  Add neighbors D (cost 5+6=11) and E\n   (cost 5+3=8).\n   – Frontier: [F(6), E(8), D(11)]\n   – Explored: [A, C, B]\n\n\n\n\n                                                                                                          27",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1115",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1115,
+            "kind": "statement",
+            "locator": "Printed slide 28: E improvement through F",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 4: Expand cheapest node, F(6).\n   – Add neighbor G (cost 6+3=9).\n   – Evaluate neighbor E (cost 6+1=7). Since\n      7 is cheaper than the existing path to E\n      (which was 8), we select E to go through\n      F instead of B.\n   – Frontier: [E(7), G(9), D(11)]\n   – Explored: [A, C, B, F]\n\n\n\n\n\n                                                                                                          28",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1116",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1116,
+            "kind": "statement",
+            "locator": "Printed slide 29: D improvement and D/G priority tie",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 5: Expand cheapest node, E(7).\n   – Evaluate neighbor D (cost 7+2=9). Since 9\n          is cheaper than the existing path to D\n       (which was 11), we select D to go through\n        E.\n   –  Frontier: [D(9), G(9)]\n   – Explored: [A, C, B, F, E]\n•  Step 6: Expand cheapest node, D(9).\n   –  Neighbor G via D has a cost of 9+6=15,\n      which is worse than the existing cost to G\n         (9), so we do not update.\n   –  Frontier: [G(9)]\n   – Explored: [A, C, B, F, E, D]\n\n                                                                                                          29",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1117",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1117,
+            "kind": "statement",
+            "locator": "Printed slide 30: Final reconstructed UCS path",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 7: Expand G(9). The goal is\n   reached.\n\n•  Final Path Found: A→C→F→G\n•  Total Cost: 2+4+3=9\n• Nodes Explored: 6 nodes\n   (A,C,B,F,E,D)\n\n\n\n\n\n                                                                                                          30",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1119",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1119,
+            "kind": "equation",
+            "locator": "Printed slide 32: A-star priority f=g+h",
+            "evidenceText": "3. A-Star\n•  The A* (A-star) search algorithm is a widely used\n   graph search technique in robot navigation that\n   finds the optimal path between two points by\n   using a heuristic to guide its search.\n\n•  Mathematical Notation: Minimizes f(v)=g(v)+h(v),\n   where:\n   – g(v) is the path cost from the start to vertex v\n      (cost-to-come).\n   – h(v) is a heuristic estimating the distance from v\n      to the goal (cost-to-go).\n\n\n\n                                                                                                            32",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1119",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1119,
+            "kind": "figure",
+            "locator": "Printed slide 32: Seven heuristic labels",
+            "evidenceText": "3. A-Star\n•  The A* (A-star) search algorithm is a widely used\n   graph search technique in robot navigation that\n   finds the optimal path between two points by\n   using a heuristic to guide its search.\n\n•  Mathematical Notation: Minimizes f(v)=g(v)+h(v),\n   where:\n   – g(v) is the path cost from the start to vertex v\n      (cost-to-come).\n   – h(v) is a heuristic estimating the distance from v\n      to the goal (cost-to-go).\n\n\n\n                                                                                                            32",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1121",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1121,
+            "kind": "statement",
+            "locator": "Printed slide 34: A-star initial frontier",
+            "evidenceText": "3. A-Star\n\nStep-by-Step Execution\n•  Initialize:\n   – Frontier: [A(0 + 7 = 7)]\n   – Explored: []\n•  Step 1: Expand A.\n   – Neighbor B: g(B)=5,h(B)=6→f(B)=11\n   – Neighbor C: g(C)=2,h(C)=5→f(C)=7\n   – Frontier: [C(7), B(11)]\n   – Explored: [A]\n\n\n\n\n                                                                                                          34",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1122",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1122,
+            "kind": "statement",
+            "locator": "Printed slide 35: A-star C and F updates",
+            "evidenceText": "3. A-Star\n\nStep-by-Step Execution\n•  Step 2: Expand cheapest node, C(7).\n   – Neighbor F: g(F)=2+4=6,h(F)=2→f(F)=8\n   – Frontier: [F(8), B(11)]\n   – Explored: [A, C]\n•  Step 3: Expand cheapest node, F(8).\n   – Neighbor G:\n      g(G)=6+3=9,h(G)=0→f(G)=9\n   – Neighbor E:g(E)=6+1=7,h(E)=3→f(E)=10\n   – Frontier: [G(9), E(10), B(11)]\n   – Explored: [A, C, F]\n\n\n                                                                                                          35",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1123",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1123,
+            "kind": "statement",
+            "locator": "Printed slide 36: Final reconstructed A-star path",
+            "evidenceText": "3. A-Star\n\nStep-by-Step Execution\n•  Step 4: Expand cheapest node, G(9).\n  Goal reached!\n\n•  Final Path Found: A→C→F→G\n•  Total Cost: 2+4+3=9\n• Nodes Explored: Only 3 nodes (A,C,F)\n\n\n\n\n\n                                                                                                          36",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1120",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1120,
+            "kind": "statement",
+            "locator": "Physical PDF page 1120, printed slide 33; main text and labeled diagram as applicable",
+            "evidenceText": "3. A-Star\n•  The performance and accuracy of A* depend critically on the choice of the heuristic\n   function:\n➢Admissibility: A* is guaranteed to find the lowest-cost path only if the heuristic is\n   \"admissible,\" meaning it never overestimates the actual cost of reaching the goal.\n  A non-admissible heuristic may lead to a non-optimal path.\n➢Common heuristic function Examples:\n   – Minimum-Distance: The Euclidean distance is a standard admissible heuristic\n      because it is the shortest possible path between two\n       points and cannot be an overestimate. (this example)\n   – Minimum-Time: The heuristic must represent the travel\n      time at the maximum possible speed in the\n      environment to remain admissible.\n\n\n                                                                                                            33",
+            "role": "explicit",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p1112",
+          "lectures-p1113",
+          "lectures-p1114",
+          "lectures-p1115",
+          "lectures-p1116",
+          "lectures-p1117",
+          "lectures-p1119",
+          "lectures-p1120",
+          "lectures-p1121",
+          "lectures-p1122",
+          "lectures-p1123"
+        ],
+        "questionIds": [
+          "W08-L36-P1117-Q02",
+          "W08-L36-P1120-Q01"
+        ],
+        "conceptIds": [
+          "W08-L36-P1117-Q02-COVERAGE",
+          "search.admissibility"
+        ],
+        "reviewIds": [],
+        "graph": {
+          "directed": false,
+          "nodes": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ],
+          "edges": [
+            {
+              "to": "B",
+              "cost": 5,
+              "from": "A"
+            },
+            {
+              "to": "C",
+              "cost": 2,
+              "from": "A"
+            },
+            {
+              "to": "D",
+              "cost": 6,
+              "from": "B"
+            },
+            {
+              "to": "E",
+              "cost": 3,
+              "from": "B"
+            },
+            {
+              "to": "F",
+              "cost": 4,
+              "from": "C"
+            },
+            {
+              "to": "E",
+              "cost": 2,
+              "from": "D"
+            },
+            {
+              "to": "G",
+              "cost": 6,
+              "from": "D"
+            },
+            {
+              "to": "F",
+              "cost": 1,
+              "from": "E"
+            },
+            {
+              "to": "G",
+              "cost": 3,
+              "from": "F"
+            }
+          ]
+        },
+        "config": {
+          "algorithm": "astar",
+          "start": "A",
+          "goal": "G",
+          "neighborOrder": "lexicographic",
+          "tieBreak": "lexicographic",
+          "heuristic": {
+            "A": 7,
+            "B": 6,
+            "C": 5,
+            "D": 4,
+            "E": 3,
+            "F": 2,
+            "G": 0
+          }
+        },
+        "generatedExplanation": "The original graph topology and edge labels are preserved; display positions are illustrative, not geographic coordinates.",
+        "assumptions": [
+          "Undirected graph as drawn, positive edge costs in kilometres.",
+          "Goal test on removal; do not count successful goal removal as successor expansion.",
+          "Alphabetical successor order. Weighted priority ties resolve alphabetically; p1116 shows D before G.",
+          "BFS/DFS mark discovered on insertion; UCS/A* allow strictly cheaper replacements and reopening.",
+          "The supplied heuristic is tested against the exact remaining costs on this finite graph; arbitrary edited heuristics are not certified."
+        ],
+        "revisionOf": "algorithm.road-network.astar",
+        "description": "The original graph topology and edge labels are preserved; display positions are illustrative, not geographic coordinates.",
+        "questionBindings": [
+          {
+            "questionId": "W08-L36-P1117-Q02",
+            "questionVersion": 1,
+            "questionSha256": "50bc2771590b84f0fb5d938be4670bcf2f9162f6b95c4239bcf35d5d544c2628"
+          },
+          {
+            "questionId": "W08-L36-P1120-Q01",
+            "questionVersion": 1,
+            "questionSha256": "e1945aab0c34da3e56ab25879f8969e232f1938bab9dbba83bb5fb58c65bccb2"
+          }
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W08-L36-P1117-Q02",
+            "stem": "Run UCS and A* from A to G on the undirected graph with edges AB=5, AC=2, BD=6, BE=3, CF=4, EF=1, ED=2, DG=6 and FG=3 km. For A*, use h(A,B,C,D,E,F,G)=(7,6,5,4,3,2,0) km. Each algorithm relaxes a vertex only for a strictly smaller g, breaks equal priorities alphabetically, and stops when G is popped. Count only non-goal expansions. Which complete record is correct?",
+            "assumptions": [
+              "Weights and heuristic labels are transcribed from the source graph; all distances use km. Both directions of each listed undirected edge are permitted.",
+              "Initialize g(A)=0 and all other g values to infinity. Use a minimum-priority frontier: g for UCS, g+h for A*. Update parent on every strictly cheaper route; do not overwrite on equal or worse routes.",
+              "Ignore stale priority entries and already-expanded vertices; the supplied heuristic is consistent on this graph, so no reopening is needed. Test the goal immediately after a valid pop, before expanding successors."
+            ],
+            "exactFormulas": [
+              {
+                "expression": "g_new(v)=g(u)+c(u,v); update iff g_new(v)<g(v); f_UCS(v)=g(v); f_A*(v)=g(v)+h(v)",
+                "variables": {
+                  "u,v": "Current vertex and a neighboring vertex",
+                  "c(u,v)": "Listed undirected edge length",
+                  "g(v)": "Best recorded start-to-vertex distance",
+                  "g_new(v)": "Candidate distance through u",
+                  "h(v)": "Specified remaining-distance heuristic",
+                  "f_UCS,f_A*": "Frontier priority in each algorithm"
+                },
+                "units": {
+                  "c,g,g_new,h,f_UCS,f_A*": "km",
+                  "u,v": "vertex labels"
+                },
+                "assumptions": [
+                  "All edge weights positive; start g=0; alphabetical ties; goal test on pop; only non-goal pops count as expansions."
+                ]
+              }
+            ]
+          },
+          {
+            "questionId": "W08-L36-P1120-Q01",
+            "stem": "Which statement is required of an admissible heuristic under the slide definition?",
+            "assumptions": [],
+            "exactFormulas": []
+          }
+        ],
+        "sourceQualifications": [],
+        "primaryEvidence": [],
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      },
+      {
+        "id": "course.algorithm.road-network.dfs",
+        "title": "DFS on the lecture road network",
+        "status": "draft",
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "week": 8,
+        "lectureId": "L36",
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p0116",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 116,
+            "kind": "statement",
+            "locator": "Lecture 3 printed slide 22: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+            "evidenceText": "DFS explores as deeply as possible before backtracking to unvisited children, uses a LIFO stack, and does not guarantee an optimal path. Highlighted first-found path in the same undirected graph:S-A-C-F-D-B-E-H-G. The figure contains alternative shorter paths. Memory advantage is stated as often, not universally.",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1112",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1112,
+            "kind": "figure",
+            "locator": "Printed slide 25: Original nine undirected edges and weights",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n•  UCS is an optimal graph search algorithm.\n   Instead of expanding nodes level-by-level,\n    it prioritizes vertices based on the lowest\n   cumulative cost from the start vertex.\n\n                Cost: Distance (in km)\n•  Mathematical Notation: Minimizes f(v)=g(v),\n  where g(v) is the cumulative cost (distance) from the\n   start to the current vertex v.\n•  Data Structures: It uses a priority queue ordered\n   from smallest to largest value of g(v).\n\n\n\n                                                                                                            25",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1112",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1112,
+            "kind": "statement",
+            "locator": "Printed slide 25: UCS lowest cumulative g priority",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n•  UCS is an optimal graph search algorithm.\n   Instead of expanding nodes level-by-level,\n    it prioritizes vertices based on the lowest\n   cumulative cost from the start vertex.\n\n                Cost: Distance (in km)\n•  Mathematical Notation: Minimizes f(v)=g(v),\n  where g(v) is the cumulative cost (distance) from the\n   start to the current vertex v.\n•  Data Structures: It uses a priority queue ordered\n   from smallest to largest value of g(v).\n\n\n\n                                                                                                            25",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1113",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1113,
+            "kind": "statement",
+            "locator": "Printed slide 26: Initial A expansion frontier",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Initialize:\n   – Frontier: [A(0)]\n   – Explored: []\n•  Step 1: Expand A(0). Add neighbors with\n   cumulative costs: B (cost 5) and C (cost\n   2).\n   – Frontier: [C(2), B(5)]\n   – Explored: [A]\n\n\n\n\n                                                                                                          26",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1114",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1114,
+            "kind": "statement",
+            "locator": "Printed slide 27: C then B expansions",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 2: Expand cheapest node, C(2).\n  Add neighbor F (cost 2+4=6).\n   – Frontier: [B(5), F(6)]\n   – Explored: [A, C]\n•  Step 3: Expand cheapest node, B(5).\n  Add neighbors D (cost 5+6=11) and E\n   (cost 5+3=8).\n   – Frontier: [F(6), E(8), D(11)]\n   – Explored: [A, C, B]\n\n\n\n\n                                                                                                          27",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1115",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1115,
+            "kind": "statement",
+            "locator": "Printed slide 28: E improvement through F",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 4: Expand cheapest node, F(6).\n   – Add neighbor G (cost 6+3=9).\n   – Evaluate neighbor E (cost 6+1=7). Since\n      7 is cheaper than the existing path to E\n      (which was 8), we select E to go through\n      F instead of B.\n   – Frontier: [E(7), G(9), D(11)]\n   – Explored: [A, C, B, F]\n\n\n\n\n\n                                                                                                          28",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1116",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1116,
+            "kind": "statement",
+            "locator": "Printed slide 29: D improvement and D/G priority tie",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 5: Expand cheapest node, E(7).\n   – Evaluate neighbor D (cost 7+2=9). Since 9\n          is cheaper than the existing path to D\n       (which was 11), we select D to go through\n        E.\n   –  Frontier: [D(9), G(9)]\n   – Explored: [A, C, B, F, E]\n•  Step 6: Expand cheapest node, D(9).\n   –  Neighbor G via D has a cost of 9+6=15,\n      which is worse than the existing cost to G\n         (9), so we do not update.\n   –  Frontier: [G(9)]\n   – Explored: [A, C, B, F, E, D]\n\n                                                                                                          29",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1117",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1117,
+            "kind": "statement",
+            "locator": "Printed slide 30: Final reconstructed UCS path",
+            "evidenceText": "2. Uniform-Cost Search (UCS)\n\nStep-by-Step Execution\n•  Step 7: Expand G(9). The goal is\n   reached.\n\n•  Final Path Found: A→C→F→G\n•  Total Cost: 2+4+3=9\n• Nodes Explored: 6 nodes\n   (A,C,B,F,E,D)\n\n\n\n\n\n                                                                                                          30",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1119",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1119,
+            "kind": "equation",
+            "locator": "Printed slide 32: A-star priority f=g+h",
+            "evidenceText": "3. A-Star\n•  The A* (A-star) search algorithm is a widely used\n   graph search technique in robot navigation that\n   finds the optimal path between two points by\n   using a heuristic to guide its search.\n\n•  Mathematical Notation: Minimizes f(v)=g(v)+h(v),\n   where:\n   – g(v) is the path cost from the start to vertex v\n      (cost-to-come).\n   – h(v) is a heuristic estimating the distance from v\n      to the goal (cost-to-go).\n\n\n\n                                                                                                            32",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1119",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1119,
+            "kind": "figure",
+            "locator": "Printed slide 32: Seven heuristic labels",
+            "evidenceText": "3. A-Star\n•  The A* (A-star) search algorithm is a widely used\n   graph search technique in robot navigation that\n   finds the optimal path between two points by\n   using a heuristic to guide its search.\n\n•  Mathematical Notation: Minimizes f(v)=g(v)+h(v),\n   where:\n   – g(v) is the path cost from the start to vertex v\n      (cost-to-come).\n   – h(v) is a heuristic estimating the distance from v\n      to the goal (cost-to-go).\n\n\n\n                                                                                                            32",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1121",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1121,
+            "kind": "statement",
+            "locator": "Printed slide 34: A-star initial frontier",
+            "evidenceText": "3. A-Star\n\nStep-by-Step Execution\n•  Initialize:\n   – Frontier: [A(0 + 7 = 7)]\n   – Explored: []\n•  Step 1: Expand A.\n   – Neighbor B: g(B)=5,h(B)=6→f(B)=11\n   – Neighbor C: g(C)=2,h(C)=5→f(C)=7\n   – Frontier: [C(7), B(11)]\n   – Explored: [A]\n\n\n\n\n                                                                                                          34",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1122",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1122,
+            "kind": "statement",
+            "locator": "Printed slide 35: A-star C and F updates",
+            "evidenceText": "3. A-Star\n\nStep-by-Step Execution\n•  Step 2: Expand cheapest node, C(7).\n   – Neighbor F: g(F)=2+4=6,h(F)=2→f(F)=8\n   – Frontier: [F(8), B(11)]\n   – Explored: [A, C]\n•  Step 3: Expand cheapest node, F(8).\n   – Neighbor G:\n      g(G)=6+3=9,h(G)=0→f(G)=9\n   – Neighbor E:g(E)=6+1=7,h(E)=3→f(E)=10\n   – Frontier: [G(9), E(10), B(11)]\n   – Explored: [A, C, F]\n\n\n                                                                                                          35",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1123",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1123,
+            "kind": "statement",
+            "locator": "Printed slide 36: Final reconstructed A-star path",
+            "evidenceText": "3. A-Star\n\nStep-by-Step Execution\n•  Step 4: Expand cheapest node, G(9).\n  Goal reached!\n\n•  Final Path Found: A→C→F→G\n•  Total Cost: 2+4+3=9\n• Nodes Explored: Only 3 nodes (A,C,F)\n\n\n\n\n\n                                                                                                          36",
+            "role": "premise",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p0116",
+          "lectures-p1112",
+          "lectures-p1113",
+          "lectures-p1114",
+          "lectures-p1115",
+          "lectures-p1116",
+          "lectures-p1117",
+          "lectures-p1119",
+          "lectures-p1121",
+          "lectures-p1122",
+          "lectures-p1123"
+        ],
+        "questionIds": [
+          "W01-L03-P0116-Q01",
+          "W08-L36-P1117-Q02"
+        ],
+        "conceptIds": [
+          "W01-L03-P0116-C01",
+          "W08-L36-P1117-Q02-COVERAGE"
+        ],
+        "reviewIds": [],
+        "graph": {
+          "directed": false,
+          "nodes": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ],
+          "edges": [
+            {
+              "to": "B",
+              "cost": 5,
+              "from": "A"
+            },
+            {
+              "to": "C",
+              "cost": 2,
+              "from": "A"
+            },
+            {
+              "to": "D",
+              "cost": 6,
+              "from": "B"
+            },
+            {
+              "to": "E",
+              "cost": 3,
+              "from": "B"
+            },
+            {
+              "to": "F",
+              "cost": 4,
+              "from": "C"
+            },
+            {
+              "to": "E",
+              "cost": 2,
+              "from": "D"
+            },
+            {
+              "to": "G",
+              "cost": 6,
+              "from": "D"
+            },
+            {
+              "to": "F",
+              "cost": 1,
+              "from": "E"
+            },
+            {
+              "to": "G",
+              "cost": 3,
+              "from": "F"
+            }
+          ]
+        },
+        "config": {
+          "algorithm": "dfs",
+          "start": "A",
+          "goal": "G",
+          "neighborOrder": "lexicographic",
+          "tieBreak": "lexicographic",
+          "heuristic": {
+            "A": 7,
+            "B": 6,
+            "C": 5,
+            "D": 4,
+            "E": 3,
+            "F": 2,
+            "G": 0
+          }
+        },
+        "generatedExplanation": "The original graph topology and edge labels are preserved; display positions are illustrative, not geographic coordinates.",
+        "assumptions": [
+          "Undirected graph as drawn, positive edge costs in kilometres.",
+          "Goal test on removal; do not count successful goal removal as successor expansion.",
+          "Alphabetical successor order. Weighted priority ties resolve alphabetically; p1116 shows D before G.",
+          "BFS/DFS mark discovered on insertion; UCS/A* allow strictly cheaper replacements and reopening."
+        ],
+        "notes": "Newly generated application of the DFS definition on p116 to the road network on p1116, not a reproduction of the separate red DFS path on p116. The stack/discovery convention is stated explicitly.",
+        "revisionOf": "algorithm.road-network.dfs",
+        "description": "Newly generated application of the DFS definition on p116 to the road network on p1116, not a reproduction of the separate red DFS path on p116. The stack/discovery convention is stated explicitly. This is the explicitly eager-discovery iterative stack variant, not recursive DFS with entry-time marking; the order need not match a recursive trace.",
+        "questionBindings": [
+          {
+            "questionId": "W01-L03-P0116-Q01",
+            "questionVersion": 1,
+            "questionSha256": "322b53bf22f78aedeb3a7b2a2c45df2ad6eebc76386305581a4f1f65fb8743d8"
+          },
+          {
+            "questionId": "W08-L36-P1117-Q02",
+            "questionVersion": 1,
+            "questionSha256": "50bc2771590b84f0fb5d938be4670bcf2f9162f6b95c4239bcf35d5d544c2628"
+          }
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W01-L03-P0116-Q01",
+            "stem": "When a depth-first exploration reaches a node with no unvisited continuation, what does it do?",
+            "assumptions": [],
+            "exactFormulas": []
+          },
+          {
+            "questionId": "W08-L36-P1117-Q02",
+            "stem": "Run UCS and A* from A to G on the undirected graph with edges AB=5, AC=2, BD=6, BE=3, CF=4, EF=1, ED=2, DG=6 and FG=3 km. For A*, use h(A,B,C,D,E,F,G)=(7,6,5,4,3,2,0) km. Each algorithm relaxes a vertex only for a strictly smaller g, breaks equal priorities alphabetically, and stops when G is popped. Count only non-goal expansions. Which complete record is correct?",
+            "assumptions": [
+              "Weights and heuristic labels are transcribed from the source graph; all distances use km. Both directions of each listed undirected edge are permitted.",
+              "Initialize g(A)=0 and all other g values to infinity. Use a minimum-priority frontier: g for UCS, g+h for A*. Update parent on every strictly cheaper route; do not overwrite on equal or worse routes.",
+              "Ignore stale priority entries and already-expanded vertices; the supplied heuristic is consistent on this graph, so no reopening is needed. Test the goal immediately after a valid pop, before expanding successors."
+            ],
+            "exactFormulas": [
+              {
+                "expression": "g_new(v)=g(u)+c(u,v); update iff g_new(v)<g(v); f_UCS(v)=g(v); f_A*(v)=g(v)+h(v)",
+                "variables": {
+                  "u,v": "Current vertex and a neighboring vertex",
+                  "c(u,v)": "Listed undirected edge length",
+                  "g(v)": "Best recorded start-to-vertex distance",
+                  "g_new(v)": "Candidate distance through u",
+                  "h(v)": "Specified remaining-distance heuristic",
+                  "f_UCS,f_A*": "Frontier priority in each algorithm"
+                },
+                "units": {
+                  "c,g,g_new,h,f_UCS,f_A*": "km",
+                  "u,v": "vertex labels"
+                },
+                "assumptions": [
+                  "All edge weights positive; start g=0; alphabetical ties; goal test on pop; only non-goal pops count as expansions."
+                ]
+              }
+            ]
+          }
+        ],
+        "sourceQualifications": [],
+        "primaryEvidence": [],
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      },
+      {
+        "id": "course.algorithm.q-learning.sequential",
+        "title": "Sequential Q-learning updates",
+        "status": "draft",
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "week": 6,
+        "lectureId": "L30",
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p0904",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 904,
+            "kind": "equation",
+            "locator": "Lecture 30, physical PDF page 904, actual printed footer 18: Displayed return/value/Bellman/update equations and their adjacent definitions or qualifications.",
+            "evidenceText": "Actual pixel inspection note: Q update with eta learning rate, gamma discount, sampled reward plus max estimated next value minus old estimate. Last Q omits hat typographically. Future value remains estimated, not wholly observed; convergence claim needs finite/tabular and sampling/step-size assumptions.\nQ-learning\n•  Q-learning is a model-free temporal difference (TD) algorithm used in\n   reinforcement learning to find an optimal policy for an agent interacting with an\n   environment.                                                     (Old Estimation)\n•  Q-learning algorithm:               what actually happened  what we expected\n\n          ෠𝑄𝑠𝑡, 𝑎𝑡←෠𝑄𝑠𝑡, 𝑎𝑡+ 𝜂𝑟𝑡+1 + 𝛾𝑚𝑎𝑥 ෠𝑄 (𝑠𝑡+1, 𝑎𝑡+1) −𝑄𝑠𝑡, 𝑎𝑡\n                                                  𝑎𝑡+1\n\n      New Updated   Current   Learning     TD (Temporal Difference)\n           Estimate     Estimate    Rate\n• We would like ෠𝑄𝑠𝑡, 𝑎𝑡  to converge to its mean.\n• We gradually decrease the learning rate (Learning Rate Decay)\n   over time, for convergence.\n•   It has been proven that this algorithm converges to the optimal\n  Q* values (Watkins and Dayan 1992).\n\n\n                                                                                                            18",
+            "role": "conflict",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p0918",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 918,
+            "kind": "statement",
+            "locator": "Lecture 30, physical page 918, actual printed footer 32: repeated RL/Q-learning summary",
+            "evidenceText": "Summary repeats interaction/reward, greedy action from Q*, model-free/off-policy Q-learning and example. No new premise; qualifications retained.",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p0905",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 905,
+            "kind": "equation",
+            "locator": "Lecture 30, physical PDF page 905, actual printed footer 19: Left Q-learning pseudocode initialization/transition/update lines and right epsilon-greedy probability box.",
+            "evidenceText": "Actual pixel inspection note: Full pseudocode initializes Q outside episodes, initializes s per episode, epsilon-greedy chooses a, observes r and s_next, updates Q, assigns s=s_next and repeats until terminal. Side box gives exploration-branch epsilon and exploitation-branch 1−epsilon. Random exploration can also select greedy action; terminal bootstrap convention omitted.\nQ-learning\n\n•   It is useful in realistic scenarios where the agent does not have perfect knowledge\n   of the environment's rewards or state transition functions.\n•  The pseudocode of the Q learning algorithm:                                                                 For exploration vs.\n                                                                      exploitation use ε-greedy:\n                                                                                 •  0<ε<1\n                                                                                 •  1-ε probability exploits\n                                                                                 •  ε probability explore.\n\n\n\n\n\n                                                                                                           19",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p0914",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 914,
+            "kind": "code",
+            "locator": "Lecture 30, physical PDF page 914, actual printed footer 28: Literal Python block and accompanying output/explanation for True terminal update versus truncation.",
+            "evidenceText": "Actual pixel inspection note: s_next=get_state(obs); Q[s][a]+=alpha*(r+gamma*max(Q[s_next])−Q[s][a]); s,total=s_next,total+r; break if terminated or truncated. Update is before stopping and unconditionally bootstraps. Correct for continuing-task time-limit truncation, not arbitrary true terminal state with nonzero next estimate.\nExample (Code)\n\n                                                        Apply “Bellman Equation” for\n                                                      update Q-Table.\n\n\n•  get_state(obs): translate the new position into 8x8x8 grid block coordinate.\n•  Update Q-Table:\n                       ෠𝑄𝑠𝑡, 𝑎𝑡←෠𝑄𝑠𝑡, 𝑎𝑡+ 𝜂𝑟𝑡+1 + 𝛾𝑚𝑎𝑥 ෠𝑄 (𝑠𝑡+1, 𝑎𝑡+1) −𝑄𝑠𝑡, 𝑎𝑡\n                                                                𝑎𝑡+1\n\n•  Update its current location variable s to be the new\n   location s_next, and adds the reward r to the running total.\n•  Break the loop if the robot touched the dot (terminated) or\n    hit the 50-step limit (truncated).\n\n                                                                                                            28",
+            "role": "conflict",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p0904",
+          "lectures-p0905",
+          "lectures-p0914",
+          "lectures-p0918"
+        ],
+        "questionIds": [
+          "W06-L30-Q026",
+          "W06-L30-Q030",
+          "W06-L30-Q056"
+        ],
+        "conceptIds": [
+          "W06-L30-C-epsilon-branches",
+          "W06-L30-C-td-parts",
+          "W06-L30-C-terminal-bootstrap"
+        ],
+        "reviewIds": [],
+        "qLearningConfig": {
+          "alpha": 0.5,
+          "gamma": 0.9,
+          "initialQ": {
+            "S": {
+              "right": 2
+            },
+            "T": {
+              "left": 4,
+              "right": 7
+            },
+            "END": {
+              "stop": 0
+            }
+          },
+          "transitions": [
+            {
+              "state": "S",
+              "action": "right",
+              "reward": 3,
+              "nextState": "T",
+              "terminal": false,
+              "nextActions": [
+                "left",
+                "right"
+              ]
+            },
+            {
+              "state": "T",
+              "action": "right",
+              "reward": 5,
+              "nextState": "END",
+              "terminal": true,
+              "nextActions": [
+                "stop"
+              ]
+            },
+            {
+              "state": "S",
+              "action": "right",
+              "reward": 0,
+              "nextState": "T",
+              "terminal": false,
+              "nextActions": [
+                "left",
+                "right"
+              ]
+            }
+          ]
+        },
+        "assumptions": [
+          "The numerical values and observed transitions are a new illustration, not data printed on the slide.",
+          "Learning rate alpha is η on the source slide.",
+          "Sequential updates; bootstrap from the old table within each transition.",
+          "Terminal transitions have zero bootstrap by explicit example assumption.",
+          "The supplied transition list is not a generated epsilon-greedy policy."
+        ],
+        "revisionOf": "algorithm.q-learning.sequential",
+        "description": "Added sequential numerical illustration of the lecture Q-learning update, not a training run or a reproduced slide result. True-terminal masking is an explicit qualification of p914; external time-limit truncation is not treated as terminal.",
+        "questionBindings": [
+          {
+            "questionId": "W06-L30-Q026",
+            "questionVersion": 2,
+            "questionSha256": "95222c727cc070003760af90a2e7f2b10140ae39e1a1fe336adb959949ae917b"
+          },
+          {
+            "questionId": "W06-L30-Q030",
+            "questionVersion": 1,
+            "questionSha256": "7b6e80dbc22a09f7cc09c211d63f90dea70436c02824a9bd72fb240d0b2e9459"
+          },
+          {
+            "questionId": "W06-L30-Q056",
+            "questionVersion": 1,
+            "questionSha256": "f2e98dda8ad9a7954b115d8534d250e1b18f5db22e87e942441324bc2a613614"
+          }
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W06-L30-Q026",
+            "stem": "Which expression is the temporal-difference error in the lecture’s nonterminal Q-learning update?",
+            "assumptions": [],
+            "exactFormulas": [
+              {
+                "expression": "Q_new(s,a) = Q_old(s,a) + α [r + γ max_b Q_old(s_next,b) − Q_old(s,a)]",
+                "variables": {
+                  "Q_new(s,a)": "updated state-action value estimate",
+                  "Q_old(s,a)": "estimate before this update",
+                  "s": "current encoded state",
+                  "a": "action taken",
+                  "α": "learning rate",
+                  "r": "observed immediate reward",
+                  "γ": "discount factor",
+                  "s_next": "encoded successor state",
+                  "b": "candidate next action",
+                  "Q_old(s_next,b)": "pre-update successor action-value estimate"
+                },
+                "units": {
+                  "Q_new,Q_old,r": "reward units",
+                  "α,γ": "dimensionless",
+                  "s,s_next,a,b": "state/action labels"
+                },
+                "assumptions": [
+                  "Nonterminal successor, or continuing task with external time-limit truncation; true terminal continuation is zero."
+                ]
+              }
+            ]
+          },
+          {
+            "questionId": "W06-L30-Q030",
+            "stem": "With six actions, one uniquely greedy action and ε=0.5, the random branch samples all six uniformly. What is the total probability of selecting the greedy action?",
+            "assumptions": [],
+            "exactFormulas": [
+              {
+                "expression": "P(a_g|s) = 1−ε + ε/m",
+                "variables": {
+                  "P(a_g|s)": "behavior probability of the unique greedy action at state s",
+                  "a_g": "unique greedy action",
+                  "s": "current state",
+                  "ε": "probability of uniform exploratory branch",
+                  "m": "number of available actions"
+                },
+                "units": {
+                  "P,ε,m": "dimensionless",
+                  "s,a_g": "state/action labels"
+                },
+                "assumptions": [
+                  "Unique greedy action; exploration samples all m actions uniformly."
+                ]
+              }
+            ]
+          },
+          {
+            "questionId": "W06-L30-Q056",
+            "stem": "As an explicit adaptation to a genuinely terminal transition, old Q=2, α=0.5 and reward=1. A stored successor estimate happens to be 10 and γ=0.9. What should the update use for the terminal continuation?",
+            "assumptions": [
+              "This explicitly added example is a true task terminal state, not the source task’s time-limit truncation."
+            ],
+            "exactFormulas": [
+              {
+                "expression": "Q_new = Q_old + α(r−Q_old)",
+                "variables": {
+                  "Q_new": "updated terminal-transition action-value estimate",
+                  "Q_old": "previous estimate",
+                  "α": "learning rate",
+                  "r": "observed terminal reward"
+                },
+                "units": {
+                  "Q_new,Q_old,r": "reward units",
+                  "α": "dimensionless"
+                },
+                "assumptions": [
+                  "True task termination; no future return."
+                ]
+              }
+            ]
+          }
+        ],
+        "sourceQualifications": [
+          {
+            "questionId": "W06-L30-Q026",
+            "qualification": {
+              "status": "explicit-qualification-awaiting-independent-review",
+              "sourceClaim": "The source labels the target as what actually happened although its future Q component remains estimated.",
+              "basis": "The update adds α times target-minus-estimate; reward and successor are sampled, while the future Q term remains estimated.",
+              "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction.",
+              "sourceId": "lectures",
+              "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+              "physicalPages": [
+                904
+              ]
+            }
+          },
+          {
+            "questionId": "W06-L30-Q056",
+            "qualification": {
+              "status": "explicit-qualification-awaiting-independent-review",
+              "sourceClaim": "The source update bootstraps unconditionally before checking both terminated and truncated.",
+              "basis": "For true termination, target is reward alone. For an external time-limit truncation of continuing FetchReach, bootstrapping remains appropriate. The source code does not distinguish these cases in its update.",
+              "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction.",
+              "sourceId": "lectures",
+              "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+              "physicalPages": [
+                914
+              ]
+            }
+          }
+        ],
+        "primaryEvidence": [],
+        "conflictResolution": {
+          "status": "draft-resource-requires-independent-review",
+          "basis": "The linked approved question qualification is retained, not silently replaced. This newly authored resource requires its own independent review.",
+          "inheritedQualifications": [
+            {
+              "questionId": "W06-L30-Q026",
+              "qualification": {
+                "status": "explicit-qualification-awaiting-independent-review",
+                "sourceClaim": "The source labels the target as what actually happened although its future Q component remains estimated.",
+                "basis": "The update adds α times target-minus-estimate; reward and successor are sampled, while the future Q term remains estimated.",
+                "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction.",
+                "sourceId": "lectures",
+                "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+                "physicalPages": [
+                  904
+                ]
+              }
+            },
+            {
+              "questionId": "W06-L30-Q056",
+              "qualification": {
+                "status": "explicit-qualification-awaiting-independent-review",
+                "sourceClaim": "The source update bootstraps unconditionally before checking both terminated and truncated.",
+                "basis": "For true termination, target is reward alone. For an external time-limit truncation of continuing FetchReach, bootstrapping remains appropriate. The source code does not distinguish these cases in its update.",
+                "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction.",
+                "sourceId": "lectures",
+                "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+                "physicalPages": [
+                  914
+                ]
+              }
+            }
+          ]
+        },
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      }
+    ],
+    "numericalFamilies": [
+      {
+        "id": "course.numerical.bayes-two-hypotheses",
+        "title": "Parameterized two-hypothesis Bayes update",
+        "week": 1,
+        "lectureId": "L03",
+        "generatorKind": "bayes-two-hypotheses",
+        "generatorVersion": "1.0.0",
+        "parameterDomains": {
+          "prior": "(0, 1)",
+          "likelihoodTrue": "(0, 1]",
+          "likelihoodFalse": "(0, 1]"
+        },
+        "description": "Added parameterized exercises of the source-supported model. Values are generated within an explicitly bounded domain, not quoted slide measurements. Every instance rejects equivalent rounded alternatives.",
+        "assumptions": [
+          "The exact generated premise states the model, units and added assumptions.",
+          "These variants do not add unique-concept coverage and are not automatically independent mastery evidence.",
+          "Two hypotheses are exhaustive and mutually exclusive; the total-evidence denominator is derived by partitioning the evidence, not a literal two-hypothesis slide example."
+        ],
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "status": "draft",
+        "reviewIds": [],
+        "questionIds": [
+          "W01-L03-P0106-Q01",
+          "W01-L03-P0106-Q02"
+        ],
+        "questionBindings": [
+          {
+            "questionId": "W01-L03-P0106-Q01",
+            "questionVersion": 1,
+            "questionSha256": "798ddca704224bb2030e2d2e6f6182bbff10763bd1085c44f86834495079835a"
+          },
+          {
+            "questionId": "W01-L03-P0106-Q02",
+            "questionVersion": 2,
+            "questionSha256": "cdc1e2b263fc4c5de7448ac05fa727b25e1a08ed667dfa8986e0f91374ac8d69"
+          }
+        ],
+        "conceptIds": [
+          "W01-L03-P0106-C01"
+        ],
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p0106",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 106,
+            "kind": "equation",
+            "locator": "Lecture 3 printed slide 12: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+            "evidenceText": "Conditional probability updates event A given B. Bayes formula: P(A|B)=P(B|A)P(A)/P(B). Prior means before evidence; posterior means after new evidence. Localization estimates P(x|z) for state x and measurement z. Speech decoding uses P(i|o)=P(o|i)P(i)/P(o).",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p0106",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 106,
+            "kind": "statement",
+            "locator": "Lecture 3 printed slide 12: relevant definition/equation and any named figure; visual transcription normalized to plain-text notation",
+            "evidenceText": "Conditional probability updates event A given B. Bayes formula: P(A|B)=P(B|A)P(A)/P(B). Prior means before evidence; posterior means after new evidence. Localization estimates P(x|z) for state x and measurement z. Speech decoding uses P(i|o)=P(o|i)P(i)/P(o).",
+            "role": "explicit",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p0106"
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W01-L03-P0106-Q01",
+            "stem": "P(A)=0.2, P(B|A)=0.8 and P(B)=0.4. What is P(A|B)?",
+            "assumptions": [],
+            "exactFormulas": [
+              {
+                "expression": "P(A|B)=P(B|A)P(A)/P(B)",
+                "variables": {
+                  "A,B": "events"
+                },
+                "units": {},
+                "assumptions": [
+                  "P(B)>0"
+                ]
+              }
+            ]
+          },
+          {
+            "questionId": "W01-L03-P0106-Q02",
+            "stem": "For the displayed Bayes formula, which condition is necessary to divide by P(B)?",
+            "assumptions": [],
+            "exactFormulas": []
+          }
+        ],
+        "sourceQualifications": [],
+        "primaryEvidence": [],
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      },
+      {
+        "id": "course.numerical.q-learning-update",
+        "title": "Parameterized Q-learning update",
+        "week": 6,
+        "lectureId": "L30",
+        "generatorKind": "q-learning-update",
+        "generatorVersion": "1.0.0",
+        "parameterDomains": {
+          "oldQ": "finite",
+          "reward": "finite",
+          "maxNextQ": "finite",
+          "alpha": "[0, 1]",
+          "gamma": "[0, 1]",
+          "terminal": "boolean"
+        },
+        "description": "Added parameterized exercises of the source-supported model. Values are generated within an explicitly bounded domain, not quoted slide measurements. Every instance rejects equivalent rounded alternatives.",
+        "assumptions": [
+          "The exact generated premise states the model, units and added assumptions.",
+          "These variants do not add unique-concept coverage and are not automatically independent mastery evidence."
+        ],
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "status": "draft",
+        "reviewIds": [],
+        "questionIds": [
+          "W06-L30-Q027",
+          "W06-L30-Q056"
+        ],
+        "questionBindings": [
+          {
+            "questionId": "W06-L30-Q027",
+            "questionVersion": 1,
+            "questionSha256": "4bca44a69e43275eb13fda5e910e93ce480d5e151685627e4967475ebd30c3c2"
+          },
+          {
+            "questionId": "W06-L30-Q056",
+            "questionVersion": 1,
+            "questionSha256": "f2e98dda8ad9a7954b115d8534d250e1b18f5db22e87e942441324bc2a613614"
+          }
+        ],
+        "conceptIds": [
+          "W06-L30-C-td-numerical",
+          "W06-L30-C-terminal-bootstrap"
+        ],
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p0904",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 904,
+            "kind": "equation",
+            "locator": "Lecture 30, physical PDF page 904, actual printed footer 18: Displayed return/value/Bellman/update equations and their adjacent definitions or qualifications.",
+            "evidenceText": "Actual pixel inspection note: Q update with eta learning rate, gamma discount, sampled reward plus max estimated next value minus old estimate. Last Q omits hat typographically. Future value remains estimated, not wholly observed; convergence claim needs finite/tabular and sampling/step-size assumptions.\nQ-learning\n•  Q-learning is a model-free temporal difference (TD) algorithm used in\n   reinforcement learning to find an optimal policy for an agent interacting with an\n   environment.                                                     (Old Estimation)\n•  Q-learning algorithm:               what actually happened  what we expected\n\n          ෠𝑄𝑠𝑡, 𝑎𝑡←෠𝑄𝑠𝑡, 𝑎𝑡+ 𝜂𝑟𝑡+1 + 𝛾𝑚𝑎𝑥 ෠𝑄 (𝑠𝑡+1, 𝑎𝑡+1) −𝑄𝑠𝑡, 𝑎𝑡\n                                                  𝑎𝑡+1\n\n      New Updated   Current   Learning     TD (Temporal Difference)\n           Estimate     Estimate    Rate\n• We would like ෠𝑄𝑠𝑡, 𝑎𝑡  to converge to its mean.\n• We gradually decrease the learning rate (Learning Rate Decay)\n   over time, for convergence.\n•   It has been proven that this algorithm converges to the optimal\n  Q* values (Watkins and Dayan 1992).\n\n\n                                                                                                            18",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p0914",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 914,
+            "kind": "code",
+            "locator": "Lecture 30, physical PDF page 914, actual printed footer 28: Literal Python block and accompanying output/explanation for True terminal update versus truncation.",
+            "evidenceText": "Actual pixel inspection note: s_next=get_state(obs); Q[s][a]+=alpha*(r+gamma*max(Q[s_next])−Q[s][a]); s,total=s_next,total+r; break if terminated or truncated. Update is before stopping and unconditionally bootstraps. Correct for continuing-task time-limit truncation, not arbitrary true terminal state with nonzero next estimate.\nExample (Code)\n\n                                                        Apply “Bellman Equation” for\n                                                      update Q-Table.\n\n\n•  get_state(obs): translate the new position into 8x8x8 grid block coordinate.\n•  Update Q-Table:\n                       ෠𝑄𝑠𝑡, 𝑎𝑡←෠𝑄𝑠𝑡, 𝑎𝑡+ 𝜂𝑟𝑡+1 + 𝛾𝑚𝑎𝑥 ෠𝑄 (𝑠𝑡+1, 𝑎𝑡+1) −𝑄𝑠𝑡, 𝑎𝑡\n                                                                𝑎𝑡+1\n\n•  Update its current location variable s to be the new\n   location s_next, and adds the reward r to the running total.\n•  Break the loop if the robot touched the dot (terminated) or\n    hit the 50-step limit (truncated).\n\n                                                                                                            28",
+            "role": "conflict",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p0904",
+          "lectures-p0914"
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W06-L30-Q027",
+            "stem": "For an added nonterminal example, old Q=2, α=0.1, reward=1, γ=0.9 and maximum next Q=4. What is the updated Q?",
+            "assumptions": [],
+            "exactFormulas": [
+              {
+                "expression": "Q_new(s,a) = Q_old(s,a) + α [r + γ max_b Q_old(s_next,b) − Q_old(s,a)]",
+                "variables": {
+                  "Q_new(s,a)": "updated state-action value estimate",
+                  "Q_old(s,a)": "estimate before this update",
+                  "s": "current encoded state",
+                  "a": "action taken",
+                  "α": "learning rate",
+                  "r": "observed immediate reward",
+                  "γ": "discount factor",
+                  "s_next": "encoded successor state",
+                  "b": "candidate next action",
+                  "Q_old(s_next,b)": "pre-update successor action-value estimate"
+                },
+                "units": {
+                  "Q_new,Q_old,r": "reward units",
+                  "α,γ": "dimensionless",
+                  "s,s_next,a,b": "state/action labels"
+                },
+                "assumptions": [
+                  "Nonterminal successor, or continuing task with external time-limit truncation; true terminal continuation is zero."
+                ]
+              }
+            ]
+          },
+          {
+            "questionId": "W06-L30-Q056",
+            "stem": "As an explicit adaptation to a genuinely terminal transition, old Q=2, α=0.5 and reward=1. A stored successor estimate happens to be 10 and γ=0.9. What should the update use for the terminal continuation?",
+            "assumptions": [
+              "This explicitly added example is a true task terminal state, not the source task’s time-limit truncation."
+            ],
+            "exactFormulas": [
+              {
+                "expression": "Q_new = Q_old + α(r−Q_old)",
+                "variables": {
+                  "Q_new": "updated terminal-transition action-value estimate",
+                  "Q_old": "previous estimate",
+                  "α": "learning rate",
+                  "r": "observed terminal reward"
+                },
+                "units": {
+                  "Q_new,Q_old,r": "reward units",
+                  "α": "dimensionless"
+                },
+                "assumptions": [
+                  "True task termination; no future return."
+                ]
+              }
+            ]
+          }
+        ],
+        "sourceQualifications": [
+          {
+            "questionId": "W06-L30-Q056",
+            "qualification": {
+              "status": "explicit-qualification-awaiting-independent-review",
+              "sourceClaim": "The source update bootstraps unconditionally before checking both terminated and truncated.",
+              "basis": "For true termination, target is reward alone. For an external time-limit truncation of continuing FetchReach, bootstrapping remains appropriate. The source code does not distinguish these cases in its update.",
+              "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction.",
+              "sourceId": "lectures",
+              "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+              "physicalPages": [
+                914
+              ]
+            }
+          }
+        ],
+        "primaryEvidence": [],
+        "conflictResolution": {
+          "status": "draft-resource-requires-independent-review",
+          "basis": "The linked approved question qualification is retained, not silently replaced. This newly authored resource requires its own independent review.",
+          "inheritedQualifications": [
+            {
+              "questionId": "W06-L30-Q056",
+              "qualification": {
+                "status": "explicit-qualification-awaiting-independent-review",
+                "sourceClaim": "The source update bootstraps unconditionally before checking both terminated and truncated.",
+                "basis": "For true termination, target is reward alone. For an external time-limit truncation of continuing FetchReach, bootstrapping remains appropriate. The source code does not distinguish these cases in its update.",
+                "method": "Retain the printed wording and evaluate the explicitly stated interpretation or qualification, not an unannounced correction.",
+                "sourceId": "lectures",
+                "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+                "physicalPages": [
+                  914
+                ]
+              }
+            }
+          ]
+        },
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      },
+      {
+        "id": "course.numerical.rotated-vector-x",
+        "title": "Planar velocity: rotate the coordinate basis",
+        "week": 2,
+        "lectureId": "L10",
+        "generatorKind": "rotated-vector-x",
+        "generatorVersion": "1.0.0",
+        "parameterDomains": {
+          "angleDeg": "integer 1..359 degrees",
+          "vx": "0.1..10 m/s",
+          "vy": "0.1..10 m/s"
+        },
+        "description": "Added parameterized exercises of the source-supported model. Values are generated within an explicitly bounded domain, not quoted slide measurements. Every instance rejects equivalent rounded alternatives.",
+        "assumptions": [
+          "The exact generated premise states the model, units and added assumptions.",
+          "These variants do not add unique-concept coverage and are not automatically independent mastery evidence."
+        ],
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "status": "draft",
+        "reviewIds": [],
+        "questionIds": [
+          "W02-L10-Q011"
+        ],
+        "questionBindings": [
+          {
+            "questionId": "W02-L10-Q011",
+            "questionVersion": 1,
+            "questionSha256": "92b524964820b6f4a6d174e1570951ce20bcbc876cb15c0b18bf8ec2a9a43a1d"
+          }
+        ],
+        "conceptIds": [
+          "W02-L10-C-base-rotation"
+        ],
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p0332",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 332,
+            "kind": "equation",
+            "locator": "Lecture 10, physical PDF page 332, printed slide 7: displayed derivation, text and associated figure",
+            "evidenceText": "•   3ω3 = 2ω2 (Both frames are on same link)\n•   3𝑣3 = 3𝑅2   2𝑣2 + 2ω2 × 2P3  ; 3R2 = unit matrix\n\n            ሶ𝜃1𝐿1𝑠2      0   − ሶ𝜃1                      + ሶ𝜃2   0  𝐿2\n•   3𝑣3 =            ሶ𝜃1𝐿1𝑐2 +  ( ሶ𝜃1+ሶ𝜃2)      0      0  0\n                                       0           0        0        0      0\n\n             ሶ𝜃1𝐿1𝑠2           0\n•    3𝑣3 =      +   ሶ𝜃1 + ሶ𝜃2 𝐿2             ሶ𝜃1𝐿1𝑐2\n                          0           0\n\n                  𝐿1𝑠2 ሶ𝜃1\n•   3𝑣3 =           𝐿1𝑐2 ሶ𝜃1 + 𝐿2  ሶ𝜃1 + ሶ𝜃2\n                 0\n\n\n\n                                                                                                           7",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p0333",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 333,
+            "kind": "equation",
+            "locator": "Lecture 10, physical PDF page 333, printed slide 8: displayed derivation, text and associated figure",
+            "evidenceText": "𝑐12  −𝑠12  0\n•  0𝑅   3  =10𝑅21𝑅32𝑅             = 𝑠12   𝑐12   0\n               0    0   1\n      =•  So, 0𝑣3          0𝑅3𝑣33\n          𝑐12  −𝑠12  0         𝐿1𝑠2 ሶ𝜃1\n                 0•   0𝑣3 =  𝑠12   𝑐12                        𝐿1𝑐2 ሶ𝜃1 + 𝐿2  ሶ𝜃1 + ሶ𝜃2\n        0    0   1                            0\n                 +        −𝐿1𝑠1 ሶ𝜃1 −𝐿2𝑠12  ሶ𝜃1                                            ሶ𝜃2\n•   0𝑣3 =     +      +          𝐿1𝑐1 ሶ𝜃1   𝐿2𝑐12  ሶ𝜃1    ሶ𝜃2\n                 0\n\n\n                                                                                                           8",
+            "role": "premise",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p0332",
+          "lectures-p0333"
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          },
+          {
+            "path": "app/course-numerical.js",
+            "sha256": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W02-L10-Q011",
+            "stem": "Let θ1=0°, θ2=90° and v3³=(2,0.5,0) m/s; what is v3⁰?",
+            "assumptions": [],
+            "exactFormulas": [
+              {
+                "expression": "v⁰=Rz(θ1+θ2)v³",
+                "variables": {
+                  "v⁰,v³": "same physical tip velocity in two bases",
+                  "θ1,θ2": "joint angles"
+                },
+                "units": {
+                  "v⁰,v³": "m/s",
+                  "θ1,θ2": "rad"
+                },
+                "assumptions": []
+              }
+            ]
+          }
+        ],
+        "sourceQualifications": [],
+        "primaryEvidence": [],
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      },
+      {
+        "id": "course.numerical.net-force-component",
+        "title": "Newton equation: net-force component",
+        "week": 3,
+        "lectureId": "L12",
+        "generatorKind": "net-force-component",
+        "generatorVersion": "1.0.0",
+        "parameterDomains": {
+          "m": "0.5..10 kg",
+          "ax": "1..10 m/s²",
+          "ay": "1..10 m/s²"
+        },
+        "description": "Added parameterized exercises of the source-supported model. Values are generated within an explicitly bounded domain, not quoted slide measurements. Every instance rejects equivalent rounded alternatives.",
+        "assumptions": [
+          "The exact generated premise states the model, units and added assumptions.",
+          "These variants do not add unique-concept coverage and are not automatically independent mastery evidence."
+        ],
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "status": "draft",
+        "reviewIds": [],
+        "questionIds": [
+          "W03-L12-Q006"
+        ],
+        "questionBindings": [
+          {
+            "questionId": "W03-L12-Q006",
+            "questionVersion": 1,
+            "questionSha256": "deeb3d80a30334d122bfe1f2cd76447826a57bdc666d0185b03a06f62ff7c37f"
+          }
+        ],
+        "conceptIds": [
+          "W03-L12-C-newton-force"
+        ],
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p0386",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 386,
+            "kind": "equation",
+            "locator": "Lecture 12, physical PDF page 386, printed slide 8: relevant text, equations and associated figures",
+            "evidenceText": "Newton – Euler Equation\n\nNewton's equation\n•  The force, 𝐹, acting at the center\n   of mass and causing acceleration\n   ሶ𝑣𝐶 is given by Newton's\n  equation\n  ➢𝐹= 𝑚ሶ𝑣𝐶,\n   ➢where 𝑚 is the total mass of the\n      body.\n\n\n\n\n\n                                                                                                           8",
+            "role": "premise",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p0386"
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          },
+          {
+            "path": "app/course-numerical.js",
+            "sha256": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W03-L12-Q006",
+            "stem": "A 3 kg link has center-of-mass acceleration (2,-1,0) m/s²; what net force is required?",
+            "assumptions": [],
+            "exactFormulas": [
+              {
+                "expression": "F=m a_C",
+                "variables": {
+                  "F": "net external force on the link",
+                  "m": "link mass",
+                  "a_C": "center-of-mass acceleration"
+                },
+                "units": {
+                  "F": "N",
+                  "m": "kg",
+                  "a_C": "m/s²"
+                },
+                "assumptions": [
+                  "Constant-mass rigid link; all vector components share a basis."
+                ]
+              }
+            ]
+          }
+        ],
+        "sourceQualifications": [],
+        "primaryEvidence": [],
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      },
+      {
+        "id": "course.numerical.series-stiffness",
+        "title": "Two translational springs in series",
+        "week": 4,
+        "lectureId": "L19",
+        "generatorKind": "series-stiffness",
+        "generatorVersion": "1.0.0",
+        "parameterDomains": {
+          "k1": "10..1000 N/m",
+          "k2": "10..1000 N/m"
+        },
+        "description": "Added parameterized exercises of the source-supported model. Values are generated within an explicitly bounded domain, not quoted slide measurements. Every instance rejects equivalent rounded alternatives.",
+        "assumptions": [
+          "The exact generated premise states the model, units and added assumptions.",
+          "These variants do not add unique-concept coverage and are not automatically independent mastery evidence."
+        ],
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "status": "draft",
+        "reviewIds": [],
+        "questionIds": [
+          "W04-L19-P0590-Q02"
+        ],
+        "questionBindings": [
+          {
+            "questionId": "W04-L19-P0590-Q02",
+            "questionVersion": 1,
+            "questionSha256": "0151b8649b900fbb4d3081f10ede52d09030a693718b7c8654b28841ccaf4038"
+          }
+        ],
+        "conceptIds": [
+          "W04-L19-P0590-C01"
+        ],
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p0590",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 590,
+            "kind": "derivation",
+            "locator": "Printed slide 13: Flexible elements in parallel and series",
+            "evidenceText": "Stiffness and Deflections-Flexible elements in parallel and in series :\n\n•  To analyze the total stiffness of a complex manipulator assembly, we model\n   individual components as springs.\n•   Parallel Connection: For two flexible members of stiffness 𝑘1and 𝑘2connected\n    in parallel, the net stiffness is:  𝑘parallel = 𝑘1 + 𝑘2\n•  Series Connection: For two flexible members connected in series, the net\n                       1      1    1\n    stiffness is:      =  +\n                     𝑘series   𝑘1   𝑘2\n•   In a robot's transmission, different stages of reduction\n   are typically in series. This means the total compliance\n   (the reciprocal of stiffness) is the sum of the individual\n   compliances.\n\n\n\n\n                                                                                                          13",
+            "role": "premise",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p0590"
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          },
+          {
+            "path": "app/course-numerical.js",
+            "sha256": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W04-L19-P0590-Q02",
+            "stem": "Two translational springs of 100 and 300 N/m are connected in series. What is the equivalent stiffness?",
+            "assumptions": [],
+            "exactFormulas": [
+              {
+                "expression": "k_parallel=k1+k2; 1/k_series=1/k1+1/k2; C=1/k",
+                "variables": {
+                  "k1,k2": "positive component stiffnesses referred to the same coordinate",
+                  "k_parallel,k_series": "equivalent stiffness",
+                  "C": "compliance",
+                  "k": "stiffness of the element under discussion"
+                },
+                "units": {
+                  "k1,k2,k_parallel,k_series,k": "N/m for translation, or N·m/rad for rotation",
+                  "C": "m/N for translation, or rad/(N·m) for rotation"
+                },
+                "assumptions": [
+                  "Linear scalar springs; parallel elements share displacement; series elements carry the same generalized force; use one consistent coordinate and unit system."
+                ]
+              }
+            ]
+          }
+        ],
+        "sourceQualifications": [],
+        "primaryEvidence": [],
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      },
+      {
+        "id": "course.numerical.coupled-inertia-torque",
+        "title": "Coupled joint inertia: first torque",
+        "week": 5,
+        "lectureId": "L24",
+        "generatorKind": "coupled-inertia-torque",
+        "generatorVersion": "1.0.0",
+        "parameterDomains": {
+          "a": "2..15 kg·m²",
+          "b": "1..5 kg·m²",
+          "d": "2..15 kg·m²",
+          "x": "1..6 rad/s²",
+          "y": "1..6 rad/s²",
+          "constraint": "a*d>b*b"
+        },
+        "description": "Added parameterized exercises of the source-supported model. Values are generated within an explicitly bounded domain, not quoted slide measurements. Every instance rejects equivalent rounded alternatives.",
+        "assumptions": [
+          "The exact generated premise states the model, units and added assumptions.",
+          "These variants do not add unique-concept coverage and are not automatically independent mastery evidence."
+        ],
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "status": "draft",
+        "reviewIds": [],
+        "questionIds": [
+          "W05-L24-P0729-Q03"
+        ],
+        "questionBindings": [
+          {
+            "questionId": "W05-L24-P0729-Q03",
+            "questionVersion": 1,
+            "questionSha256": "ade7b66c7ae568e94c54fd50720f0b6fa83b757647485b2ca6234ecf91ddb305"
+          }
+        ],
+        "conceptIds": [
+          "W05-L24-P0729-C01"
+        ],
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p0729",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 729,
+            "kind": "derivation",
+            "locator": "Printed slide 3: Manipulator rigid-body dynamics; equations, labels and associated explanatory bullets",
+            "evidenceText": "The Control problem for manipulators\n•  Manipulator dynamics contain:\n   –  inertia coupling\n   –  Coriolis effects, centrifugal effects\n   – gravity loading, friction\n•  The equations become complicated for\n   multi-joint robots.\n•  General rigid-body dynamics:\n              𝜏= 𝑀Θ ሷΘ + 𝑉Θ, ሶΘ + 𝐺Θ\n•  where:\n• 𝑀Θ →inertia matrix ; 𝑉Θ, ሶΘ  →Coriolis + centrifugal\n• 𝐺Θ →gravity vector  ; 𝜏→ joint torque vector\n\n                                                                                                           3",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p0730",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 730,
+            "kind": "derivation",
+            "locator": "Printed slide 4: Partitioned computed torque and friction; equations, labels and associated explanatory bullets",
+            "evidenceText": "The Control problem for manipulators\n\n•  Including friction effects:\n          𝜏= 𝑀Θ ሷΘ + 𝑉Θ, ሶΘ + 𝐺Θ + 𝐹Θ, ሶΘ\n   – where:\n     𝐹Θ, ሶΘ  →friction/non-rigid-body effects\n•  The problem of controlling such a complicated system can be handled by\n   the partitioned controller:\n                𝜏= 𝛼𝜏′ + 𝛽\n•  Choose: 𝛼= 𝑀Θ\n      𝛽= 𝑉Θ, ሶΘ + 𝐺Θ + 𝐹Θ, ሶΘ\n\n\n\n\n                                                                                                           4",
+            "role": "premise",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p0729",
+          "lectures-p0730"
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          },
+          {
+            "path": "app/course-numerical.js",
+            "sha256": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W05-L24-P0729-Q03",
+            "stem": "For two revolute joints, M=[[2,1],[1,3]] kg·m², q̈=(1,0) rad/s² and V=G=F=0. What torque vector is required?",
+            "assumptions": [],
+            "exactFormulas": [
+              {
+                "expression": "τ=M(q)q̈+V(q,q̇)+G(q)+F(q,q̇)",
+                "variables": {
+                  "q": "joint-angle vector",
+                  "q̇,q̈": "joint velocity and acceleration",
+                  "M": "joint inertia matrix",
+                  "V": "Coriolis/centrifugal torque vector",
+                  "G": "gravity torque vector",
+                  "F": "friction/non-rigid-effect torque vector",
+                  "τ": "actuator torque vector"
+                },
+                "units": {
+                  "q": "rad",
+                  "q̇": "rad/s",
+                  "q̈": "rad/s²",
+                  "M": "kg·m² (radians dimensionless)",
+                  "V,G,F,τ": "N·m"
+                },
+                "assumptions": [
+                  "All joints revolute for these units; rigid inertia model with the displayed additive effect terms."
+                ]
+              }
+            ]
+          }
+        ],
+        "sourceQualifications": [],
+        "primaryEvidence": [],
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      },
+      {
+        "id": "course.numerical.epsilon-greedy-probability",
+        "title": "Epsilon-greedy: probability of the greedy action",
+        "week": 6,
+        "lectureId": "L30",
+        "generatorKind": "epsilon-greedy-probability",
+        "generatorVersion": "1.0.0",
+        "parameterDomains": {
+          "epsilon": "0.1..0.9",
+          "actions": "integer 3..12"
+        },
+        "description": "Added parameterized exercises of the source-supported model. Values are generated within an explicitly bounded domain, not quoted slide measurements. Every instance rejects equivalent rounded alternatives.",
+        "assumptions": [
+          "The exact generated premise states the model, units and added assumptions.",
+          "These variants do not add unique-concept coverage and are not automatically independent mastery evidence."
+        ],
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "status": "draft",
+        "reviewIds": [],
+        "questionIds": [
+          "W06-L30-Q030"
+        ],
+        "questionBindings": [
+          {
+            "questionId": "W06-L30-Q030",
+            "questionVersion": 1,
+            "questionSha256": "7b6e80dbc22a09f7cc09c211d63f90dea70436c02824a9bd72fb240d0b2e9459"
+          }
+        ],
+        "conceptIds": [
+          "W06-L30-C-epsilon-branches"
+        ],
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p0905",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 905,
+            "kind": "equation",
+            "locator": "Lecture 30, physical PDF page 905, actual printed footer 19: Left Q-learning pseudocode initialization/transition/update lines and right epsilon-greedy probability box.",
+            "evidenceText": "Actual pixel inspection note: Full pseudocode initializes Q outside episodes, initializes s per episode, epsilon-greedy chooses a, observes r and s_next, updates Q, assigns s=s_next and repeats until terminal. Side box gives exploration-branch epsilon and exploitation-branch 1−epsilon. Random exploration can also select greedy action; terminal bootstrap convention omitted.\nQ-learning\n\n•   It is useful in realistic scenarios where the agent does not have perfect knowledge\n   of the environment's rewards or state transition functions.\n•  The pseudocode of the Q learning algorithm:                                                                 For exploration vs.\n                                                                      exploitation use ε-greedy:\n                                                                                 •  0<ε<1\n                                                                                 •  1-ε probability exploits\n                                                                                 •  ε probability explore.\n\n\n\n\n\n                                                                                                           19",
+            "role": "premise",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p0905"
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          },
+          {
+            "path": "app/course-numerical.js",
+            "sha256": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W06-L30-Q030",
+            "stem": "With six actions, one uniquely greedy action and ε=0.5, the random branch samples all six uniformly. What is the total probability of selecting the greedy action?",
+            "assumptions": [],
+            "exactFormulas": [
+              {
+                "expression": "P(a_g|s) = 1−ε + ε/m",
+                "variables": {
+                  "P(a_g|s)": "behavior probability of the unique greedy action at state s",
+                  "a_g": "unique greedy action",
+                  "s": "current state",
+                  "ε": "probability of uniform exploratory branch",
+                  "m": "number of available actions"
+                },
+                "units": {
+                  "P,ε,m": "dimensionless",
+                  "s,a_g": "state/action labels"
+                },
+                "assumptions": [
+                  "Unique greedy action; exploration samples all m actions uniformly."
+                ]
+              }
+            ]
+          }
+        ],
+        "sourceQualifications": [],
+        "primaryEvidence": [],
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      },
+      {
+        "id": "course.numerical.pinhole-image-x",
+        "title": "Central projection: metric image x",
+        "week": 7,
+        "lectureId": "L31",
+        "generatorKind": "pinhole-image-x",
+        "generatorVersion": "1.0.0",
+        "parameterDomains": {
+          "fMM": "5..50 mm",
+          "X": "0.1..2 m",
+          "Z": "1..10 m"
+        },
+        "description": "Added parameterized exercises of the source-supported model. Values are generated within an explicitly bounded domain, not quoted slide measurements. Every instance rejects equivalent rounded alternatives.",
+        "assumptions": [
+          "The exact generated premise states the model, units and added assumptions.",
+          "These variants do not add unique-concept coverage and are not automatically independent mastery evidence."
+        ],
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "status": "draft",
+        "reviewIds": [],
+        "questionIds": [
+          "W07-L31-P0942-Q04"
+        ],
+        "questionBindings": [
+          {
+            "questionId": "W07-L31-P0942-Q04",
+            "questionVersion": 1,
+            "questionSha256": "520d242776605c16d13f3f561d63684760ae361688f0e31ea0d6a15395706d37"
+          }
+        ],
+        "conceptIds": [
+          "W07-L31-P0942-C01"
+        ],
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p0942",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 942,
+            "kind": "equation",
+            "locator": "Printed slide 22: Perspective Projection; Projection equations",
+            "evidenceText": "Central Perspective Imaging Model\n\n•  Computer vision commonly uses central perspective\n   imaging model.\n•   In this model, the image plane is placed a distance f in\n   front of the camera origin {C}, resulting in a non-inverted\n   image.\n•  Using similar triangles, a 3D world point, P 𝐶𝑃= (𝑋, 𝑌, 𝑍) is\n                                                                             Central Perspective Imaging   projected to a 2D image-plane point p, 𝑝= (𝑥, 𝑦) as\n                                                                    Model [2]\n           𝑥= 𝑓𝑋    𝑦= 𝑓𝑌                       𝑍,          𝑍\n•  To express this perspective projection as a linear\n   transformation, we represent both 3D world points, and\n  2D image points in homogeneous coordinates.\n\n\n                                                                                                          22",
+            "role": "premise",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p0942"
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          },
+          {
+            "path": "app/course-numerical.js",
+            "sha256": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W07-L31-P0942-Q04",
+            "stem": "A point with camera coordinates(X, Y, Z)=(0.2,−0.1,2) m is viewed with f=0.02 m. What is its virtual-plane image coordinate?",
+            "assumptions": [],
+            "exactFormulas": [
+              {
+                "expression": "x=fX/Z; y=fY/Z",
+                "variables": {
+                  "X,Y,Z": "point coordinates in the camera frame",
+                  "f": "positive focal length",
+                  "x,y": "coordinates relative to the principal point on the front virtual image plane"
+                },
+                "units": {
+                  "X,Y,Z,f,x,y": "m unless another consistent length unit is explicitly stated"
+                },
+                "assumptions": [
+                  "Ideal undistorted pinhole; front virtual plane; Z>0 for a visible point; camera x/y directions align with image x/y; no occlusion model."
+                ]
+              }
+            ]
+          }
+        ],
+        "sourceQualifications": [],
+        "primaryEvidence": [],
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      },
+      {
+        "id": "course.numerical.convolution-output-size",
+        "title": "Convolution: output side length",
+        "week": 7,
+        "lectureId": "L35",
+        "generatorKind": "convolution-output-size",
+        "generatorVersion": "1.0.0",
+        "parameterDomains": {
+          "I": "integer 8..64",
+          "K": "integer 2..7",
+          "P": "integer 1..3",
+          "S": "integer 2..4",
+          "constraint": "I+2P>=K"
+        },
+        "description": "Added parameterized exercises of the source-supported model. Values are generated within an explicitly bounded domain, not quoted slide measurements. Every instance rejects equivalent rounded alternatives.",
+        "assumptions": [
+          "The exact generated premise states the model, units and added assumptions.",
+          "These variants do not add unique-concept coverage and are not automatically independent mastery evidence."
+        ],
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "status": "draft",
+        "reviewIds": [],
+        "questionIds": [
+          "W07-L35-Q017"
+        ],
+        "questionBindings": [
+          {
+            "questionId": "W07-L35-Q017",
+            "questionVersion": 2,
+            "questionSha256": "565e39533a999af9a7e6ec15e443cb454729ce15ccfada5888a64cefaaaaac76"
+          }
+        ],
+        "conceptIds": [
+          "W07-L35-C-conv1-shape"
+        ],
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p1068",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1068,
+            "kind": "equation",
+            "locator": "Lecture 35, physical page 1068, printed slide 9: Output dimension formula and definitions of I,K,P,S",
+            "evidenceText": "O=floor((I−K+2P)/S)+1.",
+            "role": "premise",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p1068"
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          },
+          {
+            "path": "app/course-numerical.js",
+            "sha256": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W07-L35-Q017",
+            "stem": "An input is 28×28×1. Apply 16 filters of size 5×5, stride 1, no padding and dilation 1. What is the output shape in H×W×C order?",
+            "assumptions": [],
+            "exactFormulas": [
+              {
+                "expression": "O=floor((I−K+2P)/S)+1",
+                "variables": {
+                  "O": "Output length on one spatial axis",
+                  "I": "Input length on that axis",
+                  "K": "Kernel/window size on that axis",
+                  "P": "Symmetric padding on each side",
+                  "S": "Stride"
+                },
+                "units": {
+                  "O": "output samples",
+                  "I,K,P": "input-grid samples",
+                  "S": "input-grid samples per output step"
+                },
+                "assumptions": [
+                  "Dilation 1, positive integer I,K,S; nonnegative integer P; only full windows; I+2P≥K. Apply separately to height and width."
+                ]
+              }
+            ]
+          }
+        ],
+        "sourceQualifications": [],
+        "primaryEvidence": [],
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      },
+      {
+        "id": "course.numerical.octile-grid-distance",
+        "title": "Eight-connected grid: minimum geometric length",
+        "week": 8,
+        "lectureId": "L36",
+        "generatorKind": "octile-grid-distance",
+        "generatorVersion": "1.0.0",
+        "parameterDomains": {
+          "dx": "integer 2..20",
+          "dy": "integer 1..19 with dy<dx",
+          "cell": "0.2..2 m"
+        },
+        "description": "Added parameterized exercises of the source-supported model. Values are generated within an explicitly bounded domain, not quoted slide measurements. Every instance rejects equivalent rounded alternatives.",
+        "assumptions": [
+          "The exact generated premise states the model, units and added assumptions.",
+          "These variants do not add unique-concept coverage and are not automatically independent mastery evidence."
+        ],
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "status": "draft",
+        "reviewIds": [],
+        "questionIds": [
+          "W08-L36-P1102-Q06"
+        ],
+        "questionBindings": [
+          {
+            "questionId": "W08-L36-P1102-Q06",
+            "questionVersion": 1,
+            "questionSha256": "ba81602e758fdb96054a01efbdbd9c1077944d9fdf7650874646ced23b663a89"
+          }
+        ],
+        "conceptIds": [
+          "W08-L36-P1102-Q06-COVERAGE"
+        ],
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p1102",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1102,
+            "kind": "equation",
+            "locator": "Printed slide 15: Cardinal cost 1 and diagonal cost square root of 2",
+            "evidenceText": "Representation of environment (Map)\n\n•  While grids and graphs are typically treated as distinct map\n   representations, they can be easily converted to allow\n   grid-based environments to be searched using standard      4-Connected\n   graph algorithms.\n•  The conversion process involves placing a vertex in every\n   grid cell and adding edges to connect it to reachable\n   neighboring cells.\n•  Edge Costs based on Connectivity:\n                                                                                    8-Connected\n   – 4-Connected: Neighbors share an edge (Up, Down,\n        Left, Right). Moving to any neighbor has an edge cost\n       of 1.0.\n   – 8-Connected: Neighbors share an edge or corner\n       (adds 4 diagonals). Vertical/horizontal moves cost 1.0,\n       diagonal moves cost  2 ≈1.414.\n\n\n                                                                                                            15",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1107",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1107,
+            "kind": "statement",
+            "locator": "Printed slide 20: BFS ignores actual edge weight",
+            "evidenceText": "1. Breadth-First Search (BFS)\n\n•  Breadth-First Search (BFS) is a systematic\n   graph search algorithm used in robot\n   navigation to find a path between two\n   points on a graph-based map.\n•  Data Structures: It uses a FIFO (First-In,\n   First-Out) queue to manage the\n   \"frontier\" (the open set of scheduled\n   vertices) and an \"explored\" set (the\n   closed set of visited vertices) to prevent\n   backtracking.\n•   It ignores the actual weight (distance) on\n   the edges, effectively treating all edge\n   costs as equal.\n\n\n\n                                                                                                          20",
+            "role": "premise",
+            "region": null
+          },
+          {
+            "slideId": "lectures-p1111",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1111,
+            "kind": "figure",
+            "locator": "Printed slide 24: Weighted routes distinguish geometric distance from hop count",
+            "evidenceText": "1. Breadth-First Search (BFS)\n\n•  Pros: Very simple to implement.\n   Finds the path with the minimum\n  number of transitions/hops (3 hops\n  A→B→D→G).\n\n•  Cons: Physically suboptimal.\n  Because it ignores road lengths, it\n  chooses a longer route (cost of 17)\n  over a much shorter alternative\n   (cost of 9).\n\n\n\n\n                                                                                                          24",
+            "role": "premise",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p1102",
+          "lectures-p1107",
+          "lectures-p1111"
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          },
+          {
+            "path": "app/course-numerical.js",
+            "sha256": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W08-L36-P1102-Q06",
+            "stem": "In an obstacle-free square grid with cell side 0.4 m, the goal is five columns and three rows from the start. Cardinal moves cost one cell side, and diagonal moves cost sqrt(2) cell sides. What are the minimum geometric path lengths under 4-connected and 8-connected motion, respectively?",
+            "assumptions": [
+              "The endpoint displacement is supplied in integer cell indices; the grid has no obstacles or boundary restrictions.",
+              "Minimize sum of geometric edge lengths, not hop count. Diagonal moves are allowed without a corner constraint because the grid is obstacle-free."
+            ],
+            "exactFormulas": [
+              {
+                "expression": "L4=s*(|dx|+|dy|); L8=s*(max(|dx|,|dy|)+(sqrt(2)-1)*min(|dx|,|dy|))",
+                "variables": {
+                  "L4,L8": "Minimum geometric path length for 4- and 8-connected motion",
+                  "s": "Cell side, 0.4 m",
+                  "dx,dy": "Integer horizontal and vertical goal displacement, 5 and 3"
+                },
+                "units": {
+                  "L4,L8,s": "m",
+                  "dx,dy": "cell-index differences (dimensionless)"
+                },
+                "assumptions": [
+                  "Obstacle-free grid; cardinal edge length s and diagonal edge length s*sqrt(2); sum edge lengths."
+                ]
+              }
+            ]
+          }
+        ],
+        "sourceQualifications": [],
+        "primaryEvidence": [],
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      },
+      {
+        "id": "course.numerical.lidar-roundtrip-range",
+        "title": "Pulsed LiDAR: one-way range",
+        "week": 9,
+        "lectureId": "L44",
+        "generatorKind": "lidar-roundtrip-range",
+        "generatorVersion": "1.0.0",
+        "parameterDomains": {
+          "timeNS": "integer 2..100 ns"
+        },
+        "description": "Added parameterized exercises of the source-supported model. Values are generated within an explicitly bounded domain, not quoted slide measurements. Every instance rejects equivalent rounded alternatives.",
+        "assumptions": [
+          "The exact generated premise states the model, units and added assumptions.",
+          "These variants do not add unique-concept coverage and are not automatically independent mastery evidence."
+        ],
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "status": "draft",
+        "reviewIds": [],
+        "questionIds": [
+          "W09-L44-Q010"
+        ],
+        "questionBindings": [
+          {
+            "questionId": "W09-L44-Q010",
+            "questionVersion": 1,
+            "questionSha256": "0fb5718d0a48e6d2935349ada39e1e56f072b47020b33d833342ce5ff09e078a"
+          }
+        ],
+        "conceptIds": [
+          "W09-L44-C-tof-distance"
+        ],
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p1378",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1378,
+            "kind": "equation",
+            "locator": "Lecture L44, physical PDF page 1378, printed footer 9: How It Works and Worked Example boxes.",
+            "evidenceText": "Range Sensing: LiDAR (Measuring Distance with Light)\n\n                            A 2-D Scan is A Set Of (Range, Angle) Pairs\n How It Works\n                                              An RPLidar spins at  A pulse of light leaves the sensor,\n  hits an object, and returns.                               ~5.5 Hz and returns\n  Distance d = c × t / 2                                 about 360 such points\n  (c = 3 × 10⁸ m/s)                                                        per revolution, out to\n                                                           roughly 12 m.\n Worked Example\n  Round-trip time t = 40 ns = 40 ×\n  10⁻⁹ s\n                                    Each Dot = One  d = (3 × 10⁸ × 40 × 10⁻⁹) / 2\n                                  Measurement\n  d = 12 / 2 = 6 metres\n\n\n\n\n                                                                                                           9",
+            "role": "premise",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p1378"
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          },
+          {
+            "path": "app/course-numerical.js",
+            "sha256": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W09-L44-Q010",
+            "stem": "For the stated pulsed time-of-flight model, c = 3 × 10^8 m/s and round-trip time t = 40 ns. What is the one-way distance?",
+            "assumptions": [],
+            "exactFormulas": [
+              {
+                "expression": "d = c t / 2",
+                "variables": {
+                  "d": "one-way sensor-to-object distance",
+                  "c": "propagation speed of light, approximated as 3 × 10^8 m/s",
+                  "t": "round-trip flight time"
+                },
+                "units": {
+                  "d": "m",
+                  "c": "m/s",
+                  "t": "s"
+                },
+                "assumptions": [
+                  "Pulsed time-of-flight model; convert nanoseconds to seconds."
+                ]
+              }
+            ]
+          }
+        ],
+        "sourceQualifications": [],
+        "primaryEvidence": [],
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      },
+      {
+        "id": "course.numerical.uniform-sample-count",
+        "title": "Digitization: sample count in a time window",
+        "week": 10,
+        "lectureId": "L48",
+        "generatorKind": "uniform-sample-count",
+        "generatorVersion": "1.0.0",
+        "parameterDomains": {
+          "rate": "integer Hz from 8000,16000,32000,48000",
+          "durationMS": "integer 5..50 ms"
+        },
+        "description": "Added parameterized exercises of the source-supported model. Values are generated within an explicitly bounded domain, not quoted slide measurements. Every instance rejects equivalent rounded alternatives.",
+        "assumptions": [
+          "The exact generated premise states the model, units and added assumptions.",
+          "These variants do not add unique-concept coverage and are not automatically independent mastery evidence."
+        ],
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "status": "draft",
+        "reviewIds": [],
+        "questionIds": [
+          "W10-L48-Q009"
+        ],
+        "questionBindings": [
+          {
+            "questionId": "W10-L48-Q009",
+            "questionVersion": 1,
+            "questionSha256": "9d575092147b62f58695cbcdbaf3aa535d7a198233aab690dbd1c9f85ececcde"
+          }
+        ],
+        "conceptIds": [
+          "W10-L48-C-sample-count"
+        ],
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p1515",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1515,
+            "kind": "statement",
+            "locator": "Lecture L48, physical PDF page 1515, printed footer 9: 16 kHz sampling and 8-bit quantization examples.",
+            "evidenceText": "Stage 1: Digitization\n•   Digitization converts speech(analog) into a machine-understandable format(digital)\n•  Involves sampling followed by quantization.\n   – Step 1: Sampling converts a continuous analog signal into discrete digital\n       values by measuring the signal’s amplitude at regular time intervals.\n          • Sampling rate (in Hertz) is the number of total samples taken per second\n          during digitization. E.g., 16,000 Hz for microphone speech.\n          • To accurately measure a sound wave, the sampling rate must be at least\n          twice the frequency of the wave.\n          • This maximum measurable frequency is known as\n          the Nyquist frequency.\n    ─  Step 2: Quantization - Once measured, these real-\n        valued amplitudes are converted into discrete\n        integers (typically 8-bit or 16-bit values).\n\n                                                                                                            9",
+            "role": "premise",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p1515"
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          },
+          {
+            "path": "app/course-numerical.js",
+            "sha256": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W10-L48-Q009",
+            "stem": "At 16 kHz, how many samples occur in 25 ms, and how many distinct codes are available with 8 bits per sample?",
+            "assumptions": [
+              "Added 25 ms duration; uniform sampling."
+            ],
+            "exactFormulas": [
+              {
+                "expression": "N = f_s T; f_N = f_s/2; Q = 2^B",
+                "variables": {
+                  "N": "number of samples over duration T when the product is integral",
+                  "f_s": "sampling rate",
+                  "T": "duration",
+                  "f_N": "Nyquist frequency",
+                  "Q": "number of amplitude codes",
+                  "B": "bits per sample"
+                },
+                "units": {
+                  "N,Q,B": "dimensionless counts",
+                  "f_s,f_N": "Hz",
+                  "T": "s"
+                },
+                "assumptions": [
+                  "Uniform sampling; integer bit depth; code count does not specify a quantizer range."
+                ]
+              }
+            ]
+          }
+        ],
+        "sourceQualifications": [],
+        "primaryEvidence": [],
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      },
+      {
+        "id": "course.numerical.adc-uniform-bin-width",
+        "title": "Ideal ADC: uniform bin width",
+        "week": 11,
+        "lectureId": "L52",
+        "generatorKind": "adc-uniform-bin-width",
+        "generatorVersion": "1.0.0",
+        "parameterDomains": {
+          "bits": "integer 8..12",
+          "reference": "1..5 V"
+        },
+        "description": "Added parameterized exercises of the source-supported model. Values are generated within an explicitly bounded domain, not quoted slide measurements. Every instance rejects equivalent rounded alternatives.",
+        "assumptions": [
+          "The exact generated premise states the model, units and added assumptions.",
+          "These variants do not add unique-concept coverage and are not automatically independent mastery evidence."
+        ],
+        "authorId": "robotics-learning-resource-projection-author-20261019",
+        "version": 2,
+        "status": "draft",
+        "reviewIds": [],
+        "questionIds": [
+          "W11-L52-P1628-Q02"
+        ],
+        "questionBindings": [
+          {
+            "questionId": "W11-L52-P1628-Q02",
+            "questionVersion": 1,
+            "questionSha256": "2444646468b30dc9005bea6dc22fab951a62929e1d83ec792a994bb6c0afe499"
+          }
+        ],
+        "conceptIds": [
+          "W11-L52-C-potentiometer-code"
+        ],
+        "sourceRefs": [
+          {
+            "slideId": "lectures-p1628",
+            "sourceId": "lectures",
+            "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+            "physicalPage": 1628,
+            "kind": "statement",
+            "locator": "Printed slide 9: 0–1023 code range and ADC explanation",
+            "evidenceText": "•  Pin Diagram\n\n    Potentiometer Pin     Arduino Mega Pin\n\n    Vcc                5V\n\n   GND             GND\n\n    Wiper              A0\n•  Arduino Mega Code                         Source: https://www.build-electronic-circuits.com/\n      int potPin = A0;            Code Explanation\n      int        potValue               = 0;                        •  analogRead() reads values     void          setup() {\n     Serial.begin(9600);                  from 0–1023\n       }\n     void loop() {                           •  This corresponds to 0–5V\n     potValue = analogRead(potPin);            •  Used for precise position      Serial.println(potValue);delay(200);\n       }                          measurement\n\n\n                                                                                                           9",
+            "role": "conflict",
+            "region": null
+          }
+        ],
+        "slideIds": [
+          "lectures-p1628"
+        ],
+        "implementationFiles": [
+          {
+            "path": "app/learning-tools.js",
+            "sha256": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6"
+          },
+          {
+            "path": "app/course-numerical.js",
+            "sha256": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a"
+          }
+        ],
+        "questionEvidence": [
+          {
+            "questionId": "W11-L52-P1628-Q02",
+            "stem": "Under an ideal 10-bit, 0–5 V uniform-bin model, how many codes and what bin width are available?",
+            "assumptions": [
+              "Uniform-bin quantizer; 5 V reference; no noise or differential nonlinearity."
+            ],
+            "exactFormulas": [
+              {
+                "expression": "N=2^b; ΔV=V_ref/N",
+                "variables": {
+                  "N": "Number of ADC codes",
+                  "b": "Resolution bits",
+                  "ΔV": "Ideal bin width",
+                  "V_ref": "Reference voltage"
+                },
+                "units": {
+                  "N": "dimensionless",
+                  "b": "bits",
+                  "ΔV,V_ref": "V"
+                },
+                "assumptions": [
+                  "Uniform 2^b-bin model, not endpoint interpolation."
+                ]
+              }
+            ]
+          }
+        ],
+        "sourceQualifications": [
+          {
+            "questionId": "W11-L52-P1628-Q02",
+            "qualification": {
+              "status": "explicit-qualification-pending-independent-review",
+              "questionVersion": 1,
+              "sourceId": "lectures",
+              "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+              "physicalPage": 1628,
+              "sourceClaim": "0–1023 over 0–5 V can invite mixing bin width and endpoint interpolation.",
+              "basis": "State either ideal 1024-bin quantization or 0-to 1023 endpoint calibration explicitly.",
+              "method": "Calculate each convention separately; no silent denominator substitution.",
+              "sourceIssueId": "L52-ISSUE-adc-convention",
+              "scope": "This version only; independent review required."
+            }
+          }
+        ],
+        "primaryEvidence": [
+          {
+            "title": "Arduino analogRead reference",
+            "url": "https://github.com/arduino/reference-en/blob/master/Language/Functions/Analog%20IO/analogRead.adoc",
+            "version": "Official reference accessed 2026-10-19",
+            "locator": "Description: 10-bit codes 0–1023 and 5/1024 V quantization example; board-dependent defaults.",
+            "checkedAt": "2026-10-19"
+          }
+        ],
+        "conflictResolution": {
+          "status": "draft-resource-requires-independent-review",
+          "basis": "The linked approved question qualification is retained, not silently replaced. This newly authored resource requires its own independent review.",
+          "inheritedQualifications": [
+            {
+              "questionId": "W11-L52-P1628-Q02",
+              "qualification": {
+                "status": "explicit-qualification-pending-independent-review",
+                "questionVersion": 1,
+                "sourceId": "lectures",
+                "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+                "physicalPage": 1628,
+                "sourceClaim": "0–1023 over 0–5 V can invite mixing bin width and endpoint interpolation.",
+                "basis": "State either ideal 1024-bin quantization or 0-to 1023 endpoint calibration explicitly.",
+                "method": "Calculate each convention separately; no silent denominator substitution.",
+                "sourceIssueId": "L52-ISSUE-adc-convention",
+                "scope": "This version only; independent review required."
+              }
+            }
+          ]
+        },
+        "sourceInspectionAudit": "audits/learning-resource-completion-source-inspections.json"
+      }
+    ]
+  }
+}

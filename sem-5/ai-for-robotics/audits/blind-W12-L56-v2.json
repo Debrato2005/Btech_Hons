@@ -1,0 +1,445 @@
+[
+  {
+    "id": "W12-L56-P1779-Q03",
+    "version": 2,
+    "stem": "What function is supported by the highlighted camera annotation?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Performing the final seven-class expression inference entirely inside the highlighted camera"
+      },
+      {
+        "id": "o2",
+        "text": "Capturing RGB/depth observations for the visual-interaction pipeline"
+      },
+      {
+        "id": "o3",
+        "text": "Displaying the inferred expression as feedback to the user"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1779",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1779,
+        "kind": "figure",
+        "locator": "Printed slide 3: Circled torso camera and D435i label",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1782",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1782,
+        "kind": "figure",
+        "locator": "Printed slide 6: Left D435i RGB/depth annotation and screen annotation",
+        "role": "explicit",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1781",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1781,
+        "kind": "figure",
+        "locator": "Printed slide 5: Top-left perception chain: RGB-D Camera, Face Detection, DeepFace and Emotion prediction",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L56-P1784-Q03",
+    "version": 2,
+    "stem": "What can be inferred about depth usage from the diagrams alone?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The camera acquires depth, but the emotion model’s exact input channels are not specified"
+      },
+      {
+        "id": "o2",
+        "text": "The face-cropping stage proves that the emotion classifier receives only a single depth channel"
+      },
+      {
+        "id": "o3",
+        "text": "The emotion network must have four input channels because the camera is RGB-D"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1784",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1784,
+        "kind": "figure",
+        "locator": "Printed slide 8: RGB-D acquisition and DeepFace stages",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L56-P1785-Q05",
+    "version": 2,
+    "stem": "How do the described convolutional stages progress toward an expression prediction?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Earlier filters respond to local visual patterns; deeper layers combine features into more abstract representations"
+      },
+      {
+        "id": "o2",
+        "text": "Earlier filters encode complete expression categories, while deeper layers refine them back into local edge maps"
+      },
+      {
+        "id": "o3",
+        "text": "Each convolutional stage extracts local textures independently, and abstraction occurs only when Softmax normalizes the final scores"
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1785",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1785,
+        "kind": "statement",
+        "locator": "Printed slide 9: Convolution, local patterns and deeper-feature bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L56-P1786-Q02",
+    "version": 2,
+    "stem": "What does the described pretrained inference stage do?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Fine-tune the learned weights on every new crop before using it for classification"
+      },
+      {
+        "id": "o2",
+        "text": "Apply learned parameters to a new face crop and produce class scores"
+      },
+      {
+        "id": "o3",
+        "text": "Reuse the same stored feature vector and class scores for every crop because the learned weights are frozen"
+      }
+    ],
+    "assumptions": [
+      "The question concerns the described pretrained inference stage, not a separately added online-training system; ordinary buffers or other program state need not be immutable."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1786",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1786,
+        "kind": "statement",
+        "locator": "Printed slide 10: Pretrained networks and inference bullets",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L56-P1789-Q04",
+    "version": 2,
+    "stem": "Use this supplied client policy, not unprinted course code. Response R1 has three 20 ms chunks a1,a2,a3: a1 has played, a2/a3 are queued, and its conversation audio extent is 60 ms. On speech-start, cancel R1, clear its queued audio, mark its response ID canceled, and truncate its conversation audio extent to the amount already heard. Then receive late chunk a4 for R1; commit new user turn U2; create R2; receive its 20 ms chunks b1,b2; finally perform one playback step. Canceled-ID chunks are discarded, and each playback step plays one queued chunk. Which final state follows?",
+    "selectionMode": "single",
+    "type": "algorithm_trace",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Heard a1 then a2; queue a3,b1,b2; R1 extent 20 ms; U2 retained"
+      },
+      {
+        "id": "o2",
+        "text": "Heard a1 then b1; queue b2; R1 extent 20 ms; U2 retained"
+      },
+      {
+        "id": "o3",
+        "text": "Heard a1 then a4; queue b1,b2; R1 extent 20 ms; U2 retained"
+      },
+      {
+        "id": "o4",
+        "text": "Heard a1 then b1; queue b2; R1 extent 60 ms; U2 retained"
+      }
+    ],
+    "assumptions": [
+      "The sequence and cancellation, queue-clearing, response-ID filtering and audio-extent truncation policies are explicitly supplied; the lecture does not print this state machine.",
+      "No playback occurs between the stated events except the final single playback step; the earlier a1 was already heard.",
+      "All earlier conversation turns and U2 remain; only R1’s audio extent is truncated. This model does not assert exact transcript-to-audio alignment or a returned truncated text transcript.",
+      "Cancellation/truncation succeed in this bounded model. No live API, audio device or course program is executed."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1789",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1789,
+        "kind": "statement",
+        "locator": "Printed slide 13: Automatic interruption and event-driven communication bullets",
+        "role": "conflict",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1788",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1788,
+        "kind": "statement",
+        "locator": "Printed slide 12: Persistent conversation context and streaming bullets",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1790",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1790,
+        "kind": "statement",
+        "locator": "Printed slide 14: Buffering, incremental playback and interruption bullets",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1793",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1793,
+        "kind": "statement",
+        "locator": "Printed slide 17: Supplementary conversational context and history-management bullets",
+        "role": "premise",
+        "region": null
+      }
+    ],
+    "externalSources": [
+      {
+        "title": "Realtime conversations",
+        "url": "https://developers.openai.com/api/docs/guides/realtime-conversations",
+        "version": "Documentation inspected 2026-10-20; course implementation version unspecified"
+      },
+      {
+        "title": "Realtime voice activity detection",
+        "url": "https://developers.openai.com/api/docs/guides/realtime-vad",
+        "version": "Documentation inspected 2026-10-20; course implementation version unspecified"
+      }
+    ]
+  },
+  {
+    "id": "W12-L56-P1794-Q01",
+    "version": 2,
+    "stem": "Starting at Context, which complete node-label sequence follows the arrows through the lower row of the displayed data-flow diagram? The two Speech boxes are distinguished by their adjacent boxes.",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Context → OpenAI Realtime → Language → Speech (beside Realtime) → Speech (beside Robot) → Robot → Human"
+      },
+      {
+        "id": "o2",
+        "text": "Context → OpenAI Realtime → Speech (beside Realtime) → Speech (beside Robot) → Language → Robot → Human"
+      },
+      {
+        "id": "o3",
+        "text": "Context → OpenAI Realtime → Speech (beside Realtime) → Language → Speech (beside Robot) → Robot → Human"
+      }
+    ],
+    "assumptions": [
+      "This is the printed functional diagram’s arrow order, not a claim that a live Realtime model must expose a serial transcript/language/synthesis model cascade."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1794",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1794,
+        "kind": "figure",
+        "locator": "Printed slide 18: right-side Context connection and complete lower row of labeled boxes/arrows",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L56-P1795-Q09",
+    "version": 1,
+    "stem": "Use the actual page 1795 graph with this supplied failure policy: the face detector publishes both /human_face and /human_face/annotated only when fresh color AND depth arrive; emotion publishes only with fresh color AND /human_face. The dialogue node can process new audio and publish /speech_text and /chatgpt_response without an emotion message. Visualization updates each subscribed product independently and does not count cached data as fresh. Compare fault D, loss of /camera/depth/image_rect_raw while color continues, with fault E, failure of /emotion_node while the camera and detector remain healthy. What can remain fresh, and which displayed product distinguishes the faults?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Both faults retain fresh dialogue texts; only E retains fresh annotations; neither retains fresh emotion labels"
+      },
+      {
+        "id": "o2",
+        "text": "Both faults retain fresh dialogue texts and annotations; neither retains fresh emotion labels"
+      },
+      {
+        "id": "o3",
+        "text": "D loses all visualization products; E retains only fresh dialogue texts, not annotations"
+      }
+    ],
+    "assumptions": [
+      "These required-input, fail-silent and missing-emotion fallback rules are supplied; topic arrows alone do not establish them.",
+      "Exactly the named fault occurs in each separate case; all other nodes, transport, cloud dialogue and new user-audio input remain operational.",
+      "Ignore cached pre-fault products and queue transients. The graph shows annotation, emotion, response-text and speech-text feeds into visualization, not a direct raw-color feed.",
+      "No ROS process, camera, model or live API is run; this is a causal trace on the inspected graph."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1795",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1795,
+        "kind": "figure",
+        "locator": "Printed slide 19: Complete rqt_graph, including depth/color detector inputs, annotation branch, emotion branch and two text-topic edges",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1784",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1784,
+        "kind": "figure",
+        "locator": "Printed slide 8: Camera-to-detection/cropping-to-DeepFace pipeline",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1791",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1791,
+        "kind": "statement",
+        "locator": "Printed slide 15: Annotated frames, topic monitoring and logs bullets",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1796",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1796,
+        "kind": "statement",
+        "locator": "Printed slide 20: Camera/detection, emotion and concurrent conversation execution bullets",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L56-P1798-Q03",
+    "version": 2,
+    "stem": "At decision time 10.0 s, accept an observation only if score ≥ 0.75 and age ≤ 0.30 s. Which supplied observation is eligible?",
+    "selectionMode": "single",
+    "type": "algorithm_trace",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "score 0.95 captured at 9.50 s"
+      },
+      {
+        "id": "o2",
+        "text": "score 0.70 captured at 9.90 s"
+      },
+      {
+        "id": "o3",
+        "text": "score 0.80 captured at 9.75 s"
+      }
+    ],
+    "assumptions": [
+      "Synchronized clocks; no future timestamps; inclusive bounds; confidence not assumed calibrated."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1798",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1798,
+        "kind": "statement",
+        "locator": "Printed slide 22: Asynchronous synchronization requirement",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L56-P1798-Q05",
+    "version": 2,
+    "stem": "Choose a sustained operating point under this supplied model. Each uncompressed 640×480 RGB-D pair uses 3 RGB bytes plus 2 depth bytes per pixel; audio uses 48,000 bytes/s; the shared transport limit is 40,000,000 bytes/s. A single sequential inference worker takes 80 ms per pair. A nonblocking downstream stage publishes each result 20 ms after inference completes. Every published result must be at most 150 ms old, measured from its capture time. Candidate A captures 30 pairs/s and keeps only the newest waiting pair; B captures 20 pairs/s and keeps every pair FIFO; C captures 20 pairs/s and keeps only the newest waiting pair. Which candidate meets transport, sustained worker and freshness requirements?",
+    "selectionMode": "single",
+    "type": "synthesis",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A: newest-only dropping controls age, so the 30 pairs/s transport stream is feasible"
+      },
+      {
+        "id": "o2",
+        "text": "C: 20 pairs/s fit the transport; dropping waiting pairs bounds delay while the worker produces 12.5 results/s"
+      },
+      {
+        "id": "o3",
+        "text": "B: 20 pairs/s fit the transport, and FIFO preserves all observations without a growing delay"
+      }
+    ],
+    "assumptions": [
+      "All capture streams are periodic, all pairs are transmitted before any dropping, and transport delay/overhead is otherwise excluded.",
+      "The worker starts with a new pair at time 0, processes only one pair at a time without preemption, and immediately starts the next available pair.",
+      "Newest-only means at most one waiting pair; a new arrival replaces that waiting pair, not the currently processed pair. FIFO has unbounded capacity and drops nothing.",
+      "The 20 ms downstream delay does not block or compete with inference. Freshness is checked only when each new result is published, not continuously between results.",
+      "All resource values and scheduling policies are supplied educational assumptions, not measurements of the depicted hardware. A candidate must remain feasible for an arbitrarily long run."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1798",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1798,
+        "kind": "statement",
+        "locator": "Printed slide 22: USB bandwidth, synchronization and resource-optimization bullets",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1794",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1794,
+        "kind": "figure",
+        "locator": "Printed slide 18: Parallel visual/audio input branches and context integration",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  }
+]

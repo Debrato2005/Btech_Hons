@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+/* Exact-artifact browser interactions. Run only in a permitted browser environment:
+ * node tests/browser_learning_resources_artifact.js --execute FINAL.html REPORT.json
+ * No browser is launched without --execute. No installation or retry is performed.
+ */
+'use strict';
+const fs=require('fs'),path=require('path'),crypto=require('crypto'),{pathToFileURL}=require('url');
+if(process.argv[2]!=='--execute'){console.log('Prepared, not executed. In a permitted environment with existing Node, Playwright and Chromium, run: node tests/browser_learning_resources_artifact.js --execute FINAL.html REPORT.json. Set CHROMIUM_PATH to the permitted installed browser if needed.');process.exit(0);}
+const artifact=path.resolve(process.argv[3]||'dist/ai-for-robotics-mcq.html'),output=path.resolve(process.argv[4]||'audits/browser-learning-resources-artifact.json');
+const report={suite:'exact-file-learning-resource-interactions',startedAt:new Date().toISOString(),artifact,networkDisabled:true,checks:[],errors:[],networkRequests:[],screenshots:[],visualInspection:{status:'pending',requirement:'A person or image-capable independent reviewer must inspect the captured desktop/mobile screenshots for clipping, readable equations, labels, controls and source evidence. Automated geometry checks are not visual acceptance.'},limitations:['No subject-matter approval is created by this runner.','Inactive source tools are reported pending, never replaced by synthetic approvals.','Use the exact independently downloaded final HTML path and compare its SHA256 with the delivery receipt.']};
+let browser;
+const assert=(ok,msg)=>{if(!ok)throw Error(msg);};
+async function check(name,fn){try{const detail=await fn();report.checks.push({name,status:'passed',detail});}catch(e){report.checks.push({name,status:'failed',reason:e.message});}}
+const pending=(name,reason)=>report.checks.push({name,status:'pending',reason});
+(async()=>{
+ const bytes=fs.readFileSync(artifact);report.artifactSha256=crypto.createHash('sha256').update(bytes).digest('hex');report.fileBytes=bytes.length;report.nodeVersion=process.version;
+ const {chromium}=require('playwright');report.launchAttemptedAt=new Date().toISOString();
+ browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{})});
+ report.browserVersion=browser.version();const context=await browser.newContext({offline:true,acceptDownloads:true,viewport:{width:1440,height:1000},reducedMotion:'reduce'}),page=await context.newPage();
+ page.on('pageerror',e=>report.errors.push(e.message));page.on('request',r=>{if(/^https?:/.test(r.url()))report.networkRequests.push(r.url());});
+ await page.goto(pathToFileURL(artifact).href,{waitUntil:'load',timeout:180000});report.pageOpened=true;
+ await page.locator('[data-view="tools"]').click();
+ const info=await page.evaluate(()=>{const b=JSON.parse(document.getElementById('bank-data').textContent),p=RoboticsLearningResources.project(b);return {bankVersion:b.bankVersion,policyAllowed:RoboticsLearningResources.policyAllowed(b),eligibleQuestionCount:p.eligibleQuestionCount,counts:{formulas:p.formulas.length,confusion:p.confusionPairs.length,traps:p.traps.length}};});report.bank=info;
+ for(const [key,label] of [['formulas','Formula sheet'],['confusion','Confusion pairs'],['traps','Exam traps']]){
+  await page.getByRole('tab',{name:label,exact:true}).click();
+  if(!info.policyAllowed){await check(key+'_inactive_gate',async()=>{assert(await page.locator('#workspace article.tool-record').count()===0,'Inactive projection displayed cards');assert((await page.locator('#workspace').innerText()).includes('independent exact-hash review'),'Missing closed-gate explanation');});pending(key+'_active_interaction','Extractor policy is inactive in the exact supplied artifact.');continue;}
+  await check(key+'_bounded_cards',async()=>assert(await page.locator('#workspace article.tool-record').count()===Math.min(20,info.counts[key]),'Initial card count mismatch'));
+  if(info.counts[key]>20)await check(key+'_pagination',async()=>{await page.getByRole('button',{name:'Next resource page',exact:true}).click();assert(await page.locator('#workspace article.tool-record').count()>0,'Empty next page');await page.getByRole('button',{name:'Previous resource page',exact:true}).click();});
+  if(info.counts[key])await check(key+'_context_sources',async()=>{
+   await page.locator('#workspace article.tool-record').first().getByText(/Exact question context, qualifications and source evidence/).click();
+   assert(await page.getByText('Original justification',{exact:true}).count()>0,'Missing justification');
+   const source=page.getByRole('button',{name:/^Source .+ · PDF page /}).first();await source.click();assert(await page.locator('#source-dialog').isVisible(),'Source dialog absent');
+   const before=await page.locator('#zoom-level').innerText();await page.locator('#zoom-in').click();assert(await page.locator('#zoom-level').innerText()!==before,'Source zoom did not change');await page.getByRole('button',{name:'Close source preview'}).click();
+  });
+  if(info.counts[key])await check(key+'_filters',async()=>{const week=page.getByLabel('Learning tool week',{exact:true}),value=await week.locator('option').nth(1).getAttribute('value');await week.selectOption(value);assert(await page.locator('#workspace article.tool-record').count()>0,'Week filter empty unexpectedly');await week.selectOption('');const search=page.getByLabel('Search learning resources',{exact:true});await search.fill('NO-SUCH-RESOURCE-TEST-734902');await page.waitForTimeout(250);assert(await page.locator('#workspace article.tool-record').count()===0,'Search did not filter');await search.fill('');await page.waitForTimeout(250);});
+ }
+ await page.getByRole('tab',{name:'Algorithm laboratory',exact:true}).click();
+ const algorithmOptions=await page.locator('#algorithm-record option').evaluateAll(xs=>xs.map(x=>({id:x.value,text:x.textContent})));const sourceAlgorithms=algorithmOptions.filter(x=>x.id);report.algorithmChoices=algorithmOptions;
+ if(!sourceAlgorithms.length)pending('course_algorithm_controls','No current source algorithm approval in this artifact.');
+ for(const option of sourceAlgorithms)await check('algorithm_'+option.id,async()=>{await page.locator('#algorithm-record').selectOption(option.id);await page.getByTestId('algorithm-run').click();assert(!(await page.locator('#algorithm-error').innerText()).trim(),'Trace error displayed');const output=page.locator('#algorithm-output');assert((await output.innerText()).includes('Step 1 /'),'Trace did not start');const next=output.getByRole('button',{name:'Next step →',exact:true});if(await next.isEnabled()){await next.click();assert((await output.innerText()).includes('Step 2 /'),'Next step failed');}await output.getByRole('button',{name:'Reset trace',exact:true}).click();assert((await output.innerText()).includes('Step 1 /'),'Reset failed');});
+ await page.getByRole('tab',{name:'Numerical variations',exact:true}).click();const numerical=await page.locator('#numerical-family option').evaluateAll(xs=>xs.map(x=>({id:x.value,text:x.textContent})));report.numericalChoices=numerical;const sourceNumerical=numerical.filter(x=>!x.text.includes('synthetic demo'));
+ if(!sourceNumerical.length)pending('course_numerical_interaction','No current source numerical-family approval in this artifact.');
+ for(const family of sourceNumerical)await check('numerical_'+family.id,async()=>{
+  await page.locator('#numerical-family').selectOption(family.id);await page.locator('#numerical-seed').fill('browser-resource-check');await page.getByTestId('generate-variant').click();const box=page.locator('#variant-output');assert(await box.locator('button.option').count()===4,'Variant lacks four options');await box.locator('button.option').first().click();assert((await box.innerText()).includes('Every alternative explained'),'Missing workings');
+  const event=page.waitForEvent('download');await box.getByRole('button',{name:'Save reproducible variant JSON',exact:true}).click();const download=await event,p=await download.path(),v=JSON.parse(fs.readFileSync(p,'utf8'));assert(v.familyId===family.id&&v.provenance.status==='verified'&&v.provenance.resourceBinding,'Download lost current binding');await box.getByRole('button',{name:'Verify regeneration',exact:true}).click();assert((await page.locator('#toast').innerText()).includes('current resource approval'),'Replay was not verified');return {variantId:v.id,seed:v.seed,resourceBinding:v.provenance.resourceBinding};
+ });
+ for(const width of [1440,390]){await page.setViewportSize({width,height:900});await check('viewport_'+width,async()=>{const d=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth}));assert(d.scroll<=d.client+2,'Document overflow');return d;});const name=path.join(path.dirname(output),'screenshots','resources-artifact-'+width+'.png');fs.mkdirSync(path.dirname(name),{recursive:true});await page.screenshot({path:name,fullPage:true});report.screenshots.push({path:name,sha256:crypto.createHash('sha256').update(fs.readFileSync(name)).digest('hex'),width});}
+ await check('network_and_runtime',async()=>{assert(!report.networkRequests.length,'Network request attempted');assert(!report.errors.length,report.errors.join('\n'));});
+ report.automatedStatus=report.checks.some(x=>x.status==='failed')?'failed':report.checks.some(x=>x.status==='pending')?'partial':'passed';report.status=report.automatedStatus==='failed'?'failed':'partial';
+})().catch(e=>{report.status=report.pageOpened?'failed':'blocked';report.errors.push(e.stack);process.exitCode=1;}).finally(async()=>{if(browser)await browser.close();report.finishedAt=new Date().toISOString();fs.mkdirSync(path.dirname(output),{recursive:true});fs.writeFileSync(output,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({status:report.status,automatedStatus:report.automatedStatus,artifactSha256:report.artifactSha256,report:output,visualInspection:'pending'}));if(report.status==='failed')process.exitCode=1;});

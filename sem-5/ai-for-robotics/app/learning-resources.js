@@ -4,7 +4,7 @@
  */
 (function(root,factory){'use strict';const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;if(root)root.RoboticsLearningResources=api;}(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
-const VERSION='1.0.1';
+const VERSION='1.0.2';
 const CHECKS=['sourceSupport','assumptions','answerSet','distractors','calculations','figureFidelity','explanation','difficulty','duplication'];
 const POLICY_CHECKS=['exactProjection','contextPreservation','sourceAndReviewBinding','failClosedMutationTests','runtimeTests'];
 const clone=x=>JSON.parse(JSON.stringify(x));
@@ -72,7 +72,7 @@ function context(entry){
  // implementation versions and diagram provenance. Shared aliases refer to the
  // same detached clone, not a lossy list of currently known extension fields.
  const q=clone(entry.question);
- return {...q,questionId:q.id,questionVersion:q.version,questionSha256:entry.binding.questionSha256,reviewIds:clone(entry.reviewIds),correctOptions:q.options.filter(o=>q.correctOptionIds.includes(o.id)),justification:q.solution.justification,sourceRefs:q.citations,conflictResolution:q.conflictResolution||null,primaryEvidence:q.primaryEvidence||[]};
+ return {...q,questionId:q.id,questionVersion:q.version,questionSha256:entry.binding.questionSha256,originalReviewIds:q.reviewIds||[],reviewIds:clone(entry.reviewIds),correctOptions:q.options.filter(o=>q.correctOptionIds.includes(o.id)),justification:q.solution.justification,sourceRefs:q.citations,conflictResolution:q.conflictResolution||null,primaryEvidence:q.primaryEvidence||[]};
 }
 function base(entry,kind,id){const q=entry.question;return {id,kind,provenanceKind:'exact-question-projection',status:'projected-from-verified',week:q.week,lectureId:q.lectureId,title:q.subtopic||q.topic||q.id,questionIds:[q.id],conceptIds:clone(q.conceptIds||[]),slideIds:[...new Set(q.citations.map(c=>c.slideId))],sourceRefs:clone(q.citations),contexts:[context(entry)],projectionVersion:VERSION};}
 function project(bank){
@@ -93,6 +93,9 @@ const TOOL_CHECKS=['sourceSupport','assumptions','answerOrTrace','calculations',
 function toolRecordAllowed(record,bank){
  if(record?.status!=='verified'||record.synthetic||!policyAllowed(bank))return false;
  const x=bank.learningResourceIntegrity,b=x.toolBindings?.[record.id];
+ const files=record.implementationFiles||[];
+ if((record.generatorKind||record.config||record.qLearningConfig)&&(!Array.isArray(files)||!files.length))return false;
+ if(!Array.isArray(files)||files.some(f=>!f||typeof f.path!=='string'||!/^[a-f0-9]{64}$/.test(f.sha256||'')||x.policy.codeHashes?.[f.path]!==f.sha256))return false;
  if(!b||b.version!==record.version||!/^[a-f0-9]{64}$/.test(b.sha256||'')||b.runtimeSha256!==runtimeQuestionDigest(record))return false;
  const refs=record.sourceRefs,links=record.questionBindings;if(!Array.isArray(refs)||!Array.isArray(links)||!refs.length||!links.length||links.some(l=>!l||typeof l!=='object')||!sameSet(record.questionIds,links.map(l=>l.questionId)))return false;
  const qmap=new Map((bank.questions||[]).map(q=>[q.id,q])),linked=links.map(l=>qmap.get(l.questionId));if(linked.some(q=>!q))return false;

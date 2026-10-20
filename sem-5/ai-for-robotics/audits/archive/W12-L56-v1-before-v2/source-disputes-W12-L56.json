@@ -1,0 +1,118 @@
+[
+  {
+    "id": "L56-ISSUE-fusion-guarantee",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1780,
+    "finding": "The page states multimodal systems are more robust than single-modality systems.",
+    "handling": "This is a potential benefit, not an unconditional guarantee for noisy, stale or poorly fused signals.",
+    "method": "Use explicit supplied failure cases and the later synchronization/engineering requirements rather than assume a universal improvement.",
+    "primaryEvidence": [],
+    "status": "qualification_pending_independent_review"
+  },
+  {
+    "id": "L56-ISSUE-confidence-calibration",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1786,
+    "finding": "Confidence scores are said to indicate prediction reliability.",
+    "handling": "A score is a model output, not automatically a calibrated probability of correctness or ground truth about inner emotional state.",
+    "method": "Distinguish model classification, held-out calibration and latent state; use the actual screenshot as output evidence only.",
+    "primaryEvidence": [
+      {
+        "title": "On Calibration of Modern Neural Networks",
+        "url": "https://proceedings.mlr.press/v70/guo17a.html",
+        "locator": "Confidence and empirical correctness need not agree; calibration is distinct from class prediction.",
+        "version": "Guo et al., ICML 2017",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualification_pending_independent_review"
+  },
+  {
+    "id": "L56-ISSUE-conceptual-api-flow",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1788,
+    "finding": "The diagram lists speech understanding, context, reasoning and synthesis in a sequence.",
+    "handling": "These are functional stages, not evidence that every Realtime configuration must expose a completed intermediate transcript.",
+    "method": "Compare the conceptual diagram with the primary speech-to-speech session and optional transcription description.",
+    "primaryEvidence": [
+      {
+        "title": "Realtime conversations",
+        "url": "https://developers.openai.com/api/docs/guides/realtime-conversations",
+        "locator": "Session state; input transcription if enabled; WebSocket interruption/truncation responsibilities.",
+        "version": "Documentation inspected 2026-10-19; course implementation version unspecified",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualification_pending_independent_review"
+  },
+  {
+    "id": "L56-ISSUE-automatic-interruption",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1789,
+    "finding": "The page says automatic interruption handling prioritizes new user speech.",
+    "handling": "Behavior depends on turn/response configuration and client playback handling; a persistent connection alone is insufficient.",
+    "method": "Use the primary configurable VAD controls and WebSocket client responsibilities; no live API call is claimed.",
+    "primaryEvidence": [
+      {
+        "title": "Realtime voice activity detection",
+        "url": "https://developers.openai.com/api/docs/guides/realtime-vad",
+        "locator": "create_response and interrupt_response are configurable; VAD boundaries versus response control.",
+        "version": "Documentation inspected 2026-10-19; course implementation version unspecified",
+        "checkedAt": "2026-10-19"
+      },
+      {
+        "title": "Realtime conversations",
+        "url": "https://developers.openai.com/api/docs/guides/realtime-conversations",
+        "locator": "Session state; input transcription if enabled; WebSocket interruption/truncation responsibilities.",
+        "version": "Documentation inspected 2026-10-19; course implementation version unspecified",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualification_pending_independent_review"
+  },
+  {
+    "id": "L56-ISSUE-buffer-guarantee",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1790,
+    "finding": "Audio buffering is said to ensure uninterrupted output and interruptions immediately terminate playback.",
+    "handling": "Finite buffers cover only bounded delivery gaps; local playback cancellation has implementation and detection latency.",
+    "method": "Derive a finite-buffer counterexample and separate generation cancellation from queued client audio.",
+    "primaryEvidence": [
+      {
+        "title": "Realtime conversations",
+        "url": "https://developers.openai.com/api/docs/guides/realtime-conversations",
+        "locator": "Session state; input transcription if enabled; WebSocket interruption/truncation responsibilities.",
+        "version": "Documentation inspected 2026-10-19; course implementation version unspecified",
+        "checkedAt": "2026-10-19"
+      }
+    ],
+    "status": "qualification_pending_independent_review"
+  },
+  {
+    "id": "L56-ISSUE-dependency-elimination",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1795,
+    "finding": "Message passing is said to eliminate direct dependencies between software modules.",
+    "handling": "It decouples direct function calls, but modules still share topic names, message schemas, QoS compatibility and data meaning.",
+    "method": "Trace the exact graph and state a replacement-module contract; do not infer dependency-free interchangeability.",
+    "primaryEvidence": [],
+    "status": "qualification_pending_independent_review"
+  },
+  {
+    "id": "L56-ISSUE-application-label-scope",
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1799,
+    "finding": "Applications include recognizing engagement, confusion, frustration and operator attention.",
+    "handling": "Those richer states are not themselves among the seven explicitly listed expression outputs; applications need additional inference and validation.",
+    "method": "Compare the application wording to the seven-category model description without claiming that application research is impossible.",
+    "primaryEvidence": [],
+    "status": "qualification_pending_independent_review"
+  }
+]

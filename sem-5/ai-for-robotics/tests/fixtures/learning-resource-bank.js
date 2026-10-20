@@ -9,6 +9,9 @@ function fixture(){
 
 function approveTool(bank,record){
  record.authorId='test-tool-author';record.version=record.version||1;
+ record.implementationFiles=record.implementationFiles||[{path:'test-only-engine.js',sha256:'a'.repeat(64)}];
+ bank.learningResourceIntegrity.policy.codeHashes={'test-only-engine.js':'a'.repeat(64)};
+ bank.learningResourceIntegrity.runtimePolicySha256=R.sha256(R.stableJSON(bank.learningResourceIntegrity.policy));
  record.sourceRefs=JSON.parse(JSON.stringify(bank.questions[0].citations));
  record.questionIds=['Q'];record.questionBindings=[{questionId:'Q',questionVersion:1,questionSha256:bank.learningResourceIntegrity.bindings.Q.questionSha256}];
  const x=bank.learningResourceIntegrity;x.toolBindings=x.toolBindings||{};x.toolReviews=x.toolReviews||[];
