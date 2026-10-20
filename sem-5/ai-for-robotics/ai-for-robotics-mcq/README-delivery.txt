@@ -1,17 +1,17 @@
 AI for Robotics offline study file
 
-Status: partial-course-checkpoint
+Status: practice-only-verified-bank
 Bank version: 0.1.20261020T043415Z
-HTML SHA-256: ef7ef2723af4c55176ed2f1cd8211182c0369224a6e8e71152320c5f34b0ac84
+HTML SHA-256: a65c6b2de537b03f5197ff02d118c4fa7bf7841fc74c0a2296f1f0a6371cb7f7
 
 Extract this ZIP, then open ai-for-robotics-mcq.html directly in your browser.
 The HTML is the single-file application. No server, account or installation is
 required. Both original source PDFs are embedded; Save source opens them in an
-offline reader if your browser cannot display PDF objects. Keep progress backups
-because browser file-origin storage differs between browsers/computers.
+offline reader if your browser cannot display PDF objects.
+Answers and bookmarks save automatically. Keep the same file path and browser to resume.
 
 The ZIP is only a lossless transport container. Its extra files are optional QA
 instructions/runner and receipts; the application does not load them at runtime.
-No browser verification is claimed by this package. See docs/FINAL_OFFLINE_QA.md.
+The packager does not certify browser behavior. See docs/CURRENT_SCOPE.md and the separately hash-bound Practice browser report.
 Testing uses an already installed, permitted Node/Playwright/Chromium environment.
 Never rerun a denied browser route unchanged.

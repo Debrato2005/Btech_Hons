@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import base64
 import hashlib
+import gzip
 import json
 import os
 from pathlib import Path
@@ -20,6 +21,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from validate import load_json, validate_bank  # noqa: E402
+from practice_projection import project as practice_projection
 
 
 def script_json(value):
@@ -48,13 +50,17 @@ def selected_assets(bank, include_page_previews=False):
     return chosen
 
 
-def stream_assets(handle, assets):
+def stream_assets(handle, assets, lazy=False):
     handle.write('{')
     for index, asset in enumerate(assets):
         if index:
             handle.write(',')
         handle.write(script_json(asset['id']) + ':')
         metadata = {key: value for key, value in asset.items() if key != 'data'}
+        if lazy:
+            metadata['payloadId'] = 'asset-payload-' + str(index)
+            handle.write(script_json(metadata))
+            continue
         handle.write(script_json(metadata)[:-1] + ',"data":"')
         # 3-divisible chunks preserve a single uninterrupted base64 stream.
         encoded_hash = hashlib.sha256()
@@ -66,6 +72,19 @@ def stream_assets(handle, assets):
             raise ValueError('Embedded asset changed during build: ' + asset['id'])
         handle.write('"}')
     handle.write('}')
+
+
+def stream_asset_payloads(handle, assets):
+    for index, asset in enumerate(assets):
+        handle.write(f'<script type="application/octet-stream" id="asset-payload-{index}">')
+        digest = hashlib.sha256()
+        with confined_path(asset['path']).open('rb') as source:
+            for chunk in iter(lambda: source.read(3 * 16384), b''):
+                digest.update(chunk)
+                handle.write(base64.b64encode(chunk).decode('ascii'))
+        if digest.hexdigest() != asset['sha256']:
+            raise ValueError('Embedded asset changed during build: ' + asset['id'])
+        handle.write('</script>\n')
 
 
 def build(args):
@@ -108,18 +127,16 @@ def build(args):
     if estimated_bytes > 90 * 1024 * 1024:
         print(f'WARNING: assets alone will occupy {estimated_bytes/1024/1024:.1f} MiB; use a release asset rather than a Git object if total exceeds hosting limits.', file=sys.stderr)
     assets_stats = [{'id': a['id'], 'kind': a['kind'], 'bytes': confined_path(a['path']).stat().st_size, 'sha256': a['sha256']} for a in chosen]
-    template = (ROOT / 'app' / 'index.html').read_text(encoding='utf-8')
+    practice_bank = practice_projection(bank)
+    template = (ROOT / 'app' / 'practice.html').read_text(encoding='utf-8')
     replacements = {
-        'STYLES': (ROOT / 'app' / 'styles.css').read_text(encoding='utf-8'),
-        'CORE': (ROOT / 'app' / 'core.js').read_text(encoding='utf-8'),
-        'LEARNING_RESOURCES': (ROOT / 'app' / 'learning-resources.js').read_text(encoding='utf-8'),
-        'LEARNING_RESOURCE_UI': (ROOT / 'app' / 'learning-resource-ui.js').read_text(encoding='utf-8'),
-        'APP': (ROOT / 'app' / 'app.js').read_text(encoding='utf-8'),
-        'COURSE_NUMERICAL': (ROOT / 'app' / 'course-numerical.js').read_text(encoding='utf-8'),
-        'LEARNING_TOOLS': (ROOT / 'app' / 'learning-tools.js').read_text(encoding='utf-8') if (ROOT / 'app' / 'learning-tools.js').exists() else '/* No learning-tools engine packaged. */',
-        'BANK': script_json(bank),
+        'STYLES': (ROOT / 'app' / 'practice.css').read_text(encoding='utf-8'),
+        'PRACTICE_CORE': (ROOT / 'app' / 'practice-core.js').read_text(encoding='utf-8'),
+        'PRACTICE': (ROOT / 'app' / 'practice.js').read_text(encoding='utf-8'),
+        'PAYLOADS': (ROOT / 'app' / 'payloads.js').read_text(encoding='utf-8'),
+        'BANK': base64.b64encode(gzip.compress(script_json(practice_bank).encode('utf-8'), compresslevel=9, mtime=0)).decode('ascii'),
     }
-    for key in ('CORE', 'APP', 'LEARNING_TOOLS', 'LEARNING_RESOURCES', 'LEARNING_RESOURCE_UI', 'COURSE_NUMERICAL'):
+    for key in ('PRACTICE_CORE', 'PRACTICE', 'PAYLOADS'):
         if re.search(r'</script', replacements[key], flags=re.I):
             raise ValueError(f'Unescaped closing script tag in {key}.')
     if re.search(r'(?:src|href)\s*=\s*["\']https?://', template, flags=re.I):
@@ -134,7 +151,9 @@ def build(args):
                 handle.write(template[cursor:match.start()])
                 token = match.group(1)
                 if token == 'ASSETS':
-                    stream_assets(handle, chosen)
+                    stream_assets(handle, chosen, lazy=True)
+                elif token == 'ASSET_PAYLOADS':
+                    stream_asset_payloads(handle, chosen)
                 elif token in replacements:
                     handle.write(replacements[token])
                 else:
@@ -161,6 +180,8 @@ def build(args):
         'syntheticTestFixture': args.test_fixture, 'output': str(output.relative_to(ROOT)) if output.is_relative_to(ROOT) else str(output),
         'bytes': size, 'mebibytes': round(size / 1024 / 1024, 3), 'sha256': digest.hexdigest(),
         'buildSeconds': round(time.perf_counter() - started, 3), 'embeddedAssets': assets_stats,
+        'applicationScope': 'practice-only', 'practiceQuestions': len(practice_bank['questions']),
+        'productionBankUtf8Bytes': len(script_json(practice_bank).encode('utf-8')),
         'omittedDuplicatePagePreviews': len(bank['assets']) - len(chosen), 'offlineEvidence': 'Complete embedded PDF or exact source-page asset for every verified citation',
         'runtimeNetworkDependencies': [], 'validation': report,
         'questionVisuals': {'reviewedDispositions': len(bank.get('questionVisuals', {}).get('bindings', {})), 'requiredAssetIds': sorted(required_visuals), 'requiredAssetBytes': sum(confined_path(a['path']).stat().st_size for a in chosen if a['id'] in required_visuals), 'supplementalInputIds': sorted(bank.get('questionVisuals', {}).get('supplementalBindings', {})), 'supplementalArtifacts': {name: {'sha256': artifact['sha256'], 'utf8Bytes': len(artifact['rawText'].encode('utf-8'))} for name, artifact in bank.get('questionVisuals', {}).get('supplementalArtifacts', {}).items()}, 'packaging': 'Exact lossless PNG bytes, one shared asset ID per pixel hash; separate verbatim notebook/code text and local-file SHA-256 bindings; complete original PDFs retained.'},

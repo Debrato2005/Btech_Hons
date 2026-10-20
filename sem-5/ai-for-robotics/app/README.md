@@ -1,3 +1,5 @@
+> Historical multi-mode implementation. The production builder now uses `practice.html`, `practice.js`, `practice-core.js`, `practice.css` and `payloads.js`. Read `../docs/CURRENT_SCOPE.md` for the current product.
+
 # Offline study interface
 
 The application is intentionally dependency-free. It runs from a `file://` URL with no service worker, account, network connection, external script, font, or CSS dependency. Prose uses a system-font stack. Equations remain selectable, screen-reader-accessible text and exact source equations remain available in the embedded source PDFs.

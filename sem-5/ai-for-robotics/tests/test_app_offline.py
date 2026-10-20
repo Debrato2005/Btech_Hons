@@ -90,7 +90,7 @@ class ArtifactParser(HTMLParser):
             self.in_script = False
 
     def handle_data(self, data):
-        if self.in_script and self.script_type != "application/json":
+        if self.in_script and self.script_type not in {"application/json", "application/gzip", "application/octet-stream"}:
             self.scripts.append(data)
 
 
@@ -120,7 +120,7 @@ def scan_artifact(path):
             end_position = raw.find(b'>', end.start()) + 1
             if not end_position:
                 raise ValueError('Unterminated script end tag in offline artifact.')
-            if not (parser.in_script and parser.script_type == 'application/json'):
+            if not (parser.in_script and parser.script_type in {'application/json', 'application/gzip', 'application/octet-stream'}):
                 parser.feed(raw[position:end.start()].decode('utf-8'))
             parser.feed(raw[end.start():end_position].decode('utf-8'))
             position = end_position

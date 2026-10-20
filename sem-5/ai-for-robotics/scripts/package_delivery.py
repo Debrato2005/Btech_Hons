@@ -15,6 +15,9 @@ import os
 from pathlib import Path
 from datetime import datetime, timezone
 import zipfile
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from embedded_payloads import assets as embedded_assets, decoded_chunks
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -31,6 +34,29 @@ def verify_embedded_assets(html, expected_assets):
     """Validate decoded embedded bytes without loading PDFs/HTML wholesale."""
     results = []
     with Path(html).open('rb') as handle, mmap.mmap(handle.fileno(), 0, access=mmap.ACCESS_READ) as data:
+        if b'"payloadId":' in data[:min(len(data), 32 * 1024 * 1024)]:
+            expected = {a['id']: a for a in expected_assets}
+            seen = set()
+            for metadata, start, end in embedded_assets(data):
+                aid = metadata['id']
+                if aid in seen or aid not in expected:
+                    raise ValueError('Unexpected or duplicate embedded asset: ' + aid)
+                seen.add(aid)
+                asset = expected[aid]
+                digest, size, prefix = hashlib.sha256(), 0, b''
+                for block in decoded_chunks(data, start, end):
+                    if not prefix:
+                        prefix = block[:8]
+                    digest.update(block)
+                    size += len(block)
+                if metadata.get('sha256') != asset['sha256'] or digest.hexdigest() != asset['sha256'] or size != asset['bytes']:
+                    raise ValueError('Embedded bytes differ from original source/asset: ' + aid)
+                if asset['kind'] == 'source_pdf' and not prefix.startswith(b'%PDF-'):
+                    raise ValueError('Source PDF bytes lack PDF header: ' + aid)
+                results.append({**asset, 'embeddedByteIdentity': 'verified'})
+            if seen != set(expected) or len(seen) != len(expected_assets):
+                raise ValueError('Embedded asset inventory differs from build report.')
+            return results
         marker = b'<script type="application/json" id="asset-data">'
         start = data.find(marker)
         if start < 0:
@@ -97,9 +123,11 @@ def package(html, build_report, output, *, allow_partial=False, project_root=ROO
     if not any(a['kind'] == 'source_pdf' for a in assets):
         raise ValueError('No complete source PDF is embedded; this delivery must retain original source evidence.')
     created = datetime.now(timezone.utc).isoformat()
+    practice = report.get('applicationScope') == 'practice-only'
     manifest = {
         'schemaVersion': '1.0.0', 'createdAt': created,
-        'classification': 'release-validated-content-build' if release_validated else 'partial-course-checkpoint',
+        'classification': 'practice-only-verified-bank' if practice else 'release-validated-content-build' if release_validated else 'partial-course-checkpoint',
+        'applicationScope': report.get('applicationScope', 'historical-multi-mode'),
         'bankVersion': report['bankVersion'], 'complete': report['complete'],
         'html': {'filename': 'ai-for-robotics-mcq.html', 'bytes': size, 'sha256': sha},
         'buildReportSha256': hashlib.sha256(report_bytes).hexdigest(), 'releaseValidated': release_validated, 'embeddedAssets': assets,
@@ -108,10 +136,12 @@ def package(html, build_report, output, *, allow_partial=False, project_root=ROO
         'compression': 'Standard lossless ZIP DEFLATE; extracted HTML must match the recorded SHA-256 exactly.',
         'warning': 'A successful package is not final course, browser or visual acceptance. See the build/coverage audits and separate exact-artifact QA report.'
     }
-    required = ['tests/browser_final_artifact.js', 'tests/browser_learning_resources_artifact.js', 'docs/FINAL_OFFLINE_QA.md', 'docs/OPEN_AND_STUDY.md']
+    required = ['tests/browser_practice.js', 'docs/CURRENT_SCOPE.md'] if practice else ['tests/browser_final_artifact.js', 'tests/browser_learning_resources_artifact.js', 'docs/FINAL_OFFLINE_QA.md', 'docs/OPEN_AND_STUDY.md']
     for relative in required:
         if not (project_root / relative).is_file():
             raise ValueError(f'Missing transferable QA support file: {relative}')
+    storage_note = 'Answers and bookmarks save automatically. Keep the same file path and browser to resume.' if practice else 'Keep progress backups because browser file-origin storage differs between browsers/computers.'
+    qa_note = 'See docs/CURRENT_SCOPE.md and the separately hash-bound Practice browser report.' if practice else 'See docs/FINAL_OFFLINE_QA.md.'
     readme = f'''AI for Robotics offline study file
 
 Status: {manifest['classification']}
@@ -121,12 +151,12 @@ HTML SHA-256: {sha}
 Extract this ZIP, then open ai-for-robotics-mcq.html directly in your browser.
 The HTML is the single-file application. No server, account or installation is
 required. Both original source PDFs are embedded; Save source opens them in an
-offline reader if your browser cannot display PDF objects. Keep progress backups
-because browser file-origin storage differs between browsers/computers.
+offline reader if your browser cannot display PDF objects.
+{storage_note}
 
 The ZIP is only a lossless transport container. Its extra files are optional QA
 instructions/runner and receipts; the application does not load them at runtime.
-No browser verification is claimed by this package. See docs/FINAL_OFFLINE_QA.md.
+The packager does not certify browser behavior. {qa_note}
 Testing uses an already installed, permitted Node/Playwright/Chromium environment.
 Never rerun a denied browser route unchanged.
 '''
@@ -141,9 +171,9 @@ Never rerun a denied browser route unchanged.
             for relative in required:
                 archive.write(project_root / relative, relative)
             # A generated delivery report is optional for isolated packaging tests.
-            report_note = project_root / 'docs/DELIVERY_REPORT.md'
+            report_note = project_root / ('docs/PRACTICE_RELEASE.md' if practice else 'docs/DELIVERY_REPORT.md')
             if report_note.is_file():
-                archive.write(report_note, 'docs/DELIVERY_REPORT.md')
+                archive.write(report_note, 'docs/' + report_note.name)
         # Stream-decompress the actual ZIP member, not the original file, and rehash it.
         with zipfile.ZipFile(temporary) as archive, archive.open('ai-for-robotics-mcq.html') as member:
             extracted_hash, extracted_size = hashlib.sha256(), 0

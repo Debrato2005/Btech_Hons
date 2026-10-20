@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewerId": "robotics-offline-optimization-independent-reviewer-20261020",
+  "reviewedAt": "2026-10-20T10:04:04.426839+00:00",
+  "status": "verified_exact_code_with_browser_gate_separate",
+  "reviewId": "offline-practice-independent-learning-resource-policy-v1.0.5-20261020",
+  "policyVersion": "1.0.5",
+  "policySha256": "bbde22c5e5e9daba4141ffffade7c02cff98f739b600957aba2ae14b62a8be23",
+  "codeHashes": {
+    "app/learning-resources.js": "e7b981f17c99d84dbc9633f2ee97273fc2717c8929aea4a8fda0ef99e3d9400d",
+    "app/learning-resource-ui.js": "ea16433b221904b0a22b9d7f09639d9758eff67ba48c5c24fa8a9846b2cf0a65",
+    "scripts/learning_resources.py": "a1a70605017040aaf40fc1466d8c2a656967503ad44bc1f5fe8898b19fbe032c",
+    "app/learning-tools.js": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6",
+    "app/course-numerical.js": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a",
+    "app/core.js": "2af8e04b1a832a5a0dfcdb8b09f8425c8f98d1840005c1fb229008772f5d0fa4",
+    "app/app.js": "f03d62fe33d083b42a24da6f32763e0cb105ae541813036083ef6e15074f48ad",
+    "scripts/build.py": "9465324f61f610bac23c6c75876f68ffba6ce7ef602ef53c3499fac37166f4e6",
+    "scripts/assemble_bank.py": "687a94f22ee6ad2493c13dd07b2445674b9b15a2c81ffe8f3bf773607ac3f875",
+    "scripts/validate.py": "9d670137b4db5701f250eebb0c26c81abd6a63b99799fe446c5d2daed17d5d6d",
+    "app/index.html": "9857b52d21b35e3927b16293c8b59a1ce61dd61f90c2d281491065f5557f55e0",
+    "scripts/question_visuals.py": "9e89cc8ef27c38a811adc953d575a3978143ac24e0dae7d0c5dc4b9dea1c0670",
+    "data/schema.bank.json": "b15c1906e232bbd930f692911c46c79f0f308471dbf800baaf8ad7a7201a297b",
+    "scripts/question_supplemental.py": "df0c956e16bd27781a3dc2ce82f38818eacda2091611e5971f94b143665b0cc1",
+    "app/styles.css": "bb460a5247e653b90233aad18c41e3e66d2ddabe02b9a9973e2a54a468457e08",
+    "app/payloads.js": "2eb2b84597f836df1036cd017403f676fa1b92a21b81b93af5892e4cb9c5cf03",
+    "app/practice.js": "d7be4724bfeb73f9034144bc976491bac3a66af330c619ab040b3e735c0763df",
+    "app/practice-core.js": "b43e5dbc8ca19b0893691b24d76dcf21d46ef9cb43c5ef7879d8f33459692c7e",
+    "app/practice.html": "71b3a2eb8f9878771edb54926dc51cccf6484d54932623803b3b00fce00d225a",
+    "app/practice.css": "a33ce7ae47016a3d87058b890e2580d4fcfa8ee2e06248bd3ecc04b2ee642ce0",
+    "scripts/practice_projection.py": "178adfd0b3b0c6296254920f708f8e6a17d02002eea853fc23a96c6656416782",
+    "scripts/embedded_payloads.py": "b1186bb724330eccae605d9716cb3bcfffad9ee6185ad9f7c6552e5e181d2949",
+    "scripts/package_delivery.py": "9e934e882d23b98360a944dd2de19cf360d2ba7620bca19fd372b01c27f102c9"
+  },
+  "scope": "Independent software review of Practice-only projection, stable question identity/answers/progress, lossless gzip/lazy assets and package verification. Original numerical/resource implementations remain unchanged.",
+  "findings": [],
+  "closedFindings": {
+    "OPT-R01": "Practice pagehide saves progress and clears URLs only when event.persisted is false; visible DOM assets remain pinned during bounded pruning.",
+    "OPT-R02": "Package verifier resolves embedded_payloads from its sibling directory. Existing package tests and root-level import pass.",
+    "OPT-R03": "Metadata parser tracks braces, quoted strings and escapes. Independent quoted-brace fixture passes; corrupt/missing payloads reject.",
+    "OPT-R04": "Saved-submission solution/answer indicators remain hidden until required image decode succeeds. Independent structural failure and success probes pass.",
+    "OPT-R05": "Recovery writes a Practice snapshot to dist/recovered-practice-bank.json, preserves the canonical bank, and rejects a differing existing snapshot."
+  },
+  "checks": {
+    "verifiedQuestionProjectionExact": 5069,
+    "originalNormalizationFingerprintOptionOrderAndLiteralScoringParity": 5069,
+    "questionInputMappings": 694,
+    "supplementalInputsPreserved": 34,
+    "staleProjectionBindingMutationsRejected": 3,
+    "independentStructuralImageDecodeProbesPassed": 2,
+    "independentPackagingCorruptionProbesRejected": 2,
+    "independentRecoveryPreservationAndConflictProbesPassed": 2,
+    "existingPythonSuite": {
+      "run": 203,
+      "passed": 202,
+      "skipped": 1,
+      "failed": 0,
+      "note": "Missing final artifact is a skip, not artifact approval; this run preceded four new test_practice_build tests."
+    },
+    "newPythonPracticeBuildTestsPassed": 4,
+    "newNodePracticeAndPayloadTestFilesPassed": 2
+  },
+  "evidenceCommands": [
+    "python3 -m unittest discover -s tests -p test_*.py",
+    "python3 -m unittest discover -s tests -p test_practice_build.py -v",
+    "node --test tests/test_practice.js tests/test_payloads.js"
+  ],
+  "independentProbes": "Executed inline Python and Node probes independently of author tests: all real verified question field/fingerprint/order/scoring comparisons; missing/version/hash-stale projection bindings; quoted-brace metadata/corrupt and absent payload bytes; canonical/snapshot recovery retention; extracted renderQuestion under an inert structural DOM with successful and rejected image.decode.",
+  "browserVerified": false,
+  "limitations": [
+    "No browser or final HTML/ZIP approval is granted by this review. Main-agent browser and artifact checks remain separate.",
+    "No scientific answer, source-content, snippet-intent, pixel or subject-matter approval is created or changed. Existing full-bank validator/review gates remain required before projection.",
+    "Production payload retains each verified question verbatim and selected source/input metadata; development review and coverage records remain in the canonical bank rather than the Practice payload.",
+    "The existing Python artifact scan was skipped because a final root artifact did not yet exist.",
+    "The policy version stays 1.0.5 because existing learning-resource/numerical eligibility semantics and implementation bytes are unchanged; this record binds additional packaging and Practice code to an exact new policy hash."
+  ]
+}

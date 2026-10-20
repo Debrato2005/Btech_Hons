@@ -15,6 +15,22 @@ SPEC.loader.exec_module(PACKAGE)
 
 
 class DeliveryPackageTests(unittest.TestCase):
+    def test_practice_package_carries_only_current_scope_support(self):
+        self.report['applicationScope'] = 'practice-only'
+        self.save_report()
+        for relative in ['tests/browser_practice.js', 'docs/CURRENT_SCOPE.md']:
+            target = self.root / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text('Practice-only support fixture')
+        output = self.root / 'practice.zip'
+        receipt, _ = PACKAGE.package(self.html, self.report_path, output, allow_partial=True, project_root=self.root)
+        self.assertEqual(receipt['classification'], 'practice-only-verified-bank')
+        with zipfile.ZipFile(output) as archive:
+            self.assertIn('docs/CURRENT_SCOPE.md', archive.namelist())
+            self.assertNotIn('tests/browser_final_artifact.js', archive.namelist())
+            self.assertNotIn('tests/browser_learning_resources_artifact.js', archive.namelist())
+            self.assertIn('Answers and bookmarks save automatically', archive.read('README-delivery.txt').decode())
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
