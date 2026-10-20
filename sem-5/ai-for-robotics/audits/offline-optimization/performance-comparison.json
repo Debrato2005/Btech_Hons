@@ -2350,5 +2350,19 @@
     "One final measured run per configuration plus development probes.",
     "Chromium153 only. Viewports are not physical-phone tests.",
     "Forced GC is diagnostic, never an application requirement."
+  ],
+  "payloadMeasurement": {
+    "original": {
+      "assetJsonUtf8BytesParsedAtStartup": 207259758
+    },
+    "practice": {
+      "assetJsonUtf8BytesParsedAtStartup": 277674
+    }
+  },
+  "allocationChanges": [
+    "Original startup parses all base64 assets inside one JSON object. Practice parses only asset metadata; separate inert payloads decode on demand.",
+    "Production question projection is 20,629,653 UTF-8 bytes before gzip; development ledgers and unused feature data stay outside the application.",
+    "One source PDF Blob is reused; replacement revokes it. Closed viewers detach; image cache retains at most four unused entries plus visible inputs.",
+    "These changes jointly reduce measured heap; individual causal percentages were not isolated."
   ]
 }
