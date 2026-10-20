@@ -16,17 +16,17 @@ records stay in the repository.
 | Metric | Original | Practice |
 |---|---:|---:|
 | HTML size (MiB) | 267.9 | 201.6 |
-| Usable (seconds) | 5.79 | 1.84 |
-| Peak startup browser RSS (MiB) | 1,999.6 | 913.7 |
-| Steady browser RSS (MiB) | 1,335.6 | 782.9 |
-| Steady renderer RSS (MiB) | 1,049.4 | 498.0 |
-| Steady JS heap (MiB) | 301.8 | 46.8 |
+| Usable (seconds) | 5.79 | 1.62 |
+| Peak startup browser RSS (MiB) | 1,999.6 | 884.8 |
+| Steady browser RSS (MiB) | 1,335.6 | 770.5 |
+| Steady renderer RSS (MiB) | 1,049.4 | 483.7 |
+| Steady JS heap (MiB) | 301.8 | 56.4 |
 
 These measurements use fresh offline Chromium 153 headless-shell processes.
 A separate full Chromium run includes native PDF rendering. Its steady browser
-RSS changes from 1,785.5 to 1,238.6 MiB. Renderer RSS changes
-from 1,281.8 to 736.2 MiB. Usable time changes
-from 10.06 to 1.75 seconds.
+RSS changes from 1,785.5 to 1,232.2 MiB. Renderer RSS changes
+from 1,281.8 to 722.4 MiB. Usable time changes
+from 10.06 to 1.88 seconds.
 Environment: `Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39`.
 
 Each run opens the full bank through `file://` with networking disabled.
@@ -36,8 +36,8 @@ the viewer. One cached PDF avoids repeated decoding. A different source replaces
 that PDF. Four unused URLs and visible inputs form the remaining cache.
 
 Full Chromium browser RSS at preview cycles 10/20/30 is
-1,351.5/1,385.4/1,419.5 MiB.
-After diagnostic garbage collection, browser RSS is 1,257.8 MiB
+1,352.6/1,381.4/1,419.1 MiB.
+After diagnostic garbage collection, browser RSS is 1,257.5 MiB
 and retained heap is 47.2 MiB. The app never requests garbage collection.
 Headless preview memory stabilizes around 950 MiB during rapid use.
 Native viewer and allocator memory still fluctuate.
@@ -52,8 +52,8 @@ One final run per configuration supplements earlier development probes.
 
 ## Validation
 
-- **213 Python tests and 144 Node tests pass**, with no skips.
-- **14 real offline browser checks pass** at the final HTML hash.
+- **213 Python tests and 145 Node tests pass**, with no skips.
+- **15 real offline browser checks pass** at the final HTML hash.
 - Screenshots cover both themes, 1440/768/390 px widths and 200% root text.
 - Native lecture page 675 visibly matches printed slide 7. Both saved PDFs match
   their original hashes and contain 1,953 and 59 pages.
@@ -103,13 +103,16 @@ replace the canonical review bank. No question generation or model execution is
 needed. The original comparison HTML remains under `dist/baseline/`, outside Git.
 
 A second build produces the same HTML SHA-256 in this environment:
-`a65c6b2de537b03f5197ff02d118c4fa7bf7841fc74c0a2296f1f0a6371cb7f7`. The file has 211,397,171 bytes.
+`9461b5f1a5f2852657a015a2c596e3c88e8cd96d3c0c5e2010559b7f68f0bcba`. The file has 211,397,021 bytes.
 Package receipts check every embedded asset and the actual ZIP round trip.
 Release downloads receive a separate hash check.
 
 Keep the same HTML path and browser to retain file-origin progress storage.
 The storage key and original answer fingerprints remain compatible. Old histories
-remain stored, while removed dashboards and timers never initialize.
+remain stored. New Practice saves keep one compact result per question fingerprint.
+All 5,069 answered questions use about 2.29 million characters. A browser save and
+reload verifies the full bank. Repeating an answer 100 times keeps one new result.
+Removed dashboards and timers never initialize.
 
 Git metadata is read-only in this managed workspace. Live GitHub main matched
 local `535950d` before work. Publication uses a guarded fast-forward update and

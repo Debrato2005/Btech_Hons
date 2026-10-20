@@ -2,7 +2,7 @@ AI for Robotics offline study file
 
 Status: practice-only-verified-bank
 Bank version: 0.1.20261020T043415Z
-HTML SHA-256: a65c6b2de537b03f5197ff02d118c4fa7bf7841fc74c0a2296f1f0a6371cb7f7
+HTML SHA-256: 9461b5f1a5f2852657a015a2c596e3c88e8cd96d3c0c5e2010559b7f68f0bcba
 
 Extract this ZIP, then open ai-for-robotics-mcq.html directly in your browser.
 The HTML is the single-file application. No server, account or installation is

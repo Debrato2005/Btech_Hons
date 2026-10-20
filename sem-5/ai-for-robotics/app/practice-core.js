@@ -35,7 +35,13 @@
   }
   function freshProgress(version){return {schema_version:1,bank_version:version,updated_at:new Date().toISOString(),settings:{theme:'system',immediate:false,shuffle_options:true},questions:{},practice_resume:null};}
   function questionState(progress,id) { return Object.hasOwn(progress.questions,id) ? progress.questions[id] : {bookmark:false,review:false,events:[]}; }
-  function record(progress,q,selected,optionOrder) { const rules={correct:1,incorrect:0,partial:false},result=score(q,selected); const s=questionState(progress,q.id); s.events=array(s.events); s.events.push({...result,id:uid(),question_id:q.id,timestamp:new Date().toISOString(),mode:'practice',question_version:q.version,question_fingerprint:q.fingerprint,correct_option_ids:q.correct_option_ids.slice(),source_refs:clone(q.source_refs),question_snapshot:{id:q.id,version:q.version,stem:q.prompt,options:clone(q.options),correctOptionIds:q.correct_option_ids.slice()},rules:clone(rules),option_order:optionOrder.slice(),variant:q.variant || null}); progress.questions[q.id]=s; progress.updated_at=new Date().toISOString(); return result; }
+  function record(progress,q,selected,optionOrder){
+    const result=score(q,selected),s=questionState(progress,q.id);
+    // Keep every legacy record. New Practice saves retain one result per version.
+    s.events=array(s.events).filter(e=>!e.compact_practice||e.question_fingerprint!==q.fingerprint);
+    s.events.push({...result,id:uid(),timestamp:new Date().toISOString(),question_version:q.version,question_fingerprint:q.fingerprint,option_order:optionOrder.slice(),compact_practice:true});
+    progress.questions[q.id]=s;progress.updated_at=new Date().toISOString();return result;
+  }
   function shortcutAllowed(event) { if(event.altKey||event.ctrlKey||event.metaKey||event.target?.closest?.('input,textarea,select,[contenteditable=true]'))return false;if((event.key==='Enter'||event.key===' ')&&event.target?.closest?.('button,a,summary,[role=button]'))return false;return true; }
   function resumeProgress(saved,version){
     if(!saved)return freshProgress(version);

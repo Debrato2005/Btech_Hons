@@ -18,3 +18,11 @@ test('changed question versions clear only current selections and retain bookmar
   const q=C.normalizeQuestion(raw),p=C.freshProgress('same');p.questions[q.id]={bookmark:true,events:[{id:'past'}],current:{fingerprint:'stale',selected:['three'],submitted:true,order:['three','one','two']}};
   const current=C.practiceSelection(p,q);assert.deepEqual(current.selected,[]);assert.equal(current.submitted,false);assert.equal(p.questions[q.id].bookmark,true);assert.equal(p.questions[q.id].events.length,1);
 });
+test('new practice records stay compact and bounded without deleting legacy history',()=>{
+  const q=C.normalizeQuestion({...raw,stem:'Large question '.repeat(5000)}),p=C.freshProgress('same');
+  p.questions[q.id]={bookmark:true,review:true,events:[{id:'legacy',correct:false,question_snapshot:{stem:'preserve this old answer'}}]};
+  for(let i=0;i<100;i++)C.record(p,q,q.correct_option_ids,C.baseOptionOrder(q));
+  const state=p.questions[q.id];assert.equal(state.events[0].id,'legacy');assert.equal(state.events[0].question_snapshot.stem,'preserve this old answer');
+  assert.equal(state.events.length,2);assert.equal(state.events.at(-1).correct,true);assert.equal(state.bookmark,true);assert.equal(state.review,true);
+  assert.ok(JSON.stringify(state).length<1500,'New saves must not duplicate the question or source payloads');
+});

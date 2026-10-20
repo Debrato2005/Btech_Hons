@@ -28,7 +28,8 @@ source Blob. Unused URLs share a bounded cache. Visible images remain available.
 
 The storage key remains `ai-for-robotics-progress-v1`. Existing selections,
 bookmarks, question fingerprints and historical records remain compatible.
-New Practice state stores the last question and filters. Keep the HTML at the
+New Practice state stores the last question and filters. New results keep one
+compact answer per question fingerprint. Existing answer history stays intact. Keep the HTML at the
 same path in the same browser to retain file-origin storage. A renamed file or
 a different browser can use a different storage area. No backup-management UI
 is part of this scope.

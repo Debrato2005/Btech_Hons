@@ -30,7 +30,7 @@ Question/review batches remain authoritative. Generated `data/bank.json` is igno
 ## Verification and limits
 
 Current evidence is under `audits/offline-optimization/`. It separates integrity,
-357 deterministic tests, 14 browser checks, screenshot review and process memory.
+358 deterministic tests, 15 browser checks, screenshot review and process memory.
 Use `tests/browser_practice.js` and `tests/browser_profile.js` for current scope.
 Historical exam/tool runners test the former product.
 
