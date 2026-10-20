@@ -1,0 +1,185 @@
+
+PAGE 1256
+26
+•
+Fuzzification:
+•
+Inputs to the system 
+are the slope of the 
+terrain and the 
+terrain type. 
+•
+Output is the robot’s 
+speed
+
+{"id": "W08-L40-Q044", "stem": "Which reading matches the plotted slope memberships at the displayed extreme ends?", "options": [{"id": "o4", "text": "Large-Negative unit plateau near−15° to 0°; Large-Positive unit plateau near 0° to+15°."}, {"id": "o3", "text": "Large-Negative peaks near−20°; Large-Positive peaks near+20°, with no outer plateaus."}, {"id": "o2", "text": "Large-Negative unit plateau near−45° to−35°; Large-Positive unit plateau near+35° to+45°."}, {"id": "o1", "text": "Large-Negative unit plateau near+35° to+45°; Large-Positive unit plateau near−45° to−35°."}], "assumptions": []}
+{"id": "W08-L40-Q045", "stem": "At slope 0° in the displayed graph, which label has unit membership, and what changes when moving far enough to either signed extreme?", "options": [{"id": "o4", "text": "At 0°: Level is 0; negative extreme: Negative dominates; positive extreme: Positive dominates."}, {"id": "o1", "text": "At 0°: Level is 1; negative extreme: Large-Negative dominates; positive extreme: Large-Positive dominates."}, {"id": "o2", "text": "At 0°: Level is 1; negative extreme: Large-Positive dominates; positive extreme: Large-Negative dominates."}, {"id": "o3", "text": "At 0°: Negative is 1; negative extreme: Large-Negative dominates; positive extreme: Large-Positive dominates."}], "assumptions": []}
+{"id": "W08-L40-Q047", "stem": "What can be read from the five narrow output spikes, without assuming unprovided widths or interpolation rules?", "options": [{"id": "o1", "text": "The plot specifies broad triangular bases for every output, enough to reconstruct a unique continuous centroid."}, {"id": "o2", "text": "The vertical value 1 means the robot must travel at 1 mile per hour in every category."}, {"id": "o3", "text": "Representative speeds are approximately 3, 6, 10, 15 and 19 miles per hour for Very-Slow through Very-Fast."}, {"id": "o4", "text": "The five output centers are evenly spaced at 0, 5, 10, 15 and 20 miles per hour."}], "assumptions": []}
+
+PAGE 1259
+29
+•
+The surface shown in figure is the control 
+surface. 
+•
+It means that for every possible Value of the 
+two input, there is a corresponding output 
+based on the rules. 
+•
+Example, for the input values of Slope = 20 
+degrees and Terrain type = 30 (corresponding 
+to half way between Smooth and Moderate) 
+the output speed of the robot is about 13 
+miles per hour. 
+•
+As shown, the speed of the robot decreases as 
+the slop increases up or down, as well as when 
+the terrain becomes more and more rough. 
+Example # 2- Simulation
+Robot Motion Control using 
+Mamdani Fuzzy Logic 
+
+{"id": "W08-L40-Q054", "stem": "What does one point on the plotted robot control surface specify?", "options": [{"id": "o3", "text": "A terrain index inferred from the supplied speed and slope pair."}, {"id": "o2", "text": "A slope inferred from the supplied speed and terrain-index pair."}, {"id": "o1", "text": "A time-varying speed trajectory following a step change of slope and terrain."}, {"id": "o4", "text": "A static inferred speed for one slope and terrain-index pair."}], "assumptions": []}
+
+PAGE 1288
+26
+•
+Mutation Operators
+– Random Mutation: Perturbs a solution by a random value within a defined 
+maximum range (Δ).
+– Polynomial Mutation: Uses a polynomial distribution to determine the perturbation 
+factor ҧ𝛿, allowing for both small local searches and occasional large jumps
+The mutated solution is
+𝛿max​is the user-defined maximum perturbation 
+ 
+Real-Coded Genetic Algorithms (Cont.)
+𝑃mut = 𝑃org + 𝑟−0.5 Δ
+𝑃mut = 𝑃org + ҧ𝛿× 𝛿max
+ҧ𝛿= ൞2𝑟
+1
+𝑞+1 −1​
+𝑖𝑓​𝑟< 0.5
+1 −[2 1 −𝑟]
+1
+𝑞+1​
+𝑖𝑓​𝑟≥0.5
+
+{"id": "W09-L41-Q063", "stem": "Use q=1, P_org=10 and δ_max=4 in the displayed polynomial mutation law. What mutated values follow for r=0.125 and r=0.875, respectively?", "options": [{"id": "o1", "text": "12 and 8."}, {"id": "o2", "text": "7 and 13."}, {"id": "o3", "text": "8 and 12."}, {"id": "o4", "text": "9.5 and 10.5."}], "assumptions": ["Added parameters; no additional decision bounds."]}
+
+PAGE 1306
+10
+Very Simple Map Example
+• 6 x 6 grid world. 
+• S = start, G = goal, X = obstacle.
+• A chromosome can store two 
+intermediate waypoints, 
+Chromosome = [𝑊1, 𝑊2]
+• Example chromosome: [(1,0), (4,2)]
+• The full path becomes
+ 
+ S → 𝑊1 → 𝑊2 → G
+S
+X
+•
+X
+X
+•
+X
+X
+G
+X
+
+{"id": "W09-L42-Q008", "stem": "In the displayed 6×6 map, rows increase downward and columns rightward from zero. For chromosome [(1, 0), (4, 2)], which full point sequence is decoded?", "options": [{"id": "o1", "text": "[(0, 0), (4, 2), (1, 0), (5, 5)]."}, {"id": "o2", "text": "[(0, 0), (1, 0), (4, 2), (5, 5)]."}, {"id": "o3", "text": "[(0, 0), (0, 1), (2, 4), (5, 5)]."}, {"id": "o4", "text": "[(1, 0), (4, 2)] only, without S or G."}], "assumptions": []}
+
+PAGE 1307
+11
+Example Chromosome
+• Chromosome [1,0 | 4,2] contains two waypoint 
+genes
+✓Gene 1 = Waypoint a = (1,0); 
+✓Gene 2 = Waypoint b = (4,2)
+• Decoded path: S (0,0) → (1,0) → (4,2) → G (5,5)
+• Possible issue: If a straight segment passes through 
+an obstacle, the chromosome gets a large penalty.
+• You can draw segments between S, a, b, and G to 
+check for collisions
+• In GA terminology, each chromosome is one 
+candidate solution, the waypoints are genes, and the 
+set of chromosomes forms the population.
+S
+X
+•
+X
+X
+•
+X
+X
+G
+X
+
+{"id": "W09-L42-Q008", "stem": "In the displayed 6×6 map, rows increase downward and columns rightward from zero. For chromosome [(1, 0), (4, 2)], which full point sequence is decoded?", "options": [{"id": "o1", "text": "[(0, 0), (4, 2), (1, 0), (5, 5)]."}, {"id": "o2", "text": "[(0, 0), (1, 0), (4, 2), (5, 5)]."}, {"id": "o3", "text": "[(0, 0), (0, 1), (2, 4), (5, 5)]."}, {"id": "o4", "text": "[(1, 0), (4, 2)] only, without S or G."}], "assumptions": []}
+
+PAGE 1322
+26
+• Same H-then-V decoding, α=10, β=1:
+Evaluate Generation 1
+Child
+Path traced
+L
+𝑵𝒐𝒃𝒔
+𝑵𝒕𝒖𝒓𝒏Cost
+Fitness
+C1′ [0,3|3,5]
+R×3→R,R,D,D,D→D,D (clean, col 
+5 avoided all obstacles)
+10
+0
+1
+11
+0.0833
+C2 [0,2|4,5]
+R,R→R,R,R,D,D,D,D→D
+10
+0
+1
+11
+0.0833
+C1 
+(unmutated) 
+[0,3|3,4]
+hits (2,4)
+10
+1
+3
+23
+0.0417
+C6 [3,0|5,3]
+hits (3,2),(4,3)
+10
+2
+3
+33
+0.0294
+C3 [3,0|5,2]
+hits (3,2)
+10
+1
+3
+23
+0.0417
+C4 [2,0|5,4]
+hits (2,2),(2,4)
+10
+2
+3
+33
+0.0294
+C5 [2,1|5,4]
+hits (1,1),(2,2),(2,4)
+10
+3
+4
+44
+0.0222
+
+{"id": "W09-L42-Q031", "stem": "C1′=[(0, 3), (3, 5)] and C2=[(0, 2), (4, 5)] differ as chromosomes. Under the source decoder, how do their full paths compare?", "options": [{"id": "o1", "text": "They have the same fitness but necessarily different unit-cell sequences."}, {"id": "o2", "text": "They must have different lengths because their waypoint rows differ."}, {"id": "o3", "text": "They both decode to five right moves followed by five down moves."}, {"id": "o4", "text": "C1′ travels down first, while C2 travels right first."}], "assumptions": []}

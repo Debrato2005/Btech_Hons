@@ -1,0 +1,144 @@
+W11-L55-Q015 What distinguishes the two phases?
+[]
+Broad nominal-model pretraining is followed by refinement using real responses within the physical operating region.
+Real measurements first define a model that is then deliberately replaced only with nominal labels.
+Both phases use only the identical nominal synthetic dataset.
+Phase 1 directly commands the real robot outside its operating limits to match the synthetic region.
+Pages:[1752, 1753]
+
+W11-L55-Q019 Which option gives the complete novel-input, integration and real-system comparison sequence in the validation box on physical page 1753?
+[]
+Apply novel driving torques, predict accelerations, integrate them through an ODE solver to velocities/positions, and compare the resulting motion with the real system.
+Recompute only training loss after fitting, without new input or motion integration.
+Measure held-out one-step acceleration error, but do not integrate or compare trajectories.
+Integrate responses to novel inputs but compare only with the same nominal model, not real behavior.
+Pages:[1753]
+
+W11-L55-Q023 Use the code-consistent point-mass model with l1=l2=1 m, m1=2 kg, m2=1 kg and q2=0. What is M11, and how much larger is the erroneous printed-m1 result?
+['Added unequal masses to expose the otherwise masked typo.']
+6 kg·m²; the printed-m1 result is 2 kg·m² larger.
+8 kg·m²; the printed result is identical.
+4 kg·m²; the printed result is 2 larger.
+6 kg·m²; the printed result is 2 smaller.
+Pages:[1755, 1758]
+
+W11-L55-Q025 For unit masses and lengths, q2=π/2, q̇1=2 and q̇2=−1 rad/s, what is C?
+[]
+(3,4) N·m.
+(−5,4) N·m.
+(3,−4) N·m.
+(1,2) N·m.
+Pages:[1756]
+
+W11-L55-Q027 For the source unit parameters and g=9.81, take q1=0, q2=π/2, q̇=(2,−1), and q̈=(1,−2), in radians and seconds. What torque follows?
+['Source nominal point-mass system, no friction or additional contact torque.']
+(23.62,3) N·m.
+(20.62,−1) N·m.
+(4,3) N·m.
+(25.62,2) N·m.
+Pages:[1756, 1758]
+
+W11-L55-Q031 After generating 50,000 states and splitting with test_size=0.1, what are the training input and test target shapes?
+[]
+(45000,6) and (5000,2).
+(45000,2) and (5000,6).
+(5000,6) and (45000,2).
+(45000,6) and (5000,1).
+Pages:[1759]
+
+W11-L55-Q032 Which statement accurately describes reproducibility of the printed MLP example?
+[]
+The network seed guarantees identical results across any changed input dataset.
+No randomness is controlled because a NumPy seed is absent.
+The split and MLP have fixed random_state values, but the earlier NumPy-generated dataset has no displayed seed.
+The split seed also fixes all earlier random torque-label inputs.
+Pages:[1759, 1760]
+
+W11-L55-Q038 Why should the printed code, rather than the simplified adjacent error drawing, define the dataset RMSE?
+[]
+The code takes the square root before averaging absolute errors.
+The drawing correctly defines dataset RMSE without a sample aggregation operation.
+The code averages squared errors across test samples before taking a square root; the drawing omits that mean.
+The code uses the median squared error, whereas the drawing uses the mean.
+Pages:[1761]
+
+W11-L55-Q050 In the DeLaN example, why is the analytical inverse_dynamics function still present?
+[]
+It supplies measured real-robot torques from hardware drivers.
+It converts the torque-regression task into unsupervised clustering.
+It supplies supervised torque labels for sampled states; it is separate from the learned H and V subnetworks.
+It is the definition of the missing DeLaN2R neural-network class.
+Pages:[1767]
+
+W11-L55-Q051 What are the shapes and dtype of Q_tr and TAU_te after the displayed 5,000-row 90:10 split?
+[]
+Q_tr: (4500,2), TAU_te: (500,2), both float32.
+Q_tr: (4500,6), TAU_te: (500,2), both float32.
+Q_tr: (500,2), TAU_te: (4500,2), both float32.
+Q_tr: (4500,2), TAU_te: (500,2), both integer class labels.
+Pages:[1768]
+
+W11-L55-Q053 What prevents the printed DeLaN excerpt from being a complete standalone training program, even if the imported packages are installed?
+[]
+The referenced DeLaN2R class and its forward/derivative implementation are not supplied in the lecture.
+The analytical label generator is absent from the lecture.
+Neither a loss function nor an optimizer is specified.
+No training/test split is defined.
+Pages:[1769]
+
+W11-L55-Q055 Under the printed full 500-epoch loop, what follows from a fresh permutation each epoch and 35 batches per epoch?
+['The loop completes all 500 epochs without interruption.']
+17,500 optimizer steps; the omitted 20 rows can change identity between epochs.
+17,500 optimizer steps; exactly the same 20 rows are always omitted.
+500 optimizer steps; all minibatches share a single update at epoch end.
+18,000 optimizer steps; each epoch includes a 36th partial batch.
+Pages:[1769]
+
+W11-L55-Q056 Which sequence exactly matches the printed order inside one minibatch update on physical page 1769?
+[]
+Clear old gradients → calculate prediction and loss → backpropagate → update parameters.
+Calculate prediction and loss → backpropagate → clear gradients → update parameters.
+Calculate prediction and loss → clear old gradients → backpropagate the loss → update parameters.
+Calculate prediction and loss → update parameters → clear gradients → backpropagate.
+Pages:[1769]
+
+W11-L55-Q063 For the source’s 300 endpoint-inclusive samples from 0 to 4π s, what is the time step and Q_tr_ shape?
+[]
+4π/299 s and (300,2).
+4π/300 s and (300,2).
+4π/299 s and (4500,2).
+4π/299 s and (300,6).
+Pages:[1772]
+
+W11-L55-Q064 At t=0 on the printed sinusoidal path, what reference torque does the unit-parameter source model give?
+[]
+(0,0) N·m.
+(−29.43,−9.81) N·m.
+(29.43,9.81) N·m.
+(36.43,12.81) N·m.
+Pages:[1758, 1772]
+
+W11-L55-Q065 At t=π/2 s on the source path, q=(1,0), q̇=(0,−1), q̈=(−1,0). For unit masses/lengths and g=9.81, which torque is correct?
+['Trigonometric arguments are radians.']
+(−5+29.43 cos1, −2+9.81 cos1) N·m.
+(29.43 cos1,9.81 cos1) N·m.
+(−5+29.43 sin1,−2+9.81 sin1) N·m.
+(−5+29.43 cos1,9.81 cos1) N·m.
+Pages:[1758, 1772]
+
+W11-L55-Q069 Which grouping matches the printed structured-model training setup?
+[]
+Two hidden layers of width 64, Adam learning rate 0.001, and weight decay 0.0001.
+Three hidden layers of widths 256,256,128 with Adam weight decay 0.001.
+Two hidden layers of width 128, learning rate 0.0001, and weight decay 0.001.
+One hidden layer of width 500, learning rate 0.001, and no decay.
+Pages:[1769]
+
+W11-L55-Q073 Which pairing matches the two distinct source examples without assuming an unshown output activation?
+['Do not infer a sigmoid output layer or an unprinted scaling scheme from the diagram’s generic activation label.']
+Forward identifier diagram: sigmoid and derivative-free evolution; inverse MLPRegressor code: tanh with learning_rate_init=0.001.
+Forward identifier diagram: sigmoid and standard backpropagation; inverse MLPRegressor code: tanh with learning_rate_init=0.0001.
+Forward identifier diagram: sigmoid activation and standard backpropagation; inverse MLPRegressor code: tanh with learning_rate_init=0.001.
+Forward identifier diagram: tanh and standard backpropagation; inverse MLPRegressor code: sigmoid with learning_rate_init=0.001.
+Pages:[1752, 1760]
+

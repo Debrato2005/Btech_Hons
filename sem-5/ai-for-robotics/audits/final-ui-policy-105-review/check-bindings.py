@@ -1,0 +1,28 @@
+"""Exact independent 1.0.5 candidate/baseline and immutable payload checks."""
+from pathlib import Path
+import datetime,hashlib,importlib.util,json,re
+R=Path(__file__).resolve().parents[2];D=Path(__file__).resolve().parent;B=R/'audits/final-ui-policy-105-author/baseline';sha=lambda b:hashlib.sha256(b).hexdigest();read=lambda p:json.loads(p.read_text());canonical=lambda x:json.dumps(x,sort_keys=True,separators=(',',':'),ensure_ascii=False,allow_nan=False)
+p=read(R/'data/learning-resource-policy.json');m=read(R/'audits/final-ui-policy-105-author/candidate-manifest.json');ledger=read(R/'data/learning-resource-policy-reviews.json');old=next(r for r in ledger if r['id']=='recovery-independent-learning-resource-policy-v1.0.4');checks=[]
+def ck(name,ok,details=None):checks.append({'name':name,'passed':bool(ok),'details':details});assert ok,name
+ck('exact final policy and file match frozen manifest',p['version']=='1.0.5' and sha(canonical(p).encode())==m['policySha256'] and sha((R/'data/learning-resource-policy.json').read_bytes())==m['policyFileSha256'])
+ck('all15 exact bound implementation files match candidate',len(p['codeHashes'])==15 and p['codeHashes']==m['codeHashes'] and all(sha((R/f).read_bytes())==h for f,h in p['codeHashes'].items()),p['codeHashes'])
+ck('all previous independent policy reviews remain unchanged',sha((R/'data/learning-resource-policy-reviews.json').read_bytes())=='709b0d6d31fa85a0f21f7b1f01cb0dc0eb17a63b92e3e0129a2ee0bb37a7c739')
+changed={f for f,h in p['codeHashes'].items() if old['codeHashes'].get(f)!=h};ck('only declared supplemental implementation/style/schema files changed or were added',changed=={'app/app.js','app/learning-resources.js','scripts/build.py','scripts/question_visuals.py','data/schema.bank.json','scripts/question_supplemental.py','app/styles.css'},sorted(changed))
+for f in ['app/app.js','app/core.js','app/learning-resources.js','scripts/build.py','scripts/question_visuals.py']:
+ ck('exact independently approved1.0.4 baseline '+f,sha((B/Path(f).name).read_bytes())==old['codeHashes'][f])
+ck('unchanged core scoring, selection, recommendation, exam and backup logic',sha((R/'app/core.js').read_bytes())==old['codeHashes']['app/core.js'])
+def functions(s,indent):
+ pattern=re.compile(r'^'+re.escape(indent)+r'(?:async )?function (\w+)\(',re.M);matches=list(pattern.finditer(s));return {m.group(1):s[m.start():matches[i+1].start() if i+1<len(matches) else len(s)] for i,m in enumerate(matches)}
+# Match named function regions with their following top-level boundary, not executing code.
+a=functions((B/'app.js').read_text(),'  ');b=functions((R/'app/app.js').read_text(),'  ')
+changedf=[k for k in a if a[k]!=b.get(k)];ck('UI delta restricted to source-input rendering and labels plus existing preceding function boundary',set(changedf)<= {'questionVisualState','questionVisualImage','renderQuestion','printStudy'},changedf)
+r0=(B/'learning-resources.js').read_text();r1=(R/'app/learning-resources.js').read_text();ck('existing literal answer, source, policy and eligible-question gate prefix unchanged',r1[:r1.index('// Supplemental notebook text')].replace("const VERSION='1.0.5'","const VERSION='1.0.4'")==r0[:r0.index('const VISUAL_CHECKS=')]);ra=functions(r0,'');rb=functions(r1,'');unchanged=['literalAnswerValid','sourceRefAllowed','policyAllowed','context','assignmentPriority','base','project','toolRecordAllowed']
+ck('existing answer/source/context/tool/reuse projection functions unchanged',all(ra[k]==rb[k] for k in unchanged if k in ra),unchanged)
+spec=importlib.util.spec_from_file_location('reviewer105_validator',R/'scripts/validate.py');V=importlib.util.module_from_spec(spec);spec.loader.exec_module(V)
+bank=read(R/'data/bank.json');baseline=read(R/'audits/final-ui-policy-104-review/content-baseline.json');rows=[{'id':q['id'],'version':q['version'],'status':q['status'],'sha256':V.question_hash(q)} for q in bank['questions']];
+oldrows={x['id']:x for x in baseline['questions']};changes=[x for x in rows if x!=oldrows.get(x['id'])];repairs=read(R/'data/reviews/L46-corrected-inputs-v2-independent-pixels.json');repairs=repairs if isinstance(repairs,list) else repairs.get('reviews',[repairs]);
+ck('all5071 question objects unchanged except two separately approved L46 v2 repairs',len(rows)==5071 and {x['id'] for x in changes}=={'W10-L46-P1449-Q02','W10-L46-P1461-Q01'} and all(any(r['questionId']==x['id'] and r['questionVersion']==x['version']==2 and r['questionSha256']==x['sha256'] and r['decision']=='verified' and all(r['checks'].values()) for r in repairs) for x in changes),{'changed':changes,'separateReviewFile':'data/reviews/L46-corrected-inputs-v2-independent-pixels.json','reviewFileSha256':sha((R/'data/reviews/L46-corrected-inputs-v2-independent-pixels.json').read_bytes())})
+ck('entire approved tool payload unchanged',sha((R/'data/learning-tools-course.json').read_bytes())==baseline['toolPayloadFileSha256'])
+ck('reviewer distinct from candidate authors',not {'verify_remaining_assignment_answers:independent-ui-policy-reviewer'}.intersection({p['authorId'],*p.get('revisionAuthors',[])}))
+source=(R/'scripts/record_validated_milestone.py').read_text();ck('default milestone excludes browser runners',"(R/'app').glob('*.test.js')" in source and "(R/'tests').glob('test_*.js')" in source and ".glob('*.js')" not in source)
+out={'recordedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'policySha256':m['policySha256'],'policyFileSha256':m['policyFileSha256'],'checks':checks,'passed':len(checks),'failed':0,'browserQA':False};(D/'binding-checks.json').write_text(json.dumps(out,indent=2)+'\n');print(json.dumps(out,indent=2))

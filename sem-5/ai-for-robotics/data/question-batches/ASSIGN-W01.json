@@ -87,11 +87,17 @@
       "assignmentSourceItemId": "ASSIGN-W01-Q01",
       "originalRecordPath": "audits/assignment-originals/ASSIGN-W01-Q01.json",
       "originalRecordSha256": "a4af78264222fe24e55ae20050f2bbf417304b22197e6619231e8883fa41265a",
-      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions.",
+      "authorCheckEvidence": {
+        "path": "audits/assignment-coverage/W01-W06-author-checks.json",
+        "sha256": "b585d8265cbdf580daf4803e1b11840fc7af40118fd1688a55a81e32d86fe5a4",
+        "independentReview": false,
+        "scope": "Author-only checks for explicitly declared adaptations. Symbolic and numerical computations plus installed scikit-learn/Pandas/NumPy toy workflows; no downloads, installation, external runtime, robot or browser operation. Original printed keys were visible."
+      }
     },
     {
       "id": "ASSIGN-W01-Q002",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:assignments-W01-W06-author",
       "stem": "A task is programmed offline in a CAD cell while production continues. Before executing it on the physical robot, which remaining task is directly needed to align model and physical target coordinates?",
@@ -127,7 +133,7 @@
         },
         {
           "id": "o2",
-          "text": "Increase the controller’s execution speed so coordinate offsets become negligible."
+          "text": "Treat factory joint calibration alone as proof that the CAD workpiece frame already matches the installed physical fixture."
         }
       ],
       "correctOptionIds": [
@@ -151,7 +157,7 @@
         "optionExplanations": {
           "o4": "Calibration establishes the relevant model-to-physical geometry.",
           "o1": "Encoder values still require kinematic and frame relationships to locate targets.",
-          "o2": "Faster motion does not remove a geometric frame offset.",
+          "o2": "Factory joint calibration does not by itself register a separately installed fixture or tool/work-frame relationship to the CAD cell.",
           "o3": "Simulation repetition alone does not identify a physical mismatch."
         },
         "steps": [],
@@ -161,7 +167,7 @@
         "misconceptions": [
           "Simulation repetition alone does not identify a physical mismatch.",
           "Encoder values still require kinematic and frame relationships to locate targets.",
-          "Faster motion does not remove a geometric frame offset."
+          "Factory joint calibration does not by itself register a separately installed fixture or tool/work-frame relationship to the CAD cell."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -171,14 +177,24 @@
       "assignmentSourceItemId": "ASSIGN-W01-Q02",
       "originalRecordPath": "audits/assignment-originals/ASSIGN-W01-Q02.json",
       "originalRecordSha256": "1b3c0c3b876c649e111ee6347ee3ed8d355583da3a52f1945503fa031341e47b",
-      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions.",
+      "authorCheckEvidence": {
+        "path": "audits/assignment-coverage/W01-W06-author-checks.json",
+        "sha256": "b585d8265cbdf580daf4803e1b11840fc7af40118fd1688a55a81e32d86fe5a4",
+        "independentReview": false,
+        "scope": "Author-only checks for explicitly declared adaptations. Symbolic and numerical computations plus installed scikit-learn/Pandas/NumPy toy workflows; no downloads, installation, external runtime, robot or browser operation. Original printed keys were visible."
+      },
+      "revisionAuthors": [
+        "build_offline_study_interface:assignment-W01-v2-repair"
+      ],
+      "revisionCheckScope": "Four conceptual quality repairs only; keys and original-source records unchanged. No new numerical execution claim."
     },
     {
       "id": "ASSIGN-W01-Q003",
-      "version": 1,
+      "version": 3,
       "status": "draft",
       "authorId": "build_offline_study_interface:assignments-W01-W06-author",
-      "stem": "A robot learns a reward-maximizing policy represented by a deep neural network. Which classification avoids treating ML, DL and RL as disjoint categories?",
+      "stem": "A robot learns a reward-maximizing policy represented by a deep neural network. Which description applies to this learning method?",
       "selectionMode": "single",
       "type": "scenario",
       "difficulty": "easy",
@@ -196,7 +212,7 @@
         "ASSIGN-W01-C003"
       ],
       "assumptions": [
-        "Added example using a deep policy model; the source’s short definitions do not imply mutually exclusive categories."
+        "The reward-learning scenario and deep policy representation are an added example."
       ],
       "options": [
         {
@@ -268,11 +284,22 @@
       "assignmentSourceItemId": "ASSIGN-W01-Q03",
       "originalRecordPath": "audits/assignment-originals/ASSIGN-W01-Q03.json",
       "originalRecordSha256": "5a5bb06e3b666cf0b7d41c82aeab7dd9749aa340562154768b38713018a3c607",
-      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions.",
+      "authorCheckEvidence": {
+        "path": "audits/assignment-coverage/W01-W06-author-checks.json",
+        "sha256": "b585d8265cbdf580daf4803e1b11840fc7af40118fd1688a55a81e32d86fe5a4",
+        "independentReview": false,
+        "scope": "Author-only checks for explicitly declared adaptations. Symbolic and numerical computations plus installed scikit-learn/Pandas/NumPy toy workflows; no downloads, installation, external runtime, robot or browser operation. Original printed keys were visible."
+      },
+      "revisionAuthors": [
+        "build_offline_study_interface:assignment-W01-v2-repair",
+        "repair_assignment_source_bindings:W01-v3-W03-v2-author"
+      ],
+      "revisionCheckScope": "Removed the pre-answer category-overlap conclusion from assumptions. The neutral scenario, answer, options and explanation remain unchanged. Author-only source-pixel reinspection, not independent approval."
     },
     {
       "id": "ASSIGN-W01-Q004",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:assignments-W01-W06-author",
       "stem": "A vacuum policy uses only its current state s_t. Which ADDITIONAL property establishes that s_t is a Markov state for the controlled environment?",
@@ -306,7 +333,7 @@
         },
         {
           "id": "o1",
-          "text": "The next reward is always positive for every action available at s_t."
+          "text": "The transition rule is stationary over time, even though predicting the next state still requires unrecorded earlier states."
         },
         {
           "id": "o2",
@@ -335,7 +362,7 @@
           "o2": "This conditional independence is the controlled Markov property.",
           "o3": "A memoryless policy can operate in a partially observed, non-Markov observation space.",
           "o4": "Discarding history does not make the retained state sufficient.",
-          "o1": "Reward sign is unrelated to whether past information changes transition predictions."
+          "o1": "Time invariance is not state sufficiency: a stationary process can still require past information absent from s_t."
         },
         "steps": [],
         "formulas": [],
@@ -344,7 +371,7 @@
         "misconceptions": [
           "A memoryless policy can operate in a partially observed, non-Markov observation space.",
           "Discarding history does not make the retained state sufficient.",
-          "Reward sign is unrelated to whether past information changes transition predictions."
+          "Time invariance is not state sufficiency: a stationary process can still require past information absent from s_t."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -359,11 +386,21 @@
         "status": "explicit-qualification-awaiting-independent-review",
         "sourceId": "assignments",
         "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
-        "questionVersion": 1,
+        "questionVersion": 2,
         "sourceClaim": "The original infers a Markov decision process from a vacuum choosing actions only from current location; that alone does not establish a sufficient Markov state.",
         "basis": "A memoryless policy is not evidence of Markov dynamics. The added state-sufficiency condition, rather than policy memory, establishes the property.",
         "method": "Preserve the literal original outside the study pool and assess only this explicitly qualified adaptation. No global source resolution."
-      }
+      },
+      "authorCheckEvidence": {
+        "path": "audits/assignment-coverage/W01-W06-author-checks.json",
+        "sha256": "b585d8265cbdf580daf4803e1b11840fc7af40118fd1688a55a81e32d86fe5a4",
+        "independentReview": false,
+        "scope": "Author-only checks for explicitly declared adaptations. Symbolic and numerical computations plus installed scikit-learn/Pandas/NumPy toy workflows; no downloads, installation, external runtime, robot or browser operation. Original printed keys were visible."
+      },
+      "revisionAuthors": [
+        "build_offline_study_interface:assignment-W01-v2-repair"
+      ],
+      "revisionCheckScope": "Four conceptual quality repairs only; keys and original-source records unchanged. No new numerical execution claim."
     },
     {
       "id": "ASSIGN-W01-Q005",
@@ -468,7 +505,13 @@
       "assignmentSourceItemId": "ASSIGN-W01-Q05",
       "originalRecordPath": "audits/assignment-originals/ASSIGN-W01-Q05.json",
       "originalRecordSha256": "4de0ef3276848730cf827c74ee885f8aad7205347a28e926f1ea157c30e5dcc1",
-      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions.",
+      "authorCheckEvidence": {
+        "path": "audits/assignment-coverage/W01-W06-author-checks.json",
+        "sha256": "b585d8265cbdf580daf4803e1b11840fc7af40118fd1688a55a81e32d86fe5a4",
+        "independentReview": false,
+        "scope": "Author-only checks for explicitly declared adaptations. Symbolic and numerical computations plus installed scikit-learn/Pandas/NumPy toy workflows; no downloads, installation, external runtime, robot or browser operation. Original printed keys were visible."
+      }
     },
     {
       "id": "ASSIGN-W01-Q006",
@@ -582,7 +625,13 @@
       "assignmentSourceItemId": "ASSIGN-W01-Q06",
       "originalRecordPath": "audits/assignment-originals/ASSIGN-W01-Q06.json",
       "originalRecordSha256": "210d4e23def20f37605757be00489a045f0b067c8201b28255464819ae3f56e2",
-      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions.",
+      "authorCheckEvidence": {
+        "path": "audits/assignment-coverage/W01-W06-author-checks.json",
+        "sha256": "b585d8265cbdf580daf4803e1b11840fc7af40118fd1688a55a81e32d86fe5a4",
+        "independentReview": false,
+        "scope": "Author-only checks for explicitly declared adaptations. Symbolic and numerical computations plus installed scikit-learn/Pandas/NumPy toy workflows; no downloads, installation, external runtime, robot or browser operation. Original printed keys were visible."
+      }
     },
     {
       "id": "ASSIGN-W01-Q007",
@@ -666,7 +715,13 @@
       "assignmentSourceItemId": "ASSIGN-W01-Q07",
       "originalRecordPath": "audits/assignment-originals/ASSIGN-W01-Q07.json",
       "originalRecordSha256": "e890cb25e87d6079c694ba951f925a9e84b250079e9f5f0cc67b3623988edb5c",
-      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions.",
+      "authorCheckEvidence": {
+        "path": "audits/assignment-coverage/W01-W06-author-checks.json",
+        "sha256": "b585d8265cbdf580daf4803e1b11840fc7af40118fd1688a55a81e32d86fe5a4",
+        "independentReview": false,
+        "scope": "Author-only checks for explicitly declared adaptations. Symbolic and numerical computations plus installed scikit-learn/Pandas/NumPy toy workflows; no downloads, installation, external runtime, robot or browser operation. Original printed keys were visible."
+      }
     },
     {
       "id": "ASSIGN-W01-Q008",
@@ -752,14 +807,20 @@
       "assignmentSourceItemId": "ASSIGN-W01-Q08",
       "originalRecordPath": "audits/assignment-originals/ASSIGN-W01-Q08.json",
       "originalRecordSha256": "22dc6d61008c0aa44a0bffdc8a70cc74fa1914ba3078005e3f6ae407d316f543",
-      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions.",
+      "authorCheckEvidence": {
+        "path": "audits/assignment-coverage/W01-W06-author-checks.json",
+        "sha256": "b585d8265cbdf580daf4803e1b11840fc7af40118fd1688a55a81e32d86fe5a4",
+        "independentReview": false,
+        "scope": "Author-only checks for explicitly declared adaptations. Symbolic and numerical computations plus installed scikit-learn/Pandas/NumPy toy workflows; no downloads, installation, external runtime, robot or browser operation. Original printed keys were visible."
+      }
     },
     {
       "id": "ASSIGN-W01-Q009",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:assignments-W01-W06-author",
-      "stem": "Navigation and speech-recognition components can be developed separately and connected through agreed interfaces. Which principle is most directly illustrated?",
+      "stem": "Navigation and speech-recognition responsibilities are divided into separately developed, replaceable components connected by agreed messages. Which principle names this division into functional units?",
       "selectionMode": "single",
       "type": "conceptual",
       "difficulty": "easy",
@@ -776,15 +837,17 @@
       "conceptIds": [
         "ASSIGN-W01-C009"
       ],
-      "assumptions": [],
+      "assumptions": [
+        "Classify the explicitly stated division of responsibilities; the scenario does not assert an inheritance hierarchy, runtime substitution mechanism or private-state access rule. Other principles can coexist without being the named division."
+      ],
       "options": [
         {
           "id": "o1",
-          "text": "Tight coupling: each component must directly modify the other’s internal state."
+          "text": "Inheritance."
         },
         {
           "id": "o2",
-          "text": "Code duplication: both components must independently reimplement the same complete system."
+          "text": "Polymorphism."
         },
         {
           "id": "o3",
@@ -792,7 +855,7 @@
         },
         {
           "id": "o4",
-          "text": "Inheritance: the speech component must be a subclass of the navigation component."
+          "text": "Encapsulation."
         }
       ],
       "correctOptionIds": [
@@ -812,21 +875,21 @@
         }
       ],
       "solution": {
-        "justification": "Separate components with defined interfaces illustrate modularity; other software principles may also support the design.",
+        "justification": "Modularity names the division of system responsibilities into separately developed and integrated functional units.",
         "optionExplanations": {
-          "o3": "Separating responsibilities behind interfaces supports modular development.",
-          "o4": "Separate interacting modules do not require the implementation inheritance asserted here.",
-          "o1": "Agreed interfaces allow separation rather than requiring direct access to internal state.",
-          "o2": "Separate responsibilities do not require duplicating the full system in each component."
+          "o3": "Modularity names the division of system responsibilities into separately developed and integrated functional units.",
+          "o1": "Inheritance shares or specializes implementation through a class hierarchy; no such hierarchy is the design decision described.",
+          "o2": "Polymorphism supports alternative implementations of a common operation or interface; it does not name the functional division itself.",
+          "o4": "Encapsulation controls access to internal state and implementation. It can support modular design, but the specified decision is partitioning responsibilities, not an access-hiding rule."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "Separate components with defined interfaces illustrate modularity; other software principles may also support the design.",
+        "simpleExplanation": "Modularity names the division of system responsibilities into separately developed and integrated functional units.",
         "memoryAid": null,
         "misconceptions": [
-          "Agreed interfaces allow separation rather than requiring direct access to internal state.",
-          "Separate responsibilities do not require duplicating the full system in each component.",
-          "Separate interacting modules do not require the implementation inheritance asserted here."
+          "Inheritance shares or specializes implementation through a class hierarchy; no such hierarchy is the design decision described.",
+          "Polymorphism supports alternative implementations of a common operation or interface; it does not name the functional division itself.",
+          "Encapsulation controls access to internal state and implementation. It can support modular design, but the specified decision is partitioning responsibilities, not an access-hiding rule."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
@@ -836,7 +899,17 @@
       "assignmentSourceItemId": "ASSIGN-W01-Q09",
       "originalRecordPath": "audits/assignment-originals/ASSIGN-W01-Q09.json",
       "originalRecordSha256": "ada8c0613df60c1849f981eeda8dd41a25a86c53ddf19a49c0738c8bc3a04843",
-      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions.",
+      "authorCheckEvidence": {
+        "path": "audits/assignment-coverage/W01-W06-author-checks.json",
+        "sha256": "b585d8265cbdf580daf4803e1b11840fc7af40118fd1688a55a81e32d86fe5a4",
+        "independentReview": false,
+        "scope": "Author-only checks for explicitly declared adaptations. Symbolic and numerical computations plus installed scikit-learn/Pandas/NumPy toy workflows; no downloads, installation, external runtime, robot or browser operation. Original printed keys were visible."
+      },
+      "revisionAuthors": [
+        "build_offline_study_interface:assignment-W01-v2-repair"
+      ],
+      "revisionCheckScope": "Four conceptual quality repairs only; keys and original-source records unchanged. No new numerical execution claim."
     },
     {
       "id": "ASSIGN-W01-Q010",
@@ -922,7 +995,13 @@
       "assignmentSourceItemId": "ASSIGN-W01-Q10",
       "originalRecordPath": "audits/assignment-originals/ASSIGN-W01-Q10.json",
       "originalRecordSha256": "3c14e4074f32a233d0780e7f3ae4670e7b407a5f658f40eaea6b23a3ccc3b338",
-      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions."
+      "difficultyRationale": "Direct distinction or one short operation under explicit assumptions.",
+      "authorCheckEvidence": {
+        "path": "audits/assignment-coverage/W01-W06-author-checks.json",
+        "sha256": "b585d8265cbdf580daf4803e1b11840fc7af40118fd1688a55a81e32d86fe5a4",
+        "independentReview": false,
+        "scope": "Author-only checks for explicitly declared adaptations. Symbolic and numerical computations plus installed scikit-learn/Pandas/NumPy toy workflows; no downloads, installation, external runtime, robot or browser operation. Original printed keys were visible."
+      }
     }
   ],
   "concepts": [
@@ -1083,7 +1162,7 @@
     {
       "id": "ASSIGN-W01-C009",
       "title": "Modular integration",
-      "description": "Separate components with defined interfaces illustrate modularity; other software principles may also support the design.",
+      "description": "Modularity names the division of system responsibilities into separately developed and integrated functional units.",
       "slideIds": [
         "assignments-p0004"
       ],

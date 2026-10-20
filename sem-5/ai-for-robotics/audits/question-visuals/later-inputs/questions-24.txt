@@ -1,0 +1,117 @@
+
+PAGE 1806
+4
+A KUKA industrial robot is a complete
+mechatronic system consisting of:
+1.
+Manipulator 
+– Six-axis articulated robotic arm. 
+– Executes motion and task operations. 
+2.
+Robot Controller (KR C4) 
+– Central processing unit of the robot. 
+– Handles motion generation, I/O management, 
+diagnostics and safety.
+KUKA Industrial Robot Architecture : 
+3.
+Teach Pendant (KUKA smartPAD) 
+– Human-machine interface for 
+programming and manual operation. 
+[1]
+Kuka Robot Architecture 
+
+{"id": "W12-L57-Q002", "stem": "In the numbered architecture figure, what is item 4 connecting the cabinet and manipulator?", "options": [{"id": "o1", "text": "The six-axis manipulator itself."}, {"id": "o2", "text": "Robot connection cables."}, {"id": "o3", "text": "The robot controller cabinet."}, {"id": "o4", "text": "The handheld operator pendant."}], "assumptions": []}
+
+PAGE 1809
+7
+•
+KRL (KUKA Robot Language) : KRL is the proprietary 
+programming language used for robot programming.
+•
+Motion Instructions : PTP (Point-to-Point),  LIN (Linear 
+Motion),  CIRC (Circular Motion),  SPLINE Motion. 
+•
+Logic Instructions IF–THEN,  SWITCH–CASE,  FOR 
+loops,  WHILE loops,  and WAIT commands. 
+•
+I/O Commands : OUT, PULSE, SIGNAL, ANOUT(analog 
+output).
+KUKA Robot Language (KRL)
+Advanced Features
+•
+Interrupt programming. 
+•
+Trigger functions. 
+•
+Error handling. 
+•
+Functions and subprograms.
+PTP Motion[1] LIN Motion[1] 
+CIRC Motion[1] 
+
+{"id": "W12-L57-Q006", "stem": "Which displayed motion type directly specifies a straight TCP path between two positions, unlike the illustrated PTP path?", "options": [{"id": "o1", "text": "SPLINE."}, {"id": "o3", "text": "PTP."}, {"id": "o2", "text": "LIN."}, {"id": "o4", "text": "CIRC."}], "assumptions": []}
+{"id": "W12-L57-Q007", "stem": "Which three geometric roles are shown for CIRC?", "options": [{"id": "o3", "text": "Start, robot-base origin and end points."}, {"id": "o2", "text": "Start, circle centre and end points."}, {"id": "o1", "text": "Start, endpoint tangent and end point."}, {"id": "o4", "text": "Start, auxiliary and end points."}], "assumptions": []}
+
+PAGE 1810
+8
+•
+Coordinate Frames
+– World Coordinate System :  Global reference
+ frame 
+– Base Coordinate System:  Workpiece reference 
+frame 
+– Tool Coordinate System:  End-effector reference
+ frame 
+– Axis Coordinate System :  Joint-space representation
+Coordinate Systems in KUKA Robots
+•
+Importance
+– Accurate path planning , Tool calibration,  Base 
+calibration, Repeatable motion execution.
+[1]
+Coordinate Frames
+
+{"id": "W12-L57-Q010", "stem": "The diagram labels ROBROOT and BASE separately. What distinction should be retained?", "options": [{"id": "o4", "text": "ROBROOT follows the tool while BASE remains attached to the robot wrist."}, {"id": "o1", "text": "Robot-root geometry and a chosen workpiece Base may be related by a nonidentity transform."}, {"id": "o3", "text": "ROBROOT and every configured BASE are identical because both belong to the same robot system."}, {"id": "o2", "text": "ROBROOT and BASE may differ only by translation, never by orientation."}], "assumptions": []}
+
+PAGE 1813
+11
+TCP 4 Point Calibration Layout 
+Tool Centre 
+Point 
+Table 
+Reference 
+Point 
+
+{"id": "W12-L57-Q016", "stem": "Which pair must coincide for each recorded pivot-calibration observation?", "options": [{"id": "o3", "text": "The mobile tool tip and a different point on the fixed pin at every observation."}, {"id": "o1", "text": "The mobile jaw centre and the robot-base origin, regardless of the marked tip and pin."}, {"id": "o4", "text": "The mobile tool tip and the fixed reference pin point."}, {"id": "o2", "text": "The tool mounting-flange origin and the fixed reference pin point."}], "assumptions": []}
+
+PAGE 1822
+20
+System Overview : 
+Gripper
+Intel realsense D415 
+camera
+ArUco Marker 
+Objects
+Cyan drop bin
+Magenta drop 
+bin
+[2]
+
+{"id": "W12-L57-Q034", "stem": "What mounting arrangement is visible in the labelled system photograph?", "options": [{"id": "o3", "text": "The camera is external to the wrist, while the gripper is mounted at the wrist."}, {"id": "o1", "text": "The camera is mounted beside the gripper on the moving wrist."}, {"id": "o2", "text": "The camera moves with the target workpiece while the gripper remains fixed."}, {"id": "o4", "text": "The camera is coaxial with the flange and looks through the gripper mounting interface."}], "assumptions": []}
+{"id": "W12-L57-Q035", "stem": "What should a sorting implementation use from the labelled photograph rather than assuming that a destination bin must have the same visible hue as its assigned object class?", "options": [{"id": "o3", "text": "Assign destinations by left-to-right detection order, regardless of class."}, {"id": "o2", "text": "Assign each object to whichever bin is nearest to its current pick location, regardless of its detected class."}, {"id": "o4", "text": "An explicit class-to-destination assignment."}, {"id": "o1", "text": "Assign each destination from its current camera hue, ignoring the printed class-to-bin labels."}], "assumptions": []}
+
+PAGE 1824
+22
+Detection Procedure 
+Acquire RGB image from 
+RealSense camera.
+Convert image to 
+grayscale
+Detect marker corners 
+and marker ID.
+Estimate rotation and 
+translation vectors
+Generate the marker 
+coordinate frame
+
+{"id": "W12-L57-Q040", "stem": "Which stage directly follows successful corner/ID detection in the source marker pipeline?", "options": [{"id": "o3", "text": "Estimate rotation and translation vectors."}, {"id": "o1", "text": "Use the calibrated intrinsic matrix as the marker pose without solving the image-to-object correspondences."}, {"id": "o2", "text": "Use the bounding-box centre as the complete rotation and translation estimate."}, {"id": "o4", "text": "Apply the robot-base offset directly to the image corners before estimating camera pose."}], "assumptions": []}

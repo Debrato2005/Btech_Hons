@@ -1,0 +1,167 @@
+
+PAGE 1348
+9
+•
+Each neuron 
+performs a simple 
+computation, but 
+many neurons 
+working together can 
+learn complex 
+navigation decisions.
+•
+A neural network 
+consists of:
+A Simple Feedforward Network
+– Input layer: raw sensor readings.
+– Hidden layer(s): combine inputs into useful 
+intermediate features.
+– Output layer: the final action (steering, speed, etc.).
+Left sensor  L
+Right sensor  R
+Output 
+Command
+
+{"id": "W09-L43-Q007", "stem": "What is the layer-width sequence of the small left/right-sensor network drawn on these slides?", "options": [{"id": "o3", "text": "2 inputs → 3 hidden units → 1 output"}, {"id": "o4", "text": "2 inputs → 3 hidden units → 2 outputs"}, {"id": "o1", "text": "2 inputs → 1 hidden unit → 3 outputs"}, {"id": "o2", "text": "3 inputs → 2 hidden units → 1 output"}], "assumptions": []}
+{"id": "W09-L43-Q064", "stem": "Which functional chain matches the simple feedforward-network explanation?", "options": [{"id": "o4", "text": "Raw sensor inputs → learned intermediate features → final action output"}, {"id": "o1", "text": "Raw sensor inputs → final action output → learned intermediate features"}, {"id": "o2", "text": "Final action output → raw sensor inputs → learned intermediate features"}, {"id": "o3", "text": "Learned intermediate features → final action output → raw sensor inputs"}], "assumptions": ["Read the supplied schematic as a source-specific teaching representation, not a universal classification or a dated capability guarantee."]}
+
+PAGE 1349
+10
+•
+A neural network algorithm that enables 
+robot to move safely in an unknown 
+environment with static/dynamic 
+obstacles.
+•
+The inputs of the neural network consist 
+of:
+– left, front and right, obstacle distance (LOD, 
+FOD, ROD respectively)
+– the angle between the robot and the target 
+(TA) 
+•
+The output is robot steering angle. 
+Example: Obstacle Avoidance
+•
+Note: Target Angle (TA): The angle between the robot's 
+current heading and the direction of the goal.
+[4]
+
+{"id": "W09-L43-Q010", "stem": "What does TA represent in the four-input steering diagram?", "options": [{"id": "o2", "text": "The angle between the robot heading and the nearest-obstacle bearing"}, {"id": "o3", "text": "The angle between the robot heading and the world x-axis"}, {"id": "o4", "text": "The angle between the left and right sensor mounting directions"}, {"id": "o1", "text": "The angle between the robot heading and the goal direction"}], "assumptions": []}
+
+PAGE 1350
+11
+•
+A neural network learns navigation by studying examples of: Sensor Input → 
+Correct Robot Action.
+•
+Example Training Data:
+•
+During training:
+Learning from Navigation Data
+– The prediction is compared with the correct action. 
+– The network updates its weights to reduce the error. 
+•
+This is supervised learning, where the robot learns from 
+labelled examples (examples where the correct action is 
+already known).
+Left 
+Distance
+Front 
+Distance
+Right 
+Distance
+Goal 
+Direction
+Correct Action
+0.3 m
+0.1 m
+0.8 m
+Right
+Turn Right
+0.7 m
+1.2 m
+0.6 m
+Forward
+Move Forward
+0.2 m
+0.2 m
+0.2 m
+Forward
+Stop
+─The sensor readings 
+are given as input. 
+─The network predicts 
+an action. 
+
+{"id": "W09-L43-Q012", "stem": "In the table, which action labels the row with left/front/right distances 0.3, 0.1 and 0.8 and goal direction Right?", "options": [{"id": "o4", "text": "Move forward"}, {"id": "o1", "text": "Turn left"}, {"id": "o2", "text": "Stop"}, {"id": "o3", "text": "Turn right"}], "assumptions": []}
+
+PAGE 1353
+14
+•
+Instead of relying only on distance 
+sensors, robots can use a camera to 
+understand their surroundings.
+•
+A Convolutional Neural Network (CNN) 
+learns important visual features such as:
+– Obstacles 
+– Free space 
+– Road or corridor boundaries 
+– Goal objects 
+– People and other robots
+Vision-Based Robot Navigation
+•
+The extracted features are then used to predict the 
+robot's next movement.
+[5]
+
+{"id": "W09-L43-Q016", "stem": "Which tensor size is printed immediately after the 256×256×8 stage in the CNN illustration?", "options": [{"id": "o4", "text": "256×256×16"}, {"id": "o1", "text": "128×128×16"}, {"id": "o2", "text": "64×64×32"}, {"id": "o3", "text": "128×128×8"}], "assumptions": []}
+{"id": "W09-L43-Q017", "stem": "What do the labels W1-Right, W1-Up and corresponding labels through W8-Down indicate in the displayed CNN output?", "options": [{"id": "o1", "text": "Eight waypoint classes with direction omitted from the output label"}, {"id": "o2", "text": "Thirty-two classes combining eight waypoints with four directions"}, {"id": "o3", "text": "Four direction classes shared across all waypoints without waypoint identity"}, {"id": "o4", "text": "Thirty-two independent binary wall-detection outputs"}], "assumptions": []}
+{"id": "W09-L43-Q018", "stem": "Which operation does the diagram associate with reducing the spatial grid between feature stages?", "options": [{"id": "o2", "text": "ReLU alone"}, {"id": "o3", "text": "Final Softmax"}, {"id": "o4", "text": "Max pooling"}, {"id": "o1", "text": "Bias addition"}], "assumptions": []}
+{"id": "W09-L43-Q065", "stem": "After the 32×32×64 spatial stage in the CNN diagram, which labeled sequence follows?", "options": [{"id": "o1", "text": "128×1×1 fully connected → 512×1×1 fully connected → 32×1×1 Softmax"}, {"id": "o2", "text": "512×1×1 fully connected → 128×1×1 fully connected → 32×1×1 Softmax"}, {"id": "o3", "text": "512×1×1 fully connected → 32×1×1 fully connected → 128×1×1 Softmax"}, {"id": "o4", "text": "512×1×1 Softmax → 128×1×1 max pooling → 32×1×1 convolution"}], "assumptions": ["Read the supplied schematic as a source-specific teaching representation, not a universal classification or a dated capability guarantee."]}
+
+PAGE 1361
+22
+•
+Robots combine multiple sensors because no single sensor is reliable in every 
+situation. Neural networks can learn from these sensor inputs jointly.
+Sensor Fusion for Navigation
+•
+Sensor fusion combines camera, LiDAR, radar and other 
+sensor data to create a more reliable representation of 
+the environment.
+Sensor
+Information
+Camera
+Visual scene
+LiDAR
+Distance measurements
+Ultrasonic
+Nearby obstacles
+IMU
+Robot orientation
+GPS
+Outdoor position
+[6]
+
+{"id": "W09-L43-Q053", "stem": "Which color-to-sensor/function mapping matches the car illustration’s legend and labels?", "options": [{"id": "o1", "text": "Blue: radar/LiDAR regions; purple: camera surround views; orange: ultrasound regions"}, {"id": "o2", "text": "Blue: camera surround/visual views; purple: radar/LiDAR regions; orange: nearby ultrasound regions"}, {"id": "o3", "text": "Blue: camera regions; purple: ultrasound regions; orange: radar/LiDAR regions"}, {"id": "o4", "text": "Blue: ultrasound regions; purple: radar/LiDAR regions; orange: camera surround views"}], "assumptions": []}
+
+PAGE 1362
+23
+•
+Indoor mobile robots are mostly used as:
+– Delivery robots 
+– Warehouse robots 
+– Service robots 
+– Hospital Robot
+•
+Neural Networks Help With
+– Recognizing corridors 
+– Detecting obstacles 
+– Human detection 
+– Following people 
+– Door recognition
+Case Study: Indoor Mobile Robots
+
+{"id": "W09-L43-Q054", "stem": "Which sequence matches the indoor-navigation block diagram?", "options": [{"id": "o2", "text": "Camera input → CNN processing → object detection → safe navigation planning"}, {"id": "o3", "text": "Camera input → object detection → CNN processing → safe navigation planning"}, {"id": "o4", "text": "Camera input → CNN processing → safe navigation planning → object detection"}, {"id": "o1", "text": "Safe navigation planning → camera input → CNN processing → object detection"}], "assumptions": []}

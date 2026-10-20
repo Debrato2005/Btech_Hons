@@ -1,0 +1,145 @@
+{
+  "recordedAt": "2026-10-20T03:05:44.848210+00:00",
+  "codeHashes": {
+    "scripts/assemble_bank.py": "a505fc340d0fee4c3b61878f67f6610256265b4230e77123bd0cbf381f4118ad",
+    "scripts/validate.py": "49bceb41e9e3e002e97a42dea0ccbe22a830ea9034ee092631f6b6694f2a6402"
+  },
+  "mode": "Independent reviewer mutations of explicit synthetic author fixture; no browser or canonical bank writes.",
+  "results": [
+    {
+      "case": "unchanged control",
+      "expectedAllowed": true,
+      "actualAllowed": true,
+      "passed": true,
+      "diagnostics": []
+    },
+    {
+      "case": "source hash malformed but consistently rebound",
+      "expectedAllowed": false,
+      "actualAllowed": true,
+      "passed": false,
+      "diagnostics": []
+    },
+    {
+      "case": "one literal option but coherently reviewed",
+      "expectedAllowed": false,
+      "actualAllowed": true,
+      "passed": false,
+      "diagnostics": []
+    },
+    {
+      "case": "duplicate independent literal IDs",
+      "expectedAllowed": false,
+      "actualAllowed": false,
+      "passed": true,
+      "diagnostics": [
+        {
+          "mappingId": "synthetic-reuse",
+          "reasons": [
+            "Reused target lacks its exact current question/source/review approval: synthetic-q1"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "unsupported selection mode with new question hash",
+      "expectedAllowed": false,
+      "actualAllowed": false,
+      "passed": true,
+      "diagnostics": [
+        {
+          "mappingId": "synthetic-reuse",
+          "reasons": [
+            "Reused target lacks its exact current question/source/review approval: synthetic-q1"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "padded reviewer self approval with current mapping/review bytes",
+      "expectedAllowed": false,
+      "actualAllowed": false,
+      "passed": true,
+      "diagnostics": [
+        {
+          "mappingId": "synthetic-reuse",
+          "reasons": [
+            "No exact current independent mapping approval."
+          ]
+        }
+      ]
+    },
+    {
+      "case": "current mapping author declared as revision author",
+      "expectedAllowed": false,
+      "actualAllowed": false,
+      "passed": true,
+      "diagnostics": [
+        {
+          "mappingId": "synthetic-reuse",
+          "reasons": [
+            "No exact current independent mapping approval."
+          ]
+        }
+      ]
+    },
+    {
+      "case": "removed concept duplicate edge",
+      "expectedAllowed": false,
+      "actualAllowed": false,
+      "passed": true,
+      "diagnostics": [
+        {
+          "mappingId": "synthetic-reuse",
+          "reasons": [
+            "Assignment concept/source link is missing."
+          ]
+        }
+      ]
+    },
+    {
+      "case": "removed duplicate concept edge with new duplicate hash",
+      "expectedAllowed": false,
+      "actualAllowed": false,
+      "passed": true,
+      "diagnostics": [
+        {
+          "mappingId": "synthetic-reuse",
+          "reasons": [
+            "Duplicate adaptation is missing, changed or not excluded."
+          ]
+        }
+      ]
+    },
+    {
+      "case": "source role not assignments",
+      "expectedAllowed": false,
+      "actualAllowed": false,
+      "passed": true,
+      "diagnostics": [
+        {
+          "mappingId": "synthetic-reuse",
+          "reasons": [
+            "Reuse source is not an assignment-solutions source."
+          ]
+        }
+      ]
+    },
+    {
+      "case": "source physical page boolean",
+      "expectedAllowed": false,
+      "actualAllowed": false,
+      "passed": true,
+      "diagnostics": [
+        {
+          "mappingId": "synthetic-reuse",
+          "reasons": [
+            "Assignment source/page/inspection binding is not current."
+          ]
+        }
+      ]
+    }
+  ],
+  "passed": 9,
+  "failed": 2
+}

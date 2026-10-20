@@ -23,6 +23,8 @@ ENTITY_KEYS = ('sources', 'slides', 'concepts', 'questions', 'reviews', 'assets'
 CHECK_KEYS = ('sourceSupport', 'assumptions', 'answerSet', 'distractors',
               'calculations', 'figureFidelity', 'explanation', 'difficulty', 'duplication')
 _LEARNING_RESOURCES = None
+_COVERAGE_LINKS = None
+_QUESTION_VISUALS = None
 
 
 def learning_resources_module():
@@ -35,6 +37,28 @@ def learning_resources_module():
         spec.loader.exec_module(module)
         _LEARNING_RESOURCES = module
     return _LEARNING_RESOURCES
+
+
+def coverage_links_module():
+    global _COVERAGE_LINKS
+    if _COVERAGE_LINKS is None:
+        spec = importlib.util.spec_from_file_location(
+            'robotics_coverage_links', Path(__file__).with_name('assemble_bank.py'))
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        _COVERAGE_LINKS = module
+    return _COVERAGE_LINKS
+
+
+def question_visuals_module():
+    global _QUESTION_VISUALS
+    if _QUESTION_VISUALS is None:
+        spec = importlib.util.spec_from_file_location(
+            'robotics_question_visuals', Path(__file__).with_name('question_visuals.py'))
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        _QUESTION_VISUALS = module
+    return _QUESTION_VISUALS
 
 
 def canonical_json(value: Any) -> str:
@@ -453,6 +477,8 @@ def validate_bank(bank: dict, root: Path | str = PROJECT_ROOT, *, release: bool 
         if question.get('variant') and question['variant']['familyId'] not in tool_indexes['numericalFamilies']:
             errors.append(f'{question["id"]}: variant familyId is missing from learningTools.numericalFamilies')
     errors.extend(learning_resources_module().integrity_errors(bank, root))
+    errors.extend(coverage_links_module().assignment_reuse_errors(bank, root, check_files=check_files))
+    errors.extend(question_visuals_module().question_visual_errors(bank, root, check_files=check_files))
     if strict:
         if not bank.get('learningResourceIntegrity', {}).get('policyEligible'):
             errors.append('Complete release requires an independently approved learning-resource extraction policy.')
@@ -481,6 +507,12 @@ def validate_bank(bank: dict, root: Path | str = PROJECT_ROOT, *, release: bool 
         'concepts': len(concepts),
         'conceptsWithDraftQuestions': sum(bool(c['questionIds']) for c in concepts.values()),
         'conceptsWithVerifiedQuestions': sum(bool(current_verified.intersection(c['questionIds'])) for c in concepts.values()),
+        'conceptsWithReviewedAssignmentReuse': len(bank.get('assignmentReuse', {}).get('byConcept', {})),
+        'assignmentItemsWithReviewedReuse': len(bank.get('assignmentReuse', {}).get('bySourceItem', {})),
+        'additionalUniqueQuestionsFromReuse': 0,
+        'questionsWithReviewedVisualDisposition': len(bank.get('questionVisuals', {}).get('bindings', {})),
+        'questionsWithRequiredVisualInputs': sum(b.get('dependencyStatus') == 'required' for b in bank.get('questionVisuals', {}).get('bindings', {}).values()),
+        'questionsBlockedOnVisualInputs': len(bank.get('questionVisuals', {}).get('diagnostics', [])),
         'questions': len(questions), 'questionsByStatus': dict(question_statuses),
         'currentlyVerifiedQuestions': len(current_verified), 'staleReviews': len(stale_review_ids),
         'numericalFamilies': len(bank['learningTools']['numericalFamilies']),

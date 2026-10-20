@@ -1,0 +1,381 @@
+{
+  "snapshotAt": "2026-10-20T04:13:11.213619+00:00",
+  "records": [
+    {
+      "id": "QV-W10-L46-P1449-Q02",
+      "version": 1,
+      "authorId": "bind_required_question_figures",
+      "questionId": "W10-L46-P1449-Q02",
+      "questionVersion": 2,
+      "questionSha256": "699ab5c9bb56fac33bfd7994705f2edc82c67991e7d46dfbbf8813c321128c71",
+      "dependencyStatus": "required",
+      "reason": "Version2 explicitly asks to compare the two historical saved token lists. Those lists, not an assumed current NLTK stopword inventory or freshly computed answer, are the necessary reading stimulus.",
+      "assetIds": [
+        "qv-f5503091abf91d50d7902ce8"
+      ],
+      "requiredInputs": [
+        "Historical source token lists before and after stopword removal, unchanged."
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1449,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "slideId": "lectures-p1449"
+        }
+      ]
+    },
+    {
+      "id": "QV-W10-L46-P1461-Q01",
+      "version": 1,
+      "authorId": "bind_required_question_figures",
+      "questionId": "W10-L46-P1461-Q01",
+      "questionVersion": 2,
+      "questionSha256": "5cfdb043f62a580ef2c2763da9d10592293498e1599d2062c5763eb8133b7057",
+      "dependencyStatus": "required",
+      "reason": "Version2 explicitly compares capitalization in the source prose command, as-printed code and historical saved output. All three unchanged source regions are required reading stimuli; no fresh tagger execution is inferred.",
+      "assetIds": [
+        "qv-d5db22e3eb13f353816625e5",
+        "qv-566d5fc17961b78ac71de401",
+        "qv-0d8e7478513c039ee29ec747"
+      ],
+      "requiredInputs": [
+        "Original prose command, exact source code and historical saved POS output."
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1461,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "slideId": "lectures-p1461"
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "W10-L46-P1449-Q02",
+      "version": 2,
+      "status": "verified",
+      "authorId": "late-input-source-repair-20261020",
+      "stem": "Compare the source-reported Tokens list with its After Stop-word Removal list. Which observable change is shown?",
+      "selectionMode": "single",
+      "type": "algorithm_trace",
+      "difficulty": "easy",
+      "cognitiveSkill": "algorithm",
+      "week": 10,
+      "lectureId": "L46",
+      "topic": "Natural Language Processing",
+      "subtopic": "NLTK preprocessing code and intermediate state",
+      "tags": [
+        "nlp",
+        "preprocess-code"
+      ],
+      "conceptIds": [
+        "W10-L46-C-preprocess-code"
+      ],
+      "assumptions": [
+        "Read the two saved output lists as historical source evidence; do not infer a complete stopword inventory or claim fresh execution with current NLTK resources."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "The token up and both occurrences of the are removed; near is retained, and the remaining tokens keep their relative order."
+        },
+        {
+          "id": "o2",
+          "text": "Only the two occurrences of the are removed; up and near are both retained."
+        },
+        {
+          "id": "o3",
+          "text": "The tokens up, near and both occurrences of the are removed; the remaining tokens keep their relative order."
+        },
+        {
+          "id": "o4",
+          "text": "The same five tokens are retained, but they are sorted alphabetically before display."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1449",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1449,
+          "kind": "figure",
+          "locator": "Physical PDF page 1449, printed slide10: historical Tokens and After Stop-word Removal output lists in the right column.",
+          "evidenceText": "Tokens: ['pick', 'up', 'the', 'red', 'ball', 'near', 'the', 'chair']; After Stop-word Removal: ['pick', 'red', 'ball', 'near', 'chair']",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The before list is pick, up, the, red, ball, near, the, chair. The after list is pick, red, ball, near, chair. Comparing them shows that up and both the tokens disappear, while near and the relative order of the five retained tokens remain. This is an observation of saved source output, not a reconstruction of an unpinned stopword resource.",
+        "optionExplanations": {
+          "o1": "Correct: this exactly describes the visible before/after lists.",
+          "o2": "Incorrect: up is absent from the saved after list.",
+          "o3": "Incorrect: near remains in the saved after list.",
+          "o4": "Incorrect: pick remains first; the displayed retained sequence is not alphabetically sorted."
+        },
+        "steps": [
+          "Read both saved token sequences.",
+          "Compare removed occurrences and retained order without rerunning the tagger or guessing its corpus."
+        ],
+        "formulas": [],
+        "simpleExplanation": "The saved output removes up and the, keeps near, and does not reorder the remaining tokens.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Reading a saved output does not establish all entries of the historical stopword corpus."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [
+        "W10-L46-P1449-Q02-v2-late-positive-699ab5c9bb56"
+      ],
+      "primaryEvidence": [
+        {
+          "title": "Official lecture 46 notebook",
+          "url": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/main/week10/week10_lecture46.ipynb",
+          "version": "Retrieved 2026-10-19; saved NLTK output reports 3.9.1",
+          "localPath": "sources/supplemental/L46-official-week10_lecture46.ipynb",
+          "sha256": "d32019733e3d14c0b21c9bf5276ecceb8fa4b0a11757bb0b4ffef4b2fe2504c3",
+          "checkedAt": "2026-10-19T22:10:00Z",
+          "locator": "Zero-based cell 3; saved outputs are historical evidence, not fresh corpus-dependent execution."
+        }
+      ],
+      "conflictResolution": {
+        "originalVersion": 1,
+        "originalHistoryPath": "data/history/W10-L46/W10-L46-P1449-Q02-v1-before-input-repair.json",
+        "reason": "The original computation-style question required absent exact historical stopword membership. This candidate instead asks an observable comparison of the two unchanged source-reported outputs.",
+        "sourcePhysicalPage": 1449,
+        "candidateOnly": true
+      }
+    },
+    {
+      "id": "W10-L46-P1461-Q01",
+      "version": 2,
+      "status": "verified",
+      "authorId": "integration-source-correction-20261020",
+      "stem": "Which capitalization difference is visible between the prose command and the as-printed POS code and saved output?",
+      "selectionMode": "single",
+      "type": "algorithm_trace",
+      "difficulty": "easy",
+      "cognitiveSkill": "algorithm",
+      "week": 10,
+      "lectureId": "L46",
+      "topic": "Natural Language Processing",
+      "subtopic": "POS ambiguity and source output provenance",
+      "tags": [
+        "nlp",
+        "pos-ambiguity"
+      ],
+      "conceptIds": [
+        "W10-L46-C-pos-ambiguity"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o1",
+          "text": "The prose begins with Pick, while both command2 and its displayed output begin with lowercase pick."
+        },
+        {
+          "id": "o2",
+          "text": "The code removes light, while the screenshot retains it"
+        },
+        {
+          "id": "o3",
+          "text": "The code requests entity categories, while the screenshot provides POS labels"
+        },
+        {
+          "id": "o4",
+          "text": "The code uses lemmatization, while the screenshot shows stems"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1461",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1461,
+          "kind": "code",
+          "locator": "Printed slide 22: prose command, lowercase command2 assignment, tokenization line and lowercase first saved output token",
+          "evidenceText": "Prose: Command: Pick up the light box\nCode: command2 = \"pick up the light box\"\ntokens2 = word_tokenize(command2)\npos_tags2 = nltk.pos_tag(tokens2)\nSaved output starts: [('pick', 'VB'), ('up', 'RP'), ('the', 'DT')]",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The prose starts with capitalized Pick, but the code explicitly assigns lowercase pick. The saved output also starts with lowercase pick, so its case agrees with the code; no unexplained tokenizer case change is shown.",
+        "optionExplanations": {
+          "o1": "Correct. The prose starts with capitalized Pick, but the code explicitly assigns lowercase pick. The saved output also starts with lowercase pick, so its case agrees with the code; no unexplained tokenizer case change is shown.",
+          "o2": "Incorrect. There is no stopword deletion or removal of light in this snippet.",
+          "o3": "Incorrect. The code calls pos_tag, so POS labels are expected.",
+          "o4": "Incorrect. Neither lemmatization nor stemming appears in the snippet."
+        },
+        "steps": [
+          "Read the prose command: it starts with capitalized Pick.",
+          "Read the code assignment: command2 starts with lowercase pick.",
+          "Read the saved output: its first token is lowercase pick, matching the code rather than the prose."
+        ],
+        "formulas": [],
+        "simpleExplanation": "The prose starts with capitalized Pick, but the code explicitly assigns lowercase pick. The saved output also starts with lowercase pick, so its case agrees with the code; no unexplained tokenizer case change is shown.",
+        "memoryAid": null,
+        "misconceptions": [
+          "There is no stopword deletion or removal of light in this snippet.",
+          "The code calls pos_tag, so POS labels are expected.",
+          "Neither lemmatization nor stemming appears in the snippet."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [
+        "W10-L46-P1461-Q01-v2-late-positive-5cfdb043f62a"
+      ],
+      "conflictResolution": {
+        "status": "source-transcription-corrected-pending-independent-review",
+        "questionVersion": 2,
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1461,
+        "sourceClaim": "The prose starts with Pick; the actual code assignment and saved output both start with lowercase pick.",
+        "basis": "Original PDF pixels contradict the previous transcription of the code. This version compares prose, printed code and saved output without asserting fresh tagger reproduction.",
+        "method": "Inspect the hash-verified original PDF at readable resolution; do not infer string case from text extraction or execute the tagger.",
+        "scope": "Version 2 only; fresh independent answer and input reviews required.",
+        "sourceIssueId": "L46-ISSUE-pos-output-case"
+      }
+    }
+  ],
+  "assets": [
+    {
+      "id": "qv-f5503091abf91d50d7902ce8",
+      "path": "assets/question-visuals/lectures-p1449-saved-before-after.png",
+      "mimeType": "image/png",
+      "sha256": "f5503091abf91d50d7902ce89175df636f7f936f973ca8a5eff577ef307de50a",
+      "width": 846,
+      "height": 219,
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 1449,
+      "slideId": "lectures-p1449",
+      "cropRectangle": [
+        429,
+        137,
+        711,
+        210
+      ],
+      "renderDpi": 216,
+      "alt": "Historical source output: token list before and after stopword removal, with no claim of fresh execution."
+    },
+    {
+      "id": "qv-d5db22e3eb13f353816625e5",
+      "path": "assets/question-visuals/lectures-p1461-prose-command.png",
+      "mimeType": "image/png",
+      "sha256": "d5db22e3eb13f353816625e50c23e9d530598b9d3fcd5c3773f8237a5c37df94",
+      "width": 861,
+      "height": 69,
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 1461,
+      "slideId": "lectures-p1461",
+      "cropRectangle": [
+        51,
+        102,
+        338,
+        125
+      ],
+      "renderDpi": 216,
+      "alt": "Exact source input crop from lecture PDF, physical page 1461."
+    },
+    {
+      "id": "qv-566d5fc17961b78ac71de401",
+      "path": "assets/question-visuals/lectures-p1461-code.png",
+      "mimeType": "image/png",
+      "sha256": "566d5fc17961b78ac71de4015032fe03f054d574d1d0058b79fca1b3486e912a",
+      "width": 1314,
+      "height": 303,
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 1461,
+      "slideId": "lectures-p1461",
+      "cropRectangle": [
+        63,
+        178,
+        501,
+        279
+      ],
+      "renderDpi": 216,
+      "alt": "Exact source input crop from lecture PDF, physical page 1461."
+    },
+    {
+      "id": "qv-0d8e7478513c039ee29ec747",
+      "path": "assets/question-visuals/lectures-p1461-saved-output.png",
+      "mimeType": "image/png",
+      "sha256": "0d8e7478513c039ee29ec74751ca3c50d195d8d6d5209d5c969ca09df7645100",
+      "width": 1419,
+      "height": 195,
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 1461,
+      "slideId": "lectures-p1461",
+      "cropRectangle": [
+        37,
+        300,
+        510,
+        365
+      ],
+      "renderDpi": 216,
+      "alt": "Exact source input crop from lecture PDF, physical page 1461."
+    }
+  ],
+  "independentPixelComparisons": {
+    "qv-f5503091abf91d50d7902ce8": {
+      "originalPdfSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "assetSha256": "f5503091abf91d50d7902ce89175df636f7f936f973ca8a5eff577ef307de50a",
+      "assetMetadataSha256": "70e891d745f2ddb553c850cd6de34d0f46b75f7abbd6e0aa71828863712c72fb",
+      "exactIndependentRenderMatches": true,
+      "dimensions": [
+        846,
+        219
+      ]
+    },
+    "qv-d5db22e3eb13f353816625e5": {
+      "originalPdfSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "assetSha256": "d5db22e3eb13f353816625e50c23e9d530598b9d3fcd5c3773f8237a5c37df94",
+      "assetMetadataSha256": "d28bba17bea6d254d48425f19302b5b9dd113b03e98453fdfc07000bc6059bbc",
+      "exactIndependentRenderMatches": true,
+      "dimensions": [
+        861,
+        69
+      ]
+    },
+    "qv-566d5fc17961b78ac71de401": {
+      "originalPdfSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "assetSha256": "566d5fc17961b78ac71de4015032fe03f054d574d1d0058b79fca1b3486e912a",
+      "assetMetadataSha256": "7dfa6fc6c6490aaa4afd511b365822b1fa2e989bdd0f244f77fc7e19ab1c6eb5",
+      "exactIndependentRenderMatches": true,
+      "dimensions": [
+        1314,
+        303
+      ]
+    },
+    "qv-0d8e7478513c039ee29ec747": {
+      "originalPdfSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "assetSha256": "0d8e7478513c039ee29ec74751ca3c50d195d8d6d5209d5c969ca09df7645100",
+      "assetMetadataSha256": "a9237522b8f615220b3d6406d71f0a1a94d1311e1c9f0e553952db4e716056db",
+      "exactIndependentRenderMatches": true,
+      "dimensions": [
+        1419,
+        195
+      ]
+    }
+  },
+  "structuralFindings": []
+}

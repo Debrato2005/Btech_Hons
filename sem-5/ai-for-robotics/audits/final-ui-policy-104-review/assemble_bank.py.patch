@@ -1,0 +1,22 @@
+--- approved-1.0.3/scripts/assemble_bank.py
++++ candidate-1.0.4/scripts/assemble_bank.py
+@@ -252,6 +252,9 @@
+   for k in tools:tools[k].extend(d.get(k,[]))
+  bank={'schemaVersion':'1.0.0','bankVersion':a.version or datetime.datetime.now(datetime.timezone.utc).strftime('0.1.%Y%m%dT%H%M%SZ'),'title':'Semester 5 · AI for Robotics','complete':False,'sources':manifest['sources'],'slides':slides,'concepts':concepts,'questions':questions,'reviews':reviews,'assets':manifest['assets'],'learningTools':tools,'notes':['Work in progress: unreviewed pages and draft questions are not complete or validated coverage.','Only independent source-bound verified questions enter normal study and exams.']}
+  bank['assignmentReuse']=build_assignment_reuse(bank,ROOT)
++ from question_visuals import prepare_question_visuals,projected_visual_assets
++ bank['questionVisuals']=prepare_question_visuals(bank,ROOT)
++ bank['assets'].extend(projected_visual_assets(bank['questionVisuals']))
+  from learning_resources import prepare_integrity,apply_tool_gate
+  tool_diagnostics=apply_tool_gate(bank,ROOT)
+  bank['learningResourceIntegrity']=prepare_integrity(bank,ROOT)
+@@ -263,6 +266,9 @@
+  counts['assignmentItemsWithReviewedReuse']=len(bank['assignmentReuse']['bySourceItem'])
+  counts['conceptsWithReviewedAssignmentReuse']=len(bank['assignmentReuse']['byConcept'])
+  counts['additionalUniqueQuestionsFromReuse']=0
++ counts['questionsWithReviewedVisualDisposition']=len(bank['questionVisuals']['bindings'])
++ counts['questionsWithRequiredVisualInputs']=sum(b['dependencyStatus']=='required' for b in bank['questionVisuals']['bindings'].values())
++ counts['questionsBlockedOnVisualInputs']=len(bank['questionVisuals']['diagnostics'])
+  dump(ROOT/'data/progress-summary.json',{'bankVersion':bank['bankVersion'],'complete':False,'counts':counts})
+  print(json.dumps(counts))
+ if __name__=='__main__':main()

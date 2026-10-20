@@ -58,3 +58,17 @@ Pure logic and static offline checks are executable locally. A restricted runtim
 ### Supported cloud-browser route checked
 
 A later check reached the cloud Chromium/CDP inventory through the supported Computer Use tool. The tool explicitly denied `file:` navigation because that surface allows only HTTP(S); the denial was respected. A separate normal HTTP development server returned HTTP 200 inside the task executor, but the cloud browser could not reach it: loopback returned `ERR_CONNECTION_REFUSED`, and the executor's observed address returned `ERR_BLOCKED_BY_CLIENT`. The server was stopped. No tunnel, protocol disguise or native-browser workaround was used. **Executed application browser checks remain zero**, including final downloaded-file/offline behavior. These attempts establish access limits, not application correctness.
+
+## Final UI and delivery checks
+
+The course explorer now includes lazy, nested subtopic links. Coverage can be narrowed by source, week and lecture without changing physical page numbering. Active exams expose their versioned backup/import controls while continuing to hide solution/source feedback and ordinary answer exports.
+
+The changed application bytes require a fresh independent resource-policy hash review before final build activation. Read `docs/FINAL_UI_REVIEW_HANDOFF.md`; do not silently preserve an obsolete implementation binding.
+
+Run all deterministic suites with `node --test app/*.test.js tests/test_*.js` and `python -m unittest discover -s tests -p 'test_*.py' -v`. The inert DOM regressions in `app/final-ui.test.js` are not browser tests.
+
+Use `tests/browser_final_artifact.js` for the comprehensive exact-downloaded-file interaction suite. It is inert without `--execute`, requires the expected HTML SHA-256 from the delivery receipt before launch, and never grants human visual/source-PDF acceptance. The earlier `browser_offline.js` remains only a smoke/performance runner. Full environment requirements, commands, screenshot criteria and lossless packaging instructions are in `docs/FINAL_OFFLINE_QA.md`. The requirement-by-requirement implementation audit is `docs/APP_REQUIREMENT_AUDIT.md`.
+
+`python scripts/package_delivery.py --html dist/ai-for-robotics-mcq.html --build-report dist/ai-for-robotics-mcq.build-report.json --output dist/ai-for-robotics-mcq.zip` creates a lossless transport ZIP and receipt. An incomplete checkpoint requires `--allow-partial`. Every decoded embedded asset and the extracted HTML are rehashed; neither original source PDF is omitted or downsampled. The HTML still works alone after extraction. Upload, independently downloaded byte verification and actual browser/visual review remain separate steps.
+
+The last-day revision view now includes a bounded source-assignment priority for fresh learners: currently verified assignment adaptations and exact independently approved reuse links. It is explicitly not a prediction of exam likelihood. Existing mistakes, review flags and bookmarks retain stronger ranking; normal scope/search/learning filters apply first. The route does not edit questions or count reused coverage as new mastery evidence. Runtime and assembler metadata are separately fail-closed; policy 1.0.3 requires independent approval before activation.

@@ -1,0 +1,1576 @@
+{
+  "schemaVersion": "proposal-1",
+  "status": "proposed-not-integrated-not-approved",
+  "scope": "Exact frozen notebook premises for L34, L35, L43, L46 and L50; question content unchanged.",
+  "inputs": {
+    "l43-maze-actions": {
+      "kind": "verbatim_source_code",
+      "sourceArtifact": "sources/supplemental/L43-official-code.py",
+      "sourceSha256": "a3a2af242d1ca065595e9845e472fa635725a8b9fa293f9c4b45ba3ff5000c85",
+      "lineStart": 15,
+      "lineEnd": 25,
+      "notebookArtifact": "sources/supplemental/L43-official-notebook-output-stripped.ipynb",
+      "notebookSha256": "e77bae803502b75106d158ef8515fec99f83809ff2569d49c6432f1a5dd33e59",
+      "cellIndexZeroBased": 3,
+      "cellId": "506c7bb9",
+      "cellLineStart": 1,
+      "cellLineEnd": 11,
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/218d7dd64316b35ebab8b522d2cd7ebb540d240e/week09/week09_lecture43.ipynb",
+      "upstreamCommit": "218d7dd64316b35ebab8b522d2cd7ebb540d240e",
+      "upstreamGitBlobSha": "c5c3ab080b7ceef9d53e635bb207403801b3457f",
+      "text": "ROWS, COLS = 4, 5\n# Note that these co-ordinates are considered as (y,x)\nSTART = (0, 0)\nGOAL = (3, 4)\nWALLS = {(0, 1), (2, 3), (3,0)}   # one obstacle — try moving it or adding more!\n\nACTIONS = [(-1, 0), (1, 0), (0, -1), (0, 1)]      # up, down, left, right\nACTION_NAMES = [\"UP\", \"DOWN\", \"LEFT\", \"RIGHT\"]\n\ndef is_free(r, c):\n    return 0 <= r < ROWS and 0 <= c < COLS and (r, c) not in WALLS\n",
+      "textSha256": "3c00942bb731d215eed080a2cb254ea6db683aca1f27553ed11cb9b57c1a8d3d",
+      "transformation": "None: exact source substring, no outputs, assertions, or worked examples added.",
+      "notebookRepresentation": "output_stripped",
+      "upstreamPinStatus": "pinned",
+      "language": "python",
+      "extractionPath": "cells[3].source",
+      "authorId": "author_later_question_inputs"
+    },
+    "l43-featurize": {
+      "kind": "verbatim_source_code",
+      "sourceArtifact": "sources/supplemental/L43-official-code.py",
+      "sourceSha256": "a3a2af242d1ca065595e9845e472fa635725a8b9fa293f9c4b45ba3ff5000c85",
+      "lineStart": 62,
+      "lineEnd": 71,
+      "notebookArtifact": "sources/supplemental/L43-official-notebook-output-stripped.ipynb",
+      "notebookSha256": "e77bae803502b75106d158ef8515fec99f83809ff2569d49c6432f1a5dd33e59",
+      "cellIndexZeroBased": 5,
+      "cellId": "17febaab",
+      "cellLineStart": 4,
+      "cellLineEnd": 13,
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/218d7dd64316b35ebab8b522d2cd7ebb540d240e/week09/week09_lecture43.ipynb",
+      "upstreamCommit": "218d7dd64316b35ebab8b522d2cd7ebb540d240e",
+      "upstreamGitBlobSha": "c5c3ab080b7ceef9d53e635bb207403801b3457f",
+      "text": "def wall_sensor(r, c):\n    \"\"\"1 if that neighbor is a wall / off-grid, else 0 — one bit per direction.\"\"\"\n    bits = []\n    for dr, dc in ACTIONS:\n        nr, nc = r + dr, c + dc\n        bits.append(0.0 if is_free(nr, nc) else 1.0)\n    return bits\n\ndef featurize(r, c):\n    return np.array([r / ROWS, c / COLS] + wall_sensor(r, c), dtype=np.float32)\n",
+      "textSha256": "a7147cc0adaf99a2467bfffdda2f61676d1066f45e69c267b1ed57e9103ae48d",
+      "transformation": "None: exact source substring, no outputs, assertions, or worked examples added.",
+      "notebookRepresentation": "output_stripped",
+      "upstreamPinStatus": "pinned",
+      "language": "python",
+      "extractionPath": "cells[5].source",
+      "authorId": "author_later_question_inputs"
+    },
+    "l43-manhattan": {
+      "kind": "verbatim_source_code",
+      "sourceArtifact": "sources/supplemental/L43-official-code.py",
+      "sourceSha256": "a3a2af242d1ca065595e9845e472fa635725a8b9fa293f9c4b45ba3ff5000c85",
+      "lineStart": 59,
+      "lineEnd": 60,
+      "notebookArtifact": "sources/supplemental/L43-official-notebook-output-stripped.ipynb",
+      "notebookSha256": "e77bae803502b75106d158ef8515fec99f83809ff2569d49c6432f1a5dd33e59",
+      "cellIndexZeroBased": 5,
+      "cellId": "17febaab",
+      "cellLineStart": 1,
+      "cellLineEnd": 2,
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/218d7dd64316b35ebab8b522d2cd7ebb540d240e/week09/week09_lecture43.ipynb",
+      "upstreamCommit": "218d7dd64316b35ebab8b522d2cd7ebb540d240e",
+      "upstreamGitBlobSha": "c5c3ab080b7ceef9d53e635bb207403801b3457f",
+      "text": "def manhattan(r, c):\n    return abs(r - GOAL[0]) + abs(c - GOAL[1])\n",
+      "textSha256": "e23966bd2fe3e5a11d2008bc838e6f5cfb1dafa023f8164b50f00ec155df7c41",
+      "transformation": "None: exact source substring, no outputs, assertions, or worked examples added.",
+      "notebookRepresentation": "output_stripped",
+      "upstreamPinStatus": "pinned",
+      "language": "python",
+      "extractionPath": "cells[5].source",
+      "authorId": "author_later_question_inputs"
+    },
+    "l43-teacher": {
+      "kind": "verbatim_source_code",
+      "sourceArtifact": "sources/supplemental/L43-official-code.py",
+      "sourceSha256": "a3a2af242d1ca065595e9845e472fa635725a8b9fa293f9c4b45ba3ff5000c85",
+      "lineStart": 73,
+      "lineEnd": 88,
+      "notebookArtifact": "sources/supplemental/L43-official-notebook-output-stripped.ipynb",
+      "notebookSha256": "e77bae803502b75106d158ef8515fec99f83809ff2569d49c6432f1a5dd33e59",
+      "cellIndexZeroBased": 5,
+      "cellId": "17febaab",
+      "cellLineStart": 15,
+      "cellLineEnd": 30,
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/218d7dd64316b35ebab8b522d2cd7ebb540d240e/week09/week09_lecture43.ipynb",
+      "upstreamCommit": "218d7dd64316b35ebab8b522d2cd7ebb540d240e",
+      "upstreamGitBlobSha": "c5c3ab080b7ceef9d53e635bb207403801b3457f",
+      "text": "# preference order used only to break ties among equally-good directions\nPREFERENCE = [3, 1, 2, 0]  # RIGHT, DOWN, LEFT, UP\n\ndef best_direction(r, c):\n    cur_d = manhattan(r, c)\n    for ai in PREFERENCE:                       # prefer moves that get closer\n        dr, dc = ACTIONS[ai]\n        nr, nc = r + dr, c + dc\n        if is_free(nr, nc) and manhattan(nr, nc) < cur_d:\n            return ai\n    for ai in PREFERENCE:                       # fallback: any move that doesn't get worse\n        dr, dc = ACTIONS[ai]\n        nr, nc = r + dr, c + dc\n        if is_free(nr, nc) and manhattan(nr, nc) <= cur_d:\n            return ai\n    return None\n",
+      "textSha256": "96cd55ec758fd57fab2d2ed814453129fd219b34a7548f8effef62a0d0f10d78",
+      "transformation": "None: exact source substring, no outputs, assertions, or worked examples added.",
+      "notebookRepresentation": "output_stripped",
+      "upstreamPinStatus": "pinned",
+      "language": "python",
+      "extractionPath": "cells[5].source",
+      "authorId": "author_later_question_inputs"
+    },
+    "l43-training-labels": {
+      "kind": "verbatim_source_code",
+      "sourceArtifact": "sources/supplemental/L43-official-code.py",
+      "sourceSha256": "a3a2af242d1ca065595e9845e472fa635725a8b9fa293f9c4b45ba3ff5000c85",
+      "lineStart": 90,
+      "lineEnd": 101,
+      "notebookArtifact": "sources/supplemental/L43-official-notebook-output-stripped.ipynb",
+      "notebookSha256": "e77bae803502b75106d158ef8515fec99f83809ff2569d49c6432f1a5dd33e59",
+      "cellIndexZeroBased": 5,
+      "cellId": "17febaab",
+      "cellLineStart": 32,
+      "cellLineEnd": 43,
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/218d7dd64316b35ebab8b522d2cd7ebb540d240e/week09/week09_lecture43.ipynb",
+      "upstreamCommit": "218d7dd64316b35ebab8b522d2cd7ebb540d240e",
+      "upstreamGitBlobSha": "c5c3ab080b7ceef9d53e635bb207403801b3457f",
+      "text": "X, y = [], []\ncells_for_training = [] # Store cell coordinates to pair with X and y\nfor r in range(ROWS):\n    for c in range(COLS):\n        if is_free(r, c) and (r, c) != GOAL:\n            a = best_direction(r, c)\n            X.append(featurize(r, c))\n            y.append(a)\n            cells_for_training.append((r, c))\n\nX = np.stack(X)\ny = np.array(y)\n",
+      "textSha256": "c65fdbbbaf443538d0642ef71bd533d43c17f88901d52d0ca2ef003558fa05ea",
+      "transformation": "None: exact source substring, no outputs, assertions, or worked examples added.",
+      "notebookRepresentation": "output_stripped",
+      "upstreamPinStatus": "pinned",
+      "language": "python",
+      "extractionPath": "cells[5].source",
+      "authorId": "author_later_question_inputs"
+    },
+    "l43-navnet": {
+      "kind": "verbatim_source_code",
+      "sourceArtifact": "sources/supplemental/L43-official-code.py",
+      "sourceSha256": "a3a2af242d1ca065595e9845e472fa635725a8b9fa293f9c4b45ba3ff5000c85",
+      "lineStart": 110,
+      "lineEnd": 120,
+      "notebookArtifact": "sources/supplemental/L43-official-notebook-output-stripped.ipynb",
+      "notebookSha256": "e77bae803502b75106d158ef8515fec99f83809ff2569d49c6432f1a5dd33e59",
+      "cellIndexZeroBased": 7,
+      "cellId": "585f52a8",
+      "cellLineStart": 1,
+      "cellLineEnd": 11,
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/218d7dd64316b35ebab8b522d2cd7ebb540d240e/week09/week09_lecture43.ipynb",
+      "upstreamCommit": "218d7dd64316b35ebab8b522d2cd7ebb540d240e",
+      "upstreamGitBlobSha": "c5c3ab080b7ceef9d53e635bb207403801b3457f",
+      "text": "class NavNet(nn.Module):\n    def __init__(self, in_dim=6, hidden=16, out_dim=4):\n        super().__init__()\n        self.net = nn.Sequential(\n            nn.Linear(in_dim, hidden),\n            nn.ReLU(),\n            nn.Linear(hidden, out_dim),\n        )\n\n    def forward(self, x):\n        return self.net(x)\n",
+      "textSha256": "75616e0320baabc90b10f9aa74826265ebb9b1ec122114abbe4d23890e857dec",
+      "transformation": "None: exact source substring, no outputs, assertions, or worked examples added.",
+      "notebookRepresentation": "output_stripped",
+      "upstreamPinStatus": "pinned",
+      "language": "python",
+      "extractionPath": "cells[7].source",
+      "authorId": "author_later_question_inputs"
+    },
+    "l43-training-epoch": {
+      "kind": "verbatim_source_code",
+      "sourceArtifact": "sources/supplemental/L43-official-code.py",
+      "sourceSha256": "a3a2af242d1ca065595e9845e472fa635725a8b9fa293f9c4b45ba3ff5000c85",
+      "lineStart": 122,
+      "lineEnd": 137,
+      "notebookArtifact": "sources/supplemental/L43-official-notebook-output-stripped.ipynb",
+      "notebookSha256": "e77bae803502b75106d158ef8515fec99f83809ff2569d49c6432f1a5dd33e59",
+      "cellIndexZeroBased": 7,
+      "cellId": "585f52a8",
+      "cellLineStart": 13,
+      "cellLineEnd": 28,
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/218d7dd64316b35ebab8b522d2cd7ebb540d240e/week09/week09_lecture43.ipynb",
+      "upstreamCommit": "218d7dd64316b35ebab8b522d2cd7ebb540d240e",
+      "upstreamGitBlobSha": "c5c3ab080b7ceef9d53e635bb207403801b3457f",
+      "text": "X_t = torch.from_numpy(X)\ny_t = torch.from_numpy(y).long()\n\nmodel = NavNet()\noptimizer = optim.Adam(model.parameters(), lr=0.05)\nloss_fn = nn.CrossEntropyLoss()\n\nEPOCHS = 60\nloss_history = []\nfor epoch in range(EPOCHS):\n    optimizer.zero_grad()\n    logits = model(X_t)\n    loss = loss_fn(logits, y_t)\n    loss.backward()\n    optimizer.step()\n    loss_history.append(loss.item())\n",
+      "textSha256": "608a167c1dcfd721615a7011e64d05e4bc93b1ce17dde813144a369f8d9fc756",
+      "transformation": "None: exact source substring, no outputs, assertions, or worked examples added.",
+      "notebookRepresentation": "output_stripped",
+      "upstreamPinStatus": "pinned",
+      "language": "python",
+      "extractionPath": "cells[7].source",
+      "authorId": "author_later_question_inputs"
+    },
+    "l43-navigate": {
+      "kind": "verbatim_source_code",
+      "sourceArtifact": "sources/supplemental/L43-official-code.py",
+      "sourceSha256": "a3a2af242d1ca065595e9845e472fa635725a8b9fa293f9c4b45ba3ff5000c85",
+      "lineStart": 144,
+      "lineEnd": 158,
+      "notebookArtifact": "sources/supplemental/L43-official-notebook-output-stripped.ipynb",
+      "notebookSha256": "e77bae803502b75106d158ef8515fec99f83809ff2569d49c6432f1a5dd33e59",
+      "cellIndexZeroBased": 9,
+      "cellId": "51d0a1b5",
+      "cellLineStart": 1,
+      "cellLineEnd": 15,
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/218d7dd64316b35ebab8b522d2cd7ebb540d240e/week09/week09_lecture43.ipynb",
+      "upstreamCommit": "218d7dd64316b35ebab8b522d2cd7ebb540d240e",
+      "upstreamGitBlobSha": "c5c3ab080b7ceef9d53e635bb207403801b3457f",
+      "text": "@torch.no_grad()\ndef navigate(model, max_steps=10):\n    r, c = START\n    path = [(r, c)]\n    for _ in range(max_steps):\n        if (r, c) == GOAL:\n            break\n        feat = torch.from_numpy(featurize(r, c)).unsqueeze(0)\n        scores = model(feat).squeeze(0).numpy()\n        valid = [ai for ai, (dr, dc) in enumerate(ACTIONS) if is_free(r + dr, c + dc)]\n        chosen = max(valid, key=lambda ai: scores[ai])\n        dr, dc = ACTIONS[chosen]\n        r, c = r + dr, c + dc\n        path.append((r, c))\n    return path\n",
+      "textSha256": "270183f467340af05cc2435b53584621d93518d0712ba5fd810fff9957199f19",
+      "transformation": "None: exact source substring, no outputs, assertions, or worked examples added.",
+      "notebookRepresentation": "output_stripped",
+      "upstreamPinStatus": "pinned",
+      "language": "python",
+      "extractionPath": "cells[9].source",
+      "authorId": "author_later_question_inputs"
+    },
+    "l34-setup-cell": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L34-official-notebook.ipynb",
+      "sourceSha256": "b460420750fcee804b99fcf48fc04f3680719026c7b351fb54c67c5028b1a4aa",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L34-official-notebook.ipynb",
+      "notebookSha256": "b460420750fcee804b99fcf48fc04f3680719026c7b351fb54c67c5028b1a4aa",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "local_only",
+      "cellIndexZeroBased": 2,
+      "cellId": null,
+      "cellLineStart": 1,
+      "cellLineEnd": 22,
+      "extractionPath": "cells[2].source",
+      "sourceUrl": "https://raw.githubusercontent.com/robotics-lab-iitr/nptel-ai-robotics/main/week07/week07_lecture34.ipynb",
+      "upstreamCommit": null,
+      "upstreamGitBlobSha": null,
+      "text": "try:\n    import google.colab\n    print(\"Running on Google Colab\")\n    !pip install -q numpy matplotlib pillow\nexcept ModuleNotFoundError:\n    print(\"Running locally\")\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom IPython.display import HTML, display\nfrom matplotlib.animation import FuncAnimation\n\n%matplotlib inline\n\nnp.set_printoptions(\n    linewidth=120,\n    formatter={'float': lambda x: f\"{0:8.4g}\" if abs(x) < 1e-10 else f\"{x:8.4g}\"}\n)\n\nnp.random.seed(0)\n\nprint(\"Setup complete!\")",
+      "textSha256": "50e8971d272b3436bda34601b1c36f1ede5c5d10677e7838ce3abb198e865caa",
+      "transformation": "None: exact frozen source substring; no execution, correction or result added.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l34-initial-values": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L34-official-notebook.ipynb",
+      "sourceSha256": "b460420750fcee804b99fcf48fc04f3680719026c7b351fb54c67c5028b1a4aa",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L34-official-notebook.ipynb",
+      "notebookSha256": "b460420750fcee804b99fcf48fc04f3680719026c7b351fb54c67c5028b1a4aa",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "local_only",
+      "cellIndexZeroBased": 4,
+      "cellId": "RwkAuTHmYm67",
+      "cellLineStart": 1,
+      "cellLineEnd": 8,
+      "extractionPath": "cells[4].source",
+      "sourceUrl": "https://raw.githubusercontent.com/robotics-lab-iitr/nptel-ai-robotics/main/week07/week07_lecture34.ipynb",
+      "upstreamCommit": null,
+      "upstreamGitBlobSha": null,
+      "text": "x = 2.0          # Sensor reading (input)\ny_true = 10.0    # Target motor speed (output)\n\nw = 3.0          # Initial random weight\nb = 1.0          # Initial random bias\nlearning_rate = 0.1\n\nepochs = 5       # Number of times we will loop the learning process\n",
+      "textSha256": "c5a4a388d8b3c0321d90af052216e7ad8ef30446a0d57277e375a70cb084cf92",
+      "transformation": "None: exact frozen source substring; no execution, correction or result added.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l34-learning-loop": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L34-official-notebook.ipynb",
+      "sourceSha256": "b460420750fcee804b99fcf48fc04f3680719026c7b351fb54c67c5028b1a4aa",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L34-official-notebook.ipynb",
+      "notebookSha256": "b460420750fcee804b99fcf48fc04f3680719026c7b351fb54c67c5028b1a4aa",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "local_only",
+      "cellIndexZeroBased": 8,
+      "cellId": "LAEybz7OPetK",
+      "cellLineStart": 1,
+      "cellLineEnd": 39,
+      "extractionPath": "cells[8].source",
+      "sourceUrl": "https://raw.githubusercontent.com/robotics-lab-iitr/nptel-ai-robotics/main/week07/week07_lecture34.ipynb",
+      "upstreamCommit": null,
+      "upstreamGitBlobSha": null,
+      "text": "# Store history for plotting the loss curve and animation\nloss_history = []\nw_history = []\nb_history = []\n\nfor epoch in range(1, epochs + 1):\n    print(f\"--- EPOCH {epoch} ---\")\n    # Print current weights and biases for the epoch\n    print(f\"Current Weight (w): {w:.2f}, Current Bias (b): {b:.2f}\")\n\n    # Step 1: Forward Pass (Prediction)\n    y_pred = (w * x) + b\n\n    # Step 2: Loss Function (Mean Squared Error)\n    # Multiplying by 0.5 to make the derivative cleaner\n    loss = 0.5 * (y_true - y_pred)**2\n    loss_history.append(loss) # Store loss\n    w_history.append(w) # Store weights for animation\n    b_history.append(b) # Store biases for animation\n\n    # Step 3: Backpropagation (Calculate Gradients)\n    error = y_true - y_pred\n    dw = -error * x   # Gradient of Loss w.r.t weight\n    db = -error * 1   # Gradient of Loss w.r.t bias\n\n    # Step 4: Gradient Descent (Update Weights)\n    w_new = w - (learning_rate * dw)\n    b_new = b - (learning_rate * db)\n\n    # Print the math for the students to see\n    print(f\"Prediction : ({w:.2f} * {x}) + {b:.2f} = {y_pred:.2f}\")\n    print(f\"Loss       : 0.5 * ({y_true} - {y_pred:.2f})^2 = {loss:.4f}\")\n    print(f\"Gradients  : dw = {dw:.2f}, db = {db:.2f}\")\n    print(f\"Updates    : w_new = {w:.2f} - ({learning_rate} * {dw:.2f}) = {w_new:.2f}\")\n    print(f\"             b_new = {b:.2f} - ({learning_rate} * {db:.2f}) = {b_new:.2f}\\n\")\n\n    # Save the new weights for the next epoch\n    w = w_new\n    b = b_new\n",
+      "textSha256": "112ba90e53b86f72200999ee16c3eb3b59219e530618672f2a7628943ae6b8fe",
+      "transformation": "None: exact frozen source substring; no execution, correction or result added.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l35-predict-cell": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "audits/review-snapshots/W07-L35-official-notebook-contracts.ipynb",
+      "sourceSha256": "5f2680c5d1089be24f5b5cc17e1429761777af79e47b31ab62f381150485881c",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "audits/review-snapshots/W07-L35-official-notebook-contracts.ipynb",
+      "notebookSha256": "5f2680c5d1089be24f5b5cc17e1429761777af79e47b31ab62f381150485881c",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "local_only",
+      "cellIndexZeroBased": 7,
+      "cellId": "SWs6icfaWkEU",
+      "cellLineStart": 1,
+      "cellLineEnd": 7,
+      "extractionPath": "cells[7].source",
+      "sourceUrl": "https://raw.githubusercontent.com/robotics-lab-iitr/nptel-ai-robotics/main/week07/week07_lecture35.ipynb",
+      "upstreamCommit": null,
+      "upstreamGitBlobSha": null,
+      "text": "# 3. Run inference (prediction)\nprint(\"Running YOLOv8 inference...\")\n\n# 'save=True' tells YOLO to save a copy of the image with bounding boxes drawn on it\n# 'conf=0.25' tells the model to ignore any predictions it is less than 25% confident about\nresults = model.predict(source=image_source, conf=0.25)              \nresults",
+      "textSha256": "ee65fc037810ce7b712d752a7fb2ec5f2e1624fc9c4d08a16469833c89298af1",
+      "transformation": "None: exact frozen source substring; no execution, correction or result added.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l35-report-loop": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "audits/review-snapshots/W07-L35-official-notebook-contracts.ipynb",
+      "sourceSha256": "5f2680c5d1089be24f5b5cc17e1429761777af79e47b31ab62f381150485881c",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "audits/review-snapshots/W07-L35-official-notebook-contracts.ipynb",
+      "notebookSha256": "5f2680c5d1089be24f5b5cc17e1429761777af79e47b31ab62f381150485881c",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "local_only",
+      "cellIndexZeroBased": 11,
+      "cellId": "SXR_jJ6VZkDd",
+      "cellLineStart": 1,
+      "cellLineEnd": 25,
+      "extractionPath": "cells[11].source",
+      "sourceUrl": "https://raw.githubusercontent.com/robotics-lab-iitr/nptel-ai-robotics/main/week07/week07_lecture35.ipynb",
+      "upstreamCommit": null,
+      "upstreamGitBlobSha": null,
+      "text": "print(f\"YOLO found {len(boxes)} objects in the image.\\n\")\n\n# Let's loop through every single detected object and make the data readable\nfor box in boxes:\n\n    # 1. Class ID & Name (What is it?)\n    # .item() pulls the single number out of the complex PyTorch tensor\n    class_id = int(box.cls[0].item())\n    class_name = results[0].names[class_id] # Look up the actual word using the ID\n\n    # 2. Confidence Score (How sure is the model?)\n    conf = box.conf[0].item()\n\n    # 3. Bounding Box Coordinates: Center X, Center Y, Width, Height\n    # .tolist() converts the PyTorch array into a standard Python list\n    coords = box.xywh[0].tolist()\n\n    # Format the coordinates to 2 decimal places for cleaner printing\n    formatted_coords = [round(num, 2) for num in coords]\n\n    # Print the decoded results!\n    print(f\"Object: {class_name.upper()}\")\n    print(f\"Confidence: {conf * 100:.1f}%\")\n    print(f\"Coordinates (x, y, w, h): {formatted_coords}\")\n    print(\"-\" * 30)",
+      "textSha256": "b03658533d299ebaf82b8f7fae71e8ae1d2c309921a53197161234fb3334ba85",
+      "transformation": "None: exact frozen source substring; no execution, correction or result added.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l35-display-cell": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "audits/review-snapshots/W07-L35-official-notebook-contracts.ipynb",
+      "sourceSha256": "5f2680c5d1089be24f5b5cc17e1429761777af79e47b31ab62f381150485881c",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "audits/review-snapshots/W07-L35-official-notebook-contracts.ipynb",
+      "notebookSha256": "5f2680c5d1089be24f5b5cc17e1429761777af79e47b31ab62f381150485881c",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "local_only",
+      "cellIndexZeroBased": 12,
+      "cellId": null,
+      "cellLineStart": 1,
+      "cellLineEnd": 5,
+      "extractionPath": "cells[12].source",
+      "sourceUrl": "https://raw.githubusercontent.com/robotics-lab-iitr/nptel-ai-robotics/main/week07/week07_lecture35.ipynb",
+      "upstreamCommit": null,
+      "upstreamGitBlobSha": null,
+      "text": "# To display the YOLO result\nplt.figure(figsize=(10, 7))\nplt.imshow(results[0].plot()[:, :, ::-1])\nplt.axis(\"off\")\nplt.show()",
+      "textSha256": "2e17d62125b8394ef8afdfe4e1ab73e509672a8bc32651117c8839c7b22b10b2",
+      "transformation": "None: exact frozen source substring; no execution, correction or result added.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l46-count-dataframe": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L46-official-week10_lecture46.ipynb",
+      "sourceSha256": "d32019733e3d14c0b21c9bf5276ecceb8fa4b0a11757bb0b4ffef4b2fe2504c3",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L46-official-week10_lecture46.ipynb",
+      "notebookSha256": "d32019733e3d14c0b21c9bf5276ecceb8fa4b0a11757bb0b4ffef4b2fe2504c3",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "local_only",
+      "cellIndexZeroBased": 17,
+      "cellId": "Tq2N7DmzltgL",
+      "cellLineStart": 10,
+      "cellLineEnd": 20,
+      "extractionPath": "cells[17].source",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/main/week10/week10_lecture46.ipynb",
+      "upstreamCommit": null,
+      "upstreamGitBlobSha": null,
+      "text": "# Create BoW vectorizer\nvectorizer = CountVectorizer()\n\n# Convert text into BoW vectors\nX = vectorizer.fit_transform(commands)\n\n# Display matrix\ndf = pd.DataFrame(\n    X.toarray(),\n    columns=vectorizer.get_feature_names_out()\n)\n",
+      "textSha256": "79bb2aa9882861ec8de71c96a8d82bb8a5c31bb728a6a2adef22aada281bc1d9",
+      "transformation": "None: exact frozen source substring; no execution, correction or result added.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l46-contextual-light-code": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L46-official-week10_lecture46.ipynb",
+      "sourceSha256": "d32019733e3d14c0b21c9bf5276ecceb8fa4b0a11757bb0b4ffef4b2fe2504c3",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L46-official-week10_lecture46.ipynb",
+      "notebookSha256": "d32019733e3d14c0b21c9bf5276ecceb8fa4b0a11757bb0b4ffef4b2fe2504c3",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "local_only",
+      "cellIndexZeroBased": 24,
+      "cellId": "lDUxGqyC-wz2",
+      "cellLineStart": 1,
+      "cellLineEnd": 7,
+      "extractionPath": "cells[24].source",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/main/week10/week10_lecture46.ipynb",
+      "upstreamCommit": null,
+      "upstreamGitBlobSha": null,
+      "text": "# Example A: Light as a Noun\nsent_a = nltk.pos_tag(nltk.word_tokenize((\"Turn on the light\").lower()))\nprint(sent_a)\n\n# Example B: Light as an Adjective\nsent_b = nltk.pos_tag(nltk.word_tokenize((\"This is a light box\").lower()))\nsent_b",
+      "textSha256": "e107eae200b55679ce0527c3c2672d964bb10783c664ea42f246049541af10be",
+      "transformation": "None: exact frozen source substring; no execution, correction or result added.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l46-contextual-light-noun-output": {
+      "kind": "verbatim_saved_output",
+      "language": "text",
+      "sourceArtifact": "sources/supplemental/L46-official-week10_lecture46.ipynb",
+      "sourceSha256": "d32019733e3d14c0b21c9bf5276ecceb8fa4b0a11757bb0b4ffef4b2fe2504c3",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L46-official-week10_lecture46.ipynb",
+      "notebookSha256": "d32019733e3d14c0b21c9bf5276ecceb8fa4b0a11757bb0b4ffef4b2fe2504c3",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "local_only",
+      "cellIndexZeroBased": 24,
+      "cellId": "lDUxGqyC-wz2",
+      "cellLineStart": 1,
+      "cellLineEnd": 1,
+      "extractionPath": "cells[24].outputs[0].text",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/main/week10/week10_lecture46.ipynb",
+      "upstreamCommit": null,
+      "upstreamGitBlobSha": null,
+      "text": "[('turn', 'NN'), ('on', 'IN'), ('the', 'DT'), ('light', 'NN')]\n",
+      "textSha256": "ebde0968c07f5235a587a9f9328ceb2fae5bacb84db8c64a8feffd33c16faa69",
+      "transformation": "None: exact historically saved notebook output; not freshly executed and not a claim about current resources.",
+      "notebookOutputIndex": 0,
+      "notebookOutputField": "text",
+      "authorId": "author_later_question_inputs"
+    },
+    "l46-contextual-light-adjective-output": {
+      "kind": "verbatim_saved_output",
+      "language": "text",
+      "sourceArtifact": "sources/supplemental/L46-official-week10_lecture46.ipynb",
+      "sourceSha256": "d32019733e3d14c0b21c9bf5276ecceb8fa4b0a11757bb0b4ffef4b2fe2504c3",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L46-official-week10_lecture46.ipynb",
+      "notebookSha256": "d32019733e3d14c0b21c9bf5276ecceb8fa4b0a11757bb0b4ffef4b2fe2504c3",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "local_only",
+      "cellIndexZeroBased": 24,
+      "cellId": "lDUxGqyC-wz2",
+      "cellLineStart": 1,
+      "cellLineEnd": 1,
+      "extractionPath": "cells[24].outputs[1].data['text/plain']",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/main/week10/week10_lecture46.ipynb",
+      "upstreamCommit": null,
+      "upstreamGitBlobSha": null,
+      "text": "[('this', 'DT'), ('is', 'VBZ'), ('a', 'DT'), ('light', 'JJ'), ('box', 'NN')]",
+      "textSha256": "b427f8d7006e9bab48af252b9fdc1a5b233d38973731a99f6e8661e377b7e622",
+      "transformation": "None: exact historically saved notebook output; not freshly executed and not a claim about current resources.",
+      "notebookOutputIndex": 1,
+      "notebookOutputField": "data.text/plain",
+      "authorId": "author_later_question_inputs"
+    },
+    "l50-robot-config": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "sourceSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "notebookSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "commit_only",
+      "cellIndexZeroBased": 9,
+      "cellId": "7Zx7B-sJxEQj",
+      "cellLineStart": 14,
+      "cellLineEnd": 59,
+      "extractionPath": "cells[9].source",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+      "upstreamCommit": "a70ba559deefa15abd9045756f3c76f0bada8abd",
+      "upstreamGitBlobSha": null,
+      "text": "    def __init__(self):\n        # Initialize various emotion levels for the robot\n        self.emotions = {\n            \"happy\": 50,\n            \"sad\": 50,\n            \"welcome\": 50,\n            \"distant\": 50,\n            \"friend\": 50,\n            \"strange\": 50,\n            \"curious\": 50,\n            \"frustrated\": 50,\n            \"fresh\": 80,\n            \"tired\": 20,\n        }\n\n        # Define pairs of opposite emotions\n        self.opposites = {\n            \"happy\": \"sad\",\n            \"sad\": \"happy\",\n            \"welcome\": \"distant\",\n            \"distant\": \"welcome\",\n            \"friend\": \"strange\",\n            \"strange\": \"friend\",\n            \"curious\": \"frustrated\",\n            \"frustrated\": \"curious\",\n            \"fresh\": \"tired\",\n            \"tired\": \"fresh\",\n        }\n\n        # Map emotions to angular positions on an emotion axis (in degrees)\n        self.emotion_axis = {\n            \"happy\": 112,\n            \"welcome\": 22,\n            \"friend\": 67,\n            \"curious\": 157,\n            \"sad\": 292,\n            \"distant\": 202,\n            \"strange\": 247,\n            \"frustrated\": 337,\n        }\n\n        # Initialize polar state variables (radius and angle)\n        self.state_r = 0.0\n        self.state_theta = 112.0 # Default angle\n        self.active_mood = \"NEUTRAL\" # Current active mood\n        self.update() # Initial update of the emotional state\n",
+      "textSha256": "3d0ae352f0908af009421c7df30d01196b3f8416cf4213e0e9e8860c796a8ff6",
+      "transformation": "None: exact frozen source-cell substring. Existing author evidence records a commit-pinned retrieval and matching SHA256, but no upstream Git blob hash is recorded, so upstreamPinStatus is commit_only; no code or live model executed.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l50-robot-change": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "sourceSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "notebookSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "commit_only",
+      "cellIndexZeroBased": 9,
+      "cellId": "7Zx7B-sJxEQj",
+      "cellLineStart": 61,
+      "cellLineEnd": 73,
+      "extractionPath": "cells[9].source",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+      "upstreamCommit": "a70ba559deefa15abd9045756f3c76f0bada8abd",
+      "upstreamGitBlobSha": null,
+      "text": "    def change(self, emotion: str, value: float) -> None:\n        # Change the value of a specific emotion\n        if emotion not in self.emotions:\n            raise KeyError(f\"Unknown robot emotion: {emotion}\")\n\n        value = float(np.clip(value, 0, 100)) # Clip value to be between 0 and 100\n        self.emotions[emotion] = value # Set the emotion value\n\n        opposite = self.opposites.get(emotion) # Get the opposite emotion\n        if opposite is not None:\n            self.emotions[opposite] = 100.0 - value # Update the opposite emotion value\n\n        self.update() # Recalculate the overall mood\n",
+      "textSha256": "038ab6cc1f35fe8232c1386a056bdf334a8102c96bba48ccdd4980ee63347c3d",
+      "transformation": "None: exact frozen source-cell substring. Existing author evidence records a commit-pinned retrieval and matching SHA256, but no upstream Git blob hash is recorded, so upstreamPinStatus is commit_only; no code or live model executed.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l50-robot-update": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "sourceSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "notebookSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "commit_only",
+      "cellIndexZeroBased": 9,
+      "cellId": "7Zx7B-sJxEQj",
+      "cellLineStart": 79,
+      "cellLineEnd": 115,
+      "extractionPath": "cells[9].source",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+      "upstreamCommit": "a70ba559deefa15abd9045756f3c76f0bada8abd",
+      "upstreamGitBlobSha": null,
+      "text": "    def update(self) -> None:\n        # Update the robot's overall emotional state (polar coordinates and active mood)\n        x_sum = 0.0\n        y_sum = 0.0\n\n        # Calculate sum of x and y components for each emotion vector\n        for emotion, angle in self.emotion_axis.items():\n            radius = self.emotions[emotion] - 50.0 # Normalize emotion value around 50\n            radians = math.radians(angle) # Convert angle to radians\n            x_sum += radius * math.cos(radians)\n            y_sum += radius * math.sin(radians)\n\n        self.state_r = math.hypot(x_sum, y_sum) # Calculate resultant radius (magnitude)\n\n        if self.state_r > 1e-3: # If there's a significant emotional state\n            theta = math.degrees(math.atan2(y_sum, x_sum)) # Calculate resultant angle\n            self.state_theta = theta % 360 # Normalize angle to 0-360 degrees\n        else:\n            self.state_theta = 112.0 # Default angle if no strong emotion\n\n        if self.state_r < 10.0: # If the emotional state is weak, set to neutral\n            self.active_mood = \"NEUTRAL\"\n            return\n\n        def angular_distance(a: float, b: float) -> float:\n            # Helper function to calculate shortest angular distance\n            delta = abs(a - b)\n            return min(delta, 360.0 - delta)\n\n        # Determine the active mood based on the closest emotion axis\n        self.active_mood = min(\n            self.emotion_axis,\n            key=lambda emotion: angular_distance(\n                self.state_theta,\n                self.emotion_axis[emotion],\n            ),\n        ).upper()",
+      "textSha256": "f031b6c66c361160cd97b3eead988b36366699e236f1beb56b7befac6f97a192",
+      "transformation": "None: exact frozen source-cell substring. Existing author evidence records a commit-pinned retrieval and matching SHA256, but no upstream Git blob hash is recorded, so upstreamPinStatus is commit_only; no code or live model executed.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l50-human-change": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "sourceSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "notebookSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "commit_only",
+      "cellIndexZeroBased": 11,
+      "cellId": "lO8G3N0vxp2q",
+      "cellLineStart": 9,
+      "cellLineEnd": 50,
+      "extractionPath": "cells[11].source",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+      "upstreamCommit": "a70ba559deefa15abd9045756f3c76f0bada8abd",
+      "upstreamGitBlobSha": null,
+      "text": "    def __init__(self):\n        # Initialize emotional state variables for the human\n        self.emotions = {\n            \"happy\": 50,\n            \"sad\": 50,\n            \"friendly\": 50,\n            \"distant\": 50,\n        }\n\n        # Define pairs of opposite emotions\n        self.opposites = {\n            \"happy\": \"sad\",\n            \"sad\": \"happy\",\n            \"friendly\": \"distant\",\n            \"distant\": \"friendly\",\n        }\n\n        # Map emotions to angular positions on a polar axis\n        self.emotion_axis = {\n            \"happy\": 45,\n            \"friendly\": 90,\n            \"sad\": 225,\n            \"distant\": 270,\n        }\n\n        # Initialize polar state (magnitude and angle)\n        self.state_r = 0.0\n        self.state_theta = 45.0\n        self.active_mood = \"NEUTRAL\" # Current active mood\n        self.update() # Initial update of the emotional state\n\n    def change(self, emotion: str, value: float) -> None:\n        # Change the value of a specific emotion\n        if emotion not in self.emotions:\n            raise KeyError(f\"Unknown human-emotion dimension: {emotion}\")\n\n        value = float(np.clip(value, 0, 100)) # Clip value to be between 0 and 100\n        self.emotions[emotion] = value # Set the emotion value\n\n        opposite = self.opposites[emotion] # Get the opposite emotion\n        self.emotions[opposite] = 100.0 - value # Update the opposite emotion value\n        self.update() # Recalculate the overall mood\n",
+      "textSha256": "b5c0cbf8f031b5b56e057209ac5bb619b3cb6723eed33bfbdfcaf1a7e0ec723b",
+      "transformation": "None: exact frozen source-cell substring. Existing author evidence records a commit-pinned retrieval and matching SHA256, but no upstream Git blob hash is recorded, so upstreamPinStatus is commit_only; no code or live model executed.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l50-memory": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "sourceSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "notebookSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "commit_only",
+      "cellIndexZeroBased": 13,
+      "cellId": "oWKlbp8KyLWR",
+      "cellLineStart": 5,
+      "cellLineEnd": 38,
+      "extractionPath": "cells[13].source",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+      "upstreamCommit": "a70ba559deefa15abd9045756f3c76f0bada8abd",
+      "upstreamGitBlobSha": null,
+      "text": "@dataclass\nclass ConversationMemory:\n    \"\"\"Manages the conversation history and known facts about the user.\"\"\"\n\n    # Stores known facts about the user, initialized with None values\n    known_facts: dict = field(\n        default_factory=lambda: {\n            \"name\": None,\n            \"age\": None,\n            \"favorite_food\": None,\n            \"favorite_book\": None,\n            \"favorite_subject\": None,\n            \"favorite_song\": None,\n            \"favorite_color\": None,\n        }\n    )\n    # List of past conversation turns, each a dictionary with 'role' and 'content'\n    history: list[dict[str, str]] = field(default_factory=list)\n    # Counter for the number of conversation turns\n    turn_count: int = 0\n\n    def add_turn(self, user_text: str, assistant_text: str) -> None:\n        \"\"\"Adds a user and assistant turn to the conversation history.\"\"\"\n        self.history.extend(\n            [\n                {\"role\": \"user\", \"content\": user_text},\n                {\"role\": \"assistant\", \"content\": assistant_text},\n            ]\n        )\n\n        # Keep the prompt compact for a small local model.\n        # Only retain the last 12 turns to manage memory usage and context window\n        self.history = self.history[-12:]\n        self.turn_count += 1",
+      "textSha256": "11be6999b567d56462932f61501bce9ed73cf943d4d6a462ee795da90bf705b3",
+      "transformation": "None: exact frozen source-cell substring. Existing author evidence records a commit-pinned retrieval and matching SHA256, but no upstream Git blob hash is recorded, so upstreamPinStatus is commit_only; no code or live model executed.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l50-analysis-context": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "sourceSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "notebookSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "commit_only",
+      "cellIndexZeroBased": 15,
+      "cellId": "zwLVGXhyxiHL",
+      "cellLineStart": 5,
+      "cellLineEnd": 14,
+      "extractionPath": "cells[15].source",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+      "upstreamCommit": "a70ba559deefa15abd9045756f3c76f0bada8abd",
+      "upstreamGitBlobSha": null,
+      "text": "def analyse_emotion(\n    user_text: str,\n    memory: ConversationMemory,\n) -> EmotionAnalysis:\n    \"\"\"\n    Uses the local LLM as a zero-shot, text-only emotion classifier.\n    \"\"\"\n\n    # Get the last 6 turns of conversation history for context\n    recent_context = memory.history[-6:]\n",
+      "textSha256": "c61a3da92ce032778055e648310fee1e44e7bf167d3e67ae67f5dfa725832730",
+      "transformation": "None: exact frozen source-cell substring. Existing author evidence records a commit-pinned retrieval and matching SHA256, but no upstream Git blob hash is recorded, so upstreamPinStatus is commit_only; no code or live model executed.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l50-reply-context": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "sourceSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "notebookSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "commit_only",
+      "cellIndexZeroBased": 15,
+      "cellId": "zwLVGXhyxiHL",
+      "cellLineStart": 121,
+      "cellLineEnd": 124,
+      "extractionPath": "cells[15].source",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+      "upstreamCommit": "a70ba559deefa15abd9045756f3c76f0bada8abd",
+      "upstreamGitBlobSha": null,
+      "text": "    # Prepare messages for the LLM, including system prompt and recent history\n    messages = [{\"role\": \"system\", \"content\": system_prompt}]\n    messages.extend(memory.history[-8:]) # Include last 8 turns of conversation\n    messages.append({\"role\": \"user\", \"content\": user_text})\n",
+      "textSha256": "985b1ce4b84dba384e2e8dc4c9656a4cdc732925273d2a289065dc5e8cf821bb",
+      "transformation": "None: exact frozen source-cell substring. Existing author evidence records a commit-pinned retrieval and matching SHA256, but no upstream Git blob hash is recorded, so upstreamPinStatus is commit_only; no code or live model executed.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l50-response-rules": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "sourceSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "notebookSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "commit_only",
+      "cellIndexZeroBased": 15,
+      "cellId": "zwLVGXhyxiHL",
+      "cellLineStart": 95,
+      "cellLineEnd": 119,
+      "extractionPath": "cells[15].source",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+      "upstreamCommit": "a70ba559deefa15abd9045756f3c76f0bada8abd",
+      "upstreamGitBlobSha": null,
+      "text": "    # Construct the system prompt for Albert's persona and context\n    system_prompt = f\"\"\"\nYou are Albert, a friendly demonstration robot in a beginner AI-for-Robotics course.\n\nThe user's text was estimated as:\n- emotion: {analysis.emotion}\n- model-reported confidence: {analysis.confidence:.2f}\n- valence: {analysis.valence:.2f}\n- arousal: {analysis.arousal:.2f}\n\nAlbert's simulated internal mood is: {robot.active_mood}\n\nKnown user facts:\n{json.dumps(known_facts, ensure_ascii=False)}\n\nResponse rules:\n- Reply naturally in at most three short sentences.\n- Adapt the tone cautiously to the estimated emotion.\n- Do not assert that you know exactly how the user feels.\n- Do not repeatedly name the emotion label.\n- Ask at most one relevant follow-up question.\n- Do not claim that Albert truly experiences emotions.\n- For dangerous or medical situations, recommend contacting a qualified\n  person or emergency service instead of pretending to be a professional.\n\"\"\"\n",
+      "textSha256": "98a1d143ced28bc8ab8ad3ec8db46e4131716d630aea586ad71e0de60a1cb972",
+      "transformation": "None: exact frozen source-cell substring. Existing author evidence records a commit-pinned retrieval and matching SHA256, but no upstream Git blob hash is recorded, so upstreamPinStatus is commit_only; no code or live model executed.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l50-human-mapping": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "sourceSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "notebookSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "commit_only",
+      "cellIndexZeroBased": 17,
+      "cellId": "AriQqIjayEOU",
+      "cellLineStart": 5,
+      "cellLineEnd": 26,
+      "extractionPath": "cells[17].source",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+      "upstreamCommit": "a70ba559deefa15abd9045756f3c76f0bada8abd",
+      "upstreamGitBlobSha": null,
+      "text": "def apply_analysis_to_human_engine(\n    analysis: EmotionAnalysis,\n    human: HumanEmotionEngine,\n) -> None:\n    \"\"\"\n    Maps the categorical LLM output and continuous valence/arousal values\n    onto the human polar state model.\n    \"\"\"\n\n    # Use continuous values as the primary mapping to happiness and calmness.\n    happiness = 50.0 + 50.0 * analysis.valence\n    calmness = 50.0 - 50.0 * analysis.arousal\n\n    # For low-confidence estimates, keep the emotion closer to neutral.\n    weight = analysis.confidence\n    happiness = 50.0 + weight * (happiness - 50.0)\n    calmness = 50.0 + weight * (calmness - 50.0)\n\n    # Apply the calculated happiness and calmness to the human emotion engine.\n    human.change(\"happy\", happiness)\n    # Map calmness to 'friendly' as a social state\n    human.change(\"friendly\", calmness)\n",
+      "textSha256": "9dac884993ad427bbfe39013baef0a98bf9431a1a64af0122a7bc5c79d265f71",
+      "transformation": "None: exact frozen source-cell substring. Existing author evidence records a commit-pinned retrieval and matching SHA256, but no upstream Git blob hash is recorded, so upstreamPinStatus is commit_only; no code or live model executed.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l50-robot-policy": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "sourceSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "notebookSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "commit_only",
+      "cellIndexZeroBased": 17,
+      "cellId": "AriQqIjayEOU",
+      "cellLineStart": 29,
+      "cellLineEnd": 75,
+      "extractionPath": "cells[17].source",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+      "upstreamCommit": "a70ba559deefa15abd9045756f3c76f0bada8abd",
+      "upstreamGitBlobSha": null,
+      "text": "def update_robot_policy(\n    analysis: EmotionAnalysis,\n    robot: RobotEmotionEngine,\n) -> None:\n    \"\"\"\n    Handcrafted policy that changes Albert's simulated mood.\n\n    The robot does not simply copy the human's emotion. For assistive\n    interaction, sadness or fear should generally increase Albert's\n    friendliness and welcoming behaviour.\n    \"\"\"\n\n    # If confidence is low, Albert becomes curious.\n    if analysis.confidence < 0.30:\n        robot.change(\"curious\", 62)\n        return\n\n    # Adjust robot's emotions based on the detected human emotion.\n    if analysis.emotion == \"happy\":\n        robot.change(\"happy\", 80)\n        robot.change(\"welcome\", 78)\n        robot.change(\"friend\", 72)\n\n    elif analysis.emotion == \"sad\":\n        robot.change(\"welcome\", 88)\n        robot.change(\"friend\", 82)\n        robot.change(\"curious\", 62)\n\n    elif analysis.emotion == \"fearful\":\n        robot.change(\"welcome\", 92)\n        robot.change(\"friend\", 85)\n        robot.change(\"curious\", 58)\n\n    elif analysis.emotion == \"angry\":\n        robot.change(\"welcome\", 68)\n        robot.change(\"friend\", 70)\n        robot.change(\"frustrated\", 54)\n\n    elif analysis.emotion == \"frustrated\":\n        robot.change(\"curious\", 78)\n        robot.change(\"welcome\", 74)\n        robot.change(\"friend\", 72)\n\n    else:\n        # Default behavior for other emotions or unclear states.\n        robot.change(\"curious\", 62)\n        robot.change(\"welcome\", 60)\n",
+      "textSha256": "9d6ece5ac34f29184bbb8414bf5d87d2290ef5edf4e6b0716f79f9a88edf3e5c",
+      "transformation": "None: exact frozen source-cell substring. Existing author evidence records a commit-pinned retrieval and matching SHA256, but no upstream Git blob hash is recorded, so upstreamPinStatus is commit_only; no code or live model executed.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l50-battery": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "sourceSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "notebookSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "commit_only",
+      "cellIndexZeroBased": 17,
+      "cellId": "AriQqIjayEOU",
+      "cellLineStart": 78,
+      "cellLineEnd": 81,
+      "extractionPath": "cells[17].source",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+      "upstreamCommit": "a70ba559deefa15abd9045756f3c76f0bada8abd",
+      "upstreamGitBlobSha": null,
+      "text": "def drain_battery(robot: RobotEmotionEngine) -> None:\n    \"\"\"Simulates a small battery drain after each conversation turn.\"\"\"\n    # Reduce the 'fresh' emotion, ensuring it doesn't go below 10.\n    robot.change(\"fresh\", max(10, robot.emotions[\"fresh\"] - 2))",
+      "textSha256": "a3e8c9e32de7a7289914eefd13434fd0a3e90bb19989ff598ca2f03c00e29cd6",
+      "transformation": "None: exact frozen source-cell substring. Existing author evidence records a commit-pinned retrieval and matching SHA256, but no upstream Git blob hash is recorded, so upstreamPinStatus is commit_only; no code or live model executed.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l50-analysis-schema": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "sourceSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "notebookSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "commit_only",
+      "cellIndexZeroBased": 7,
+      "cellId": "mSa74XFrwlFw",
+      "cellLineStart": 11,
+      "cellLineEnd": 26,
+      "extractionPath": "cells[7].source",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+      "upstreamCommit": "a70ba559deefa15abd9045756f3c76f0bada8abd",
+      "upstreamGitBlobSha": null,
+      "text": "class EmotionAnalysis(BaseModel):\n    \"\"\"Text-based emotional estimate returned by the local LLM.\"\"\"\n\n    emotion: Literal[\n        \"happy\",\n        \"sad\",\n        \"angry\",\n        \"fearful\",\n        \"frustrated\",\n        \"neutral\",\n    ] # The detected emotion, restricted to a set of predefined labels\n\n    confidence: float = Field(ge=0.0, le=1.0) # Confidence score of the emotion detection (0.0 to 1.0)\n    valence: float = Field(ge=-1.0, le=1.0) # Emotional valence (negativity to positivity, -1.0 to 1.0)\n    arousal: float = Field(ge=-1.0, le=1.0) # Emotional arousal (calmness to activation, -1.0 to 1.0)\n    explanation: str # A short explanation for the emotion analysis",
+      "textSha256": "7dd32f77f4250afb9bdcafa869312f494ccc5a2b265e5df0391275c8c16b221f",
+      "transformation": "None: exact frozen source-cell substring. Existing author evidence records a commit-pinned retrieval and matching SHA256, but no upstream Git blob hash is recorded, so upstreamPinStatus is commit_only; no code or live model executed.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l50-plot-radius": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "sourceSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "notebookSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "commit_only",
+      "cellIndexZeroBased": 19,
+      "cellId": "2Zr8EmcVx1jp",
+      "cellLineStart": 30,
+      "cellLineEnd": 42,
+      "extractionPath": "cells[19].source",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+      "upstreamCommit": "a70ba559deefa15abd9045756f3c76f0bada8abd",
+      "upstreamGitBlobSha": null,
+      "text": "    # Calculate and plot the resultant emotion vector\n    result_radius = float(np.clip(engine.state_r, 0, 100)) # Clip resultant radius to bounds\n    result_theta = math.radians(engine.state_theta) # Convert resultant angle to radians\n\n    axis.annotate(\n        \"\",\n        xy=(result_theta, result_radius), # End point of the arrow\n        xytext=(0, 0), # Start point of the arrow (origin)\n        arrowprops={\n            \"arrowstyle\": \"-|>\",\n            \"linewidth\": 3,\n        },\n    )\n",
+      "textSha256": "9731c9e3b5f1ecbbbbe79b84307116d943c409d00a3e6663d08af2811b1f2e8d",
+      "transformation": "None: exact frozen source-cell substring. Existing author evidence records a commit-pinned retrieval and matching SHA256, but no upstream Git blob hash is recorded, so upstreamPinStatus is commit_only; no code or live model executed.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l50-ui-submit": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "sourceSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "notebookSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "commit_only",
+      "cellIndexZeroBased": 21,
+      "cellId": "0pOsD8zmF9pq",
+      "cellLineStart": 56,
+      "cellLineEnd": 85,
+      "extractionPath": "cells[21].source",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+      "upstreamCommit": "a70ba559deefa15abd9045756f3c76f0bada8abd",
+      "upstreamGitBlobSha": null,
+      "text": "def submit_message(_=None) -> None:\n    \"\"\"Handles user message submission: analyzes, generates reply, and updates UI.\"\"\"\n    global last_analysis # Declare last_analysis as global to modify it\n\n    user_text = message_box.value.strip() # Get and clean user input\n    if not user_text:\n        return # Do nothing if message is empty\n\n    # Disable controls and update status while processing\n    send_button.disabled = True\n    message_box.disabled = True\n    status_label.value = \"<b>Status:</b> Analysing emotion and generating reply...\"\n\n    try:\n        # Process user message: analyze emotion, update engines, generate reply\n        analysis = analyse_emotion(user_text, memory) # Analyze user's emotion\n        last_analysis = analysis # Store the latest analysis\n\n        apply_analysis_to_human_engine(analysis, human_engine) # Update human emotion engine\n        update_robot_policy(analysis, robot_engine) # Update robot's emotion policy\n        drain_battery(robot_engine) # Simulate battery drain for robot\n\n        reply = generate_reply(\n            user_text=user_text,\n            analysis=analysis,\n            robot=robot_engine,\n            memory=memory,\n        ) # Generate Albert's reply\n\n        memory.add_turn(user_text, reply) # Add conversation turn to memory\n",
+      "textSha256": "12b41b9b7eacbfacdc6b98a44fdd9a1878d34c490135b25dfbdb9353e3ff058d",
+      "transformation": "None: exact frozen source-cell substring. Existing author evidence records a commit-pinned retrieval and matching SHA256, but no upstream Git blob hash is recorded, so upstreamPinStatus is commit_only; no code or live model executed.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l50-ui-reset": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "sourceSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L50-official-week10_lecture50.ipynb",
+      "notebookSha256": "66c4de29a27675d8985b20ee815901e9201382ee290ee4ae0ae001233ec39fab",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "commit_only",
+      "cellIndexZeroBased": 21,
+      "cellId": "0pOsD8zmF9pq",
+      "cellLineStart": 110,
+      "cellLineEnd": 122,
+      "extractionPath": "cells[21].source",
+      "sourceUrl": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/a70ba559deefa15abd9045756f3c76f0bada8abd/week10/week10_lecture50.ipynb",
+      "upstreamCommit": "a70ba559deefa15abd9045756f3c76f0bada8abd",
+      "upstreamGitBlobSha": null,
+      "text": "def reset_demo(_=None) -> None:\n    \"\"\"Resets the chat demo to its initial state.\"\"\"\n    global robot_engine, human_engine, memory, last_analysis # Declare globals to reset them\n\n    # Re-initialize all state variables\n    robot_engine = RobotEmotionEngine()\n    human_engine = HumanEmotionEngine()\n    memory = ConversationMemory()\n    last_analysis = None\n\n    chat_log.clear_output() # Clear the chat log display\n    refresh_visualisation() # Refresh visualization to initial state\n    status_label.value = f\"<b>Local model:</b> {MODEL_NAME} — conversation reset.\" # Update status\n",
+      "textSha256": "d5e3d7c75c3451f7e12e5c865eaf1b46e524c53293c59a8aebb3c6655449f9e3",
+      "transformation": "None: exact frozen source-cell substring. Existing author evidence records a commit-pinned retrieval and matching SHA256, but no upstream Git blob hash is recorded, so upstreamPinStatus is commit_only; no code or live model executed.",
+      "authorId": "author_later_question_inputs"
+    },
+    "l34-plot-output-label": {
+      "kind": "verbatim_source_code",
+      "language": "python",
+      "sourceArtifact": "sources/supplemental/L34-official-notebook.ipynb",
+      "sourceSha256": "b460420750fcee804b99fcf48fc04f3680719026c7b351fb54c67c5028b1a4aa",
+      "lineStart": null,
+      "lineEnd": null,
+      "notebookArtifact": "sources/supplemental/L34-official-notebook.ipynb",
+      "notebookSha256": "b460420750fcee804b99fcf48fc04f3680719026c7b351fb54c67c5028b1a4aa",
+      "notebookRepresentation": "verbatim",
+      "upstreamPinStatus": "local_only",
+      "cellIndexZeroBased": 10,
+      "cellId": "kiJh7w5nZHDr",
+      "cellLineStart": 6,
+      "cellLineEnd": 9,
+      "extractionPath": "cells[10].source",
+      "sourceUrl": "https://raw.githubusercontent.com/robotics-lab-iitr/nptel-ai-robotics/main/week07/week07_lecture34.ipynb",
+      "upstreamCommit": null,
+      "upstreamGitBlobSha": null,
+      "text": "ax1.set_ylim(0, 15)\nax1.set_xlabel('Sensor Reading (x)')\nax1.set_ylabel('Motor Speed (y)')\nax1.set_title('Gradient Descent: Regression Line Evolution')\n",
+      "textSha256": "a195b34e5a0299df3258b57d9af691a684b3fb49f0d29ed809ab6c89daaaee31",
+      "transformation": "None: exact frozen source substring; no execution, correction or result added.",
+      "authorId": "author_later_question_inputs"
+    }
+  },
+  "records": {
+    "W09-L43-Q020": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l43-maze-actions",
+        "l43-featurize"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1354,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1354, printed slide 15: Official feature ordering. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1356,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1356, printed slide 17: Official feature ordering. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        }
+      ],
+      "reason": "The question refers to exact implementation details of the pinned official notebook. PDF pages provide context/link but not the required exact code; a distinct supplemental code input is needed, with no saved output or worked answer."
+    },
+    "W09-L43-Q021": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l43-maze-actions",
+        "l43-featurize"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1354,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1354, printed slide 15: Encoding a boundary cell. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1356,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1356, printed slide 17: Encoding a boundary cell. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        }
+      ],
+      "reason": "The question refers to exact implementation details of the pinned official notebook. PDF pages provide context/link but not the required exact code; a distinct supplemental code input is needed, with no saved output or worked answer."
+    },
+    "W09-L43-Q022": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l43-maze-actions",
+        "l43-featurize"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1354,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1354, printed slide 15: Demo pseudocode specifies two position inputs and links the complete implementation; the normalization formula is in the separately pinned notebook."
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1356,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1356, printed slide 17: Displayed feature vectors show row increments of 0.25 and column increments of 0.2; the separately pinned notebook specifies r/ROWS and c/COLS."
+        }
+      ],
+      "reason": "The question refers to exact implementation details of the pinned official notebook. PDF pages provide context/link but not the required exact code; a distinct supplemental code input is needed, with no saved output or worked answer."
+    },
+    "W09-L43-Q023": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l43-maze-actions",
+        "l43-manhattan",
+        "l43-teacher"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1354,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1354, printed slide 15: Action encoding versus teacher preference. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1356,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1356, printed slide 17: Action encoding versus teacher preference. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        }
+      ],
+      "reason": "The question refers to exact implementation details of the pinned official notebook. PDF pages provide context/link but not the required exact code; a distinct supplemental code input is needed, with no saved output or worked answer."
+    },
+    "W09-L43-Q024": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l43-maze-actions",
+        "l43-manhattan",
+        "l43-teacher"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1354,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1354, printed slide 15: Teacher tie breaking. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1356,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1356, printed slide 17: Teacher tie breaking. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        }
+      ],
+      "reason": "The question refers to exact implementation details of the pinned official notebook. PDF pages provide context/link but not the required exact code; a distinct supplemental code input is needed, with no saved output or worked answer."
+    },
+    "W09-L43-Q025": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l43-maze-actions",
+        "l43-manhattan",
+        "l43-teacher"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1354,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1354, printed slide 15: Obstacle-aware local teacher. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1356,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1356, printed slide 17: Obstacle-aware local teacher. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        }
+      ],
+      "reason": "The question refers to exact implementation details of the pinned official notebook. PDF pages provide context/link but not the required exact code; a distinct supplemental code input is needed, with no saved output or worked answer."
+    },
+    "W09-L43-Q026": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l43-maze-actions",
+        "l43-manhattan",
+        "l43-teacher"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1354,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1354, printed slide 15: Local greedy labels versus a global search. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1356,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1356, printed slide 17: Local greedy labels versus a global search. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        }
+      ],
+      "reason": "The question refers to exact implementation details of the pinned official notebook. PDF pages provide context/link but not the required exact code; a distinct supplemental code input is needed, with no saved output or worked answer."
+    },
+    "W09-L43-Q030": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l43-navnet"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1354,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1354, printed slide 15: Official navigation network dimensions. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1355,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1355, printed slide 16: Official navigation network dimensions. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        }
+      ],
+      "reason": "The question refers to exact implementation details of the pinned official notebook. PDF pages provide context/link but not the required exact code; a distinct supplemental code input is needed, with no saved output or worked answer."
+    },
+    "W09-L43-Q034": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l43-maze-actions",
+        "l43-manhattan",
+        "l43-teacher",
+        "l43-training-labels",
+        "l43-training-epoch"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1354,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1354, printed slide 15: Demo pseudocode and complete-code link; exact target conversion is in the pinned notebook."
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1356,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1356, printed slide 17: The output display uses one-hot direction labels; this display differs from the long-integer class-index targets used for training in the pinned notebook."
+        }
+      ],
+      "reason": "The question refers to exact implementation details of the pinned official notebook. PDF pages provide context/link but not the required exact code; a distinct supplemental code input is needed, with no saved output or worked answer."
+    },
+    "W09-L43-Q035": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l43-training-epoch"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1354,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1354, printed slide 15: Actual training-step order. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        }
+      ],
+      "reason": "The question refers to exact implementation details of the pinned official notebook. PDF pages provide context/link but not the required exact code; a distinct supplemental code input is needed, with no saved output or worked answer."
+    },
+    "W09-L43-Q038": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l43-maze-actions",
+        "l43-navigate"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1354,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1354, printed slide 15: Masking an illegal high-scoring action. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1357,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1357, printed slide 18: Masking an illegal high-scoring action. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        }
+      ],
+      "reason": "The question refers to exact implementation details of the pinned official notebook. PDF pages provide context/link but not the required exact code; a distinct supplemental code input is needed, with no saved output or worked answer."
+    },
+    "W09-L43-Q039": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l43-navnet",
+        "l43-navigate"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1354,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1354, printed slide 15: Does the navigation loop retrain?. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1357,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1357, printed slide 18: Does the navigation loop retrain?. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        }
+      ],
+      "reason": "The question refers to exact implementation details of the pinned official notebook. PDF pages provide context/link but not the required exact code; a distinct supplemental code input is needed, with no saved output or worked answer."
+    },
+    "W09-L43-Q042": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l43-maze-actions",
+        "l43-featurize"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1354,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1354, printed slide 15: Goal conditioning is absent. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1356,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 43, physical PDF page 1356, printed slide 17: Goal conditioning is absent. The PDF provides the demonstration context or repository link; exact implementation evidence is the pinned official notebook."
+        }
+      ],
+      "reason": "The question refers to exact implementation details of the pinned official notebook. PDF pages provide context/link but not the required exact code; a distinct supplemental code input is needed, with no saved output or worked answer."
+    },
+    "W07-L34-P1052-Q06": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l34-initial-values",
+        "l34-learning-loop"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1052,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Printed slide 32: Conclusion; Complete-code hyperlink; linked official notebook cell 8"
+        }
+      ],
+      "reason": "Exact source-notebook premise required by this question; PDF alone omits this code or historical saved output. Frozen source input is supplied without answer annotation or any claim of fresh execution."
+    },
+    "W07-L34-P1052-Q07": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l34-initial-values",
+        "l34-learning-loop"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1052,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Printed slide 32: Conclusion; Complete-code hyperlink; linked official notebook cell 8"
+        }
+      ],
+      "reason": "Exact source-notebook premise required by this question; PDF alone omits this code or historical saved output. Frozen source input is supplied without answer annotation or any claim of fresh execution."
+    },
+    "W07-L34-P1052-Q11": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l34-setup-cell"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1052,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Printed slide 32: Conclusion; Complete-code hyperlink; linked official notebook cell 2"
+        }
+      ],
+      "reason": "Exact source-notebook premise required by this question; PDF alone omits this code or historical saved output. Frozen source input is supplied without answer annotation or any claim of fresh execution."
+    },
+    "W07-L35-Q089": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l35-report-loop"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1083,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 35, physical page 1083, printed slide 24: Key lines 1–13: imports, load, input URL, prediction and directory assignment"
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1084,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 35, physical page 1084, printed slide 25: Right printed per-detection output report"
+        }
+      ],
+      "reason": "Exact source-notebook premise required by this question; PDF alone omits this code or historical saved output. Frozen source input is supplied without answer annotation or any claim of fresh execution."
+    },
+    "W07-L35-Q101": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l35-predict-cell",
+        "l35-report-loop",
+        "l35-display-cell"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1083,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 35, physical page 1083, printed slide 24: Prediction call line 10 and link to fuller notebook"
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1084,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 35, physical page 1084, printed slide 25: BUS report and annotated-output image"
+        }
+      ],
+      "reason": "Exact source-notebook premise required by this question; PDF alone omits this code or historical saved output. Frozen source input is supplied without answer annotation or any claim of fresh execution."
+    },
+    "W10-L46-P1454-Q05": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l46-count-dataframe"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1454,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Printed slide 15: CountVectorizer excerpt and labeled output table"
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1462,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture L46, physical PDF page 1462, printed footer 23: Complete-code hyperlink provides the official notebook whose zero-based cell 17 constructs the table."
+        }
+      ],
+      "reason": "Exact source-notebook premise required by this question; PDF alone omits this code or historical saved output. Frozen source input is supplied without answer annotation or any claim of fresh execution."
+    },
+    "W10-L46-P1461-Q04": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l46-contextual-light-code",
+        "l46-contextual-light-noun-output",
+        "l46-contextual-light-adjective-output"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1461,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Printed slide 22: PDF command2 example, compared with linked full-code resource at p1462"
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1462,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Printed slide 23: Access the complete code here link"
+        }
+      ],
+      "reason": "Exact source-notebook premise required by this question; PDF alone omits this code or historical saved output. Frozen source input is supplied without answer annotation or any claim of fresh execution."
+    },
+    "W10-L50-Q019": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l50-robot-update"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1576,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 50, physical PDF page 1576, printed footer 11: Albert pseudocode and link to the official course repository; exact named implementation evidence is in primaryEvidence."
+        }
+      ],
+      "reason": "This question explicitly uses the frozen official notebook implementation rather than the distinct simplified slide formulas. Supply unchanged source methods/configuration with no worked outputs or live model inference."
+    },
+    "W10-L50-Q020": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l50-robot-config",
+        "l50-robot-update"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1576,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 50, physical PDF page 1576, printed footer 11: Albert pseudocode and link to the official course repository; exact named implementation evidence is in primaryEvidence."
+        }
+      ],
+      "reason": "This question explicitly uses the frozen official notebook implementation rather than the distinct simplified slide formulas. Supply unchanged source methods/configuration with no worked outputs or live model inference."
+    },
+    "W10-L50-Q021": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l50-robot-update"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1576,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 50, physical PDF page 1576, printed footer 11: Albert pseudocode and link to the official course repository; exact named implementation evidence is in primaryEvidence."
+        }
+      ],
+      "reason": "This question explicitly uses the frozen official notebook implementation rather than the distinct simplified slide formulas. Supply unchanged source methods/configuration with no worked outputs or live model inference."
+    },
+    "W10-L50-Q022": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l50-robot-config",
+        "l50-robot-change"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1576,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 50, physical PDF page 1576, printed footer 11: Albert pseudocode and link to the official course repository; exact named implementation evidence is in primaryEvidence."
+        }
+      ],
+      "reason": "This question explicitly uses the frozen official notebook implementation rather than the distinct simplified slide formulas. Supply unchanged source methods/configuration with no worked outputs or live model inference."
+    },
+    "W10-L50-Q023": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l50-human-change",
+        "l50-human-mapping"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1576,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 50, physical PDF page 1576, printed footer 11: Albert pseudocode and link to the official course repository; exact named implementation evidence is in primaryEvidence."
+        }
+      ],
+      "reason": "This question explicitly uses the frozen official notebook implementation rather than the distinct simplified slide formulas. Supply unchanged source methods/configuration with no worked outputs or live model inference."
+    },
+    "W10-L50-Q024": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l50-human-change",
+        "l50-human-mapping"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1576,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 50, physical PDF page 1576, printed footer 11: Albert pseudocode and link to the official course repository; exact named implementation evidence is in primaryEvidence."
+        }
+      ],
+      "reason": "This question explicitly uses the frozen official notebook implementation rather than the distinct simplified slide formulas. Supply unchanged source methods/configuration with no worked outputs or live model inference."
+    },
+    "W10-L50-Q026": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l50-robot-change",
+        "l50-robot-policy"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1576,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 50, physical PDF page 1576, printed footer 11: Albert pseudocode and link to the official course repository; exact named implementation evidence is in primaryEvidence."
+        }
+      ],
+      "reason": "This question explicitly uses the frozen official notebook implementation rather than the distinct simplified slide formulas. Supply unchanged source methods/configuration with no worked outputs or live model inference."
+    },
+    "W10-L50-Q027": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l50-robot-change",
+        "l50-robot-policy"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1576,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 50, physical PDF page 1576, printed footer 11: Albert pseudocode and link to the official course repository; exact named implementation evidence is in primaryEvidence."
+        }
+      ],
+      "reason": "This question explicitly uses the frozen official notebook implementation rather than the distinct simplified slide formulas. Supply unchanged source methods/configuration with no worked outputs or live model inference."
+    },
+    "W10-L50-Q028": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l50-memory"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1576,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 50, physical PDF page 1576, printed footer 11: Albert pseudocode and link to the official course repository; exact named implementation evidence is in primaryEvidence."
+        }
+      ],
+      "reason": "This question explicitly uses the frozen official notebook implementation rather than the distinct simplified slide formulas. Supply unchanged source methods/configuration with no worked outputs or live model inference."
+    },
+    "W10-L50-Q029": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l50-memory",
+        "l50-analysis-context",
+        "l50-reply-context"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1576,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 50, physical PDF page 1576, printed footer 11: Albert pseudocode and link to the official course repository; exact named implementation evidence is in primaryEvidence."
+        }
+      ],
+      "reason": "This question explicitly uses the frozen official notebook implementation rather than the distinct simplified slide formulas. Supply unchanged source methods/configuration with no worked outputs or live model inference."
+    },
+    "W10-L50-Q030": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l50-robot-config",
+        "l50-robot-update"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1576,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 50, physical PDF page 1576, printed footer 11: Albert pseudocode and link to the official course repository; exact named implementation evidence is in primaryEvidence."
+        }
+      ],
+      "reason": "This question explicitly uses the frozen official notebook implementation rather than the distinct simplified slide formulas. Supply unchanged source methods/configuration with no worked outputs or live model inference."
+    },
+    "W10-L50-Q031": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l50-robot-config",
+        "l50-robot-change",
+        "l50-battery"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1576,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 50, physical PDF page 1576, printed footer 11: Albert pseudocode and link to the official course repository; exact named implementation evidence is in primaryEvidence."
+        }
+      ],
+      "reason": "This question explicitly uses the frozen official notebook implementation rather than the distinct simplified slide formulas. Supply unchanged source methods/configuration with no worked outputs or live model inference."
+    },
+    "W10-L50-Q032": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l50-analysis-schema"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1576,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 50, physical PDF page 1576, printed footer 11: Albert pseudocode and link to the official course repository; exact named implementation evidence is in primaryEvidence."
+        }
+      ],
+      "reason": "This question explicitly uses the frozen official notebook implementation rather than the distinct simplified slide formulas. Supply unchanged source methods/configuration with no worked outputs or live model inference."
+    },
+    "W10-L50-Q065": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l50-response-rules"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1590,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture 50, physical PDF page 1590, printed footer 25: Assistive application limits."
+        }
+      ],
+      "reason": "This question explicitly uses the frozen official notebook implementation rather than the distinct simplified slide formulas. Supply unchanged source methods/configuration with no worked outputs or live model inference."
+    },
+    "W10-L50-Q066": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l50-robot-config",
+        "l50-robot-change",
+        "l50-robot-update",
+        "l50-plot-radius"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1572,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture50, physical PDF page1572, printed footer7: Named angular axes, yellow per-axis values and purple vector-sum illustration; no exact notebook angles or plotting clip are printed here."
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1573,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture50, physical PDF page1573, printed footer8: Printed half-range radius/angle formulas and45–55neutral threshold, which differ from the explicitly requested notebook convention."
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1574,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture50, physical PDF page1574, printed footer9: OppositeMagnitude=100−ActiveValue complement rule; the boundary-scan prose is not the notebook centered-sum implementation."
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1576,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture50, physical PDF page1576, printed footer11: Albert demonstration pseudocode and hyperlink to the complete notebook; exact computations are in pinned notebook cells9and19."
+        }
+      ],
+      "reason": "This question explicitly uses the frozen official notebook implementation rather than the distinct simplified slide formulas. Supply unchanged source methods/configuration with no worked outputs or live model inference."
+    },
+    "W10-L50-Q067": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l50-robot-config",
+        "l50-robot-change",
+        "l50-human-change",
+        "l50-human-mapping",
+        "l50-robot-policy",
+        "l50-battery"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1576,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture50, physical page1576, printed footer11: Three-turn state persistence and confidence boundary; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook."
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1588,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture50, physical page1588, printed footer23: Three-turn state persistence and confidence boundary; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook."
+        }
+      ],
+      "reason": "This question explicitly uses the frozen official notebook implementation rather than the distinct simplified slide formulas. Supply unchanged source methods/configuration with no worked outputs or live model inference."
+    },
+    "W10-L50-Q069": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l50-memory",
+        "l50-ui-submit",
+        "l50-ui-reset"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1576,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture50, physical page1576, printed footer11: Blank input, reset and stored facts; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook."
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1588,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Lecture50, physical page1588, printed footer23: Blank input, reset and stored facts; supplied scenario derives from the displayed concept; exact program behavior is in the pinned notebook."
+        }
+      ],
+      "reason": "This question explicitly uses the frozen official notebook implementation rather than the distinct simplified slide formulas. Supply unchanged source methods/configuration with no worked outputs or live model inference."
+    },
+    "W07-L34-P1052-Q02": {
+      "dependencyStatus": "required",
+      "proposedInputKeys": [
+        "l34-plot-output-label"
+      ],
+      "linkedLectureCitations": [
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1048,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Printed slide 28: worked example specifies braking torque and a 10 Nm target"
+        },
+        {
+          "sourceId": "lectures",
+          "physicalPage": 1052,
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "locator": "Printed slide 32: left graph axis is labeled Motor Speed (y), with the official notebook hyperlink on the right"
+        }
+      ],
+      "reason": "The comparison explicitly references both PDF and linked-notebook output labels. Supply the exact notebook y-axis label without worked learning outputs, together with separately bound PDF input crops."
+    }
+  }
+}

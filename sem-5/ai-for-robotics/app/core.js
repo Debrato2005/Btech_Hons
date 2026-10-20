@@ -53,6 +53,38 @@
     return Object.values(groups).map(g=>{const attempted=[...g.evidence.values()].filter(Boolean),correct=attempted.filter(e=>e.correct).length;return {dimension:g.dimension,total:g.evidence.size,attempted:attempted.length,correct,unique_concepts:g.unique_concepts.size,seen_concepts:g.seen_concepts.size,accuracy:attempted.length?correct/attempted.length:null};});
   }
   function revisionScore(q,progress) { const s=questionState(progress,q.id), events=array(s.events).filter(e=>!e.question_fingerprint||e.question_fingerprint===q.fingerprint), last=events.at(-1); return (last&&!last.correct?12:0)+(s.review?8:0)+(s.bookmark?5:0)+(q.high_yield?3:0)+(!last?1:0)+Math.min(events.filter(e=>!e.correct).length,5); }
+  function rankRevisionQuestions(questions,progress,sourceAssignmentIds=[],followUpIds=[]) {
+    const assignmentIds=new Set(sourceAssignmentIds),followUps=new Set(followUpIds),priority=q=>revisionScore(q,progress)+(assignmentIds.has(q.id)?2:0)+(followUps.has(q.id)?2:0);
+    return questions.filter(q=>q.status==='verified'&&priority(q)>1).sort((a,b)=>priority(b)-priority(a)||Number(a.week||0)-Number(b.week||0)||String(a.lecture||'').localeCompare(String(b.lecture||''),undefined,{numeric:true})||a.id.localeCompare(b.id,undefined,{numeric:true}));
+  }
+  // Recommendations use only outcomes tied to the current exact presentation fingerprint.
+  // Historical or imported unbound outcomes remain in backups but cannot seed this graph.
+  function currentStudyProgress(progress,questions) {
+    const out={...progress,questions:{}};
+    for(const q of questions){const previous=questionState(progress,q.id),events=array(previous.events).map((event,index)=>({event,index})).filter(x=>x.event?.question_fingerprint===q.fingerprint&&typeof x.event.correct==='boolean').sort((a,b)=>(Date.parse(a.event.timestamp)||0)-(Date.parse(b.event.timestamp)||0)||a.index-b.index).map(x=>x.event);out.questions[q.id]={...previous,events};}
+    return out;
+  }
+  // Input questions must already pass the independent runtime gate. Concept links
+  // remain study-order heuristics, not new semantic/source approvals.
+  function studyFollowUps(rawBank,progress,engine,{focusQuestionId=null,limit=null}={}) {
+    if(typeof engine?.mistakeRevision!=='function')return {recommendations:[],total:0};
+    const questions=array(rawBank.questions).filter(q=>q.status==='verified'&&!q.synthetic&&q.origin!=='synthetic'),byId=new Map(questions.map(q=>[q.id,q]));
+    const concepts=array(rawBank.concepts).filter(c=>c.status==='verified'&&array(c.questionIds).some(id=>array(byId.get(id)?.conceptIds).includes(c.id))),byConcept=new Map(concepts.map(c=>[c.id,c]));
+    const graph={questions:questions.map(q=>({...q,conceptIds:array(q.conceptIds).filter(id=>array(byConcept.get(id)?.questionIds).includes(q.id))})),concepts:concepts.map(c=>({...c,prerequisiteConceptIds:array(c.prerequisiteConceptIds||c.prerequisiteIds).filter(id=>byConcept.has(id))}))};
+    const normalized=normalizeBank({questions}).questions,current=currentStudyProgress(progress,normalized),focus=focusQuestionId?graph.questions.find(q=>q.id===focusQuestionId):null;
+    if(focusQuestionId&&!focus)return {recommendations:[],total:0};
+    const attempts=normalized.flatMap(q=>{const last=current.questions[q.id].events.at(-1);return last?[{questionId:q.id,correct:last.correct}]:[];}),missed=new Set(attempts.filter(a=>!a.correct).map(a=>a.questionId));
+    // A focus query is ephemeral context for the existing graph traversal only.
+    // It never records an attempt, and all output labels remove any missed/untested claim.
+    const rows=engine.mistakeRevision(graph,focus?[{questionId:focus.id,correct:false}]:attempts,focus?{}:{bookmarks:questions.filter(q=>current.questions[q.id].bookmark).map(q=>q.id),reviewFlags:questions.filter(q=>current.questions[q.id].review).map(q=>q.id)}),found=new Map();
+    const add=(id,reasons,priority)=>{if(id===focusQuestionId||!byId.has(id)||!reasons.length)return;const old=found.get(id)||{questionId:id,reasons:[],priority:0,conceptIds:graph.questions.find(q=>q.id===id).conceptIds};old.reasons=unique([...old.reasons,...reasons]);old.priority=Math.max(old.priority,priority);found.set(id,old);};
+    for(const row of rows){const reasons=focus?row.reasons.flatMap(reason=>reason==='Prerequisite of a recently missed concept'?['Recorded prerequisite concept for this question']:reason==='Unattempted practice for a recently missed concept'?['Shares a recorded concept with this question']:[]):row.reasons;add(row.questionId,reasons,row.priority);}
+    const seeds=focus?[focus]:graph.questions.filter(q=>missed.has(q.id)),directPrerequisites=new Set(seeds.flatMap(q=>array((q.solution||q.explanation)?.prerequisiteConceptIds)).filter(id=>byConcept.has(id)));
+    for(const q of graph.questions)if(q.conceptIds.some(id=>directPrerequisites.has(id)))add(q.id,[focus?'Recorded question-level prerequisite':'Recorded prerequisite of a recently missed question'],2);
+    if(focus)for(const id of array(focus.relatedQuestionIds))add(id,['Authored related-question link'],3);
+    const ordered=[...found.values()].sort((a,b)=>b.priority-a.priority||a.questionId.localeCompare(b.questionId,undefined,{numeric:true})),maximum=limit===null?ordered.length:Number.isInteger(limit)&&limit>=0?limit:focus?8:ordered.length;
+    return {recommendations:ordered.slice(0,maximum),total:ordered.length};
+  }
   function selectQuestions(questions,filters,progress) { const query=text(filters.search).toLocaleLowerCase().trim();return questions.filter(q=> {if(filters.status && filters.status!=='all' && q.status!==filters.status)return false;for(const key of ['week','lecture','topic','subtopic','difficulty','type']) if(filters[key] && text(q[key])!==text(filters[key]))return false;if(query && !searchable(q).includes(query))return false;const s=questionState(progress,q.id),last=array(s.events).filter(e=>!e.question_fingerprint||e.question_fingerprint===q.fingerprint).at(-1);if(filters.learning==='bookmarked'&&!s.bookmark)return false;if(filters.learning==='review'&&!s.review)return false;if(filters.learning==='unanswered'&&last)return false;if(filters.learning==='incorrect'&&(!last||last.correct))return false;if(filters.learning==='correct'&&(!last||!last.correct))return false;return true;}); }
   function createExam(pool,config,now=Date.now()) {
     if(!Number.isInteger(config.count)||config.count<1)throw new Error('Choose a positive whole question count.');
@@ -100,6 +132,6 @@
   }
   function shortcutAllowed(event) { if(event.altKey||event.ctrlKey||event.metaKey||event.target?.closest?.('input,textarea,select,[contenteditable=true]'))return false;if((event.key==='Enter'||event.key===' ')&&event.target?.closest?.('button,a,summary,[role=button]'))return false;return true; }
   function csv(rows) { return rows.map(row=>row.map(cell=>{let s=cell==null?'':typeof cell==='object'?JSON.stringify(cell):String(cell);if(/^[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';}).join(',')).join('\r\n'); }
-  const api={SCHEMA,clone,array,unique,uid,hash,random,shuffle,baseOptionOrder,normalizeQuestion,normalizeBank,searchable,isMulti,score,freshProgress,questionState,record,mastery,revisionScore,selectQuestions,createExam,finishExam,validateProgress,mergeProgress,selectAlgorithmRecords,shortcutAllowed,csv};
+  const api={SCHEMA,clone,array,unique,uid,hash,random,shuffle,baseOptionOrder,normalizeQuestion,normalizeBank,searchable,isMulti,score,freshProgress,questionState,record,mastery,revisionScore,rankRevisionQuestions,currentStudyProgress,studyFollowUps,selectQuestions,createExam,finishExam,validateProgress,mergeProgress,selectAlgorithmRecords,shortcutAllowed,csv};
   if(typeof module==='object'&&module.exports)module.exports=api;root.RoboticsStudyCore=api;
 })(typeof window==='object'?window:globalThis);

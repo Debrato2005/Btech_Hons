@@ -1,0 +1,125 @@
+
+PAGE 1095
+8
+Robot Planning Architecture 
+Plan Execution  
+Take action
+Planning 
+What to do next?
+Localization  
+Where am I?
+Perception  
+What I see?
+Controller
+Actuator 
+plan
+command
+feedback
+feedback
+Move toward goal
+Robot 
+
+{"id": "W08-L36-P1095-Q01", "stem": "Which inputs feed the planning block directly in the displayed architecture?", "options": [{"id": "o3", "text": "Only perception, with localization performed after execution"}, {"id": "o4", "text": "Controller commands, with no sensing or pose feedback"}, {"id": "o1", "text": "Feedback from both perception and localization"}, {"id": "o2", "text": "Only localization, after perception has been removed from the loop"}], "assumptions": []}
+{"id": "W08-L36-P1095-Q02", "stem": "In the architecture figure, which labels distinguish Planning→Plan Execution from Plan Execution→Controller/Actuator?", "options": [{"id": "o4", "text": "Plan; localization"}, {"id": "o1", "text": "Plan; command"}, {"id": "o2", "text": "Command; plan"}, {"id": "o3", "text": "Feedback; command"}], "assumptions": []}
+
+PAGE 1099
+12
+•
+To plan a path inside for robot, we need a map 
+representation that robot can search.
+1.
+Occupancy-grid maps
+•
+An occupancy grid divides the environment into a grid of 
+(usually square) cells. Each cell holds a binary value 
+describing whether it is:
+– 0 (free): the robot can enter this cell, or
+– 1 (occupied): an obstacle; the robot cannot enter.
+•
+Pros: simple to implement and easy to understand.
+•
+Cons: 
+– High memory for large environment. 
+– Precision limitation due to grid resolution. 
+Representation of environment (Map)
+Grid map
+
+{"id": "W08-L36-P1099-Q02", "stem": "In the displayed 8×8 grid, black cells are occupied and white cells are free. How many free-cell vertices would a graph contain if it includes one vertex per free cell?", "options": [{"id": "o1", "text": "48"}, {"id": "o2", "text": "16"}, {"id": "o3", "text": "64"}, {"id": "o4", "text": "49"}], "assumptions": ["Count the displayed cells, with rows top to bottom and columns left to right. Include all free cells, without filtering by reachability from a particular start."]}
+
+PAGE 1100
+13
+2.
+Graph-based maps
+•
+Represent the environment as a graph G=(V,E) of 
+key locations (vertices) and their connections with 
+edges  
+– Vertices (nodes) V: representing recognizable 
+places (e.g. "kitchen," "living room" connected 
+by a doorway).
+– Edges E: representing routes between places, 
+each with an associated cost (distance, time, 
+fuel, etc.).
+•
+It is similar to a subway map.
+•
+Pros: effective for a large-scale environment.
+•
+Cons: less detailed about the physical layout. 
+Representation of environment (Map)
+
+{"id": "W08-L36-P1100-Q02", "stem": "According to the arrow directions in the five-node map, which statement about B and C is correct?", "options": [{"id": "o1", "text": "C→B is shown with cost 7; B→C is not drawn"}, {"id": "o2", "text": "B→C is shown with cost 7; C→B is not drawn"}, {"id": "o3", "text": "Both C→B and B→C are drawn with cost 7"}, {"id": "o4", "text": "There is no B–C connection; the cost 7 belongs only to D→E"}], "assumptions": ["Follow the displayed arrows; do not assume an undrawn reverse road."]}
+
+PAGE 1101
+14
+•
+Number on the edges are called edge weights.
+•
+It act as the "cost" or "friction" of traveling 
+between two nodes.
+•
+Instead of treating every connection equally, 
+edge weights help algorithms determine the 
+absolute best path based on real-world 
+constraints.
+Representation of environment (Map)
+•
+Depending on application, edge weights can 
+represent several different factors:
+– Most straightforward weight is physical distance (e.g., 
+kilometers or miles) between two nodes.
+– In navigation apps, weights often represent estimated 
+travel time rather than distance.
+
+{"id": "W08-L36-P1101-Q02", "stem": "On the displayed A–E map, a rule chooses the smallest outgoing edge at each current vertex without looking ahead. Starting at A, which result demonstrates the limitation of this rule?", "options": [{"id": "o4", "text": "It takes A→B→D→E with cost 15 because BD is the lowest edge from B"}, {"id": "o1", "text": "It takes A→C→D→E with cost 10, although A→B→E costs 4"}, {"id": "o2", "text": "It takes A→B→E with cost 4 because it accounts for the final edge at A"}, {"id": "o3", "text": "It takes A→C→B→E with cost 9 because CB has the lowest weight from C"}], "assumptions": ["Choose only among outgoing arrows by immediate edge weight; stop at E; there are no relevant ties."]}
+
+PAGE 1103
+16
+The Graph Search Problem
+Naive strategy: 
+– Randomly hop between neighboring vertices.
+– Might eventually reach the goal.
+Cons:
+– There is no guarantee of reaching the goal,
+– The path found would almost certainly not be 
+optimal.
+If we want to travel from a start vertex (A) to a goal vertex (E) through a graph.
+
+{"id": "W08-L36-P1103-Q01", "stem": "For the displayed directed A–E graph specifically, assume a walker must choose an outgoing arrow at each step and stops at E. Which statement qualifies the slide’s generic “no guarantee” warning?", "options": [{"id": "o2", "text": "A walk can cycle indefinitely through B and C"}, {"id": "o3", "text": "A walk can become stuck at D without reaching E"}, {"id": "o4", "text": "Every such walk reaches E in exactly two moves and has minimum cost"}, {"id": "o1", "text": "Every such walk reaches E in at most four moves, although it need not be minimum-cost"}], "assumptions": ["Use exactly the displayed directed arrows, always move along an outgoing edge when not at E, and stop at E. This is not a guarantee for arbitrary graphs."]}
+{"id": "W08-L36-P1103-Q02", "stem": "Add the explicit rule that each outgoing arrow is chosen uniformly and independently at the current vertex in the pictured A–E graph. What is the probability of taking its minimum-cost route A→B→E?", "options": [{"id": "o3", "text": "1/5"}, {"id": "o4", "text": "1/8"}, {"id": "o1", "text": "1/4"}, {"id": "o2", "text": "1/2"}], "assumptions": ["Uniform local choices are supplied for this question, not stated by the slide. Follow arrow directions and stop at E."]}
+
+PAGE 1105
+18
+➢In regional planning and logistics, finding the most efficient route between 
+geographically separated municipal zones is a fundamental challenge.
+•
+Consider a delivery network consisting of seven municipal zones, designated 
+as Zone A through Zone G. An autonomous logistics vehicle must travel from its 
+starting depot in Zone A to a final distribution hub in Zone G.
+•
+The road connections between these zones have varying lengths (travel costs), and 
+geographic constraints prevent direct roads between zones.
+Example: Autonomous Vehicle Path Planning 
+
+{"id": "W08-L36-P1105-Q01", "stem": "In the depicted municipal road network, which graph description is correct?", "options": [{"id": "o1", "text": "Seven vertices A–G, with start A and goal G"}, {"id": "o2", "text": "Six vertices A–F, with goal F"}, {"id": "o3", "text": "Seven vertices A–G, with start G and goal A"}, {"id": "o4", "text": "Eight vertices, including the road-crossing point between B and F"}], "assumptions": []}
+{"id": "W08-L36-P1105-Q02", "stem": "Which is NOT a direct road connection in the displayed A–G graph?", "options": [{"id": "o2", "text": "A–C"}, {"id": "o3", "text": "E–F"}, {"id": "o4", "text": "D–G"}, {"id": "o1", "text": "A–G"}], "assumptions": []}

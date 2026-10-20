@@ -1,0 +1,126 @@
+
+PAGE 1471
+32
+•
+Modern robots increasingly combine LLMs with 
+vision, sensors, and planning systems to achieve 
+more natural human-robot interaction.
+1.
+Vision Language Models(VLMs): input becomes 
+a combination of image & text 
+– It has an additional vision backbone called Vision 
+Transformer (ViT), which is a transformer 
+architecture modified to process images.
+– The visual tokens from the ViT are mapped into the 
+LLM, allowing the LLM to see the image patches as 
+if they were just part of the text prompt.
+– Examples: DeepSeek-VL2, Gemini 2.0 Flash, GPT-
+4o, Llama 3.2, NVLM, Qwen 2.5-VL
+Beyond LLMs: Multimodal AI in Robotics
+
+{"id": "W10-L46-P1471-Q01", "stem": "Which input and architectural flow is depicted for the lecture’s VLM example?", "options": [{"id": "o2", "text": "Encode the image and answer from image features alone, using the question only to format the finished answer."}, {"id": "o3", "text": "Encode only the text and use the raw image merely as a lookup label, without visual representations entering the language model."}, {"id": "o4", "text": "Send predicted language tokens into the vision backbone to generate an image, rather than mapping input-image tokens into language processing."}, {"id": "o1", "text": "Image plus text question; a vision encoder supplies mapped visual tokens for language processing"}], "assumptions": ["Describe the illustrated ViT-based design, not a universal architectural rule for all VLMs."]}
+
+PAGE 1472
+33
+ꟷThey connect vision, language & physical 
+robot control
+ꟷTo make actions compatible with transformer 
+architectures, VLAs often tokenize continuous 
+robotic actions (like joint angles or end-
+effector positions) into discrete values, treating 
+a physical movement exactly like a word in a 
+vocabulary sentence.
+ꟷVLAs enable robots to understand language, 
+detect objects, plan movement & execute 
+actions.
+ꟷExamples: RT-2 (Robotics Transformer 2) by 
+Google DeepMind, OpenVLA 
+Beyond LLMs: Multimodal AI in Robotics
+2.  Vision Language Action (VLA) Models extend VLMs by adding robot actions.
+
+{"id": "W10-L46-P1472-Q02", "stem": "In the VLA figure, what happens at the next embodied state?", "options": [{"id": "o3", "text": "The action executes but the visual observation is assumed permanently unchanged"}, {"id": "o4", "text": "Use the predicted next scene as if it were a new camera observation, without checking the executed action’s outcome."}, {"id": "o1", "text": "The action is executed and the visual state updates"}, {"id": "o2", "text": "The model outputs only a hypothetical description; the figure shows no physical execution"}], "assumptions": []}
+
+PAGE 1481
+6
+•
+Modern AI models utilize specific halves of the original 
+architecture depending on the application.
+─GPTs dropped the encoder half & now use only the 
+decoder half for left-to-right (causal) text generation
+─ encoder-only models are used when global context 
+is needed (like bidirectional BERT by Google or ViTs)
+─full encoder-decoder models are used for complex 
+sequence-to-sequence tasks like machine translation
+•
+Core components of a transformer  
+        
+decoder architecture are:
+– Input Embedding
+– Transformer Blocks
+– Language model head 
+Transformers for Language Modelling
+
+{"id": "W10-L47-Q005", "stem": "Which order matches the three main parts of the shown decoder language model?", "options": [{"id": "o1", "text": "Stacked Transformer blocks → input embedding with position → language-model head."}, {"id": "o2", "text": "Input embedding with position → language-model head → stacked Transformer blocks."}, {"id": "o3", "text": "Language-model head → stacked Transformer blocks → input embedding with position."}, {"id": "o4", "text": "Input embedding with position → stacked Transformer blocks → language-model head."}], "assumptions": []}
+
+PAGE 1486
+11
+•
+Step 2: Compute the attention scores between Query & Key
+Self-Attention
+•
+Step 7: Reshape into 1 × d using multiplication with a 
+linear projection matrix 𝐖𝐎 
+•
+Step 5,6: Compute the weighted value vectors
+• Step 3: To improve numerical stability & prevent gradient loss during training, 
+score 𝐱𝑖, 𝐱𝑗 is scaled using 𝑑𝑘 before normalization, where 𝑑𝑘 = Key vector size.
+• Step 4: Normalize score 𝐱𝑖, 𝐱𝑗 using Softmax, to get attention weights(probabilities)
+score 𝐱𝑖, 𝐱𝑗= 𝐪𝑖. 𝐤𝑗
+𝑑𝑘
+𝛼𝑖𝑗= softmax score 𝐱𝑖, 𝐱𝑗
+∀ 𝑗≤𝑖 
+𝐚𝑖= 𝐡𝐞𝐚𝐝𝑖𝐖𝐎
+𝐡𝐞𝐚𝐝𝑖= Σ (𝛼𝑖𝑗𝐯𝑗)
+𝒋≤𝒊 
+
+{"id": "W10-L47-Q019", "stem": "Which computation directly produces the shown a3?", "options": [{"id": "o1", "text": "Use q3 against k1,k2 only, normalize those scores, combine v1,v2 and project."}, {"id": "o2", "text": "Use q1 against k1,k2,k3, normalize those scores, combine v1,v2,v3 and project."}, {"id": "o3", "text": "Use q3 against k1,k2,k3, normalize those scores, combine v1,v2,v3 and project."}, {"id": "o4", "text": "Use q3 against k1,k2,k3, normalize those scores, combine k1,k2,k3 and project."}], "assumptions": []}
+
+PAGE 1487
+12
+Calculating the value of 
+𝑎3, the third element of 
+a sequence using causal 
+(left to-right) self-
+attention from prior 
+tokens (𝑥1, 𝑥2) and 
+current token 𝑥3. Note 
+how prior influences 
+the current one.
+Self-Attention
+
+{"id": "W10-L47-Q019", "stem": "Which computation directly produces the shown a3?", "options": [{"id": "o1", "text": "Use q3 against k1,k2 only, normalize those scores, combine v1,v2 and project."}, {"id": "o2", "text": "Use q1 against k1,k2,k3, normalize those scores, combine v1,v2,v3 and project."}, {"id": "o3", "text": "Use q3 against k1,k2,k3, normalize those scores, combine v1,v2,v3 and project."}, {"id": "o4", "text": "Use q3 against k1,k2,k3, normalize those scores, combine k1,k2,k3 and project."}], "assumptions": []}
+
+PAGE 1492
+17
+•
+A transformer block consists of
+– Residual Connections
+– Attention layer
+– Normalizing layers (generally called “layer norm”)
+– Feedforward layer
+Transformer Block
+•
+The initial vector 𝒙𝒊 is passed through a layer norm and 
+attention layer & the result is added back into the stream.
+•
+This summed vector is again passed through another layer 
+norm and a feedforward network (FFN), & its output 𝐭𝑖
+5 is 
+added back into the residual to get the output 𝒉𝒊.
+•
+FFN is a 2-layer network(2 weight matrices+1 hidden layer)
+FFN 𝐭𝑖
+4 = ReLU 𝐭𝑖
+4𝐖1 + b1 𝐖2 + b2
+
+{"id": "W10-L47-Q027", "stem": "Which sequence matches the illustrated block?", "options": [{"id": "o1", "text": "Attention → residual add → layer norm → FFN → residual add → layer norm."}, {"id": "o2", "text": "Layer norm → attention → layer norm → residual add → FFN → residual add."}, {"id": "o3", "text": "Layer norm → FFN → residual add → layer norm → attention → residual add."}, {"id": "o4", "text": "Layer norm → attention → residual add → layer norm → FFN → residual add."}], "assumptions": []}

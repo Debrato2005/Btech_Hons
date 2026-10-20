@@ -1,0 +1,676 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "W01-L02-L05-QUALIFIED-GAPS",
+  "authorId": "robotics-legacy-concept-closure-author",
+  "sourceVersions": {
+    "lectures": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c"
+  },
+  "status": "all_six_independently_verified_exact_hashes",
+  "questions": [
+    {
+      "id": "W01-L02-Q-106",
+      "version": 3,
+      "status": "draft",
+      "authorId": "robotics-legacy-concept-closure-author",
+      "stem": "A robotics team applies PCA and then K-means to an unlabeled feature matrix. Which interpretation correctly qualifies the PCA entry in the slide’s Clustering box?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "cognitiveSkill": "conceptual",
+      "week": 1,
+      "lectureId": "L02",
+      "topic": "Unsupervised learning",
+      "subtopic": "PCA grouping caveat",
+      "tags": [
+        "L02",
+        "source-qualified",
+        "legacy-concept-closure"
+      ],
+      "conceptIds": [
+        "W01-L02-C-pca-placement"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o2",
+          "text": "PCA supplies cluster membership, whereas the later clustering step merely changes the coordinate axes."
+        },
+        {
+          "id": "o4",
+          "text": "Both steps necessarily assign the same groups because neither requires ground-truth class labels."
+        },
+        {
+          "id": "o1",
+          "text": "PCA supplies a principal-component representation; the separate clustering step supplies group membership."
+        },
+        {
+          "id": "o3",
+          "text": "PCA requires class labels, whereas only the later clustering step can operate on unlabeled observations."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0063",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 63,
+          "kind": "statement",
+          "locator": "Lecture 2, physical PDF page 63, actual printed slide 14: Unsupervised-learning definition, Clustering box, listed methods and right-hand grouped-data diagram.",
+          "evidenceText": "Unsupervised Learning\n\n    •  Find hidden structure in\n       unlabelled data X (no ground-\n       truth labels available).\n    •  Model learns from unlabelled\n       data.\n    Clustering\n   Group similar data points.\n     •  K-Means: partition into K clusters\n     •  DBSCAN: density-based clusters\n     •   Hierarchical clustering\n     •   Principal Component Analysis (PCA)\n     •   Robotics: terrain type segmentation,\n        pedestrian group detection\n\n\n                                                                                                            14",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The source correctly introduces structure in unlabeled data and grouping by clustering, but places PCA inside its Clustering box. The official PCA documentation identifies centered-data linear dimensionality reduction. In the stipulated two-stage pipeline, PCA transforms the feature representation and clustering assigns groups. The slide placement is retained as a caveat rather than taught as an algorithm taxonomy.",
+        "optionExplanations": {
+          "o1": "PCA is a linear dimensionality-reduction method. Group assignment is the stated purpose of the separate clustering stage; membership in an unsupervised-learning category does not make the operations identical.",
+          "o2": "This exchanges the roles: a PCA projection is not itself a set of cluster labels.",
+          "o3": "PCA does not require ground-truth class labels for its standard unsupervised dimensionality-reduction role.",
+          "o4": "The lack of labels is shared context, not proof of identical outputs or grouping."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "A projection changes how observations are represented; clustering decides which observations belong together.",
+        "memoryAid": "Projection gives coordinates; clustering gives groups.",
+        "misconceptions": [
+          "Unsupervised does not mean clustering, and a PCA projection does not automatically supply cluster labels."
+        ],
+        "examTraps": [
+          "Unsupervised does not mean clustering, and a PCA projection does not automatically supply cluster labels."
+        ],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "relatedQuestionIds": [
+        "W01-L02-Q-021",
+        "W01-L02-Q-022"
+      ],
+      "conflictResolution": {
+        "status": "qualified-draft-awaiting-independent-review",
+        "sourceClaim": "PCA is visibly listed in the Clustering box.",
+        "qualification": "PCA is dimensionality reduction, not itself a clustering algorithm. Preserve its slide placement as a source caveat and test clustering labels versus projection.",
+        "primarySourceUrl": "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html",
+        "primaryEvidenceScope": "Official current PCA class documentation was opened and read; it describes centered-data linear dimensionality reduction. No install or PCA execution was needed.",
+        "adjudicationPath": "audits/lecture-ledger-challenge/L02-L05-independent-adjudication.json",
+        "adjudicationSha256": "a8a2e5907644b9f9e42c4d8361417618c1842f44b1e9a108f5bff00dde2bf8e8",
+        "method": "Keep the source claim visible; assess only the explicitly qualified distinction. This draft is not an approval or a claim that the underlying source wording has changed."
+      },
+      "primaryEvidence": {
+        "url": "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html",
+        "scope": "Official current PCA class documentation was opened and read; it describes centered-data linear dimensionality reduction. No install or PCA execution was needed.",
+        "evidenceOwner": "robotics-integration-legacy-concept-adjudication",
+        "currentAuthorFreshExternalRead": false,
+        "additionalUrls": []
+      },
+      "revisionAuthors": [
+        "robotics-legacy-concept-closure-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-legacy-concept-closure-author",
+          "priorQuestionSha256": "7a4fb149aeac34734e35b140f66b43f46427d96bb2d627582e01018732550563",
+          "reason": "Remove answer-bearing purpose clauses from the stem; retain the actual PCA-versus-clustering distinction.",
+          "revisedAt": "2026-10-20T02:21:36.695955+00:00",
+          "reviewId": "REV-W01-L02-Q-106-v1-independent-integration"
+        },
+        {
+          "version": 3,
+          "authorId": "robotics-legacy-concept-closure-author",
+          "priorQuestionSha256": "8dbeb5996133bfba5dcdd9e7fc2fddf24351664966340e53fb0984221a4d3aaf",
+          "reason": "Remove an unwarranted lower-dimensionality requirement: PCA can retain all components. The separate representation-versus-clustering distinction is unchanged.",
+          "reviewId": "REV-W01-L02-Q-106-v2-independent-supplemental",
+          "revisedAt": "2026-10-20T02:48:42.944815+00:00"
+        }
+      ]
+    },
+    {
+      "id": "W01-L02-Q-107",
+      "version": 2,
+      "status": "draft",
+      "authorId": "robotics-legacy-concept-closure-author",
+      "stem": "The benchmark table lists HabitatSim for embodied navigation with “100K photo-real scans.” Which interpretation preserves its stated robotics relevance without promoting the unvalidated size claim into a general fact?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "cognitiveSkill": "conceptual",
+      "week": 1,
+      "lectureId": "L02",
+      "topic": "Datasets and benchmarks",
+      "subtopic": "HabitatSim row caveat",
+      "tags": [
+        "L02",
+        "source-qualified",
+        "legacy-concept-closure"
+      ],
+      "conceptIds": [
+        "W01-L02-C-dataset-habitat"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Habitat-Sim is the fixed 100K-scan dataset itself; any simulator that reads those scans is a different product."
+        },
+        {
+          "id": "o3",
+          "text": "Habitat-Sim is a simulator that can use scene datasets; its name alone does not establish a particular loaded dataset size."
+        },
+        {
+          "id": "o4",
+          "text": "The table’s 100K figure specifies the scene-scan collection bundled with Habitat-Sim, so installing the simulator establishes that dataset size."
+        },
+        {
+          "id": "o2",
+          "text": "Fixing the Habitat-Sim software version is sufficient to reproduce the table’s scan count, without identifying the loaded scene dataset."
+        }
+      ],
+      "correctOptionIds": [
+        "o3"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0090",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 90,
+          "kind": "statement",
+          "locator": "Lecture 2, physical PDF page 90, actual printed slide 41: HabitatSim row of the benchmark table, including task, size and robotics-relevance columns.",
+          "evidenceText": "Key Benchmarks & Datasets in AI Robotics\n\n  Dataset / Benchmark            Task                         Size                       Relevance to Robotics\n\n  ImageNet                       Image Classification         1.2M images, 1000 classes      Pretrain visual backbone for robot perception\n\n  COCO                              Detection / Segmentation    330K images, 80 categories     Object detection in robot environments\n\n  KITTI                        AV Perception / SLAM       Road driving sequences       3D detection, depth estimation, SLAM\n                                                                                                   evaluation\n\n  nuScenes                    AV Multi-sensor            1000 scenes, full suite         Camera+LiDAR+Radar fusion benchmark\n\n  Open X-Embodiment              Robot Manipulation       1M+ robot trajectories        Cross-embodiment robot learning\n\n  RLBench                         Robot Manipulation RL       100 tasks in simulation         Manipulation policy learning benchmark\n\n  HabitatSim                      Embodied Navigation        100K photo-real scans          Indoor navigation, question answering\n\n  BDD100K                             Driving Video              100K videos annotated         Diverse driving conditions, weather, time\n\n  ScanNet                      3D Scene Understanding     1513 RGB-D scans           3D object detection, semantic segmentation\n\n  MPII                       Human Pose Estimation      25K images                 Body pose for human activity recognition\n\n\n\n                                                                                                          41",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Habitat-Sim is simulation software able to use scene datasets. The lecture’s HabitatSim row associates it with embodied navigation, indoor navigation and question answering, but its 100K figure is not validated by the available official project evidence. A particular loaded scene collection and its version must be identified before a dataset-size claim is made.",
+        "optionExplanations": {
+          "o1": "This confuses simulation software with scene data and treats the unsupported count as an intrinsic size of the simulator.",
+          "o2": "A software-version identifier does not identify the loaded scene dataset or its version. Reproducing a scene count requires those data-specific facts; the available evidence does not validate the table’s count.",
+          "o3": "The official project distinguishes Habitat-Sim simulation from supported scene datasets. The table’s navigation and question-answering relevance can be retained while its size entry remains an unvalidated source claim.",
+          "o4": "This assumes that the simulator installation includes a fixed scan collection. Supported scene datasets are distinct from the simulation software; the table supplies no verified bundle or version-specific inventory."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The simulator is the environment engine; the scene dataset is content loaded into that engine.",
+        "memoryAid": "Engine is not inventory.",
+        "misconceptions": [
+          "Do not turn the slide’s 100K photo-real scans into a verified size for every Habitat-Sim installation."
+        ],
+        "examTraps": [
+          "Do not turn the slide’s 100K photo-real scans into a verified size for every Habitat-Sim installation."
+        ],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "relatedQuestionIds": [
+        "W01-L02-Q-094",
+        "W01-L02-Q-097"
+      ],
+      "conflictResolution": {
+        "status": "qualified-draft-awaiting-independent-review",
+        "sourceClaim": "HabitatSim is listed with embodied navigation and 100K photo-real scans.",
+        "qualification": "Habitat-Sim is a simulator that can use scene datasets; do not treat the slide's 100K photo-real scans as a verified simulator dataset size. Preserve embodied-navigation relevance and distinguish simulator from loaded dataset.",
+        "primarySourceUrl": "https://aihabitat.org/",
+        "primaryEvidenceScope": "Official project homepage was opened and read; Habitat-Sim is physics-enabled 3D simulation with supported scene datasets. The slide count is not validated.",
+        "adjudicationPath": "audits/lecture-ledger-challenge/L02-L05-independent-adjudication.json",
+        "adjudicationSha256": "a8a2e5907644b9f9e42c4d8361417618c1842f44b1e9a108f5bff00dde2bf8e8",
+        "method": "Keep the source claim visible; assess only the explicitly qualified distinction. This draft is not an approval or a claim that the underlying source wording has changed."
+      },
+      "primaryEvidence": {
+        "url": "https://aihabitat.org/",
+        "scope": "Official project homepage was opened and read; Habitat-Sim is physics-enabled 3D simulation with supported scene datasets. The slide count is not validated.",
+        "evidenceOwner": "robotics-integration-legacy-concept-adjudication",
+        "currentAuthorFreshExternalRead": false,
+        "additionalUrls": []
+      },
+      "revisionAuthors": [
+        "robotics-legacy-concept-closure-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-legacy-concept-closure-author",
+          "priorQuestionSha256": "a6559c9292976dcf7ca4a80e3beb786a0935b185326cf5e93b032926dcec3188",
+          "reason": "Replace the two implausible distractors with software-version and bundled-dataset count confusions.",
+          "revisedAt": "2026-10-20T02:21:36.695955+00:00",
+          "reviewId": "REV-W01-L02-Q-107-v1-independent-integration"
+        }
+      ]
+    },
+    {
+      "id": "W01-L05-Q-081",
+      "version": 2,
+      "status": "draft",
+      "authorId": "robotics-legacy-concept-closure-author",
+      "stem": "Read the printed ROS timeline together with these historical distribution entries from official indexed evidence: Ardent, 2017-12-08; Bouncy, 2018-07-02; Crystal, 2018-12-14. Select every supported interpretation.",
+      "selectionMode": "multi",
+      "type": "statement-combination",
+      "difficulty": "medium",
+      "cognitiveSkill": "conceptual",
+      "week": 1,
+      "lectureId": "L05",
+      "topic": "Robot Operating System",
+      "subtopic": "ROS foundations",
+      "tags": [
+        "L05",
+        "source-qualified",
+        "legacy-concept-closure"
+      ],
+      "conceptIds": [
+        "W01-L05-C-timeline"
+      ],
+      "assumptions": [
+        "Use the supplied historical official indexed evidence only for its stated distribution names and dates. This question does not ask which ROS release is currently latest or best for installation."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "The 2024 “latest LTS” label identifies the latest ROS 2 release at any later reading date, without a new version check."
+        },
+        {
+          "id": "o1",
+          "text": "The 2017/Crystal pairing is not accurate release chronology: the supplied historical evidence dates Crystal to December 2018."
+        },
+        {
+          "id": "o4",
+          "text": "The supplied historical evidence establishes Crystal as the first ROS 2 distribution released in 2017, before Ardent and Bouncy."
+        },
+        {
+          "id": "o3",
+          "text": "As a report of this slide, its 2007 Stanford, 2010 ROS 1.0 and 2013 OSRF rows precede its 2020 Noetic/Foxy and 2022 Humble rows."
+        }
+      ],
+      "correctOptionIds": [
+        "o1",
+        "o3"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0175",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 175,
+          "kind": "statement",
+          "locator": "Lecture 5, physical PDF page 175, actual printed slide 5: Complete dated ROS history timeline; preserve each row as printed.",
+          "evidenceText": "History of ROS\n\n    2007  Stanford AI Lab begins development (Player/Stage)\n\n    2010  ROS 1.0 released; Willow Garage drives adoption\n\n    2013  Open Source Robotics Foundation (OSRF) takes over\n\n    2017  ROS 2 Alpha → Crystal Clemmys (first stable)\n\n    2020  ROS Noetic (final ROS 1 LTS); ROS 2 Foxy LTS\n\n    2022  ROS 2 Humble (LTS) — 5-year support cycle\n\n    2024  ROS 2 Jazzy — latest LTS release\n\n\n\n\n                                                                                                           5",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Separate literal source history from the correction. The seven printed rows remain visible in the citation, including the 2024 Jazzy label. The available official indexed release evidence places Ardent in December 2017, Bouncy in July 2018 and Crystal in December 2018. The current rolling releases page was denied, so neither a full direct read nor a current latest-release claim is made. Other source milestones are retained explicitly as what this dated slide states.",
+        "optionExplanations": {
+          "o1": "The indexed official historical distribution table dates Ardent 2017-12-08, Bouncy 2018-07-02 and Crystal 2018-12-14. This corrects the 2017/Crystal pairing without endorsing an unsupported first-stable label.",
+          "o2": "Latest is date-dependent. A 2024 slide label does not determine a current release or deployment choice at an arbitrary later date.",
+          "o3": "This faithfully reports the order and labels printed in the source without certifying all of its other chronology as universal fact.",
+          "o4": "The supplied order is Ardent, then Bouncy, then Crystal; Crystal is dated 2018, not 2017. This evidence does not independently adjudicate the phrase first stable."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "A timeline is a dated record, not an automatically updating software recommendation.",
+        "memoryAid": "Dates travel with release names; latest needs a date.",
+        "misconceptions": [
+          "Do not teach Crystal as a 2017 first stable release or treat a dated latest label as timeless."
+        ],
+        "examTraps": [
+          "Do not teach Crystal as a 2017 first stable release or treat a dated latest label as timeless."
+        ],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "relatedQuestionIds": [],
+      "conflictResolution": {
+        "status": "qualified-draft-awaiting-independent-review",
+        "sourceClaim": "The 2017 row combines ROS 2 Alpha with Crystal Clemmys (first stable); the 2024 Jazzy row says latest LTS release.",
+        "qualification": "Do not repeat Crystal as the first stable 2017 ROS2 release or Jazzy as timeless latest. Distinguish the dated slide sequence from corrected release history and software-version selection. Preserve the other source milestones.",
+        "primarySourceUrl": "https://repo.test.ros2.org/en/crystal/Releases.html",
+        "primaryEvidenceScope": "Official ROS2 historical distribution table search result supplied Ardent 2017-12-08, Bouncy 2018-07-02, Crystal 2018-12-14. Direct current rolling releases page was denied; no alternate retry. No current latest-release claim is authorized by this evidence.",
+        "adjudicationPath": "audits/lecture-ledger-challenge/L02-L05-independent-adjudication.json",
+        "adjudicationSha256": "a8a2e5907644b9f9e42c4d8361417618c1842f44b1e9a108f5bff00dde2bf8e8",
+        "method": "Keep the source claim visible; assess only the explicitly qualified distinction. This draft is not an approval or a claim that the underlying source wording has changed."
+      },
+      "primaryEvidence": {
+        "url": "https://repo.test.ros2.org/en/crystal/Releases.html",
+        "scope": "Official ROS2 historical distribution table search result supplied Ardent 2017-12-08, Bouncy 2018-07-02, Crystal 2018-12-14. Direct current rolling releases page was denied; no alternate retry. No current latest-release claim is authorized by this evidence.",
+        "evidenceOwner": "robotics-integration-legacy-concept-adjudication",
+        "currentAuthorFreshExternalRead": false,
+        "additionalUrls": []
+      },
+      "revisionAuthors": [
+        "robotics-legacy-concept-closure-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-legacy-concept-closure-author",
+          "priorQuestionSha256": "663caadc4d72b28614f22de42c20099c1b9c2a3015d03d513a047f597708ef36",
+          "reason": "Supply the bounded official indexed historical dates before answer selection, with no direct-read or current-release claim.",
+          "revisedAt": "2026-10-20T02:21:36.695955+00:00",
+          "reviewId": "REV-W01-L05-Q-081-v1-independent-integration"
+        }
+      ]
+    },
+    {
+      "id": "W01-L05-Q-082",
+      "version": 1,
+      "status": "draft",
+      "authorId": "robotics-legacy-concept-closure-author",
+      "stem": "For the cited ROS 2 action design, which pairing correctly distinguishes a .action definition from the middleware endpoints, qualifying the slide’s “three topics internally” sentence?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "cognitiveSkill": "conceptual",
+      "week": 1,
+      "lectureId": "L05",
+      "topic": "Robot Operating System",
+      "subtopic": "Services, actions and parameters",
+      "tags": [
+        "L05",
+        "source-qualified",
+        "legacy-concept-closure"
+      ],
+      "conceptIds": [
+        "W01-L05-C-action-internals"
+      ],
+      "assumptions": [
+        "Use the named ROS 2 design document, not ROS 1 actionlib transport conventions or an unspecified alternative implementation."
+      ],
+      "options": [
+        {
+          "id": "o4",
+          "text": "Definition sections: goal, result, feedback; middleware: two services for goal/result and three topics for feedback/status/cancel."
+        },
+        {
+          "id": "o2",
+          "text": "Definition sections: goal, result, feedback; middleware: three services for send_goal/cancel_goal/get_result and two topics for feedback/status."
+        },
+        {
+          "id": "o1",
+          "text": "Definition sections: goal, result, feedback; middleware: exactly three topics called goal/feedback/result and no services."
+        },
+        {
+          "id": "o3",
+          "text": "Definition sections: send_goal, cancel_goal, get_result; middleware: five topics that transport these sections plus feedback/status."
+        }
+      ],
+      "correctOptionIds": [
+        "o2"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0196",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 196,
+          "kind": "statement",
+          "locator": "Lecture 5, physical PDF page 196, actual printed slide 26: Action diagram and italic internal-transport/.action paragraph.",
+          "evidenceText": "Actions: Long-Running Tasks\n Actions combine topics and services for preemptable, goal-oriented tasks with\n continuous feedback. Ideal for navigation, manipulation, and multi-step processes.\n\n\n\n      Goal             Accepted           Feedback              Result              Cancel\n\n\n                                 Server publishes Final response\n  Client sends     Server accepts                                         Client can cancel\n                                       periodic       when\n goal to server    or rejects goal                                     anytime\n                                  updates       complete\n Actions use three topics internally: goal, feedback, and result. The\n .action file defines the interfaces for all three.\n Example: /navigate_to_pose (Nav2) — sends goal pose, receives\n progress, delivers final result\n\n\n\n\n\n                                                                                                          26",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The .action definition describes goal, result and feedback data. The cited ROS 2 design implements an action using send_goal, cancel_goal and get_result services plus feedback and status topics. The slide’s three logical parts do not constitute an exhaustive count of internal topics. This is document-based verification of the named ROS 2 design, not a live ROS execution, and a cancellation request does not guarantee acceptance.",
+        "optionExplanations": {
+          "o1": "This repeats the flagged slide simplification as an exhaustive ROS 2 transport inventory and omits the three service interactions and status topic.",
+          "o2": "The cited design distinguishes the three logical goal/result/feedback sections from three services and two topics. send_goal, cancel_goal and get_result are services; feedback and status are topics.",
+          "o3": "The service endpoint names are not the three .action definition sections. The middleware inventory is not five topics.",
+          "o4": "Cancellation belongs to a service interaction in the cited design, so this reverses the service/topic count and misclassifies cancel."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "What data an action describes and how its middleware transports the interactions are different levels.",
+        "memoryAid": "Three data sections; three services plus two topics.",
+        "misconceptions": [
+          "Do not count .action sections as transport topics or infer that cancellation always succeeds."
+        ],
+        "examTraps": [
+          "Do not count .action sections as transport topics or infer that cancellation always succeeds."
+        ],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "relatedQuestionIds": [
+        "W01-L05-Q-033",
+        "W01-L05-Q-034",
+        "W01-L05-Q-035"
+      ],
+      "conflictResolution": {
+        "status": "qualified-draft-awaiting-independent-review",
+        "sourceClaim": "Actions use three topics internally: goal, feedback, and result. The .action file defines the interfaces for all three.",
+        "qualification": "The .action definition has goal/result/feedback sections, but the cited ROS2 transport design uses three services (send_goal,cancel_goal,get_result) and two topics (feedback,status), not three internal topics. Distinguish definition fields from transport endpoints.",
+        "primarySourceUrl": "https://design.ros2.org/articles/actions.html",
+        "primaryEvidenceScope": "Official design document opened and read including middleware section, service/topic names and cancellation acceptance. This is document-based verification, not a live ROS run.",
+        "adjudicationPath": "audits/lecture-ledger-challenge/L02-L05-independent-adjudication.json",
+        "adjudicationSha256": "a8a2e5907644b9f9e42c4d8361417618c1842f44b1e9a108f5bff00dde2bf8e8",
+        "method": "Keep the source claim visible; assess only the explicitly qualified distinction. This draft is not an approval or a claim that the underlying source wording has changed."
+      },
+      "primaryEvidence": {
+        "url": "https://design.ros2.org/articles/actions.html",
+        "scope": "Official design document opened and read including middleware section, service/topic names and cancellation acceptance. This is document-based verification, not a live ROS run.",
+        "evidenceOwner": "robotics-integration-legacy-concept-adjudication",
+        "currentAuthorFreshExternalRead": false,
+        "additionalUrls": []
+      }
+    },
+    {
+      "id": "W01-L05-Q-083",
+      "version": 1,
+      "status": "draft",
+      "authorId": "robotics-legacy-concept-closure-author",
+      "stem": "An RViz2 view displays data received as the standard nav_msgs/OccupancyGrid message inside a 3D scene. Which conclusion correctly qualifies the slide’s “2D or 3D maps” card?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "cognitiveSkill": "conceptual",
+      "week": 1,
+      "lectureId": "L05",
+      "topic": "Robot Operating System",
+      "subtopic": "Simulation and visualization",
+      "tags": [
+        "L05",
+        "source-qualified",
+        "legacy-concept-closure"
+      ],
+      "conceptIds": [
+        "W01-L05-C-occupancy-dimension"
+      ],
+      "assumptions": [
+        "The input is specifically the standard nav_msgs/OccupancyGrid message, not an unspecified custom 3D occupancy format."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "The message becomes a volumetric occupancy grid because the RViz scene uses three spatial display axes."
+        },
+        {
+          "id": "o1",
+          "text": "The message represents a 2D occupancy grid; rendering it in a 3D scene does not itself add a third grid dimension."
+        },
+        {
+          "id": "o2",
+          "text": "The message can represent either a 2D grid or a volumetric 3D grid solely according to the RViz camera angle."
+        },
+        {
+          "id": "o4",
+          "text": "The message cannot be shown in a 3D view because a 2D occupancy representation requires a strictly 2D renderer."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0207",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 207,
+          "kind": "statement",
+          "locator": "Lecture 5, physical PDF page 207, actual printed slide 37: RViz2 introduction and OccupancyGrid card.",
+          "evidenceText": "RViz2: 3D Visualization Tool\n  RViz2 is the primary visualization tool for ROS 2. It subscribes to ROS topics\n  and renders sensor data, robot models, maps, trajectories, and more in 3D.\n\n TF Frames                                 PointCloud2\n Visualize coordinate transforms\n                                3D LiDAR and depth camera data\n between links\n\n LaserScan                       Image\n 2D laser scan rings and obstacles        Camera feeds from any sensor\n\n                                MarkerArray OccupancyGrid\n                                   Custom 3D annotations and 2D or 3D maps from SLAM\n                                           overlays\n Path                                 RobotModel\n Planned navigation trajectories         URDF model rendered in 3D\n\n\n\n                                                                                                          37",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The standard nav_msgs/OccupancyGrid interface is a 2D grid. The lecture’s RViz2 rendering context is 3D, but the visualization context must not be confused with a volumetric map representation. The available evidence is the official nav_msgs package indexed description; the direct OccupancyGrid message page was denied and is not claimed as read. This conclusion concerns that standard message, not every possible occupancy-map representation.",
+        "optionExplanations": {
+          "o1": "The official nav_msgs package indexed evidence describes the standard OccupancyGrid message as a 2D grid. Representation dimensionality is not changed by placing that grid in a 3D visualization.",
+          "o2": "Camera orientation changes the view, not the structure or dimensionality of the message’s map representation.",
+          "o3": "Three-dimensional rendering does not create occupancy cells indexed through a third map dimension.",
+          "o4": "A 2D representation can be displayed as part of a 3D scene; data dimensionality does not impose that renderer restriction."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "A flat map viewed in a 3D room is still a flat map.",
+        "memoryAid": "Display space is not data dimensionality.",
+        "misconceptions": [
+          "Do not infer a 3D voxel grid from an RViz3D view or generalize this message-specific correction to every occupancy representation."
+        ],
+        "examTraps": [
+          "Do not infer a 3D voxel grid from an RViz3D view or generalize this message-specific correction to every occupancy representation."
+        ],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "relatedQuestionIds": [
+        "W01-L05-Q-062"
+      ],
+      "conflictResolution": {
+        "status": "qualified-draft-awaiting-independent-review",
+        "sourceClaim": "The OccupancyGrid card describes 2D or 3D maps from SLAM.",
+        "qualification": "Do not infer a volumetric 3D grid from RViz rendering in 3D. nav_msgs/OccupancyGrid is a 2D grid; the slide card's 2D or3D wording needs explicit qualification.",
+        "primarySourceUrl": "https://docs.ros.org/en/ros2_packages/humble/api/nav_msgs/index.html",
+        "primaryEvidenceScope": "Official nav_msgs package search result explicitly describes a2D grid. Direct message page was denied; no alternate retry. Scope to this standard message, not every occupancy representation.",
+        "adjudicationPath": "audits/lecture-ledger-challenge/L02-L05-independent-adjudication.json",
+        "adjudicationSha256": "a8a2e5907644b9f9e42c4d8361417618c1842f44b1e9a108f5bff00dde2bf8e8",
+        "method": "Keep the source claim visible; assess only the explicitly qualified distinction. This draft is not an approval or a claim that the underlying source wording has changed."
+      },
+      "primaryEvidence": {
+        "url": "https://docs.ros.org/en/ros2_packages/humble/api/nav_msgs/index.html",
+        "scope": "Official nav_msgs package search result explicitly describes a2D grid. Direct message page was denied; no alternate retry. Scope to this standard message, not every occupancy representation.",
+        "evidenceOwner": "robotics-integration-legacy-concept-adjudication",
+        "currentAuthorFreshExternalRead": false,
+        "additionalUrls": []
+      }
+    },
+    {
+      "id": "W01-L05-Q-084",
+      "version": 1,
+      "status": "draft",
+      "authorId": "robotics-legacy-concept-closure-author",
+      "stem": "Which reading correctly combines the historical release sequence in the Gazebo slide with the official Ignition/Gazebo rename evidence?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "cognitiveSkill": "conceptual",
+      "week": 1,
+      "lectureId": "L05",
+      "topic": "Robot Operating System",
+      "subtopic": "Simulation and visualization",
+      "tags": [
+        "L05",
+        "source-qualified",
+        "legacy-concept-closure"
+      ],
+      "conceptIds": [
+        "W01-L05-C-gazebo-versions"
+      ],
+      "assumptions": [
+        "This question concerns the historical names and order in the cited material, not a recommendation for a current deployment."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Garden → Fortress → Harmonic is the historical order; the rename establishes one compatible physics-engine configuration for every release."
+        },
+        {
+          "id": "o4",
+          "text": "Fortress → Garden → Harmonic is the historical order; the last name in that sequence establishes the latest release whenever the slide is read."
+        },
+        {
+          "id": "o3",
+          "text": "Fortress → Garden → Harmonic is the historical order; the rename does not by itself establish backend compatibility for a chosen setup."
+        },
+        {
+          "id": "o2",
+          "text": "Fortress, Garden and Harmonic are alternate names for one unchanged release; the rename guarantees that their installations are interchangeable."
+        }
+      ],
+      "correctOptionIds": [
+        "o3"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0208",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 208,
+          "kind": "statement",
+          "locator": "Lecture 5, physical PDF page 208, actual printed slide 38: Gazebo capabilities cards, especially Ignition to Gz and named release sequence.",
+          "evidenceText": "Gazebo: Robot Simulation\n\n  The standard physics-based simulator for ROS 2 development and testing\n\n  Physics Engine            Sensor Simulation         ros_gz Bridge\n  Supports ODE, Bullet,      Cameras, LiDAR, IMU,       Bidirectional bridge\n  DART — rigid body       GPS — generates         between Gazebo\n  dynamics, friction,            realistic ROS 2              topics and ROS 2\n  collisions                messages                   topics\n\n  Worlds & Models                                  Hardware-in-Loop\n                               Ignition → Gz           Combine real hardware  SDF format for\n                         Rebranded as 'Gz Sim'                                                    with simulated  environment\n                                 (Ignition Fortress →                                              components for HIL  definition; model\n                         Garden → Harmonic)                                                           testing  library available\n\n\n                                                                                                          38",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Preserve the slide’s Fortress → Garden → Harmonic sequence and the Ignition-to-Gazebo naming transition. The official April 6, 2022 announcement and release table support this historical context. They do not establish a universal physics-engine matrix, current latest release or suitability of a specific ROS/Gazebo installation. The existing configuration-limit questions therefore remain relevant and unchanged.",
+        "optionExplanations": {
+          "o1": "The stated historical order is Fortress, Garden, Harmonic, not Garden before Fortress; the rename supplies no universal backend-compatibility guarantee.",
+          "o2": "These are distinct named releases, not three aliases for a single unchanged release. Naming continuity does not prove installation interchangeability.",
+          "o3": "The official rename announcement and historical release table support the naming transition and order: Fortress September 2021, Garden September 2022, Harmonic September 2023. Configuration and compatibility remain version-specific.",
+          "o4": "The historical ordering is right, but a sequence printed on a dated slide cannot establish the current latest release."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "A name change explains naming history; a release name and date do not certify a complete software configuration.",
+        "memoryAid": "Order tells history; configuration needs its own evidence.",
+        "misconceptions": [
+          "Do not infer backend support, installation compatibility or a current latest release from the rename or the final item in a historical list."
+        ],
+        "examTraps": [
+          "Do not infer backend support, installation compatibility or a current latest release from the rename or the final item in a historical list."
+        ],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "relatedQuestionIds": [
+        "W01-L05-Q-066",
+        "W01-L05-Q-067"
+      ],
+      "conflictResolution": {
+        "status": "qualified-draft-awaiting-independent-review",
+        "sourceClaim": "Ignition is rebranded as Gz Sim with Fortress → Garden → Harmonic, beside a broad physics-engine list.",
+        "qualification": "Preserve Fortress→Garden→Harmonic historical sequence and explain Ignition/Gazebo rename; do not infer backend compatibility, current release or installation suitability from a name. Existing configuration-limit questions remain valid.",
+        "primarySourceUrl": "https://www.openrobotics.org/blog/2022/4/6/a-new-era-for-gazebo",
+        "primaryEvidenceScope": "Official April6,2022 rename announcement and Gazebo release table opened and read. Fortress Sep2021, Garden Sep2022, Harmonic Sep2023; this does not establish one universal physics-engine matrix.",
+        "adjudicationPath": "audits/lecture-ledger-challenge/L02-L05-independent-adjudication.json",
+        "adjudicationSha256": "a8a2e5907644b9f9e42c4d8361417618c1842f44b1e9a108f5bff00dde2bf8e8",
+        "method": "Keep the source claim visible; assess only the explicitly qualified distinction. This draft is not an approval or a claim that the underlying source wording has changed."
+      },
+      "primaryEvidence": {
+        "url": "https://www.openrobotics.org/blog/2022/4/6/a-new-era-for-gazebo",
+        "scope": "Official April6,2022 rename announcement and Gazebo release table opened and read. Fortress Sep2021, Garden Sep2022, Harmonic Sep2023; this does not establish one universal physics-engine matrix.",
+        "evidenceOwner": "robotics-integration-legacy-concept-adjudication",
+        "currentAuthorFreshExternalRead": false,
+        "additionalUrls": [
+          "https://gazebosim.org/docs/harmonic/releases/"
+        ]
+      }
+    }
+  ],
+  "concepts": [],
+  "reviews": [],
+  "auditPath": "audits/legacy-concept-closure/HANDOFF.md",
+  "note": "Status labels remain frozen; the exact-hash review gate determines pool eligibility. Original concept IDs are linked in their owning batches."
+}

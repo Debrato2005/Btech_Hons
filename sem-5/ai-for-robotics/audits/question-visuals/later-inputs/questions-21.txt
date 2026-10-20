@@ -1,0 +1,106 @@
+
+PAGE 1719
+5
+• Type of Robot Arms 
+Robot Arm Architecture
+Source: https://doi.org/10.1016/j.inffus.2023.102221
+•
+Discrete vs Continuum
+– Based on number of link
+•
+Redundant vs. Non-Redundant
+– Based on number of DoF
+•
+Hard (Rigid) vs Soft (Flexible)
+– Based on materials 
+properties 
+
+{"id": "W11-L54-P1719-Q01", "stem": "Which reading best matches the illustrated overlapping classifications?", "options": [{"id": "o1", "text": "An arm can be both rigid/discrete and redundant; the labels are not one mutually exclusive list"}, {"id": "o2", "text": "A continuum label by itself proves a particular fixed finite joint count"}, {"id": "o3", "text": "Any redundant arm must be a soft continuum arm"}], "assumptions": []}
+
+PAGE 1724
+10
+Support Vector Machines (SVMs), are a powerful class of supervised learning 
+algorithms used for both 
+–
+classification (Support Vector Classification, or SVC) and 
+–
+regression (Support Vector Regression, or SVR).
+➢We will use Support Vector Classification (SVC)
+What is SVM?
+➢The primary goal of an SVM is to find the optimal 
+separating hyperplane, the decision boundary that 
+separates classes while maximizing the margin.
+➢The Goal of the SVM is to maximize this distance to provide a 
+"breathing space" that helps the model generalize better to 
+new data.
+Margin
+Decision 
+Boundary
+
+{"id": "W11-L54-P1724-Q02", "stem": "Which line is the depicted decision boundary?", "options": [{"id": "o1", "text": "The dashed line nearest the positive-class points is the zero-score decision boundary"}, {"id": "o2", "text": "Both dashed lines are independent classifiers for the same fitted binary decision"}, {"id": "o3", "text": "The central solid separator; the parallel dashed lines illustrate margin boundaries"}], "assumptions": []}
+
+PAGE 1735
+21
+Inverse Kinematic: 2R Planar Robotic Arm
+
+{"id": "W11-L54-P1735-Q01", "stem": "What does the visible manual-control demonstration establish?", "options": [{"id": "o1", "text": "The shoulder slider sets Cartesian x while the elbow slider sets Cartesian y independently"}, {"id": "o2", "text": "The relation between joint configuration and tip position, not a measured accuracy result for the trained MLP"}, {"id": "o3", "text": "The manual pose demonstrates the trained MLP’s mean error over the held-out dataset"}], "assumptions": []}
+
+PAGE 1740
+26
+➢If we want the robot am to go to specific “X” and “Y” coordinates, 
+we just need to pass the  coordinate into model.predict()
+Inverse Kinematic: 2R Planar Robotic Arm (Code)
+End-effector at (-1.0,1.0)
+Predict joint angle at (-1.0,1.0) 
+Print predicted result
+Output:
+To reach X=-1.0, Y=1.0, the MLP predicted:
+Theta 1: 1.6773 radians -> 96.10 degrees
+Theta 2: 1.5809 radians -> 90.58 degrees
+Extracting joint angle
+➢Actual joint angle is 𝟗𝟎°, 𝟗𝟎° , with Forward Kinematics on 
+predicted angle we can see shift of ~10 cm in x and y direction  
+
+{"id": "W11-L54-P1740-Q05", "stem": "What distinction should be maintained when interpreting this page?", "options": [{"id": "o1", "text": "The sketch depicts the ideal target configuration; the printed learned angles give a displaced endpoint"}, {"id": "o2", "text": "The ideal drawing proves the printed predicted angles reach the target exactly"}, {"id": "o3", "text": "The printed angles describe the ideal drawing in degrees rather than radians"}], "assumptions": []}
+
+PAGE 1751
+7
+•
+Instead of manually deriving every physical equation, the network 
+learns the mapping:
+Θ, ሶΘ, 𝜏→ሷΘ
+•
+Meaning:
+– Current robot state + applied torque → predict joint acceleration 
+Feedforward Neural Network for Forward Dynamics
+
+{"id": "W11-L55-Q012", "stem": "Which variables occupy the six input neurons and two outputs in the diagram?", "options": [{"id": "o4", "text": "Inputs two Cartesian poses and two torques; outputs two joint angles."}, {"id": "o1", "text": "Inputs q1,q2 and four learned mass entries; outputs τ1,τ2."}, {"id": "o2", "text": "Inputs q1,q2,q̇1,q̇2,τ1,τ2; outputs q̈1,q̈2."}, {"id": "o3", "text": "Inputs q1,q2,q̇1,q̇2,q̈1,q̈2; outputs τ1,τ2."}], "assumptions": []}
+
+PAGE 1754
+10
+Inverse Dynamics: 2R Planar Robotic Arm
+•
+Problem Statement: Predicting joint torques for a 
+2-Degree-of-Freedom (2R) planar robotic arm using FFNN.
+•
+System Parameters:
+– Link lengths: 𝑙1 = 𝑙2 = 1 𝑚,
+– Link masses: 𝑚1 = 𝑚2 = 1 𝑘𝑔. (point mass at each link tip)
+– Gravity: 𝑔 = 9.81 𝑚/𝑠2.
+•
+Algorithm: Multi-Layer Perceptron (MLP) Regression
+•
+Data Architecture:
+•
+Motivation: Classical Inverse Dynamics requires exact 
+mass/inertia parameters, which are hard to measure. 
+A learned model works without knowing these parameters.
+Feedforward Neural Network for Inverse Dynamics
+Input:
+𝜃1, ሶ𝜃1, ሷ𝜃1
+𝜃2, ሶ𝜃2, ሷ𝜃2
+Output:
+𝜏1, 𝜏2
+
+{"id": "W11-L55-Q020", "stem": "Which description matches the illustrated analytical model?", "options": [{"id": "o4", "text": "Point masses at both link midpoints and absolute q2 from vertical."}, {"id": "o1", "text": "Uniform link masses concentrated at their centers, with q1 measured from vertical and q2 relative to link 1."}, {"id": "o2", "text": "Massless links with point masses at their tips; q1 from horizontal and q2 relative to the first-link extension."}, {"id": "o3", "text": "Uniform distributed link masses with q2 measured absolutely from horizontal."}], "assumptions": []}
+{"id": "W11-L55-Q026", "stem": "With the source unit masses/lengths and g=9.81 m/s², what gravity torque is needed at rest for q1=q2=0?", "options": [{"id": "o2", "text": "(19.62,9.81) N·m."}, {"id": "o3", "text": "(−29.43,−9.81) N·m."}, {"id": "o4", "text": "(29.43,9.81) N·m."}, {"id": "o1", "text": "(0,0) N·m."}], "assumptions": []}

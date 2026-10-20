@@ -1,0 +1,80 @@
+[
+  {
+    "id": "REV-ASSIGN-W10-Q004-v2-recovery-independent",
+    "questionId": "ASSIGN-W10-Q004",
+    "questionVersion": 2,
+    "questionSha256": "c21099c2d9fec43d69e20b4c5776db38815d90fe33c465c13ba7d6763b72f6c5",
+    "reviewerId": "repair_assignment_source_bindings:independent-reviewer",
+    "decision": "verified",
+    "reviewedAt": "2026-10-20T02:21:24.868419+00:00",
+    "sourceVersions": {
+      "assignments": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5"
+    },
+    "reviewedSlideIds": [
+      "assignments-p0046",
+      "assignments-p0047"
+    ],
+    "independentAnswerOptionIds": [
+      "o1"
+    ],
+    "solvedBeforeAnswerSeen": false,
+    "checks": {
+      "sourceSupport": true,
+      "assumptions": true,
+      "answerSet": true,
+      "distractors": true,
+      "calculations": true,
+      "figureFidelity": true,
+      "explanation": true,
+      "difficulty": true,
+      "duplication": true
+    },
+    "reasoning": "X has12 token rows and64 feature columns. Q/K have12x16, V12x20, QK-transpose and row-softmax12x12, and multiplying A by V yields H12x20. Source WV64x20 is on page46; incorrect intermediate64x16 in the V line is on page47. Complete current sources, answers, options, explanations, formulas, units, qualifications and original bindings were checked. Original printed keys were visible. Independent source-derived answers/reasoning were written in a pre-reveal Python artifact, but its numerical check failed before JSON sealing and the subsequent shell command opened current keys. Formal answer confirmation is post-reveal; see the preserved seal-failure disclosure. This review is not blind.",
+    "findings": [],
+    "reviewType": "targeted_nonblind_assignment_revision",
+    "priorExposure": "Original printed keys were visible. Independent source-derived answers/reasoning were written in a pre-reveal Python artifact, but its numerical check failed before JSON sealing and the subsequent shell command opened current keys. Formal answer confirmation is post-reveal; see the preserved seal-failure disclosure. This review is not blind.",
+    "blindAnswerRecord": "audits/assignment-coverage/W10-v2-recovery-independent-postreveal-responses.json",
+    "blindAnswerRecordSha256": "cc272e283c1cefc61cb0f9d36a198fd51627032b214648387dc8d5828697b94f",
+    "firstCurrentKeyOpenedAt": "2026-10-20T02:19:13.476648+00:00",
+    "sourceInspectionEvidence": [
+      {
+        "sourceId": "assignments",
+        "physicalPage": 46,
+        "imagePath": "sources/previews/assignments/page-0046.webp",
+        "imageSha256": "946fb473a0636de2a4d8a5d3db122760b0aad993a83d812c9f0978cc9b1885a9",
+        "visualInspection": "complete",
+        "viewedAt": "2026-10-20T02:10:39.185315+00:00",
+        "sourceAnswerExposure": true,
+        "observation": "Q4 defines X12x64,WQ/WK64x16,WV64x20; correct candidate Q/K12x16,V12x20."
+      },
+      {
+        "sourceId": "assignments",
+        "physicalPage": 47,
+        "imagePath": "sources/previews/assignments/page-0047.webp",
+        "imageSha256": "c1c6ad2b7cec6ad65ebc964babe52bf6bfd05bb0b629132d20f779aa3bf9f699",
+        "visualInspection": "complete",
+        "viewedAt": "2026-10-20T02:10:39.185315+00:00",
+        "sourceAnswerExposure": true,
+        "observation": "Q4 worked V multiplication incorrectly prints64x16 despite correct source WV64x20 premise on previous page and final V12x20. Error is physically here, page47."
+      }
+    ],
+    "independentCheckEvidence": {
+      "path": "audits/assignment-coverage/W08-W10-v2-recovery-independent-checks.json",
+      "sha256": "e58ada3b51a837e8253ff4375f04053af262712e73a38c6a9b3ddb7268b86175"
+    },
+    "originalSourceRecordChecked": {
+      "path": "audits/assignment-originals/ASSIGN-W10-Q04.json",
+      "sha256": "c7d7080af4277c1d226267a726495ffac105469a4f817e3e57e7842cdce6060c",
+      "printedItemNumber": "4",
+      "sourcePages": [
+        46,
+        47
+      ]
+    },
+    "sealFailureDisclosure": {
+      "path": "audits/assignment-coverage/W08-W10-v2-recovery-review-seal-disclosure.json",
+      "sha256": "62352cfda400db284e30390cf63205944c9e0031166e14079197b86a26a4681c"
+    },
+    "generatedKeyHiddenUntilFormalSeal": false
+  }
+]

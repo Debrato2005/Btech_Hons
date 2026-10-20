@@ -1,0 +1,93 @@
+
+PAGE 1649
+30
+Experimental 
+Demonstration
+
+{"id": "W11-L52-P1648-Q01", "stem": "What separates the two reed demonstration stills?", "options": [{"id": "o1", "text": "The two states alone determine a unique distance-to-field calibration curve"}, {"id": "o2", "text": "The monitor shows detected here and not detected on the next page; exact magnetic threshold remains unknown"}, {"id": "o3", "text": "The difference proves the code polarity changed between stills"}], "assumptions": []}
+
+PAGE 1651
+32
+• Applications in Robotics
+– Obstacle detection and avoidance
+– Autonomous navigation
+– Height and depth measurement
+• Pin Diagram
+HC-SR04 ultrasonic sensor
+Source: https://randomnerdtutorials.com/ 
+Ultrasonic Pin
+Arduino Mega
+VCC
+5V
+TRIG
+9
+ECHO
+10
+
+{"id": "W11-L52-P1651-Q01", "stem": "Which connection is missing from the printed table but visibly labeled on the module?", "options": [{"id": "o1", "text": "TRIG"}, {"id": "o2", "text": "ECHO"}, {"id": "o3", "text": "GND"}], "assumptions": []}
+
+PAGE 1652
+33
+• Arduino Mega Code
+long duration;
+int distance;
+void setup() {
+pinMode(9, OUTPUT);
+pinMode(10, INPUT);
+Serial.begin(9600);
+}
+void loop() {
+digitalWrite(9, LOW);
+delayMicroseconds(2);
+digitalWrite(9, HIGH);
+delayMicroseconds(10);
+digitalWrite(9, LOW);
+duration = pulseIn(10, HIGH);
+distance = duration * 0.034 / 2;
+Serial.print("Distance: ");
+Serial.print("Distance: ");
+Serial.print(distance);
+delay(300);}
+Code Explanation
+― TRIG generates ultrasonic 
+― pulseIn() measures echo time
+― Distance calculated using sound 
+velocity
+
+{"id": "W11-L52-P1653-Q01", "stem": "Why must the historical demonstration output not be presented as exact execution of p 1652 unchanged?", "options": [{"id": "o1", "text": "The displayed 206/207 values prove the arithmetic uses exactly 343 m/s rather than 340 m/s"}, {"id": "o2", "text": "Its single-prefix, line-separated format differs from the printed duplicate-prefix/no-newline code"}, {"id": "o3", "text": "The line-separated output proves a 300 ms update interval exactly"}], "assumptions": []}
+
+PAGE 1653
+34
+Ultrasonic sensor 
+connected to Arduino
+
+{"id": "W11-L52-P1653-Q01", "stem": "Why must the historical demonstration output not be presented as exact execution of p 1652 unchanged?", "options": [{"id": "o1", "text": "The displayed 206/207 values prove the arithmetic uses exactly 343 m/s rather than 340 m/s"}, {"id": "o2", "text": "Its single-prefix, line-separated format differs from the printed duplicate-prefix/no-newline code"}, {"id": "o3", "text": "The line-separated output proves a 300 ms update interval exactly"}], "assumptions": []}
+
+PAGE 1654
+35
+Experimental 
+Demonstration
+
+{"id": "W11-L52-P1654-Q01", "stem": "What does the changed readout most directly support?", "options": [{"id": "o1", "text": "A certified measurement error of zero at 34 cm"}, {"id": "o2", "text": "The smaller range proves the sensor’s error decreased by the same amount"}, {"id": "o3", "text": "A different measured echo range after the scene changes, not a calibrated accuracy result"}], "assumptions": []}
+
+PAGE 1655
+36
+•
+Definition
+– The DHT11 is a low-cost digital sensor used to measure ambient temperature 
+and relative humidity.
+•
+Working Principle
+– Uses a thermistor to measure temperature
+– Uses a capacitive humidity sensor to detect moisture
+– Internal ADC converts data into digital format
+– Data is sent using a single-wire serial communication
+•
+Applications in Robotics
+– Environment monitoring robots
+– Smart agriculture robots
+– Weather stations
+– Fire-safety and HVAC robots
+Temperature and Humidity Sensor (DHT11) 
+
+{"id": "W11-L52-P1656-Q02", "stem": "Read the humidity-element exploded drawing as printed, without generalizing it to every DHT11 revision. What is the order from top to bottom?", "options": [{"id": "o1", "text": "Upper electrode → moisture-holding substrate → lower electrode → glass substrate"}, {"id": "o2", "text": "Upper electrode → glass substrate → lower electrode → moisture-holding substrate"}, {"id": "o3", "text": "Upper electrode → lower electrode → moisture-holding substrate → glass substrate"}], "assumptions": ["Interpret only the actual labeled source drawing; the separate documentation-revision qualification is retained."]}

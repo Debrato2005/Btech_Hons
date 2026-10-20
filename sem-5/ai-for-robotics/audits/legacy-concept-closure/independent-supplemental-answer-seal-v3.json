@@ -1,0 +1,89 @@
+{
+  "id": "independent-supplemental-answer-seal-v3",
+  "reviewerId": "review_three_qualified_repairs",
+  "reviewerIdentity": "/root/build_robotics_study_app/close_legacy_concept_coverage/review_three_qualified_repairs",
+  "sealedAt": "2026-10-20T02:49:43.232647+00:00",
+  "neutralPacketPath": "audits/legacy-concept-closure/neutral-packet-v3.json",
+  "neutralPacketSha256": "ddef486ab7aad03c613cba1166b29bdaf6f7610833b239b09a9f25c3a19eed03",
+  "questionId": "W01-L02-Q-106",
+  "questionVersion": 3,
+  "independentAnswerOptionIds": [
+    "o1"
+  ],
+  "solvedBeforeAnswerSeen": false,
+  "v3AuthorArtifactReadBeforeSeal": false,
+  "exposure": "This is exposed narrow-repair re-review, not source-naive or fully answer-blind review. I previously solved v2, viewed the same source preview, read its author key/explanation and prior official evidence provenance, identified the retained-component flaw, and suggested the principal-component wording now used. I am freezing my v3 assessment before opening the v3 author artifact, but the prior v2 key was already seen.",
+  "scope": "Only W01-L02-Q-106 version 3. Other five question objects and all prior packets are outside the edit scope and remain untouched by this worker.",
+  "neutralDiff": {
+    "version": {
+      "v2": 2,
+      "v3": 3
+    },
+    "options": {
+      "v2": [
+        {
+          "id": "o2",
+          "text": "PCA supplies cluster membership, whereas the later clustering step merely changes the coordinate axes."
+        },
+        {
+          "id": "o4",
+          "text": "Both steps necessarily assign the same groups because neither requires ground-truth class labels."
+        },
+        {
+          "id": "o1",
+          "text": "PCA supplies a reduced-coordinate representation; the separate clustering step supplies group membership."
+        },
+        {
+          "id": "o3",
+          "text": "PCA requires class labels, whereas only the later clustering step can operate on unlabeled observations."
+        }
+      ],
+      "v3": [
+        {
+          "id": "o2",
+          "text": "PCA supplies cluster membership, whereas the later clustering step merely changes the coordinate axes."
+        },
+        {
+          "id": "o4",
+          "text": "Both steps necessarily assign the same groups because neither requires ground-truth class labels."
+        },
+        {
+          "id": "o1",
+          "text": "PCA supplies a principal-component representation; the separate clustering step supplies group membership."
+        },
+        {
+          "id": "o3",
+          "text": "PCA requires class labels, whereas only the later clustering step can operate on unlabeled observations."
+        }
+      ]
+    }
+  },
+  "reasoning": "PCA produces coordinates in a principal-component representation, whether all components or a proper subset are retained. This does not itself assign cluster membership. K-means is the distinct grouping operation. The replacement wording removes the unsupported dimensionality-reduction guarantee without adding the answer to the stem.",
+  "optionReasoning": {
+    "o2": "False: swaps projection and partition roles; PCA does not output cluster memberships, and K-means does not merely change coordinate axes.",
+    "o4": "False: neither requiring labels does not make the operations identical; PCA has no required cluster-assignment output.",
+    "o1": "True: principal-component representation accurately covers full and truncated PCA, while K-means supplies the group assignment.",
+    "o3": "False: PCA does not require ground-truth class labels."
+  },
+  "assumptionsAndUncertainties": [
+    "No retained-component-count assumption is required for the repaired option.",
+    "No remaining ambiguity or second correct option identified.",
+    "Prior external provenance is used as recorded; no fresh external page or browser verification is claimed."
+  ],
+  "sourceVersions": {
+    "lectures": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c"
+  },
+  "reviewedSlideIds": [
+    "lectures-p0063"
+  ],
+  "visualEvidence": {
+    "previewPath": "sources/previews/lectures/page-0063.webp",
+    "previewSha256": "719c8e7a416664bd24e56caab9f7ce4a030eaa848f1024a6a590a19b367f3265",
+    "dimensions": [
+      1800,
+      1013
+    ],
+    "method": "Fresh local tools.view_image call during v3 re-review",
+    "observation": "Unsupervised Learning title, ground-truth-label-free definition, Clustering box with K-means partition into K clusters and PCA listed underneath, right-side original-data and three circled color-group diagrams, printed footer 14. The source taxonomy ambiguity is correctly preserved as a caveat."
+  }
+}

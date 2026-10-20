@@ -1,0 +1,104 @@
+{
+  "id": "final-coverage-audit-publication-v1",
+  "publishedAt": "2026-10-20T03:14:16.590617+00:00",
+  "status": "substantive_coverage_closed_release_pending",
+  "auditPath": "audits/coverage_challenge.json",
+  "auditSha256": "69c1470d213fc48f0d6a814c5788b3c058ad189dc6e696aa974b1a37f2fe24d4",
+  "reviewedBaseBankSha256": "0f07023729c13327a4de32e3a0b7cf746c2c65d2fbd09f179c34fae450945776",
+  "coverageInputBinding": {
+    "fields": [
+      "sources",
+      "slides",
+      "concepts",
+      "questions",
+      "reviews",
+      "assignmentReuse"
+    ],
+    "sha256": "2af91b1ef9c533f3cb5827b1adcfa07d13d8b2a7250b1558ac5eeedcecb9da18",
+    "algorithm": "SHA256 of UTF-8 scripts.validate.canonical_json({field: bank.get(field) for field in fields}); sorted object keys, preserved array order, no trailing newline.",
+    "excludes": [
+      "bankVersion",
+      "coverageChallenge",
+      "all other top-level bank fields"
+    ],
+    "interpretation": "bankSnapshotSha256 identifies the exact reviewed base bank file. A later bank embedding this audit may have a different whole-file SHA; equivalence is asserted only for this exact coverage-input digest.",
+    "validator": "python audits/legacy-concept-closure/refresh_coverage_challenge.py --check-binding"
+  },
+  "detailedReceipt": {
+    "path": "audits/legacy-concept-closure/final-coverage-receipt-2af91b1ef9c533f3cb5827b1adcfa07d13d8b2a7250b1558ac5eeedcecb9da18.json",
+    "sha256": "049dbcc10298b810655bc31263e159a200958c3e093d397358bd1b10269abade"
+  },
+  "helperReview": {
+    "path": "audits/legacy-concept-closure/independent-refresh-generator-review-v2.json",
+    "sha256": "8e1d3acef45fef4ed0911b625edd77d08f2fd8afe21cb7fc55054aab3ffd53df",
+    "passedControls": 12,
+    "blockingFindings": 0
+  },
+  "actualPersistedBaseBindingCheck": {
+    "command": "python audits/legacy-concept-closure/refresh_coverage_challenge.py --check-binding",
+    "exitCode": 0,
+    "bindingValid": true,
+    "errors": [],
+    "checkedBaseSha256": "0f07023729c13327a4de32e3a0b7cf746c2c65d2fbd09f179c34fae450945776"
+  },
+  "idempotenceEvidence": "Two read-only reconciliations produced byte-identical audit and receipt objects before publication. Exact regeneration passed again against the persisted audit and receipt.",
+  "counts": {
+    "lecturePages": 1953,
+    "assignmentPages": 59,
+    "allSourcePages": 2012,
+    "distributedVisualInspectionRecords": 2012,
+    "lectureConceptRecords": 3408,
+    "allConceptRecords": 3528,
+    "lectureConceptCoverageKinds": {
+      "direct_declared_concept_question_coverage": 3399,
+      "excluded_commentary_only": 1,
+      "reviewed_semantic_alias": 7,
+      "reviewed_semantic_alias_with_original_source_qualification": 1
+    },
+    "allConceptCoverageKinds": {
+      "direct_declared_concept_question_coverage": 3517,
+      "independently_reviewed_assignment_reuse": 2,
+      "excluded_commentary_only": 1,
+      "reviewed_semantic_alias": 7,
+      "reviewed_semantic_alias_with_original_source_qualification": 1
+    },
+    "lecturePageAccountabilityKinds": {
+      "justified_source_page_exclusion": 305,
+      "examinable_direct_citation_and_concept_coverage": 1632,
+      "repeated_content_with_explicit_source_targets": 16
+    },
+    "allPageDispositions": {
+      "examinable": 1690,
+      "excluded": 306,
+      "repeated": 16
+    },
+    "questionsTotal": 5071,
+    "questionsVerified": 5069,
+    "questionStatuses": {
+      "verified": 5069,
+      "flagged": 2
+    },
+    "substantiveCoverageOpenQuestions": 0,
+    "sourceDuplicateAuditExclusions": 2,
+    "legacyAliasesResolved": 8,
+    "commentaryOnlyConceptExclusions": 1,
+    "p93SubstantiveRowsPreserved": 7,
+    "newSummaryRowsCrosslinked": 18,
+    "qualifiedQuestionsVerified": 6,
+    "assignmentSourceItemDenominator": 120,
+    "assignmentItemsWithDirectVerifiedAdaptations": 118,
+    "assignmentItemsWithReviewedReuse": 2,
+    "assignmentOriginalSourceKeyDispositions": {
+      "consistent_under_stated_or_explicit_standard_model": 82,
+      "conflicting_or_underspecified_quarantine": 12,
+      "conditionally_consistent_needs_qualification": 26
+    },
+    "additionalUniqueQuestionsFromReuse": 0,
+    "reviewGateProjectionMismatches": 0,
+    "unresolvedReconciliationFindings": 0
+  },
+  "canonicalQuestionEdits": [],
+  "additionalCanonicalMetadataPathTouched": "data/inspection-batches/W12-L60.json",
+  "additionalCanonicalMetadataReceipt": "audits/legacy-concept-closure/L60-stale-pending-metadata-receipt-v1.json",
+  "remaining": "Coordinator may embed the exact audit into a derived bank; then run the helper binding check again. Actual downloaded-HTML browser QA and final-release certification are separate."
+}

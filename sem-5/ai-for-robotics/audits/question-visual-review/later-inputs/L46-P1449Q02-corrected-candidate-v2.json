@@ -1,0 +1,100 @@
+{
+  "id": "W10-L46-P1449-Q02",
+  "version": 2,
+  "status": "draft",
+  "authorId": "late-input-source-repair-20261020",
+  "stem": "Compare the source-reported Tokens list with its After Stop-word Removal list. Which observable change is shown?",
+  "selectionMode": "single",
+  "type": "algorithm_trace",
+  "difficulty": "easy",
+  "cognitiveSkill": "algorithm",
+  "week": 10,
+  "lectureId": "L46",
+  "topic": "Natural Language Processing",
+  "subtopic": "NLTK preprocessing code and intermediate state",
+  "tags": [
+    "nlp",
+    "preprocess-code"
+  ],
+  "conceptIds": [
+    "W10-L46-C-preprocess-code"
+  ],
+  "assumptions": [
+    "Read the two saved output lists as historical source evidence; do not infer a complete stopword inventory or claim fresh execution with current NLTK resources."
+  ],
+  "options": [
+    {
+      "id": "o1",
+      "text": "The token up and both occurrences of the are removed; near is retained, and the remaining tokens keep their relative order."
+    },
+    {
+      "id": "o2",
+      "text": "Only the two occurrences of the are removed; up and near are both retained."
+    },
+    {
+      "id": "o3",
+      "text": "The tokens up, near and both occurrences of the are removed; the remaining tokens keep their relative order."
+    },
+    {
+      "id": "o4",
+      "text": "The same five tokens are retained, but they are sorted alphabetically before display."
+    }
+  ],
+  "correctOptionIds": [
+    "o1"
+  ],
+  "citations": [
+    {
+      "slideId": "lectures-p1449",
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 1449,
+      "kind": "figure",
+      "locator": "Physical PDF page 1449, printed slide10: historical Tokens and After Stop-word Removal output lists in the right column.",
+      "evidenceText": "Tokens: ['pick', 'up', 'the', 'red', 'ball', 'near', 'the', 'chair']; After Stop-word Removal: ['pick', 'red', 'ball', 'near', 'chair']",
+      "role": "premise",
+      "region": null
+    }
+  ],
+  "solution": {
+    "justification": "The before list is pick, up, the, red, ball, near, the, chair. The after list is pick, red, ball, near, chair. Comparing them shows that up and both the tokens disappear, while near and the relative order of the five retained tokens remain. This is an observation of saved source output, not a reconstruction of an unpinned stopword resource.",
+    "optionExplanations": {
+      "o1": "Correct: this exactly describes the visible before/after lists.",
+      "o2": "Incorrect: up is absent from the saved after list.",
+      "o3": "Incorrect: near remains in the saved after list.",
+      "o4": "Incorrect: pick remains first; the displayed retained sequence is not alphabetically sorted."
+    },
+    "steps": [
+      "Read both saved token sequences.",
+      "Compare removed occurrences and retained order without rerunning the tagger or guessing its corpus."
+    ],
+    "formulas": [],
+    "simpleExplanation": "The saved output removes up and the, keeps near, and does not reorder the remaining tokens.",
+    "memoryAid": null,
+    "misconceptions": [
+      "Reading a saved output does not establish all entries of the historical stopword corpus."
+    ],
+    "examTraps": [],
+    "prerequisiteConceptIds": []
+  },
+  "origin": "generated",
+  "reviewIds": [],
+  "primaryEvidence": [
+    {
+      "title": "Official lecture 46 notebook",
+      "url": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/main/week10/week10_lecture46.ipynb",
+      "version": "Retrieved 2026-10-19; saved NLTK output reports 3.9.1",
+      "localPath": "sources/supplemental/L46-official-week10_lecture46.ipynb",
+      "sha256": "d32019733e3d14c0b21c9bf5276ecceb8fa4b0a11757bb0b4ffef4b2fe2504c3",
+      "checkedAt": "2026-10-19T22:10:00Z",
+      "locator": "Zero-based cell 3; saved outputs are historical evidence, not fresh corpus-dependent execution."
+    }
+  ],
+  "conflictResolution": {
+    "originalVersion": 1,
+    "originalHistoryPath": "data/history/W10-L46/W10-L46-P1449-Q02-v1-before-input-repair.json",
+    "reason": "The original computation-style question required absent exact historical stopword membership. This candidate instead asks an observable comparison of the two unchanged source-reported outputs.",
+    "sourcePhysicalPage": 1449,
+    "candidateOnly": true
+  }
+}

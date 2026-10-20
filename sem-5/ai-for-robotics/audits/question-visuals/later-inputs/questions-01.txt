@@ -1,0 +1,144 @@
+
+PAGE 1112
+25
+•
+UCS is an optimal graph search algorithm. 
+Instead of expanding nodes level-by-level, 
+it prioritizes vertices based on the lowest 
+cumulative cost from the start vertex.
+2. Uniform-Cost Search (UCS)
+•
+Mathematical Notation: Minimizes f(v)=g(v), 
+where g(v) is the cumulative cost (distance) from the 
+start to the current vertex v.
+•
+Data Structures: It uses a priority queue ordered 
+from smallest to largest value of g(v).
+Cost: Distance (in km)
+
+{"id": "W08-L36-P1117-Q01", "stem": "Which final UCS result matches the weighted source example?", "options": [{"id": "o4", "text": "A→B→E→F→G, total 8 km"}, {"id": "o1", "text": "A→C→F→G, total 9 km"}, {"id": "o2", "text": "A→B→D→G, total 17 km"}, {"id": "o3", "text": "A→C→F→E→D→G, total 9 km"}], "assumptions": []}
+
+PAGE 1116
+29
+Step-by-Step Execution
+•
+Step 5: Expand cheapest node, E(7).
+– Evaluate neighbor D (cost 7+2=9). Since 9 
+is cheaper than the existing path to D 
+(which was 11), we select D to go through 
+E.
+– Frontier: [D(9), G(9)]
+– Explored: [A, C, B, F, E]
+•
+Step 6: Expand cheapest node, D(9).
+–  Neighbor G via D has a cost of 9+6=15, 
+which is worse than the existing cost to G 
+(9), so we do not update.
+– Frontier: [G(9)]
+– Explored: [A, C, B, F, E, D]
+2. Uniform-Cost Search (UCS)
+
+{"id": "W08-L36-P1116-Q03", "stem": "Suppose the same UCS trace chooses G before D when both have g=9. What changes relative to the displayed D-before-G trace?", "options": [{"id": "o3", "text": "The returned cost stays 9, but both tied nodes must still be expanded before termination"}, {"id": "o4", "text": "The returned cost stays 9, but choosing the other tied node necessarily destroys UCS optimality"}, {"id": "o1", "text": "The returned optimal cost stays 9, and D is not expanded before termination"}, {"id": "o2", "text": "The returned cost becomes 15 because D’s alternative path replaces G’s cost"}], "assumptions": ["Only the equal-cost tie rule changes; goal test remains on removal."]}
+
+PAGE 1117
+30
+Step-by-Step Execution
+• Step 7: Expand G(9). The goal is 
+reached.
+• Final Path Found: A→C→F→G
+• Total Cost: 2+4+3=9
+• Nodes Explored: 6 nodes 
+(A,C,B,F,E,D)
+2. Uniform-Cost Search (UCS)
+
+{"id": "W08-L36-P1116-Q03", "stem": "Suppose the same UCS trace chooses G before D when both have g=9. What changes relative to the displayed D-before-G trace?", "options": [{"id": "o3", "text": "The returned cost stays 9, but both tied nodes must still be expanded before termination"}, {"id": "o4", "text": "The returned cost stays 9, but choosing the other tied node necessarily destroys UCS optimality"}, {"id": "o1", "text": "The returned optimal cost stays 9, and D is not expanded before termination"}, {"id": "o2", "text": "The returned cost becomes 15 because D’s alternative path replaces G’s cost"}], "assumptions": ["Only the equal-cost tie rule changes; goal test remains on removal."]}
+
+PAGE 1130
+4
+➢Problem Statement: Consider a 5×5 grid 
+world with Walls, a Start cell, and a Goal 
+cell. Find the minimum-cost path from 
+Start to Goal using the Global Planning: A* 
+algorithm with known map, where at each 
+step we expand the node with the lowest 
+f(n) = g(n) + h(n).
+A* Algorithm: Example 
+Goal
+Start
+
+{"id": "W08-L37-P1130-Q01", "stem": "In the pictured 5×5 example, which setup is assumed for the A* global-planning problem?", "options": [{"id": "o3", "text": "An already known changing future position for every obstacle"}, {"id": "o4", "text": "Only a one-step action with no route objective"}, {"id": "o1", "text": "A known map with fixed walls, a start cell and a goal cell"}, {"id": "o2", "text": "No map, no target and only rewards"}], "assumptions": []}
+
+PAGE 1131
+5
+Grid-to-Graph Conversion for Path Planning 
+(G=(V,E))
+➢Step 1: Define the Coordinate System
+– Index the grid rows and columns to establish a 
+2D coordinate system. 
+– For a grid of size 𝑀× 𝑁, each cell is uniquely 
+identified by its coordinates (𝑥, 𝑦), where
+ 0 ≤𝑥< 𝑀 and
+ 0 ≤𝑦< 𝑁.
+A* Algorithm: Example 
+(0,0)
+(0,1)
+(0,2)
+(0,3)
+(0,4)
+(1,0)
+(1,1)
+(1,2)
+(1,3)
+(1,4)
+(2,0)
+(2,1)
+(2,2)
+(2,3)
+(2,4)
+(3,0)
+(3,1)
+(3,2)
+(3,3)
+(3,4)
+(4,0)
+(4,1)
+(4,2)
+(4,3)
+(4,4)
+
+{"id": "W08-L37-P1131-Q01", "stem": "Using the slide’s (row, column) indices, what are the start and goal coordinates?", "options": [{"id": "o4", "text": "Start (0, 0); goal (4, 4)"}, {"id": "o1", "text": "Start (4, 4); goal (2, 0)"}, {"id": "o2", "text": "Start (5, 5); goal (3, 1)"}, {"id": "o3", "text": "Start (4, 4); goal (0, 2)"}], "assumptions": []}
+{"id": "W08-L37-P1133-Q01", "stem": "Why is the diagonal move from (4, 2) to (3, 1) forbidden in the illustrated corner example?", "options": [{"id": "o2", "text": "All diagonal moves are forbidden everywhere"}, {"id": "o3", "text": "The destination (3, 1) is a wall"}, {"id": "o4", "text": "It would increase both row and column"}, {"id": "o1", "text": "It cuts the corner of wall cell (3, 2), even though both endpoint cells are free"}], "assumptions": ["For this implementation, a diagonal is allowed only when both adjacent orthogonal cells are free, consistent with the illustrated blocked corner."]}
+
+PAGE 1133
+7
+Define g(n)
+➢g(n) = actual accumulated cost from Start 
+to nth cell (sum of move costs along the 
+path so far).
+➢Note:- Robot is not allowed diagonal steps 
+at corners to avoid 
+collision with wall.
+A* Algorithm: Example 
+4.4
+4.0
+6.4
+6.0
+4
+3.4
+3.0
+5.4
+5.0
+2.4
+2.0
+4.4
+4.0
+1.4
+1.0
+4.0
+3.0
+2.0
+1.0
+0.0
+
+{"id": "W08-L37-P1133-Q01", "stem": "Why is the diagonal move from (4, 2) to (3, 1) forbidden in the illustrated corner example?", "options": [{"id": "o2", "text": "All diagonal moves are forbidden everywhere"}, {"id": "o3", "text": "The destination (3, 1) is a wall"}, {"id": "o4", "text": "It would increase both row and column"}, {"id": "o1", "text": "It cuts the corner of wall cell (3, 2), even though both endpoint cells are free"}], "assumptions": ["For this implementation, a diagonal is allowed only when both adjacent orthogonal cells are free, consistent with the illustrated blocked corner."]}
+{"id": "W08-L37-P1134-Q04", "stem": "Which pairing correctly identifies the goal’s g and h in the coherent tables?", "options": [{"id": "o4", "text": "g=1.0, h=1.0"}, {"id": "o1", "text": "g=5.4, h=0.0"}, {"id": "o2", "text": "g=0.0, h=5.4"}, {"id": "o3", "text": "g=4.8, h=4.8"}], "assumptions": []}

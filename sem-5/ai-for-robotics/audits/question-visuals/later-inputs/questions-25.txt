@@ -1,0 +1,172 @@
+
+PAGE 1827
+25
+•
+After contour extraction, geometric properties 
+are analyzed to determine the object shape. 
+•
+The centroid obtained from image moments
+is combined with depth information from the 
+RealSense camera to estimate the three-
+dimensional position of the object.
+•
+Parameters Extracted
+– Object color, Object centroid, Bounding box dimensions,
+Shape characteristics, Depth value, Robot pick coordinates. 
+Shape Classification and Object Localization: 
+•
+The resulting coordinates are subsequently transformed 
+into the robot reference frame for autonomous pick-and-
+place operations.
+3D image of the objects in Camera view
+
+{"id": "W12-L57-Q054", "stem": "What is missing if one tries to calculate a precise distance solely from the displayed false-colour depth image?", "options": [{"id": "o4", "text": "Only the contour-area threshold used by the detector."}, {"id": "o1", "text": "Only the physical marker side length, with no visible marker geometry or projection calculation."}, {"id": "o2", "text": "A defined numeric depth-to-colour mapping/scale and valid pixel data."}, {"id": "o3", "text": "Only the RGB principal point, without any depth-to-colour legend or depth samples."}], "assumptions": []}
+
+PAGE 1829
+27
+•
+The communication layer establishes the 
+interface between the Python-based vision 
+system and the KUKA KR C4 controller.
+•
+In the developed architecture, 
+OpenShowVar provides Ethernet-based 
+access to robot variables. 
+•
+The C3 Bridge acts as the communication 
+gateway between the external computer 
+and the controller.
+Communication Layer for Robot–Vision Integration 
+•
+A continuously running KRL background program (robosync.src) 
+exchanges data between the controller memory and the 
+external application, enabling real-time robot control.
+Python + OpenCV
+        ↓
+   OpenShowVar
+        ↓
+     C3 Bridge
+        ↓
+   robosync.src
+        ↓
+ KR C4 Controller
+        ↓
+ KUKA KR5 Robot
+
+{"id": "W12-L57-Q057", "stem": "Which conceptual sequence matches the displayed communication diagram?", "options": [{"id": "o4", "text": "Python/OpenCV → robosync.src on the PC → OpenShowVar → C3 Bridge → robot."}, {"id": "o3", "text": "Python/OpenCV → C3 Bridge → OpenShowVar → robot, omitting controller-side KRL."}, {"id": "o1", "text": "Python/OpenCV → OpenShowVar → robot joints directly, without a gateway/controller stage."}, {"id": "o2", "text": "Python/OpenCV → OpenShowVar → C3 Bridge → robosync.src/controller → robot."}], "assumptions": []}
+
+PAGE 1832
+30
+Coordinate Transformation 
+{𝑊𝑜𝑟𝑙𝑑}
+• How Object Coordinates transform to Robot then Tool
+𝑅𝑜𝑏𝑜𝑡
+𝑊𝑜𝑟𝑙𝑑𝑇 𝐹𝑙𝑎𝑛𝑔𝑒
+𝑅𝑜𝑏𝑜𝑡𝑇
+𝜃1 … 𝜃6 ⋅
+𝑇𝐶𝑃
+𝐹𝑙𝑎𝑛𝑔𝑒𝑇𝑂𝑏𝑗𝑒𝑐𝑡
+𝑇𝐶𝑃𝑇= 𝑅𝑜𝑏𝑜𝑡
+𝑊𝑜𝑟𝑙𝑑𝑇⋅ 𝑀𝑎𝑟𝑘𝑒𝑟
+𝑅𝑜𝑏𝑜𝑡𝑇 𝐶𝑎𝑚𝑒𝑟𝑎
+𝑀𝑎𝑟𝑘𝑒𝑟𝑇 𝑂𝑏𝑗𝑒𝑐𝑡
+𝐶𝑎𝑚𝑒𝑟𝑎𝑇
+{𝑅𝑜𝑏𝑜𝑡}
+{𝐹𝑙𝑎𝑛𝑔𝑒}
+{𝑇𝐶𝑃}
+{𝑂𝑏𝑗𝑒𝑐𝑡}
+{𝐶𝑎𝑚𝑒𝑟𝑎}
+{𝑀𝑎𝑟𝑘𝑒𝑟}
+
+{"id": "W12-L57-Q064", "stem": "Which intermediate frames distinguish the robot kinematic route from the vision route?", "options": [{"id": "o4", "text": "Kinematic: Robot, Flange, TCP; vision: Robot, Marker, Camera."}, {"id": "o3", "text": "Kinematic: Robot, Marker, Camera; vision: Robot, Flange, TCP."}, {"id": "o1", "text": "Both routes pass through Marker then Flange then Camera."}, {"id": "o2", "text": "Kinematic: Camera, TCP, Marker; vision: Flange, World, Robot."}], "assumptions": []}
+
+PAGE 1834
+32
+•
+Pick Sequence
+– Current Position
+↓
+– Safe Height
+↓
+– Object XY Position
+↓
+– Approach Height
+↓
+– Grasp Height
+↓
+– Close Gripper
+↓
+– Retract
+Motion Sequence : 
+•
+Drop Sequence
+•
+Safe Height
+↓
+•
+Bin XY Position
+↓
+•
+Place Height
+↓
+•
+Open Gripper
+↓
+•
+Retract.
+
+{"id": "W12-L57-Q070", "stem": "Which local ordering matches the detailed pick sequence?", "options": [{"id": "o1", "text": "Object XY position → close gripper → grasp height → approach height → retract."}, {"id": "o3", "text": "Object XY position → approach height → grasp height → close gripper → retract."}, {"id": "o4", "text": "Grasp height → object XY position → close gripper → approach height → retract."}, {"id": "o2", "text": "Object XY position → grasp height → retract → close gripper → approach height."}], "assumptions": []}
+{"id": "W12-L57-Q071", "stem": "Which local drop sequence is printed?", "options": [{"id": "o2", "text": "Safe height → open gripper → bin XY → place height → retract."}, {"id": "o4", "text": "Bin XY → retract → safe height → open gripper → place height."}, {"id": "o1", "text": "Safe height → bin XY → place height → open gripper → retract."}, {"id": "o3", "text": "Safe height → bin XY → close gripper → retract → place height."}], "assumptions": []}
+
+PAGE 1837
+35
+•
+Intel RealSense D415
+          ↓
+•
+RGB + Depth Frames
+          ↓
+•
+ArUco Marker Detection
+         ↓
+•
+OpenCV Image Processing
+          ↓
+•
+Color & Shape Detection
+          ↓
+•
+Centroid + Depth Extraction
+         ↓
+•
+Coordinate Transformation
+(Camera → Marker → Robot)
+Full system workflow : 
+•
+OpenShowVar Communication
+          ↓
+•
+C3 Bridge
+          ↓
+•
+KR C4 Controller
+          ↓
+•
+KRL Program Execution
+         ↓
+•
+KUKA KR5 Robot Motion
+          ↓
+•
+Schunk Gripper Operation
+         ↓
+•
+Object Pick and Place
+
+{"id": "W12-L57-Q077", "stem": "Which intermediate output should cross from the calibrated perception/transform stages into the source communication/execution stages?", "options": [{"id": "o3", "text": "An unregistered pixel centroid plus raw depth treated directly as robot-frame XYZ."}, {"id": "o1", "text": "A camera-frame 3D target with its frame label silently changed to robot base."}, {"id": "o4", "text": "A defined robot-frame target with any required pose/task information, rather than raw unregistered pixel coordinates."}, {"id": "o2", "text": "A marker-frame target sent as a flange pose without the marker/base and tool/grasp relations."}], "assumptions": []}
+
+PAGE 1838
+36
+Demonstration Video : 
+
+{"id": "W12-L57-Q078", "stem": "Which description matches the visible arrangement in the source’s static demonstration frame on physical page 1838?", "options": [{"id": "o4", "text": "The wrist gripper is visibly carrying the magenta object away while both white supports are empty."}, {"id": "o1", "text": "Both coloured objects have already been placed inside the bins, leaving their white supports empty."}, {"id": "o3", "text": "The arm’s empty wrist gripper is above the work area, with upright coloured objects on white supports and separate bins in front."}, {"id": "o2", "text": "The visible ArUco marker boards are attached at the moving wrist next to the gripper rather than near the robot base."}], "assumptions": []}

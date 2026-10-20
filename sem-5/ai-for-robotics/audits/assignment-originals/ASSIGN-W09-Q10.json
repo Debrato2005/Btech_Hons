@@ -1,0 +1,292 @@
+{
+  "id": "ASSIGN-W09-Q10",
+  "week": 9,
+  "sourceId": "assignments",
+  "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+  "physicalPages": [
+    43,
+    44
+  ],
+  "printedItemNumber": "10",
+  "printedPageNumbers": [
+    "5",
+    "6"
+  ],
+  "originalPrompt": "Consider a robot performing EKF-SLAM with one landmark. At the beginning of a prediction step, robot pose with covariance is [2,1,0]ᵀ and Σᵥᵥ=diag(0.04,0.04,0.01) while landmark position and covariance is [5,4]ᵀ and Σₘₘ=diag(0.09,0.09). (Consider Σᵥₘ=0). The robot moves 2 m straight ahead with zero change in heading. The motion-noise covariance for the robot pose is V=diag(0.01,0.01,0.0025). Using the EKF prediction step, what are the predicted mean and covariance?",
+  "originalOptions": [
+    {
+      "sourceLabel": "A",
+      "text": "{\"mean\": [4, 1, 0, 5, 4], \"robotCovariance\": [[0.05, 0, 0], [0, 0.05, 0.01], [0, 0.01, 0.0125]], \"mapCovariance\": [[0.09, 0], [0, 0.09]]}"
+    },
+    {
+      "sourceLabel": "B",
+      "text": "{\"mean\": [4, 1, 0, 5, 4], \"robotCovariance\": [[0.05, 0, 0], [0, 0.09, 0.02], [0, 0.02, 0.0125]], \"mapCovariance\": [[0.09, 0], [0, 0.09]]}"
+    },
+    {
+      "sourceLabel": "C",
+      "text": "{\"mean\": [2, 3, 0, 5, 4], \"robotCovariance\": [[0.05, 0, 0], [0, 0.05, 0.01], [0, 0.01, 0.0125]], \"mapCovariance\": [[0.09, 0], [0, 0.09]]}"
+    },
+    {
+      "sourceLabel": "D",
+      "text": "{\"mean\": [4, 1, 0, 7, 4], \"robotCovariance\": [[0.05, 0, 0], [0, 0.06, 0.01], [0, 0.01, 0.0125]], \"mapCovariance\": [[0.1, 0], [0, 0.1]]}"
+    }
+  ],
+  "originalPrintedKey": "B",
+  "printedKeyEvidence": "visually_observed_highlight",
+  "originalSourceText": "Q.10  Consider a robot performing EKF-SLAM with one landmark. At the beginning of a\n       prediction   step,  robot  pose  with  covariance   is   [2, 1, 0]𝑇  and  𝚺𝒗𝒗=\n       diag(0.04, 0.04, 0.01) while landmark position and covariance is [5, 4]𝑇and 𝚺𝒎𝒎=\n       diag(0.09, 0.09). (Consider 𝚺𝒗𝒎= 𝟎).\n      The robot moves 2 m straight ahead with zero change in heading. The motion-noise\n       covariance for the robot pose is 𝐕= diag(0.01, 0.01, 0.0025). Using the EKF\n       prediction step, what are the predicted mean and covariance?\n\n            4\n            1         0.05   0     0\n                                                   0      (A) 𝝁̅ = 0 , 𝚺̅𝒗𝒗= [ 0    0.05   0.01  ], 𝚺̅𝒎𝒎= [0.09                                              0    0.09]\n            5        0    0.01  0.0125\n                  [4]\n            4\n            1         0.05   0     0\n                                                   0      (B) 𝝁̅ = 0 , 𝚺̅𝒗𝒗= [ 0    0.09   0.02  ], 𝚺̅𝒎𝒎= [0.09                                             0    0.09]\n            5        0    0.02  0.0125\n                  [ 4]\n            2\n            3         0.05   0     0\n                                                   0      (C) 𝝁̅ = 0 , 𝚺̅𝒗𝒗= [ 0    0.05   0.01  ], 𝚺̅𝒎𝒎= [0.09                                             0    0.09]\n            5        0    0.01  0.0125\n                  [ 4]\n            4\n            1         0.05   0     0\n                                                 0      (D) 𝝁̅ = 0 , 𝚺̅𝒗𝒗= [ 0    0.06   0.01  ], 𝚺̅𝒎𝒎= [0.1                                             0   0.1]\n            7        0    0.01  0.0125\n                  [4]\n\nExplanation: Given 𝜃= 0, control input 𝛿𝑑= 2 and 𝛿𝜃= 0\n                         𝑥𝑡−1 + 𝛿𝑑cos 𝜃𝑡−1           2 + 2 cos 0     4\n                         𝑦𝑡−1 + 𝛿𝑑sin 𝜃𝑡−1           1 + 2 sin 0     1\nMotion model, 𝒙𝒕= 𝑓=      𝜃𝑡−1 + 𝛿𝜃          . So, 𝝁̅𝒕=    0 + 0   =  0\n                                  𝑥1(𝑡−1)                   5         5\n              (      𝑦1(𝑡−1)   )      (    4   )  (4)\n\n                                                 𝑥𝑡−1 + 𝛿𝑑cos 𝜃𝑡−1\nConsidering only the robot motion model  𝑓𝒗= ( 𝑦𝑡−1 + 𝛿𝑑sin 𝜃𝑡−1 ) and the\n                                                    𝜃𝑡−1 + 𝛿𝜃\n                           1  0  −𝛿𝑑sin 𝜃𝑡−1     1  0  0\n                                 𝜕𝑓𝑣\nJacobian at 𝜃= 0  is (𝐹𝒙)𝒗= 𝜕𝒙= ( 0  1   𝛿𝑑cos 𝜃𝑡−1 ) = ( 0  1  2 )\n                           0  0      1         0  0  1\nThere is one landmark, and the landmark itself does not move during prediction. So\n                      1  0  0  0  0\n                      0  1  2  0  0\nthe complete Jacobian 𝐅𝒙=  0  0  1  0  0\n                      0  0  0  1  0\n               ( 0  0  0  0  1)\nSo Predicted Covariance 𝚺̅𝒕= 𝐅𝒙𝚺𝒕−𝟏𝐅𝒙𝑻+ 𝐅𝒗𝑽𝒕𝐅𝒗𝑻\n\n                                                                          𝑇\n     1  0  0  0  0                            1  0  0  0  0\n     0  1  2  0  0                            0  1  2  0  0\n =  0  0  1  0  0  diag(0.04, 0.04, 0.01, 0.09, 0.09)  0  0  1  0  0\n     0  0  0  1  0                            0  0  0  1  0\n  ( 0  0  0  0  1)                  ( 0  0  0  0  1)\n                                                               (𝚺̅𝒕)𝒗𝒎         + diag(0.01, 0.01, 0.0025, 0, 0) = ((𝚺̅𝒕)𝒗𝒗       )\n                                                     (𝚺̅𝒕)𝒗𝒎𝑻    (𝚺̅𝒕)𝒎𝒎\n\n                                  0.05   0     0\nSo,   (𝚺̅𝒕)𝒗𝒎= 𝟎𝟑×𝟐     ,   (𝚺̅𝒕)𝒗𝒗= ( 0    0.09   0.02 )   and  (𝚺̅𝒕)𝒎𝒎=\n                              0    0.02  0.0125\n(0.09   0  0    0.09)\nRefer Slides-12-16 of Lecture 45: Mapping, SLAM and Floor Finding technique",
+  "transcriptionStatus": "Text-layer locator checked against actual page pixels; Unicode layout can differ. Figure/matrix transcriptions supplied separately where needed. Source PDF remains authoritative.",
+  "sourcePreviewPaths": [
+    "sources/previews/assignments/page-0043.webp",
+    "sources/previews/assignments/page-0044.webp"
+  ],
+  "visualInspection": {
+    "reviewerId": "robotics-contracts-assignment-coverage-reviewer",
+    "method": "actual_rendered_page",
+    "complete": true,
+    "answersVisible": true,
+    "blind": false
+  },
+  "coverageStatus": "missing_assignment_cited_questions",
+  "currentAssignmentCitedQuestionIds": [],
+  "currentAssignmentConceptIds": [],
+  "currentAssignmentReviewIds": [],
+  "lectureCrossLinks": [
+    {
+      "lectureId": "L45",
+      "printedSlideNumber": "12",
+      "candidatePhysicalPages": [
+        1416
+      ],
+      "basis": "Assignment printed reference; map resolution only, not a fresh lecture-source adjudication."
+    },
+    {
+      "lectureId": "L45",
+      "printedSlideNumber": "13",
+      "candidatePhysicalPages": [
+        1417
+      ],
+      "basis": "Assignment printed reference; map resolution only, not a fresh lecture-source adjudication."
+    },
+    {
+      "lectureId": "L45",
+      "printedSlideNumber": "14",
+      "candidatePhysicalPages": [
+        1418
+      ],
+      "basis": "Assignment printed reference; map resolution only, not a fresh lecture-source adjudication."
+    },
+    {
+      "lectureId": "L45",
+      "printedSlideNumber": "15",
+      "candidatePhysicalPages": [
+        1419
+      ],
+      "basis": "Assignment printed reference; map resolution only, not a fresh lecture-source adjudication."
+    },
+    {
+      "lectureId": "L45",
+      "printedSlideNumber": "16",
+      "candidatePhysicalPages": [
+        1420
+      ],
+      "basis": "Assignment printed reference; map resolution only, not a fresh lecture-source adjudication."
+    }
+  ],
+  "conceptFamily": "EKF-SLAM mean and coupled covariance propagation",
+  "observedHighlightedKey": "B",
+  "independentSourceKeyAuditStatus": "consistent_under_stated_or_explicit_standard_model",
+  "independentReasoning": "At theta0 and distance2, F_robot=[[1,0,0],[0,1,2],[0,0,1]]. Robot covariance [[.05,0,0],[0,.09,.02],[0,.02,.0125]], landmark unchanged, cross block zero.",
+  "authoringRequirement": "Explicit assignment citations and independent question review required. Preserve source claim separately; resolve ambiguity before acceptance. Avoid duplicate-only recall coverage.",
+  "requiredAngles": [
+    "concept",
+    "numerical_or_symbolic_working",
+    "actual_diagram_or_table_trace"
+  ],
+  "lectureReferences": [
+    [
+      "L45",
+      12
+    ],
+    [
+      "L45",
+      13
+    ],
+    [
+      "L45",
+      14
+    ],
+    [
+      "L45",
+      15
+    ],
+    [
+      "L45",
+      16
+    ]
+  ],
+  "originalGeneratedCoverageApproved": false,
+  "visuallyTranscribedEKFOptions": {
+    "A": {
+      "mean": [
+        4,
+        1,
+        0,
+        5,
+        4
+      ],
+      "robotCovariance": [
+        [
+          0.05,
+          0,
+          0
+        ],
+        [
+          0,
+          0.05,
+          0.01
+        ],
+        [
+          0,
+          0.01,
+          0.0125
+        ]
+      ],
+      "mapCovariance": [
+        [
+          0.09,
+          0
+        ],
+        [
+          0,
+          0.09
+        ]
+      ]
+    },
+    "B": {
+      "mean": [
+        4,
+        1,
+        0,
+        5,
+        4
+      ],
+      "robotCovariance": [
+        [
+          0.05,
+          0,
+          0
+        ],
+        [
+          0,
+          0.09,
+          0.02
+        ],
+        [
+          0,
+          0.02,
+          0.0125
+        ]
+      ],
+      "mapCovariance": [
+        [
+          0.09,
+          0
+        ],
+        [
+          0,
+          0.09
+        ]
+      ]
+    },
+    "C": {
+      "mean": [
+        2,
+        3,
+        0,
+        5,
+        4
+      ],
+      "robotCovariance": [
+        [
+          0.05,
+          0,
+          0
+        ],
+        [
+          0,
+          0.05,
+          0.01
+        ],
+        [
+          0,
+          0.01,
+          0.0125
+        ]
+      ],
+      "mapCovariance": [
+        [
+          0.09,
+          0
+        ],
+        [
+          0,
+          0.09
+        ]
+      ]
+    },
+    "D": {
+      "mean": [
+        4,
+        1,
+        0,
+        7,
+        4
+      ],
+      "robotCovariance": [
+        [
+          0.05,
+          0,
+          0
+        ],
+        [
+          0,
+          0.06,
+          0.01
+        ],
+        [
+          0,
+          0.01,
+          0.0125
+        ]
+      ],
+      "mapCovariance": [
+        [
+          0.1,
+          0
+        ],
+        [
+          0,
+          0.1
+        ]
+      ]
+    }
+  },
+  "authorTranscriptionCorrections": [
+    {
+      "field": "originalPrompt",
+      "frozenHandoffValue": "Consider a robot performing EKF-SLAM with one landmark. At the beginning of a\n       prediction   step,  robot  pose  with  covariance   is   [2, 1, 0]𝑇  and  𝚺𝒗𝒗=\n       diag(0.04, 0.04, 0.01) while landmark position and covariance is [5, 4]𝑇and 𝚺𝒎𝒎=\n       diag(0.09, 0.09). (Consider 𝚺𝒗𝒎= 𝟎).\n      The robot moves 2 m straight ahead with zero change in heading. The motion-noise\n       covariance for the robot pose is 𝐕= diag(0.01, 0.01, 0.0025). Using the EKF\n       prediction step, what are the predicted mean and covariance?\n\n            4\n            1         0.05   0     0\n                                                   0      (A) 𝝁̅ = 0 , 𝚺̅𝒗𝒗= [ 0    0.05   0.01  ], 𝚺̅𝒎𝒎= [0.09                                              0    0.09]\n            5        0    0.01  0.0125\n                  [4]\n            4\n            1         0.05   0     0\n                                                   0      (B) 𝝁̅ = 0 , 𝚺̅𝒗𝒗= [ 0    0.09   0.02  ], 𝚺̅𝒎𝒎= [0.09                                             0    0.09]\n            5        0    0.02  0.0125\n                  [ 4]\n            2\n            3         0.05   0     0\n                                                   0      (C) 𝝁̅ = 0 , 𝚺̅𝒗𝒗= [ 0    0.05   0.01  ], 𝚺̅𝒎𝒎= [0.09                                             0    0.09]\n            5        0    0.01  0.0125\n                  [ 4]\n            4\n            1         0.05   0     0\n                                                 0      (D) 𝝁̅ = 0 , 𝚺̅𝒗𝒗= [ 0    0.06   0.01  ], 𝚺̅𝒎𝒎= [0.1                                             0   0.1]\n            7        0    0.01  0.0125\n                  [4]",
+      "pixelCheckedValue": "Consider a robot performing EKF-SLAM with one landmark. At the beginning of a prediction step, robot pose with covariance is [2,1,0]ᵀ and Σᵥᵥ=diag(0.04,0.04,0.01) while landmark position and covariance is [5,4]ᵀ and Σₘₘ=diag(0.09,0.09). (Consider Σᵥₘ=0). The robot moves 2 m straight ahead with zero change in heading. The motion-noise covariance for the robot pose is V=diag(0.01,0.01,0.0025). Using the EKF prediction step, what are the predicted mean and covariance?",
+      "reason": "Author actual-page inspection resolves extraction or key-transcription artifact; source PDF and frozen handoff remain unchanged.",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "inspectedAt": "2026-10-20T01:19:26+00:00"
+    }
+  ],
+  "recordPurpose": "Immutable original prompt, source-labelled options, visible key, source text and original audit. Not an approved question.",
+  "sourceHandoffPath": "audits/assignment-coverage/author-handoff-weeks-07-12-v2.json",
+  "sourceHandoffSha256": "98321536fde2a76b41a08484aa5d1401a22afee18bb792cb60b10c30668a7c97",
+  "originalSourceItemId": "ASSIGN-W09-Q10",
+  "relatedQuestionIds": [
+    "ASSIGN-W09-Q010"
+  ],
+  "literalOriginalDisposition": "source_record_only_not_in_question_pool"
+}

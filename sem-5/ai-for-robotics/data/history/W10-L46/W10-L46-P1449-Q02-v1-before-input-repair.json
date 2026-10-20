@@ -1,0 +1,98 @@
+{
+  "id": "W10-L46-P1449-Q02",
+  "version": 1,
+  "status": "verified",
+  "authorId": "L46-author-20261019",
+  "stem": "For the source’s reported English stopword membership, what is the filtered token list?",
+  "selectionMode": "single",
+  "type": "algorithm_trace",
+  "difficulty": "easy",
+  "cognitiveSkill": "algorithm",
+  "week": 10,
+  "lectureId": "L46",
+  "topic": "Natural Language Processing",
+  "subtopic": "NLTK preprocessing code and intermediate state",
+  "tags": [
+    "nlp",
+    "preprocess-code"
+  ],
+  "conceptIds": [
+    "W10-L46-C-preprocess-code"
+  ],
+  "assumptions": [
+    "Use the source-reported stopword membership and output, not a claim that the blocked current corpus run was executed."
+  ],
+  "options": [
+    {
+      "id": "o3",
+      "text": "['pick', 'red', 'ball', 'chair']"
+    },
+    {
+      "id": "o4",
+      "text": "['ball', 'chair', 'near', 'pick', 'red']"
+    },
+    {
+      "id": "o1",
+      "text": "['pick', 'red', 'ball', 'near', 'chair']"
+    },
+    {
+      "id": "o2",
+      "text": "['pick', 'up', 'red', 'ball', 'near', 'chair']"
+    }
+  ],
+  "correctOptionIds": [
+    "o1"
+  ],
+  "citations": [
+    {
+      "slideId": "lectures-p1449",
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 1449,
+      "kind": "code",
+      "locator": "Printed slide 10: Step 4 and After Stop-word Removal output",
+      "evidenceText": "import nltk\nimport string\nfrom nltk.tokenize import word_tokenize\nfrom nltk.corpus import stopwords\nfrom nltk.stem import WordNetLemmatizer\ntext = \"Pick up the red ball near the chair!\"\n# Step 1: Convert to lowercase\ntext = text.lower()\n# Step 2: Remove punctuation\ntext = text.translate(str.maketrans('', '', string.punctuation))\n# Step 3: Tokenization\ntokens = word_tokenize(text)\n# Step 4: Remove stopwords\nstop_words = set(stopwords.words('english'))\nfiltered_tokens = [\n    word for word in tokens\n    if word not in stop_words]\n# Step 5: Lemmatization\nlemmatizer = WordNetLemmatizer()\nlemmatized_tokens = [\n    lemmatizer.lemmatize(word)\n    for word in filtered_tokens]\n\nSource page text/output labels:\nImplementation – Pre-processing                           Output\n                             Code\n\n\n\n\n\n                                                                                                          10",
+      "role": "premise",
+      "region": null
+    }
+  ],
+  "solution": {
+    "justification": "The source removes up and both the occurrences and retains the other tokens in input order.",
+    "optionExplanations": {
+      "o1": "Correct. The source removes up and both the occurrences and retains the other tokens in input order.",
+      "o2": "Incorrect. The reported stopword set removes up as well.",
+      "o3": "Incorrect. The displayed result retains near.",
+      "o4": "Incorrect. The list comprehension filters without alphabetically sorting."
+    },
+    "steps": [
+      "Begin with the eight displayed tokens.",
+      "Remove up and the occurrences according to the supplied membership.",
+      "Append remaining words in their original order."
+    ],
+    "formulas": [],
+    "simpleExplanation": "The source removes up and both the occurrences and retains the other tokens in input order.",
+    "memoryAid": null,
+    "misconceptions": [
+      "The reported stopword set removes up as well.",
+      "The displayed result retains near.",
+      "The list comprehension filters without alphabetically sorting."
+    ],
+    "examTraps": [],
+    "prerequisiteConceptIds": []
+  },
+  "origin": "generated",
+  "reviewIds": [
+    "W10-L46-P1449-Q02-v1-contracts-first-quality"
+  ],
+  "primaryEvidence": [
+    {
+      "title": "Official lecture 46 notebook",
+      "url": "https://github.com/robotics-lab-iitr/nptel-ai-robotics/blob/main/week10/week10_lecture46.ipynb",
+      "version": "Retrieved 2026-10-19; saved NLTK output reports 3.9.1",
+      "localPath": "sources/supplemental/L46-official-week10_lecture46.ipynb",
+      "sha256": "d32019733e3d14c0b21c9bf5276ecceb8fa4b0a11757bb0b4ffef4b2fe2504c3",
+      "checkedAt": "2026-10-19T22:10:00Z",
+      "locator": "Zero-based cell 3; saved outputs are historical evidence, not fresh corpus-dependent execution."
+    }
+  ]
+}

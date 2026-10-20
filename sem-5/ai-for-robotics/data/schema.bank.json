@@ -62,6 +62,9 @@
     },
     "learningTools": {
       "$ref": "#/$defs/learningTools"
+    },
+    "questionVisuals": {
+      "$ref": "#/$defs/questionVisuals"
     }
   },
   "required": [
@@ -1209,6 +1212,851 @@
         "traps",
         "algorithmVisualizations",
         "numericalFamilies"
+      ],
+      "additionalProperties": true
+    },
+    "visualSourceRef": {
+      "type": "object",
+      "properties": {
+        "sourceId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "physicalPage": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "slideId": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "sourceId",
+        "sourceSha256",
+        "physicalPage",
+        "slideId"
+      ],
+      "additionalProperties": true
+    },
+    "questionVisualRecord": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "authorId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revisionAuthors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 0
+        },
+        "questionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "questionVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "questionSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "dependencyStatus": {
+          "enum": [
+            "self_contained",
+            "required"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assetIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 0
+        },
+        "requiredInputs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 0
+        },
+        "sourceRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/visualSourceRef"
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "supplementalInputIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "savedOutputUse": {
+          "const": "explicit_output_reading"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "authorId",
+        "questionId",
+        "questionVersion",
+        "questionSha256",
+        "dependencyStatus",
+        "reason",
+        "assetIds",
+        "requiredInputs",
+        "sourceRefs"
+      ],
+      "additionalProperties": true
+    },
+    "questionVisualAsset": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mimeType": {
+          "const": "image/png"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sourceId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "physicalPage": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "slideId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cropRectangle": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 4
+        },
+        "renderDpi": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "path",
+        "mimeType",
+        "sha256",
+        "width",
+        "height",
+        "sourceId",
+        "sourceSha256",
+        "physicalPage",
+        "slideId",
+        "cropRectangle",
+        "renderDpi",
+        "alt"
+      ],
+      "additionalProperties": true
+    },
+    "questionVisualReview": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "visualId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "visualVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "visualSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "reviewerId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision": {
+          "enum": [
+            "verified",
+            "flagged",
+            "rejected"
+          ]
+        },
+        "questionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "questionVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "questionSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "sourceVersions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "assetHashes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "assetMetadataHashes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "reviewedAssetIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 0
+        },
+        "displayRole": {
+          "const": "question_input"
+        },
+        "checks": {
+          "type": "object",
+          "properties": {
+            "inventoryCompleteness": {
+              "type": "boolean"
+            },
+            "requiredInputFidelity": {
+              "type": "boolean"
+            },
+            "legibility": {
+              "type": "boolean"
+            },
+            "noAnswerLeak": {
+              "type": "boolean"
+            },
+            "sourceLinkage": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "inventoryCompleteness",
+            "requiredInputFidelity",
+            "legibility",
+            "noAnswerLeak",
+            "sourceLinkage"
+          ],
+          "additionalProperties": true
+        },
+        "reviewedAt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "savedOutputUse": {
+          "const": "explicit_output_reading"
+        },
+        "reviewedSupplementalInputIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "supplementalInputHashes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "supplementalSourceHashes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "visualId",
+        "visualVersion",
+        "visualSha256",
+        "reviewerId",
+        "decision",
+        "questionId",
+        "questionVersion",
+        "questionSha256",
+        "sourceVersions",
+        "assetHashes",
+        "assetMetadataHashes",
+        "reviewedAssetIds",
+        "displayRole",
+        "checks",
+        "reviewedAt"
+      ],
+      "additionalProperties": true
+    },
+    "questionVisualReviewBinding": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "rawJSON": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "reviewSha256",
+        "rawJSON"
+      ],
+      "additionalProperties": true
+    },
+    "questionVisualAssetBinding": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assetSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "assetMetadataSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "rawJSON": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "assetSha256",
+        "assetMetadataSha256",
+        "rawJSON"
+      ],
+      "additionalProperties": true
+    },
+    "questionVisualBinding": {
+      "type": "object",
+      "properties": {
+        "recordId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recordVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "recordSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "recordRawJSON": {
+          "type": "string",
+          "minLength": 1
+        },
+        "questionVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "questionSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "dependencyStatus": {
+          "enum": [
+            "self_contained",
+            "required"
+          ]
+        },
+        "assetIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 0
+        },
+        "requiredInputs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "minItems": 0
+        },
+        "reviewBindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reviewSha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            },
+            "required": [
+              "id",
+              "reviewSha256"
+            ],
+            "additionalProperties": true
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "supplementalInputIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "recordId",
+        "recordVersion",
+        "recordSha256",
+        "recordRawJSON",
+        "questionVersion",
+        "questionSha256",
+        "dependencyStatus",
+        "assetIds",
+        "requiredInputs",
+        "reviewBindings"
+      ],
+      "additionalProperties": true
+    },
+    "questionVisuals": {
+      "type": "object",
+      "properties": {
+        "formatVersion": {
+          "const": 1
+        },
+        "manifest": {
+          "type": "object",
+          "properties": {
+            "schemaVersion": {
+              "const": "1.0.0"
+            },
+            "authorId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "revisionAuthors": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "minItems": 0
+            },
+            "sourceVersions": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            }
+          },
+          "required": [
+            "schemaVersion",
+            "authorId",
+            "sourceVersions"
+          ],
+          "additionalProperties": true
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/questionVisualRecord"
+          },
+          "uniqueItems": true,
+          "minItems": 0
+        },
+        "assets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/questionVisualAsset"
+          },
+          "uniqueItems": true,
+          "minItems": 0
+        },
+        "reviews": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/questionVisualReview"
+          },
+          "uniqueItems": true,
+          "minItems": 0
+        },
+        "reviewBindings": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/questionVisualReviewBinding"
+          }
+        },
+        "assetBindings": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/questionVisualAssetBinding"
+          }
+        },
+        "bindings": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/questionVisualBinding"
+          }
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "questionId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reasons": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "minItems": 1
+              }
+            },
+            "required": [
+              "questionId",
+              "reasons"
+            ],
+            "additionalProperties": true
+          },
+          "uniqueItems": true,
+          "minItems": 0
+        },
+        "supplementalInputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/questionSupplementalInput"
+          },
+          "uniqueItems": true
+        },
+        "supplementalArtifacts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "rawText": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "sha256",
+              "rawText"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "supplementalBindings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "inputSha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "rawJSON": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "inputSha256",
+              "rawJSON"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "formatVersion",
+        "manifest",
+        "records",
+        "assets",
+        "reviews",
+        "reviewBindings",
+        "assetBindings",
+        "bindings",
+        "diagnostics"
+      ],
+      "additionalProperties": true
+    },
+    "questionSupplementalInput": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceArtifact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notebookArtifact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "transformation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "notebookSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "textSha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "kind": {
+          "enum": [
+            "verbatim_source_code",
+            "verbatim_saved_output"
+          ]
+        },
+        "language": {
+          "enum": [
+            "python",
+            "text"
+          ]
+        },
+        "notebookRepresentation": {
+          "enum": [
+            "verbatim",
+            "output_stripped"
+          ]
+        },
+        "upstreamPinStatus": {
+          "enum": [
+            "pinned",
+            "commit_only",
+            "local_only"
+          ]
+        },
+        "upstreamCommit": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "upstreamGitBlobSha": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "sourceUrl": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cellIndexZeroBased": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cellId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cellLineStart": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "cellLineEnd": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "lineStart": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "lineEnd": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "notebookOutputIndex": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "notebookOutputField": {
+          "enum": [
+            "text",
+            "data.text/plain",
+            null
+          ]
+        },
+        "authorId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revisionAuthors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "sourceArtifact",
+        "notebookArtifact",
+        "text",
+        "transformation",
+        "sourceSha256",
+        "notebookSha256",
+        "textSha256",
+        "kind",
+        "language",
+        "notebookRepresentation",
+        "upstreamPinStatus",
+        "upstreamCommit",
+        "upstreamGitBlobSha",
+        "sourceUrl",
+        "cellIndexZeroBased",
+        "cellId",
+        "cellLineStart",
+        "cellLineEnd",
+        "lineStart",
+        "lineEnd",
+        "authorId"
       ],
       "additionalProperties": true
     }

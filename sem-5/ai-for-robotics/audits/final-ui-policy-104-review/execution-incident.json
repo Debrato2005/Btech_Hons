@@ -1,0 +1,32 @@
+{
+  "recordedAt": "2026-10-20T03:40:00Z",
+  "scope": "Reviewer execution incident, not browser verification evidence",
+  "action": "node --test tests/*.js",
+  "cause": "Reviewer used an overly broad test glob while trying to add missing deterministic suites. This unintentionally included two self-executing legacy browser runners despite the assigned no-browser restriction.",
+  "targets": [
+    "tests/browser_learning_resources.js",
+    "tests/browser_offline.js",
+    "/usr/bin/chromium"
+  ],
+  "outcome": "Both browser launches failed with socket() failed: Operation not permitted. Processes exited before any browser interaction, check or screenshot. A stop was sent after noticing the broad expansion; the command had already finished. No retry or alternate browser route was used.",
+  "affectedOutputs": [
+    "audits/learning-resource-browser-author-checks.json",
+    "audits/browser-report.json"
+  ],
+  "evidence": "audits/final-ui-policy-104-review/shared-node-all.log",
+  "parentNotifiedImmediately": true,
+  "remediation": "Only explicit deterministic test-file allowlists are used now. Preserve this log and do not claim browser QA. Parent was told that legacy default report files were overwritten; original frozen evidence remains separate.",
+  "browserChecksCompleted": 0,
+  "screenshotsCompleted": 0,
+  "processTerminationCheckedAt": "2026-10-20T03:41:46.727288+00:00",
+  "processInspectionResult": "Ordinary ps listing showed no Chromium, crashpad, browser runner or Node test process.",
+  "recoveredOriginalEvidence": [
+    {
+      "archiveEntry": "ai-for-robotics/audits/browser-report.json",
+      "recoveredPath": "audits/final-ui-policy-104-review/pre-incident-browser-report.json",
+      "sha256": "7bf52a4c0f90857e234cfcf67581c95fc6a640e6ca03d731693872b90ad0e1e5",
+      "bytes": 6260
+    }
+  ],
+  "safeEntrypoint": "scripts/record_validated_milestone.py expands only app/*.test.js plus tests/test_*.js. No browser runners are selected."
+}

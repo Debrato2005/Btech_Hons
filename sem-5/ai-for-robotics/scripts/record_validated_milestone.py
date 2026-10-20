@@ -5,16 +5,21 @@ R=Path(__file__).resolve().parents[1];tag=datetime.datetime.now(datetime.timezon
 hashfile=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 def input_manifest():
  paths=set()
- for folder in ['data/question-batches','data/reviews','data/inspection-batches']:
+ for folder in ['data/question-batches','data/reviews','data/inspection-batches','data/assignment-reuse-batches','data/assignment-reuse-reviews','audits/review-batches']:
   paths.update((R/folder).glob('*.json'))
+ for folder in ['data/question-visuals','assets/question-visuals','audits/question-visuals','sources/supplemental','audits/review-snapshots']:
+  paths.update(p for p in (R/folder).rglob('*') if p.is_file() and '__pycache__' not in p.parts and p.suffix not in ['.pyc','.log'])
  for folder in ['app','scripts','tests']:
   paths.update(p for p in (R/folder).rglob('*') if p.is_file() and '__pycache__' not in p.parts and p.suffix not in ['.pyc','.log'])
  paths.update((R/'data').glob('schema.*.json'))
  paths.update((R/'data').glob('learning-*.json'))
+ paths.update((R/'sources/page_maps').glob('*.jsonl'))
+ paths.update((R/'audits').glob('*page-observations.jsonl'))
+ paths.update(p for p in [R/'sources/manifest.json', R/'audits/coverage_challenge.json'] if p.exists())
  return {str(p.relative_to(R)):hashfile(p) for p in sorted(paths)}
 inputs=input_manifest()
 receipt={'recordedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'inputManifest':inputs,'processResults':{},'complete':False,'limitations':['Integrity validation does not certify scientific correctness or complete-course coverage.','Actual downloaded-file offline browser QA remains blocked.']}
-steps=[('assembly',['python3','scripts/assemble_bank.py']),('validator',['python3','scripts/validate.py','--report','audits/integrity-latest.json']),('build',['python3','scripts/build.py']),('pythonTests',['python3','-m','unittest','discover','-s','tests','-p','test_*.py']),('nodeTests',['node','--test','app/core.test.js','app/algorithm-selector.test.js','tests/test_learning_tools.js','tests/test_learning_resources.js','tests/test_course_numerical.js','tests/test_learning_resource_revocation.js'])]
+steps=[('assembly',['python3','scripts/assemble_bank.py']),('validator',['python3','scripts/validate.py','--report','audits/integrity-latest.json']),('build',['python3','scripts/build.py']),('pythonTests',['python3','-m','unittest','discover','-s','tests','-p','test_*.py']),('nodeTests',['node','--test']+[str(p.relative_to(R)) for p in sorted(list((R/'app').glob('*.test.js'))+list((R/'tests').glob('test_*.js')))])]
 for name,cmd in steps:
  log=logs/(name+'.log')
  with log.open('w') as f:r=subprocess.run(cmd,cwd=R,stdout=f,stderr=subprocess.STDOUT)

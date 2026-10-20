@@ -1,0 +1,135 @@
+
+PAGE 1865
+23
+•
+Software
+•
+Ubuntu 22.04
+•
+ROS2 Humble
+•
+Gazebo
+•
+NAV2 packages
+•
+Hardware (Optional)
+•
+TurtleBot3 (selected)
+•
+LiDAR sensor
+•
+Depth camera
+NAV2 Demonstration Setup
+
+{"id": "W12-L58-P1859-Q04", "stem": "Which interpretation handles the Recovery/Behavior/Route server labels without conflating Nav2 distributions?", "options": [{"id": "o1", "text": "The Behavior Server can only perform recovery and cannot host other behavior plugins"}, {"id": "o2", "text": "The Route Server block proves that stock Humble contains every component in this figure"}, {"id": "o3", "text": "Read the diagram’s server roles, but check the target distribution before assuming every shown server exists in the Humble demo"}], "assumptions": []}
+
+PAGE 1868
+26
+Start the SLAM functionality and RViz
+– Start the Turtlebot3 robot.
+$ ros2 launch turtlebot3_gazebo 
+turtlebot3_world.launch.py
+– Start the SLAM functionality for 
+Turtlebot3.
+$ ros2 launch turtlebot3_cartographer 
+cartographer.launch.py 
+use_sim_time:=True
+NAV2 in ROS2
+
+{"id": "W12-L58-P1868-Q02", "stem": "What does the partial map view most directly illustrate?", "options": [{"id": "o1", "text": "The grey unobserved region has been certified collision-free"}, {"id": "o2", "text": "The robot has necessarily reached its final navigation goal"}, {"id": "o3", "text": "Mapping and scan visualization before the environment has been fully observed"}], "assumptions": []}
+
+PAGE 1871
+29
+2D pose estimate and Navigation goals
+– Use the “2D Pose Estimate” button on RViz.
+NAV2 in ROS2
+
+{"id": "W12-L58-P1871-Q03", "stem": "How should the colored bands in this navigation screenshot be distinguished from the earlier three-state occupancy legend?", "options": [{"id": "o1", "text": "Every colored band is a new physical wall seen in Gazebo"}, {"id": "o2", "text": "They include navigation cost overlays, so their colors should not be read directly as the earlier white/black/grey legend"}, {"id": "o3", "text": "All colored cells are unknown because they are not white"}], "assumptions": []}
+
+PAGE 1873
+31
+2D pose estimate and Navigation goals
+– Simulation Video: Click on “Nav2 Goal”, then click on the
+map to select a position + orientation.
+NAV2 in ROS2
+
+{"id": "W12-L58-P1873-Q01", "stem": "What evidence does the side-by-side Gazebo/RViz demonstration still provide?", "options": [{"id": "o1", "text": "The still shows a simulated scene and RViz with navigation/localization active and feedback reached at the captured moment."}, {"id": "o2", "text": "The still shows active navigation/localization but feedback remains unknown, so only readiness is displayed."}, {"id": "o3", "text": "The still shows feedback active and a nonzero distance remaining, so the depicted goal is still being pursued."}], "assumptions": []}
+
+PAGE 1885
+9
+System architecture 
+•
+RP Lidar
+•
+Intel 
+Realsense 
+d435i RGB-D 
+Camera
+•
+Wheel 
+encoder 
+ 
+Yolov8
+Jetson Orin 
+Nano
+ROS2 Humble 
+Rviz2
+Sensing layer 
+Sensor Fusion 
+(EKF)
+SLAM 
+Localisation
+(AMCL)
+Perception and 
+localization layer 
+Velocity  
+Command 
+Motor Controller 
+(Arduino Mega )
+Motor Drivers
+Drive Motors 
+Motor Control 
+Global 
+Planner
+ 
+Local 
+Planning 
+&control 
+Behavior 
+Tree
+ Cost map 
+Navigation  
+Layer 
+
+{"id": "W12-L59-Q012", "stem": "Which sequence follows the motor-control column of the system architecture?", "options": [{"id": "o3", "text": "Velocity command → Arduino motor controller → motor drivers → drive motors."}, {"id": "o1", "text": "Velocity command → motor drivers → Arduino motor controller → drive motors."}, {"id": "o2", "text": "Velocity command → Arduino motor controller → drive motors → motor drivers."}, {"id": "o4", "text": "Velocity command → Arduino motor controller → drive motors, with no driver stage."}], "assumptions": []}
+{"id": "W12-L59-Q013", "stem": "Which connection is explicitly drawn from the YOLOv8 block in the architecture diagram?", "options": [{"id": "o4", "text": "An output directly to the SLAM map-building box."}, {"id": "o2", "text": "An output directly to the AMCL localization box."}, {"id": "o3", "text": "An output directly to the Arduino velocity-control input."}, {"id": "o1", "text": "An output toward the costmap in the navigation layer."}], "assumptions": ["Read the conceptual connection only; do not infer a specific costmap plugin or message definition."]}
+{"id": "W12-L59-Q067", "stem": "In the source’s System architecture schematic, which two boxes receive the drawn branches from Sensor Fusion (EKF) within the perception/localization layer?", "options": [{"id": "o4", "text": "YOLOv8 and Cost map are the two direct branches from EKF."}, {"id": "o1", "text": "SLAM and Localisation (AMCL)."}, {"id": "o2", "text": "SLAM receives EKF output, and AMCL receives only an arrow from SLAM."}, {"id": "o3", "text": "The Global Planner and the Motor Drivers boxes are the two direct branches from EKF."}], "assumptions": ["This asks what the conceptual source schematic draws, not the exact deployed ROS topic/subscription graph."]}
+
+PAGE 1887
+11
+•
+What is Odometry?
+– Odometry is the process of estimating the 
+robot’s position and orientation using wheel 
+encoder measurements.
+Wheel Encoder Odometry
+•
+Quadrature encoders measure wheel rotation. 
+•
+Encoder counts are converted into wheel displacement. 
+•
+Robot pose is estimated using differential-drive 
+kinematics. 
+•
+Odometry provides continuous position estimation. 
+•
+Errors accumulate over time due to wheel slip and 
+uneven terrain.
+Wheel Rotation
+Encoder Pulses
+Wheel 
+Displacement
+Robot Position (x, y)+Robot 
+Orientation (θ)
+
+{"id": "W12-L59-Q016", "stem": "Which chain matches the source wheel-odometry process?", "options": [{"id": "o3", "text": "Wheel rotation → encoder counts → wheel displacement → estimated planar pose."}, {"id": "o1", "text": "Encoder pulses → estimated pose → wheel displacement, with no intermediate calibration."}, {"id": "o4", "text": "Wheel rotation → encoder counts → absolute map pose without motion integration."}, {"id": "o2", "text": "Wheel rotation → encoder counts → wheel displacement only, without estimating orientation."}], "assumptions": []}

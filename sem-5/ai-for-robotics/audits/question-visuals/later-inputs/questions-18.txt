@@ -1,0 +1,130 @@
+
+PAGE 1656
+37
+• Pin Diagram
+Inside the DHT11 Sensor
+Source: https://lastminuteengineers.com/ 
+DHT11 Sensor
+Arduino Mega
+VCC
+5V
+DATA
+7
+GND
+GND
+Source: https://www.electronicwings.com/ 
+
+{"id": "W11-L52-P1656-Q01", "stem": "Which interpretation fits the displayed hardware diagram?", "options": [{"id": "o1", "text": "The NTC resistance decreases with temperature; DATA goes to pin 7 and NC is unused"}, {"id": "o2", "text": "The NTC resistance increases with temperature; NC is the data pin"}, {"id": "o3", "text": "The graph’s extreme axis labels specify the guaranteed operating range of every DHT11"}], "assumptions": []}
+{"id": "W11-L52-P1656-Q02", "stem": "Read the humidity-element exploded drawing as printed, without generalizing it to every DHT11 revision. What is the order from top to bottom?", "options": [{"id": "o1", "text": "Upper electrode → moisture-holding substrate → lower electrode → glass substrate"}, {"id": "o2", "text": "Upper electrode → glass substrate → lower electrode → moisture-holding substrate"}, {"id": "o3", "text": "Upper electrode → lower electrode → moisture-holding substrate → glass substrate"}], "assumptions": ["Interpret only the actual labeled source drawing; the separate documentation-revision qualification is retained."]}
+
+PAGE 1657
+38
+• Arduino Mega Code
+#include <DHT.h>
+#define DHTPIN 7
+#define DHTTYPE DHT11
+DHT dht(DHTPIN, DHTTYPE);
+void setup() {
+  Serial.begin(9600);
+  dht.begin();
+}
+void loop() {
+  float humidity = dht.readHumidity();
+  float temperature = dht.readTemperature();
+  Serial.print("Humidity: ");
+  Serial.print(humidity);
+  Serial.print(" %  ");
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.println(" °C");
+  delay(2000);
+}
+•
+Code Explanation
+– #include <DHT.h> → Imports DHT sensor 
+library
+– DHTPIN 7 → Data pin connected to pin 7
+– dht.readHumidity() → Reads humidity value
+– dht.readTemperature() → Reads temperature
+– Data is printed every 2 seconds
+
+{"id": "W11-L52-P1657-Q01", "stem": "Which order matches the program?", "options": [{"id": "o1", "text": "Initialize Serial only → read humidity/temperature → initialize DHT after acquisition"}, {"id": "o2", "text": "Read humidity before constructing the object → initialize after every print"}, {"id": "o3", "text": "Construct DHT object → initialize it in setup → read humidity and temperature → print → delay"}], "assumptions": []}
+
+PAGE 1668
+49
+Experimental 
+Demonstration 
+of LiDAR 
+Sensor 
+connected to 
+Arduino
+
+{"id": "W11-L52-P1668-Q01", "stem": "What is supported by the pictured output?", "options": [{"id": "o1", "text": "A full 360° point cloud because the title says LiDAR"}, {"id": "o2", "text": "A scalar distance displayed in centimeters; it is not itself a 2D map"}, {"id": "o3", "text": "0.01 cm accuracy because two decimals are printed"}], "assumptions": []}
+
+PAGE 1670
+51
+•
+Windows Application (RPLIDAR Viewer)
+– Software Used: RPLIDAR SDK
+– Steps
+•
+Connect RPLIDAR via USB
+•
+Install USB driver
+•
+Open RPLIDAR Viewer (Windows)
+•
+Select correct COM port
+•
+Start scan
+– Output in Windows
+•
+Real-time 360° scan
+•
+Distance vs angle plot (in red color)
+•
+Distance Range 0.2 - 6m radius
+•
+Environment mapping visualization
+•
+Distance Resolution: <0.5mm (1% of the distance)
+•
+Angular Resolution: <= 1 º
+
+{"id": "W11-L52-P1671-Q03", "stem": "Which color claim matches the actual screenshot while preserving the prior prose discrepancy?", "options": [{"id": "o1", "text": "Every range point is red because the prior slide says so"}, {"id": "o2", "text": "Returns are cyan/green while status text is red; return color is a display choice"}, {"id": "o3", "text": "Cyan returns mean invalid ranges under a stated universal LiDAR code"}], "assumptions": []}
+
+PAGE 1671
+52
+Experimental 
+Demonstration 
+of RPLIDAR 
+Sensor
+
+{"id": "W11-L52-P1671-Q01", "stem": "In the actual viewer screenshot, where are 90° and 270° relative to the center?", "options": [{"id": "o1", "text": "90° left; 270° right"}, {"id": "o2", "text": "90° up; 270° down"}, {"id": "o3", "text": "90° right; 270° left"}], "assumptions": []}
+{"id": "W11-L52-P1671-Q03", "stem": "Which color claim matches the actual screenshot while preserving the prior prose discrepancy?", "options": [{"id": "o1", "text": "Every range point is red because the prior slide says so"}, {"id": "o2", "text": "Returns are cyan/green while status text is red; return color is a display choice"}, {"id": "o3", "text": "Cyan returns mean invalid ranges under a stated universal LiDAR code"}], "assumptions": []}
+
+PAGE 1677
+58
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        break
+    frame = cv2.resize(frame, (640, 480))
+    results = model(frame, device=device, conf=0.25)
+    annotated = results[0].plot()
+    # FPS counter
+    current_time = time.time()
+    fps_display = 1 / (current_time - prev_time) if prev_time else 0
+    prev_time = current_time
+    cv2.putText(annotated, f"FPS: {int(fps_display)}",
+                (20, 40), cv2.FONT_HERSHEY_SIMPLEX,
+                1, (0, 255, 0), 2)
+    out.write(annotated)
+    cv2.imshow("Max Objects Detection (600 classes)", annotated)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+cap.release()
+out.release()
+cv2.destroyAllWindows()
+
+{"id": "W11-L52-P1678-Q01", "stem": "What can explain the displayed FPS 0 without concluding that no frame was processed?", "options": [{"id": "o1", "text": "The writer’s 20 fps setting proves that the displayed 0 must be a rendering error"}, {"id": "o2", "text": "Only a disconnected camera, because any successful frame must display at least 1"}, {"id": "o3", "text": "The initialized first-frame value, or a positive sub 1 fps value truncated to 0"}], "assumptions": []}

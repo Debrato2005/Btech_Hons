@@ -1,0 +1,119 @@
+
+PAGE 1134
+8
+Define h(n)
+➢h(n) = octile-distance heuristic to Goal 
+(admissible, matches 1 or 1.4 cost 
+scheme).
+➢We will not consider walls and will 
+instead find the shortest distance 
+between grid cells.
+A* Algorithm: Example 
+3.8
+4.8
+1.0
+1.4
+3.4
+4.4
+0.0
+1.0
+3.0
+4.0
+1.0
+1.4
+3.4
+4.4
+2.0
+2.4
+2.8
+3.8
+4.8
+
+{"id": "W08-L37-P1134-Q04", "stem": "Which pairing correctly identifies the goal’s g and h in the coherent tables?", "options": [{"id": "o4", "text": "g=1.0, h=1.0"}, {"id": "o1", "text": "g=5.4, h=0.0"}, {"id": "o2", "text": "g=0.0, h=5.4"}, {"id": "o3", "text": "g=4.8, h=4.8"}], "assumptions": []}
+
+PAGE 1136
+10
+➢What If a New Obstacle Detected!
+• The robot needs an algorithm that can react to sensor-detected obstacles or 
+changes in its environment representation that were not known during global 
+planning.
+• A* assumed a fully known static map. Real environments have unforeseen 
+obstacles (people, other robots, moving furniture).
+Obstacle
+
+{"id": "W08-L37-P1130-Q01", "stem": "In the pictured 5×5 example, which setup is assumed for the A* global-planning problem?", "options": [{"id": "o3", "text": "An already known changing future position for every obstacle"}, {"id": "o4", "text": "Only a one-step action with no route objective"}, {"id": "o1", "text": "A known map with fixed walls, a start cell and a goal cell"}, {"id": "o2", "text": "No map, no target and only rewards"}], "assumptions": []}
+
+PAGE 1137
+11
+•
+Every robot — manipulator arm, mobile robot, or 
+aerial robot — must perform obstacle avoidance, 
+since unforeseen obstacles can appear 
+anywhere along the path from start to goal.
+•
+To detect such obstacles, the robot needs 
+exteroceptive sensors:
+– Sensors measuring properties of the outside 
+environment,
+– Most commonly used 
+sonar/ultrasonic, 
+LiDAR (e.g., RPLiDAR), 
+infrared and 
+vision/camera sensors.
+Obstacle Avoidance: Introduction 
+
+{"id": "W08-L37-P1137-Q03", "stem": "According only to the small LiDAR illustration on this slide, which scan/range pair is printed?", "options": [{"id": "o1", "text": "360° rotating scan;0.15–12 m range"}, {"id": "o2", "text": "180° scan;15–120 m range"}, {"id": "o3", "text": "90° scan;0–1.2 m range"}, {"id": "o4", "text": "No rotation; range specified only in pixels"}], "assumptions": ["Answer what the source figure prints, not current external product specifications."]}
+{"id": "W08-L37-P1137-Q04", "stem": "Which description matches the camera-processing illustration on the source slide?", "options": [{"id": "o2", "text": "The camera is labeled a pulsed laser scanner with only distance rings"}, {"id": "o3", "text": "The camera output is shown as joint-torque commands only"}, {"id": "o4", "text": "The processed image contains no object labels"}, {"id": "o1", "text": "A CMOS imager supplies visual data; the processed scene labels objects including Tool, Mug and Person"}], "assumptions": []}
+
+PAGE 1149
+23
+•
+Step 1: The Certainty (Occupancy) Grid
+– A local 2D grid centered on the robot, updated 
+continuously as it moves.
+– Each cell 𝑐𝑖,𝑗​ holds a certainty value 𝐶𝑉𝑖,𝑗
+representing the confidence that the cell is 
+occupied.
+– Built using an active region: only nearby cells 
+matter for immediate avoidance.
+– Each new sonar/LiDAR reading increments the 
+certainty of cells near the detected range, using a 
+sensor/probabilistic model.
+Vector Field Histogram (VFH) 
+Light = Free
+Dark = Likely occupied
+
+{"id": "W08-L37-Q033", "stem": "According to the legend on the source page, what do darker cells indicate?", "options": [{"id": "o1", "text": "Locations more likely to be occupied."}, {"id": "o2", "text": "Locations with stronger confidence that the cell is free"}, {"id": "o3", "text": "Locations nearer the global goal regardless of obstacle evidence"}, {"id": "o4", "text": "Locations visited more often by the planned path, independent of sensing"}], "assumptions": []}
+
+PAGE 1150
+24
+•
+Step 2: Building the Polar Histogram
+– The 2D grid is converted into a 1D polar histogram H(α): obstacle density as 
+a function of angle α around the robot.
+– Sectors with density above a chosen threshold are marked as blocked; 
+sectors below the threshold are candidate directions (valleys).
+Vector Field Histogram (VFH) 
+
+{"id": "W08-L37-Q037", "stem": "In the source histogram, the horizontal coordinate is angle α from approximately−180° to+180°. Without assuming which physical heading is α=0°, what does the tall peak near0° represent?", "options": [{"id": "o1", "text": "High obstacle density in sectors near α=0°."}, {"id": "o2", "text": "Low obstacle density in sectors near α=0°."}, {"id": "o3", "text": "A uniquely determined obstacle range of0 m."}, {"id": "o4", "text": "A high frequency of previously selected steering commands near α=0°."}], "assumptions": []}
+
+PAGE 1168
+4
+•
+The RL loop: The Agent (robot) observes the State (𝑠𝑡), takes an Action (𝑎𝑡), and 
+the environment returns a Reward (𝑟𝑡+1) and next State (𝑠𝑡+1).
+•
+Policy 𝜋: maps states to actions, 𝝅:  𝑺→𝑨 , 
+•
+Q-function 𝑄(𝑠𝑡, 𝑎𝑡): expected cumulative reward of 
+taking action 𝑎𝑡​ in state 𝑠𝑡​.
+•
+Q-learning update rule (tabular):
+Recap: The RL Loop, Policy, and Q-Learning
+෠𝑄𝑠𝑡, 𝑎𝑡←෠𝑄𝑠𝑡, 𝑎𝑡+ 𝜂𝑟𝑡+1 + 𝛾𝑚𝑎𝑥
+𝑎𝑡+1
+෠𝑄 (𝑠𝑡+1, 𝑎𝑡+1) −෠𝑄𝑠𝑡, 𝑎𝑡
+Discount factor
+Learning rate
+
+{"id": "W08-L38-Q002", "stem": "Which arrow assignment matches the inspected interaction loop?", "options": [{"id": "o1", "text": "Environment → agent: action a_t; agent → environment: the true next state and reward."}, {"id": "o2", "text": "Agent → environment: chosen action and its predicted Q value; environment → agent: the correct action label instead of reward."}, {"id": "o3", "text": "Both arrows carry only a state; actions and rewards remain internal to the agent."}, {"id": "o4", "text": "Agent → environment: action a_t; environment → agent: next-state observation and reward."}], "assumptions": []}

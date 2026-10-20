@@ -963,7 +963,7 @@
     },
     {
       "id": "W12-L59-Q011",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L59-author",
       "stem": "Which complete mapping is consistent with the reported software stack?",
@@ -1012,21 +1012,65 @@
           "kind": "statement",
           "locator": "Lecture L59, physical PDF page 1884, printed footer 8: Software stack lists SLAM Toolbox, AMCL, Nav2, robot_localization(EKF), YOLOv8n.",
           "evidenceText": "Demonstration Overview                                 Jetson Orin Nano\n\n•  This project demonstrates the complete implementation\n   of an Autonomous Mobile Robot (AMR).\n•   It is capable of sensing, mapping, localization, navigation,\n   and object detection in a real environment.           RP Lidar\n•  The robot is built using a Jetson Orin Nano for high-level                                                                                       Intel realsense\n   processing and an Arduino Mega 2560 for real-time motor control.                                                                       d435i Camera\n•   It integrates an RPLidar for environmental mapping and an Intel RealSense\n   D435i camera for RGB, depth, and IMU data.\n•  The software stack is based on ROS 2 Humble, using SLAM\n   Toolbox, Adaptive Monte Carlo Localization (AMCL), Nav2,\n   robot_localization (EKF), and YOLOv8n for perception.\n•  The simulation is validated on the hardware.\n\n                                                                                                           8",
-          "role": "explicit",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1892",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1892,
+          "kind": "statement",
+          "locator": "Lecture L59, physical PDF page 1892, printed footer 16: SLAM definition and core mapping/pose-estimation functions.",
+          "evidenceText": "Simultaneous Localization and Mapping (SLAM)\n                                                                   Sensor Data\n•  What is SLAM?\n   – SLAM enables a robot to build a map of an unknown     Estimate Robot Pose\n      environment while simultaneously estimating its\n                                                                     Build Environment Map\n     own position within that map.\n\n                                                           Update Pose & Map•  Core Functions\n   – Constructs a 2D occupancy grid map from sensor\n                                                                    Repeat\n       observations.\n   – Continuously estimates the robot's pose (x, y, θ).\n   – Corrects accumulated localization errors using loop\n       closure.\n   – Updates the map as new areas are explored.\n   – Provides the map required for autonomous navigation.\n\n                                                                                                          16",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1894",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1894,
+          "kind": "statement",
+          "locator": "Lecture L59, physical PDF page 1894, printed footer 18: AMCL definition, pre-built map and incoming-scan comparison.",
+          "evidenceText": "Adaptive Monte Carlo Localization (AMCL)                       Saved Map + LiDAR Scan\n\n•  What is AMCL?\n                                                                                                                                            Particle Initialization\n   – AMCL estimates the robot's position within a pre-built map.\n\n                                                                                                                    Scan Matching   – Uses a particle filter to represent multiple pose hypotheses.\n   – Continuously compares incoming LiDAR scans with a saved map.\n                                                                                                             Pose Probability Update\n   – Updates the robot's pose as new sensor data becomes available.\n\n                                                                                                                           Best Robot Pose   – Provides accurate localization for autonomous navigation.\n•  Output\n   – Estimated Robot Pose\n   – Orientation\n   – Localization Confidence\n               Robot, static obstacles\n\n                                                                                                          18",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1899",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1899,
+          "kind": "table",
+          "locator": "Lecture L59, physical PDF page 1899, printed footer 23: Nav2 component/function rows and robot implementation list.",
+          "evidenceText": "Nav2 Stack\n                                                                                                 Goal Pose\nComponent            Function\nPlanner Server        Computes global path                                       Planner Server\n\nController Server        Tracks planned trajectory\n                                                                                                           Controller Server\nBT Navigator           Executes navigation behavior\nCostmaps              Maintain obstacle information                            Behavior Server\n\nRecovery Behaviors     Recover from navigation failures\n                                                                                                           Velocity Commands\n•  Robot Implementation\n    –  SLAM-generated occupancy map\n    – AMCL localization\n    –  EKF-filtered odometry\n    –  LiDAR + RGB-D obstacle information\n\n\n                                                                                                          23",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1900",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1900,
+          "kind": "statement",
+          "locator": "Lecture L59, physical PDF page 1900, printed footer 24: YOLOv8 RGB object-detection and semantic-awareness bullets.",
+          "evidenceText": "YOLOv8 Object Detection\n                                                                                Camera Image\n•  Detects objects from live RGB images.\n\n                                                                               YOLOv8 Network•  Estimates object distance using aligned depth data.\n•  Publishes annotated detection images.\n                                                                                     Bounding Boxes\n•  Provides semantic awareness of the environment.\n\n                                                                                                        Class Label•  Runs entirely on the Jetson Orin Nano.\n\n\n                                                                                         Confidence Score\n\n\n\n\n\n                                                                                                          24",
+          "role": "premise",
           "region": null
         }
       ],
       "solution": {
-        "justification": "The named packages have complementary mapping, localization, navigation and perception roles.",
+        "justification": "The package list is read together with the later role pages: SLAM builds a map while estimating pose, AMCL localizes in a pre-built map, Nav2 supplies navigation components and YOLOv8 supplies object perception.",
         "optionExplanations": {
-          "o2": "The named packages have complementary mapping, localization, navigation and perception roles.",
+          "o2": "The package list is read together with the later role pages: SLAM builds a map while estimating pose, AMCL localizes in a pre-built map, Nav2 supplies navigation components and YOLOv8 supplies object perception.",
           "o4": "This swaps mapping and saved-map localization.",
           "o1": "AMCL estimates pose, not wheel speed feedback.",
           "o3": "This swaps navigation and learned perception."
         },
         "steps": [],
         "formulas": [],
-        "simpleExplanation": "The named packages have complementary mapping, localization, navigation and perception roles.",
+        "simpleExplanation": "The package list is read together with the later role pages: SLAM builds a map while estimating pose, AMCL localizes in a pre-built map, Nav2 supplies navigation components and YOLOv8 supplies object perception.",
         "memoryAid": null,
         "misconceptions": [
           "This swaps mapping and saved-map localization.",
@@ -1038,7 +1082,16 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct source distinction, diagram reading or single stated relation."
+      "difficultyRationale": "Direct source distinction, diagram reading or single stated relation.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L59-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L59-v2-author-checks.json",
+        "sha256": "7499c7be9a63e06d62ef2b4298f2c738e7def91dba8a2917d53b66c3398fe0a2",
+        "independentReview": false,
+        "scope": "Changed pinhole exercise and explicit source-diagram transcriptions only. No ROS/Gazebo/camera/model/controller/network/browser runtime or denied-document retrieval. Diagram assertions audit the authored transcription, not an independent reading."
+      }
     },
     {
       "id": "W12-L59-Q012",
@@ -1991,7 +2044,7 @@
     },
     {
       "id": "W12-L59-Q023",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L59-author",
       "stem": "Define T_ab to map column-vector coordinates from frame b into frame a. Which expression follows map→odom→base_link?",
@@ -2010,7 +2063,7 @@
         "W12-L59-C-frame-order"
       ],
       "assumptions": [
-        "Explicit added column-vector T_ab convention."
+        "Added column-vector convention: T_ab maps frame-b homogeneous point coordinates into frame a. The source supplies the frame-chain premise, not the printed transform-product equation."
       ],
       "options": [
         {
@@ -2042,7 +2095,7 @@
           "kind": "figure",
           "locator": "Lecture L59, physical PDF page 1889, printed footer 13: Top frame chain map → odom → base_link.",
           "evidenceText": "Coordinate Frames                                    map\n\n Frame              Description\n                                                       odom map               Global reference frame\n\n odom             Continuous odometry frame\n base_link         Robot body reference frame                       base_link\n\n laser              LiDAR reference frame\n                                                                                     laser\n camera_link      RGB-D camera reference frame\n                                                                              └────► camera_link\n\n•  ROS 2 TF maintains the spatial relationship between all\n   robot components, enabling accurate perception,\n    localization, and navigation.\n\n\n\n\n                                                                                                          13",
-          "role": "explicit",
+          "role": "premise",
           "region": null
         }
       ],
@@ -2088,7 +2141,16 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Applies source relations under explicitly supplied additional conditions or combines multiple stages."
+      "difficultyRationale": "Applies source relations under explicitly supplied additional conditions or combines multiple stages.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L59-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L59-v2-author-checks.json",
+        "sha256": "7499c7be9a63e06d62ef2b4298f2c738e7def91dba8a2917d53b66c3398fe0a2",
+        "independentReview": false,
+        "scope": "Changed pinhole exercise and explicit source-diagram transcriptions only. No ROS/Gazebo/camera/model/controller/network/browser runtime or denied-document retrieval. Diagram assertions audit the authored transcription, not an independent reading."
+      }
     },
     {
       "id": "W12-L59-Q024",
@@ -2203,13 +2265,13 @@
     },
     {
       "id": "W12-L59-Q025",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L59-author",
       "stem": "A camera mount is physically shifted but its stored transform is not updated. Which statement follows?",
       "selectionMode": "single",
       "type": "scenario",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "application",
       "week": 12,
       "lectureId": "L59",
@@ -2280,7 +2342,16 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Applies source relations under explicitly supplied additional conditions or combines multiple stages."
+      "difficultyRationale": "Easy: one direct conceptual distinction or fault-domain interpretation under the supplied source context; no multi-stage numerical reasoning.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L59-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L59-v2-author-checks.json",
+        "sha256": "7499c7be9a63e06d62ef2b4298f2c738e7def91dba8a2917d53b66c3398fe0a2",
+        "independentReview": false,
+        "scope": "Changed pinhole exercise and explicit source-diagram transcriptions only. No ROS/Gazebo/camera/model/controller/network/browser runtime or denied-document retrieval. Diagram assertions audit the authored transcription, not an independent reading."
+      }
     },
     {
       "id": "W12-L59-Q026",
@@ -2564,13 +2635,13 @@
     },
     {
       "id": "W12-L59-Q029",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L59-author",
       "stem": "A low obstacle lies below the planar LiDAR scan but within the camera’s valid depth field of view. Which source-motivated response is appropriate?",
       "selectionMode": "single",
       "type": "scenario",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "application",
       "week": 12,
       "lectureId": "L59",
@@ -2639,7 +2710,16 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Applies source relations under explicitly supplied additional conditions or combines multiple stages."
+      "difficultyRationale": "Easy: one direct conceptual distinction or fault-domain interpretation under the supplied source context; no multi-stage numerical reasoning.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L59-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L59-v2-author-checks.json",
+        "sha256": "7499c7be9a63e06d62ef2b4298f2c738e7def91dba8a2917d53b66c3398fe0a2",
+        "independentReview": false,
+        "scope": "Changed pinhole exercise and explicit source-diagram transcriptions only. No ROS/Gazebo/camera/model/controller/network/browser runtime or denied-document retrieval. Diagram assertions audit the authored transcription, not an independent reading."
+      }
     },
     {
       "id": "W12-L59-Q030",
@@ -2724,13 +2804,13 @@
     },
     {
       "id": "W12-L59-Q031",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L59-author",
       "stem": "Why is a route that avoids only lethal cell centers insufficient to establish clearance for a finite-size robot?",
       "selectionMode": "single",
       "type": "scenario",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "application",
       "week": 12,
       "lectureId": "L59",
@@ -2801,7 +2881,16 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Applies source relations under explicitly supplied additional conditions or combines multiple stages."
+      "difficultyRationale": "Easy: one direct conceptual distinction or fault-domain interpretation under the supplied source context; no multi-stage numerical reasoning.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L59-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L59-v2-author-checks.json",
+        "sha256": "7499c7be9a63e06d62ef2b4298f2c738e7def91dba8a2917d53b66c3398fe0a2",
+        "independentReview": false,
+        "scope": "Changed pinhole exercise and explicit source-diagram transcriptions only. No ROS/Gazebo/camera/model/controller/network/browser runtime or denied-document retrieval. Diagram assertions audit the authored transcription, not an independent reading."
+      }
     },
     {
       "id": "W12-L59-Q032",
@@ -3308,13 +3397,13 @@
     },
     {
       "id": "W12-L59-Q038",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L59-author",
       "stem": "Two symmetric corridors yield similar scan agreement for two separated particle clusters. What is the defensible interpretation?",
       "selectionMode": "single",
       "type": "scenario",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "application",
       "week": 12,
       "lectureId": "L59",
@@ -3332,7 +3421,7 @@
       "options": [
         {
           "id": "o3",
-          "text": "The cluster with the larger x coordinate must be the true pose."
+          "text": "Equal scan agreement means the two pose clusters must have equal posterior weight, regardless of their motion-prior weights."
         },
         {
           "id": "o4",
@@ -3340,11 +3429,11 @@
         },
         {
           "id": "o1",
-          "text": "AMCL must average the two corridors into a physically traversable new corridor."
+          "text": "The weighted mean of the separated clusters must be a high-probability robot pose, even if few particles lie near that mean."
         },
         {
           "id": "o2",
-          "text": "The two clusters automatically prove the map is metrically wrong."
+          "text": "A single pose marker in the display proves that the filter has already discarded the other pose hypothesis."
         }
       ],
       "correctOptionIds": [
@@ -3367,25 +3456,34 @@
         "justification": "Multiple hypotheses represent ambiguity; additional informative observations or movement may be needed to distinguish them.",
         "optionExplanations": {
           "o4": "Multiple hypotheses represent ambiguity; additional informative observations or movement may be needed to distinguish them.",
-          "o2": "Ambiguity can arise in a correct symmetric map.",
-          "o3": "Coordinate magnitude is not an observation likelihood.",
-          "o1": "A pose distribution does not create a new physical corridor."
+          "o2": "A display can summarize a distribution; one marker alone does not establish that all alternative hypotheses vanished.",
+          "o3": "Measurement agreement alone does not determine posterior equality; prior weights and the full update also matter.",
+          "o1": "For a multimodal belief, the mean can lie between well-supported modes and need not itself have high probability."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "Multiple hypotheses represent ambiguity; additional informative observations or movement may be needed to distinguish them.",
         "memoryAid": null,
         "misconceptions": [
-          "Ambiguity can arise in a correct symmetric map.",
-          "Coordinate magnitude is not an observation likelihood.",
-          "A pose distribution does not create a new physical corridor."
+          "Measurement agreement alone does not determine posterior equality; prior weights and the full update also matter.",
+          "For a multimodal belief, the mean can lie between well-supported modes and need not itself have high probability.",
+          "A display can summarize a distribution; one marker alone does not establish that all alternative hypotheses vanished."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Applies source relations under explicitly supplied additional conditions or combines multiple stages."
+      "difficultyRationale": "Easy: one direct conceptual distinction or fault-domain interpretation under the supplied source context; no multi-stage numerical reasoning.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L59-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L59-v2-author-checks.json",
+        "sha256": "7499c7be9a63e06d62ef2b4298f2c738e7def91dba8a2917d53b66c3398fe0a2",
+        "independentReview": false,
+        "scope": "Changed pinhole exercise and explicit source-diagram transcriptions only. No ROS/Gazebo/camera/model/controller/network/browser runtime or denied-document retrieval. Diagram assertions audit the authored transcription, not an independent reading."
+      }
     },
     {
       "id": "W12-L59-Q039",
@@ -4152,7 +4250,7 @@
     },
     {
       "id": "W12-L59-Q048",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L59-author",
       "stem": "The slide calls a node an independent executable, but supplies no launch or process configuration. What can be concluded directly from this slide?",
@@ -4180,15 +4278,15 @@
         },
         {
           "id": "o2",
-          "text": "It proves all processing runs as one fixed executable on the Arduino."
+          "text": "Each listed functional node must occupy its own operating-system process; the slide rules out several components sharing a process."
         },
         {
           "id": "o4",
-          "text": "It specifies the exact topic names and message schemas for every sensor."
+          "text": "Nodes connected by a topic must run in different operating-system processes rather than any shared-process composition."
         },
         {
           "id": "o3",
-          "text": "It documents the exact operating-system process ID of every node."
+          "text": "The Processing Nodes box proves all processing components share one operating-system process."
         }
       ],
       "correctOptionIds": [
@@ -4211,25 +4309,34 @@
         "justification": "The table is a conceptual introduction; actual launch/process and message configuration is not printed.",
         "optionExplanations": {
           "o1": "The table is a conceptual introduction; actual launch/process and message configuration is not printed.",
-          "o3": "No process IDs are supplied.",
-          "o4": "No topic or message definitions are supplied.",
-          "o2": "The source does not establish that process layout and elsewhere assigns high-level processing to Jetson."
+          "o3": "One conceptual box can group functions without documenting their process composition.",
+          "o4": "A conceptual communication relationship does not by itself specify operating-system process boundaries.",
+          "o2": "The slide gives no launch/composition configuration from which that particular runtime arrangement can be established."
         },
         "steps": [],
         "formulas": [],
         "simpleExplanation": "The table is a conceptual introduction; actual launch/process and message configuration is not printed.",
         "memoryAid": null,
         "misconceptions": [
-          "No process IDs are supplied.",
-          "No topic or message definitions are supplied.",
-          "The source does not establish that process layout and elsewhere assigns high-level processing to Jetson."
+          "The slide gives no launch/composition configuration from which that particular runtime arrangement can be established.",
+          "A conceptual communication relationship does not by itself specify operating-system process boundaries.",
+          "One conceptual box can group functions without documenting their process composition."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct source distinction, diagram reading or single stated relation."
+      "difficultyRationale": "Direct source distinction, diagram reading or single stated relation.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L59-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L59-v2-author-checks.json",
+        "sha256": "7499c7be9a63e06d62ef2b4298f2c738e7def91dba8a2917d53b66c3398fe0a2",
+        "independentReview": false,
+        "scope": "Changed pinhole exercise and explicit source-diagram transcriptions only. No ROS/Gazebo/camera/model/controller/network/browser runtime or denied-document retrieval. Diagram assertions audit the authored transcription, not an independent reading."
+      }
     },
     {
       "id": "W12-L59-Q049",
@@ -4628,10 +4735,10 @@
     },
     {
       "id": "W12-L59-Q054",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L59-author",
-      "stem": "Added calibrated example: aligned raw depth d=1500 with scale 0.001 m/unit, fx=fy=500 pixels, principal point (320,240), selected pixel (420,240). What camera point follows the supplied pinhole rule?",
+      "stem": "Added calibrated pinhole example: Z=s d is optical-axis depth, X=(u−c_x)Z/f_x and Y=(v−c_y)Z/f_y. Here d=1500 raw units, s=0.001 m/unit, f_x=f_y=500 pixels, principal point (c_x,c_y)=(320,240) pixels, and selected pixel (u,v)=(420,240). What camera-frame point (X,Y,Z) follows?",
       "selectionMode": "single",
       "type": "numerical",
       "difficulty": "medium",
@@ -4647,7 +4754,7 @@
         "W12-L59-C-depth-number"
       ],
       "assumptions": [
-        "All calibration/depth values and pinhole rule are added; valid registered depth and corrected distortion. No actual camera execution."
+        "All numeric values and the stated pinhole equations are added exercise premises, not equations printed on p1900. Depth is valid, registered to the selected colour pixel and distortion-corrected. Z is axial depth, not Euclidean range; no actual camera execution."
       ],
       "options": [
         {
@@ -4733,21 +4840,24 @@
       "reviewIds": [],
       "difficultyRationale": "Applies source relations under explicitly supplied additional conditions or combines multiple stages.",
       "authorCheckEvidence": {
-        "path": "audits/W12-L59-author-checks.json",
-        "sha256": "ae3f29d5be741964e5d5516494877df7ed0ed3ac72a4b6f9f0aef8a9d487b73e",
+        "path": "audits/W12-L59-v2-author-checks.json",
+        "sha256": "7499c7be9a63e06d62ef2b4298f2c738e7def91dba8a2917d53b66c3398fe0a2",
         "independentReview": false,
-        "scope": "Author-only explicitly added differential-drive, odometry, PID, frame, probability, depth and feasibility calculations. No ROS, Gazebo, original code, video or hardware execution."
-      }
+        "scope": "Changed pinhole exercise and explicit source-diagram transcriptions only. No ROS/Gazebo/camera/model/controller/network/browser runtime or denied-document retrieval. Diagram assertions audit the authored transcription, not an independent reading."
+      },
+      "revisionAuthors": [
+        "build_offline_study_interface:L59-v2-repair"
+      ]
     },
     {
       "id": "W12-L59-Q055",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L59-author",
       "stem": "RGB and depth images have different viewpoints and are not registered. Why is reading depth at the same integer pixel index unsafe?",
       "selectionMode": "single",
       "type": "scenario",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "application",
       "week": 12,
       "lectureId": "L59",
@@ -4816,7 +4926,16 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Applies source relations under explicitly supplied additional conditions or combines multiple stages."
+      "difficultyRationale": "Easy: one direct conceptual distinction or fault-domain interpretation under the supplied source context; no multi-stage numerical reasoning.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L59-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L59-v2-author-checks.json",
+        "sha256": "7499c7be9a63e06d62ef2b4298f2c738e7def91dba8a2917d53b66c3398fe0a2",
+        "independentReview": false,
+        "scope": "Changed pinhole exercise and explicit source-diagram transcriptions only. No ROS/Gazebo/camera/model/controller/network/browser runtime or denied-document retrieval. Diagram assertions audit the authored transcription, not an independent reading."
+      }
     },
     {
       "id": "W12-L59-Q056",
@@ -4899,7 +5018,7 @@
     },
     {
       "id": "W12-L59-Q057",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L59-author",
       "stem": "Which mapping matches the simulation table?",
@@ -4933,7 +5052,7 @@
         },
         {
           "id": "o1",
-          "text": "Robot model: URDF/Xacro; robot motion: no kinematics/dynamics; navigation: only a static picture."
+          "text": "Robot model: URDF/Xacro with physical properties; environment: virtual obstacles/boundaries; sensors: SLAM, localization and path-planning algorithms."
         }
       ],
       "correctOptionIds": [
@@ -4956,7 +5075,7 @@
         "justification": "The table separates body/model description, world geometry and virtual sensor outputs.",
         "optionExplanations": {
           "o3": "The table separates body/model description, world geometry and virtual sensor outputs.",
-          "o1": "The source explicitly includes differential-drive motion and navigation algorithms.",
+          "o1": "The sensor row names simulated measurement modalities; SLAM, localization and planning belong to the navigation row, not the sensor representation.",
           "o2": "This swaps robot-body and world representations.",
           "o4": "The table lists simulated LiDAR, RGB-D, IMU and encoders, not only perfect pose."
         },
@@ -4967,14 +5086,23 @@
         "misconceptions": [
           "This swaps robot-body and world representations.",
           "The table lists simulated LiDAR, RGB-D, IMU and encoders, not only perfect pose.",
-          "The source explicitly includes differential-drive motion and navigation algorithms."
+          "The sensor row names simulated measurement modalities; SLAM, localization and planning belong to the navigation row, not the sensor representation."
         ],
         "examTraps": [],
         "prerequisiteConceptIds": []
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Direct source distinction, diagram reading or single stated relation."
+      "difficultyRationale": "Direct source distinction, diagram reading or single stated relation.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L59-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L59-v2-author-checks.json",
+        "sha256": "7499c7be9a63e06d62ef2b4298f2c738e7def91dba8a2917d53b66c3398fe0a2",
+        "independentReview": false,
+        "scope": "Changed pinhole exercise and explicit source-diagram transcriptions only. No ROS/Gazebo/camera/model/controller/network/browser runtime or denied-document retrieval. Diagram assertions audit the authored transcription, not an independent reading."
+      }
     },
     {
       "id": "W12-L59-Q058",
@@ -5756,13 +5884,13 @@
     },
     {
       "id": "W12-L59-Q065",
-      "version": 1,
+      "version": 2,
       "status": "draft",
       "authorId": "build_offline_study_interface:L59-author",
       "stem": "Added diagnostic observation: object annotations and maps update normally, but measured wheel speed drops under load while a velocity command remains constant. Which first investigation is best matched to the demonstrated architecture?",
       "selectionMode": "single",
       "type": "scenario",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "cognitiveSkill": "application",
       "week": 12,
       "lectureId": "L59",
@@ -5855,7 +5983,466 @@
       },
       "origin": "generated",
       "reviewIds": [],
-      "difficultyRationale": "Applies source relations under explicitly supplied additional conditions or combines multiple stages."
+      "difficultyRationale": "Easy: one direct conceptual distinction or fault-domain interpretation under the supplied source context; no multi-stage numerical reasoning.",
+      "revisionAuthors": [
+        "build_offline_study_interface:L59-v2-repair"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L59-v2-author-checks.json",
+        "sha256": "7499c7be9a63e06d62ef2b4298f2c738e7def91dba8a2917d53b66c3398fe0a2",
+        "independentReview": false,
+        "scope": "Changed pinhole exercise and explicit source-diagram transcriptions only. No ROS/Gazebo/camera/model/controller/network/browser runtime or denied-document retrieval. Diagram assertions audit the authored transcription, not an independent reading."
+      }
+    },
+    {
+      "id": "W12-L59-Q066",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:L59-v2-repair",
+      "stem": "Which reading preserves the environment/adaptation contrast in the source table without turning it into a universal capability boundary?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "application",
+      "week": 12,
+      "lectureId": "L59",
+      "topic": "Mobile Robot Demonstration",
+      "subtopic": "Environment and adaptation contrast",
+      "tags": [
+        "environment-contrast"
+      ],
+      "conceptIds": [
+        "W12-L59-C-environment-contrast"
+      ],
+      "assumptions": [
+        "Interpret the introductory comparison as the source’s stated design emphasis, not a theorem excluding adaptive or robust classical methods."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "The table’s structured-setting description proves that any use of feedback in a changing environment must be machine learning."
+        },
+        {
+          "id": "o4",
+          "text": "The table says sensor-driven adaptation replaces all mathematical models and classical control in the demonstrated robot."
+        },
+        {
+          "id": "o1",
+          "text": "The table associates classical model/rule-based operation with structured, predictable settings and describes this sensor-driven robot as adapting to dynamic, partly unknown settings; it does not prove classical methods cannot operate there."
+        },
+        {
+          "id": "o2",
+          "text": "The table associates classical control with dynamic, unknown settings and this AI-enabled robot with only fixed, predictable settings."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1880",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1880,
+          "kind": "table",
+          "locator": "Lecture L59, physical PDF page 1880, printed footer 4: Environment/adaptation row, together with the AI/classical integration row.",
+          "evidenceText": "Traditional Robotics vs AI- Enabled Robotics\n\nTraditional Robotics (Classical Control)  AI-Enabled Robotics (This Robot)\n\nExecutes predefined rules and           Learns or infers information from sensor data\nmathematical models.                     for perception and decision-making.\n\nOperates effectively in structured and    Adapts to dynamic and partially unknown\npredictable environments.              environments.\n\nPrimarily focuses on motion control and  Combines perception, localization, planning,\ntrajectory execution.                 and navigation for autonomous operation.\n\nRelies on deterministic algorithms such   Integrates AI-based perception (YOLOv8n) with\nas PID control and kinematic models.     classical robotics algorithms.\n\nLimited understanding of the            Detects objects, interprets the environment,\nsurrounding environment.            and updates decisions in real time.\n\n\n\n                                                                                                           4",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "This reports the table’s pedagogical contrast while retaining its limited scope rather than treating it as an impossibility theorem.",
+        "optionExplanations": {
+          "o1": "This reports the table’s pedagogical contrast while retaining its limited scope rather than treating it as an impossibility theorem.",
+          "o2": "This reverses the displayed environment row.",
+          "o3": "Feedback and learning are not equivalent; the table itself includes classical PID within the hybrid robot.",
+          "o4": "The same table explicitly describes integration with classical robotics algorithms, not their elimination."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "This reports the table’s pedagogical contrast while retaining its limited scope rather than treating it as an impossibility theorem.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This reverses the displayed environment row.",
+          "Feedback and learning are not equivalent; the table itself includes classical PID within the hybrid robot.",
+          "The same table explicitly describes integration with classical robotics algorithms, not their elimination."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "difficultyRationale": "Direct reading of one bounded source comparison or labelled diagram; no unseen runtime evidence is inferred.",
+      "gapChallengeIds": [
+        "L59-GAP-01"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L59-v2-author-checks.json",
+        "sha256": "7499c7be9a63e06d62ef2b4298f2c738e7def91dba8a2917d53b66c3398fe0a2",
+        "independentReview": false,
+        "scope": "Changed pinhole exercise and explicit source-diagram transcriptions only. No ROS/Gazebo/camera/model/controller/network/browser runtime or denied-document retrieval. Diagram assertions audit the authored transcription, not an independent reading."
+      }
+    },
+    {
+      "id": "W12-L59-Q067",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:L59-v2-repair",
+      "stem": "In the source’s System architecture schematic, which two boxes receive the drawn branches from Sensor Fusion (EKF) within the perception/localization layer?",
+      "selectionMode": "single",
+      "type": "diagram",
+      "difficulty": "easy",
+      "cognitiveSkill": "application",
+      "week": 12,
+      "lectureId": "L59",
+      "topic": "Mobile Robot Demonstration",
+      "subtopic": "Sensor-fusion diagram branches",
+      "tags": [
+        "ekf-branch-figure"
+      ],
+      "conceptIds": [
+        "W12-L59-C-ekf-branch-figure"
+      ],
+      "assumptions": [
+        "This asks what the conceptual source schematic draws, not the exact deployed ROS topic/subscription graph."
+      ],
+      "options": [
+        {
+          "id": "o4",
+          "text": "YOLOv8 and Cost map are the two direct branches from EKF."
+        },
+        {
+          "id": "o1",
+          "text": "SLAM and Localisation (AMCL)."
+        },
+        {
+          "id": "o2",
+          "text": "SLAM receives EKF output, and AMCL receives only an arrow from SLAM."
+        },
+        {
+          "id": "o3",
+          "text": "The Global Planner and the Motor Drivers boxes are the two direct branches from EKF."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1885",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1885,
+          "kind": "figure",
+          "locator": "Lecture L59, physical PDF page 1885, printed footer 9: Sensor Fusion (EKF) box and its two branch arrows.",
+          "evidenceText": "Navigation\nSystem architecture                                                         Layer        Motor Control\n                           Perception and                                                     Global                                                                             Velocity                              localization layer  Sensing layer                                      Planner                                                   Command\n                      SLAM•  RP Lidar\n                                                        Local\n•  Intel                                                      Motor Controller\n                    Sensor Fusion                   Planning                                                                      (Arduino Mega )   Realsense\n                      (EKF)                          &control\n   d435i RGB-D\n                                                            Motor Drivers  Camera                                 Localisation                                                   Behavior\n•  Wheel                           (AMCL)                                                    Tree                                                                        Drive Motors   encoder\n\n                                   Yolov8                                                    Cost map\n\n\n     Jetson Orin                   ROS2 Humble        Rviz2\n      Nano\n\n\n                                                                                                           9",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The EKF box has an upward/right branch to SLAM and a downward/right branch to Localisation (AMCL).",
+        "optionExplanations": {
+          "o1": "The EKF box has an upward/right branch to SLAM and a downward/right branch to Localisation (AMCL).",
+          "o2": "The drawing branches from the EKF line to both boxes rather than showing only that serial connection.",
+          "o3": "Those belong to later navigation/motor layers; they are not the two displayed branch endpoints beside EKF.",
+          "o4": "Those boxes have separate lower-layer links in this conceptual drawing."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The EKF box has an upward/right branch to SLAM and a downward/right branch to Localisation (AMCL).",
+        "memoryAid": null,
+        "misconceptions": [
+          "The drawing branches from the EKF line to both boxes rather than showing only that serial connection.",
+          "Those belong to later navigation/motor layers; they are not the two displayed branch endpoints beside EKF.",
+          "Those boxes have separate lower-layer links in this conceptual drawing."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "difficultyRationale": "Direct reading of one bounded source comparison or labelled diagram; no unseen runtime evidence is inferred.",
+      "gapChallengeIds": [
+        "L59-GAP-02"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L59-v2-author-checks.json",
+        "sha256": "7499c7be9a63e06d62ef2b4298f2c738e7def91dba8a2917d53b66c3398fe0a2",
+        "independentReview": false,
+        "scope": "Changed pinhole exercise and explicit source-diagram transcriptions only. No ROS/Gazebo/camera/model/controller/network/browser runtime or denied-document retrieval. Diagram assertions audit the authored transcription, not an independent reading."
+      }
+    },
+    {
+      "id": "W12-L59-Q068",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:L59-v2-repair",
+      "stem": "Which signal/component sequence matches the source’s motor-regulation diagram and its accompanying statement about continuing speed correction?",
+      "selectionMode": "single",
+      "type": "diagram",
+      "difficulty": "easy",
+      "cognitiveSkill": "application",
+      "week": 12,
+      "lectureId": "L59",
+      "topic": "Mobile Robot Demonstration",
+      "subtopic": "PID PWM and encoder-feedback chain",
+      "tags": [
+        "pwm-feedback-chain"
+      ],
+      "conceptIds": [
+        "W12-L59-C-pwm-feedback-chain"
+      ],
+      "assumptions": [
+        "The source draws a downward chain; the feedback-use statement is in the accompanying text. No unprinted return arrow or actual controller implementation is asserted."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Desired wheel velocity → PID controller → PWM output → DC motor → wheel-encoder feedback, with encoder measurements used for continuing correction."
+        },
+        {
+          "id": "o2",
+          "text": "Desired wheel velocity → PWM output → PID controller → DC motor → wheel-encoder feedback, with PWM acting as the measured wheel speed."
+        },
+        {
+          "id": "o3",
+          "text": "Desired wheel velocity → PID controller → wheel encoder → PWM output → DC motor, with the encoder producing the drive signal."
+        },
+        {
+          "id": "o4",
+          "text": "Desired wheel velocity → PID controller → PWM output → DC motor → wheel-encoder feedback, with the encoder used only for offline logging and never further correction."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1888",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1888,
+          "kind": "figure",
+          "locator": "Lecture L59, physical PDF page 1888, printed footer 12: Right-hand Desired Velocity through Wheel Encoder Feedback column and the continuous-correction bullet.",
+          "evidenceText": "DesiredPID Motor Control and Velocity Regulation                                                                                 Velocity\n•  Track the desired wheel velocity accurately.                                                                    PID Controller\n•  Minimize steady-state and transient errors.\n•  Compensate for load variations.                     PWM Output\n•  Maintain stable robot motion.\n                                                        DC Motor•  Continuously correct speed using encoder feedback.\n\n                                                           Wheel Encoder\n                                                                   Feedback\n Term             Function\n\n P (Proportional)   Reduces present error\n\n   I (Integral)         Eliminates accumulated error\n\n D (Derivative)     Reduces overshoot and improves stability\n\n\n                                                                                                          12",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The diagram distinguishes the desired value, controller, PWM drive command, motor plant and measured wheel feedback; the text states that encoder feedback continuously corrects speed.",
+        "optionExplanations": {
+          "o1": "The diagram distinguishes the desired value, controller, PWM drive command, motor plant and measured wheel feedback; the text states that encoder feedback continuously corrects speed.",
+          "o2": "The source puts the PID controller before its PWM output; PWM is a drive command, not the encoder’s measured speed.",
+          "o3": "The encoder measures wheel motion after the motor plant; it is not the source of the PWM drive command.",
+          "o4": "The sequence is copied correctly, but the stated logging-only role contradicts the continuing-feedback bullet."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The diagram distinguishes the desired value, controller, PWM drive command, motor plant and measured wheel feedback; the text states that encoder feedback continuously corrects speed.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The source puts the PID controller before its PWM output; PWM is a drive command, not the encoder’s measured speed.",
+          "The encoder measures wheel motion after the motor plant; it is not the source of the PWM drive command.",
+          "The sequence is copied correctly, but the stated logging-only role contradicts the continuing-feedback bullet."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "difficultyRationale": "Direct reading of one bounded source comparison or labelled diagram; no unseen runtime evidence is inferred.",
+      "gapChallengeIds": [
+        "L59-GAP-03"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L59-v2-author-checks.json",
+        "sha256": "7499c7be9a63e06d62ef2b4298f2c738e7def91dba8a2917d53b66c3398fe0a2",
+        "independentReview": false,
+        "scope": "Changed pinhole exercise and explicit source-diagram transcriptions only. No ROS/Gazebo/camera/model/controller/network/browser runtime or denied-document retrieval. Diagram assertions audit the authored transcription, not an independent reading."
+      }
+    },
+    {
+      "id": "W12-L59-Q069",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:L59-v2-repair",
+      "stem": "In the source screenshot, how are the longer green trace extending leftward and the short trace near the red robot marker identified by the two black annotation arrows?",
+      "selectionMode": "single",
+      "type": "diagram",
+      "difficulty": "easy",
+      "cognitiveSkill": "application",
+      "week": 12,
+      "lectureId": "L59",
+      "topic": "Mobile Robot Demonstration",
+      "subtopic": "Global and local path annotations",
+      "tags": [
+        "global-local-figure-labels"
+      ],
+      "conceptIds": [
+        "W12-L59-C-global-local-figure-labels"
+      ],
+      "assumptions": [
+        "Read labels and visible relationships only; the still does not establish path length, curvature, tracking error or traversal success."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "The longer green trace is Local Planner Path; the short near-robot trace is Global Planned Path."
+        },
+        {
+          "id": "o3",
+          "text": "Both traces are labeled Global Planned Path; Local Planner Path labels the obstacle inflation band."
+        },
+        {
+          "id": "o4",
+          "text": "The longer green trace is Global Planned Path; the short trace is labeled measured encoder odometry rather than a planned path."
+        },
+        {
+          "id": "o1",
+          "text": "The longer green trace is Global Planned Path; the short near-robot trace is Local Planner Path."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1897",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1897,
+          "kind": "figure",
+          "locator": "Lecture L59, physical PDF page 1897, printed footer 21: Inset map screenshot and the two black-arrow path annotations.",
+          "evidenceText": "Global PathLocal Planning and Trajectory Tracking\n\n•  Purpose                             Global Planned                       Local Planner\n•  Follow the global path safely.            Path\n\n                                                                                                      Trajectory Evaluation•  React to newly detected obstacles.                                                  Local Planner Path\n•  Generate feasible velocity commands.\n                                                                                                        Velocity Commands\n•  Ensure smooth robot motion.\n\n•  Responsibilities                                                               Robot Motion\n•  Track the planned trajectory.\n•  Avoid nearby obstacles.\n•  Regulate linear and angular velocity.\n•  Continuously update robot motion in real time.\n\n\n                                                                                                          21",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The left annotation points to the longer green global path, while the other points to the short local path near the robot.",
+        "optionExplanations": {
+          "o1": "The left annotation points to the longer green global path, while the other points to the short local path near the robot.",
+          "o2": "This swaps the two printed annotation labels.",
+          "o3": "The local-path annotation points to the near-robot trace, not the coloured obstacle band.",
+          "o4": "The actual short-trace annotation says Local Planner Path, not odometry."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The left annotation points to the longer green global path, while the other points to the short local path near the robot.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This swaps the two printed annotation labels.",
+          "The local-path annotation points to the near-robot trace, not the coloured obstacle band.",
+          "The actual short-trace annotation says Local Planner Path, not odometry."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "difficultyRationale": "Direct reading of one bounded source comparison or labelled diagram; no unseen runtime evidence is inferred.",
+      "gapChallengeIds": [
+        "L59-GAP-04"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L59-v2-author-checks.json",
+        "sha256": "7499c7be9a63e06d62ef2b4298f2c738e7def91dba8a2917d53b66c3398fe0a2",
+        "independentReview": false,
+        "scope": "Changed pinhole exercise and explicit source-diagram transcriptions only. No ROS/Gazebo/camera/model/controller/network/browser runtime or denied-document retrieval. Diagram assertions audit the authored transcription, not an independent reading."
+      }
+    },
+    {
+      "id": "W12-L59-Q070",
+      "version": 1,
+      "status": "draft",
+      "authorId": "build_offline_study_interface:L59-v2-repair",
+      "stem": "What downstream branching is actually drawn from Processing Nodes in the source’s ROS 2 Node Architecture diagram?",
+      "selectionMode": "single",
+      "type": "diagram",
+      "difficulty": "easy",
+      "cognitiveSkill": "application",
+      "week": 12,
+      "lectureId": "L59",
+      "topic": "Mobile Robot Demonstration",
+      "subtopic": "Processing-node output branches",
+      "tags": [
+        "processing-output-branches"
+      ],
+      "conceptIds": [
+        "W12-L59-C-processing-output-branches"
+      ],
+      "assumptions": [
+        "Diagram interpretation only, not a claim about actual ROS process scheduling, transport or launch composition."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "Processing Nodes points directly to Mobile Robot, while Motor Controller points only to Navigation."
+        },
+        {
+          "id": "o4",
+          "text": "Processing Nodes receives an arrow from Motor Controller and sends no outgoing control branch."
+        },
+        {
+          "id": "o1",
+          "text": "One arrow goes to Navigation; another goes downward to Motor Controller, which then points to Mobile Robot."
+        },
+        {
+          "id": "o2",
+          "text": "Processing Nodes points only to Navigation, which then directly points to Motor Controller in the drawing."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1898",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1898,
+          "kind": "figure",
+          "locator": "Lecture L59, physical PDF page 1898, printed footer 22: Processing Nodes box, rightward Navigation branch and downward Motor Controller → Mobile Robot branch.",
+          "evidenceText": "ROS 2 Node Architecture\n                               Processing Nodes               Navigation\n\n     Camera\n        Lidar                Motor Controller\n     IMU\n     Encoder\n                              Mobile Robot\n\nROS 2 Component  Purpose\n\n                  Independent executable performing a specific\nNode\n                     task\n\nTopic             Asynchronous communication between nodes\n\nService            Request–response communication\n\nAction             Long-running tasks (e.g., navigation goals)\n\nTF                 Maintains coordinate frame transformations\n                                                                                                          22",
+          "role": "explicit",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The source shows these two outgoing processing branches and the subsequent motor-controller-to-robot arrow.",
+        "optionExplanations": {
+          "o1": "The source shows these two outgoing processing branches and the subsequent motor-controller-to-robot arrow.",
+          "o2": "That serial navigation-to-controller arrow is not the branch layout displayed on this page.",
+          "o3": "This exchanges the drawn downstream connections and bypasses the controller box.",
+          "o4": "The vertical arrow is directed from processing down to the motor controller, not upward."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The source shows these two outgoing processing branches and the subsequent motor-controller-to-robot arrow.",
+        "memoryAid": null,
+        "misconceptions": [
+          "That serial navigation-to-controller arrow is not the branch layout displayed on this page.",
+          "This exchanges the drawn downstream connections and bypasses the controller box.",
+          "The vertical arrow is directed from processing down to the motor controller, not upward."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "difficultyRationale": "Direct reading of one bounded source comparison or labelled diagram; no unseen runtime evidence is inferred.",
+      "gapChallengeIds": [
+        "L59-GAP-05"
+      ],
+      "authorCheckEvidence": {
+        "path": "audits/W12-L59-v2-author-checks.json",
+        "sha256": "7499c7be9a63e06d62ef2b4298f2c738e7def91dba8a2917d53b66c3398fe0a2",
+        "independentReview": false,
+        "scope": "Changed pinhole exercise and explicit source-diagram transcriptions only. No ROS/Gazebo/camera/model/controller/network/browser runtime or denied-document retrieval. Diagram assertions audit the authored transcription, not an independent reading."
+      }
     }
   ],
   "concepts": [
@@ -6045,7 +6632,11 @@
       "title": "Named software roles",
       "description": "The named packages have complementary mapping, localization, navigation and perception roles.",
       "slideIds": [
-        "lectures-p1884"
+        "lectures-p1884",
+        "lectures-p1892",
+        "lectures-p1894",
+        "lectures-p1899",
+        "lectures-p1900"
       ],
       "questionIds": [
         "W12-L59-Q011"
@@ -7036,6 +7627,96 @@
       "prerequisiteConceptIds": [],
       "examinationAngles": [
         "scenario"
+      ]
+    },
+    {
+      "id": "W12-L59-C-environment-contrast",
+      "title": "Environment and adaptation contrast",
+      "description": "This reports the table’s pedagogical contrast while retaining its limited scope rather than treating it as an impossibility theorem.",
+      "slideIds": [
+        "lectures-p1880"
+      ],
+      "questionIds": [
+        "W12-L59-Q066"
+      ],
+      "status": "drafted",
+      "topic": "Mobile Robot Demonstration",
+      "subtopic": "Environment and adaptation contrast",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "conceptual"
+      ]
+    },
+    {
+      "id": "W12-L59-C-ekf-branch-figure",
+      "title": "Sensor-fusion diagram branches",
+      "description": "The EKF box has an upward/right branch to SLAM and a downward/right branch to Localisation (AMCL).",
+      "slideIds": [
+        "lectures-p1885"
+      ],
+      "questionIds": [
+        "W12-L59-Q067"
+      ],
+      "status": "drafted",
+      "topic": "Mobile Robot Demonstration",
+      "subtopic": "Sensor-fusion diagram branches",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "diagram"
+      ]
+    },
+    {
+      "id": "W12-L59-C-pwm-feedback-chain",
+      "title": "PID PWM and encoder-feedback chain",
+      "description": "The diagram distinguishes the desired value, controller, PWM drive command, motor plant and measured wheel feedback; the text states that encoder feedback continuously corrects speed.",
+      "slideIds": [
+        "lectures-p1888"
+      ],
+      "questionIds": [
+        "W12-L59-Q068"
+      ],
+      "status": "drafted",
+      "topic": "Mobile Robot Demonstration",
+      "subtopic": "PID PWM and encoder-feedback chain",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "diagram"
+      ]
+    },
+    {
+      "id": "W12-L59-C-global-local-figure-labels",
+      "title": "Global and local path annotations",
+      "description": "The left annotation points to the longer green global path, while the other points to the short local path near the robot.",
+      "slideIds": [
+        "lectures-p1897"
+      ],
+      "questionIds": [
+        "W12-L59-Q069"
+      ],
+      "status": "drafted",
+      "topic": "Mobile Robot Demonstration",
+      "subtopic": "Global and local path annotations",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "diagram"
+      ]
+    },
+    {
+      "id": "W12-L59-C-processing-output-branches",
+      "title": "Processing-node output branches",
+      "description": "The source shows these two outgoing processing branches and the subsequent motor-controller-to-robot arrow.",
+      "slideIds": [
+        "lectures-p1898"
+      ],
+      "questionIds": [
+        "W12-L59-Q070"
+      ],
+      "status": "drafted",
+      "topic": "Mobile Robot Demonstration",
+      "subtopic": "Processing-node output branches",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "diagram"
       ]
     }
   ],

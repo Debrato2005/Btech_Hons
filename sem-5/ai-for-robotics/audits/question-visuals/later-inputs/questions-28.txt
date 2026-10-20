@@ -1,0 +1,180 @@
+
+PAGE 1888
+12
+•
+Track the desired wheel velocity accurately.
+•
+Minimize steady-state and transient errors. 
+•
+Compensate for load variations.
+•
+Maintain stable robot motion. 
+•
+Continuously correct speed using encoder feedback.
+PID Motor Control and Velocity Regulation
+Desired 
+Velocity
+PID Controller
+PWM Output
+DC Motor
+Wheel Encoder 
+Feedback
+Term
+Function
+P (Proportional)
+Reduces present error
+I  (Integral)
+Eliminates accumulated error
+D (Derivative)
+Reduces overshoot and improves stability
+
+{"id": "W12-L59-Q068", "stem": "Which signal/component sequence matches the source’s motor-regulation diagram and its accompanying statement about continuing speed correction?", "options": [{"id": "o1", "text": "Desired wheel velocity → PID controller → PWM output → DC motor → wheel-encoder feedback, with encoder measurements used for continuing correction."}, {"id": "o2", "text": "Desired wheel velocity → PWM output → PID controller → DC motor → wheel-encoder feedback, with PWM acting as the measured wheel speed."}, {"id": "o3", "text": "Desired wheel velocity → PID controller → wheel encoder → PWM output → DC motor, with the encoder producing the drive signal."}, {"id": "o4", "text": "Desired wheel velocity → PID controller → PWM output → DC motor → wheel-encoder feedback, with the encoder used only for offline logging and never further correction."}], "assumptions": ["The source draws a downward chain; the feedback-use statement is in the accompanying text. No unprinted return arrow or actual controller implementation is asserted."]}
+
+PAGE 1891
+15
+LiDAR + RGB-D Costmap Fusion
+•
+Improved obstacle detection accuracy. 
+•
+Compensates for individual sensor limitations. 
+•
+Creates a more reliable local environment model. 
+•
+Enables safer navigation. 
+LiDAR
+RGB-D Camera
+360° field of view
+Provides depth 
+information
+Accurate distance 
+measurement
+Detects low and off-plane 
+obstacles
+Long sensing range
+Rich visual information
+Limited to a fixed 
+scan plane
+Narrower field of view
+LiDAR Scan +         
+Depth Camera
+Local Costmap
+Obstacle 
+Representation
+Costmap
+Lethal 
+Inscribed 
+High cost 
+Low cost  
+free space
+
+{"id": "W12-L59-Q030", "stem": "Which pair follows the colour legend on physical page 1891?", "options": [{"id": "o4", "text": "Gray: lethal; magenta: free space."}, {"id": "o3", "text": "Cyan: low cost; reddish: free space."}, {"id": "o1", "text": "Magenta: lethal; gray: free space."}, {"id": "o2", "text": "Purple: lethal; cyan: free space."}], "assumptions": ["Read this screenshot’s legend; it is not a universal RGB colour API."]}
+
+PAGE 1893
+17
+•
+Teleoperate the robot through the environment. 
+•
+Acquire continuous 360° LiDAR scans. 
+•
+Estimate robot pose using EKF-filtered odometry. 
+•
+Generate and update the occupancy grid map. 
+•
+Save the completed map for future localization and 
+navigation. 
+LiDAR SLAM Workflow 
+•
+Output
+– 2D Occupancy Grid Map 
+– Robot Pose Estimate 
+– Map used for AMCL and Nav2
+LiDAR o/p while start of scan
+2D Occupancy Grid Map 
+
+{"id": "W12-L59-Q035", "stem": "The initial scan view and completed grid view on page 1893 represent which distinction?", "options": [{"id": "o2", "text": "A sensor observation around a current pose versus an environment representation accumulated through mapping."}, {"id": "o1", "text": "A completed globally consistent map versus the exact ground-truth map, with a numerical error bound."}, {"id": "o3", "text": "Two single instantaneous scans, neither containing accumulated environmental structure."}, {"id": "o4", "text": "Two saved maps differing only in a stated grid resolution."}], "assumptions": []}
+
+PAGE 1895
+19
+•
+What is a Goal Pose?
+– A goal pose defines the robot's desired position 
+and orientation within the map.
+Goal-Pose Navigation 
+Param
+eter
+Description
+x
+X-coordinate
+y
+Y-coordinate
+θ
+Desired 
+orientation
+Select Goal
+Plan Path
+Move Towards Goal
+Goal Reached
+
+{"id": "W12-L59-Q040", "stem": "Which distinction is important when reading the two RViz tools shown in the screenshot?", "options": [{"id": "o1", "text": "A pose estimate selects where the robot should go; a goal pose initializes where it is believed to be."}, {"id": "o3", "text": "A pose estimate initializes where the robot is believed to be; a goal pose specifies where it should go."}, {"id": "o4", "text": "Both tools specify a desired destination, differing only in map colour."}, {"id": "o2", "text": "Both tools reset the current belief and neither requests navigation."}], "assumptions": []}
+
+PAGE 1897
+21
+•
+Purpose
+•
+Follow the global path safely. 
+•
+React to newly detected obstacles. 
+•
+Generate feasible velocity commands. 
+•
+Ensure smooth robot motion.
+Local Planning and Trajectory Tracking 
+•
+Responsibilities
+•
+Track the planned trajectory. 
+•
+Avoid nearby obstacles. 
+•
+Regulate linear and angular velocity. 
+•
+Continuously update robot motion in real time.
+Global Path
+Local Planner
+Trajectory Evaluation
+Velocity Commands
+Robot Motion
+Global Planned 
+Path 
+Local Planner Path 
+
+{"id": "W12-L59-Q069", "stem": "In the source screenshot, how are the longer green trace extending leftward and the short trace near the red robot marker identified by the two black annotation arrows?", "options": [{"id": "o2", "text": "The longer green trace is Local Planner Path; the short near-robot trace is Global Planned Path."}, {"id": "o3", "text": "Both traces are labeled Global Planned Path; Local Planner Path labels the obstacle inflation band."}, {"id": "o4", "text": "The longer green trace is Global Planned Path; the short trace is labeled measured encoder odometry rather than a planned path."}, {"id": "o1", "text": "The longer green trace is Global Planned Path; the short near-robot trace is Local Planner Path."}], "assumptions": ["Read labels and visible relationships only; the still does not establish path length, curvature, tracking error or traversal success."]}
+
+PAGE 1898
+22
+ROS 2 Node Architecture
+ROS 2 Component
+Purpose
+Node
+Independent executable performing a specific 
+task
+Topic
+Asynchronous communication between nodes
+Service
+Request–response communication
+Action
+Long-running tasks (e.g., navigation goals)
+TF
+Maintains coordinate frame transformations
+Camera
+Lidar
+IMU
+Encoder
+Processing Nodes 
+Motor Controller 
+Mobile Robot 
+Navigation 
+
+{"id": "W12-L59-Q047", "stem": "What does the node-architecture figure show processing nodes receiving?", "options": [{"id": "o4", "text": "Camera, LiDAR, IMU and encoder information."}, {"id": "o2", "text": "Camera and LiDAR only; both IMU and encoder information are absent."}, {"id": "o3", "text": "Encoder and IMU only; the camera and LiDAR are absent."}, {"id": "o1", "text": "Only a saved occupancy map, with no direct sensor information shown."}], "assumptions": []}
+{"id": "W12-L59-Q070", "stem": "What downstream branching is actually drawn from Processing Nodes in the source’s ROS 2 Node Architecture diagram?", "options": [{"id": "o3", "text": "Processing Nodes points directly to Mobile Robot, while Motor Controller points only to Navigation."}, {"id": "o4", "text": "Processing Nodes receives an arrow from Motor Controller and sends no outgoing control branch."}, {"id": "o1", "text": "One arrow goes to Navigation; another goes downward to Motor Controller, which then points to Mobile Robot."}, {"id": "o2", "text": "Processing Nodes points only to Navigation, which then directly points to Motor Controller in the drawing."}], "assumptions": ["Diagram interpretation only, not a claim about actual ROS process scheduling, transport or launch composition."]}

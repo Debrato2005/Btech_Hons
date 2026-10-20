@@ -36,6 +36,7 @@ def confined_path(path):
 def selected_assets(bank, include_page_previews=False):
     pdf_sources = {source['id'] for source in bank['sources'] if source.get('assetId') and any(asset['id'] == source['assetId'] for asset in bank['assets'])}
     directly_required = {aid for q in bank['questions'] for aid in q.get('assetIds', [])}
+    directly_required.update(aid for binding in bank.get('questionVisuals', {}).get('bindings', {}).values() for aid in binding['assetIds'])
     for records in bank['learningTools'].values():
         for record in records:
             directly_required.update(record.get('assetIds', []))
@@ -56,9 +57,13 @@ def stream_assets(handle, assets):
         metadata = {key: value for key, value in asset.items() if key != 'data'}
         handle.write(script_json(metadata)[:-1] + ',"data":"')
         # 3-divisible chunks preserve a single uninterrupted base64 stream.
+        encoded_hash = hashlib.sha256()
         with confined_path(asset['path']).open('rb') as source:
             for chunk in iter(lambda: source.read(3 * 16384), b''):
+                encoded_hash.update(chunk)
                 handle.write(base64.b64encode(chunk).decode('ascii'))
+        if encoded_hash.hexdigest() != asset['sha256']:
+            raise ValueError('Embedded asset changed during build: ' + asset['id'])
         handle.write('"}')
     handle.write('}')
 
@@ -81,6 +86,9 @@ def build(args):
             print('ERROR:', error, file=sys.stderr)
         raise ValueError('Build refused: bank integrity validation failed.')
     chosen = selected_assets(bank, args.include_page_previews)
+    required_visuals = {aid for binding in bank.get('questionVisuals', {}).get('bindings', {}).values() for aid in binding['assetIds']}
+    if not required_visuals <= {a['id'] for a in chosen}:
+        raise ValueError('Build refused: reviewed required question visuals were not selected for offline embedding.')
     assets_by_id = {asset['id']: asset for asset in chosen}
     sources = {source['id']: source for source in bank['sources']}
     slides = {slide['id']: slide for slide in bank['slides']}
@@ -136,6 +144,10 @@ def build(args):
         size = temporary.stat().st_size
         if args.max_size_mib and size > args.max_size_mib * 1024 * 1024:
             raise ValueError(f'Build is {size/1024/1024:.2f} MiB, above --max-size-mib={args.max_size_mib}. No source evidence was silently omitted. Choose a durable large-file delivery route.')
+        # Recheck current local supplemental bytes after serialization, before publication.
+        for name, artifact in bank.get('questionVisuals', {}).get('supplementalArtifacts', {}).items():
+            if hashlib.sha256(confined_path(name).read_bytes()).hexdigest() != artifact['sha256']:
+                raise ValueError('Build refused: supplemental source changed during build: ' + name)
         os.replace(temporary, output)
     finally:
         if temporary.exists():
@@ -151,6 +163,7 @@ def build(args):
         'buildSeconds': round(time.perf_counter() - started, 3), 'embeddedAssets': assets_stats,
         'omittedDuplicatePagePreviews': len(bank['assets']) - len(chosen), 'offlineEvidence': 'Complete embedded PDF or exact source-page asset for every verified citation',
         'runtimeNetworkDependencies': [], 'validation': report,
+        'questionVisuals': {'reviewedDispositions': len(bank.get('questionVisuals', {}).get('bindings', {})), 'requiredAssetIds': sorted(required_visuals), 'requiredAssetBytes': sum(confined_path(a['path']).stat().st_size for a in chosen if a['id'] in required_visuals), 'supplementalInputIds': sorted(bank.get('questionVisuals', {}).get('supplementalBindings', {})), 'supplementalArtifacts': {name: {'sha256': artifact['sha256'], 'utf8Bytes': len(artifact['rawText'].encode('utf-8'))} for name, artifact in bank.get('questionVisuals', {}).get('supplementalArtifacts', {}).items()}, 'packaging': 'Exact lossless PNG bytes, one shared asset ID per pixel hash; separate verbatim notebook/code text and local-file SHA-256 bindings; complete original PDFs retained.'},
         'performanceNote': 'Build time is not browser load time. Browser performance and offline PDF display require separate runtime QA.'
     }
     output.with_suffix('.build-report.json').write_text(json.dumps(result, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')

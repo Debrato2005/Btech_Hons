@@ -1,0 +1,127 @@
+
+PAGE 1530
+24
+Whisper
+•
+Audio is converted into a 128-channel 
+Log-Mel Spectrum. Two 1D CNN layers 
+compress the sequence before it 
+enters the Transformer Encoder.
+•
+Learned Positional Encoding: Trainable 
+vectors added to each audio frame so 
+the Transformer understands the order 
+of the speech sequence.
+•
+The Decoder generates one text token 
+at a time using cross-attention over 
+Encoder output.
+•
+Special tokens at the start of the Decoder tell Whisper which 
+task to perform, such as Speech Transcription, Speech 
+Translation, Language Identification & Voice Activity Detection.
+
+{"id": "W10-L48-Q058", "stem": "The audio-position prose conflicts with the figure. Which pairing agrees with the figure and checked OpenAI implementation?", "options": [{"id": "o1", "text": "Audio encoder: learned positions; text decoder: sinusoidal positions."}, {"id": "o2", "text": "Both audio encoder and text decoder use the same learned position matrix."}, {"id": "o3", "text": "Neither side uses positional information because attention alone fixes sequence order."}, {"id": "o4", "text": "Audio encoder: sinusoidal positions; text decoder: learned positions."}], "assumptions": []}
+{"id": "W10-L48-Q061", "stem": "Which interpretation fits the task/language tokens drawn before the text in the Whisper diagram?", "options": [{"id": "o1", "text": "They configure or identify task, language and related decoding modes rather than all being ordinary transcript words."}, {"id": "o2", "text": "They are ordinary words that must always be copied literally into the final user transcript."}, {"id": "o3", "text": "They require transcription, translation and timestamp generation to run simultaneously for every request."}, {"id": "o4", "text": "They are the same as the decoder’s position indices and therefore carry no language or task information."}], "assumptions": []}
+{"id": "W10-L48-Q080", "stem": "Across the two architecture diagrams, which trace correctly associates the non-attention components with their shown paths?", "options": [{"id": "o1", "text": "The two Conv1D layers with GELU form the acoustic frontend; layer normalization precedes shown sublayers, feedforward/MLP transforms features, and residual paths add the sublayer result to a bypassed representation."}, {"id": "o2", "text": "The two Conv1D layers with GELU form the text output head; layer normalization is the acoustic frontend, and residual paths replace the bypassed representation rather than adding it."}, {"id": "o3", "text": "The two Conv1D layers with GELU form the acoustic frontend; layer normalization performs vocabulary decoding, and the feedforward/MLP block supplies the encoder-to-decoder cross-attention keys."}, {"id": "o4", "text": "The two Conv1D layers with GELU form the acoustic frontend; each residual path concatenates the bypassed representation with the sublayer result, doubling its width at every addition symbol."}], "assumptions": []}
+
+PAGE 1543
+7
+•
+Rule-based chatbots generate responses 
+using predefined rules written by developers, 
+following a simple IF-THEN logic.
+•
+They do not learn from data and do not 
+understand language.
+•
+It’s simple to build and it is predictable, thus 
+making it ideal for fixed tasks.
+Rule-based chatbots
+•
+It is not suitable for modern-day robots because it can 
+neither understand context nor handle unseen questions.
+•
+It lacks reasoning capacity.
+•
+Instead of manually writing thousands of rules, can we 
+build systems that learn patterns directly from data?
+IF input = "hello"
+THEN response = "Hello! 
+How can I help you?"
+
+{"id": "W10-L49-P1543-Q01", "stem": "In the displayed rule-found flowchart, what happens when pattern matching finds no applicable rule?", "options": [{"id": "o1", "text": "Add the unmatched input as a new rule automatically"}, {"id": "o2", "text": "Return the specified fallback response"}, {"id": "o3", "text": "Return the response from the most recently matched rule"}, {"id": "o4", "text": "Choose the response of the nearest rule even though no rule matched"}], "assumptions": []}
+
+PAGE 1552
+16
+3. Generative Chatbots - Demo
+The following code is a 
+simplified version of the 
+original implementation. 
+Only the core chatbot 
+inference pipeline is shown 
+for clarity.
+Complete code can be accessed here
+
+{"id": "W10-L49-P1552-Q03", "stem": "After supplying a valid function wrapper, which additional inputs are still not assigned by the displayed excerpt itself?", "options": [{"id": "o1", "text": "pipe and output"}, {"id": "o2", "text": "reply and generated_text as a Python variable"}, {"id": "o3", "text": "model_id and question"}, {"id": "o4", "text": "tokenizer and model"}], "assumptions": ["The wrapper is an explicit repair; imports and model calls are not executed for this question."]}
+
+PAGE 1556
+•
+Once the target response & intent are formulated, the pipeline splits into two 
+simultaneous paths (blue boxes) to ensure immediate                                        
+real-time execution:
+20
+•
+Robots use voice assistants to understand human commands, answer questions, 
+and assist with task planning.
+Robot Voice Assistant Pipeline
+•
+Communication begins with sequential    
+(yellow boxes) natural language processing:
+ꟷ
+Intent parsing: The text from STT is 
+immediately filtered to strip away 
+conversational filler, mapping key nouns & 
+verbs to a registered programmatic intent.
+ꟷThe generated text is passed to the TTS engine to output 
+synthesised verbal feedback.
+ꟷThe extracted intent is dispatched directly to the ROS State 
+Machine, triggering instant physical Robot Action.
+
+{"id": "W10-L49-P1556-Q01", "stem": "Which path is drawn from the user toward physical action?", "options": [{"id": "o1", "text": "Intent Parsing → STT → ROS State Machine → TTS → Robot Action"}, {"id": "o2", "text": "STT → Intent Parsing → TTS → ROS State Machine → LLM"}, {"id": "o3", "text": "STT → Intent Parsing → LLM → ROS State Machine → Robot Action"}, {"id": "o4", "text": "STT → TTS → Intent Parsing → Robot Action → LLM"}], "assumptions": []}
+{"id": "W10-L49-P1556-Q02", "stem": "After the LLM block, which two outputs branch separately in the diagram?", "options": [{"id": "o1", "text": "Response text → TTS only; the diagram has no physical-action branch"}, {"id": "o2", "text": "Response text → TTS; extracted intent → ROS state machine → action"}, {"id": "o3", "text": "Response text → ROS state machine; extracted intent → TTS → action"}, {"id": "o4", "text": "Response text → TTS → ROS state machine → action, as one serial branch"}], "assumptions": []}
+
+PAGE 1560
+24
+•
+SpeechLM Architecture: Instead of text, these models use an End-to-End 
+architecture consisting of three components:
+– Speech Tokenizer: Encodes continuous audio waveforms directly into discrete or 
+continuous tokens
+– Language Model: Uses a transformer architecture to autoregressively predict the 
+next speech token based on the context
+– Vocoder: Synthesizes the generated speech tokens back into an audio waveform
+How Speech Language Models Work?
+
+{"id": "W10-L49-P1560-Q02", "stem": "The figure includes speech and text paths. Which reading is faithful to it?", "options": [{"id": "o1", "text": "Every arrow is a separate mandatory ASR stage before the LM"}, {"id": "o2", "text": "The text path is the vocoder’s acoustic output, not a language sequence"}, {"id": "o3", "text": "The presence of a text caption proves the speech tokenizer outputs only words"}, {"id": "o4", "text": "The LM can participate in speech/text combinations; transcript captions do not prove mandatory internal ASR on every path"}], "assumptions": []}
+
+PAGE 1569
+4
+•
+As we have discussed in the 
+previous lectures, a typical 
+conversational robot consists of:
+– Automatic Speech Recognition 
+(ASR)
+– Response generation by a Large 
+Language Model (LLM)
+– Text-to-Speech (TTS)
+A basic Robot Voice Assistant
+•
+Such systems generate responses only from the 
+recognised text.
+•
+Drawback: Emotional information is ignored, hence, the 
+conversation feels robotic.
+
+{"id": "W10-L50-Q002", "stem": "Which sequence follows the shown voice-assistant diagram?", "options": [{"id": "o2", "text": "STT → intent parsing → LLM, with separate paths to TTS and to the ROS state machine → robot action."}, {"id": "o3", "text": "STT → intent parsing, with a direct robot-action branch and an LLM used only after TTS."}, {"id": "o4", "text": "STT → intent parsing → LLM → TTS → ROS state machine → robot action, as one compulsory serial output path."}, {"id": "o1", "text": "STT → LLM → intent parsing, with TTS and the ROS state machine branching from the parser."}], "assumptions": []}

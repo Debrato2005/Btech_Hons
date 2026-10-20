@@ -1,0 +1,129 @@
+
+PAGE 1572
+7
+•
+Robots maintain an internal emotional state.
+•
+Each emotional element has a vector or 
+direction. 
+– Open feelings are on the left side of the plot 
+(happy, friendly), and closed feelings (sad) are on 
+the right side. 
+– The distance from the center indicates the 
+strength of the emotions. 
+Robot Emotion State Machine
+– The yellow circles are the robot’s current value on each axis.
+– The purple line is the vector sum of those emotions, which 
+gives us the overall mood of the robot. The arcs show the 
+minimum and maximum magnitude of emotion.
+•
+Robot behaviour changes as these states evolve.
+[1]
+
+{"id": "W10-L50-Q007", "stem": "What do the yellow circles and purple line represent in the displayed robot emotion plot?", "options": [{"id": "o3", "text": "Current overall mood at each yellow circle and separate emotion strengths along the purple line"}, {"id": "o4", "text": "Minimum radial boundary at every yellow circle and maximum radial boundary as the purple line"}, {"id": "o1", "text": "Previous states at the yellow circles and elapsed conversation time along the purple line"}, {"id": "o2", "text": "Individual axis values and the resultant overall-mood vector"}], "assumptions": []}
+{"id": "W10-L50-Q008", "stem": "In the displayed polar model, which placement matches the named axes?", "options": [{"id": "o4", "text": "Friend and sad lie on the left; stranger and happy lie on the right."}, {"id": "o1", "text": "Happy and friend lie on the right; sad and stranger lie on the left."}, {"id": "o2", "text": "Happy and stranger lie on the left; sad and friend lie on the right."}, {"id": "o3", "text": "Happy and friend lie on the left; sad and stranger lie on the right."}], "assumptions": ["This is the supplied diagram’s convention, not a universal geometry of emotion or the notebook’s exact angle table."]}
+
+PAGE 1575
+10
+•
+For the robot to have a natural 
+conversation, we must also have a model 
+of how the human is feeling while he/she 
+is talking to robot. 
+•
+We will give the robot a human model 
+similar to our state machine, but with just 
+four emotions on two axes: happy/sad 
+and friendly/distant. 
+Creating a model of human behavior
+•
+The robot will assume that everyone is somewhere in the 
+middle when the conversation begins.
+•
+The robot can use clues in language to understand how 
+you might be feeling.
+
+{"id": "W10-L50-Q015", "stem": "Which label belongs to the upper-left quadrant of the displayed human-state model?", "options": [{"id": "o3", "text": "Happy and friendly"}, {"id": "o4", "text": "Happy and distant"}, {"id": "o1", "text": "Sad and friendly"}, {"id": "o2", "text": "Sad and distant"}], "assumptions": []}
+
+PAGE 1576
+11
+•
+In this code:
+– A local LLM is used to estimate the user's 
+emotional state from text.
+– The estimated emotion updates the 
+robot's internal Emotion Engine before 
+generating a response.
+– Only the core pseudocode is shown here; 
+the complete implementation is available 
+here.
+Demo: Building an Emotion-aware Chatbot Albert
+
+{"id": "W10-L50-Q017", "stem": "Which order matches the displayed Albert pseudocode after user input arrives?", "options": [{"id": "o1", "text": "Estimate emotion → generate response from the old robot state → update both states → save the conversation."}, {"id": "o2", "text": "Estimate emotion → update human state → save the current input as a complete pair → generate response → update robot state."}, {"id": "o3", "text": "Estimate emotion → update robot state from the old human state → generate response → update human state → save the conversation."}, {"id": "o4", "text": "Estimate emotion → update human state → update robot state → generate response → save the conversation."}], "assumptions": []}
+{"id": "W10-L50-Q018", "stem": "Which set is passed to LLM.generate_response in the shown pseudocode?", "options": [{"id": "o2", "text": "User input, estimated emotion, robot state and memory"}, {"id": "o3", "text": "User input and emotion only, without robot state or memory"}, {"id": "o4", "text": "Robot state and memory only, without the latest user input"}, {"id": "o1", "text": "The latest user input only, with all state updates deferred until after generation"}], "assumptions": []}
+
+PAGE 1579
+14
+•
+FER enables robots to estimate a user's emotional 
+state from facial expressions captured by a camera. 
+•
+Rather than training a CNN from scratch, modern 
+FER systems use transfer learning by fine-tuning 
+pre-trained Deep CNN models on labelled facial 
+expression datasets. 
+•
+The resulting model classifies facial expressions into 
+discrete emotion categories such as happiness, 
+sadness, anger, fear and surprise. 
+Facial Emotion Recognition (FER)
+•
+One of the most widely 
+used perception modules 
+in social robots.
+
+{"id": "W10-L50-Q037", "stem": "Which order matches the main FER transfer-learning workflow?", "options": [{"id": "o1", "text": "Transfer pretrained weights → choose adaptation strategy → train → save → evaluate"}, {"id": "o2", "text": "Transfer weights → fit on the final test data → choose a strategy → report the reused test score"}, {"id": "o3", "text": "Choose a strategy → save the untrained head → evaluate before adapting any target weights"}, {"id": "o4", "text": "Train on source labels only → replace target labels with predictions → report agreement with those predictions"}], "assumptions": []}
+
+PAGE 1580
+15
+•
+Large facial expression datasets are often limited. 
+Transfer learning reuses knowledge learned from 
+large datasets (e.g., ImageNet).
+•
+Three common strategies:
+– Feature Extraction: Train only the classifier.
+– Partial Fine-tuning: Fine-tune the last 
+convolutional block.
+– Full Fine-tuning: Fine-tune the entire network.
+Facial Emotion Recognition (FER)
+• Full fine-tuning generally 
+provides the highest 
+recognition accuracy when 
+sufficient training data are 
+available.
+
+{"id": "W10-L50-Q042", "stem": "Which sequence matches the displayed custom classifier after its feature-map reduction?", "options": [{"id": "o2", "text": "Dense128 → dropout0.2 → Dense256 → dropout0.2 → Dense8 → softmax."}, {"id": "o3", "text": "Dense256 → dropout0.2 → Dense128 → dropout0.2 → Dense8 → softmax."}, {"id": "o4", "text": "Dense256 → dropout0.8 → Dense128 → dropout0.8 → Dense8 → softmax."}, {"id": "o1", "text": "Dense256 → dropout0.2 → Dense128 → dropout0.2 → Dense8 → sigmoid."}], "assumptions": []}
+
+PAGE 1585
+20
+•
+Human emotions are reflected not only in what is 
+said, but also in how it is spoken.
+•
+Speech features such as pitch, speaking rate, energy, 
+and MFCCs provide important emotional cues.
+•
+Deep Learning models learn these patterns to 
+estimate the speaker's emotional state.
+•
+SER complements language understanding and 
+improves emotion-aware Human-Robot Interaction.
+Speech Emotion Recognition (SER)
+•
+Future emotion-aware robots combine text 
+understanding with Speech Emotion Recognition (SER) 
+and Facial Emotion Recognition (FER) to obtain a more 
+reliable estimate of the user's emotional state.
+
+{"id": "W10-L50-Q054", "stem": "Which order follows the speech-emotion diagram?", "options": [{"id": "o2", "text": "Waveform → acoustic feature representation → learned pattern model → estimated emotion."}, {"id": "o3", "text": "Waveform → acoustic feature representation → fixed loudness-threshold label, with no learned model."}, {"id": "o4", "text": "Waveform → acoustic feature representation → phoneme transcript, treating transcription as the final affect output."}, {"id": "o1", "text": "Waveform → word transcript → text sentiment model → estimated emotion, using no acoustic feature path."}], "assumptions": []}

@@ -1,0 +1,1338 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "ASSIGN-W08",
+  "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+  "questions": [
+    {
+      "id": "ASSIGN-W08-Q001",
+      "version": 2,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "Treat the assignment graph as undirected, with edge costs in km: AB=5, AC=2, BD=6, BE=3, CF=4, DE=2, DG=6, EF=1, FG=3. UCS starts at A, retains cheaper paths to frontier nodes, and tests the goal E when it is removed at minimum cumulative cost. Which path is returned?",
+      "selectionMode": "single",
+      "type": "algorithm_trace",
+      "difficulty": "medium",
+      "cognitiveSkill": "algorithm",
+      "week": 8,
+      "lectureId": null,
+      "topic": "Assignment Week 8",
+      "subtopic": "UCS graph and termination",
+      "tags": [
+        "assignment",
+        "week-8"
+      ],
+      "conceptIds": [
+        "ASSIGN-W08-C001"
+      ],
+      "assumptions": [
+        "Undirected graph; all costs positive; no unshown edges; graph-search relaxation; goal test on frontier removal. No relevant cost tie occurs."
+      ],
+      "options": [
+        {
+          "id": "o4",
+          "text": "A→C→F→G→D→E"
+        },
+        {
+          "id": "o3",
+          "text": "A→B→D→E"
+        },
+        {
+          "id": "o1",
+          "text": "A→C→F→E"
+        },
+        {
+          "id": "o2",
+          "text": "A→B→E"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0034",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 34,
+          "kind": "figure",
+          "locator": "Assignment physical page 34: Week 8 item 1, complete weighted graph and path-cost explanation",
+          "evidenceText": "AB5, AC2, BD6, BE3, CF4, DE2, DG6, EF1, FG3; A→C→F→E costs 7.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "UCS selects by cumulative cost, not edge count or the first generated goal route.",
+        "optionExplanations": {
+          "o1": "The costs are 2+4+1=7, and E is improved from 8 to 7 before it is removed.",
+          "o2": "This is a valid route and the first E route generated from B, but it is improved before goal removal.",
+          "o3": "The route is valid but costs 5+6+2=13, not the minimum.",
+          "o4": "This valid detour costs 2+4+3+6+2=17, exceeding the 7 km route."
+        },
+        "steps": [
+          "Remove A(0), generating C(2) and B(5).",
+          "Remove C(2), generating F(6).",
+          "Remove B(5), generating E(8) and D(11).",
+          "Remove F(6), improving E to 7 and generating G(9).",
+          "Remove E(7), and return A→C→F→E."
+        ],
+        "formulas": [
+          {
+            "expression": "g(v)=min(g(v),g(u)+c(u,v)); g(A)=0",
+            "variables": {
+              "g": "best cumulative start-to-node path cost",
+              "u": "expanded node",
+              "v": "neighbor node",
+              "c": "edge-cost function",
+              "A": "start node"
+            },
+            "units": {
+              "g": "km",
+              "u": "node identifier",
+              "v": "node identifier",
+              "c": "km",
+              "A": "node identifier"
+            },
+            "assumptions": [
+              "Nonnegative edge costs; relax neighbors before selecting the next minimum-cost frontier node."
+            ]
+          }
+        ],
+        "simpleExplanation": "UCS selects by cumulative cost, not edge count or the first generated goal route.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This is a valid route and the first E route generated from B, but it is improved before goal removal.",
+          "The route is valid but costs 5+6+2=13, not the minimum.",
+          "This valid detour costs 2+4+3+6+2=17, exceeding the 7 km route."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W08-Q01",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W08-Q01.json",
+      "originalRecordSha256": "c9517b88d9b33c8b1f7b5de6f32a841f87b574fc2315f3587e2402a5f4dfdf0b",
+      "difficultyRationale": "Requires path-cost calculation and/or frontier relaxation; no option prints its total cost.",
+      "testedAssignmentAngles": [
+        "all_graph_edges",
+        "cheaper_frontier_update",
+        "goal_test_timing",
+        "path_cost"
+      ],
+      "revisionAuthors": [
+        "finish_assignment_authoring:W08-W10-narrow-repair"
+      ]
+    },
+    {
+      "id": "ASSIGN-W08-Q002",
+      "version": 3,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "A* uses priority f(n)=g(n)+h(n), where g(n) is accumulated path cost from the start. What does h(n) represent, and what priority results if h(n)=0 for every node, using the same frontier and tie rules?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 8,
+      "lectureId": null,
+      "topic": "Assignment Week 8",
+      "subtopic": "Heuristic role and UCS limit",
+      "tags": [
+        "assignment",
+        "week-8"
+      ],
+      "conceptIds": [
+        "ASSIGN-W08-C002"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o3",
+          "text": "h is the complete estimated path cost; setting it to zero makes A* use greedy goal-distance priority."
+        },
+        {
+          "id": "o2",
+          "text": "h measures cost already paid; setting it to zero makes A* use breadth-first depth priority."
+        },
+        {
+          "id": "o4",
+          "text": "h is the next edge’s exact cost; setting it to zero makes A* ignore accumulated cost."
+        },
+        {
+          "id": "o1",
+          "text": "h estimates cost-to-go; setting it to zero makes A* use the UCS cost priority."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0035",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 35,
+          "kind": "statement",
+          "locator": "Assignment physical page 35: Week 8 item 2, heuristic prompt and choices",
+          "evidenceText": "The heuristic estimates cost-to-go from the current node to the goal.",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0035",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 35,
+          "kind": "equation",
+          "locator": "Assignment physical page 35: Week 8 item 3, explanatory equation immediately below the choices",
+          "evidenceText": "A* expands the smallest total estimated cost f(n)=g(n)+h(n).",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Adding a heuristic guides search without replacing accumulated cost. Optimality is a separate claim requiring appropriate conditions.",
+        "optionExplanations": {
+          "o1": "A* uses f=g+h, so h=0 leaves the UCS priority g.",
+          "o2": "Cost already paid is g; UCS and breadth-first need not agree with unequal edge costs.",
+          "o3": "The complete estimate is f, and greedy best-first uses h alone rather than g+h.",
+          "o4": "A heuristic estimates remaining route cost, not merely the next edge, and g remains in f."
+        },
+        "steps": [],
+        "formulas": [
+          {
+            "expression": "f(n)=g(n)+h(n); h(n)=0 ⇒ f(n)=g(n)",
+            "variables": {
+              "f": "frontier priority estimate",
+              "g": "cost accumulated from start",
+              "h": "estimated remaining cost",
+              "n": "frontier node"
+            },
+            "units": {
+              "f": "cost units",
+              "g": "cost units",
+              "h": "cost units",
+              "n": "node identifier"
+            },
+            "assumptions": [
+              "Use identical graph-search and tie rules when comparing A* with UCS."
+            ]
+          }
+        ],
+        "simpleExplanation": "Adding a heuristic guides search without replacing accumulated cost. Optimality is a separate claim requiring appropriate conditions.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Cost already paid is g; UCS and breadth-first need not agree with unequal edge costs.",
+          "The complete estimate is f, and greedy best-first uses h alone rather than g+h.",
+          "A heuristic estimates remaining route cost, not merely the next edge, and g remains in f."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W08-Q02",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W08-Q02.json",
+      "originalRecordSha256": "997a91490b5ffcd17630e01dd4e0a3d52d8d299befb3d604b9949be2d8140da0",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "heuristic_definition",
+        "UCS_limit",
+        "greedy_distinction"
+      ],
+      "revisionAuthors": [
+        "finish_assignment_authoring:W08-W10-narrow-repair",
+        "finish_assignment_authoring:W08-Q002-v3-repair"
+      ]
+    },
+    {
+      "id": "ASSIGN-W08-Q003",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "The complete valid frontier contains A:(g=4.0,h=2.0), B:(g=3.0,h=2.4), C:(g=1.0,h=4.8), all in the same cost units. For one next-node choice, A* minimizes g+h, UCS minimizes g, and greedy best-first minimizes h. Which ordered triple (A*, UCS, greedy) is selected?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "medium",
+      "cognitiveSkill": "numerical",
+      "week": 8,
+      "lectureId": null,
+      "topic": "Assignment Week 8",
+      "subtopic": "Three frontier priorities",
+      "tags": [
+        "assignment",
+        "week-8"
+      ],
+      "conceptIds": [
+        "ASSIGN-W08-C003"
+      ],
+      "assumptions": [
+        "No other frontier entries, stale records or ties; the supplied priority rules define the three comparisons."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "(C, B, A)"
+        },
+        {
+          "id": "o2",
+          "text": "(A, C, B)"
+        },
+        {
+          "id": "o4",
+          "text": "(B, A, C)"
+        },
+        {
+          "id": "o1",
+          "text": "(B, C, A)"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0035",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 35,
+          "kind": "equation",
+          "locator": "Assignment physical page 35: Week 8 item 3, all candidate g/h rows and f calculations",
+          "evidenceText": "A:g4,h2; B:g3,h2.4; C:g1,h4.8. f(A)=6.0, f(B)=5.4, f(C)=5.8.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Different priority functions can choose different nodes from exactly the same frontier.",
+        "optionExplanations": {
+          "o1": "The sum minimum is B=5.4, g minimum is C=1.0, and h minimum is A=2.0.",
+          "o2": "A has the lowest h rather than lowest sum; B does not have the lowest h.",
+          "o3": "C has the lowest g, while B has the lowest g+h; this swaps A* and UCS.",
+          "o4": "The A* result is right, but UCS does not choose the largest g and greedy does not choose the largest h."
+        },
+        "steps": [
+          "Compute sums: A=6.0, B=5.4, C=5.8, hence A* selects B.",
+          "Compare g alone: 1.0 at C is minimum.",
+          "Compare h alone: 2.0 at A is minimum."
+        ],
+        "formulas": [
+          {
+            "expression": "f(n)=g(n)+h(n); n_A*=argmin f; n_UCS=argmin g; n_greedy=argmin h",
+            "variables": {
+              "f": "A* frontier priority",
+              "g": "accumulated path cost",
+              "h": "remaining-cost estimate",
+              "n": "candidate node",
+              "n_A*": "A* next node",
+              "n_UCS": "UCS next node",
+              "n_greedy": "greedy next node"
+            },
+            "units": {
+              "f": "cost units",
+              "g": "cost units",
+              "h": "cost units",
+              "n": "node identifier",
+              "n_A*": "node identifier",
+              "n_UCS": "node identifier",
+              "n_greedy": "node identifier"
+            },
+            "assumptions": [
+              "Complete valid frontier; unique minima."
+            ]
+          }
+        ],
+        "simpleExplanation": "Different priority functions can choose different nodes from exactly the same frontier.",
+        "memoryAid": null,
+        "misconceptions": [
+          "A has the lowest h rather than lowest sum; B does not have the lowest h.",
+          "C has the lowest g, while B has the lowest g+h; this swaps A* and UCS.",
+          "The A* result is right, but UCS does not choose the largest g and greedy does not choose the largest h."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W08-Q03",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W08-Q03.json",
+      "originalRecordSha256": "51c015ca9ced63b771f5bc9f4980c869da1e50ec4cab9b6df39747873fa09e4d",
+      "difficultyRationale": "Requires combining multiple operations or assumptions.",
+      "testedAssignmentAngles": [
+        "Astar_working",
+        "frontier_validity",
+        "UCS_greedy_contrast"
+      ]
+    },
+    {
+      "id": "ASSIGN-W08-Q004",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "A deterministic Bug0 run has the following supplied event trace in a static environment: at obstacle hit H it enters boundary following; at L the goal heading becomes locally unblocked, so it leaves; the goal-directed segment returns it to the same hit state H. Sensor readings and the selected boundary-following direction then repeat. There is no stored-hit or loop-detection rule. What follows?",
+      "selectionMode": "single",
+      "type": "algorithm_trace",
+      "difficulty": "easy",
+      "cognitiveSkill": "algorithm",
+      "week": 8,
+      "lectureId": null,
+      "topic": "Assignment Week 8",
+      "subtopic": "Bug0 recurrence trace",
+      "tags": [
+        "assignment",
+        "week-8"
+      ],
+      "conceptIds": [
+        "ASSIGN-W08-C004"
+      ],
+      "assumptions": [
+        "The supplied event transitions are feasible for this example; static environment, unchanged goal and deterministic control; no extra loop detection."
+      ],
+      "options": [
+        {
+          "id": "o4",
+          "text": "The second visit automatically reverses the boundary-following direction and prevents another cycle."
+        },
+        {
+          "id": "o1",
+          "text": "The same H→L→H cycle can repeat; local leave eligibility alone does not establish progress to the goal."
+        },
+        {
+          "id": "o2",
+          "text": "Returning to H automatically reports the goal unreachable, as part of the stated Bug0 policy."
+        },
+        {
+          "id": "o3",
+          "text": "The second visit automatically triggers a full-perimeter search for the globally closest leave point."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0036",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 36,
+          "kind": "statement",
+          "locator": "Assignment physical page 36: Week 8 item 4, Bug0 move/leave rule and looping explanation",
+          "evidenceText": "Move toward the goal, follow obstacle boundary until goal heading is unblocked; no memory of past positions can cause loops around non-convex/U-shaped obstacles.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "A locally clear goal heading is not a certificate of global progress. The supplied recurrence demonstrates the failure without claiming every concave obstacle produces it.",
+        "optionExplanations": {
+          "o1": "The same state and observations under a deterministic unchanged policy reproduce the same actions.",
+          "o2": "That requires a remembered-hit termination test not included in this policy.",
+          "o3": "That adds a Bug1-like full-boundary procedure absent from the supplied leave rule.",
+          "o4": "The direction is stipulated to repeat; automatic reversal would be an additional policy."
+        },
+        "steps": [
+          "At H, the rule selects boundary following.",
+          "At L, the local visibility rule selects goal-directed motion.",
+          "The supplied motion returns to the identical H state.",
+          "With identical inputs and no additional memory rule, the H→L→H sequence repeats."
+        ],
+        "formulas": [],
+        "simpleExplanation": "A locally clear goal heading is not a certificate of global progress. The supplied recurrence demonstrates the failure without claiming every concave obstacle produces it.",
+        "memoryAid": null,
+        "misconceptions": [
+          "That requires a remembered-hit termination test not included in this policy.",
+          "That adds a Bug1-like full-boundary procedure absent from the supplied leave rule.",
+          "The direction is stipulated to repeat; automatic reversal would be an additional policy."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W08-Q04",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W08-Q04.json",
+      "originalRecordSha256": "1da1028cd7e26b8aa129c04a6f89194c879cd750dbfcc3193b4e104081c79d39",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "actual_event_trace",
+        "local_vs_global_progress",
+        "Bug1_memory_contrast"
+      ]
+    },
+    {
+      "id": "ASSIGN-W08-Q005",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "A DQN learner’s bootstrap labels change whenever its online value estimates change. Which design choice most directly slows that particular moving-target feedback?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 8,
+      "lectureId": null,
+      "topic": "Assignment Week 8",
+      "subtopic": "DQN stabilization mechanisms",
+      "tags": [
+        "assignment",
+        "week-8"
+      ],
+      "conceptIds": [
+        "ASSIGN-W08-C005"
+      ],
+      "assumptions": [
+        "Compare mechanisms by their direct effect on bootstrap-label coupling, not overall possible training benefit."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "Shuffle stored transitions into replay minibatches while keeping bootstrap and online parameters identical at every update."
+        },
+        {
+          "id": "o1",
+          "text": "Compute bootstrap values with a separate network whose parameters are held or updated more slowly."
+        },
+        {
+          "id": "o4",
+          "text": "Use a separate action-selection estimate to reduce maximization bias, without specifying any slower target-parameter schedule."
+        },
+        {
+          "id": "o3",
+          "text": "Increase ε-greedy exploration while keeping bootstrap and online parameters identical at every update."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0036",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 36,
+          "kind": "statement",
+          "locator": "Assignment physical page 36: Week 8 item 5, main/target-network motivation",
+          "evidenceText": "Separate target network φ alongside main network θ to prevent instability from chasing a moving target.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The target network reduces one source of instability; it is not a convergence guarantee or a replacement for replay and exploration.",
+        "optionExplanations": {
+          "o1": "A delayed or slower target parameter set reduces immediate coupling between each online update and its label.",
+          "o2": "Replay reduces sample correlation but does not by itself delay changes in identical target parameters.",
+          "o3": "Exploration changes action sampling, not the immediate target-network coupling.",
+          "o4": "Decoupling selection and evaluation addresses a different bias; it does not by itself state the slower target update asked for."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The target network reduces one source of instability; it is not a convergence guarantee or a replacement for replay and exploration.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Replay reduces sample correlation but does not by itself delay changes in identical target parameters.",
+          "Exploration changes action sampling, not the immediate target-network coupling.",
+          "Decoupling selection and evaluation addresses a different bias; it does not by itself state the slower target update asked for."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W08-Q05",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W08-Q05.json",
+      "originalRecordSha256": "58dc7062cbd6f27b84c60fac4a73dc023282e4a16732dbaa997a672f47742758",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "moving_target_mechanism",
+        "replay_vs_target",
+        "no_convergence_guarantee"
+      ]
+    },
+    {
+      "id": "ASSIGN-W08-Q006",
+      "version": 2,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "The online estimate Qθ(s,Right)=4.3, reward r=1.0, discount γ=0.9, and next-state target-network values are 3.0 and 5.0. For a nonterminal transition, let y=r+γ max Qφ(s′,a′) and δ=y−Qθ(s,Right). If the same transition were terminal, use no bootstrap term. Which tuple (nonterminal y, nonterminal δ, terminal y) is correct?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "medium",
+      "cognitiveSkill": "numerical",
+      "week": 8,
+      "lectureId": null,
+      "topic": "Assignment Week 8",
+      "subtopic": "DQN target and terminal mask",
+      "tags": [
+        "assignment",
+        "week-8"
+      ],
+      "conceptIds": [
+        "ASSIGN-W08-C006"
+      ],
+      "assumptions": [
+        "Ordinary one-step DQN max target, not Double DQN; terminal means zero remaining bootstrap value; all Q/reward values use the same reward scale."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "(5.5, −1.2, 1.0)"
+        },
+        {
+          "id": "o2",
+          "text": "(4.87, 0.57, 1.0)"
+        },
+        {
+          "id": "o1",
+          "text": "(5.5, 1.2, 1.0)"
+        },
+        {
+          "id": "o4",
+          "text": "(5.5, 1.2, 5.5)"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0036",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 36,
+          "kind": "equation",
+          "locator": "Assignment physical page 36: Week 8 item 6, opening numeric prompt at page bottom, ending before the first next-state value.",
+          "evidenceText": "Q(s,Right)=4.3; r=1.0; transition to s′.",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0037",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 37,
+          "kind": "equation",
+          "locator": "Assignment physical page 37: Week 8 item 6 continuation at page top, remaining numeric prompt and Bellman-target worked equations; no multiple-choice options are printed.",
+          "evidenceText": "Q(s′,Left;φ)=3.0; Q(s′,Right;φ)=5.0; γ=0.9; y=1+0.9×5=5.5. Numeric 5.5 and stray Answer:C are both printed.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The source target is the explicitly nonterminal case. The adaptation adds a terminal-mask comparison and defines the residual sign; the original stray letter is not an MCQ key.",
+        "optionExplanations": {
+          "o1": "The max is 5; target 1+0.9×5=5.5, residual 5.5−4.3=1.2, terminal target 1.0.",
+          "o2": "4.87 uses the current online value 4.3 in place of the next-state maximum 5.0.",
+          "o3": "The target is correct, but the residual sign contradicts δ=y−Q.",
+          "o4": "The nonterminal values are right, but terminal transitions do not bootstrap under the stated rule."
+        },
+        "steps": [
+          "Choose max(3.0,5.0)=5.0 from the next-state target network.",
+          "Nonterminal target y=1+0.9×5=5.5.",
+          "δ=5.5−4.3=1.2.",
+          "For terminal d=1, y=r=1.0."
+        ],
+        "formulas": [
+          {
+            "expression": "y=r+γ(1−d)max_a′ Qφ(s′,a′); δ=y−Qθ(s,a)",
+            "variables": {
+              "y": "one-step learning target",
+              "r": "immediate reward",
+              "γ": "discount factor",
+              "d": "terminal indicator, 1 terminal and 0 otherwise",
+              "Qφ": "target-network action-value estimate",
+              "Qθ": "online action-value estimate",
+              "s": "current state",
+              "s′": "next state",
+              "a": "selected current action",
+              "a′": "candidate next action",
+              "δ": "target-minus-prediction TD residual"
+            },
+            "units": {
+              "y": "reward units",
+              "r": "reward units",
+              "γ": "dimensionless",
+              "d": "dimensionless",
+              "Qφ": "reward units",
+              "Qθ": "reward units",
+              "s": "state identifier",
+              "s′": "state identifier",
+              "a": "action identifier",
+              "a′": "action identifier",
+              "δ": "reward units"
+            },
+            "assumptions": [
+              "No bootstrap at a terminal transition."
+            ]
+          }
+        ],
+        "simpleExplanation": "The source target is the explicitly nonterminal case. The adaptation adds a terminal-mask comparison and defines the residual sign; the original stray letter is not an MCQ key.",
+        "memoryAid": null,
+        "misconceptions": [
+          "4.87 uses the current online value 4.3 in place of the next-state maximum 5.0.",
+          "The target is correct, but the residual sign contradicts δ=y−Q.",
+          "The nonterminal values are right, but terminal transitions do not bootstrap under the stated rule."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W08-Q06",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W08-Q06.json",
+      "originalRecordSha256": "a713cc795f21cc525fb5c0d11a671c54d89fd2c0281bf5ec45c9b1873d634fcb",
+      "difficultyRationale": "Requires combining multiple operations or assumptions.",
+      "testedAssignmentAngles": [
+        "target_working",
+        "current_vs_next",
+        "TD_sign",
+        "terminal_boundary"
+      ],
+      "revisionAuthors": [
+        "finish_assignment_authoring:W08-W10-narrow-repair"
+      ]
+    },
+    {
+      "id": "ASSIGN-W08-Q007",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "A GNSS route has already been expressed in a consistent local coordinate frame and its waypoints selected. Which continuing operation constitutes waypoint tracking rather than route preprocessing?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 8,
+      "lectureId": null,
+      "topic": "Assignment Week 8",
+      "subtopic": "Waypoint feedback versus preprocessing",
+      "tags": [
+        "assignment",
+        "week-8"
+      ],
+      "conceptIds": [
+        "ASSIGN-W08-C007"
+      ],
+      "assumptions": [
+        "Coordinate frames are already consistent; no new GNSS measurement or physical execution is claimed."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Repeatedly compare live robot position with the current waypoint and update motion commands from the error."
+        },
+        {
+          "id": "o2",
+          "text": "Convert the stored route coordinates once and then send the original command sequence without position feedback."
+        },
+        {
+          "id": "o3",
+          "text": "Recompute the road graph’s edge weights, but do not compare the current robot position with the active waypoint."
+        },
+        {
+          "id": "o4",
+          "text": "Estimate satellite geometry quality, but do not use the position-to-waypoint error in control."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0037",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 37,
+          "kind": "statement",
+          "locator": "Assignment physical page 37: Week 8 item 7, waypoint-tracking purpose",
+          "evidenceText": "Close the control loop by continuously comparing live GNSS positions against current target waypoints.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Planning where to go and converting coordinates do not replace feedback on where the robot currently is.",
+        "optionExplanations": {
+          "o1": "This closes the position feedback loop around the current waypoint.",
+          "o2": "Coordinate conversion is useful preprocessing but the proposed execution is open-loop.",
+          "o3": "Graph costs support planning; omitting the live tracking error does not close the waypoint loop.",
+          "o4": "GNSS quality assessment is not itself feedback control toward a waypoint."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "Planning where to go and converting coordinates do not replace feedback on where the robot currently is.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Coordinate conversion is useful preprocessing but the proposed execution is open-loop.",
+          "Graph costs support planning; omitting the live tracking error does not close the waypoint loop.",
+          "GNSS quality assessment is not itself feedback control toward a waypoint."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W08-Q07",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W08-Q07.json",
+      "originalRecordSha256": "9b3483c2738d406d974a8eb08e8849062b8905ad57db276280ffcd3cc71dc276",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "tracking_feedback",
+        "preprocessing_distinction"
+      ]
+    },
+    {
+      "id": "ASSIGN-W08-Q008",
+      "version": 2,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "After satellite-clock correction, use the simplified model ρ=R+cδt. Here δt is a common receiver clock offset, c=3.0×10^8 m/s, and δt=+2 μs. Which interpretation and range contribution are correct?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
+      "week": 8,
+      "lectureId": null,
+      "topic": "Assignment Week 8",
+      "subtopic": "Pseudorange clock offset",
+      "tags": [
+        "assignment",
+        "week-8"
+      ],
+      "conceptIds": [
+        "ASSIGN-W08-C008"
+      ],
+      "assumptions": [
+        "Single corrected time system; satellite clock and other propagation errors omitted from this simplified example.",
+        "The full equation ρ=R+cδt, numerical constants and sign convention are explicit added premises of this adaptation, not a transcription of a full equation on the cited assignment page."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "A receiver timing offset contributes +0.6 m to pseudorange."
+        },
+        {
+          "id": "o4",
+          "text": "A receiver timing offset contributes −600 m to pseudorange."
+        },
+        {
+          "id": "o3",
+          "text": "A receiver timing offset contributes +600000 m to pseudorange."
+        },
+        {
+          "id": "o1",
+          "text": "A receiver timing offset contributes +600 m to pseudorange."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0037",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 37,
+          "kind": "statement",
+          "locator": "Assignment physical page 37: Week 8 item 8, conceptual clock-bias prompt and four choices",
+          "evidenceText": "The prompt names cδt and the identified clock discrepancy is between the satellite atomic clock and receiver clock.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Timing error is converted to a length bias by multiplying by signal speed. The numerical offset and sign convention are supplied in this adaptation.",
+        "optionExplanations": {
+          "o1": "2 μs=2×10^−6 s, so the stated plus-sign model adds 600 m.",
+          "o2": "0.6 m would correspond to 2 ns at the supplied light speed, not 2 μs.",
+          "o3": "600000 m would follow from using 2×10⁻³ s (2 ms), not the supplied 2 μs=2×10⁻⁶ s.",
+          "o4": "The magnitude is correct but the sign contradicts ρ=R+cδt and positive δt."
+        },
+        "steps": [
+          "Convert 2 μs to 2×10^−6 s.",
+          "cδt=(3×10^8)(2×10^−6)=600 m.",
+          "The model adds this positive receiver-clock term to geometric range."
+        ],
+        "formulas": [
+          {
+            "expression": "ρ=R+cδt; b=cδt",
+            "variables": {
+              "ρ": "measured pseudorange in simplified model",
+              "R": "geometric satellite–receiver range",
+              "c": "supplied signal speed",
+              "δt": "receiver clock offset after satellite corrections",
+              "b": "range bias due to clock offset"
+            },
+            "units": {
+              "ρ": "m",
+              "R": "m",
+              "c": "m/s",
+              "δt": "s",
+              "b": "m"
+            },
+            "assumptions": [
+              "Positive δt produces positive range bias under the defined sign convention."
+            ]
+          }
+        ],
+        "simpleExplanation": "Timing error is converted to a length bias by multiplying by signal speed. The numerical offset and sign convention are supplied in this adaptation.",
+        "memoryAid": null,
+        "misconceptions": [
+          "0.6 m would correspond to 2 ns at the supplied light speed, not 2 μs.",
+          "The magnitude is correct but the sign contradicts ρ=R+cδt and positive δt.",
+          "600000 m would follow from using 2×10⁻³ s (2 ms), not the supplied 2 μs=2×10⁻⁶ s."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W08-Q08",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W08-Q08.json",
+      "originalRecordSha256": "4902b3990b875596a24a50eb40eee14eee0d9f6909be73212a9547fd94e2c143",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "clock_bias_meaning",
+        "time_length_units",
+        "sign_convention"
+      ],
+      "revisionAuthors": [
+        "finish_assignment_authoring:W08-W10-narrow-repair"
+      ]
+    },
+    {
+      "id": "ASSIGN-W08-Q009",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "A fuzzy cooling controller has two output singletons: Slow at 20% power with weight 0.7 and Medium at 60% with weight 0.3. Explicitly use z=(Σμᵢzᵢ)/(Σμᵢ), with a plus between the two denominator weights. What crisp power results?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
+      "week": 8,
+      "lectureId": null,
+      "topic": "Assignment Week 8",
+      "subtopic": "Singleton weighted output",
+      "tags": [
+        "assignment",
+        "week-8"
+      ],
+      "conceptIds": [
+        "ASSIGN-W08-C009"
+      ],
+      "assumptions": [
+        "Singleton centers and nonnegative weights; positive weight sum; no continuous membership-shape integration is being requested."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "32%"
+        },
+        {
+          "id": "o2",
+          "text": "40%"
+        },
+        {
+          "id": "o3",
+          "text": "48%"
+        },
+        {
+          "id": "o4",
+          "text": "14%"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0038",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 38,
+          "kind": "equation",
+          "locator": "Assignment physical page 38: Week 8 item 9, singleton weights, centers and malformed denominator",
+          "evidenceText": "Weights 0.7 at 20% and 0.3 at 60%; answer32. Printed denominator reads 0.7_0.3 without a plus. A stray Answer:C and Lecture39 Fuzzy Logic Control reference are also printed.",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The explicit normalized singleton formula yields 32%. The malformed denominator is not silently copied into executable mathematics; original stray key/reference text stays in its audit record.",
+        "optionExplanations": {
+          "o1": "(0.7×20+0.3×60)/(0.7+0.3)=(14+18)/1=32%.",
+          "o2": "40% is the unweighted midpoint of 20% and 60%.",
+          "o3": "48% swaps the weights: 0.3×20+0.7×60=48.",
+          "o4": "14% keeps only the weighted Slow contribution and drops Medium."
+        },
+        "steps": [
+          "Weighted contributions: 14 and 18 percentage points.",
+          "Sum of weights: 0.7+0.3=1.0.",
+          "Divide weighted sum 32 by 1.0, yielding 32%."
+        ],
+        "formulas": [
+          {
+            "expression": "z=(Σᵢ μᵢ zᵢ)/(Σᵢ μᵢ)",
+            "variables": {
+              "z": "crisp singleton weighted-average output",
+              "μᵢ": "nonnegative firing/output weight of singleton i",
+              "zᵢ": "singleton power center",
+              "i": "singleton index"
+            },
+            "units": {
+              "z": "% power",
+              "μᵢ": "dimensionless",
+              "zᵢ": "% power",
+              "i": "dimensionless"
+            },
+            "assumptions": [
+              "Sum of weights strictly positive; use a discrete weighted average, not an arbitrary continuous centroid."
+            ]
+          }
+        ],
+        "simpleExplanation": "The explicit normalized singleton formula yields 32%. The malformed denominator is not silently copied into executable mathematics; original stray key/reference text stays in its audit record.",
+        "memoryAid": null,
+        "misconceptions": [
+          "40% is the unweighted midpoint of 20% and 60%.",
+          "48% swaps the weights: 0.3×20+0.7×60=48.",
+          "14% keeps only the weighted Slow contribution and drops Medium."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W08-Q09",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W08-Q09.json",
+      "originalRecordSha256": "8447cd354a884cea2c4cc87f82397653815b76adbea4578f14882040b8804de2",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "singleton_weighting",
+        "normalization",
+        "printed_equation_defect"
+      ],
+      "conflictResolution": {
+        "issue": "The printed denominator lacks the addition operator; numeric answer32 and stray letter C coexist.",
+        "resolution": "The adaptation explicitly supplies the normalized weighted-sum denominator and preserves original key/reference defects outside the study pool.",
+        "method": "Evaluate the supplied singleton formula and confirm its numerator and positive weight sum separately.",
+        "status": "qualification_pending_independent_review",
+        "questionVersion": 1,
+        "sourceId": "assignments",
+        "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+        "physicalPage": 38,
+        "sourceClaim": "The printed denominator lacks the addition operator; numeric answer32 and stray letter C coexist.",
+        "basis": "The adaptation explicitly supplies the normalized weighted-sum denominator and preserves original key/reference defects outside the study pool."
+      }
+    },
+    {
+      "id": "ASSIGN-W08-Q010",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "After defuzzification, a controller issues the single command 32% power. Which statement accurately describes this crisp output value?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 8,
+      "lectureId": null,
+      "topic": "Assignment Week 8",
+      "subtopic": "Crisp value versus fuzzy membership",
+      "tags": [
+        "assignment",
+        "week-8"
+      ],
+      "conceptIds": [
+        "ASSIGN-W08-C010"
+      ],
+      "assumptions": [
+        "Discuss a single numerical control command, not the cardinality of an arbitrary crisp set."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "It is one definite command value; its numerical value may still change at the next control update."
+        },
+        {
+          "id": "o4",
+          "text": "It means every crisp set in fuzzy logic must contain exactly one element."
+        },
+        {
+          "id": "o3",
+          "text": "It must stay fixed over time because crisp means constant."
+        },
+        {
+          "id": "o2",
+          "text": "It is a membership degree of 0.32 in every fuzzy output set."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0038",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 38,
+          "kind": "statement",
+          "locator": "Assignment physical page 38: Week 8 item 10, highlighted definition of a crisp value",
+          "evidenceText": "A clearly defined, measurable value, also known as a singleton value.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The source’s singleton wording is scoped to one output value. It does not imply that all crisp sets are singleton sets.",
+        "optionExplanations": {
+          "o1": "Crisp describes a definite value at this update, not time invariance or a universal claim about sets.",
+          "o2": "32% is the physical command scale; membership in a set requires that set’s specified membership function.",
+          "o3": "A deterministic scalar output can change with new inputs while remaining crisp.",
+          "o4": "The question concerns a crisp value; crisp sets may contain multiple elements with binary membership."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The source’s singleton wording is scoped to one output value. It does not imply that all crisp sets are singleton sets.",
+        "memoryAid": null,
+        "misconceptions": [
+          "32% is the physical command scale; membership in a set requires that set’s specified membership function.",
+          "A deterministic scalar output can change with new inputs while remaining crisp.",
+          "The question concerns a crisp value; crisp sets may contain multiple elements with binary membership."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W08-Q10",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W08-Q10.json",
+      "originalRecordSha256": "96e39b71216c36f53a69c898c688fcca3037e28de4af1f07d77c2ad3b35322c1",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "crisp_value",
+        "time_variation",
+        "value_vs_membership",
+        "set_scope"
+      ]
+    }
+  ],
+  "concepts": [
+    {
+      "id": "ASSIGN-W08-C001",
+      "title": "UCS graph and termination",
+      "description": "UCS selects by cumulative cost, not edge count or the first generated goal route.",
+      "slideIds": [
+        "assignments-p0034"
+      ],
+      "questionIds": [
+        "ASSIGN-W08-Q001"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 8",
+      "subtopic": "UCS graph and termination",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "all_graph_edges",
+        "cheaper_frontier_update",
+        "goal_test_timing",
+        "path_cost"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W08-C002",
+      "title": "Heuristic role and UCS limit",
+      "description": "Adding a heuristic guides search without replacing accumulated cost. Optimality is a separate claim requiring appropriate conditions.",
+      "slideIds": [
+        "assignments-p0035"
+      ],
+      "questionIds": [
+        "ASSIGN-W08-Q002"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 8",
+      "subtopic": "Heuristic role and UCS limit",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "UCS_limit",
+        "greedy_distinction",
+        "heuristic_definition"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W08-C003",
+      "title": "Three frontier priorities",
+      "description": "Different priority functions can choose different nodes from exactly the same frontier.",
+      "slideIds": [
+        "assignments-p0035"
+      ],
+      "questionIds": [
+        "ASSIGN-W08-Q003"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 8",
+      "subtopic": "Three frontier priorities",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "Astar_working",
+        "UCS_greedy_contrast",
+        "frontier_validity"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W08-C004",
+      "title": "Bug0 recurrence trace",
+      "description": "A locally clear goal heading is not a certificate of global progress. The supplied recurrence demonstrates the failure without claiming every concave obstacle produces it.",
+      "slideIds": [
+        "assignments-p0036"
+      ],
+      "questionIds": [
+        "ASSIGN-W08-Q004"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 8",
+      "subtopic": "Bug0 recurrence trace",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "Bug1_memory_contrast",
+        "actual_event_trace",
+        "local_vs_global_progress"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W08-C005",
+      "title": "DQN stabilization mechanisms",
+      "description": "The target network reduces one source of instability; it is not a convergence guarantee or a replacement for replay and exploration.",
+      "slideIds": [
+        "assignments-p0036"
+      ],
+      "questionIds": [
+        "ASSIGN-W08-Q005"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 8",
+      "subtopic": "DQN stabilization mechanisms",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "moving_target_mechanism",
+        "no_convergence_guarantee",
+        "replay_vs_target"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W08-C006",
+      "title": "DQN target and terminal mask",
+      "description": "The source target is the explicitly nonterminal case. The adaptation adds a terminal-mask comparison and defines the residual sign; the original stray letter is not an MCQ key.",
+      "slideIds": [
+        "assignments-p0036",
+        "assignments-p0037"
+      ],
+      "questionIds": [
+        "ASSIGN-W08-Q006"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 8",
+      "subtopic": "DQN target and terminal mask",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "TD_sign",
+        "current_vs_next",
+        "target_working",
+        "terminal_boundary"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W08-C007",
+      "title": "Waypoint feedback versus preprocessing",
+      "description": "Planning where to go and converting coordinates do not replace feedback on where the robot currently is.",
+      "slideIds": [
+        "assignments-p0037"
+      ],
+      "questionIds": [
+        "ASSIGN-W08-Q007"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 8",
+      "subtopic": "Waypoint feedback versus preprocessing",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "preprocessing_distinction",
+        "tracking_feedback"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W08-C008",
+      "title": "Pseudorange clock offset",
+      "description": "Timing error is converted to a length bias by multiplying by signal speed. The numerical offset and sign convention are supplied in this adaptation.",
+      "slideIds": [
+        "assignments-p0037",
+        "assignments-p0038"
+      ],
+      "questionIds": [
+        "ASSIGN-W08-Q008"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 8",
+      "subtopic": "Pseudorange clock offset",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "clock_bias_meaning",
+        "sign_convention",
+        "time_length_units"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W08-C009",
+      "title": "Singleton weighted output",
+      "description": "The explicit normalized singleton formula yields 32%. The malformed denominator is not silently copied into executable mathematics; original stray key/reference text stays in its audit record.",
+      "slideIds": [
+        "assignments-p0038"
+      ],
+      "questionIds": [
+        "ASSIGN-W08-Q009"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 8",
+      "subtopic": "Singleton weighted output",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "normalization",
+        "printed_equation_defect",
+        "singleton_weighting"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W08-C010",
+      "title": "Crisp value versus fuzzy membership",
+      "description": "The source’s singleton wording is scoped to one output value. It does not imply that all crisp sets are singleton sets.",
+      "slideIds": [
+        "assignments-p0038"
+      ],
+      "questionIds": [
+        "ASSIGN-W08-Q010"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 8",
+      "subtopic": "Crisp value versus fuzzy membership",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "crisp_value",
+        "set_scope",
+        "time_variation",
+        "value_vs_membership"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    }
+  ],
+  "coverageNote": "All ten original items represented; immutable originals remain outside the approved pool. Meaningful assumptions and calculation angles are explicitly stated."
+}

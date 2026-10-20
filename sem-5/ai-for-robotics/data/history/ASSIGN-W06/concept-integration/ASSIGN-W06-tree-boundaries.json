@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "ASSIGN-W06-tree-boundaries",
+  "authorId": "finish_assignment_authoring:W06-tree-boundary-author",
+  "questions": [
+    {
+      "id": "ASSIGN-W06-Q011",
+      "version": 1,
+      "status": "draft",
+      "authorId": "finish_assignment_authoring:W06-tree-boundary-author",
+      "stem": "Use the source tree: if x₁≤10, stop at leaf [3,5,7]; otherwise test x₂≤5, whose true leaf is [10,14,18] and false leaf is [30,40]. Each leaf predicts its unweighted target mean. Evaluate samples A=(10,100), B=(12,5) and C=(12,6), in that order. Which option gives both the predictions (A,B,C) and whether the x₂ test is reached for each sample?",
+      "selectionMode": "single",
+      "type": "diagram",
+      "difficulty": "medium",
+      "cognitiveSkill": "application",
+      "week": 6,
+      "lectureId": null,
+      "topic": "Assignment Week 6",
+      "subtopic": "Regression-tree equality and early termination",
+      "tags": [
+        "assignment",
+        "week-6"
+      ],
+      "conceptIds": [
+        "ASSIGN-W06-C008"
+      ],
+      "assumptions": [
+        "The tree is transcribed from the printed figure; evaluate each sample independently; features and targets are dimensionless toy quantities; no missing-value or pruning rule is introduced."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Predictions (5,14,35); x₂ test reached (no,yes,yes)."
+        },
+        {
+          "id": "o2",
+          "text": "Predictions (35,14,35); x₂ test reached (yes,yes,yes)."
+        },
+        {
+          "id": "o3",
+          "text": "Predictions (5,35,35); x₂ test reached (no,yes,yes)."
+        },
+        {
+          "id": "o4",
+          "text": "Predictions (15,42,70); x₂ test reached (no,yes,yes)."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0026",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 26,
+          "kind": "figure",
+          "locator": "Assignment physical page 26: Week 6 item 8, complete regression-tree figure in the lower half of the page",
+          "evidenceText": "Root x1≤10: true→[3,5,7]; false→test x2≤5, true→[10,14,18], false→[30,40].",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0027",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 27,
+          "kind": "derivation",
+          "locator": "Assignment physical page 27: Week 6 item 8 continuation, worked route and leaf-mean rule at the top of the page",
+          "evidenceText": "The source follows reached tests in order and predicts the mean of target values in the selected leaf.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "A tree follows only the branch actually reached. Equality belongs to the true side of each displayed ≤ test, and prediction uses the selected leaf’s mean rather than its sum.",
+        "optionExplanations": {
+          "o1": "A satisfies root equality and stops at the first leaf; B reaches and satisfies the second equality; C reaches the second false branch. The leaf means are 5,14,35.",
+          "o2": "This sends A past the root despite 10≤10, whether by changing ≤ to < or by testing x₂ unconditionally.",
+          "o3": "This sends B to the second false branch despite 5≤5.",
+          "o4": "The branch decisions are correct, but the predictions use leaf sums instead of means."
+        },
+        "steps": [
+          "A: 10≤10 is true, so stop at [3,5,7]; the x₂ test is not reached, regardless of A’s second coordinate. Prediction=(3+5+7)/3=5.",
+          "B: 12≤10 is false, then 5≤5 is true; prediction=(10+14+18)/3=14.",
+          "C: 12≤10 is false, then 6≤5 is false; prediction=(30+40)/2=35.",
+          "Assemble predictions (5,14,35) and reached-test flags (no,yes,yes)."
+        ],
+        "formulas": [
+          {
+            "expression": "ŷ_leaf=(1/n)Σᵢyᵢ",
+            "variables": {
+              "ŷ_leaf": "prediction of the selected leaf",
+              "n": "number of training targets in that leaf",
+              "yᵢ": "training target in the selected leaf",
+              "i": "within-leaf target index"
+            },
+            "units": {
+              "ŷ_leaf": "dimensionless target units",
+              "n": "count",
+              "yᵢ": "dimensionless target units",
+              "i": "count"
+            },
+            "assumptions": [
+              "Unweighted squared-error regression leaf; use only values in the reached leaf."
+            ]
+          }
+        ],
+        "simpleExplanation": "A tree follows only the branch actually reached. Equality belongs to the true side of each displayed ≤ test, and prediction uses the selected leaf’s mean rather than its sum.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This sends A past the root despite 10≤10, whether by changing ≤ to < or by testing x₂ unconditionally.",
+          "This sends B to the second false branch despite 5≤5.",
+          "The branch decisions are correct, but the predictions use leaf sums instead of means."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W06-Q08",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W06-Q08.json",
+      "originalRecordSha256": "99ba6b98ac121452d135293bf96da7e541715418bdaf1e770d0168e1982a8709",
+      "difficultyRationale": "Trace three distinct branches/boundaries, track which tests are reached and average the correct leaf targets; not a numerical rescaling of the existing interior-path example.",
+      "testedAssignmentAngles": [
+        "root_equality",
+        "root_true_short_circuit",
+        "second_test_equality",
+        "rightmost_branch",
+        "all_leaf_means"
+      ],
+      "relatedQuestionIds": [
+        "ASSIGN-W06-Q008"
+      ]
+    }
+  ],
+  "concepts": [
+    {
+      "id": "ASSIGN-W06-C008",
+      "title": "Tree route and leaf average",
+      "description": "Follow both inequalities in order, then average only the samples in the reached leaf.",
+      "slideIds": [
+        "assignments-p0026",
+        "assignments-p0027"
+      ],
+      "questionIds": [
+        "ASSIGN-W06-Q008",
+        "ASSIGN-W06-Q011"
+      ],
+      "status": "verified",
+      "topic": "Assignment Week 6",
+      "subtopic": "Tree route and leaf average",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "all_leaf_means",
+        "assumption_or_misconception",
+        "diagram",
+        "rightmost_branch",
+        "root_equality",
+        "root_true_short_circuit",
+        "second_test_equality"
+      ],
+      "coverageNotes": "One additional boundary/branch item closes the independently identified tree gap. Existing interior-path question and all accepted content are unchanged; the new item is pending independent review."
+    }
+  ],
+  "coverageNote": "One distinct multi-case branch/boundary task adds missing root equality, reached-second equality and rightmost leaf averaging without repeating the existing interior-route example."
+}

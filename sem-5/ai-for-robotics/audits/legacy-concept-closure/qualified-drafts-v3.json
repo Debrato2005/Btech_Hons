@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "1.0.0",
+  "createdAt": "2026-10-20T02:48:42.944815+00:00",
+  "batchId": "W01-L02-PCA-v3-narrow-repair",
+  "status": "frozen_awaiting_independent_review",
+  "questions": [
+    {
+      "id": "W01-L02-Q-106",
+      "version": 3,
+      "status": "draft",
+      "authorId": "robotics-legacy-concept-closure-author",
+      "stem": "A robotics team applies PCA and then K-means to an unlabeled feature matrix. Which interpretation correctly qualifies the PCA entry in the slide’s Clustering box?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "cognitiveSkill": "conceptual",
+      "week": 1,
+      "lectureId": "L02",
+      "topic": "Unsupervised learning",
+      "subtopic": "PCA grouping caveat",
+      "tags": [
+        "L02",
+        "source-qualified",
+        "legacy-concept-closure"
+      ],
+      "conceptIds": [
+        "W01-L02-C-pca-placement"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o2",
+          "text": "PCA supplies cluster membership, whereas the later clustering step merely changes the coordinate axes."
+        },
+        {
+          "id": "o4",
+          "text": "Both steps necessarily assign the same groups because neither requires ground-truth class labels."
+        },
+        {
+          "id": "o1",
+          "text": "PCA supplies a principal-component representation; the separate clustering step supplies group membership."
+        },
+        {
+          "id": "o3",
+          "text": "PCA requires class labels, whereas only the later clustering step can operate on unlabeled observations."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0063",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 63,
+          "kind": "statement",
+          "locator": "Lecture 2, physical PDF page 63, actual printed slide 14: Unsupervised-learning definition, Clustering box, listed methods and right-hand grouped-data diagram.",
+          "evidenceText": "Unsupervised Learning\n\n    •  Find hidden structure in\n       unlabelled data X (no ground-\n       truth labels available).\n    •  Model learns from unlabelled\n       data.\n    Clustering\n   Group similar data points.\n     •  K-Means: partition into K clusters\n     •  DBSCAN: density-based clusters\n     •   Hierarchical clustering\n     •   Principal Component Analysis (PCA)\n     •   Robotics: terrain type segmentation,\n        pedestrian group detection\n\n\n                                                                                                            14",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The source correctly introduces structure in unlabeled data and grouping by clustering, but places PCA inside its Clustering box. The official PCA documentation identifies centered-data linear dimensionality reduction. In the stipulated two-stage pipeline, PCA transforms the feature representation and clustering assigns groups. The slide placement is retained as a caveat rather than taught as an algorithm taxonomy.",
+        "optionExplanations": {
+          "o1": "PCA is a linear dimensionality-reduction method. Group assignment is the stated purpose of the separate clustering stage; membership in an unsupervised-learning category does not make the operations identical.",
+          "o2": "This exchanges the roles: a PCA projection is not itself a set of cluster labels.",
+          "o3": "PCA does not require ground-truth class labels for its standard unsupervised dimensionality-reduction role.",
+          "o4": "The lack of labels is shared context, not proof of identical outputs or grouping."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "A projection changes how observations are represented; clustering decides which observations belong together.",
+        "memoryAid": "Projection gives coordinates; clustering gives groups.",
+        "misconceptions": [
+          "Unsupervised does not mean clustering, and a PCA projection does not automatically supply cluster labels."
+        ],
+        "examTraps": [
+          "Unsupervised does not mean clustering, and a PCA projection does not automatically supply cluster labels."
+        ],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "relatedQuestionIds": [
+        "W01-L02-Q-021",
+        "W01-L02-Q-022"
+      ],
+      "conflictResolution": {
+        "status": "qualified-draft-awaiting-independent-review",
+        "sourceClaim": "PCA is visibly listed in the Clustering box.",
+        "qualification": "PCA is dimensionality reduction, not itself a clustering algorithm. Preserve its slide placement as a source caveat and test clustering labels versus projection.",
+        "primarySourceUrl": "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html",
+        "primaryEvidenceScope": "Official current PCA class documentation was opened and read; it describes centered-data linear dimensionality reduction. No install or PCA execution was needed.",
+        "adjudicationPath": "audits/lecture-ledger-challenge/L02-L05-independent-adjudication.json",
+        "adjudicationSha256": "a8a2e5907644b9f9e42c4d8361417618c1842f44b1e9a108f5bff00dde2bf8e8",
+        "method": "Keep the source claim visible; assess only the explicitly qualified distinction. This draft is not an approval or a claim that the underlying source wording has changed."
+      },
+      "primaryEvidence": {
+        "url": "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html",
+        "scope": "Official current PCA class documentation was opened and read; it describes centered-data linear dimensionality reduction. No install or PCA execution was needed.",
+        "evidenceOwner": "robotics-integration-legacy-concept-adjudication",
+        "currentAuthorFreshExternalRead": false,
+        "additionalUrls": []
+      },
+      "revisionAuthors": [
+        "robotics-legacy-concept-closure-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-legacy-concept-closure-author",
+          "priorQuestionSha256": "7a4fb149aeac34734e35b140f66b43f46427d96bb2d627582e01018732550563",
+          "reason": "Remove answer-bearing purpose clauses from the stem; retain the actual PCA-versus-clustering distinction.",
+          "revisedAt": "2026-10-20T02:21:36.695955+00:00",
+          "reviewId": "REV-W01-L02-Q-106-v1-independent-integration"
+        },
+        {
+          "version": 3,
+          "authorId": "robotics-legacy-concept-closure-author",
+          "priorQuestionSha256": "8dbeb5996133bfba5dcdd9e7fc2fddf24351664966340e53fb0984221a4d3aaf",
+          "reason": "Remove an unwarranted lower-dimensionality requirement: PCA can retain all components. The separate representation-versus-clustering distinction is unchanged.",
+          "reviewId": "REV-W01-L02-Q-106-v2-independent-supplemental",
+          "revisedAt": "2026-10-20T02:48:42.944815+00:00"
+        }
+      ]
+    }
+  ],
+  "reviews": []
+}

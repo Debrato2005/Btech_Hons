@@ -1,0 +1,128 @@
+
+PAGE 1396
+•
+Deterministic kinematic model of Differential Drive 
+Robot 
+with input as wheel velocities →𝑢𝑟, 𝑢𝑙 (or 𝑣, Δ𝑣)
+–
+ሶ𝑥= 𝑣cos 𝜙
+–
+ሶ𝑦= 𝑣sin 𝜙
+–
+ሶ𝜙= 𝜔
+•
+27
+Odometry Motion model (Cont.)
+𝑣= 𝑟𝑢𝑟+ 𝑟𝑢𝑙
+2
+= 𝑣𝑟+ 𝑣𝑙
+2
+𝜔= 𝑣𝑟−𝑣𝑙
+2𝑑
+= Δ𝑣
+2𝑑
+
+{"id": "W09-L44-Q060", "stem": "In the differential-drive drawing, what do d and φ denote?", "options": [{"id": "o1", "text": "Travelled distance and landmark bearing."}, {"id": "o2", "text": "Half the wheel separation and heading relative to the world x-axis."}, {"id": "o3", "text": "Full wheel separation and angle of one wheel’s spin."}, {"id": "o4", "text": "Wheel radius and steering angle of a front caster."}], "assumptions": []}
+
+PAGE 1397
+28
+•
+Localisation with EKF
+•
+Define the odometry noise model ~𝒩0, 𝐕𝐭 with 
+𝜎𝑑= 0.02, 𝜎𝜃= 0.5.
+•
+Instantiate a Differential Drive vehicle model with 
+covariance 𝐕𝐭, using default initial pose ([0, 0, 0]), 
+wheelbase(2𝑑) & sampling interval (0.1𝑠). 
+•
+Generate inputs (𝑢𝑡) using driver (Randompath) 
+that steers robot to randomly selected waypoints 
+within a specified region (±5m). It:
+– Simulates odometry 𝜹𝒕 using .step method. In real, 𝜹𝒕 
+is from wheel encoders
+– Predicts mean ഥ𝝁𝒕= 𝑓𝝁𝒕−𝟏, 𝒖𝒕, 𝟎 using .f method and 
+covariance ഥ𝚺𝐭= 𝐅𝐱𝚺𝐭−𝟏𝐅𝐱𝐓+ 𝐅𝐯𝐕𝐭𝐅𝐯𝐓 using Jacobians 𝐅𝐱, 𝐅𝐯 (.Fx, .Fv methods)
+Example: Differential Drive Robot 
+
+{"id": "W09-L44-Q066", "stem": "What do the blue trajectory, red trajectory, and green ellipses represent in the displayed odometry example?", "options": [{"id": "o1", "text": "Blue: estimated trajectory; red: ground truth; green ellipses: positional uncertainty."}, {"id": "o2", "text": "Blue: ground truth; red: estimated trajectory; green ellipses: sensor range limits."}, {"id": "o3", "text": "Blue: commanded waypoint path; red: ground truth; green ellipses: landmark-position uncertainty."}, {"id": "o4", "text": "Blue: ground truth; red: estimated trajectory; green ellipses: positional uncertainty."}], "assumptions": []}
+
+PAGE 1398
+29
+•
+Initialize EKF state at origin with 𝚺𝟎= diag 𝜎𝑥2, 𝜎𝑦2, 𝜎𝜃
+2
+𝜎𝑥= 𝜎𝑦= 0.05, 𝜎𝜃= 0.5. and run simulation for 20s
+•
+.q method evaluates the robot's ground-truth motion by 
+according to the kinematic model. 
+•
+Visualize the true and EKF estimated trajectories, with 
+positional uncertainty represented by confidence ellipses.
+Example: Differential Drive Robot (Cont.)
+Increase in Ellipse shows
+increase in uncertain estimate
+Deviation of estimated 
+trajectory from true
+Localization with 
+odometry alone
+
+{"id": "W09-L44-Q066", "stem": "What do the blue trajectory, red trajectory, and green ellipses represent in the displayed odometry example?", "options": [{"id": "o1", "text": "Blue: estimated trajectory; red: ground truth; green ellipses: positional uncertainty."}, {"id": "o2", "text": "Blue: ground truth; red: estimated trajectory; green ellipses: sensor range limits."}, {"id": "o3", "text": "Blue: commanded waypoint path; red: ground truth; green ellipses: landmark-position uncertainty."}, {"id": "o4", "text": "Blue: ground truth; red: estimated trajectory; green ellipses: positional uncertainty."}], "assumptions": []}
+
+PAGE 1422
+18
+Example – Differential Drive Robot
+•
+A rigid-body transformation is computed between the estimated map frame 
+and the true world frame, T = ekf.get_transform(map) allowing the estimated 
+robot trajectory and landmarks with the ground truth.
+•
+This alignment demonstrates the accuracy of the EKF-SLAM solution despite 
+the mismatch between the actual and assumed initial robot poses.
+EKF SLAM
+
+{"id": "W09-L45-Q077", "stem": "In the right-hand aligned comparison plot, which reading correctly identifies the compared trajectories and endpoint markers without overclaiming what alignment proves?", "options": [{"id": "o1", "text": "Solid blue is estimated and dashed red is true; the green point is finish and yellow star is start."}, {"id": "o2", "text": "Solid blue is true and dashed red is estimated; green marks start and yellow star finish; close aligned traces support this comparison but do not prove exact estimates."}, {"id": "o3", "text": "Solid blue and dashed red are the same estimated trajectory before and after sensor noise is removed; alignment makes all landmark errors zero."}, {"id": "o4", "text": "Red crosses are true landmarks and black crosses estimated landmarks; the trajectories are plotted in unrelated frames after alignment."}], "assumptions": []}
+
+PAGE 1430
+26
+•
+The Floor Finder identifies traversable floor regions directly 
+from camera images instead of constructing a geometric map. 
+•
+It assumes that the floor immediately in front of the robot is 
+obstacle-free and uses this region as the reference for floor appearance. 
+•
+Floor detection is based on texture rather than simple color matching, making it 
+robust to illumination changes and color variations in indoor environments. 
+•
+The method characterizes the floor using a combination of hue, saturation, 
+luminosity, and roughness to distinguish floor from 
+non-floor regions. 
+•
+By combining these visual attributes, the Floor Finder 
+reliably extracts safe traversable areas even under 
+shadows or when nearby objects have similar colors to the floor.
+Introduction - Floor Finding Technique
+
+{"id": "W09-L45-Q053", "stem": "In the Floor Finder figures, how should the red-outlined foreground triangle, green/red binary mask, and bottom-center rays be interpreted?", "options": [{"id": "o1", "text": "The red-outlined foreground triangle marks unsafe pixels, and ray scanning should begin from the top-center horizon."}, {"id": "o2", "text": "The red-outlined triangle supplies the reference sample, but rays continue through red mask pixels until any later green region is reached."}, {"id": "o3", "text": "The red-outlined foreground triangle supplies an assumed clear floor reference; bottom-center rays follow green classified floor until the first red non-floor pixel."}, {"id": "o4", "text": "Green mask pixels are the reference-sampling region only, while red pixels are the traversable area used for ray tracing."}], "assumptions": []}
+
+PAGE 1432
+28
+3.
+Region of Interest (ROI) and Reference Surface Sampling:
+– A Region of Interest (ROI) is defined directly in front of the 
+robot (red triangle), where immediate foreground is assumed to be obstacle-free. 
+– The color and texture features within this region are sampled as a reference model 
+of a safe traversable surface for subsequent obstacle detection. 
+4.
+Mask Generation and Pixel Classification
+– Each pixel in far-view region is compared with ROI reference 
+using predefined color tolerance thresholds (e.g., ±15 intensity 
+levels) and classified as either traversable or non-traversable. 
+– The classification results are stored in a binary mask, which is 
+subsequently refined using morphological erosion to remove 
+isolated noise and strengthen the boundaries of the detected 
+safe traversable area.
+Floor Finder Algorithm Pipeline (Cont.) 
+
+{"id": "W09-L45-Q053", "stem": "In the Floor Finder figures, how should the red-outlined foreground triangle, green/red binary mask, and bottom-center rays be interpreted?", "options": [{"id": "o1", "text": "The red-outlined foreground triangle marks unsafe pixels, and ray scanning should begin from the top-center horizon."}, {"id": "o2", "text": "The red-outlined triangle supplies the reference sample, but rays continue through red mask pixels until any later green region is reached."}, {"id": "o3", "text": "The red-outlined foreground triangle supplies an assumed clear floor reference; bottom-center rays follow green classified floor until the first red non-floor pixel."}, {"id": "o4", "text": "Green mask pixels are the reference-sampling region only, while red pixels are the traversable area used for ray tracing."}], "assumptions": []}

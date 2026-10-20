@@ -1,0 +1,200 @@
+
+PAGE 1327
+31
+•
+Objective
+➢Determine the equilibrium configuration of a two-bar pendulum using a Genetic Algorithm (GA).
+•
+Problem Description
+➢Two uniform bars are connected by pins at A and B. 
+➢The system is supported at point A. 
+➢A horizontal force P acts at point C. 
+➢Friction at all joints is neglected.
+Example Problem – Two Bar Pendulum : 
+B
+A
+𝑊1
+𝑊2
+C
+x
+𝑙2
+𝑙1
+P
+y
+𝜃1
+𝜃2
+System 
+Parameters
+•
+𝑃= 2
+•
+𝑊1 = 2
+•
+𝑊2 = 2
+•
+𝑙1 = 2
+•
+𝑙2 = 2
+•
+The total potential energy of the two-bar pendulum is
+➢
+Π = −𝑃𝑙1 sin 𝜃1 + 𝑙2 sin 𝜃2
+−
+𝑊1𝑙1
+2 cos 𝜃1 −
+𝑊2
+𝑙2
+2 cos 𝜃2 + 𝑙1 cos 𝜃1
+•
+Substituting : 𝑃= 2 , 𝑊1 = 2 , 𝑊2 = 2 , 𝑙1 = 𝑙2 = 2
+•
+Gives : Π 𝜃1 𝜃2 = −4 sin 𝜃1 −6 cos 𝜃1 −4 sin 𝜃2 −2 cos 𝜃2
+•
+Subject to :  0 ≤𝜃1, 𝜃2 ≤90∘ 
+
+{"id": "W09-L42-Q041", "stem": "In the pendulum diagram, how are θ1 and θ2 measured for the printed potential-energy formula?", "options": [{"id": "o1", "text": "Each is an absolute bar angle from the downward vertical at its own upper pin."}, {"id": "o2", "text": "θ1 is absolute, but θ2 is the relative angle from bar 1 to bar 2."}, {"id": "o3", "text": "Both are measured from the positive horizontal direction."}, {"id": "o4", "text": "Both angles are signed clockwise from the upward vertical at their upper pins."}], "assumptions": []}
+{"id": "W09-L42-Q042", "stem": "Which model matches the stated problem and diagram?", "options": [{"id": "o1", "text": "Two point masses located only at B and C, with massless bars and no applied force."}, {"id": "o2", "text": "Two uniform bars driven by independent applied joint torques at A and B."}, {"id": "o3", "text": "A clamped support that fixes θ1 and a frictional joint B that fixes θ2."}, {"id": "o4", "text": "Two uniform bars with frictionless pins, supported at A, with constant horizontal force P at C and weights at bar centers."}], "assumptions": []}
+
+PAGE 1330
+34
+•
+The objective function is given by
+•
+Π 𝜃1 𝜃2 = −4 sin 𝜃1 −
+6 cos 𝜃1 −4 sin 𝜃2 −2 cos 𝜃2
+•
+Subject to :  0 ≤𝜃1, 𝜃2 ≤90∘ 
+•
+The theoretical minimum occurs at
+•
+(𝜃1, 𝜃2) = (0.588,1.107)
+Objective Function Landscape
+•
+Since the objective function is negative, instead of 
+minimizing 𝑓, Maximize  −𝑓= 𝑓′
+•
+The maximum value of : 𝑓′ = 8, When: 𝜃1 = 𝜃2 = 0
+•
+The fitness function is
+•
+𝐹= 𝑓′ −7 = −𝑓−7
+Contours of equal objective functions.
+Three-dimensional plot of 
+the objective function.
+Fitness Function : 
+
+{"id": "W09-L42-Q055", "stem": "In the objective contour illustration, which legend mapping is printed?", "options": [{"id": "o1", "text": "Filled squares: selected members; hollow circle: minimum; hollow squares: left-out members."}, {"id": "o2", "text": "Filled squares: left-out members; hollow circle: selected member; hollow squares: minima."}, {"id": "o3", "text": "Filled squares: left-out initial members; hollow circle: minimum; hollow squares: selected mating-pool members."}, {"id": "o4", "text": "Filled squares: minimum; hollow circle: left-out member; hollow squares: selected members."}], "assumptions": []}
+
+PAGE 1342
+3
+1980s
+Rule-Based 
+Navigation 
+Robots followed 
+manually programmed 
+rules and maps
+1990s
+2017
+One model can 
+perform multiple 
+robotic tasks 
+including 
+navigation and 
+manipulation
+2023+
+Robots began learning 
+obstacle avoidance from 
+sensor data
+Artificial Neural 
+Networks
+Transformers
+Foundation Models 
+for Robotics
+Evolution of AI-based Navigation
+2012
+Deep Learning 
+(CNNs)
+Cameras enabled robots 
+to learn visual navigation 
+directly from images
+Better understanding 
+of complex scenes by 
+modelling long-
+range relationships
+Robots learned to 
+combine images with 
+natural language 
+instructions
+2021
+Vision Language 
+Models (VLMs)
+
+{"id": "W09-L43-Q061", "stem": "Which role sequence matches the schematic’s rule-based navigation, early ANN navigation and robotics foundation models?", "options": [{"id": "o1", "text": "Hand-programmed rules/maps → multiple robotic tasks using one model → learned obstacle avoidance from sensor data"}, {"id": "o2", "text": "Hand-programmed rules/maps → learned obstacle avoidance from sensor data → multiple robotic tasks using one model"}, {"id": "o3", "text": "multiple robotic tasks using one model → learned obstacle avoidance from sensor data → Hand-programmed rules/maps"}, {"id": "o4", "text": "learned obstacle avoidance from sensor data → Hand-programmed rules/maps → multiple robotic tasks using one model"}], "assumptions": ["Read the supplied schematic as a source-specific teaching representation, not a universal classification or a dated capability guarantee."]}
+
+PAGE 1345
+6
+•
+Robot navigation is a designed process 
+toward a target position while avoiding 
+obstacles. 
+•
+All navigation systems, whether 
+classical or AI-based, follow these four 
+fundamental stages:
+– Perception: the robot uses its sensors 
+to extract meaningful information.
+– Localization: the robot determines its 
+location in the working space.
+Robot Navigation Pipeline
+– Cognition and path planning: the robot decides how to 
+steer to achieve its goal.
+– Motion control: the robot regulates its motion to 
+accomplish the desired trajectory.
+[1]
+
+{"id": "W09-L43-Q004", "stem": "In the navigation cycle diagram, what passes from cognition/path planning to motion control?", "options": [{"id": "o4", "text": "A position/map estimate"}, {"id": "o1", "text": "A local map"}, {"id": "o2", "text": "A path"}, {"id": "o3", "text": "A raw sensor image"}], "assumptions": []}
+{"id": "W09-L43-Q005", "stem": "In the cycle diagram, which block receives the task or mission?", "options": [{"id": "o1", "text": "Sensor processing alone"}, {"id": "o2", "text": "Motion control alone"}, {"id": "o3", "text": "Environment alone"}, {"id": "o4", "text": "Cognition/path planning"}], "assumptions": []}
+{"id": "W09-L43-Q062", "stem": "Which complete ordering follows the navigation diagram’s main loop?", "options": [{"id": "o2", "text": "Environment → perception → motion control → planning → localization/map building → environment"}, {"id": "o3", "text": "Environment → perception → localization/map building → planning → motion control → environment"}, {"id": "o4", "text": "Environment → planning → motion control → perception → localization/map building → environment"}, {"id": "o1", "text": "Environment → localization/map building → motion control → perception → planning → environment"}], "assumptions": ["Read the supplied schematic as a source-specific teaching representation, not a universal classification or a dated capability guarantee."]}
+
+PAGE 1346
+7
+•
+The robot path planning problem can be divided into classical methods and 
+heuristic methods.
+Where Do Neural Networks Fit?
+•
+Neural networks are learning-based methods that can 
+support several stages of robot navigation.
+•
+Neural Networks can assist:
+– perception 
+– planning 
+– decision making
+[2,3]
+
+{"id": "W09-L43-Q006", "stem": "Where does the illustrated taxonomy place artificial neural networks?", "options": [{"id": "o2", "text": "Under heuristic approaches"}, {"id": "o3", "text": "Under classical sampling methods"}, {"id": "o4", "text": "Under classical cell decomposition"}, {"id": "o1", "text": "Under classical subgoal networks"}], "assumptions": ["This question uses the lecture’s displayed taxonomy, not a claim that all taxonomies use identical categories."]}
+{"id": "W09-L43-Q063", "stem": "Which grouping matches all eight leaves in the shown two-branch taxonomy?", "options": [{"id": "o3", "text": "Classical: cell decomposition, fuzzy, sampling, hybrid; heuristic: ANN, potential field, nature-inspired, subgoal network"}, {"id": "o4", "text": "Classical: cell decomposition, potential field, nature-inspired, hybrid; heuristic: ANN, fuzzy, sampling, subgoal network"}, {"id": "o1", "text": "Classical: ANN, potential field, sampling, subgoal network; heuristic: cell decomposition, fuzzy, nature-inspired, hybrid"}, {"id": "o2", "text": "Classical: cell decomposition, potential field, sampling, subgoal network; heuristic: ANN, fuzzy, nature-inspired, hybrid"}], "assumptions": ["Read the supplied schematic as a source-specific teaching representation, not a universal classification or a dated capability guarantee."]}
+
+PAGE 1347
+8
+• Sensor inputs could be from:
+– Camera 
+– LiDAR 
+– Depth Camera 
+– Ultrasonic Sensors 
+– GPS 
+– IMU 
+What Does a Neural Network See?
+•
+Depending on the task, the network may predict a 
+discrete action or a continuous steering angle.
+•
+For example:
+– Classification: Left, Right, Forward, Stop (to turn)
+– Regression: Steering angle, speed
+Left sensor  L
+Right sensor  R
+Output 
+Command
+
+{"id": "W09-L43-Q007", "stem": "What is the layer-width sequence of the small left/right-sensor network drawn on these slides?", "options": [{"id": "o3", "text": "2 inputs → 3 hidden units → 1 output"}, {"id": "o4", "text": "2 inputs → 3 hidden units → 2 outputs"}, {"id": "o1", "text": "2 inputs → 1 hidden unit → 3 outputs"}, {"id": "o2", "text": "3 inputs → 2 hidden units → 1 output"}], "assumptions": []}

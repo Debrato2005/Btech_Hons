@@ -1,0 +1,21 @@
+--- audits/final-delivery-audit/core-before-assignment-priority.js	2026-10-20 08:21:03.965420695 +0530
++++ app/core.js	2026-10-20 08:21:03.980074047 +0530
+@@ -53,6 +53,10 @@
+     return Object.values(groups).map(g=>{const attempted=[...g.evidence.values()].filter(Boolean),correct=attempted.filter(e=>e.correct).length;return {dimension:g.dimension,total:g.evidence.size,attempted:attempted.length,correct,unique_concepts:g.unique_concepts.size,seen_concepts:g.seen_concepts.size,accuracy:attempted.length?correct/attempted.length:null};});
+   }
+   function revisionScore(q,progress) { const s=questionState(progress,q.id), events=array(s.events).filter(e=>!e.question_fingerprint||e.question_fingerprint===q.fingerprint), last=events.at(-1); return (last&&!last.correct?12:0)+(s.review?8:0)+(s.bookmark?5:0)+(q.high_yield?3:0)+(!last?1:0)+Math.min(events.filter(e=>!e.correct).length,5); }
++  function rankRevisionQuestions(questions,progress,sourceAssignmentIds=[]) {
++    const assignmentIds=new Set(sourceAssignmentIds),priority=q=>revisionScore(q,progress)+(assignmentIds.has(q.id)?2:0);
++    return questions.filter(q=>q.status==='verified'&&priority(q)>1).sort((a,b)=>priority(b)-priority(a)||Number(a.week||0)-Number(b.week||0)||String(a.lecture||'').localeCompare(String(b.lecture||''),undefined,{numeric:true})||a.id.localeCompare(b.id,undefined,{numeric:true}));
++  }
+   function selectQuestions(questions,filters,progress) { const query=text(filters.search).toLocaleLowerCase().trim();return questions.filter(q=> {if(filters.status && filters.status!=='all' && q.status!==filters.status)return false;for(const key of ['week','lecture','topic','subtopic','difficulty','type']) if(filters[key] && text(q[key])!==text(filters[key]))return false;if(query && !searchable(q).includes(query))return false;const s=questionState(progress,q.id),last=array(s.events).filter(e=>!e.question_fingerprint||e.question_fingerprint===q.fingerprint).at(-1);if(filters.learning==='bookmarked'&&!s.bookmark)return false;if(filters.learning==='review'&&!s.review)return false;if(filters.learning==='unanswered'&&last)return false;if(filters.learning==='incorrect'&&(!last||last.correct))return false;if(filters.learning==='correct'&&(!last||!last.correct))return false;return true;}); }
+   function createExam(pool,config,now=Date.now()) {
+     if(!Number.isInteger(config.count)||config.count<1)throw new Error('Choose a positive whole question count.');
+@@ -100,6 +104,6 @@
+   }
+   function shortcutAllowed(event) { if(event.altKey||event.ctrlKey||event.metaKey||event.target?.closest?.('input,textarea,select,[contenteditable=true]'))return false;if((event.key==='Enter'||event.key===' ')&&event.target?.closest?.('button,a,summary,[role=button]'))return false;return true; }
+   function csv(rows) { return rows.map(row=>row.map(cell=>{let s=cell==null?'':typeof cell==='object'?JSON.stringify(cell):String(cell);if(/^[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';}).join(',')).join('\r\n'); }
+-  const api={SCHEMA,clone,array,unique,uid,hash,random,shuffle,baseOptionOrder,normalizeQuestion,normalizeBank,searchable,isMulti,score,freshProgress,questionState,record,mastery,revisionScore,selectQuestions,createExam,finishExam,validateProgress,mergeProgress,selectAlgorithmRecords,shortcutAllowed,csv};
++  const api={SCHEMA,clone,array,unique,uid,hash,random,shuffle,baseOptionOrder,normalizeQuestion,normalizeBank,searchable,isMulti,score,freshProgress,questionState,record,mastery,revisionScore,rankRevisionQuestions,selectQuestions,createExam,finishExam,validateProgress,mergeProgress,selectAlgorithmRecords,shortcutAllowed,csv};
+   if(typeof module==='object'&&module.exports)module.exports=api;root.RoboticsStudyCore=api;
+ })(typeof window==='object'?window:globalThis);

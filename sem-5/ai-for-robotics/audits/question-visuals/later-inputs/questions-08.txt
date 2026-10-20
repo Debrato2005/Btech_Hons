@@ -1,0 +1,172 @@
+
+PAGE 1365
+26
+•
+Modern navigation research aims to build robots that understand both images 
+and language.
+– Vision Transformers (ViT): Understand the entire scene to make better 
+navigation decisions. 
+– Vision-Language Models (VLMs): Navigate by understanding both images 
+and natural language instructions. 
+– Foundation Models for Robotics: Perform multiple robotic tasks using a 
+single AI model.
+Where is Robot Navigation Heading?
+─Multi-modal Navigation: Combine data from cameras, 
+LiDAR, GPS, and other sensors for robust navigation.
+─Embodied AI: Learn through interaction with the 
+physical world to improve navigation and decision-
+making.
+
+{"id": "W09-L43-Q061", "stem": "Which role sequence matches the schematic’s rule-based navigation, early ANN navigation and robotics foundation models?", "options": [{"id": "o1", "text": "Hand-programmed rules/maps → multiple robotic tasks using one model → learned obstacle avoidance from sensor data"}, {"id": "o2", "text": "Hand-programmed rules/maps → learned obstacle avoidance from sensor data → multiple robotic tasks using one model"}, {"id": "o3", "text": "multiple robotic tasks using one model → learned obstacle avoidance from sensor data → Hand-programmed rules/maps"}, {"id": "o4", "text": "learned obstacle avoidance from sensor data → Hand-programmed rules/maps → multiple robotic tasks using one model"}], "assumptions": ["Read the supplied schematic as a source-specific teaching representation, not a universal classification or a dated capability guarantee."]}
+
+PAGE 1373
+4
+•
+Path planning assumes that robot already 
+knows both environment map and its own pose. 
+•
+In practice, these are obtained through 
+perception, localization, and mapping.
+•
+Perception extracts information about the environment 
+from sensor measurements (LiDAR, cameras, and time-of-flight (ToF) sensors). 
+•
+Localization estimates robot's pose with respect to a known map or reference 
+frame, while mapping constructs a spatial representation 
+of the environment when no prior map exists. 
+•
+Together, these processes provide the information needed 
+for autonomous navigation, path planning, & motion control.
+Introduction
+
+{"id": "W09-L44-Q002", "stem": "In the introduction diagram, which mapping matches the five visual labels?", "options": [{"id": "o1", "text": "Dashed blue rays: camera; green sector: LiDAR; red sector: ToF depth; gray shapes: obstacles; red dots: landmarks."}, {"id": "o2", "text": "Dashed blue rays: LiDAR; green sector: camera; red sector: ToF depth; gray shapes: landmarks; red dots: obstacles."}, {"id": "o3", "text": "Dashed blue rays: ToF depth; green sector: camera; red sector: LiDAR; gray shapes: obstacles; red dots: landmarks."}, {"id": "o4", "text": "Dashed blue rays: LiDAR; green sector: camera; red sector: ToF depth; gray shapes: obstacles; red dots: landmarks."}], "assumptions": []}
+
+PAGE 1383
+14
+•
+State 𝒙𝒕: Set of robot and its environment variables at time 𝑡 that can impact 
+the future, like pose, velocity, locations of objects or landmarks.
+•
+State Transition model: Describes how system evolves from one state to next 
+over time in response to its control inputs (wheel motions/velocity commands).
+•
+Measurement model: Describes how the robot's current 
+state generates sensor observations (LiDAR scans, camera 
+images/GPS measurements).
+•
+Evolution of states: From initial state 𝒙𝟎, robot moves to 𝒙𝟏
+on control input 𝒖𝟏and takes measurement 𝒛𝟏, then to 𝒙𝟐, … 
+•
+A belief of a state 𝒙𝒕 is posterior probability distribution 
+conditioned on all past measurements (𝒛𝟏:𝒕​) and controls 
+(𝒖𝟏:𝒕​): bel 𝒙𝒕= 𝑝𝒙𝒕 𝒛𝟏:𝒕, 𝒖𝟏:𝒕 ).
+Belief before incorporating 𝒛𝒕: bel 𝒙𝒕= 𝑝𝒙𝒕 𝒛𝟏:𝒕−𝟏, 𝒖𝟏:𝒕 )
+Concept of state and belief
+
+{"id": "W09-L44-Q021", "stem": "In the displayed temporal graph, which direct parent set belongs to x_t, and which node is its measurement child?", "options": [{"id": "o1", "text": "Parents x_(t−1) and u_t; measurement child z_t."}, {"id": "o2", "text": "Parents z_t and u_(t+1); measurement child x_(t−1)."}, {"id": "o3", "text": "Parents x_(t+1) and z_(t−1); measurement child u_t."}, {"id": "o4", "text": "Parents z_t and z_(t−1); measurement child u_(t+1)."}], "assumptions": []}
+
+PAGE 1390
+21
+•
+Consider a robot along a straight line, state 𝑥𝑡 (scalar) 
+– Control Input 𝑢𝑡= 2
+– Initial belief bel 𝑥0 = 𝒩𝜇0, Σ0 = 𝒩2, 0.25
+– Odometry noise ~𝒩0, 𝑉𝑡= 𝒩0, 0.5
+•
+Prediction Step: (𝐹𝑡, 𝐺𝑡= 1 for simple 1D translation)
+– Predicted mean: ҧ𝜇𝑡= 𝜇𝑡−1 + 𝑢𝑡   
+– Predicted variance: തΣ𝑡= Σ𝑡−1 + 𝑉𝑡
+– Calcaulation of Predicted belief bel(𝑥1) = 𝒩( ҧ𝜇1, തΣ1):
+      ҧ𝜇1 = 𝜇0 + 𝑢1 = 2 + 2 = 4
+      തΣ1 = Σ0 + 𝑉1 = 0.25 + 0.5 = 0.75 
+1D Example – Kalman Filter
+Wider distribution accounting for 
+uncertainty in odometry
+ഥ𝝁𝒕= 𝐅𝐭𝝁𝒕−𝟏+ 𝐆𝐭𝒖𝒕   
+ഥ𝚺𝐭= 𝐅𝐭𝚺𝐭−𝟏𝐅𝐭
+𝐓+ 𝐕𝐭  
+
+{"id": "W09-L44-Q042", "stem": "Relative to the solid blue prior curve, what does the dashed red prediction show?", "options": [{"id": "o1", "text": "Mean shifts from 2 to 4 and the distribution becomes narrower."}, {"id": "o2", "text": "Mean remains at 2 while the distribution becomes wider."}, {"id": "o3", "text": "Mean shifts from 4 to 2 and the distribution becomes narrower."}, {"id": "o4", "text": "Mean shifts from 2 to 4 and the distribution becomes wider."}], "assumptions": []}
+
+PAGE 1393
+24
+Algorithm: Recursive estimation of bel 𝒙𝒕
+with linear approximations of non-linear functions (𝑓, ℎ)
+1. Prediction Step: Computes predicted mean ഥ𝝁𝒕 using 
+the linear approximation of 𝑓 and the predicted 
+covariance ഥ𝚺𝒕 using the Jacobians 𝐅𝐱, 𝐅𝐯.
+2. Correction Step: Updates the predicted belief 
+using linear approximate of measurement ℎ to
+obtain corrected mean 𝝁𝒕 & covariance 𝚺𝐭 using 
+Jacobian 𝐇𝐱, 𝐇𝐰.
+EKF is arguably the most popular tool for state estimation 
+in robotics due to its simplicity and computational 
+efficiency.
+Extended Kalman Filter (Cont.)
+𝐊𝐭= ഥ𝚺𝐭𝐇𝐱𝐓𝐇𝐱ഥ𝚺𝐭𝐇𝐱𝐓+ 𝐇𝐰𝐖𝐭𝐇𝐰𝐓−𝟏 
+𝝁𝒕= ഥ𝝁𝒕+ 𝐊𝐭𝒛𝒕−ℎ(ഥ𝝁𝒕, 𝟎)  
+𝚺𝐭= 𝐈−𝐊𝐭𝐇𝐱ഥ𝚺𝐭 
+Input: 𝝁𝒕−𝟏, 𝚺𝐭−𝟏, 𝒖𝒕, 𝒛𝒕, 𝐕𝐭, 𝐖𝐭, 𝐅𝐱, 𝐅𝐯, 𝐇𝐱, 𝐇𝐰 
+Output: 𝝁𝒕, 𝚺𝐭
+ഥ𝝁𝒕= 𝑓𝝁𝒕−𝟏, 𝒖𝒕, 𝟎 
+ഥ𝚺𝐭= 𝐅𝐱𝚺𝐭−𝟏𝐅𝐱𝐓+ 𝐅𝐯𝐕𝐭𝐅𝐯𝐓 
+
+{"id": "W09-L44-Q057", "stem": "For θ = π/2 and d = 2 m, let P = diag(0.01, 0.04, 0.09) and V = diag(0.0025, 0.0004), using metres and radians. Under the displayed Jacobians, which predicted covariance follows?", "options": [{"id": "o1", "text": "[[0.37, 0, −0.18], [0, 0.0425, 0], [−0.18, 0, 0.0904]]."}, {"id": "o2", "text": "diag(0.0125, 0.04, 0.0904)."}, {"id": "o3", "text": "[[0.37, 0, 0.18], [0, 0.0425, 0], [0.18, 0, 0.0904]]."}, {"id": "o4", "text": "diag(0.37, 0.0425, 0.0904)."}], "assumptions": ["Added diagonal covariances; independent noise; entries carry the corresponding products of metre/radian units."]}
+
+PAGE 1395
+•
+𝐓=
+cos(𝜃𝑡−1 + 𝛿𝜃)
+−sin(𝜃𝑡−1 + 𝛿𝜃)
+𝑥𝑡−1 + 𝛿𝑑cos 𝜃𝑡−1
+sin(𝜃𝑡−1 + 𝛿𝜃)
+cos(𝜃𝑡−1 + 𝛿𝜃)
+𝑦𝑡−1 + 𝛿𝑑sin 𝜃𝑡−1
+0
+0
+1
+•
+Motion uncertainty is modeled by Gaussian noise 𝒗𝒕= 𝑣𝑑, 𝑣𝜃𝑇 ~𝒩(0, 𝐕𝐭) with 
+covariance matrix 𝐕𝐭= diag(𝜎𝑑
+2, 𝜎𝜃
+2), then 𝒙𝒕= 𝑓𝒙𝒕−𝟏, 𝒖𝒕, 𝒗𝒕 
+•
+Derivatives of 
+function f are
+•
+26
+Odometry Motion model (Cont.)
+then 𝒙𝒕= 𝑓𝒙𝒕−𝟏, 𝒖𝒕
+=
+𝑥𝑡−1 + (𝛿𝑑) cos 𝜃𝑡−1
+𝑦𝑡−1 + (𝛿𝑑) sin 𝜃𝑡−1
+𝜃𝑡−1 + 𝛿𝜃
+𝑭𝒙=
+𝜕𝑓
+𝜕𝒙𝒗=0 =
+1
+0
+−𝛿𝑑sin 𝜃𝑡−1
+0
+1
+𝛿𝑑cos 𝜃𝑡−1
+0
+0
+1
+, 
+then 𝒙𝒕= 𝑓𝒙𝒕−𝟏, 𝒖𝒕, 𝒗𝒕
+=
+𝑥𝑡−1 + (𝛿𝑑+𝑣𝑑) cos 𝜃𝑡−1
+𝑦𝑡−1 + (𝛿𝑑+𝑣𝑑) sin 𝜃𝑡−1
+𝜃𝑡−1 + 𝛿𝜃+ 𝑣𝜃
+𝑭𝒗= 𝜕𝑓
+𝜕𝒗𝒗=0
+=
+cos 𝜃𝑡−1
+0
+sin 𝜃𝑡−1
+0
+0
+1
+
+{"id": "W09-L44-Q057", "stem": "For θ = π/2 and d = 2 m, let P = diag(0.01, 0.04, 0.09) and V = diag(0.0025, 0.0004), using metres and radians. Under the displayed Jacobians, which predicted covariance follows?", "options": [{"id": "o1", "text": "[[0.37, 0, −0.18], [0, 0.0425, 0], [−0.18, 0, 0.0904]]."}, {"id": "o2", "text": "diag(0.0125, 0.04, 0.0904)."}, {"id": "o3", "text": "[[0.37, 0, 0.18], [0, 0.0425, 0], [0.18, 0, 0.0904]]."}, {"id": "o4", "text": "diag(0.37, 0.0425, 0.0904)."}], "assumptions": ["Added diagonal covariances; independent noise; entries carry the corresponding products of metre/radian units."]}

@@ -1,0 +1,710 @@
+[
+  {
+    "id": "W12-L59-Q011",
+    "version": 2,
+    "stem": "Which complete mapping is consistent with the reported software stack?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "SLAM Toolbox: saved-map localization; AMCL: building the unknown map; Nav2: navigation; YOLOv8n: perception."
+      },
+      {
+        "id": "o2",
+        "text": "SLAM Toolbox: mapping; AMCL: localization in a saved map; Nav2: navigation; YOLOv8n: object perception."
+      },
+      {
+        "id": "o3",
+        "text": "SLAM Toolbox: mapping; AMCL: localization; Nav2: object perception; YOLOv8n: global path planning."
+      },
+      {
+        "id": "o1",
+        "text": "SLAM Toolbox: mapping; AMCL: motor speed control; Nav2: navigation; YOLOv8n: perception."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1884",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1884,
+        "kind": "statement",
+        "locator": "Lecture L59, physical PDF page 1884, printed footer 8: inspect the statement content on this page. Neutral review locator.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1892",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1892,
+        "kind": "statement",
+        "locator": "Lecture L59, physical PDF page 1892, printed footer 16: inspect the statement content on this page. Neutral review locator.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1894",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1894,
+        "kind": "statement",
+        "locator": "Lecture L59, physical PDF page 1894, printed footer 18: inspect the statement content on this page. Neutral review locator.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1899",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1899,
+        "kind": "table",
+        "locator": "Lecture L59, physical PDF page 1899, printed footer 23: inspect the table content on this page. Neutral review locator.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1900",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1900,
+        "kind": "statement",
+        "locator": "Lecture L59, physical PDF page 1900, printed footer 24: inspect the statement content on this page. Neutral review locator.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L59-Q023",
+    "version": 2,
+    "stem": "Define T_ab to map column-vector coordinates from frame b into frame a. Which expression follows map→odom→base_link?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o3",
+        "text": "T_map, base=T_map, odom T_odom, base."
+      },
+      {
+        "id": "o1",
+        "text": "T_map, base=T_map, odom+T_odom, base."
+      },
+      {
+        "id": "o2",
+        "text": "T_map, base=T_map, odom T_base, odom."
+      },
+      {
+        "id": "o4",
+        "text": "T_map, base=T_odom, base T_map, odom."
+      }
+    ],
+    "assumptions": [
+      "Added column-vector convention: T_ab maps frame-b homogeneous point coordinates into frame a. The source supplies the frame-chain premise, not the printed transform-product equation."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1889",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1889,
+        "kind": "figure",
+        "locator": "Lecture L59, physical PDF page 1889, printed footer 13: inspect the figure content on this page. Neutral review locator.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L59-Q025",
+    "version": 2,
+    "stem": "A camera mount is physically shifted but its stored transform is not updated. Which statement follows?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "TF can consistently propagate the stored transform while transformed camera points are physically wrong."
+      },
+      {
+        "id": "o2",
+        "text": "The stale transform remains physically correct because the camera frame name is unchanged."
+      },
+      {
+        "id": "o4",
+        "text": "Only the camera point coordinates need unchanged reuse; mounting geometry never enters the map conversion."
+      },
+      {
+        "id": "o3",
+        "text": "Updating the global goal pose alone necessarily corrects the stale camera-to-body transform."
+      }
+    ],
+    "assumptions": [
+      "Added mount-change fault; no self-calibration method is supplied."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1889",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1889,
+        "kind": "statement",
+        "locator": "Lecture L59, physical PDF page 1889, printed footer 13: inspect the statement content on this page. Neutral review locator.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L59-Q029",
+    "version": 2,
+    "stem": "A low obstacle lies below the planar LiDAR scan but within the camera’s valid depth field of view. Which source-motivated response is appropriate?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Use depth evidence in the local obstacle representation instead of treating the absent planar return as proof of free space."
+      },
+      {
+        "id": "o2",
+        "text": "Treat RGB colour class alone as a measured obstacle height."
+      },
+      {
+        "id": "o4",
+        "text": "Discard depth because the camera has a narrower field of view than LiDAR."
+      },
+      {
+        "id": "o1",
+        "text": "Mark the obstacle free because the 360° LiDAR has no return at its height."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1891",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1891,
+        "kind": "table",
+        "locator": "Lecture L59, physical PDF page 1891, printed footer 15: inspect the table content on this page. Neutral review locator.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L59-Q031",
+    "version": 2,
+    "stem": "Why is a route that avoids only lethal cell centers insufficient to establish clearance for a finite-size robot?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The robot footprint and safety margin can overlap nearby occupied space even when its centerline misses lethal cells."
+      },
+      {
+        "id": "o4",
+        "text": "The point-robot centerline test and the finite-footprint test are identical for every body size."
+      },
+      {
+        "id": "o2",
+        "text": "Every nonlethal cost band is equally safe regardless of the robot footprint."
+      },
+      {
+        "id": "o3",
+        "text": "Checking only the endpoint footprint is sufficient even if the body intersects an obstacle mid-path."
+      }
+    ],
+    "assumptions": [
+      "Added finite-footprint interpretation of the displayed cost bands; no exact radius is printed."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1891",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1891,
+        "kind": "figure",
+        "locator": "Lecture L59, physical PDF page 1891, printed footer 15: inspect the figure content on this page. Neutral review locator.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L59-Q038",
+    "version": 2,
+    "stem": "Two symmetric corridors yield similar scan agreement for two separated particle clusters. What is the defensible interpretation?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Equal scan agreement means the two pose clusters must have equal posterior weight, regardless of their motion-prior weights."
+      },
+      {
+        "id": "o4",
+        "text": "The localization belief can remain ambiguous; a single displayed pose need not imply high certainty."
+      },
+      {
+        "id": "o1",
+        "text": "The weighted mean of the separated clusters must be a high-probability robot pose, even if few particles lie near that mean."
+      },
+      {
+        "id": "o2",
+        "text": "A single pose marker in the display proves that the filter has already discarded the other pose hypothesis."
+      }
+    ],
+    "assumptions": [
+      "Added symmetric-map example; no unique disambiguating observation yet."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1894",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1894,
+        "kind": "statement",
+        "locator": "Lecture L59, physical PDF page 1894, printed footer 18: inspect the statement content on this page. Neutral review locator.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L59-Q048",
+    "version": 2,
+    "stem": "The slide calls a node an independent executable, but supplies no launch or process configuration. What can be concluded directly from this slide?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It describes task-oriented processing components; it does not document the actual runtime process layout of this robot."
+      },
+      {
+        "id": "o2",
+        "text": "Each listed functional node must occupy its own operating-system process; the slide rules out several components sharing a process."
+      },
+      {
+        "id": "o4",
+        "text": "Nodes connected by a topic must run in different operating-system processes rather than any shared-process composition."
+      },
+      {
+        "id": "o3",
+        "text": "The Processing Nodes box proves all processing components share one operating-system process."
+      }
+    ],
+    "assumptions": [
+      "Question concerns evidence provided by the page, not an unverified reconstruction of a ROS launch system."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1898",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1898,
+        "kind": "table",
+        "locator": "Lecture L59, physical PDF page 1898, printed footer 22: inspect the table content on this page. Neutral review locator.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L59-Q054",
+    "version": 2,
+    "stem": "Added calibrated pinhole example: Z=s d is optical-axis depth, X=(u−c_x)Z/f_x and Y=(v−c_y)Z/f_y. Here d=1500 raw units, s=0.001 m/unit, f_x=f_y=500 pixels, principal point (c_x,c_y)=(320,240) pixels, and selected pixel (u,v)=(420,240). What camera-frame point (X,Y,Z) follows?",
+    "selectionMode": "single",
+    "type": "numerical",
+    "difficulty": "medium",
+    "options": [
+      {
+        "id": "o4",
+        "text": "(0.20,0,1.50) m."
+      },
+      {
+        "id": "o3",
+        "text": "(0.30,0,1.50) m."
+      },
+      {
+        "id": "o2",
+        "text": "(0.30,0,1500) m."
+      },
+      {
+        "id": "o1",
+        "text": "(0,0,1.50) m."
+      }
+    ],
+    "assumptions": [
+      "All numeric values and the stated pinhole equations are added exercise premises, not equations printed on p1900. Depth is valid, registered to the selected colour pixel and distortion-corrected. Z is axial depth, not Euclidean range; no actual camera execution."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1900",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1900,
+        "kind": "statement",
+        "locator": "Lecture L59, physical PDF page 1900, printed footer 24: inspect the statement content on this page. Neutral review locator.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L59-Q055",
+    "version": 2,
+    "stem": "RGB and depth images have different viewpoints and are not registered. Why is reading depth at the same integer pixel index unsafe?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Identical array indices guarantee identical rays even with different sensor extrinsics."
+      },
+      {
+        "id": "o2",
+        "text": "The indices may refer to different rays/objects, so registration or an explicit geometric correspondence is needed."
+      },
+      {
+        "id": "o1",
+        "text": "Resizing the depth array to the RGB dimensions necessarily performs geometric registration."
+      },
+      {
+        "id": "o4",
+        "text": "Choosing the box center removes the need for depth-colour alignment."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1900",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1900,
+        "kind": "statement",
+        "locator": "Lecture L59, physical PDF page 1900, printed footer 24: inspect the statement content on this page. Neutral review locator.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L59-Q057",
+    "version": 2,
+    "stem": "Which mapping matches the simulation table?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "Robot model: virtual obstacles/boundaries; environment: URDF/Xacro body physical properties; sensors: simulated outputs."
+      },
+      {
+        "id": "o4",
+        "text": "Robot model: URDF/Xacro; environment: obstacles; sensors: only noise-free ground-truth pose rather than the listed modalities."
+      },
+      {
+        "id": "o3",
+        "text": "Robot model: URDF/Xacro with physical properties; environment: virtual obstacles/boundaries; sensors: simulated measurements."
+      },
+      {
+        "id": "o1",
+        "text": "Robot model: URDF/Xacro with physical properties; environment: virtual obstacles/boundaries; sensors: SLAM, localization and path-planning algorithms."
+      }
+    ],
+    "assumptions": [],
+    "citations": [
+      {
+        "slideId": "lectures-p1902",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1902,
+        "kind": "table",
+        "locator": "Lecture L59, physical PDF page 1902, printed footer 26: inspect the table content on this page. Neutral review locator.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L59-Q065",
+    "version": 2,
+    "stem": "Added diagnostic observation: object annotations and maps update normally, but measured wheel speed drops under load while a velocity command remains constant. Which first investigation is best matched to the demonstrated architecture?",
+    "selectionMode": "single",
+    "type": "scenario",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "First adjust AMCL’s initial pose while leaving the wheel-speed feedback/drive path unexamined."
+      },
+      {
+        "id": "o3",
+        "text": "Inspect encoder feedback, low-level PID/drive limits and motor power delivery rather than first retraining object labels."
+      },
+      {
+        "id": "o4",
+        "text": "First retune the object detector confidence threshold while leaving motor supply and feedback unexamined."
+      },
+      {
+        "id": "o2",
+        "text": "First change the global path cost weight while leaving the unchanged commanded-versus-measured wheel-speed error unexamined."
+      }
+    ],
+    "assumptions": [
+      "Added diagnostic evidence; the suggested checks are hypotheses, not a claimed confirmed hardware fault."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1886",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1886,
+        "kind": "figure",
+        "locator": "Lecture L59, physical PDF page 1886, printed footer 10: inspect the figure content on this page. Neutral review locator.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1888",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1888,
+        "kind": "figure",
+        "locator": "Lecture L59, physical PDF page 1888, printed footer 12: inspect the figure content on this page. Neutral review locator.",
+        "role": "premise",
+        "region": null
+      },
+      {
+        "slideId": "lectures-p1900",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1900,
+        "kind": "statement",
+        "locator": "Lecture L59, physical PDF page 1900, printed footer 24: inspect the statement content on this page. Neutral review locator.",
+        "role": "premise",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L59-Q066",
+    "version": 1,
+    "stem": "Which reading preserves the environment/adaptation contrast in the source table without turning it into a universal capability boundary?",
+    "selectionMode": "single",
+    "type": "conceptual",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "The table’s structured-setting description proves that any use of feedback in a changing environment must be machine learning."
+      },
+      {
+        "id": "o4",
+        "text": "The table says sensor-driven adaptation replaces all mathematical models and classical control in the demonstrated robot."
+      },
+      {
+        "id": "o1",
+        "text": "The table associates classical model/rule-based operation with structured, predictable settings and describes this sensor-driven robot as adapting to dynamic, partly unknown settings; it does not prove classical methods cannot operate there."
+      },
+      {
+        "id": "o2",
+        "text": "The table associates classical control with dynamic, unknown settings and this AI-enabled robot with only fixed, predictable settings."
+      }
+    ],
+    "assumptions": [
+      "Interpret the introductory comparison as the source’s stated design emphasis, not a theorem excluding adaptive or robust classical methods."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1880",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1880,
+        "kind": "table",
+        "locator": "Lecture L59, physical PDF page 1880, printed footer 4: inspect the table content on this page. Neutral review locator.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L59-Q067",
+    "version": 1,
+    "stem": "In the source’s System architecture schematic, which two boxes receive the drawn branches from Sensor Fusion (EKF) within the perception/localization layer?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o4",
+        "text": "YOLOv8 and Cost map are the two direct branches from EKF."
+      },
+      {
+        "id": "o1",
+        "text": "SLAM and Localisation (AMCL)."
+      },
+      {
+        "id": "o2",
+        "text": "SLAM receives EKF output, and AMCL receives only an arrow from SLAM."
+      },
+      {
+        "id": "o3",
+        "text": "The Global Planner and the Motor Drivers boxes are the two direct branches from EKF."
+      }
+    ],
+    "assumptions": [
+      "This asks what the conceptual source schematic draws, not the exact deployed ROS topic/subscription graph."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1885",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1885,
+        "kind": "figure",
+        "locator": "Lecture L59, physical PDF page 1885, printed footer 9: inspect the figure content on this page. Neutral review locator.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L59-Q068",
+    "version": 1,
+    "stem": "Which signal/component sequence matches the source’s motor-regulation diagram and its accompanying statement about continuing speed correction?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Desired wheel velocity → PID controller → PWM output → DC motor → wheel-encoder feedback, with encoder measurements used for continuing correction."
+      },
+      {
+        "id": "o2",
+        "text": "Desired wheel velocity → PWM output → PID controller → DC motor → wheel-encoder feedback, with PWM acting as the measured wheel speed."
+      },
+      {
+        "id": "o3",
+        "text": "Desired wheel velocity → PID controller → wheel encoder → PWM output → DC motor, with the encoder producing the drive signal."
+      },
+      {
+        "id": "o4",
+        "text": "Desired wheel velocity → PID controller → PWM output → DC motor → wheel-encoder feedback, with the encoder used only for offline logging and never further correction."
+      }
+    ],
+    "assumptions": [
+      "The source draws a downward chain; the feedback-use statement is in the accompanying text. No unprinted return arrow or actual controller implementation is asserted."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1888",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1888,
+        "kind": "figure",
+        "locator": "Lecture L59, physical PDF page 1888, printed footer 12: inspect the figure content on this page. Neutral review locator.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L59-Q069",
+    "version": 1,
+    "stem": "In the source screenshot, how are the longer green trace extending leftward and the short trace near the red robot marker identified by the two black annotation arrows?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o2",
+        "text": "The longer green trace is Local Planner Path; the short near-robot trace is Global Planned Path."
+      },
+      {
+        "id": "o3",
+        "text": "Both traces are labeled Global Planned Path; Local Planner Path labels the obstacle inflation band."
+      },
+      {
+        "id": "o4",
+        "text": "The longer green trace is Global Planned Path; the short trace is labeled measured encoder odometry rather than a planned path."
+      },
+      {
+        "id": "o1",
+        "text": "The longer green trace is Global Planned Path; the short near-robot trace is Local Planner Path."
+      }
+    ],
+    "assumptions": [
+      "Read labels and visible relationships only; the still does not establish path length, curvature, tracking error or traversal success."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1897",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1897,
+        "kind": "figure",
+        "locator": "Lecture L59, physical PDF page 1897, printed footer 21: inspect the figure content on this page. Neutral review locator.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  },
+  {
+    "id": "W12-L59-Q070",
+    "version": 1,
+    "stem": "What downstream branching is actually drawn from Processing Nodes in the source’s ROS 2 Node Architecture diagram?",
+    "selectionMode": "single",
+    "type": "diagram",
+    "difficulty": "easy",
+    "options": [
+      {
+        "id": "o3",
+        "text": "Processing Nodes points directly to Mobile Robot, while Motor Controller points only to Navigation."
+      },
+      {
+        "id": "o4",
+        "text": "Processing Nodes receives an arrow from Motor Controller and sends no outgoing control branch."
+      },
+      {
+        "id": "o1",
+        "text": "One arrow goes to Navigation; another goes downward to Motor Controller, which then points to Mobile Robot."
+      },
+      {
+        "id": "o2",
+        "text": "Processing Nodes points only to Navigation, which then directly points to Motor Controller in the drawing."
+      }
+    ],
+    "assumptions": [
+      "Diagram interpretation only, not a claim about actual ROS process scheduling, transport or launch composition."
+    ],
+    "citations": [
+      {
+        "slideId": "lectures-p1898",
+        "sourceId": "lectures",
+        "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+        "physicalPage": 1898,
+        "kind": "figure",
+        "locator": "Lecture L59, physical PDF page 1898, printed footer 22: inspect the figure content on this page. Neutral review locator.",
+        "role": "explicit",
+        "region": null
+      }
+    ]
+  }
+]

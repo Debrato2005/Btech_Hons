@@ -1,0 +1,177 @@
+
+PAGE 1762
+18
+•
+Tested with Sinusoidal Data:
+Inverse Dynamics: 2R Planar Robotic Arm (Code)
+MLP colab 
+code:  https://github.com/roboti
+cs-lab-iitr/nptel-ai-robotics
+
+{"id": "W11-L55-Q040", "stem": "Which conclusion is supported by the plotted MLP torque curves alone?", "options": [{"id": "o4", "text": "The red curve is the training loss because it is dashed."}, {"id": "o1", "text": "The plotted fit proves closed-loop stability for arbitrary feedback gains."}, {"id": "o2", "text": "Predicted torques track the displayed reference trajectory closely, with visible residual differences."}, {"id": "o3", "text": "Every state in the six-dimensional sampling domain has the same small error as the shown trajectory."}], "assumptions": []}
+
+PAGE 1770
+26
+DeLAN Implementation : 2R Planar Robotic Arm: Training
+Sharp decrease in Training Loss :
+
+{"id": "W11-L55-Q058", "stem": "What does the displayed training-loss plot support?", "options": [{"id": "o2", "text": "Every epoch has lower loss than the previous one."}, {"id": "o3", "text": "The plotted training loss equals the two per-joint test RMSE values."}, {"id": "o4", "text": "A strong initial reduction followed by slower, nonmonotonic improvement; held-out performance still requires separate evaluation."}, {"id": "o1", "text": "A constant absolute loss decrease per epoch because the vertical axis is logarithmic."}], "assumptions": []}
+
+PAGE 1779
+3
+•
+HRI is the interdisciplinary study of interaction dynamics between humans and robotic systems.
+•
+Interaction channels are categorized as: 
+–
+verbal (spoken language), 
+–
+non-verbal (facial expression, gesture, gaze, proximity),
+–
+and physical (touch, manipulation).
+•
+HRI systems increasingly rely on learned, data-driven perception 
+and dialogue components.
+•
+AI enhances perception, reasoning, and conversational capabilities. 
+•
+Social intelligence enables robots to understand human intentions. 
+•
+Emotion-aware communication improves user engagement and 
+collaboration.
+Human-Robot Interaction: Introduction
+•
+Trust calibration in HRI depends on socially appropriate and contextually 
+grounded robot responses.
+•
+Natural interaction improves user acceptance and trust.
+•
+HRI is widely used in healthcare, education, industries, and service robotics. 
+Intel 
+RealSense 
+D435i(for 
+nonverbal)
+[1]
+
+{"id": "W12-L56-P1779-Q03", "stem": "What function is supported by the highlighted camera annotation?", "options": [{"id": "o1", "text": "Performing the final seven-class expression inference entirely inside the highlighted camera"}, {"id": "o2", "text": "Capturing RGB/depth observations for the visual-interaction pipeline"}, {"id": "o3", "text": "Displaying the inferred expression as feedback to the user"}], "assumptions": []}
+
+PAGE 1781
+Hardware Platform
+Camera  
+USB Microphone 
+Jetson 
+Screen 
+Speaker
+5
+System architecture  
+Context Integration(Emotion information is 
+integrated before response generation )
+ROS2 MIDDILEWARE
+Camera 
+Node 
+Audio I/O 
+Node
+Face Detection 
+Node
+Emotion 
+Node
+Visualization 
+node 
+Conversation 
+Node
+Perception Pipeline
+Happy, Sad, Angry, Surprise
+Neutral, Fear, Disgust
+RGB-D 
+Camera
+Face  
+Detection DeepFace 
+Emotion 
+prediction
+Conversational AI  Pipeline
+Microphone  Open AI API  Response 
+Genration  Speaker 
+
+{"id": "W12-L56-P1779-Q03", "stem": "What function is supported by the highlighted camera annotation?", "options": [{"id": "o1", "text": "Performing the final seven-class expression inference entirely inside the highlighted camera"}, {"id": "o2", "text": "Capturing RGB/depth observations for the visual-interaction pipeline"}, {"id": "o3", "text": "Displaying the inferred expression as feedback to the user"}], "assumptions": []}
+{"id": "W12-L56-P1781-Q01", "stem": "At what point is the detected expression intended to influence the conversation?", "options": [{"id": "o1", "text": "Only as a display overlay, with no input to conversational reasoning"}, {"id": "o2", "text": "Only after the generated response has already finished playing"}, {"id": "o3", "text": "As context before response generation"}], "assumptions": []}
+
+PAGE 1782
+6
+Hardware Components and Functions  
+Intel RealSense 
+D435i provides 
+synchronized 
+RGB and depth 
+information
+Speaker delivers the 
+open ai generated real 
+time  conversational 
+responses. 
+Dji Microphone 
+receiver connected 
+to jetson nano for 
+audio input from 
+the user USB 
+microphone 
+captures real-time 
+human speech. 
+NVIDIA Jetson Orin Nano serves as the 
+onboard AI computing platform. 
+Embedded GPU accelerates AI 
+inference for real-time performance. 
+Edge computing minimizes latency by 
+processing data locally. 
+Screen operate 
+together to support  
+continuous human 
+interaction through 
+visualization.
+Power cables 
+supply power 
+to run jetson 
+nano and 
+screen from 
+power source 
+USB microphone 
+captures real-time 
+human speech. 
+[1]
+[1]
+
+{"id": "W12-L56-P1779-Q03", "stem": "What function is supported by the highlighted camera annotation?", "options": [{"id": "o1", "text": "Performing the final seven-class expression inference entirely inside the highlighted camera"}, {"id": "o2", "text": "Capturing RGB/depth observations for the visual-interaction pipeline"}, {"id": "o3", "text": "Displaying the inferred expression as feedback to the user"}], "assumptions": []}
+
+PAGE 1784
+8
+•
+Perception enables robots to interpret information from the surrounding environment. 
+•
+The perception pipeline consists of acquisition, detection, and recognition stages. 
+•
+RGB-D images are continuously captured from the vision sensor. 
+•
+Face detection identifies the region of interest within each frame. 
+•
+DeepFace analyzes facial features to estimate human emotions. 
+•
+Emotion labels are published for downstream conversational processing. 
+•
+Continuous perception enables real-time human-aware interaction.
+Perception Pipeline Overview
+Camera
+Face Detection 
+Face Cropping 
+DeepFace 
+Emotion Label 
+ROS2 Topic
+Perception Pipeline
+Happy, Sad, Angry, Surprise
+Netural, Fear, Disgust
+RGB-D 
+Camera
+Face  
+Detection DeepFace 
+Emotion 
+prediction
+
+{"id": "W12-L56-P1784-Q03", "stem": "What can be inferred about depth usage from the diagrams alone?", "options": [{"id": "o1", "text": "The camera acquires depth, but the emotion model’s exact input channels are not specified"}, {"id": "o2", "text": "The face-cropping stage proves that the emotion classifier receives only a single depth channel"}, {"id": "o3", "text": "The emotion network must have four input channels because the camera is RGB-D"}], "assumptions": []}
+{"id": "W12-L56-P1795-Q09", "stem": "Use the actual page 1795 graph with this supplied failure policy: the face detector publishes both /human_face and /human_face/annotated only when fresh color AND depth arrive; emotion publishes only with fresh color AND /human_face. The dialogue node can process new audio and publish /speech_text and /chatgpt_response without an emotion message. Visualization updates each subscribed product independently and does not count cached data as fresh. Compare fault D, loss of /camera/depth/image_rect_raw while color continues, with fault E, failure of /emotion_node while the camera and detector remain healthy. What can remain fresh, and which displayed product distinguishes the faults?", "options": [{"id": "o1", "text": "Both faults retain fresh dialogue texts; only E retains fresh annotations; neither retains fresh emotion labels"}, {"id": "o2", "text": "Both faults retain fresh dialogue texts and annotations; neither retains fresh emotion labels"}, {"id": "o3", "text": "D loses all visualization products; E retains only fresh dialogue texts, not annotations"}], "assumptions": ["These required-input, fail-silent and missing-emotion fallback rules are supplied; topic arrows alone do not establish them.", "Exactly the named fault occurs in each separate case; all other nodes, transport, cloud dialogue and new user-audio input remain operational.", "Ignore cached pre-fault products and queue transients. The graph shows annotation, emotion, response-text and speech-text feeds into visualization, not a direct raw-color feed.", "No ROS process, camera, model or live API is run; this is a causal trace on the inspected graph."]}

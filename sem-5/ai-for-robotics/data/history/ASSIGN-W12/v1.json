@@ -1,0 +1,1243 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "ASSIGN-W12",
+  "authorId": "finish_assignment_authoring:W11-W12-author",
+  "questions": [
+    {
+      "id": "ASSIGN-W12-Q001",
+      "version": 1,
+      "status": "draft",
+      "authorId": "finish_assignment_authoring:W11-W12-author",
+      "stem": "In the assignment’s face-analysis pipeline, a detector first finds a face and a crop of that region is passed to an expression estimator. What does the cropping operation itself accomplish?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 12,
+      "lectureId": null,
+      "topic": "Assignment Week 12",
+      "subtopic": "Face cropping and expression-estimation scope",
+      "tags": [
+        "assignment",
+        "week-12"
+      ],
+      "conceptIds": [
+        "ASSIGN-W12-C001"
+      ],
+      "assumptions": [
+        "Educational pipeline only; no actual image, identity inference or runtime claim."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "It assigns the final expression label before the estimator runs."
+        },
+        {
+          "id": "o1",
+          "text": "It selects the facial region of interest for subsequent analysis."
+        },
+        {
+          "id": "o4",
+          "text": "It retains every background pixel while only changing the expression-label vocabulary."
+        },
+        {
+          "id": "o3",
+          "text": "It establishes the person’s true internal emotional state from the selected pixels."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0056",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 56,
+          "kind": "statement",
+          "locator": "Assignment physical page 56: Week 12 item 1, face-cropping prompt, choices and explanation",
+          "evidenceText": "Face detection identifies the region of interest; the cropped facial image is then processed for emotion estimation.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Keep geometric preprocessing separate from model inference: choosing which pixels to analyze is not itself a validated determination of someone’s feelings.",
+        "optionExplanations": {
+          "o1": "Cropping selects the detected image region used by the later estimator.",
+          "o2": "The expression-estimation stage, not region selection alone, produces a model label.",
+          "o3": "Selecting facial pixels does not establish a person’s actual internal emotion.",
+          "o4": "A crop selects a spatial region; it is not merely a renaming of downstream labels."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "Keep geometric preprocessing separate from model inference: choosing which pixels to analyze is not itself a validated determination of someone’s feelings.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The expression-estimation stage, not region selection alone, produces a model label.",
+          "Selecting facial pixels does not establish a person’s actual internal emotion.",
+          "A crop selects a spatial region; it is not merely a renaming of downstream labels."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W12-Q01",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W12-Q01.json",
+      "originalRecordSha256": "b5f5657306e0b73a663a0ab174f48176e3833e7eb604a1e98cdcbf7d9758ad13",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "ROI_selection",
+        "preprocessing_vs_prediction",
+        "expression_vs_internal_state"
+      ]
+    },
+    {
+      "id": "ASSIGN-W12-Q002",
+      "version": 1,
+      "status": "draft",
+      "authorId": "finish_assignment_authoring:W11-W12-author",
+      "stem": "A facial-analysis task takes 80 ms and an independent speech task takes 120 ms. Both start at t=0, run without resource contention, and have zero fusion overhead. At what time are both results first available, and how much earlier is that than running the tasks serially?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
+      "week": 12,
+      "lectureId": null,
+      "topic": "Assignment Week 12",
+      "subtopic": "Concurrent pipeline availability",
+      "tags": [
+        "assignment",
+        "week-12"
+      ],
+      "conceptIds": [
+        "ASSIGN-W12-C002"
+      ],
+      "assumptions": [
+        "Simultaneous starts; durations fixed; no queueing, contention, startup or fusion delay; toy supplied timings, not hardware benchmarks."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "200 ms; no time saved."
+        },
+        {
+          "id": "o4",
+          "text": "40 ms; 160 ms earlier."
+        },
+        {
+          "id": "o3",
+          "text": "80 ms; 120 ms earlier."
+        },
+        {
+          "id": "o1",
+          "text": "120 ms; 80 ms earlier."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0056",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 56,
+          "kind": "equation",
+          "locator": "Assignment physical page 56: Week 12 item 2, two latency values, concurrency assumptions and maximum calculation",
+          "evidenceText": "Facial task 80 ms, speech 120 ms; independent concurrent processing and ignored fusion delay give max(80,120)=120 ms.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Waiting for both parallel outputs means waiting for the slower path. Summing durations describes the serial comparison, not this concurrent schedule.",
+        "optionExplanations": {
+          "o1": "Concurrent completion is max(80,120)=120 ms; serial execution takes 200 ms, so 80 ms are saved.",
+          "o2": "200 ms adds the durations and ignores the stated overlap.",
+          "o3": "80 ms is when only the faster task finishes; the speech result is not available yet.",
+          "o4": "40 ms is the duration difference, not the elapsed time until both tasks finish."
+        },
+        "steps": [
+          "Both-available time: max(80,120)=120 ms.",
+          "Serial time: 80+120=200 ms.",
+          "Saving: 200−120=80 ms."
+        ],
+        "formulas": [
+          {
+            "expression": "T_parallel=max(t_face,t_speech); T_serial=t_face+t_speech; ΔT=T_serial−T_parallel",
+            "variables": {
+              "T_parallel": "both-results availability under concurrency",
+              "T_serial": "serial completion time",
+              "t_face": "facial-pipeline duration",
+              "t_speech": "speech-pipeline duration",
+              "ΔT": "time saving"
+            },
+            "units": {
+              "T_parallel": "ms",
+              "T_serial": "ms",
+              "t_face": "ms",
+              "t_speech": "ms",
+              "ΔT": "ms"
+            },
+            "assumptions": [
+              "Both tasks start together in the parallel case; fixed durations; no overhead or resource contention."
+            ]
+          }
+        ],
+        "simpleExplanation": "Waiting for both parallel outputs means waiting for the slower path. Summing durations describes the serial comparison, not this concurrent schedule.",
+        "memoryAid": null,
+        "misconceptions": [
+          "200 ms adds the durations and ignores the stated overlap.",
+          "80 ms is when only the faster task finishes; the speech result is not available yet.",
+          "40 ms is the duration difference, not the elapsed time until both tasks finish."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W12-Q02",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W12-Q02.json",
+      "originalRecordSha256": "c8532e335335f82fa7a909d5e41217b6df0037e0993bee38e720b41b089b20e4",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "max_vs_sum",
+        "both_results_barrier",
+        "time_saving",
+        "schedule_assumptions"
+      ]
+    },
+    {
+      "id": "ASSIGN-W12-Q003",
+      "version": 1,
+      "status": "draft",
+      "authorId": "finish_assignment_authoring:W11-W12-author",
+      "stem": "According to Week 12 item 3’s description of the Intel RealSense D415, which combination is used to obtain depth information?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 12,
+      "lectureId": null,
+      "topic": "Assignment Week 12",
+      "subtopic": "Course description of active stereo",
+      "tags": [
+        "assignment",
+        "week-12"
+      ],
+      "conceptIds": [
+        "ASSIGN-W12-C003"
+      ],
+      "assumptions": [
+        "Source-attributed educational description; no current-product specification lookup or camera execution claimed."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "Stereo vision with no active infrared projection in the described setup."
+        },
+        {
+          "id": "o4",
+          "text": "Monocular RGB appearance alone, without a stereo depth mechanism."
+        },
+        {
+          "id": "o3",
+          "text": "Time-of-flight ranging instead of stereo correspondence."
+        },
+        {
+          "id": "o1",
+          "text": "Stereo vision together with active infrared projection."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0056",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 56,
+          "kind": "statement",
+          "locator": "Assignment physical page 56: Week 12 item 3, named camera, sensing choices and explanation",
+          "evidenceText": "The assignment describes D415 as combining RGB imaging, stereo vision and active IR projection for 3D information.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The question tests the supplied course’s sensing-mechanism description, not a newly verified product specification or a claim that every depth camera uses the same principle.",
+        "optionExplanations": {
+          "o1": "This is the active-stereo combination identified by the assignment.",
+          "o2": "This omits the active projection component explicitly included in the source description.",
+          "o3": "This replaces the source’s stereo mechanism with a different depth-ranging principle.",
+          "o4": "This removes the stereo and active-infrared components of the stated setup."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The question tests the supplied course’s sensing-mechanism description, not a newly verified product specification or a claim that every depth camera uses the same principle.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This omits the active projection component explicitly included in the source description.",
+          "This replaces the source’s stereo mechanism with a different depth-ranging principle.",
+          "This removes the stereo and active-infrared components of the stated setup."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W12-Q03",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W12-Q03.json",
+      "originalRecordSha256": "e168a895190f7471760796f2eadd22bd5d63ce0a3545745635b7e921048a9151",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "active_vs_passive_stereo",
+        "stereo_vs_time_of_flight",
+        "source_scope"
+      ]
+    },
+    {
+      "id": "ASSIGN-W12-Q004",
+      "version": 1,
+      "status": "draft",
+      "authorId": "finish_assignment_authoring:W11-W12-author",
+      "stem": "In a supplied ideal motion exercise, a robot moves by perpendicular displacements 300 mm horizontally and 200 mm vertically along one straight segment, returns along that segment, and repeats this round trip 12 times. Assume constant speed equal to 60% of the supplied 8.2 m/s, with instantaneous reversals and no acceleration time. What are total path length and elapsed motion time, rounded only at the end to two decimals?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "medium",
+      "cognitiveSkill": "numerical",
+      "week": 12,
+      "lectureId": null,
+      "topic": "Assignment Week 12",
+      "subtopic": "Straight-line round trips and ideal travel time",
+      "tags": [
+        "assignment",
+        "week-12"
+      ],
+      "conceptIds": [
+        "ASSIGN-W12-C004"
+      ],
+      "assumptions": [
+        "Perpendicular Cartesian displacements; 12 complete out-and-back cycles; fixed ideal speed; no stops, acceleration or deceleration; the supplied speed is not a hardware safety rating."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "12.00 m and 2.44 s"
+        },
+        {
+          "id": "o2",
+          "text": "4.33 m and 0.88 s"
+        },
+        {
+          "id": "o1",
+          "text": "8.65 m and 1.76 s"
+        },
+        {
+          "id": "o4",
+          "text": "8.65 m and 1.06 s"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0057",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 57,
+          "kind": "equation",
+          "locator": "Assignment physical page 57: Week 12 item 4, motion description, given speed, choices and full geometric working",
+          "evidenceText": "Displacements .300 m and .200 m along one straight line; return; 12 cycles; supplied maximum 8.2 m/s and factor .60; solution uses Euclidean segment length.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Distance is path length, not net displacement, which is zero after complete round trips. The idealized speed and instantaneous reversals are exercise assumptions, not a validated operating command for a physical robot.",
+        "optionExplanations": {
+          "o1": "One segment is √(0.3²+0.2²) m; 24 segments total 8.653323... m, divided by 4.92 m/s.",
+          "o2": "This counts only 12 outbound segments and omits the returns.",
+          "o3": "This adds perpendicular component magnitudes instead of using the straight-line diagonal.",
+          "o4": "This uses the full 8.2 m/s instead of the stipulated 60% operating speed."
+        },
+        "steps": [
+          "Convert 300 mm=0.3 m and 200 mm=0.2 m.",
+          "d=√(0.3²+0.2²)=0.3605551275... m.",
+          "D=12×2×d=8.653323061... m.",
+          "v=0.60×8.2=4.92 m/s; t=D/v=1.758805500... s.",
+          "Round final outputs: D=8.65 m and t=1.76 s."
+        ],
+        "formulas": [
+          {
+            "expression": "d=√(Δx²+Δz²); D=2n d; v=α v_max; t=D/v",
+            "variables": {
+              "d": "one-way segment length",
+              "Δx": "horizontal displacement",
+              "Δz": "perpendicular vertical displacement",
+              "D": "total traveled path length",
+              "n": "round-trip count",
+              "v": "ideal constant operating speed",
+              "α": "operating-speed fraction",
+              "v_max": "supplied exercise speed value",
+              "t": "elapsed ideal motion time"
+            },
+            "units": {
+              "d": "m",
+              "Δx": "m",
+              "Δz": "m",
+              "D": "m",
+              "n": "dimensionless",
+              "v": "m/s",
+              "α": "dimensionless",
+              "v_max": "m/s",
+              "t": "s"
+            },
+            "assumptions": [
+              "Orthogonal displacements; n full round trips; v>0 constant; instantaneous reversals; no dwell time."
+            ]
+          }
+        ],
+        "simpleExplanation": "Distance is path length, not net displacement, which is zero after complete round trips. The idealized speed and instantaneous reversals are exercise assumptions, not a validated operating command for a physical robot.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This counts only 12 outbound segments and omits the returns.",
+          "This adds perpendicular component magnitudes instead of using the straight-line diagonal.",
+          "This uses the full 8.2 m/s instead of the stipulated 60% operating speed."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W12-Q04",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W12-Q04.json",
+      "originalRecordSha256": "5537c681c69349c0c0b0446dcf7cb0d94be10851bb07fb20481a01df76b612e9",
+      "difficultyRationale": "Requires combining multiple operations or assumptions.",
+      "testedAssignmentAngles": [
+        "diagonal_vs_component_sum",
+        "round_trip_count",
+        "speed_fraction",
+        "distance_vs_displacement",
+        "rounding"
+      ]
+    },
+    {
+      "id": "ASSIGN-W12-Q005",
+      "version": 1,
+      "status": "draft",
+      "authorId": "finish_assignment_authoring:W11-W12-author",
+      "stem": "Two systems both estimate a robot’s pose. System A localizes against an existing occupancy map using LiDAR and odometry; System B jointly estimates the map and robot pose. In the assignment’s comparison, which role assignment is correct?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 12,
+      "lectureId": null,
+      "topic": "Assignment Week 12",
+      "subtopic": "AMCL versus joint mapping and localization",
+      "tags": [
+        "assignment",
+        "week-12"
+      ],
+      "conceptIds": [
+        "ASSIGN-W12-C005"
+      ],
+      "assumptions": [
+        "Use the assignment’s existing-map localization versus SLAM workflow comparison; do not infer that either module is itself the route planner."
+      ],
+      "options": [
+        {
+          "id": "o4",
+          "text": "A is map construction without pose estimation; B is localization without map estimation."
+        },
+        {
+          "id": "o3",
+          "text": "A is global route planning; B is local velocity-command generation."
+        },
+        {
+          "id": "o1",
+          "text": "A corresponds to AMCL localization; B corresponds to SLAM."
+        },
+        {
+          "id": "o2",
+          "text": "A corresponds to SLAM; B corresponds to AMCL localization."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0057",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 57,
+          "kind": "statement",
+          "locator": "Assignment physical page 57: Week 12 item 5, comparison prompt and four choices",
+          "evidenceText": "SLAM jointly builds a map and estimates position; AMCL estimates pose using an existing occupancy map.",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0058",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 58,
+          "kind": "statement",
+          "locator": "Assignment physical page 58: Week 12 item 5 continuation, explanatory paragraph and lecture reference",
+          "evidenceText": "The explanation describes AMCL pose estimation using LiDAR, an occupancy map and odometry.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Shared pose estimation does not make the tasks identical. The map is an existing input in the stated AMCL workflow and part of the estimated state in the SLAM workflow.",
+        "optionExplanations": {
+          "o1": "The assignment distinguishes existing-map AMCL pose estimation from SLAM’s coupled mapping and pose estimation.",
+          "o2": "This reverses the mapping-versus-existing-map distinction.",
+          "o3": "The stated systems estimate pose and/or map; route planning and command generation are different roles.",
+          "o4": "This contradicts the explicit estimated quantities of both systems."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "Shared pose estimation does not make the tasks identical. The map is an existing input in the stated AMCL workflow and part of the estimated state in the SLAM workflow.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This reverses the mapping-versus-existing-map distinction.",
+          "The stated systems estimate pose and/or map; route planning and command generation are different roles.",
+          "This contradicts the explicit estimated quantities of both systems."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W12-Q05",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W12-Q05.json",
+      "originalRecordSha256": "762de3dc9cb605d2176e93bcfef3288ca6476dd93cdded96ef34663e3aeb7b44",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "map_input_vs_map_estimate",
+        "pose_commonality",
+        "localization_vs_planning"
+      ]
+    },
+    {
+      "id": "ASSIGN-W12-Q006",
+      "version": 1,
+      "status": "draft",
+      "authorId": "finish_assignment_authoring:W11-W12-author",
+      "stem": "Which statement preserves the assignment’s stated reasons for using ROS 2 in autonomous navigation without turning its phrase “real-time navigation” into an unconditional hard-deadline guarantee?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 12,
+      "lectureId": null,
+      "topic": "Assignment Week 12",
+      "subtopic": "ROS 2 navigation motivation and timing scope",
+      "tags": [
+        "assignment",
+        "week-12"
+      ],
+      "conceptIds": [
+        "ASSIGN-W12-C006"
+      ],
+      "assumptions": [
+        "Source interpretation only; no ROS runtime, QoS-document lookup, measured deadline or hard-real-time certification claimed."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "Its modular architecture makes every navigation callback meet every deadline regardless of execution load."
+        },
+        {
+          "id": "o1",
+          "text": "It combines modular architecture, sensor integration and support for timely navigation; a specific deadline still needs system-level validation."
+        },
+        {
+          "id": "o4",
+          "text": "A visualization display alone certifies that the navigation pipeline meets its control deadlines."
+        },
+        {
+          "id": "o3",
+          "text": "Sensor integration removes the need to account for scheduling and communication delays."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0058",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 58,
+          "kind": "statement",
+          "locator": "Assignment physical page 58: Week 12 item 6, ROS 2 motivation choices and explanatory sentence",
+          "evidenceText": "The source lists modular architecture, sensor integration and real-time navigation as motivations.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "A capability-oriented course statement is not a benchmark or proof for a particular runtime configuration. Keep the listed benefits separate from a deployment-specific timing claim.",
+        "optionExplanations": {
+          "o1": "The source lists modularity, sensor integration and real-time navigation; that list alone does not verify a particular deployed timing guarantee.",
+          "o2": "Modular organization is not evidence that any workload on any platform will meet all deadlines.",
+          "o3": "Integrated sensors still produce data that must be scheduled, communicated and processed.",
+          "o4": "Displaying a system is not a timing-validation result for its execution path."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "A capability-oriented course statement is not a benchmark or proof for a particular runtime configuration. Keep the listed benefits separate from a deployment-specific timing claim.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Modular organization is not evidence that any workload on any platform will meet all deadlines.",
+          "Integrated sensors still produce data that must be scheduled, communicated and processed.",
+          "Displaying a system is not a timing-validation result for its execution path."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W12-Q06",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W12-Q06.json",
+      "originalRecordSha256": "dcfe3b18cf30a66df0b494e34634407360009e0548b3ff3e3203eb43793a9b27",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "all_listed_motivations",
+        "capability_vs_guarantee",
+        "validation_boundary"
+      ]
+    },
+    {
+      "id": "ASSIGN-W12-Q007",
+      "version": 1,
+      "status": "draft",
+      "authorId": "finish_assignment_authoring:W11-W12-author",
+      "stem": "In the assignment’s specific setup, a 360° planar LiDAR scans at a fixed height and an RGB-D camera sees a low obstacle that does not intersect that scan plane. The camera observes valid depth for the obstacle and the sensors are calibrated into a common frame. Why can fusing them improve the local costmap?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 12,
+      "lectureId": null,
+      "topic": "Assignment Week 12",
+      "subtopic": "Complementary LiDAR and RGB-D geometry",
+      "tags": [
+        "assignment",
+        "week-12"
+      ],
+      "conceptIds": [
+        "ASSIGN-W12-C007"
+      ],
+      "assumptions": [
+        "The particular stated planar sensor configuration; obstacle within camera field of view with valid depth; known common-frame calibration; no claim that fusion detects every obstacle."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "The camera can add obstacle evidence missed by the scan plane while the LiDAR retains its wider angular coverage."
+        },
+        {
+          "id": "o2",
+          "text": "The low obstacle must be absent from the scene because no LiDAR return intersected it."
+        },
+        {
+          "id": "o3",
+          "text": "The camera’s local field of view replaces every direction in the LiDAR’s 360° scan."
+        },
+        {
+          "id": "o4",
+          "text": "Using two sensors makes frame alignment and measurement validity irrelevant to the costmap."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0058",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 58,
+          "kind": "statement",
+          "locator": "Assignment physical page 58: Week 12 item 7, sensor-combination prompt, choices and explanatory contrast",
+          "evidenceText": "The setup contrasts 360°/long-range LiDAR coverage with RGB-D depth and low/off-plane obstacle detection.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Complementarity comes from different observation geometry, not from assuming two sensors are interchangeable or infallible. The particular planar/360° setup is stated rather than generalized to all LiDARs.",
+        "optionExplanations": {
+          "o1": "The two geometries supply complementary observations; an off-plane obstacle may still be visible in valid camera depth.",
+          "o2": "A planar sensor’s lack of intersection is not proof that space outside its plane is empty.",
+          "o3": "The camera’s field of view is not automatically 360° simply because its data are fused.",
+          "o4": "Fusion still depends on meaningful coordinates and valid measurements; two inputs do not eliminate those requirements."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "Complementarity comes from different observation geometry, not from assuming two sensors are interchangeable or infallible. The particular planar/360° setup is stated rather than generalized to all LiDARs.",
+        "memoryAid": null,
+        "misconceptions": [
+          "A planar sensor’s lack of intersection is not proof that space outside its plane is empty.",
+          "The camera’s field of view is not automatically 360° simply because its data are fused.",
+          "Fusion still depends on meaningful coordinates and valid measurements; two inputs do not eliminate those requirements."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W12-Q07",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W12-Q07.json",
+      "originalRecordSha256": "b20bee31507ccfa6cb1104ec0105642be4f18320644c60d391c23f1258771462",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "planar_blind_region",
+        "camera_field_of_view",
+        "complementary_coverage",
+        "fusion_assumptions"
+      ]
+    },
+    {
+      "id": "ASSIGN-W12-Q008",
+      "version": 1,
+      "status": "draft",
+      "authorId": "finish_assignment_authoring:W11-W12-author",
+      "stem": "For an ideal no-slip differential drive, let wheel radius r=0.1 m, axle separation L=0.5 m, right wheel rate ωᵣ=+5 rad/s and left wheel rate ωₗ=−5 rad/s. Positive wheel rates mean forward rolling, v=r(ωᵣ+ωₗ)/2 at the axle midpoint, and yaw rate Ω=r(ωᵣ−ωₗ)/L. Which motion results?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
+      "week": 12,
+      "lectureId": null,
+      "topic": "Assignment Week 12",
+      "subtopic": "Differential drive with opposite wheel rates",
+      "tags": [
+        "assignment",
+        "week-12"
+      ],
+      "conceptIds": [
+        "ASSIGN-W12-C008"
+      ],
+      "assumptions": [
+        "Ideal rolling without slip; equal radii; flat plane; L is full wheel separation; stated positive-forward wheel and right-minus-left yaw conventions."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "v=0 m/s and Ω=+2 rad/s: in-place rotation."
+        },
+        {
+          "id": "o2",
+          "text": "v=+0.5 m/s and Ω=0 rad/s: straight translation."
+        },
+        {
+          "id": "o3",
+          "text": "v=0 m/s and Ω=0 rad/s: no body motion."
+        },
+        {
+          "id": "o4",
+          "text": "v=0 m/s and Ω=−2 rad/s: opposite-sign in-place rotation."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0058",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 58,
+          "kind": "equation",
+          "locator": "Assignment physical page 58: Week 12 item 8, wheel parameters, signed rates and choices A/B/C",
+          "evidenceText": "r=.1 m; L=.5 m; right +5, left −5 rad/s.",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0059",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 59,
+          "kind": "equation",
+          "locator": "Assignment physical page 59: Week 12 item 8 continuation, choice D and linear/yaw calculations",
+          "evidenceText": "v=(.1/2)(5−5)=0; yaw=(.1/.5)(5−(−5))=2 rad/s; in-place rotation.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Opposite equal wheel speeds produce a zero midpoint forward velocity but a nonzero rotational velocity. A zero sum does not mean that every component of body motion vanishes.",
+        "optionExplanations": {
+          "o1": "The wheel-rate sum is zero and their ordered difference is 10 rad/s, yielding 0 and +2 rad/s.",
+          "o2": "This treats both wheels as moving forward at +5 instead of using the negative left rate.",
+          "o3": "Opposite wheel rates cancel translation, not the yaw-rate difference.",
+          "o4": "This reverses the right-minus-left yaw convention stipulated in the question."
+        },
+        "steps": [
+          "ωᵣ+ωₗ=5+(−5)=0, giving v=0.",
+          "ωᵣ−ωₗ=5−(−5)=10, giving Ω=.1×10/.5=+2 rad/s.",
+          "The axle midpoint stays fixed while the body orientation changes."
+        ],
+        "formulas": [
+          {
+            "expression": "v=r(ωᵣ+ωₗ)/2; Ω=r(ωᵣ−ωₗ)/L",
+            "variables": {
+              "v": "forward velocity of axle midpoint",
+              "r": "common wheel radius",
+              "ωᵣ": "right angular wheel rate",
+              "ωₗ": "left angular wheel rate",
+              "Ω": "body yaw rate",
+              "L": "full left-right wheel separation"
+            },
+            "units": {
+              "v": "m/s",
+              "r": "m",
+              "ωᵣ": "rad/s",
+              "ωₗ": "rad/s",
+              "Ω": "rad/s",
+              "L": "m"
+            },
+            "assumptions": [
+              "No slip; equal wheel radii; both wheel signs positive for forward rolling; right-minus-left yaw convention."
+            ]
+          }
+        ],
+        "simpleExplanation": "Opposite equal wheel speeds produce a zero midpoint forward velocity but a nonzero rotational velocity. A zero sum does not mean that every component of body motion vanishes.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This treats both wheels as moving forward at +5 instead of using the negative left rate.",
+          "Opposite wheel rates cancel translation, not the yaw-rate difference.",
+          "This reverses the right-minus-left yaw convention stipulated in the question."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W12-Q08",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W12-Q08.json",
+      "originalRecordSha256": "2c3ebd45902068a7b2d8c34da9ea4172a4cfa6c7623be93dea51881f10a2f47d",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "sum_vs_difference",
+        "wheel_sign",
+        "midpoint_motion",
+        "yaw_direction"
+      ]
+    },
+    {
+      "id": "ASSIGN-W12-Q009",
+      "version": 1,
+      "status": "draft",
+      "authorId": "finish_assignment_authoring:W11-W12-author",
+      "stem": "A robot nearly hits a worker, but no injury occurs. Under the safety-learning principle stated in the assignment, what should the engineering team do with this event?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 12,
+      "lectureId": null,
+      "topic": "Assignment Week 12",
+      "subtopic": "Near-miss learning without legal overclaim",
+      "tags": [
+        "assignment",
+        "week-12"
+      ],
+      "conceptIds": [
+        "ASSIGN-W12-C009"
+      ],
+      "assumptions": [
+        "Hypothetical course scenario; no specific legal or standards clause is being certified."
+      ],
+      "options": [
+        {
+          "id": "o4",
+          "text": "Wait for a repeated collision before considering the event relevant to safety review."
+        },
+        {
+          "id": "o1",
+          "text": "Record the near-miss and review its causes, even though no injury occurred."
+        },
+        {
+          "id": "o2",
+          "text": "Record it only if an injury or property-damage claim is later filed."
+        },
+        {
+          "id": "o3",
+          "text": "Review it informally but omit a record because there is no measured harm."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0059",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 59,
+          "kind": "statement",
+          "locator": "Assignment physical page 59: Week 12 item 9, near-collision scenario, choices and explanation",
+          "evidenceText": "The course recommendation is to log and review near-misses and unexpected behavior even without harm.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "An avoided injury can still reveal a safety weakness. This question reports the course’s engineering principle; it does not assert a verified statutory duty or compliance with a named standard.",
+        "optionExplanations": {
+          "o1": "The assignment explicitly recommends logging and reviewing near-misses even when no harm occurs.",
+          "o2": "The stated principle does not make recordkeeping conditional on a later injury claim.",
+          "o3": "This retains review but drops the required event record from the course principle.",
+          "o4": "The event already provides a reason to review risk; repeated harm is not a prerequisite."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "An avoided injury can still reveal a safety weakness. This question reports the course’s engineering principle; it does not assert a verified statutory duty or compliance with a named standard.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The stated principle does not make recordkeeping conditional on a later injury claim.",
+          "This retains review but drops the required event record from the course principle.",
+          "The event already provides a reason to review risk; repeated harm is not a prerequisite."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W12-Q09",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W12-Q09.json",
+      "originalRecordSha256": "7a93ef489fe3d99548d0f2709dd448e62517bae3c1a670fc65116332b7e30fd6",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "no_harm_vs_no_event",
+        "record_and_review",
+        "engineering_vs_legal_claim"
+      ]
+    },
+    {
+      "id": "ASSIGN-W12-Q010",
+      "version": 1,
+      "status": "draft",
+      "authorId": "finish_assignment_authoring:W11-W12-author",
+      "stem": "Which feature in the assignment is a physical yielding mechanism that can take up impact energy without first relying on software to command a stop?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 12,
+      "lectureId": null,
+      "topic": "Assignment Week 12",
+      "subtopic": "Mechanical compliance versus sensing and stopping",
+      "tags": [
+        "assignment",
+        "week-12"
+      ],
+      "conceptIds": [
+        "ASSIGN-W12-C010"
+      ],
+      "assumptions": [
+        "Compare the physical mechanism, not overall system safety certification; compliance can store and later return energy, so absorption is not assumed to mean irreversible dissipation."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Mechanical compliance in soft joints or back-drivable actuation."
+        },
+        {
+          "id": "o4",
+          "text": "Emergency-stop decision logic while retaining an otherwise rigid contact path."
+        },
+        {
+          "id": "o3",
+          "text": "Software-defined safety zones while retaining an otherwise rigid contact path."
+        },
+        {
+          "id": "o2",
+          "text": "Redundant sensing while retaining an otherwise rigid contact path."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0059",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 59,
+          "kind": "statement",
+          "locator": "Assignment physical page 59: Week 12 item 10, cobot impact question, four mechanisms and soft-joint explanation",
+          "evidenceText": "Mechanical compliance is identified; the explanation cites soft joints and back-drivable actuators.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Physical yielding can take up energy through deformation or motion. Compliance need not dissipate all that energy, and it does not by itself establish that a collision is safe.",
+        "optionExplanations": {
+          "o1": "Mechanical compliance permits physical yielding, unlike the listed sensing/decision mechanisms alone.",
+          "o2": "Additional sensing improves observation but does not itself create a compliant mechanical contact path.",
+          "o3": "A software-defined zone can trigger a response but is not itself material or joint compliance.",
+          "o4": "Stop logic is a decision/control mechanism, not an elastic or back-drivable yielding element."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "Physical yielding can take up energy through deformation or motion. Compliance need not dissipate all that energy, and it does not by itself establish that a collision is safe.",
+        "memoryAid": null,
+        "misconceptions": [
+          "Additional sensing improves observation but does not itself create a compliant mechanical contact path.",
+          "A software-defined zone can trigger a response but is not itself material or joint compliance.",
+          "Stop logic is a decision/control mechanism, not an elastic or back-drivable yielding element."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W12-Q10",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W12-Q10.json",
+      "originalRecordSha256": "f6a63460fac269ab64c2ba99b157fb45c45d512ed7f693eb27c150757a8fe0d0",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "mechanical_vs_software",
+        "compliance_vs_sensing",
+        "energy_storage_vs_dissipation",
+        "not_safety_guarantee"
+      ]
+    }
+  ],
+  "concepts": [
+    {
+      "id": "ASSIGN-W12-C001",
+      "title": "Face cropping and expression-estimation scope",
+      "description": "Keep geometric preprocessing separate from model inference: choosing which pixels to analyze is not itself a validated determination of someone’s feelings.",
+      "slideIds": [
+        "assignments-p0056"
+      ],
+      "questionIds": [
+        "ASSIGN-W12-Q001"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 12",
+      "subtopic": "Face cropping and expression-estimation scope",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "ROI_selection",
+        "expression_vs_internal_state",
+        "preprocessing_vs_prediction"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W12-C002",
+      "title": "Concurrent pipeline availability",
+      "description": "Waiting for both parallel outputs means waiting for the slower path. Summing durations describes the serial comparison, not this concurrent schedule.",
+      "slideIds": [
+        "assignments-p0056"
+      ],
+      "questionIds": [
+        "ASSIGN-W12-Q002"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 12",
+      "subtopic": "Concurrent pipeline availability",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "both_results_barrier",
+        "max_vs_sum",
+        "schedule_assumptions",
+        "time_saving"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W12-C003",
+      "title": "Course description of active stereo",
+      "description": "The question tests the supplied course’s sensing-mechanism description, not a newly verified product specification or a claim that every depth camera uses the same principle.",
+      "slideIds": [
+        "assignments-p0056"
+      ],
+      "questionIds": [
+        "ASSIGN-W12-Q003"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 12",
+      "subtopic": "Course description of active stereo",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "active_vs_passive_stereo",
+        "source_scope",
+        "stereo_vs_time_of_flight"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W12-C004",
+      "title": "Straight-line round trips and ideal travel time",
+      "description": "Distance is path length, not net displacement, which is zero after complete round trips. The idealized speed and instantaneous reversals are exercise assumptions, not a validated operating command for a physical robot.",
+      "slideIds": [
+        "assignments-p0057"
+      ],
+      "questionIds": [
+        "ASSIGN-W12-Q004"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 12",
+      "subtopic": "Straight-line round trips and ideal travel time",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "diagonal_vs_component_sum",
+        "distance_vs_displacement",
+        "round_trip_count",
+        "rounding",
+        "speed_fraction"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W12-C005",
+      "title": "AMCL versus joint mapping and localization",
+      "description": "Shared pose estimation does not make the tasks identical. The map is an existing input in the stated AMCL workflow and part of the estimated state in the SLAM workflow.",
+      "slideIds": [
+        "assignments-p0057",
+        "assignments-p0058"
+      ],
+      "questionIds": [
+        "ASSIGN-W12-Q005"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 12",
+      "subtopic": "AMCL versus joint mapping and localization",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "localization_vs_planning",
+        "map_input_vs_map_estimate",
+        "pose_commonality"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W12-C006",
+      "title": "ROS 2 navigation motivation and timing scope",
+      "description": "A capability-oriented course statement is not a benchmark or proof for a particular runtime configuration. Keep the listed benefits separate from a deployment-specific timing claim.",
+      "slideIds": [
+        "assignments-p0058"
+      ],
+      "questionIds": [
+        "ASSIGN-W12-Q006"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 12",
+      "subtopic": "ROS 2 navigation motivation and timing scope",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "all_listed_motivations",
+        "capability_vs_guarantee",
+        "validation_boundary"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W12-C007",
+      "title": "Complementary LiDAR and RGB-D geometry",
+      "description": "Complementarity comes from different observation geometry, not from assuming two sensors are interchangeable or infallible. The particular planar/360° setup is stated rather than generalized to all LiDARs.",
+      "slideIds": [
+        "assignments-p0058"
+      ],
+      "questionIds": [
+        "ASSIGN-W12-Q007"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 12",
+      "subtopic": "Complementary LiDAR and RGB-D geometry",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "camera_field_of_view",
+        "complementary_coverage",
+        "fusion_assumptions",
+        "planar_blind_region"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W12-C008",
+      "title": "Differential drive with opposite wheel rates",
+      "description": "Opposite equal wheel speeds produce a zero midpoint forward velocity but a nonzero rotational velocity. A zero sum does not mean that every component of body motion vanishes.",
+      "slideIds": [
+        "assignments-p0058",
+        "assignments-p0059"
+      ],
+      "questionIds": [
+        "ASSIGN-W12-Q008"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 12",
+      "subtopic": "Differential drive with opposite wheel rates",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "midpoint_motion",
+        "sum_vs_difference",
+        "wheel_sign",
+        "yaw_direction"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W12-C009",
+      "title": "Near-miss learning without legal overclaim",
+      "description": "An avoided injury can still reveal a safety weakness. This question reports the course’s engineering principle; it does not assert a verified statutory duty or compliance with a named standard.",
+      "slideIds": [
+        "assignments-p0059"
+      ],
+      "questionIds": [
+        "ASSIGN-W12-Q009"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 12",
+      "subtopic": "Near-miss learning without legal overclaim",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "engineering_vs_legal_claim",
+        "no_harm_vs_no_event",
+        "record_and_review"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W12-C010",
+      "title": "Mechanical compliance versus sensing and stopping",
+      "description": "Physical yielding can take up energy through deformation or motion. Compliance need not dissipate all that energy, and it does not by itself establish that a collision is safe.",
+      "slideIds": [
+        "assignments-p0059"
+      ],
+      "questionIds": [
+        "ASSIGN-W12-Q010"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 12",
+      "subtopic": "Mechanical compliance versus sensing and stopping",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "compliance_vs_sensing",
+        "energy_storage_vs_dissipation",
+        "mechanical_vs_software",
+        "not_safety_guarantee"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    }
+  ],
+  "coverageNote": "All ten original items represented; immutable originals remain outside the approved pool. Meaningful assumptions and calculation angles are explicitly stated."
+}

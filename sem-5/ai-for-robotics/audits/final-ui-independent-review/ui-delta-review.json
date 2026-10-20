@@ -1,0 +1,65 @@
+{
+  "id": "final-ui-delta-independent-v1",
+  "reviewerId": "independent-reviewer-robotics-recovery-v3",
+  "reviewedAt": "2026-10-20T02:28:58.465827+00:00",
+  "decision": "verified_deterministic_delta_only",
+  "codeHashes": {
+    "app/learning-resources.js": "b400ea94d8b5c4a04bb07fd34f41894dbf2aed803a56e3e0939de3bf2c412444",
+    "app/learning-resource-ui.js": "ea16433b221904b0a22b9d7f09639d9758eff67ba48c5c24fa8a9846b2cf0a65",
+    "scripts/learning_resources.py": "a1a70605017040aaf40fc1466d8c2a656967503ad44bc1f5fe8898b19fbe032c",
+    "app/learning-tools.js": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6",
+    "app/course-numerical.js": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a",
+    "app/core.js": "df6b00cc3dbe8df737826b501ab3b90dc8a897d896cd757e10ce2353514966f5",
+    "app/app.js": "b5bb2790f0c3b44d6ab7f4bcf09d1cd41531dd0f95debb5772e539ee4218382b",
+    "scripts/build.py": "2b43c3b18d0703cf527b44fa78f86a058426e5894c058f0fadd2d06d73dfa89f",
+    "scripts/assemble_bank.py": "68ce4ef092f6ece200b3ad53bb89d33edb2c89539acf9622eef7740f49b8798d",
+    "scripts/validate.py": "85566aabb6a714a9ad787437786f7b26f181a3472002d2cf88b1c17a9668396f",
+    "app/index.html": "9857b52d21b35e3927b16293c8b59a1ce61dd61f90c2d281491065f5557f55e0"
+  },
+  "previousPolicyVersion": "1.0.2",
+  "previousPolicySha256": "3e3ae6569b65205aab733f8eedbcae193f48587f1a7f01b5bf750839cf336e30",
+  "changedPolicyDependencyPaths": [
+    "app/app.js"
+  ],
+  "exactFrozenPatchBodyMatched": true,
+  "checks": {
+    "courseFourScopeNavigation": true,
+    "lazySubtopicPopulation": true,
+    "parentScopeClearing": true,
+    "activeExamNavigationLock": true,
+    "heatmapPhysicalPagesAndFilteredCounts": true,
+    "heatmapDependentResets": true,
+    "examBackupReachability": true,
+    "activeQuestionNoOnscreenAnswerLeak": true,
+    "backupImmutableRecoverySnapshot": true,
+    "importConfirmationAndConflictSelection": true,
+    "importMalformedFailClosed": true,
+    "exactDeadlineExpiry": true
+  },
+  "evidence": {
+    "audits/final-delivery-audit/final-ui.patch": "ce52de1108bde8a0d06b2bb6802779939b1b3b57ffc0acc3b669648a6855e25b",
+    "audits/final-delivery-audit/final-ui-frozen-code-hashes.txt": "17e28fad4aeece3dfefbdacf8b07062e0c20fd4dbc8fbf314e959cf930869c26",
+    "docs/FINAL_UI_REVIEW_HANDOFF.md": "5002d4b736baceb1b00d49ab011a9eeffb8167a799972d31cd839fd2c58d1dcf",
+    "app/final-ui.test.js": "44ec856bb934ec6bd44ba8ec85f9ed75eff5057bce1bd9a7f30c69ad62119bfd",
+    "audits/final-ui-independent-review/independent-ui-checks.js": "4fadad21e5d20093fde3fbf539b6a013ac80a9830df2ca23ea3e76842b6e7423",
+    "audits/final-ui-independent-review/independent-ui-checks.json": "ec473a423116dcb71977050e963a71dc4e712e77e8de8a5233c7a1d6e783157a",
+    "audits/final-ui-independent-review/actual-bank-navigation-check.js": "49d573d05378f15afa3714caf349b4c523bb1f7312d7539e9857c0c424f0ea22",
+    "audits/final-ui-independent-review/actual-bank-navigation-check.json": "01e9a6c940ad63c4da8931ab3e806be10127d116b92d93d19208bf5b9b90f320",
+    "audits/final-ui-independent-review/shared-node.log": "b8a515cd265d3d8406cdbb04e30dc9876c68b566ad266cf2b6886a7635588884",
+    "audits/final-ui-independent-review/shared-python.log": "596ce35656fc1914a420e1e5e0fd39c2d04305631bfdc51dc213a7374bc37b6d"
+  },
+  "counts": {
+    "reviewerProbeGroups": 8,
+    "actualBankQuestionCount": 5054,
+    "actualBankSubtopicScopesChecked": 3311,
+    "sharedNodeTestsPassed": 102,
+    "sharedPythonTestsPassed": 16
+  },
+  "findings": [],
+  "limitations": [
+    "Deterministic source/component tests use inert DOM doubles, not a browser. Offline downloaded-HTML interaction, visual layout, native PDF rendering, image readability, print pagination and responsive screenshots are still pending.",
+    "Active JSON backup deliberately includes immutable keyed question snapshots for faithful recovery, like the already-readable offline app/storage. No onscreen answer leak was added; this is not proctored, encrypted or anti-inspection exam security.",
+    "Current policy1.0.2 remains stale at the changed app hash. This delta review is not itself policy activation. Coordinator must author a new policy plus matching projection VERSION; a separate exact-hash policy review follows.",
+    "No question, accepted key, tool payload, canonical bank, Git or browser state was modified by this reviewer."
+  ]
+}

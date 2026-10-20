@@ -1,0 +1,149 @@
+
+PAGE 1785
+9
+•
+The cropped facial image is resized to match the neural network input resolution. 
+•
+Pixel intensity normalization improves consistency across different lighting conditions. 
+•
+Convolutional layers extract local texture and facial appearance features. 
+•
+Deeper network layers learn abstract emotional representations. 
+•
+Feature vectors are transformed into emotion probabilities through a Softmax classifier. 
+•
+The emotion with the highest confidence score is selected as the final prediction. 
+•
+Confidence thresholds reduce uncertain or ambiguous classifications. 
+•
+Final emotion labels are published through ROS2 middleware for downstream processing. 
+•
+The complete inference pipeline operates continuously to support real-time interaction.
+Face Detection Pipeline
+Input Image
+Face Detector 
+Bounding Box
+Face Crop
+Face detected  and 
+cropped  
+
+{"id": "W12-L56-P1785-Q04", "stem": "Which distinction prevents confusing detection with expression classification?", "options": [{"id": "o1", "text": "A bounding box locates a face; emotion scores assign a category to its appearance"}, {"id": "o2", "text": "Any face box is already a seven-category emotion probability vector"}, {"id": "o3", "text": "Softmax determines the rectangle coordinates without a localization model"}], "assumptions": []}
+
+PAGE 1791
+15
+•
+Visualization tools provide real-time observation of system behavior during execution.
+•
+Annotated camera frames display detected faces, bounding boxes, and emotion predictions.
+•
+Emotion labels and confidence values are continuously updated during interaction.
+•
+ROS2 topic monitoring verifies successful communication between distributed nodes.
+•
+Console logs assist in identifying runtime errors and communication failures.
+•
+Session recording enables post-experimental analysis and system validation.
+•
+Monitoring tools simplify debugging, performance evaluation, and software 
+maintenance.
+•
+Visualization improves the interpretability of AI-based robotic decision-making.
+•
+Comprehensive monitoring enhances reliability during real-world deployment.
+Visualization and System Monitoring
+[1]
+
+{"id": "W12-L56-P1795-Q09", "stem": "Use the actual page 1795 graph with this supplied failure policy: the face detector publishes both /human_face and /human_face/annotated only when fresh color AND depth arrive; emotion publishes only with fresh color AND /human_face. The dialogue node can process new audio and publish /speech_text and /chatgpt_response without an emotion message. Visualization updates each subscribed product independently and does not count cached data as fresh. Compare fault D, loss of /camera/depth/image_rect_raw while color continues, with fault E, failure of /emotion_node while the camera and detector remain healthy. What can remain fresh, and which displayed product distinguishes the faults?", "options": [{"id": "o1", "text": "Both faults retain fresh dialogue texts; only E retains fresh annotations; neither retains fresh emotion labels"}, {"id": "o2", "text": "Both faults retain fresh dialogue texts and annotations; neither retains fresh emotion labels"}, {"id": "o3", "text": "D loses all visualization products; E retains only fresh dialogue texts, not annotations"}], "assumptions": ["These required-input, fail-silent and missing-emotion fallback rules are supplied; topic arrows alone do not establish them.", "Exactly the named fault occurs in each separate case; all other nodes, transport, cloud dialogue and new user-audio input remain operational.", "Ignore cached pre-fault products and queue transients. The graph shows annotation, emotion, response-text and speech-text feeds into visualization, not a direct raw-color feed.", "No ROS process, camera, model or live API is run; this is a causal trace on the inspected graph."]}
+
+PAGE 1794
+18
+End-to-End System Data Flow
+•
+The system simultaneously processes facial expressions and spoken input to 
+enable multimodal human–robot interaction. 
+•
+Emotion recognition results are integrated with speech through ROS2 and 
+OpenAI Realtime API to generate context-aware responses. 
+•
+The synthesized response is streamed to the robot speaker, enabling 
+continuous real-time emotion-aware communication.
+
+{"id": "W12-L56-P1794-Q01", "stem": "Starting at Context, which complete node-label sequence follows the arrows through the lower row of the displayed data-flow diagram? The two Speech boxes are distinguished by their adjacent boxes.", "options": [{"id": "o1", "text": "Context → OpenAI Realtime → Language → Speech (beside Realtime) → Speech (beside Robot) → Robot → Human"}, {"id": "o2", "text": "Context → OpenAI Realtime → Speech (beside Realtime) → Speech (beside Robot) → Language → Robot → Human"}, {"id": "o3", "text": "Context → OpenAI Realtime → Speech (beside Realtime) → Language → Speech (beside Robot) → Robot → Human"}], "assumptions": ["This is the printed functional diagram’s arrow order, not a claim that a live Realtime model must expose a serial transcript/language/synthesis model cascade."]}
+
+PAGE 1795
+19
+•
+ROS2 provides a distributed middleware framework for modular robotic software development.
+•
+Each software component executes as an independent ROS2 node with a dedicated functionality.
+•
+Nodes exchange information asynchronously through publish-subscribe communication.
+•
+Topics enable efficient transfer of sensor data, perception results, and control information.
+•
+Message passing eliminates direct dependencies between independent
+software modules.
+•
+Quality of Service (QoS) policies improve communication reliability under 
+varying network conditions.
+•
+ROS2 launch files initialize multiple nodes with predefined runtime parameters.
+•
+Distributed execution improves scalability, maintainability, and fault isolation.
+•
+ROS2 communication enables seamless integration of perception, reasoning, and conversational intelligence.
+ROS2 Communication Framework
+Ros2 rqt_graph 
+
+{"id": "W12-L56-P1795-Q01", "stem": "How should the diagram’s shapes be interpreted?", "options": [{"id": "o1", "text": "Every rectangle is a separate operating-system process"}, {"id": "o2", "text": "The nested namespace boxes should be added to the oval count to obtain the number of processing nodes"}, {"id": "o3", "text": "Ovals are processing nodes; labeled rectangular topic boxes carry published data, with larger boxes grouping namespaces"}], "assumptions": []}
+{"id": "W12-L56-P1795-Q02", "stem": "Which two nodes directly receive the displayed color-image topic?", "options": [{"id": "o1", "text": "/face_detection_node and /emotion_node"}, {"id": "o2", "text": "/tara_node and /visualization_node"}, {"id": "o3", "text": "/camera_node and /tara_node"}], "assumptions": []}
+{"id": "W12-L56-P1795-Q03", "stem": "Which pair of outgoing detector products is shown?", "options": [{"id": "o1", "text": "Face-region data toward emotion inference; an annotated face view toward visualization"}, {"id": "o2", "text": "An annotated face view toward emotion inference; face-region data only toward visualization"}, {"id": "o3", "text": "A final emotion label toward dialogue; an annotated view toward visualization"}], "assumptions": []}
+{"id": "W12-L56-P1795-Q04", "stem": "Select every node shown receiving /human_emotion directly.", "options": [{"id": "o1", "text": "/camera_node"}, {"id": "o2", "text": "/face_detection_node"}, {"id": "o3", "text": "/visualization_node"}, {"id": "o4", "text": "/tara_node"}], "assumptions": []}
+{"id": "W12-L56-P1795-Q05", "stem": "Which two displayed topics carry conversational text from /tara_node to visualization?", "options": [{"id": "o1", "text": "/chatgpt_response and /speech_text"}, {"id": "o2", "text": "/camera/color/image_raw and /camera/depth/image_rect_raw"}, {"id": "o3", "text": "/human_face and /human_face/annotated"}], "assumptions": []}
+{"id": "W12-L56-P1795-Q09", "stem": "Use the actual page 1795 graph with this supplied failure policy: the face detector publishes both /human_face and /human_face/annotated only when fresh color AND depth arrive; emotion publishes only with fresh color AND /human_face. The dialogue node can process new audio and publish /speech_text and /chatgpt_response without an emotion message. Visualization updates each subscribed product independently and does not count cached data as fresh. Compare fault D, loss of /camera/depth/image_rect_raw while color continues, with fault E, failure of /emotion_node while the camera and detector remain healthy. What can remain fresh, and which displayed product distinguishes the faults?", "options": [{"id": "o1", "text": "Both faults retain fresh dialogue texts; only E retains fresh annotations; neither retains fresh emotion labels"}, {"id": "o2", "text": "Both faults retain fresh dialogue texts and annotations; neither retains fresh emotion labels"}, {"id": "o3", "text": "D loses all visualization products; E retains only fresh dialogue texts, not annotations"}], "assumptions": ["These required-input, fail-silent and missing-emotion fallback rules are supplied; topic arrows alone do not establish them.", "Exactly the named fault occurs in each separate case; all other nodes, transport, cloud dialogue and new user-audio input remain operational.", "Ignore cached pre-fault products and queue transients. The graph shows annotation, emotion, response-text and speech-text feeds into visualization, not a direct raw-color feed.", "No ROS process, camera, model or live API is run; this is a causal trace on the inspected graph."]}
+
+PAGE 1796
+20
+•
+System execution begins by launching all required ROS2 nodes 
+through a unified launch configuration.
+•
+The camera node continuously acquires synchronized RGB and depth images.
+•
+Face detection processes incoming image frames and extracts facial regions of interest.
+•
+DeepFace estimates facial emotions and publishes emotion labels 
+through ROS2 topics.
+•
+The conversational node simultaneously captures user speech using 
+the onboard microphone.
+Complete Software Execution Pipeline
+•
+OpenAI Realtime API performs speech understanding, reasoning, and 
+response generation.
+•
+Emotion information is integrated into the conversational context before 
+response generation.
+•
+Generated speech is streamed to the speaker for natural human-robot 
+communication.
+•
+Independent node execution allows each subsystem to operate concurrently 
+in real time.
+Launch File
+Camera
+Face Detection
+DeepFace
+Emotion Topic
+OpenAI Realtime API
+Speaker
+
+{"id": "W12-L56-P1796-Q02", "stem": "What does the launch-file box establish without an actual launch source file?", "options": [{"id": "o1", "text": "The exact QoS settings, device IDs and API model version used at runtime"}, {"id": "o2", "text": "That all nodes necessarily run serially in one process because the drawing is vertical"}, {"id": "o3", "text": "A planned way to initialize the component nodes, not exact executable parameters or measured timing"}], "assumptions": []}
+{"id": "W12-L56-P1795-Q09", "stem": "Use the actual page 1795 graph with this supplied failure policy: the face detector publishes both /human_face and /human_face/annotated only when fresh color AND depth arrive; emotion publishes only with fresh color AND /human_face. The dialogue node can process new audio and publish /speech_text and /chatgpt_response without an emotion message. Visualization updates each subscribed product independently and does not count cached data as fresh. Compare fault D, loss of /camera/depth/image_rect_raw while color continues, with fault E, failure of /emotion_node while the camera and detector remain healthy. What can remain fresh, and which displayed product distinguishes the faults?", "options": [{"id": "o1", "text": "Both faults retain fresh dialogue texts; only E retains fresh annotations; neither retains fresh emotion labels"}, {"id": "o2", "text": "Both faults retain fresh dialogue texts and annotations; neither retains fresh emotion labels"}, {"id": "o3", "text": "D loses all visualization products; E retains only fresh dialogue texts, not annotations"}], "assumptions": ["These required-input, fail-silent and missing-emotion fallback rules are supplied; topic arrows alone do not establish them.", "Exactly the named fault occurs in each separate case; all other nodes, transport, cloud dialogue and new user-audio input remain operational.", "Ignore cached pre-fault products and queue transients. The graph shows annotation, emotion, response-text and speech-text feeds into visualization, not a direct raw-color feed.", "No ROS process, camera, model or live API is run; this is a causal trace on the inspected graph."]}
+
+PAGE 1797
+21
+Experimental Demonstration – Human Robot Interaction 
+[1]
+
+{"id": "W12-L56-P1797-Q01", "stem": "Which conclusion is supported by the displayed demonstration photo?", "options": [{"id": "o1", "text": "The caption supplies independently labeled evidence that the displayed emotion estimate was correct"}, {"id": "o2", "text": "The source illustrates an emotion-conditioned greeting setup; it does not provide a controlled accuracy or latency measurement"}, {"id": "o3", "text": "The greeting succeeds with every user and lighting condition because one setup is shown"}], "assumptions": []}

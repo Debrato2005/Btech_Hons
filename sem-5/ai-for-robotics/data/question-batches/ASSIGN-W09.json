@@ -1,0 +1,1453 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "ASSIGN-W09",
+  "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+  "questions": [
+    {
+      "id": "ASSIGN-W09-Q001",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "Real-coded crossover of P₁=2 and P₂=6 generates C₁=0.5(P₁+P₂), C₂=1.5P₁−0.5P₂ and C₃=−0.5P₁+1.5P₂. All candidates are feasible. Retain the two highest-fitness children, first for J(x)=x and separately for K(x)=−(x−1)². Which retained sets are correct?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "medium",
+      "cognitiveSkill": "numerical",
+      "week": 9,
+      "lectureId": null,
+      "topic": "Assignment Week 9",
+      "subtopic": "Crossover coordinates versus fitness",
+      "tags": [
+        "assignment",
+        "week-9"
+      ],
+      "conceptIds": [
+        "ASSIGN-W09-C001"
+      ],
+      "assumptions": [
+        "Both stated objectives are maximized separately; all three children satisfy constraints; no elitist parent retention or stochastic selection is added."
+      ],
+      "options": [
+        {
+          "id": "o3",
+          "text": "J: {0,4}; K: {0,4}."
+        },
+        {
+          "id": "o1",
+          "text": "J: {4,8}; K: {0,4}."
+        },
+        {
+          "id": "o4",
+          "text": "J: {0,8}; K: {4,8}."
+        },
+        {
+          "id": "o2",
+          "text": "J: {4,8}; K: {4,8}."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0039",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 39,
+          "kind": "equation",
+          "locator": "Assignment physical page 39: Week 9 Q1, parent values, three crossover formulas and unspecified maximization objective",
+          "evidenceText": "P1=2,P2=6; children4,0,8; explanation selects4,8 for a maximization problem without specifying the fitness function.",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Crossover computes candidate coordinates. Selection ranks their specified fitness, not their coordinates unless the fitness increases accordingly.",
+        "optionExplanations": {
+          "o1": "Children are 4,0,8. J ranks 8>4>0, while K values −9,−1,−49 rank 0>4>8.",
+          "o2": "The J result is right, but maximizing a function does not always mean maximizing its input coordinate.",
+          "o3": "The K result is right, but J(x)=x selects the two largest coordinates.",
+          "o4": "For J this skips the second-best child 4, and for K it retains the worst child 8."
+        },
+        "steps": [
+          "C₁=0.5×8=4; C₂=3−3=0; C₃=−1+9=8.",
+          "J values at 4,0,8 are 4,0,8, so retain {4,8}.",
+          "K values are −9,−1,−49, so retain {0,4}."
+        ],
+        "formulas": [
+          {
+            "expression": "C₁=(P₁+P₂)/2; C₂=1.5P₁−0.5P₂; C₃=−0.5P₁+1.5P₂; J(x)=x; K(x)=−(x−1)²",
+            "variables": {
+              "C₁": "midpoint child",
+              "C₂": "first extrapolated child",
+              "C₃": "second extrapolated child",
+              "P₁": "first parent coordinate",
+              "P₂": "second parent coordinate",
+              "x": "candidate coordinate",
+              "J": "first supplied fitness",
+              "K": "second supplied fitness"
+            },
+            "units": {
+              "C₁": "dimensionless",
+              "C₂": "dimensionless",
+              "C₃": "dimensionless",
+              "P₁": "dimensionless",
+              "P₂": "dimensionless",
+              "x": "dimensionless",
+              "J": "dimensionless",
+              "K": "dimensionless"
+            },
+            "assumptions": [
+              "Feasible children; maximize stated fitness."
+            ]
+          }
+        ],
+        "simpleExplanation": "Crossover computes candidate coordinates. Selection ranks their specified fitness, not their coordinates unless the fitness increases accordingly.",
+        "memoryAid": null,
+        "misconceptions": [
+          "The J result is right, but maximizing a function does not always mean maximizing its input coordinate.",
+          "The K result is right, but J(x)=x selects the two largest coordinates.",
+          "For J this skips the second-best child 4, and for K it retains the worst child 8."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W09-Q01",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W09-Q01.json",
+      "originalRecordSha256": "b91e69dc106352191408f665091d7140d4eb666311235503e8abc886be0f2ef9",
+      "difficultyRationale": "Requires combining multiple operations or assumptions.",
+      "testedAssignmentAngles": [
+        "all_crossover_children",
+        "fitness_premise",
+        "counterexample_to_coordinate_ranking"
+      ],
+      "conflictResolution": {
+        "issue": "Original maximization prompt omits the objective, so candidate coordinates alone do not determine fitness order.",
+        "resolution": "Two explicit objective functions show when the printed retained set applies and when it changes.",
+        "method": "Evaluate all three crossover formulas, then evaluate each supplied fitness at every child.",
+        "status": "qualification_pending_independent_review",
+        "questionVersion": 1,
+        "sourceId": "assignments",
+        "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+        "physicalPage": 39,
+        "sourceClaim": "Original maximization prompt omits the objective, so candidate coordinates alone do not determine fitness order.",
+        "basis": "Two explicit objective functions show when the printed retained set applies and when it changes."
+      }
+    },
+    {
+      "id": "ASSIGN-W09-Q002",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "A six-bit unsigned chromosome uses endpoint-inclusive mapping x=1+15D/63, with integer code D from 0 to 63. Which code and six-bit string represent the real value x=11 exactly?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
+      "week": 9,
+      "lectureId": null,
+      "topic": "Assignment Week 9",
+      "subtopic": "Binary code versus decoded real value",
+      "tags": [
+        "assignment",
+        "week-9"
+      ],
+      "conceptIds": [
+        "ASSIGN-W09-C002"
+      ],
+      "assumptions": [
+        "Unsigned binary, most significant bit first; both range endpoints represented; no Gray coding."
+      ],
+      "options": [
+        {
+          "id": "o4",
+          "text": "D=11, string 001011"
+        },
+        {
+          "id": "o3",
+          "text": "D=46, string 101110"
+        },
+        {
+          "id": "o1",
+          "text": "D=42, string 101010"
+        },
+        {
+          "id": "o2",
+          "text": "D=43, string 101011"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0039",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 39,
+          "kind": "equation",
+          "locator": "Assignment physical page 39: Week 9 Q2, six-bit range and linear mapping calculation",
+          "evidenceText": "11=1+((16−1)/(2⁶−1))D; D=42.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The integer chromosome code is 42, while its decoded real variable is 11; these are different representations.",
+        "optionExplanations": {
+          "o1": "D=(11−1)×63/15=42, and 42=32+8+2.",
+          "o2": "43 decodes to 1+645/63≈11.2381, not exactly 11.",
+          "o3": "46 results from approximately omitting the lower-end offset; it decodes to about 11.9524.",
+          "o4": "This confuses the real variable with its integer chromosome code; D=11 decodes to about 3.619."
+        },
+        "steps": [
+          "Six bits give integer codes 0 through 63.",
+          "Solve 11−1=15D/63 to obtain D=42.",
+          "42=32+8+2 gives bits101010."
+        ],
+        "formulas": [
+          {
+            "expression": "x=a+(b−a)D/(2ⁿ−1); D=(x−a)(2ⁿ−1)/(b−a)",
+            "variables": {
+              "x": "decoded real variable",
+              "a": "lower endpoint,1",
+              "b": "upper endpoint,16",
+              "D": "unsigned integer chromosome code",
+              "n": "number of bits,6"
+            },
+            "units": {
+              "x": "dimensionless",
+              "a": "dimensionless",
+              "b": "dimensionless",
+              "D": "dimensionless",
+              "n": "bits"
+            },
+            "assumptions": [
+              "Endpoint-inclusive uniform mapping; x is exactly representable here."
+            ]
+          }
+        ],
+        "simpleExplanation": "The integer chromosome code is 42, while its decoded real variable is 11; these are different representations.",
+        "memoryAid": null,
+        "misconceptions": [
+          "43 decodes to 1+645/63≈11.2381, not exactly 11.",
+          "46 results from approximately omitting the lower-end offset; it decodes to about 11.9524.",
+          "This confuses the real variable with its integer chromosome code; D=11 decodes to about 3.619."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W09-Q02",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W09-Q02.json",
+      "originalRecordSha256": "8c89c7ecfac4dff56e0522a5853de02b1fd454e9f7dbedd9792d29332c7fc287",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "integer_code",
+        "binary_representation",
+        "endpoint_denominator"
+      ]
+    },
+    {
+      "id": "ASSIGN-W09-Q003",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "Use x=column increasing right and y=row increasing downward. S=(0,0), W₁=(0,1), W₂=(2,4), G=(5,5). Blocked cells are {(1,1),(2,1),(2,2),(4,2),(2,3),(3,4)}. Count unit moves as length L, every entered blocked cell as one collision N, and changes between consecutive nonzero move directions as turns T. Use C=L+10N+T and fitness F=1/(1+C). Decode S→W₁→W₂→G by moving horizontally first and then vertically on each segment. Which (L,N,T,F) is obtained?",
+      "selectionMode": "single",
+      "type": "algorithm_trace",
+      "difficulty": "medium",
+      "cognitiveSkill": "algorithm",
+      "week": 9,
+      "lectureId": null,
+      "topic": "Assignment Week 9",
+      "subtopic": "Horizontal-first grid fitness",
+      "tags": [
+        "assignment",
+        "week-9"
+      ],
+      "conceptIds": [
+        "ASSIGN-W09-C003"
+      ],
+      "assumptions": [
+        "The complete grid and coordinate convention are transcribed into the stem; boundary waypoints are not double-counted as entries; blocked cells are penalized rather than preventing decoding."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "(10,4,4,1/55)"
+        },
+        {
+          "id": "o4",
+          "text": "(10,5,0,1/61)"
+        },
+        {
+          "id": "o3",
+          "text": "(10,6,4,1/75)"
+        },
+        {
+          "id": "o1",
+          "text": "(10,5,4,1/65)"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0040",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 40,
+          "kind": "figure",
+          "locator": "Assignment physical page 40: Week 9 Q3, six-by-six grid, blue waypoint cells, red blocked cells and fitness working",
+          "evidenceText": "Waypoints(0,1),(2,4); obstacles(1,1),(2,1),(2,2),(4,2),(2,3),(3,4); source gives L10,Nobs5,Nturn4,C64,F1/65.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The chromosome’s route must be decoded before evaluating obstacle and turn penalties; counting all map obstacles is not the path collision count.",
+        "optionExplanations": {
+          "o1": "The route enters five blocked cells and makes four direction changes, giving C=10+50+4=64.",
+          "o2": "This omits one of the five collisions, reducing the denominator incorrectly by10.",
+          "o3": "This counts every obstacle in the grid, including (4,2), which the route does not enter.",
+          "o4": "This drops all four turn penalties, although the motion sequence changes direction four times."
+        },
+        "steps": [
+          "Move directions are D,R,R,D,D,D,R,R,R,D, where D means increasing y.",
+          "Entered blocked cells are (1,1),(2,1),(2,2),(2,3),(3,4).",
+          "There are 10 moves and 4 direction changes.",
+          "C=10+10×5+4=64; F=1/65."
+        ],
+        "formulas": [
+          {
+            "expression": "C=L+αN+βT; F=1/(1+C)",
+            "variables": {
+              "C": "dimensionless penalized path cost",
+              "L": "number of unit grid moves",
+              "α": "collision penalty weight,10",
+              "N": "number of entered blocked cells",
+              "β": "turn penalty weight,1",
+              "T": "direction changes between actual moves",
+              "F": "fitness"
+            },
+            "units": {
+              "C": "dimensionless",
+              "L": "dimensionless grid steps",
+              "α": "cost per collision",
+              "N": "collisions",
+              "β": "cost per turn",
+              "T": "turns",
+              "F": "dimensionless"
+            },
+            "assumptions": [
+              "Grid steps and penalties normalized to dimensionless costs; α=10,β=1; no diagonal moves."
+            ]
+          }
+        ],
+        "simpleExplanation": "The chromosome’s route must be decoded before evaluating obstacle and turn penalties; counting all map obstacles is not the path collision count.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This omits one of the five collisions, reducing the denominator incorrectly by10.",
+          "This counts every obstacle in the grid, including (4,2), which the route does not enter.",
+          "This drops all four turn penalties, although the motion sequence changes direction four times."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W09-Q03",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W09-Q03.json",
+      "originalRecordSha256": "7d375ee5fae8cd13685ca6243a7813a0b074f2d75b92e4965150df7e3523a5c5",
+      "difficultyRationale": "Requires combining multiple operations or assumptions.",
+      "testedAssignmentAngles": [
+        "exact_grid",
+        "decoded_cells",
+        "collision_count",
+        "turns",
+        "fitness"
+      ]
+    },
+    {
+      "id": "ASSIGN-W09-Q004",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "Use x=column increasing right and y=row increasing downward. S=(0,0), W₁=(0,1), W₂=(2,4), G=(5,5). Blocked cells are {(1,1),(2,1),(2,2),(4,2),(2,3),(3,4)}. Count unit moves as length L, every entered blocked cell as one collision N, and changes between consecutive nonzero move directions as turns T. Use C=L+10N+T and fitness F=1/(1+C). Now decode each segment of S→W₁→W₂→G vertically first and then horizontally. Which (L,N,T,F) is obtained?",
+      "selectionMode": "single",
+      "type": "algorithm_trace",
+      "difficulty": "medium",
+      "cognitiveSkill": "algorithm",
+      "week": 9,
+      "lectureId": null,
+      "topic": "Assignment Week 9",
+      "subtopic": "Decode order counterfactual",
+      "tags": [
+        "assignment",
+        "week-9"
+      ],
+      "conceptIds": [
+        "ASSIGN-W09-C004"
+      ],
+      "assumptions": [
+        "Same grid, chromosome, weights and counting rules; ignore zero-length submoves and do not count a waypoint itself as a turn."
+      ],
+      "options": [
+        {
+          "id": "o4",
+          "text": "(10,0,4,1/15)"
+        },
+        {
+          "id": "o2",
+          "text": "(10,5,4,1/65)"
+        },
+        {
+          "id": "o3",
+          "text": "(10,1,3,1/24)"
+        },
+        {
+          "id": "o1",
+          "text": "(10,0,3,1/14)"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0040",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 40,
+          "kind": "figure",
+          "locator": "Assignment physical page 40: Week 9 Q3 grid and Q4 movement-order explanation",
+          "evidenceText": "Q4: horizontal-first versus vertical-first may traverse different intermediate cells and change collision count while Manhattan distance remains the same.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Changing movement order preserves the Manhattan length of each segment but can change collisions and turns on the concatenated path.",
+        "optionExplanations": {
+          "o1": "The vertical-first route avoids all six blocked cells and changes direction three times, so C=13.",
+          "o2": "This repeats the horizontal-first result without decoding the changed intermediate cells.",
+          "o3": "The vertical-first route does not enter (3,4) or any other blocked cell; the extra collision is unsupported.",
+          "o4": "This adds a turn at W₁ even though the direction before and after that waypoint is the same."
+        },
+        "steps": [
+          "Visited route: (0,0),(0,1),(0,2),(0,3),(0,4),(1,4),(2,4),(2,5),(3,5),(4,5),(5,5).",
+          "Move directions D,D,D,D,R,R,D,R,R,R give 10 moves and 3 changes.",
+          "No entered cell is blocked, so N=0.",
+          "C=10+0+3=13; F=1/14."
+        ],
+        "formulas": [
+          {
+            "expression": "C=L+αN+βT; F=1/(1+C)",
+            "variables": {
+              "C": "dimensionless penalized path cost",
+              "L": "number of unit grid moves",
+              "α": "collision penalty weight,10",
+              "N": "number of entered blocked cells",
+              "β": "turn penalty weight,1",
+              "T": "direction changes between actual moves",
+              "F": "fitness"
+            },
+            "units": {
+              "C": "dimensionless",
+              "L": "dimensionless grid steps",
+              "α": "cost per collision",
+              "N": "collisions",
+              "β": "cost per turn",
+              "T": "turns",
+              "F": "dimensionless"
+            },
+            "assumptions": [
+              "Grid steps and penalties normalized to dimensionless costs; α=10,β=1; no diagonal moves."
+            ]
+          },
+          {
+            "expression": "L_segment=|x₂−x₁|+|y₂−y₁|",
+            "variables": {
+              "L_segment": "segment unit-move length",
+              "x₁": "segment start column",
+              "x₂": "segment end column",
+              "y₁": "segment start row",
+              "y₂": "segment end row"
+            },
+            "units": {
+              "L_segment": "grid steps",
+              "x₁": "grid coordinate",
+              "x₂": "grid coordinate",
+              "y₁": "grid coordinate",
+              "y₂": "grid coordinate"
+            },
+            "assumptions": [
+              "Axis-aligned monotone decoding between each waypoint pair."
+            ]
+          }
+        ],
+        "simpleExplanation": "Changing movement order preserves the Manhattan length of each segment but can change collisions and turns on the concatenated path.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This repeats the horizontal-first result without decoding the changed intermediate cells.",
+          "The vertical-first route does not enter (3,4) or any other blocked cell; the extra collision is unsupported.",
+          "This adds a turn at W₁ even though the direction before and after that waypoint is the same."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W09-Q04",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W09-Q04.json",
+      "originalRecordSha256": "edad16e892eb920a9252070dc0703dfb1ee840d75a4a81d2241235bd3a484987",
+      "difficultyRationale": "Requires combining multiple operations or assumptions.",
+      "testedAssignmentAngles": [
+        "decoder_counterfactual",
+        "collision_variation",
+        "turn_boundary",
+        "same_length"
+      ]
+    },
+    {
+      "id": "ASSIGN-W09-Q005",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "A robot receives one sensor vector at a time. Earlier measurements matter, but past vectors are not concatenated into the current input. Which mechanism explicitly carries a learned internal summary from one time step to the next?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 9,
+      "lectureId": null,
+      "topic": "Assignment Week 9",
+      "subtopic": "Persistent sequence memory",
+      "tags": [
+        "assignment",
+        "week-9"
+      ],
+      "conceptIds": [
+        "ASSIGN-W09-C005"
+      ],
+      "assumptions": [
+        "Sequential inference with state preserved within a sequence; comparisons use exactly the stated inputs and reset behavior."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "An RNN/LSTM whose recurrent state is retained across the sequence."
+        },
+        {
+          "id": "o4",
+          "text": "A feedforward model given only an unordered mean of all measurements so far."
+        },
+        {
+          "id": "o2",
+          "text": "An MLP applied independently to only the current sensor vector."
+        },
+        {
+          "id": "o3",
+          "text": "An RNN/LSTM whose recurrent state is reset before every individual measurement."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0041",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 41,
+          "kind": "statement",
+          "locator": "Assignment physical page 41: Week 9 Q5, sequence-dependent robot decision and RNN/LSTM explanation",
+          "evidenceText": "RNN/LSTM associates with sequences of sensor data where previous observations can influence the current decision.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The chosen mechanism retains state. This does not claim that a feedforward or convolutional model supplied with an explicit history window could never use temporal information.",
+        "optionExplanations": {
+          "o1": "The retained recurrent state can encode history and temporal order.",
+          "o2": "With only the current vector and no state, this MLP does not receive earlier observations.",
+          "o3": "Resetting on every sample discards the cross-time state that supplies sequence memory.",
+          "o4": "An unordered mean can summarize past values but loses their ordering and is not a learned recurrent state."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The chosen mechanism retains state. This does not claim that a feedforward or convolutional model supplied with an explicit history window could never use temporal information.",
+        "memoryAid": null,
+        "misconceptions": [
+          "With only the current vector and no state, this MLP does not receive earlier observations.",
+          "Resetting on every sample discards the cross-time state that supplies sequence memory.",
+          "An unordered mean can summarize past values but loses their ordering and is not a learned recurrent state."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W09-Q05",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W09-Q05.json",
+      "originalRecordSha256": "35480e601c7a02a9b3931c05ce920287752dfc297a514a7bb81e513b00c134fc",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "sequence_memory",
+        "reset_boundary",
+        "feedforward_history_qualification"
+      ]
+    },
+    {
+      "id": "ASSIGN-W09-Q006",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "A fully connected network has 6 input features, 16 hidden neurons and 4 output neurons, with one bias for each hidden and output neuron. Which triple gives (input-to-hidden weights only, all weights excluding biases, all trainable weights plus biases)?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
+      "week": 9,
+      "lectureId": null,
+      "topic": "Assignment Week 9",
+      "subtopic": "Network parameter accounting",
+      "tags": [
+        "assignment",
+        "week-9"
+      ],
+      "conceptIds": [
+        "ASSIGN-W09-C006"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o2",
+          "text": "(112,180,180)"
+        },
+        {
+          "id": "o4",
+          "text": "(22,42,62)"
+        },
+        {
+          "id": "o3",
+          "text": "(96,96,112)"
+        },
+        {
+          "id": "o1",
+          "text": "(96,160,180)"
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0041",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 41,
+          "kind": "equation",
+          "locator": "Assignment physical page 41: Week 9 Q6, network sizes and highlighted B96 explanation",
+          "evidenceText": "6 inputs,16 hidden neurons,4 outputs; input-to-hidden weights6×16=96, excluding biases and hidden-output weights.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Each pair of neurons in adjacent fully connected layers contributes a weight; biases are a separate per-output-unit count.",
+        "optionExplanations": {
+          "o1": "6×16=96; add16×4=64 for 160 weights; add16+4 biases for 180 parameters.",
+          "o2": "112 already includes hidden biases;180 includes all biases, so neither is a weights-only count.",
+          "o3": "This counts only the input-to-hidden layer and its biases, omitting output-layer parameters.",
+          "o4": "These use additions of neuron counts instead of products for fully connected weights."
+        },
+        "steps": [
+          "Input→hidden:6×16=96 weights.",
+          "Hidden→output:16×4=64 weights, total 160.",
+          "Biases:16+4=20; total trainable parameters 180."
+        ],
+        "formulas": [
+          {
+            "expression": "W_ih=n_i n_h; W_total=n_i n_h+n_h n_o; P_total=W_total+n_h+n_o",
+            "variables": {
+              "W_ih": "input-to-hidden weight count",
+              "W_total": "all interlayer weight count",
+              "P_total": "weights plus biases",
+              "n_i": "input feature count",
+              "n_h": "hidden unit count",
+              "n_o": "output unit count"
+            },
+            "units": {
+              "W_ih": "parameters",
+              "W_total": "parameters",
+              "P_total": "parameters",
+              "n_i": "features",
+              "n_h": "neurons",
+              "n_o": "neurons"
+            },
+            "assumptions": [
+              "Two fully connected affine layers; one bias per hidden/output unit; no shared weights."
+            ]
+          }
+        ],
+        "simpleExplanation": "Each pair of neurons in adjacent fully connected layers contributes a weight; biases are a separate per-output-unit count.",
+        "memoryAid": null,
+        "misconceptions": [
+          "112 already includes hidden biases;180 includes all biases, so neither is a weights-only count.",
+          "This counts only the input-to-hidden layer and its biases, omitting output-layer parameters.",
+          "These use additions of neuron counts instead of products for fully connected weights."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W09-Q06",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W09-Q06.json",
+      "originalRecordSha256": "d9b3ae279497cbfd2f486c3cbfd5f63fd63685682b4ba40eb7deebebe8a2eb41",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "layer_scope",
+        "weights_vs_biases",
+        "full_network_count"
+      ]
+    },
+    {
+      "id": "ASSIGN-W09-Q007",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "A 2-D position belief is Gaussian with μ=(2,2) m and Σ=diag(0.25,0.16) m². Apply deterministic displacement u=(2,1) m with F=G=I and independent zero-mean Gaussian additive motion noise V=diag(0.5,0.4) m². What is the predicted mean and covariance?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
+      "week": 9,
+      "lectureId": null,
+      "topic": "Assignment Week 9",
+      "subtopic": "Gaussian motion prediction",
+      "tags": [
+        "assignment",
+        "week-9"
+      ],
+      "conceptIds": [
+        "ASSIGN-W09-C007"
+      ],
+      "assumptions": [
+        "All position components in the same Cartesian frame; supplied metre units; deterministic control; independent additive Gaussian noise."
+      ],
+      "options": [
+        {
+          "id": "o4",
+          "text": "μ̄=(4,3) m; Σ̄=diag(0.25,0.16) m²."
+        },
+        {
+          "id": "o3",
+          "text": "μ̄=(2,2) m; Σ̄=diag(0.75,0.56) m²."
+        },
+        {
+          "id": "o2",
+          "text": "μ̄=(4,3) m; Σ̄=diag(0.5,0.4) m²."
+        },
+        {
+          "id": "o1",
+          "text": "μ̄=(4,3) m; Σ̄=diag(0.75,0.56) m²."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0041",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 41,
+          "kind": "equation",
+          "locator": "Assignment physical page 41: Week 9 Q7, initial mean/covariance, displacement, noise and identity matrices",
+          "evidenceText": "μ0=[2,2]ᵀ; Σ0=diag(.25,.16); u=[2,1]ᵀ; V=diag(.5,.4); F=G=I.",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0042",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 42,
+          "kind": "equation",
+          "locator": "Assignment physical page 42: Week 9 Q7 continuation, predicted mean and covariance sums",
+          "evidenceText": "μ̄=[4,3]ᵀ; Σ̄=diag(.75,.56).",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Prediction moves the center while increasing uncertainty by the independent noise covariance; this is not a measurement correction.",
+        "optionExplanations": {
+          "o1": "The deterministic displacement adds to the mean and independent motion covariance adds to prior covariance.",
+          "o2": "This discards the existing uncertainty and retains only the newly added motion noise.",
+          "o3": "The covariance addition is correct but the deterministic displacement is omitted from the mean.",
+          "o4": "The mean is correct but the independent motion-noise covariance is omitted."
+        },
+        "steps": [
+          "μ̄=Iμ+Iu=(2,2)+(2,1)=(4,3) m.",
+          "Σ̄=IΣIᵀ+V=diag(.25+.5,.16+.4)=diag(.75,.56) m².",
+          "Gaussian affine propagation gives the Gaussian belief with these parameters."
+        ],
+        "formulas": [
+          {
+            "expression": "μ̄=Fμ+Gu; Σ̄=FΣFᵀ+V",
+            "variables": {
+              "μ̄": "predicted position mean",
+              "μ": "prior position mean",
+              "u": "known displacement control",
+              "F": "state-transition matrix,I₂",
+              "G": "control mapping,I₂",
+              "Σ̄": "predicted covariance",
+              "Σ": "prior covariance",
+              "V": "independent additive process covariance"
+            },
+            "units": {
+              "μ̄": "m per component",
+              "μ": "m per component",
+              "u": "m per component",
+              "F": "dimensionless",
+              "G": "dimensionless",
+              "Σ̄": "m² per entry",
+              "Σ": "m² per entry",
+              "V": "m² per entry"
+            },
+            "assumptions": [
+              "Zero-mean independent additive Gaussian process noise; common Cartesian frame."
+            ]
+          }
+        ],
+        "simpleExplanation": "Prediction moves the center while increasing uncertainty by the independent noise covariance; this is not a measurement correction.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This discards the existing uncertainty and retains only the newly added motion noise.",
+          "The covariance addition is correct but the deterministic displacement is omitted from the mean.",
+          "The mean is correct but the independent motion-noise covariance is omitted."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W09-Q07",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W09-Q07.json",
+      "originalRecordSha256": "185475c8075141902ad97b5d21b3f481eb0eb5ef2f4f042c4c8c268431998116",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "mean_and_covariance",
+        "independent_noise",
+        "prediction_vs_update"
+      ]
+    },
+    {
+      "id": "ASSIGN-W09-Q008",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "For a sufficient state xₜ, observations zₜ and controls uₜ, the source states p(xₜ|x₀:ₜ₋₁,z₁:ₜ₋₁,u₁:ₜ)=p(xₜ|xₜ₋₁,uₜ). Which interpretation is correct?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "easy",
+      "cognitiveSkill": "conceptual",
+      "week": 9,
+      "lectureId": null,
+      "topic": "Assignment Week 9",
+      "subtopic": "State Markov assumption and belief history",
+      "tags": [
+        "assignment",
+        "week-9"
+      ],
+      "conceptIds": [
+        "ASSIGN-W09-C008"
+      ],
+      "assumptions": [
+        "x is a sufficient state for the stated controlled model; equality is a modeling assumption, not a claim that every chosen feature vector is Markov."
+      ],
+      "options": [
+        {
+          "id": "o4",
+          "text": "Past observations must be discarded from the state belief because the transition model is Markov."
+        },
+        {
+          "id": "o3",
+          "text": "The current control uₜ alone determines the next-state distribution, independently of the previous state."
+        },
+        {
+          "id": "o2",
+          "text": "The latest observation zₜ₋₁ can always replace the previous state xₜ₋₁ in the transition model."
+        },
+        {
+          "id": "o1",
+          "text": "Given the previous state and current control, earlier history adds no transition information; the estimated belief can still depend on past observations."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0042",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 42,
+          "kind": "equation",
+          "locator": "Assignment physical page 42: Week 9 Q8, full conditional Markov equality and explanation",
+          "evidenceText": "p(x_t|x_0:t−1,z_1:t−1,u_1:t)=p(x_t|x_t−1,u_t); present state depends only on previous state and current control.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "A Markov transition model reduces conditional dependence after the previous state is specified. The state’s estimated distribution may still summarize a long observation history.",
+        "optionExplanations": {
+          "o1": "The conditional independence concerns a sufficient true/model state, not an instruction to erase information used to estimate that state.",
+          "o2": "An observation can be noisy or partial; the stated assumption conditions on the state, not observation alone.",
+          "o3": "The right side explicitly retains xₜ₋₁ as well as uₜ.",
+          "o4": "Filtering summarizes observation history in a belief; Markov transitions do not eliminate that information."
+        },
+        "steps": [],
+        "formulas": [
+          {
+            "expression": "p(xₜ|x₀:ₜ₋₁,z₁:ₜ₋₁,u₁:ₜ)=p(xₜ|xₜ₋₁,uₜ)",
+            "variables": {
+              "p": "conditional probability mass or density",
+              "xₜ": "state at time index t",
+              "x₀:ₜ₋₁": "state history before t",
+              "z₁:ₜ₋₁": "past observation sequence",
+              "u₁:ₜ": "control history through t",
+              "xₜ₋₁": "immediately preceding state",
+              "uₜ": "current control"
+            },
+            "units": {
+              "p": "probability mass dimensionless; density inverse state-volume units",
+              "xₜ": "model-defined state units",
+              "x₀:ₜ₋₁": "same component units as x",
+              "z₁:ₜ₋₁": "sensor-specific units",
+              "u₁:ₜ": "control-specific units",
+              "xₜ₋₁": "same component units as x",
+              "uₜ": "control-specific units"
+            },
+            "assumptions": [
+              "Controlled first-order Markov model with sufficient state."
+            ]
+          }
+        ],
+        "simpleExplanation": "A Markov transition model reduces conditional dependence after the previous state is specified. The state’s estimated distribution may still summarize a long observation history.",
+        "memoryAid": null,
+        "misconceptions": [
+          "An observation can be noisy or partial; the stated assumption conditions on the state, not observation alone.",
+          "The right side explicitly retains xₜ₋₁ as well as uₜ.",
+          "Filtering summarizes observation history in a belief; Markov transitions do not eliminate that information."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W09-Q08",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W09-Q08.json",
+      "originalRecordSha256": "260a3ef5fd14b054a02bb56f11c4e0301af53b350e2ba251c22cba5aa262fec6",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "conditional_independence",
+        "state_vs_observation",
+        "belief_history"
+      ]
+    },
+    {
+      "id": "ASSIGN-W09-Q009",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "A planar EKF-SLAM state contains robot pose (xᵥ,yᵥ,θᵥ) and M=6 landmarks, each with two coordinates. What are the dimensions of the state column, full covariance, and robot-to-map cross-covariance block, respectively?",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "easy",
+      "cognitiveSkill": "numerical",
+      "week": 9,
+      "lectureId": null,
+      "topic": "Assignment Week 9",
+      "subtopic": "Augmented SLAM dimensions",
+      "tags": [
+        "assignment",
+        "week-9"
+      ],
+      "conceptIds": [
+        "ASSIGN-W09-C009"
+      ],
+      "assumptions": [
+        "Planar point landmarks; state order robot pose first, then all landmark coordinate pairs."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "12×1; 12×12; 3×12."
+        },
+        {
+          "id": "o4",
+          "text": "21×1; 21×21; 3×18."
+        },
+        {
+          "id": "o1",
+          "text": "15×1; 15×15; 3×12."
+        },
+        {
+          "id": "o3",
+          "text": "15×1; 15×15; 12×3."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0042",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 42,
+          "kind": "equation",
+          "locator": "Assignment physical page 42: Week 9 Q9, robot/landmark coordinate counts and covariance dimensions",
+          "evidenceText": "Robot pose has3 variables;6 landmarks contribute2 each; state15×1 and covariance15×15.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "State dimension determines both covariance axes; block orientation follows which variables index its rows and columns.",
+        "optionExplanations": {
+          "o1": "Three pose variables plus 12 map coordinates give 15; the robot-to-map block has 3 robot rows and 12 map columns.",
+          "o2": "This leaves the three robot pose coordinates out of the augmented state.",
+          "o3": "The state and full covariance are correct, but12×3 is the transpose map-to-robot block.",
+          "o4": "This assigns three coordinates per planar landmark rather than the specified two."
+        },
+        "steps": [
+          "Map dimension2M=12.",
+          "Full dimension n=3+12=15.",
+          "A state column is 15×1; full covariance 15×15; robot-to-map block 3×12."
+        ],
+        "formulas": [
+          {
+            "expression": "n=3+2M; dim(μ)=n×1; dim(Σ)=n×n; dim(Σᵥₘ)=3×(2M)",
+            "variables": {
+              "n": "augmented scalar state dimension",
+              "M": "planar landmark count",
+              "μ": "augmented mean column",
+              "Σ": "full covariance",
+              "Σᵥₘ": "robot-row/map-column covariance block"
+            },
+            "units": {
+              "n": "variables",
+              "M": "landmarks",
+              "μ": "position components m; heading rad",
+              "Σ": "entry ij has units of state_i × state_j",
+              "Σᵥₘ": "position-position m²; heading-position rad·m"
+            },
+            "assumptions": [
+              "Three planar robot pose variables and two position coordinates per landmark."
+            ]
+          }
+        ],
+        "simpleExplanation": "State dimension determines both covariance axes; block orientation follows which variables index its rows and columns.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This leaves the three robot pose coordinates out of the augmented state.",
+          "The state and full covariance are correct, but12×3 is the transpose map-to-robot block.",
+          "This assigns three coordinates per planar landmark rather than the specified two."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W09-Q09",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W09-Q09.json",
+      "originalRecordSha256": "25b6bcba9f315023b777cd27291c97e459a206cb03c1fd2f20fe73c7b13e31f5",
+      "difficultyRationale": "A direct distinction or short calculation under stated assumptions.",
+      "testedAssignmentAngles": [
+        "state_dimension",
+        "full_covariance",
+        "cross_block_orientation"
+      ]
+    },
+    {
+      "id": "ASSIGN-W09-Q010",
+      "version": 1,
+      "status": "draft",
+      "authorId": "complete_robotics_python_coverage:assignments-W07-W12-author",
+      "stem": "Use augmented order (x,y,θ,mₓ,mᵧ), with positions in m and θ in rad. Initially μ=(2,1,0,5,4), robot covariance diag(0.04,0.04,0.01), map covariance diag(0.09,0.09), and robot-map cross block zero. The robot moves d=2 m using x′=x+d cosθ, y′=y+d sinθ, θ′=θ. Landmarks remain static. Add independent robot-coordinate noise diag(0.01,0.01,0.0025) after Jacobian propagation, with zero map noise. Which predicted robot covariance and map covariance are correct? (Position variances use m², heading variance rad², position-heading entries m·rad.)",
+      "selectionMode": "single",
+      "type": "numerical",
+      "difficulty": "medium",
+      "cognitiveSkill": "numerical",
+      "week": 9,
+      "lectureId": null,
+      "topic": "Assignment Week 9",
+      "subtopic": "EKF heading-to-position covariance",
+      "tags": [
+        "assignment",
+        "week-9"
+      ],
+      "conceptIds": [
+        "ASSIGN-W09-C010"
+      ],
+      "assumptions": [
+        "First-order EKF covariance propagation; independent additive noise already expressed in robot pose coordinates; static landmark model; zero initial robot-map cross covariance."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Robot [[0.05,0,0],[0,0.09,0.02],[0,0.02,0.0125]]; map diag(0.09,0.09)."
+        },
+        {
+          "id": "o4",
+          "text": "Robot [[0.05,0,0],[0,0.09,0.02],[0,0.02,0.0125]]; map diag(0.10,0.10)."
+        },
+        {
+          "id": "o3",
+          "text": "Robot [[0.05,0,0],[0,0.06,0.01],[0,0.01,0.0125]]; map diag(0.09,0.09)."
+        },
+        {
+          "id": "o2",
+          "text": "Robot diag(0.05,0.05,0.0125); map diag(0.09,0.09)."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "assignments-p0043",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 43,
+          "kind": "equation",
+          "locator": "Assignment physical page 43: Week 9 Q10, robot/map means, initial block covariances and motion noise",
+          "evidenceText": "Robot[2,1,0]ᵀ; map[5,4]ᵀ; Σvv=diag(.04,.04,.01),Σmm=diag(.09,.09),Σvm=0; displacement2m,V=diag(.01,.01,.0025).",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "assignments-p0044",
+          "sourceId": "assignments",
+          "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+          "physicalPage": 44,
+          "kind": "derivation",
+          "locator": "Assignment physical page 44: Week 9 Q10 derivation, motion model, robot and augmented Jacobians, covariance blocks",
+          "evidenceText": "J_robot=[[1,0,0],[0,1,2],[0,0,1]] at θ=0; mean[4,1,0,5,4]; predicted robot block[[.05,0,0],[0,.09,.02],[0,.02,.0125]], map unchanged and cross block zero.",
+          "role": "premise",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Even at zero mean heading, heading uncertainty propagates into lateral uncertainty. Static landmarks do not translate with the robot during prediction.",
+        "optionExplanations": {
+          "o1": "At θ=0, ∂y′/∂θ=2, adding4×0.01 to y variance and2×0.01 to its heading covariance; static map covariance is unchanged.",
+          "o2": "This replaces the motion Jacobian with identity and loses propagation of heading uncertainty into lateral position.",
+          "o3": "These entries correspond to using a unit displacement derivative instead of the stated d=2.",
+          "o4": "The robot block is right, but this injects robot process noise into the explicitly static, zero-process-noise landmark block."
+        },
+        "steps": [
+          "Mean becomes (4,1,0,5,4): only robot x moves.",
+          "At θ=0 and d=2, J_robot=[[1,0,0],[0,1,2],[0,0,1]].",
+          "Robot variance x:0.04+0.01=0.05; y:0.04+4×0.01+0.01=0.09; θ:0.01+0.0025=0.0125.",
+          "Cov(y,θ)=2×0.01=0.02 and Cov(x,θ)=0.",
+          "The augmented Jacobian is blockdiag(J_robot,I₂); zero robot-map cross covariance remains zero and map covariance stays diag(.09,.09)."
+        ],
+        "formulas": [
+          {
+            "expression": "μ̄=(x+d cosθ,y+d sinθ,θ,mₓ,mᵧ); Jᵥ=[[1,0,−d sinθ],[0,1,d cosθ],[0,0,1]]; J=blockdiag(Jᵥ,I₂); Σ̄=JΣJᵀ+blockdiag(V,0₂)",
+            "variables": {
+              "μ̄": "predicted augmented mean",
+              "x": "initial robot horizontal position",
+              "y": "initial robot vertical position",
+              "θ": "robot heading",
+              "d": "forward displacement",
+              "mₓ": "static landmark horizontal coordinate",
+              "mᵧ": "static landmark vertical coordinate",
+              "Jᵥ": "robot motion Jacobian",
+              "J": "augmented motion Jacobian",
+              "I₂": "2×2 identity for static landmark",
+              "Σ": "initial augmented covariance",
+              "Σ̄": "predicted augmented covariance",
+              "V": "independent additive robot process covariance",
+              "0₂": "zero 2×2 landmark process covariance"
+            },
+            "units": {
+              "μ̄": "positions m; heading rad",
+              "x": "m",
+              "y": "m",
+              "θ": "rad",
+              "d": "m",
+              "mₓ": "m",
+              "mᵧ": "m",
+              "Jᵥ": "entry ij has units state_i/state_j",
+              "J": "entry ij has units state_i/state_j",
+              "I₂": "dimensionless",
+              "Σ": "entry ij units state_i×state_j",
+              "Σ̄": "entry ij units state_i×state_j",
+              "V": "diag entries m²,m²,rad²",
+              "0₂": "m²"
+            },
+            "assumptions": [
+              "Linearize at the prior mean; additive state-coordinate noise independent of initial state; landmark does not move."
+            ]
+          }
+        ],
+        "simpleExplanation": "Even at zero mean heading, heading uncertainty propagates into lateral uncertainty. Static landmarks do not translate with the robot during prediction.",
+        "memoryAid": null,
+        "misconceptions": [
+          "This replaces the motion Jacobian with identity and loses propagation of heading uncertainty into lateral position.",
+          "These entries correspond to using a unit displacement derivative instead of the stated d=2.",
+          "The robot block is right, but this injects robot process noise into the explicitly static, zero-process-noise landmark block."
+        ],
+        "examTraps": [],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "assignment_adapted",
+      "reviewIds": [],
+      "assignmentSourceItemId": "ASSIGN-W09-Q10",
+      "originalRecordPath": "audits/assignment-originals/ASSIGN-W09-Q10.json",
+      "originalRecordSha256": "e5ffeef2b33ea6052c60daff99672aa622db2df5e64b6372614ecd1ac3801c84",
+      "difficultyRationale": "Requires combining multiple operations or assumptions.",
+      "testedAssignmentAngles": [
+        "full_mean",
+        "Jacobian_derivation",
+        "heading_position_coupling",
+        "static_map",
+        "cross_covariance"
+      ]
+    }
+  ],
+  "concepts": [
+    {
+      "id": "ASSIGN-W09-C001",
+      "title": "Crossover coordinates versus fitness",
+      "description": "Crossover computes candidate coordinates. Selection ranks their specified fitness, not their coordinates unless the fitness increases accordingly.",
+      "slideIds": [
+        "assignments-p0039"
+      ],
+      "questionIds": [
+        "ASSIGN-W09-Q001"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 9",
+      "subtopic": "Crossover coordinates versus fitness",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "all_crossover_children",
+        "counterexample_to_coordinate_ranking",
+        "fitness_premise"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W09-C002",
+      "title": "Binary code versus decoded real value",
+      "description": "The integer chromosome code is 42, while its decoded real variable is 11; these are different representations.",
+      "slideIds": [
+        "assignments-p0039"
+      ],
+      "questionIds": [
+        "ASSIGN-W09-Q002"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 9",
+      "subtopic": "Binary code versus decoded real value",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "binary_representation",
+        "endpoint_denominator",
+        "integer_code"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W09-C003",
+      "title": "Horizontal-first grid fitness",
+      "description": "The chromosome’s route must be decoded before evaluating obstacle and turn penalties; counting all map obstacles is not the path collision count.",
+      "slideIds": [
+        "assignments-p0040"
+      ],
+      "questionIds": [
+        "ASSIGN-W09-Q003"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 9",
+      "subtopic": "Horizontal-first grid fitness",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "collision_count",
+        "decoded_cells",
+        "exact_grid",
+        "fitness",
+        "turns"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W09-C004",
+      "title": "Decode order counterfactual",
+      "description": "Changing movement order preserves the Manhattan length of each segment but can change collisions and turns on the concatenated path.",
+      "slideIds": [
+        "assignments-p0040"
+      ],
+      "questionIds": [
+        "ASSIGN-W09-Q004"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 9",
+      "subtopic": "Decode order counterfactual",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "collision_variation",
+        "decoder_counterfactual",
+        "same_length",
+        "turn_boundary"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W09-C005",
+      "title": "Persistent sequence memory",
+      "description": "The chosen mechanism retains state. This does not claim that a feedforward or convolutional model supplied with an explicit history window could never use temporal information.",
+      "slideIds": [
+        "assignments-p0041"
+      ],
+      "questionIds": [
+        "ASSIGN-W09-Q005"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 9",
+      "subtopic": "Persistent sequence memory",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "feedforward_history_qualification",
+        "reset_boundary",
+        "sequence_memory"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W09-C006",
+      "title": "Network parameter accounting",
+      "description": "Each pair of neurons in adjacent fully connected layers contributes a weight; biases are a separate per-output-unit count.",
+      "slideIds": [
+        "assignments-p0041"
+      ],
+      "questionIds": [
+        "ASSIGN-W09-Q006"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 9",
+      "subtopic": "Network parameter accounting",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "full_network_count",
+        "layer_scope",
+        "weights_vs_biases"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W09-C007",
+      "title": "Gaussian motion prediction",
+      "description": "Prediction moves the center while increasing uncertainty by the independent noise covariance; this is not a measurement correction.",
+      "slideIds": [
+        "assignments-p0041",
+        "assignments-p0042"
+      ],
+      "questionIds": [
+        "ASSIGN-W09-Q007"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 9",
+      "subtopic": "Gaussian motion prediction",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "independent_noise",
+        "mean_and_covariance",
+        "prediction_vs_update"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W09-C008",
+      "title": "State Markov assumption and belief history",
+      "description": "A Markov transition model reduces conditional dependence after the previous state is specified. The state’s estimated distribution may still summarize a long observation history.",
+      "slideIds": [
+        "assignments-p0042"
+      ],
+      "questionIds": [
+        "ASSIGN-W09-Q008"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 9",
+      "subtopic": "State Markov assumption and belief history",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "belief_history",
+        "conditional_independence",
+        "state_vs_observation"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W09-C009",
+      "title": "Augmented SLAM dimensions",
+      "description": "State dimension determines both covariance axes; block orientation follows which variables index its rows and columns.",
+      "slideIds": [
+        "assignments-p0042"
+      ],
+      "questionIds": [
+        "ASSIGN-W09-Q009"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 9",
+      "subtopic": "Augmented SLAM dimensions",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "cross_block_orientation",
+        "full_covariance",
+        "state_dimension"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    },
+    {
+      "id": "ASSIGN-W09-C010",
+      "title": "EKF heading-to-position covariance",
+      "description": "Even at zero mean heading, heading uncertainty propagates into lateral uncertainty. Static landmarks do not translate with the robot during prediction.",
+      "slideIds": [
+        "assignments-p0043",
+        "assignments-p0044"
+      ],
+      "questionIds": [
+        "ASSIGN-W09-Q010"
+      ],
+      "status": "drafted",
+      "topic": "Assignment Week 9",
+      "subtopic": "EKF heading-to-position covariance",
+      "prerequisiteConceptIds": [],
+      "examinationAngles": [
+        "Jacobian_derivation",
+        "cross_covariance",
+        "full_mean",
+        "heading_position_coupling",
+        "static_map"
+      ],
+      "coverageNotes": "Original source item preserved separately. Adaptations require independent review; existing source-key audit is nonblind and does not approve generated content."
+    }
+  ],
+  "coverageNote": "All ten original items represented; immutable originals remain outside the approved pool. Meaningful assumptions and calculation angles are explicitly stated."
+}

@@ -30,9 +30,9 @@ ck('W03 Q008 energy split',.5*2*(3**2+4**2)+.5*.5*2**2==26)
 q1,q2,l1,l2,m1,m2=sp.symbols('q1 q2 l1 l2 m1 m2',real=True);qd1,qd2=sp.symbols('qd1 qd2',real=True)
 p1=sp.Matrix([l1*sp.cos(q1),l1*sp.sin(q1)]);p2=p1+sp.Matrix([l2*sp.cos(q1+q2),l2*sp.sin(q1+q2)])
 qd=sp.Matrix([qd1,qd2]);v1=p1.jacobian([q1,q2])*qd;v2=p2.jacobian([q1,q2])*qd
-K=sp.expand((m1*v1.dot(v1)+m2*v2.dot(v2))/2);M=sp.simplify(sp.hessian(K,(qd1,qd2)))
+K=(m1*v1.dot(v1)+m2*v2.dot(v2))/2;M=sp.simplify(sp.hessian(K,(qd1,qd2)))
 expected=sp.Matrix([[(m1+m2)*l1*l1+m2*l2*l2+2*m2*l1*l2*sp.cos(q2),m2*l2*l2+m2*l1*l2*sp.cos(q2)],[m2*l2*l2+m2*l1*l2*sp.cos(q2),m2*l2*l2]])
-for i,j in itertools.product(range(2),repeat=2):ck(f'W03 Q009 symbolic M[{i},{j}]',sp.trigsimp(M[i,j]-expected[i,j])==0)
+for i,j in itertools.product(range(2),repeat=2):ck(f'W03 Q009 symbolic M[{i},{j}]',sp.trigsimp(sp.expand_trig(sp.expand(M[i,j]-expected[i,j])))==0)
 ck('W03 Q009 numeric matrix',M.subs({m1:2,m2:3,l1:1,l2:2,q2:sp.pi/3})==sp.Matrix([[23,15],[15,12]]))
 ck('W03 Q010 pair count',len(list(itertools.combinations(range(4),2)))==6)
 t=sp.symbols('t',real=True);poly=sp.Rational(3,4)*t*t-sp.Rational(1,4)*t**3

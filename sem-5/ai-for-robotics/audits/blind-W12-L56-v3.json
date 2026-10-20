@@ -1,0 +1,84 @@
+{
+  "batchId": "W12-L56-v3",
+  "questions": [
+    {
+      "id": "W12-L56-P1789-Q04",
+      "version": 3,
+      "stem": "Use this supplied client policy, not unprinted course code. Response R1 has three 20 ms chunks a1,a2,a3: a1 has played, a2/a3 are queued, and its conversation audio extent is 60 ms. On speech-start, cancel R1, clear its queued audio, mark its response ID canceled, and truncate its conversation audio extent to the amount already heard. Then receive late chunk a4 for R1; commit new user turn U2; create R2; receive its 20 ms chunks b1,b2; finally perform one playback step. Canceled-ID chunks are discarded, and each playback step plays one queued chunk. Which final state follows?",
+      "selectionMode": "single",
+      "type": "algorithm_trace",
+      "difficulty": "medium",
+      "cognitiveSkill": "algorithm",
+      "week": 12,
+      "lectureId": "L56",
+      "topic": "Demonstration of AI in Humanoid Robot",
+      "subtopic": "Event-driven speech and turn handling",
+      "assumptions": [
+        "The sequence and cancellation, queue-clearing, response-ID filtering and audio-extent truncation policies are explicitly supplied; the lecture does not print this state machine.",
+        "No playback occurs between the stated events except the final single playback step; the earlier a1 was already heard.",
+        "All earlier conversation turns and U2 remain; only R1’s audio extent is truncated. This model does not assert exact transcript-to-audio alignment or a returned truncated text transcript.",
+        "Cancellation/truncation succeed in this bounded model. No live API, audio device or course program is executed."
+      ],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Heard a1 then a2; queue a3,b1,b2; R1 extent 20 ms; U2 retained"
+        },
+        {
+          "id": "o2",
+          "text": "Heard a1 then b1; queue b2; R1 extent 20 ms; U2 retained"
+        },
+        {
+          "id": "o3",
+          "text": "Heard a1 then a4; queue b1,b2; R1 extent 20 ms; U2 retained"
+        },
+        {
+          "id": "o4",
+          "text": "Heard a1 then b1; queue b2; R1 extent 60 ms; U2 retained"
+        }
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p1789",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1789,
+          "kind": "statement",
+          "locator": "Lecture physical page 1789: printed Realtime interaction discussion.",
+          "role": "conflict",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1788",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1788,
+          "kind": "statement",
+          "locator": "Lecture physical page 1788: printed Realtime interaction discussion.",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1790",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1790,
+          "kind": "statement",
+          "locator": "Lecture physical page 1790: printed Realtime interaction discussion.",
+          "role": "premise",
+          "region": null
+        },
+        {
+          "slideId": "lectures-p1793",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 1793,
+          "kind": "statement",
+          "locator": "Lecture physical page 1793: printed Realtime interaction discussion.",
+          "role": "premise",
+          "region": null
+        }
+      ]
+    }
+  ]
+}

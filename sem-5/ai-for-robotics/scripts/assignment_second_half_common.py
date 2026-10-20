@@ -7,6 +7,7 @@ SOURCE='b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5'
 HANDOFF='audits/assignment-coverage/author-handoff-weeks-07-12-v2.json'
 H= json.loads((ROOT/HANDOFF).read_text())
 ITEMS={q['id']:q for q in H['items']}
+PRESERVATION_OVERRIDES={}
 NOW=lambda:datetime.datetime.now(datetime.timezone.utc).isoformat()
 def dump(path,data):
  p=ROOT/path;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
@@ -19,6 +20,9 @@ def C(page,locator,evidence,kind='statement',role='premise'):
 def preserve(week,relations):
  for item in [i for i in ITEMS.values() if i['week']==week]:
   record=copy.deepcopy(item)
+  if item['id'] in PRESERVATION_OVERRIDES:
+   record['authorTranscriptionCorrections']=[{'field':k,'frozenHandoffValue':copy.deepcopy(item.get(k)),'pixelCheckedValue':copy.deepcopy(v),'reason':'Author actual-page inspection resolves extraction or key-transcription artifact; source PDF and frozen handoff remain unchanged.','authorId':AUTHOR,'inspectedAt':PRESERVATION_OVERRIDES[item['id']].get('_inspectedAt')}for k,v in PRESERVATION_OVERRIDES[item['id']].items()if not k.startswith('_')]
+   record.update({k:copy.deepcopy(v)for k,v in PRESERVATION_OVERRIDES[item['id']].items()if not k.startswith('_')})
   record.update(recordPurpose='Immutable original prompt, source-labelled options, visible key, source text and original audit. Not an approved question.',sourceHandoffPath=HANDOFF,sourceHandoffSha256=sha(HANDOFF),originalSourceItemId=item['id'],relatedQuestionIds=relations[item['id']],literalOriginalDisposition='quarantined_original' if item['independentSourceKeyAuditStatus']=='conflicting_or_underspecified_quarantine' else 'source_record_only_not_in_question_pool')
   p=f"audits/assignment-originals/{item['id']}.json"
   if (ROOT/p).exists():

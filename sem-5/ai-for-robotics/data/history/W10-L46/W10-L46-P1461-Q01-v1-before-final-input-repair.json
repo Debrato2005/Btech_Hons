@@ -1,0 +1,95 @@
+{
+  "id": "W10-L46-P1461-Q01",
+  "version": 1,
+  "status": "draft",
+  "authorId": "L46-author-20261019",
+  "stem": "What mismatch can be established from the as-printed POS code and screenshot without running the tagger?",
+  "selectionMode": "single",
+  "type": "algorithm_trace",
+  "difficulty": "easy",
+  "cognitiveSkill": "algorithm",
+  "week": 10,
+  "lectureId": "L46",
+  "topic": "Natural Language Processing",
+  "subtopic": "POS ambiguity and source output provenance",
+  "tags": [
+    "nlp",
+    "pos-ambiguity"
+  ],
+  "conceptIds": [
+    "W10-L46-C-pos-ambiguity"
+  ],
+  "assumptions": [],
+  "options": [
+    {
+      "id": "o1",
+      "text": "The code preserves initial Pick, while the screenshot begins lowercase pick"
+    },
+    {
+      "id": "o2",
+      "text": "The code removes light, while the screenshot retains it"
+    },
+    {
+      "id": "o3",
+      "text": "The code requests entity categories, while the screenshot provides POS labels"
+    },
+    {
+      "id": "o4",
+      "text": "The code uses lemmatization, while the screenshot shows stems"
+    }
+  ],
+  "correctOptionIds": [
+    "o1"
+  ],
+  "citations": [
+    {
+      "slideId": "lectures-p1461",
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 1461,
+      "kind": "code",
+      "locator": "Printed slide 22: command2 assignment, tokenization line and lowercase first output token",
+      "evidenceText": "nltk.download('averaged_perceptron_tagger_eng')\ncommand2 = \"Pick up the light box\"\ntokens2 = word_tokenize(command2)\npos_tags2 = nltk.pos_tag(tokens2)\n\nSource page text/output labels:\nImplementation \u2013 POS Tagging\n\u2022  Limitation - Ambiguity:\n\u2022   It struggles when the commands can be confusing, like:\n    \u2013 Command: Pick up the light box\n           \u2022  Light could be adjective (not heavy) or noun (lamp)\n           \u2022 Here, light is tagged as a NOUN when it should\u2019ve been an adjective.\n\n\n\n\n\n Output:\n\n\n\n\n\n                                                                                                          22",
+      "role": "conflict",
+      "region": null
+    }
+  ],
+  "solution": {
+    "justification": "The code tokenizes command2 directly with no lower call, yet the shown first output token is lowercase.",
+    "optionExplanations": {
+      "o1": "Correct. The code tokenizes command2 directly with no lower call, yet the shown first output token is lowercase.",
+      "o2": "Incorrect. There is no stopword deletion or removal of light in this snippet.",
+      "o3": "Incorrect. The code calls pos_tag, so POS labels are expected.",
+      "o4": "Incorrect. Neither lemmatization nor stemming appears in the snippet."
+    },
+    "steps": [
+      "Read command2: its first token is capitalized Pick.",
+      "Read word_tokenize(command2): no lower operation appears.",
+      "Compare the screenshot token pick; that case change is not explained by the printed code."
+    ],
+    "formulas": [],
+    "simpleExplanation": "The code tokenizes command2 directly with no lower call, yet the shown first output token is lowercase.",
+    "memoryAid": null,
+    "misconceptions": [
+      "There is no stopword deletion or removal of light in this snippet.",
+      "The code calls pos_tag, so POS labels are expected.",
+      "Neither lemmatization nor stemming appears in the snippet."
+    ],
+    "examTraps": [],
+    "prerequisiteConceptIds": []
+  },
+  "origin": "generated",
+  "reviewIds": [],
+  "conflictResolution": {
+    "status": "explicit-qualification-pending-independent-review",
+    "questionVersion": 1,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1461,
+    "sourceClaim": "The code tokenizes capitalized Pick without lowercasing, but its displayed output begins lowercase pick.",
+    "basis": "Distinguish as-printed code from as-displayed output. The intended adjective and reported NN prediction are discussed without asserting fresh model reproduction.",
+    "method": "Trace string case through tokenization; inspect original notebook cell 24, which uses different examples. No corpus-dependent execution claimed.",
+    "scope": "This question version only; independent review required.",
+    "sourceIssueId": "L46-ISSUE-pos-output-case"
+  }
+}

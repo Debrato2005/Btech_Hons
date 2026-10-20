@@ -1,0 +1,221 @@
+--- /workspace/shared/robotics-verification-logs/assemble_bank-approved-575e2c9.py
++++ /workspace/shared/Btech_Hons/sem-5/ai-for-robotics/scripts/assemble_bank.py
+@@ -1,10 +1,199 @@
+ #!/usr/bin/env python3
+ """Assemble honest partial snapshots; never infer review or inspection completion."""
+ from pathlib import Path
+-import argparse,json,datetime,hashlib
++import argparse,json,datetime,hashlib,importlib.util
+ ROOT=Path(__file__).resolve().parents[1]
+ def read(p):return json.loads(p.read_text(encoding='utf-8'))
+ def dump(p,v):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(v,ensure_ascii=False,indent=2)+'\n')
++
++_REUSE_VALIDATOR=None
++def _reuse_validator():
++ global _REUSE_VALIDATOR
++ if _REUSE_VALIDATOR is None:
++  spec=importlib.util.spec_from_file_location('robotics_reuse_validator',Path(__file__).with_name('validate.py'))
++  _REUSE_VALIDATOR=importlib.util.module_from_spec(spec);spec.loader.exec_module(_REUSE_VALIDATOR)
++ return _REUSE_VALIDATOR
++
++def object_hash(value):
++ canonical_json=_reuse_validator().canonical_json
++ return hashlib.sha256(canonical_json(value).encode('utf-8')).hexdigest()
++
++def review_binding(review):
++ canonical_json=_reuse_validator().canonical_json
++ return {'id':review['id'],'reviewSha256':object_hash(review),'rawJSON':canonical_json(review)}
++
++def assignment_reuse_candidates(root):
++ """Keep exact input bytes available for the independent offline runtime gate."""
++ root=Path(root);reviews=[]
++ for path in sorted((root/'data/assignment-reuse-reviews').glob('*.json')):
++  raw=path.read_bytes();value=json.loads(raw)
++  for review in value if isinstance(value,list) else [value]:
++   binding=review_binding(review)
++   binding.update(path=path.relative_to(root).as_posix(),sha256=hashlib.sha256(raw).hexdigest())
++   reviews.append((review,binding))
++ candidates=[]
++ for path in sorted((root/'data/assignment-reuse-batches').glob('*.json')):
++  raw=path.read_bytes();batch=json.loads(raw);relative=path.relative_to(root).as_posix()
++  related=[(r,b) for r,b in reviews if r.get('mappingPath')==relative]
++  originals=[]
++  for mapping in batch.get('mappings',[]):
++   p=_reuse_local_file(root,mapping.get('originalRecordPath'))
++   if p and p.is_file():
++    data=p.read_bytes();originals.append({'path':mapping['originalRecordPath'],'sha256':hashlib.sha256(data).hexdigest(),'rawJSON':data.decode('utf-8')})
++  candidates.append({'batchPath':relative,'rawJSON':raw.decode('utf-8'),'sha256':hashlib.sha256(raw).hexdigest(),
++   'reviews':[r for r,b in related],'reviewBindings':{r['id']:b for r,b in related},'originalRecords':originals})
++ return candidates
++
++def _reuse_local_file(root,path):
++ if not isinstance(path,str) or not path or Path(path).is_absolute() or '..' in Path(path).parts or ':' in path:return None
++ value=(Path(root)/path).resolve()
++ return value if value.is_relative_to(Path(root).resolve()) else None
++
++def _reuse_ids(values):
++ return isinstance(values,list) and bool(values) and all(isinstance(x,str) and x.strip() for x in values) and len(set(values))==len(values)
++
++def _reuse_source_valid(ref,sources,slides):
++ source=sources.get(ref.get('sourceId'),{});slide=slides.get(ref.get('slideId'),{});page=ref.get('physicalPage');sha=ref.get('sourceSha256')
++ return (source.get('retrievalStatus')=='ready' and isinstance(sha,str) and len(sha)==64 and all(c in '0123456789abcdef' for c in sha) and source.get('sha256')==ref.get('sourceSha256')
++  and slide.get('sourceId')==ref.get('sourceId') and slide.get('sourceSha256')==ref.get('sourceSha256')
++  and type(page) is int and type(source.get('pageCount')) is int and page>0 and page<=source['pageCount'] and slide.get('physicalPage')==page
++  and slide.get('visualInspection',{}).get('status')=='complete' and slide.get('disposition') in ('examinable','repeated','excluded'))
++
++def _reuse_target_bindings(question,requested_ids,bank):
++ """Recheck exact approved reviews, not a mutable question status label."""
++ CHECK_KEYS,question_hash=_reuse_validator().CHECK_KEYS,_reuse_validator().question_hash
++ if not question or question.get('status')!='verified' or question.get('synthetic') or question.get('origin')=='synthetic':return None
++ citations=question.get('citations',[]);sources={s['id']:s for s in bank['sources']};slides={s['id']:s for s in bank['slides']}
++ if not citations or any(not _reuse_source_valid(c,sources,slides) for c in citations):return None
++ if any(c.get('role')=='conflict' for c in citations) and not question.get('conflictResolution'):return None
++ option_records=question.get('options')
++ if not isinstance(option_records,list) or len(option_records)<2 or any(not isinstance(o,dict) or not isinstance(o.get('id'),str) or not o['id'].strip() for o in option_records):return None
++ answers=question.get('correctOptionIds',[]);options=[o['id'] for o in option_records]
++ if not _reuse_ids(answers) or not _reuse_ids(options) or not set(answers)<=set(options):return None
++ if question.get('selectionMode') not in ('single','multi') or (question.get('selectionMode')=='single' and len(answers)!=1):return None
++ authors={a.strip() for a in [question.get('authorId'),*question.get('revisionAuthors',[])] if isinstance(a,str)};current=[]
++ for r in bank.get('reviews',[]):
++  if r.get('questionId')!=question['id'] or r.get('questionVersion')!=question.get('version') or r.get('questionSha256')!=question_hash(question):continue
++  if any(r.get('sourceVersions',{}).get(c['sourceId'])!=c['sourceSha256'] for c in citations):continue
++  if any(sources.get(sid,{}).get('sha256')!=sha for sid,sha in r.get('sourceVersions',{}).items()):continue
++  current.append(r)
++ if any(r.get('decision') in ('flagged','rejected') for r in current):return None
++ accepted={r['id']:r for r in current if r.get('decision')=='verified' and isinstance(r.get('reviewerId'),str) and r['reviewerId'].strip() and r['reviewerId'].strip() not in authors
++  and all(r.get('checks',{}).get(k) is True for k in CHECK_KEYS) and _reuse_ids(r.get('independentAnswerOptionIds')) and set(r['independentAnswerOptionIds'])==set(answers)
++  and {c['slideId'] for c in citations}<=set(r.get('reviewedSlideIds',[]))}
++ if not _reuse_ids(requested_ids) or not set(requested_ids)<=set(accepted) or not set(requested_ids)<=set(question.get('reviewIds',[])):return None
++ return [review_binding(accepted[rid]) for rid in requested_ids]
++
++def build_assignment_reuse(bank,root,candidates=None,*,check_files=True):
++ """Derive fail-closed semantic links without editing any question or concept.
++
++ A mapping's author status is not approval. A current independent mapping review
++ and every unchanged target's existing source-bound approval are both required.
++ Missing, stale, disputed or malformed inputs produce diagnostics, never links.
++ """
++ import copy
++ canonical_json,question_hash=_reuse_validator().canonical_json,_reuse_validator().question_hash
++ root=Path(root);candidates=assignment_reuse_candidates(root) if candidates is None else copy.deepcopy(candidates)
++ result={'formatVersion':1,'candidates':candidates,'links':[],'bySourceItem':{},'byQuestion':{},'byConcept':{},'diagnostics':[]}
++ qmap={q['id']:q for q in bank['questions']};cmap={c['id']:c for c in bank['concepts']};sources={s['id']:s for s in bank['sources']};slides={s['id']:s for s in bank['slides']}
++ def file_matches(path,sha):
++  p=_reuse_local_file(root,path)
++  return p is not None and (not check_files or (p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest()==sha))
++ def binding_valid(binding,record):
++  return isinstance(binding,dict) and binding.get('reviewSha256')==object_hash(record) and binding.get('rawJSON')==canonical_json(record)
++ seen=set();source_counts={}
++ for candidate in candidates:
++  batch_id=candidate.get('batchPath','unknown');base=[]
++  try:
++   raw=candidate['rawJSON'];batch=json.loads(raw)
++   if not isinstance(batch,dict) or not isinstance(batch.get('mappings'),list):raise ValueError('Malformed mapping batch.')
++   if hashlib.sha256(raw.encode('utf-8')).hexdigest()!=candidate.get('sha256') or not file_matches(batch_id,candidate.get('sha256')):base.append('Mapping file hash is missing or stale.')
++  except (KeyError,TypeError,ValueError) as exc:
++   result['diagnostics'].append({'mappingId':batch_id,'reasons':['Malformed mapping candidate: '+str(exc)]});continue
++  mappings=batch['mappings'];ids=[m.get('id') for m in mappings if isinstance(m,dict)]
++  if not _reuse_ids(ids) or len(ids)!=len(mappings):base.append('Mapping IDs must be nonempty and unique.')
++  if type(batch.get('proposedAdditionalUniqueQuestions')) is not int or batch['proposedAdditionalUniqueQuestions']!=0:base.append('Reuse cannot create additional unique questions.')
++  reviews=candidate.get('reviews',[]);review_ids=[r.get('id') for r in reviews if isinstance(r,dict)]
++  if reviews and (not _reuse_ids(review_ids) or len(review_ids)!=len(reviews)):base.append('Mapping review IDs are malformed or duplicated.')
++  if not isinstance(batch.get('authorId'),str) or not batch['authorId'].strip():base.append('Mapping author identity is missing.')
++  authors={a.strip() for a in [batch.get('authorId'),*batch.get('revisionAuthors',[])] if isinstance(a,str)}
++  for mapping in mappings:
++   if not isinstance(mapping,dict):continue
++   mid=mapping.get('id','unknown');reasons=list(base);source_item=mapping.get('sourceItemId')
++   source_counts[source_item]=source_counts.get(source_item,0)+1
++   if mid in seen or source_counts[source_item]>1:reasons.append('Duplicate mapping ID or source item.')
++   seen.add(mid)
++   targets=mapping.get('reusedQuestionIds');bindings=mapping.get('reusedQuestions',[])
++   if not _reuse_ids(targets) or not isinstance(bindings,list) or any(not isinstance(x,dict) for x in bindings):reasons.append('Malformed target question bindings.');bindings=[];targets=[]
++   bound_ids=[b.get('questionId') for b in bindings]
++   if not _reuse_ids(bound_ids) or set(bound_ids)!=set(targets):reasons.append('Target IDs and bindings differ or repeat.')
++   if mapping.get('primaryReusedQuestionId') not in targets:reasons.append('Primary reused question is absent.')
++   pages=mapping.get('physicalPages',[]);source=sources.get(mapping.get('sourceId'),{})
++   if source.get('role')!='assignment_solutions':reasons.append('Reuse source is not an assignment-solutions source.')
++   if not isinstance(pages,list) or not pages or any(type(p) is not int for p in pages) or len(set(pages))!=len(pages):reasons.append('Malformed assignment source pages.');pages=[]
++   source_slides=[s for s in slides.values() if s.get('sourceId')==mapping.get('sourceId') and s.get('physicalPage') in pages]
++   if len(source_slides)!=len(pages) or any(not _reuse_source_valid({'sourceId':mapping.get('sourceId'),'sourceSha256':mapping.get('sourceSha256'),'slideId':s['id'],'physicalPage':s['physicalPage']},sources,slides) for s in source_slides):reasons.append('Assignment source/page/inspection binding is not current.')
++   concept=cmap.get(mapping.get('assignmentConceptId'))
++   if not concept or not {s['id'] for s in source_slides}<=set(concept.get('slideIds',[])) or mapping.get('duplicateQuestionId') not in concept.get('questionIds',[]):reasons.append('Assignment concept/source link is missing.')
++   originals=[x for x in candidate.get('originalRecords',[]) if x.get('path')==mapping.get('originalRecordPath')]
++   try:
++    if len(originals)!=1:raise ValueError()
++    original_binding=originals[0];original=json.loads(original_binding['rawJSON'])
++    if hashlib.sha256(original_binding['rawJSON'].encode('utf-8')).hexdigest()!=mapping.get('originalRecordSha256') or original_binding.get('sha256')!=mapping.get('originalRecordSha256') or not file_matches(mapping.get('originalRecordPath'),mapping.get('originalRecordSha256')):raise ValueError()
++    if any(original.get(k)!=mapping.get(k) for k in ('sourceId','sourceSha256','physicalPages')) or original.get('id')!=source_item:raise ValueError()
++   except (ValueError,TypeError,KeyError):reasons.append('Original assignment record is missing, changed or mismatched.')
++   duplicate=qmap.get(mapping.get('duplicateQuestionId'))
++   if not duplicate or duplicate.get('status') not in ('flagged','rejected') or question_hash(duplicate)!=mapping.get('duplicateQuestionSha256') or duplicate.get('assignmentSourceItemId')!=source_item or mapping.get('assignmentConceptId') not in duplicate.get('conceptIds',[]) or duplicate['id'] in targets or duplicate['id'] not in batch.get('duplicatesToExcludeFromVerifiedPool',[]):reasons.append('Duplicate adaptation is missing, changed or not excluded.')
++   question_bindings=[]
++   for binding in bindings:
++    q=qmap.get(binding.get('questionId'));accepted=_reuse_target_bindings(q,binding.get('reviewIds'),bank)
++    if not q or q.get('version')!=binding.get('questionVersion') or question_hash(q)!=binding.get('questionSha256') or not accepted or set(binding.get('sourceSlideIds',[]))!={c['slideId'] for c in q.get('citations',[])}:
++     reasons.append('Reused target lacks its exact current question/source/review approval: '+str(binding.get('questionId')));continue
++    question_bindings.append({'questionId':q['id'],'questionVersion':q['version'],'questionSha256':question_hash(q),'reviewBindings':accepted})
++   accepted_reviews=[];expected_hashes={b.get('questionId'):b.get('questionSha256') for b in bindings}
++   for review in reviews:
++    if not isinstance(review,dict) or review.get('mappingPath')!=batch_id or review.get('mappingSha256')!=candidate.get('sha256'):continue
++    items=[r for r in review.get('mappingReviews',[]) if r.get('mappingId')==mid]
++    if review.get('decision') in ('flagged','rejected') or any(r.get('decision') in ('flagged','rejected') for r in items):reasons.append('Current independent mapping dispute is unresolved.');continue
++    reviewer=review.get('reviewerId');bound=candidate.get('reviewBindings',{}).get(review.get('id'))
++    if review.get('decision')!='verified' or not isinstance(reviewer,str) or not reviewer.strip() or reviewer.strip() in authors or review.get('reviewType')!='independent_source_item_reuse_mapping' or not binding_valid(bound,review) or not file_matches(bound.get('path'),bound.get('sha256')) or len(items)!=1:continue
++    item=items[0]
++    if item.get('decision')!='verified' or item.get('sourceItemId')!=source_item or item.get('reusedQuestionHashes')!=expected_hashes or item.get('sourcePages')!=pages or type(item.get('additionalUniqueQuestions')) is not int or item['additionalUniqueQuestions']!=0 or item.get('originalRecordPreserved') is not True or item.get('duplicateExclusionRequired')!=mapping.get('duplicateQuestionId'):continue
++    evidence=review.get('sourceInspectionEvidence',{})
++    if evidence and not file_matches(evidence.get('path'),evidence.get('sha256')):continue
++    if review.get('responseSealPath') and not file_matches(review['responseSealPath'],review.get('responseSealSha256')):continue
++    accepted_reviews.append(review_binding(review))
++   if not accepted_reviews:reasons.append('No exact current independent mapping approval.')
++   if reasons:
++    result['diagnostics'].append({'mappingId':mid,'reasons':sorted(set(reasons))});continue
++   link={k:copy.deepcopy(mapping[k]) for k in ('id','sourceItemId','assignmentConceptId','sourceId','sourceSha256','physicalPages','primaryReusedQuestionId','reusedQuestionIds','duplicateQuestionId')}
++   link.update(sourceSlideIds=sorted(s['id'] for s in source_slides),coverageKind='reviewed_semantic_reuse',additionalUniqueQuestions=0,
++    mappingPath=batch_id,mappingFileSha256=candidate['sha256'],mappingSha256=object_hash(mapping),mappingRawJSON=canonical_json(mapping),reviewBindings=accepted_reviews,questionBindings=question_bindings,
++    duplicateBinding={'questionId':duplicate['id'],'questionVersion':duplicate['version'],'questionSha256':question_hash(duplicate),'rawJSON':canonical_json({k:v for k,v in duplicate.items() if k not in ('status','reviewIds')})})
++   result['links'].append(link)
++ # Conflicting duplicate mappings must invalidate all copies, not just the last.
++ bad_ids={d['mappingId'] for d in result['diagnostics']}
++ result['links']=[x for x in result['links'] if x['id'] not in bad_ids and source_counts[x['sourceItemId']]==1]
++ for link in result['links']:
++  result['bySourceItem'].setdefault(link['sourceItemId'],[]).append(link['id'])
++  result['byConcept'].setdefault(link['assignmentConceptId'],[]).append(link['id'])
++  for qid in link['reusedQuestionIds']:result['byQuestion'].setdefault(qid,[]).append(link['id'])
++ return result
++
++def assignment_reuse_errors(bank,root,*,check_files=True):
++ """Recompute projections and reject stale, injected or one-way bank sidecars."""
++ value=bank.get('assignmentReuse')
++ if value is None:
++  if any(q.get('assignmentSourceItemId') for q in bank.get('questions',[])) and list((Path(root)/'data/assignment-reuse-batches').glob('*.json')):return ['Assignment reuse sidecar is missing from the assembled bank.']
++  return []
++ if not isinstance(value,dict) or value.get('formatVersion')!=1 or not isinstance(value.get('candidates'),list):return ['Malformed assignment reuse sidecar.']
++ try:
++  expected=build_assignment_reuse(bank,root,value['candidates'],check_files=check_files)
++  errors=[] if value==expected else ['Assignment reuse sidecar differs from current fail-closed mapping/source/target/review bindings.']
++  if check_files and value['candidates']!=assignment_reuse_candidates(root):errors.append('Assignment reuse candidates differ from current source sidecar files.')
++  return errors
++ except (KeyError,TypeError,ValueError,AttributeError) as exc:return ['Malformed assignment reuse sidecar: '+str(exc)]
++
+ def main():
+  ap=argparse.ArgumentParser();ap.add_argument('--version');a=ap.parse_args()
+  manifest=read(ROOT/'sources/manifest.json');slides=[]
+@@ -62,6 +251,7 @@
+   d=read(p);d=d.get('learningTools',d)
+   for k in tools:tools[k].extend(d.get(k,[]))
+  bank={'schemaVersion':'1.0.0','bankVersion':a.version or datetime.datetime.now(datetime.timezone.utc).strftime('0.1.%Y%m%dT%H%M%SZ'),'title':'Semester 5 · AI for Robotics','complete':False,'sources':manifest['sources'],'slides':slides,'concepts':concepts,'questions':questions,'reviews':reviews,'assets':manifest['assets'],'learningTools':tools,'notes':['Work in progress: unreviewed pages and draft questions are not complete or validated coverage.','Only independent source-bound verified questions enter normal study and exams.']}
++ bank['assignmentReuse']=build_assignment_reuse(bank,ROOT)
+  from learning_resources import prepare_integrity,apply_tool_gate
+  tool_diagnostics=apply_tool_gate(bank,ROOT)
+  bank['learningResourceIntegrity']=prepare_integrity(bank,ROOT)
+@@ -70,6 +260,9 @@
+  if challenge.exists():bank['coverageChallenge']=read(challenge)
+  dump(ROOT/'data/bank.json',bank)
+  counts={'sourcePages':len(slides),'visuallyInspectedPages':sum(s['visualInspection']['status']=='complete' for s in slides),'excludedPages':sum(s['disposition']=='excluded' for s in slides),'conceptRecords':len(concepts),'draftQuestions':sum(q['status']=='draft' for q in questions),'verifiedQuestions':sum(q['status']=='verified' for q in questions),'flaggedQuestions':sum(q['status']=='flagged' for q in questions),'reviews':len(reviews)}
++ counts['assignmentItemsWithReviewedReuse']=len(bank['assignmentReuse']['bySourceItem'])
++ counts['conceptsWithReviewedAssignmentReuse']=len(bank['assignmentReuse']['byConcept'])
++ counts['additionalUniqueQuestionsFromReuse']=0
+  dump(ROOT/'data/progress-summary.json',{'bankVersion':bank['bankVersion'],'complete':False,'counts':counts})
+  print(json.dumps(counts))
+ if __name__=='__main__':main()

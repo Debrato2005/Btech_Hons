@@ -1,0 +1,105 @@
+--- pre-extension/scripts/question_visuals.py
++++ candidate-1.0.5/scripts/question_visuals.py
+@@ -19,6 +19,9 @@
+ _SPEC.loader.exec_module(_VALIDATOR)
+ canonical_json, question_hash = _VALIDATOR.canonical_json, _VALIDATOR.question_hash
+ VISUAL_CHECKS = ('inventoryCompleteness', 'requiredInputFidelity', 'legibility', 'noAnswerLeak', 'sourceLinkage')
++_SUP_SPEC = importlib.util.spec_from_file_location('question_supplemental', Path(__file__).with_name('question_supplemental.py'))
++_SUPPLEMENTAL = importlib.util.module_from_spec(_SUP_SPEC)
++_SUP_SPEC.loader.exec_module(_SUPPLEMENTAL)
+ 
+ 
+ def digest(value):
+@@ -52,8 +55,12 @@
+     for path in sorted((root / 'data/question-visuals/reviews').glob('*.json')):
+         value = _VALIDATOR.load_json(path)
+         reviews.extend(value if isinstance(value, list) else value.get('reviews', [value]))
+-    return {'manifest': {k: copy.deepcopy(v) for k, v in manifest.items() if k not in ('records', 'assets')},
+-            'records': manifest.get('records', []), 'assets': manifest.get('assets', []), 'reviews': reviews}
++    result = {'manifest': {k: copy.deepcopy(v) for k, v in manifest.items() if k not in ('records', 'assets', 'supplementalInputs')},
++              'records': manifest.get('records', []), 'assets': manifest.get('assets', []), 'reviews': reviews}
++    if 'supplementalInputs' in manifest:
++        result['supplementalInputs'] = manifest['supplementalInputs']
++        result['supplementalArtifacts'] = _SUPPLEMENTAL.load_artifacts(root, manifest['supplementalInputs'])
++    return result
+ 
+ 
+ def source_ref_valid(ref, sources, slides):
+@@ -185,6 +192,9 @@
+     result = {'formatVersion': 1, **inputs, 'reviewBindings': {}, 'assetBindings': {}, 'bindings': {}, 'diagnostics': []}
+     sources, slides = ({x['id']: x for x in bank[k]} for k in ('sources', 'slides'))
+     qmap = {q['id']: q for q in bank['questions']}
++    supplemental, supplemental_bindings, supplemental_errors = _SUPPLEMENTAL.prepare(inputs.get('supplementalInputs', []), inputs.get('supplementalArtifacts', {}), root, check_files=check_files)
++    if 'supplementalInputs' in inputs:
++        result['supplementalBindings'] = supplemental_bindings
+     records, assets, reviews, manifest = (inputs[k] for k in ('records', 'assets', 'reviews', 'manifest'))
+     global_reasons = []
+     if not isinstance(manifest, dict) or not nonblank(manifest.get('authorId')):
+@@ -232,13 +242,26 @@
+         if not nonblank(record.get('authorId')) or type(record.get('version')) is not int or record['version'] < 1 or not nonblank(record.get('reason')):
+             reasons.append('Visual record lacks valid authorship, version or dependency reasoning.')
+         aids, required, refs = record.get('assetIds'), record.get('requiredInputs'), record.get('sourceRefs')
++        sids = record.get('supplementalInputIds', [])
++        if not unique_strings(sids, empty=True):
++            reasons.append('Supplemental input IDs are malformed.'); sids = []
++        if supplemental_errors.get('*'):
++            reasons.extend(supplemental_errors['*'])
++        for sid in sids:
++            if sid not in supplemental:
++                reasons.append('Required supplemental input is missing: ' + sid)
++            else:
++                reasons.extend(sid + ': ' + error for error in supplemental_errors[sid])
++        has_output = any(supplemental.get(sid, {}).get('kind') == 'verbatim_saved_output' for sid in sids)
++        if has_output and record.get('savedOutputUse') != 'explicit_output_reading':
++            reasons.append('Historical output is permitted only as an explicit output-reading stimulus.')
+         if not unique_strings(aids, empty=True) or not unique_strings(required, empty=True):
+             reasons.append('Visual asset IDs or required inputs are malformed.'); aids, required = [], []
+         if record.get('dependencyStatus') == 'required':
+-            if not aids or not required:
++            if not (aids or sids) or not required:
+                 reasons.append('Required question inputs have no bound visual assets or input descriptions.')
+         elif record.get('dependencyStatus') == 'self_contained':
+-            if aids or required:
++            if aids or sids or required:
+                 reasons.append('Self-contained questions must not claim required visual inputs.')
+         else:
+             reasons.append('Visual dependency status is missing or unsupported.')
+@@ -256,11 +279,19 @@
+             if source_key(amap[aid]) not in {source_key(ref) for ref in refs}:
+                 reasons.append('Required asset is outside the record source references: ' + aid)
+         own = authors(manifest) | authors(record)
++        for sid in sids:
++            own |= authors(supplemental.get(sid, {}))
+         current = [r for r in by_visual.get(rid, []) if r.get('visualVersion') == record.get('version') and r.get('visualSha256') == sha]
+         if any(r.get('decision') in ('flagged', 'rejected') for r in current):
+             reasons.append('Current independent visual review is flagged or rejected.')
+         accepted = []
+         for review in current:
++            if sids and (not unique_strings(review.get('reviewedSupplementalInputIds')) or set(review['reviewedSupplementalInputIds']) != set(sids)
++                         or review.get('supplementalInputHashes') != {sid: supplemental_bindings.get(sid, {}).get('inputSha256') for sid in sids}
++                         or review.get('supplementalSourceHashes') != {supplemental[sid][k]: supplemental[sid][h] for sid in sids if sid in supplemental for k, h in [('sourceArtifact', 'sourceSha256'), ('notebookArtifact', 'notebookSha256')]}):
++                continue
++            if has_output and (review.get('savedOutputUse') != 'explicit_output_reading' or review.get('checks', {}).get('savedOutputIsQuestionStimulus') is not True):
++                continue
+             if (review.get('decision') != 'verified' or not nonblank(review.get('reviewerId')) or review['reviewerId'].strip() in own
+                     or any(review.get('checks', {}).get(k) is not True for k in VISUAL_CHECKS)
+                     or review.get('questionId') != qid or review.get('questionVersion') != question.get('version')
+@@ -282,6 +313,8 @@
+                                   'recordRawJSON': canonical_json(record), 'questionVersion': question['version'],
+                                   'questionSha256': question_hash(question), 'dependencyStatus': record['dependencyStatus'],
+                                   'assetIds': aids, 'requiredInputs': required, 'reviewBindings': accepted}
++        if sids:
++            result['bindings'][qid]['supplementalInputIds'] = sids
+     return result
+ 
+ 
+@@ -297,6 +330,9 @@
+         return ['Question visuals: malformed sidecar.']
+     try:
+         inputs = {k: value[k] for k in ('manifest', 'records', 'assets', 'reviews')}
++        for key in ('supplementalInputs', 'supplementalArtifacts'):
++            if key in value:
++                inputs[key] = value[key]
+         expected = prepare_question_visuals(bank, root, inputs, check_files=check_files)
+         errors = []
+         if value != expected:

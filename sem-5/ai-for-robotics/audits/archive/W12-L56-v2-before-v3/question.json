@@ -1,0 +1,172 @@
+{
+  "id": "W12-L56-P1789-Q04",
+  "version": 2,
+  "status": "draft",
+  "authorId": "L56-author-20261019",
+  "stem": "Use this supplied client policy, not unprinted course code. Response R1 has three 20 ms chunks a1,a2,a3: a1 has played, a2/a3 are queued, and its conversation audio extent is 60 ms. On speech-start, cancel R1, clear its queued audio, mark its response ID canceled, and truncate its conversation audio extent to the amount already heard. Then receive late chunk a4 for R1; commit new user turn U2; create R2; receive its 20 ms chunks b1,b2; finally perform one playback step. Canceled-ID chunks are discarded, and each playback step plays one queued chunk. Which final state follows?",
+  "selectionMode": "single",
+  "type": "algorithm_trace",
+  "difficulty": "medium",
+  "cognitiveSkill": "algorithm",
+  "week": 12,
+  "lectureId": "L56",
+  "topic": "Demonstration of AI in Humanoid Robot",
+  "subtopic": "Event-driven speech and turn handling",
+  "tags": [
+    "humanoid-hri",
+    "events"
+  ],
+  "conceptIds": [
+    "W12-L56-C-events"
+  ],
+  "assumptions": [
+    "The sequence and cancellation, queue-clearing, response-ID filtering and audio-extent truncation policies are explicitly supplied; the lecture does not print this state machine.",
+    "No playback occurs between the stated events except the final single playback step; the earlier a1 was already heard.",
+    "All earlier conversation turns and U2 remain; only R1’s audio extent is truncated. This model does not assert exact transcript-to-audio alignment or a returned truncated text transcript.",
+    "Cancellation/truncation succeed in this bounded model. No live API, audio device or course program is executed."
+  ],
+  "options": [
+    {
+      "id": "o1",
+      "text": "Heard a1 then a2; queue a3,b1,b2; R1 extent 20 ms; U2 retained"
+    },
+    {
+      "id": "o2",
+      "text": "Heard a1 then b1; queue b2; R1 extent 20 ms; U2 retained"
+    },
+    {
+      "id": "o3",
+      "text": "Heard a1 then a4; queue b1,b2; R1 extent 20 ms; U2 retained"
+    },
+    {
+      "id": "o4",
+      "text": "Heard a1 then b1; queue b2; R1 extent 60 ms; U2 retained"
+    }
+  ],
+  "correctOptionIds": [
+    "o2"
+  ],
+  "solution": {
+    "justification": "Clear a2/a3, retain only the 20 ms already heard for R1, reject late a4 by canceled response ID, then queue b1/b2 and play b1. U2 remains in conversation state.",
+    "optionExplanations": {
+      "o1": "Incorrect. This retains and plays old queued audio despite the explicit queue-clearing transition. Cancellation of generation alone is not the whole supplied policy.",
+      "o2": "Correct. Clear a2/a3, retain only the 20 ms already heard for R1, reject late a4 by canceled response ID, then queue b1/b2 and play b1. U2 remains in conversation state.",
+      "o3": "Incorrect. This accepts the late R1 chunk despite the canceled-ID filter, causing a4 to play before R2 audio.",
+      "o4": "Incorrect. Playback and filtering are correct, but this keeps unplayed R1 audio in conversation state rather than applying the supplied truncation."
+    },
+    "steps": [
+      "Initially, heard=[a1], queue=[a2,a3], R1 audio extent=60 ms.",
+      "On speech-start, cancel and mark R1; clear its queue; truncate R1 to one heard chunk, 1×20=20 ms.",
+      "Discard late a4 because it belongs to canceled R1.",
+      "Retain committed user turn U2; create R2 and append b1,b2 to the now-empty playback queue.",
+      "The final playback step emits b1, leaving b2 queued; heard output is a1 then b1."
+    ],
+    "formulas": [
+      {
+        "expression": "T_kept = n_heard Δt",
+        "variables": {
+          "T_kept": "retained audio extent of interrupted R1",
+          "n_heard": "number of fully heard R1 chunks at interruption",
+          "Δt": "duration of each chunk"
+        },
+        "units": {
+          "T_kept": "ms",
+          "n_heard": "chunks",
+          "Δt": "ms/chunk"
+        },
+        "assumptions": [
+          "All chunks are 20 ms; no partial chunk is playing at interruption.",
+          "The supplied conversation policy retains only the heard audio extent, not an inferred exact word alignment."
+        ]
+      }
+    ],
+    "simpleExplanation": "Clear a2/a3, retain only the 20 ms already heard for R1, reject late a4 by canceled response ID, then queue b1/b2 and play b1. U2 remains in conversation state.",
+    "memoryAid": null,
+    "misconceptions": [
+      "This retains and plays old queued audio despite the explicit queue-clearing transition. Cancellation of generation alone is not the whole supplied policy.",
+      "This accepts the late R1 chunk despite the canceled-ID filter, causing a4 to play before R2 audio.",
+      "Playback and filtering are correct, but this keeps unplayed R1 audio in conversation state rather than applying the supplied truncation."
+    ],
+    "examTraps": [],
+    "prerequisiteConceptIds": []
+  },
+  "origin": "generated",
+  "reviewIds": [],
+  "revisionAuthors": [
+    "L56-v2-repair-author-20261020"
+  ],
+  "conflictResolution": {
+    "status": "qualification_pending_independent_review",
+    "questionVersion": 2,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca 11fda 764949d 36f 6f 174bd 72ccc 2a 83c 2863f 522635e 7afd 8539d 88f 84c",
+    "physicalPage": 1789,
+    "sourceClaim": "The page says automatic interruption handling prioritizes new user speech.",
+    "basis": "Behavior depends on turn/response configuration and client playback handling; a persistent connection alone is insufficient.",
+    "method": "Apply the explicitly supplied event-state policy; primary Realtime documentation distinguishes VAD response control from WebSocket client playback and truncation. No unprinted implementation is inferred.",
+    "sourceIssueId": "L56-ISSUE-automatic-interruption",
+    "scope": "This version only; independent review required."
+  },
+  "citations": [
+    {
+      "slideId": "lectures-p1789",
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 1789,
+      "kind": "statement",
+      "locator": "Printed slide 13: Automatic interruption and event-driven communication bullets",
+      "evidenceText": "Session Created\n\n                                                                                      Audio Buffer AppendEvent-Driven Voice Communication\n•   Event-driven communication processes interactions as a sequence              Voice Activity Detection\n    of independent events instead of isolated requests.                                                                                     Speech Transcription\n•   User speech is continuously streamed from the microphone to\n                                                                                              Conversation Context\n    the conversational AI service.\n•   Voice Activity Detection (VAD) automatically determines                           Language Model\n    the beginning and end of speech segments.                                      Speech Synthesis\n•   Speech events trigger language understanding and response generation\n                                                                                             Audio\n    without manual intervention.\n•   Incremental transcripts are generated as speech is processed in real time.        Session Continues\n•   Response audio is streamed progressively instead of waiting for complete synthesis.\n•   Simultaneous audio transmission and reception enable full-duplex\n    conversational interaction.\n•   Automatic interruption handling prioritizes new user speech over\n    ongoing system responses.\n•   Event-driven architectures improve responsiveness and scalability in\n    real-time robotic communication systems.\n\n                                                                                                           13",
+      "role": "conflict",
+      "region": null
+    },
+    {
+      "slideId": "lectures-p1788",
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 1788,
+      "kind": "statement",
+      "locator": "Printed slide 12: Persistent conversation context and streaming bullets",
+      "evidenceText": "OpenAI Realtime API Architecture                           WebSocket Session\n                                                                                      Audio Stream Input•   OpenAI Realtime API enables continuous voice-to-voice interaction\n    through persistent bidirectional communication.                                                                                   Speech Understanding\n•   Audio streams are transmitted using WebSocket-based\n                                                                                             Conversation Context    communication instead of conventional request-response protocols.\n•   Incoming speech is processed continuously without requiring                        Language Reasoning\n    complete audio recordings.\n                                                                                     Speech Synthesis•   Speech understanding, language reasoning, and\n    speech generation are performed within a unified AI pipeline.                                                                                         Streaming Audio Output\n•   Incremental audio streaming significantly reduces conversational response latency.\n•   Event-driven communication allows the server to process and respond dynamically to user interactions.\n•   Continuous streaming enables smooth interruption handling during active\n    conversations.\n•    Persistent sessions maintain conversational context throughout the\n     interaction.\n•   The architecture supports scalable, low-latency conversational intelligence\n     for robotic applications.\n\n                                                                                                           12",
+      "role": "premise",
+      "region": null
+    },
+    {
+      "slideId": "lectures-p1790",
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 1790,
+      "kind": "statement",
+      "locator": "Printed slide 14: Buffering, incremental playback and interruption bullets",
+      "evidenceText": "Audio Streaming and Response Generation\n\n•   Microphone audio is continuously captured and converted into digital\n    audio samples.\n•   Audio frames are buffered and transmitted sequentially through\n    persistent WebSocket connections.\n•   Streaming protocols minimize communication\n    overhead while maintaining continuous interaction.\n•   The conversational AI processes incoming audio                                                   Speech streaming\n    and generates contextual responses in real time.\n•   Synthesized speech is streamed incrementally for immediate\n    playback through the speaker.\n•   Audio buffering compensates for network latency and ensures\n    uninterrupted speech output.\n•   User interruptions immediately terminate ongoing playback and initiate\n   new response generation.\n•   Low-latency streaming significantly improves the naturalness of\n    human-robot conversations.\n\n                                                                                                           14",
+      "role": "premise",
+      "region": null
+    },
+    {
+      "slideId": "lectures-p1793",
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 1793,
+      "kind": "statement",
+      "locator": "Printed slide 17: Supplementary conversational context and history-management bullets",
+      "evidenceText": "Emotion-Aware Prompt Engineering                                                                                     Emotion Label\n•   Prompt engineering defines how contextual information is\n    presented to the language model.\n•   Emotion predictions are transformed into structured                               Prompt Context\n    natural language instructions.\n•   The detected emotion is appended as supplementary conversational context.\n•    Static prompts define the robot's personality, behavior,                              LLM\n    and conversational objectives.\n•   Dynamic prompts continuously update the user's current emotional\n                                                                                     Context-Aware Response     state during interaction.\n•   The language model prioritizes spoken user intent while considering emotional context.\n•   Context management prevents redundant emotion updates from\n    increasing conversation history.\n•   Structured prompts improve response consistency and emotional\n    appropriateness.\n•   Prompt engineering enables adaptive dialogue without modifying the\n    underlying language model.\n\n                                                                                                           17",
+      "role": "premise",
+      "region": null
+    }
+  ],
+  "primaryEvidence": [
+    {
+      "title": "Realtime conversations",
+      "url": "https://developers.openai.com/api/docs/guides/realtime-conversations",
+      "version": "Documentation inspected 2026-10-20; course implementation version unspecified",
+      "locator": "Interruptions: WebSocket client stops playback, tracks heard audio and truncates the conversation audio item; exact truncated text alignment is not provided.",
+      "checkedAt": "2026-10-20"
+    },
+    {
+      "title": "Realtime voice activity detection",
+      "url": "https://developers.openai.com/api/docs/guides/realtime-vad",
+      "version": "Documentation inspected 2026-10-20; course implementation version unspecified",
+      "locator": "Conversation VAD create_response and interrupt_response configuration controls.",
+      "checkedAt": "2026-10-20"
+    }
+  ]
+}

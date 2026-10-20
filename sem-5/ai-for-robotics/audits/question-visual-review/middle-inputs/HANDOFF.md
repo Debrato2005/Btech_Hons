@@ -1,0 +1,11 @@
+# Completed middle-lecture input-completeness review
+
+Completed 20 October 2026, 04:01 UTC. Every verified L27–L35 full stem, every option and all assumptions was independently read: 812 questions. Classification: 743 self-contained, 69 required inputs. All 743 self-contained records now have exact current independent approvals. Final reconciliation found zero stale question/record hashes and zero classification mismatches against manifest SHA 7f8837fcb8ce0772d580bd268c972953f5562b2c890f0d6e93abdd37885235f6.
+
+Evidence: reconciliation-final.json; per-lecture L27-input-triage.json through L35-input-triage.json; immutable question-read-snapshot.json; source-byte-check.json. Both source PDFs were byte-hashed and match the current ledger. Reviews: data/question-visuals/reviews/Lxx-middle-self-contained.json, plus L27-L35-middle-reclassified-1.json and L27-L35-middle-reclassified-2.json. Fifteen originally held records were explicitly inspected after producer reclassification and received first approvals in those supplements. Do not auto-refresh stale approvals if anything changes.
+
+No positive asset pixels or supplemental code assets were approved by this worker. The 69 required items are classified only; parent and separate reviewers own their final exact asset/code approvals. No questions, manifest records, assets or producer code were edited.
+
+Five concrete supplemental-code dependencies: W07-L34-P1052-Q06/Q07/Q11 and W07-L35-Q089/Q101. Exact proposals were staged by author_later_question_inputs in audits/question-visuals/late-supplemental-proposal.json and the binder has integrated their required classifications. L34 notebook hash b460420750fcee804b99fcf48fc04f3680719026c7b351fb54c67c5028b1a4aa; full nb.cells indices 2 (setup), 4 (initial values), 8 (loop). L35 hash 5f2680c5d1089be24f5b5cc17e1429761777af79e47b31ab62f381150485881c; full cell indices 7 (predict), 11 (report), 12 (display). Q101's existing supplemental metadata calls these codeCellsZeroBased, but actual code ordinals are 2,4,5; proposal provenance uses unambiguous full notebook indices without changing the accepted question.
+
+Restrictions preserved: no browser launch, dependency installation, code/model execution or remote mutation; pending Git blob approval and prior socket/file-policy denials unchanged. No broad tests/*.js glob.

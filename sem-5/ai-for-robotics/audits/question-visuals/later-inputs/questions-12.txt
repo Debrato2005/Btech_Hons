@@ -1,0 +1,159 @@
+
+PAGE 1493
+18
+•
+Layer Norm is applied in 2 stages – before attention & before FFN
+•
+It’s not applied to an entire transformer layer, but just to the 
+embedding vector of a single token. 
+– γ and 𝛽 are learnable parameters representing gain & offset values
+– 𝜇: mean, 𝜎: standard deviation
+Transformer Block - Attention
+LayerNorm 𝐱= γ 𝐱 − 𝜇
+𝜎
++ 𝛽  ; where
+Note: 𝐭𝒊: input token 𝑖, 
+vector entering the 
+transformer block, 
+containing 𝐝 features 
+(embedding values) 
+that describe the token
+Overall
+𝐭𝑖
+𝟏= LayerNorm 𝐱𝑖
+𝐭𝑖
+𝟐= MultiHeadAttention(𝐭𝑖
+𝟏, 𝐭1
+𝟏, … 𝐭𝑁
+𝟏)
+𝐭𝑖
+𝟑= 𝐭𝑖
+𝟐+ 𝐱𝑖
+𝐭𝑖
+𝟒= LayerNorm(𝐭𝑖
+𝟑)
+𝐭𝑖
+𝟓= FFN(𝐭𝑖
+𝟒)
+𝐡𝑖= 𝐭𝑖
+𝟓+ 𝐭𝑖
+𝟑
+
+{"id": "W10-L47-Q027", "stem": "Which sequence matches the illustrated block?", "options": [{"id": "o1", "text": "Attention → residual add → layer norm → FFN → residual add → layer norm."}, {"id": "o2", "text": "Layer norm → attention → layer norm → residual add → FFN → residual add."}, {"id": "o3", "text": "Layer norm → FFN → residual add → layer norm → attention → residual add."}, {"id": "o4", "text": "Layer norm → attention → residual add → layer norm → FFN → residual add."}], "assumptions": []}
+
+PAGE 1497
+22
+Transformer Block – Multi-head Attention parallelization
+Parallel multi-head attention where attention operates on all words would look like:
+𝐐𝐢= 𝐗𝐖𝐐𝐢; 𝐊𝐢= 𝐗𝐖𝐊𝐢; 𝐕𝐢= 𝐗𝐖𝐕𝐢
+𝐡𝐞𝐚𝐝𝑖= SelfAttention 𝐐𝐢, 𝐊𝐢, 𝐕𝐢= softmax
+mask 𝐐𝐢𝐊𝐢T
+𝑑𝑘
+𝐕𝐢
+MultiHeadAttention 𝐗= (𝐡𝐞𝐚𝐝𝟏⊕𝐡𝐞𝐚𝐝𝟐… ⊕𝐡𝐞𝐚𝐝𝑨)𝐖𝐎
+𝐎= 𝐗+ MultiHeadAttention(LayerNorm 𝐗)
+𝐇= 𝐎+ FFN(LayerNorm 𝐎)
+𝐓𝟏= LayerNorm 𝐗
+𝐓𝟐= MultiHeadAttention(𝐓𝟏)
+ 
+𝐓𝟑= 𝐓𝟐+ 𝐗 
+𝐓𝟒= LayerNorm 𝐓𝟑
+𝐓𝟓= FFN(𝐓𝟒)
+𝐇= 𝐓𝟓+ 𝐓𝟑
+Journey of 𝐗=
+[𝐱1, … , 𝐱𝑁] of size 
+𝑁× 𝑑, as it flows up the 
+residual stream through a 
+single Transformer Block 
+can be expanded as
+
+{"id": "W10-L47-Q048", "stem": "If both the attention and FFN branches return zero vectors, what is the block output in the displayed equations?", "options": [{"id": "o4", "text": "H=0"}, {"id": "o1", "text": "H=LayerNorm(X) regardless of the residuals"}, {"id": "o2", "text": "H=2X"}, {"id": "o3", "text": "H=X"}], "assumptions": []}
+
+PAGE 1519
+13
+•
+Different sound frequencies are not heard equally by the human ear.
+•
+We are much better at distinguishing low-frequency sounds than very high-
+frequency sounds.
+•
+To imitate human hearing, the system groups nearby frequencies using 
+overlapping Mel filters, as shown in the figure.
+•
+Each filter collects the energy from one range of frequencies. The outputs of all 
+these filters form the Mel Spectrum.
+Stage 4: Mel Filter Bank & Log Spectrum 
+𝑚𝑒𝑙𝑓= 1127ln(1 + 𝑓
+700)
+
+{"id": "W10-L48-Q023", "stem": "How are the overlapping triangular filters arranged on the plotted physical-frequency axis?", "options": [{"id": "o1", "text": "Equal-width disjoint rectangular bands at all frequencies."}, {"id": "o2", "text": "One triangle centered on every time sample rather than on frequency bands."}, {"id": "o3", "text": "Narrower and more closely spaced at low frequencies; wider and farther apart at high frequencies."}, {"id": "o4", "text": "Wider at low frequencies and narrower at high frequencies."}], "assumptions": []}
+
+PAGE 1523
+17
+•
+The Problem: Traditional speech recognition systems 
+rely on a complex pipeline of many different stages 
+to process audio and translate it to text
+– The Data Challenge: Speech data is inherently 
+mismatched with text, as audio features are extracted 
+every 10 ms, the acoustic sequence is 5 to 19 times 
+longer than the resulting text sequence.
+Limitations of Traditional Systems
+•
+The Solution: Modern sequence-to-sequence Deep 
+Learning models (like CNNs, Transformers) are needed 
+because they can elegantly compress this massive 
+sequence mismatch.
+─End-to-End Efficiency: A single DL model can learn to map 
+the audio directly to text, completely replacing the multi-
+stage traditional pipeline.
+
+{"id": "W10-L48-Q035", "stem": "Which three areas intersect in the lecture’s ASR Venn diagram?", "options": [{"id": "o1", "text": "Machine learning, signal processing and speech synthesis."}, {"id": "o2", "text": "Machine learning, phonetics and natural language processing."}, {"id": "o3", "text": "Machine learning, signal processing and natural language processing."}, {"id": "o4", "text": "Statistical language modeling, signal processing and natural language processing."}], "assumptions": []}
+
+PAGE 1526
+20
+•
+Modern speech recognition uses an Encoder-
+Decoder architecture, adapting the standard 
+NLP Transformer for audio. 
+•
+The Encoder Listens: The sequence of 
+compressed audio features (from CNN layers) 
+is passed into the Transformer Encoder, which 
+creates a rich, contextual representation of 
+the sounds.
+Transformer-Based Speech Recognition
+• The Decoder Spells: It generates the target text (letters 
+or subword tokens) one by one, predicting the next letter 
+or token based on both the audio input & the text it has 
+already generated.
+Subsampling 
+layer compresses 
+the features into 
+a shorter 
+sequence 𝑿
+
+{"id": "W10-L48-Q042", "stem": "In the diagram, what are the encoder and decoder inputs used for?", "options": [{"id": "o1", "text": "The encoder predicts the next text token only from earlier text; the decoder computes the raw spectrogram."}, {"id": "o2", "text": "The encoder contextualizes acoustic features; the decoder conditions only on previous text and does not use encoder output."}, {"id": "o3", "text": "Both modules independently predict the entire sentence without exchanging representations."}, {"id": "o4", "text": "The encoder contextualizes acoustic features; the decoder conditions next-token generation on encoded audio and previous text."}], "assumptions": []}
+
+PAGE 1527
+21
+•
+The Decoder is a standard Transformer, 
+but it includes one crucial extra layer: 
+Cross-Attention.
+•
+In this layer, the Queries come from the 
+previous layer of the decoder, but the 
+Keys & Values come directly from the 
+acoustic output of the Encoder.
+Transformer-Based Speech Recognition
+• Cross-attention allows the text-generating decoder to 
+literally attend to specific moments in the audio signal to 
+figure out what letter or token should come next.
+𝐐= 𝐇𝑑𝑒𝑐[𝑙−1]𝐖𝐐;  𝐊= 𝐇𝑒𝑛𝑐𝐖𝐊;  𝐕= 𝐇𝑒𝑛𝑐𝐖𝐕
+CrossAttention 𝐐, 𝐊, 𝐕= softmax
+𝐐𝐊𝐓
+𝑑𝑘𝐕,
+
+{"id": "W10-L48-Q048", "stem": "Which pairing matches the displayed Transformer blocks?", "options": [{"id": "o1", "text": "Encoder self-attention uses text queries and acoustic values; cross-attention uses only earlier text for all three projections."}, {"id": "o2", "text": "Encoder self-attention relates acoustic positions; causal decoder self-attention relates available text positions; cross-attention connects text queries to acoustic representations."}, {"id": "o3", "text": "Decoder causal self-attention and cross-attention both use only acoustic states for Q, K and V."}, {"id": "o4", "text": "Cross-attention uses encoder queries with decoder keys and values in the displayed generation direction."}], "assumptions": []}
+{"id": "W10-L48-Q080", "stem": "Across the two architecture diagrams, which trace correctly associates the non-attention components with their shown paths?", "options": [{"id": "o1", "text": "The two Conv1D layers with GELU form the acoustic frontend; layer normalization precedes shown sublayers, feedforward/MLP transforms features, and residual paths add the sublayer result to a bypassed representation."}, {"id": "o2", "text": "The two Conv1D layers with GELU form the text output head; layer normalization is the acoustic frontend, and residual paths replace the bypassed representation rather than adding it."}, {"id": "o3", "text": "The two Conv1D layers with GELU form the acoustic frontend; layer normalization performs vocabulary decoding, and the feedforward/MLP block supplies the encoder-to-decoder cross-attention keys."}, {"id": "o4", "text": "The two Conv1D layers with GELU form the acoustic frontend; each residual path concatenates the bypassed representation with the sublayer result, doubling its width at every addition symbol."}], "assumptions": []}

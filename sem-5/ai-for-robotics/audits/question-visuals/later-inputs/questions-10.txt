@@ -1,0 +1,116 @@
+
+PAGE 1433
+29
+5.
+Boundary refinement: 
+– The binary mask is refined using morphological erosion
+with a 3×3 kernel, retaining only floor pixels completely 
+surrounded by other floor pixels. 
+– This removes isolated noise and small speckles while 
+producing cleaner, more reliable safe-zone boundaries 
+for navigation.
+6.
+Safe Driving Zone Identification: 
+– Project virtual lines from the bottom-center of the 
+image, representing the robot's position, toward scene. 
+– Each line is traced through green (safe) pixels until the 
+first red (unsafe) pixel is encountered, which defines safe-zone boundary. 
+Floor Finder Algorithm Pipeline (Cont.) 
+
+{"id": "W09-L45-Q053", "stem": "In the Floor Finder figures, how should the red-outlined foreground triangle, green/red binary mask, and bottom-center rays be interpreted?", "options": [{"id": "o1", "text": "The red-outlined foreground triangle marks unsafe pixels, and ray scanning should begin from the top-center horizon."}, {"id": "o2", "text": "The red-outlined triangle supplies the reference sample, but rays continue through red mask pixels until any later green region is reached."}, {"id": "o3", "text": "The red-outlined foreground triangle supplies an assumed clear floor reference; bottom-center rays follow green classified floor until the first red non-floor pixel."}, {"id": "o4", "text": "Green mask pixels are the reference-sampling region only, while red pixels are the traversable area used for ray tracing."}], "assumptions": []}
+
+PAGE 1435
+31
+•
+Consider a camera 0.4 m above the floor with 
+focal length 𝑓𝑥= 𝑓𝑦= 500 pixels, principal 
+point (𝑢0, 𝑣0) = (320,200).
+1.
+Column scan identifies the obstacle:
+For a selected image column, 𝑢= 320, the first 
+non-floor pixel occurs at 𝑣= 250. 
+The Floor Finder scans upward from the bottom of the image. Thus, this pixel 
+represents the point where the floor is interrupted by the obstacle.
+2.
+Convert image row to distance:
+From perspective projection model: 𝑣= 𝑣0 +
+𝑓𝑦ℎ
+𝑧 
+Rearranging, 𝑧=
+𝑓𝑦ℎ
+𝑣−𝑣0 = 500 (0.4)
+250−200 = 4m. So the obstacle is 4 m in front of the camera.
+Example
+
+{"id": "W09-L45-Q053", "stem": "In the Floor Finder figures, how should the red-outlined foreground triangle, green/red binary mask, and bottom-center rays be interpreted?", "options": [{"id": "o1", "text": "The red-outlined foreground triangle marks unsafe pixels, and ray scanning should begin from the top-center horizon."}, {"id": "o2", "text": "The red-outlined triangle supplies the reference sample, but rays continue through red mask pixels until any later green region is reached."}, {"id": "o3", "text": "The red-outlined foreground triangle supplies an assumed clear floor reference; bottom-center rays follow green classified floor until the first red non-floor pixel."}, {"id": "o4", "text": "Green mask pixels are the reference-sampling region only, while red pixels are the traversable area used for ray tracing."}], "assumptions": []}
+
+PAGE 1450
+11
+Demo: Why Lemmatization is better than Stemming
+Implementation – Pre-processing
+Output
+
+{"id": "W10-L46-P1450-Q02", "stem": "If the printed stemming snippet is run in a fresh namespace with its shown imports only, what missing name must be provided before its download call can run?", "options": [{"id": "o4", "text": "stemmer, because the constructor is never called"}, {"id": "o1", "text": "nltk, imported by the earlier preprocessing cell"}, {"id": "o2", "text": "PorterStemmer, because it is absent from the printed import"}, {"id": "o3", "text": "word, because it is used before its assignment"}], "assumptions": []}
+
+PAGE 1460
+• POS Tagging: POS tagging identifies the grammatical role of each word in a 
+sentence. This helps robots understand:
+ꟷactions
+ꟷobjects 
+•
+Code:
+21
+Language Understanding: POS Tagging 
+•
+Output:
+ꟷobject properties 
+ꟷspatial relationships 
+
+{"id": "W10-L46-P1460-Q01", "stem": "In the displayed POS output for “pick up the red ball near the chair,” which mapping is correct?", "options": [{"id": "o3", "text": "pick→VB; up→DT; red→NN; near→RP"}, {"id": "o4", "text": "pick→JJ; up→RP; red→DT; near→NN"}, {"id": "o1", "text": "pick→VB; up→RP; red→JJ; near→IN"}, {"id": "o2", "text": "pick→NN; up→IN; red→VB; near→JJ"}], "assumptions": []}
+{"id": "W10-L46-P1460-Q02", "stem": "In the displayed POS output for “pick up the red ball near the chair,” what are the tags of both occurrences of the and of ball/chair?", "options": [{"id": "o3", "text": "Both the tokens are RP; ball and chair are PERSON"}, {"id": "o4", "text": "Both the tokens are IN; ball is VB and chair is JJ"}, {"id": "o1", "text": "Both the tokens are DT; ball and chair are NN"}, {"id": "o2", "text": "The first the is DT and the second is NN; ball and chair are NNP"}], "assumptions": []}
+{"id": "W10-L46-P1460-Q03", "stem": "Which sequence is actually executed by the displayed POS snippet?", "options": [{"id": "o4", "text": "Call nltk.pos_tag on the raw command string before tokenization"}, {"id": "o1", "text": "Lowercase the command → tokenize it → call nltk.pos_tag on the token list"}, {"id": "o2", "text": "Tokenize the original capitalized command → lowercase only the POS tags"}, {"id": "o3", "text": "Lowercase → remove stopwords → lemmatize → call nltk.pos_tag"}], "assumptions": []}
+
+PAGE 1465
+26
+5.   Automatic Speech Recognition (ASR)
+•
+Converts Speech into Text. This process is called transcription. 
+•
+This is how mostly robots receive commands for processing in HRI
+•
+A complete HRI pipeline using ASR would look like:
+Core NLP Tasks and their Application in Robotics
+•
+The NLP processing stage may include preprocessing, vectorization, intent detection, 
+language understanding & contextual understanding
+•
+ASR itself do not understand language
+•
+Commonly used STT model: OpenAI whisper model
+•
+ASR is used in voice-controlled robots, smart assistants 
+home automation, healthcare robots, humanoid robots, etc
+
+{"id": "W10-L46-P1465-Q02", "stem": "In the displayed voice-controlled pipeline, what comes between the ASR transcript and physical execution?", "options": [{"id": "o2", "text": "Robot planning of a fixed motion first, then NLP only to assign a label to that finished plan."}, {"id": "o3", "text": "Speech synthesis of the transcript, followed directly by execution without interpreting its requested action."}, {"id": "o4", "text": "Map grounding alone, with the requested action and object relation left unresolved until after motion."}, {"id": "o1", "text": "NLP extraction/understanding, then robot planning."}], "assumptions": []}
+
+PAGE 1467
+28
+•
+Transformers revolutionised NLP by enabling models to understand words based 
+on their surrounding context rather than processing them independently.
+•
+Example commands:
+– C1: Move the robot toward the shelf because it is cluttered.
+Transformers
+•
+Transformers use attention mecahnism to analyze relationships 
+between words using surrounding context, which is 
+demonstrated by the boldness of the arrows.
+−
+C2: Move the robot toward the shelf because it is low on battery.
+Note what 
+it refers to 
+in each 
+command.
+
+{"id": "W10-L46-P1467-Q01", "stem": "In the two attention schematics, what does the boldest illustrated relation make it refer to?", "options": [{"id": "o4", "text": "Robot in both, because the grammatical object is always the referent"}, {"id": "o1", "text": "Shelf in the cluttered example; robot in the low-battery example"}, {"id": "o2", "text": "Robot in the cluttered example; shelf in the low-battery example"}, {"id": "o3", "text": "Shelf in both, because it is always the closest preceding noun"}], "assumptions": ["Interpret the lecture’s illustrated readings; no claim that every imaginable scene makes them uniquely necessary."]}

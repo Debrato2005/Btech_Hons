@@ -1,0 +1,95 @@
+{
+  "id": "W10-L46-P1461-Q01",
+  "version": 2,
+  "status": "draft",
+  "authorId": "integration-source-correction-20261020",
+  "stem": "Which capitalization difference is visible between the prose command and the as-printed POS code and saved output?",
+  "selectionMode": "single",
+  "type": "algorithm_trace",
+  "difficulty": "easy",
+  "cognitiveSkill": "algorithm",
+  "week": 10,
+  "lectureId": "L46",
+  "topic": "Natural Language Processing",
+  "subtopic": "POS ambiguity and source output provenance",
+  "tags": [
+    "nlp",
+    "pos-ambiguity"
+  ],
+  "conceptIds": [
+    "W10-L46-C-pos-ambiguity"
+  ],
+  "assumptions": [],
+  "options": [
+    {
+      "id": "o1",
+      "text": "The prose begins with Pick, while both command2 and its displayed output begin with lowercase pick."
+    },
+    {
+      "id": "o2",
+      "text": "The code removes light, while the screenshot retains it"
+    },
+    {
+      "id": "o3",
+      "text": "The code requests entity categories, while the screenshot provides POS labels"
+    },
+    {
+      "id": "o4",
+      "text": "The code uses lemmatization, while the screenshot shows stems"
+    }
+  ],
+  "correctOptionIds": [
+    "o1"
+  ],
+  "citations": [
+    {
+      "slideId": "lectures-p1461",
+      "sourceId": "lectures",
+      "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+      "physicalPage": 1461,
+      "kind": "code",
+      "locator": "Printed slide 22: prose command, lowercase command2 assignment, tokenization line and lowercase first saved output token",
+      "evidenceText": "Prose: Command: Pick up the light box\nCode: command2 = \"pick up the light box\"\ntokens2 = word_tokenize(command2)\npos_tags2 = nltk.pos_tag(tokens2)\nSaved output starts: [('pick', 'VB'), ('up', 'RP'), ('the', 'DT')]",
+      "role": "premise",
+      "region": null
+    }
+  ],
+  "solution": {
+    "justification": "The prose starts with capitalized Pick, but the code explicitly assigns lowercase pick. The saved output also starts with lowercase pick, so its case agrees with the code; no unexplained tokenizer case change is shown.",
+    "optionExplanations": {
+      "o1": "Correct. The prose starts with capitalized Pick, but the code explicitly assigns lowercase pick. The saved output also starts with lowercase pick, so its case agrees with the code; no unexplained tokenizer case change is shown.",
+      "o2": "Incorrect. There is no stopword deletion or removal of light in this snippet.",
+      "o3": "Incorrect. The code calls pos_tag, so POS labels are expected.",
+      "o4": "Incorrect. Neither lemmatization nor stemming appears in the snippet."
+    },
+    "steps": [
+      "Read the prose command: it starts with capitalized Pick.",
+      "Read the code assignment: command2 starts with lowercase pick.",
+      "Read the saved output: its first token is lowercase pick, matching the code rather than the prose."
+    ],
+    "formulas": [],
+    "simpleExplanation": "The prose starts with capitalized Pick, but the code explicitly assigns lowercase pick. The saved output also starts with lowercase pick, so its case agrees with the code; no unexplained tokenizer case change is shown.",
+    "memoryAid": null,
+    "misconceptions": [
+      "There is no stopword deletion or removal of light in this snippet.",
+      "The code calls pos_tag, so POS labels are expected.",
+      "Neither lemmatization nor stemming appears in the snippet."
+    ],
+    "examTraps": [],
+    "prerequisiteConceptIds": []
+  },
+  "origin": "generated",
+  "reviewIds": [],
+  "conflictResolution": {
+    "status": "source-transcription-corrected-pending-independent-review",
+    "questionVersion": 2,
+    "sourceId": "lectures",
+    "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+    "physicalPage": 1461,
+    "sourceClaim": "The prose starts with Pick; the actual code assignment and saved output both start with lowercase pick.",
+    "basis": "Original PDF pixels contradict the previous transcription of the code. This version compares prose, printed code and saved output without asserting fresh tagger reproduction.",
+    "method": "Inspect the hash-verified original PDF at readable resolution; do not infer string case from text extraction or execute the tagger.",
+    "scope": "Version 2 only; fresh independent answer and input reviews required.",
+    "sourceIssueId": "L46-ISSUE-pos-output-case"
+  }
+}

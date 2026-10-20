@@ -1,0 +1,99 @@
+{
+  "id": "ASSIGN-W10-Q03",
+  "week": 10,
+  "sourceId": "assignments",
+  "sourceSha256": "b0450429866ac8017d7971932acf8812adf41df9dff4eb10bc8c87015b41c1b5",
+  "physicalPages": [
+    45,
+    46
+  ],
+  "printedItemNumber": "3",
+  "printedPageNumbers": [
+    "1",
+    "2"
+  ],
+  "originalPrompt": "Consider a single attention head with query  𝑞𝑖 = [2, 1],  keys 𝑘1 = [3, 1], 𝑘2 =\n            [1,2], 𝑘3 = [0,1] and key vector  size 𝑑𝑘= 2. Which option gives the  correct\n          normalized attention scores approximately?",
+  "originalOptions": [
+    {
+      "sourceLabel": "A",
+      "text": "[0.88, 0.11, 0.013]"
+    },
+    {
+      "sourceLabel": "B",
+      "text": "[0.50, 0.30, 0.20]"
+    },
+    {
+      "sourceLabel": "C",
+      "text": "[0.67, 0.24, 0.09]"
+    },
+    {
+      "sourceLabel": "D",
+      "text": "[0.86, 0.10, 0.04]"
+    }
+  ],
+  "originalPrintedKey": "A",
+  "printedKeyEvidence": "visually_observed_highlight",
+  "originalSourceText": "Q.3   Consider a single attention head with query  𝑞𝑖 = [2, 1],  keys 𝑘1 = [3, 1], 𝑘2 =\n            [1,2], 𝑘3 = [0,1] and key vector  size 𝑑𝑘= 2. Which option gives the  correct\n          normalized attention scores approximately?\n\n         (A) [0.88, 0.11, 0.013]\n\n          (B) [0.50, 0.30, 0.20]\n\n          (C) [0.67, 0.24, 0.09]\n\n         (D) [0.86, 0.10, 0.04]\n\n       Explanation: First calculate the dot products:\n\n                                        𝑞𝑖. 𝑘1 = (2)(3) + (1)(1) = 7\n                                        𝑞𝑖. 𝑘2 = (2)(1) + (1)(2) = 4\n                                        𝑞𝑖. 𝑘3 = (2)(0) + (1)(1) = 1\n      Since 𝑑𝑘= 2\n\n                         √𝑑𝑘= 1.414\n       Therefore, the scaled scores are\n\n                       7    4    1\n             𝑠= [             ,             ,    = [4.95, 2.828, 0.707]                         1.414 1.414 1.414]\n    Now apply softmax:\n                                                   𝑒𝑠𝑗\n                      𝛼𝑗=                                           𝑒4.95 + 𝑒2.828 + 𝑒0.707\n      Hence,\n                                               𝑒4.95\n                              𝛼1 ≈      = 0.8817\n                                 160.1145\n                                              𝑒2.828\n                             𝛼2 ≈      = 0.1056\n                                 160.1145\n                                              𝑒0.707\n                             𝛼3 ≈      = 0.0126\n                                 160.1145\n      Refer slides 10, 11 of Lecture 47: Transformers",
+  "transcriptionStatus": "Text-layer locator checked against actual page pixels; Unicode layout can differ. Figure/matrix transcriptions supplied separately where needed. Source PDF remains authoritative.",
+  "sourcePreviewPaths": [
+    "sources/previews/assignments/page-0045.webp",
+    "sources/previews/assignments/page-0046.webp"
+  ],
+  "visualInspection": {
+    "reviewerId": "robotics-contracts-assignment-coverage-reviewer",
+    "method": "actual_rendered_page",
+    "complete": true,
+    "answersVisible": true,
+    "blind": false
+  },
+  "coverageStatus": "missing_assignment_cited_questions",
+  "currentAssignmentCitedQuestionIds": [],
+  "currentAssignmentConceptIds": [],
+  "currentAssignmentReviewIds": [],
+  "lectureCrossLinks": [
+    {
+      "lectureId": "L47",
+      "printedSlideNumber": "10",
+      "candidatePhysicalPages": [
+        1485
+      ],
+      "basis": "Assignment printed reference; map resolution only, not a fresh lecture-source adjudication."
+    },
+    {
+      "lectureId": "L47",
+      "printedSlideNumber": "11",
+      "candidatePhysicalPages": [
+        1486
+      ],
+      "basis": "Assignment printed reference; map resolution only, not a fresh lecture-source adjudication."
+    }
+  ],
+  "conceptFamily": "Scaled dot-product attention",
+  "observedHighlightedKey": "A",
+  "independentSourceKeyAuditStatus": "consistent_under_stated_or_explicit_standard_model",
+  "independentReasoning": "Dot products7,4,1 divided bysqrt2, then stable softmax approximately(.8817,.1057,.0127); rounded option A closest, not exactly normalized after coarse rounding.",
+  "authoringRequirement": "Explicit assignment citations and independent question review required. Preserve source claim separately; resolve ambiguity before acceptance. Avoid duplicate-only recall coverage.",
+  "requiredAngles": [
+    "concept",
+    "numerical_or_symbolic_working"
+  ],
+  "lectureReferences": [
+    [
+      "L47",
+      10
+    ],
+    [
+      "L47",
+      11
+    ]
+  ],
+  "originalGeneratedCoverageApproved": false,
+  "recordPurpose": "Immutable original prompt, source-labelled options, visible key, source text and original audit. Not an approved question.",
+  "sourceHandoffPath": "audits/assignment-coverage/author-handoff-weeks-07-12-v2.json",
+  "sourceHandoffSha256": "98321536fde2a76b41a08484aa5d1401a22afee18bb792cb60b10c30668a7c97",
+  "originalSourceItemId": "ASSIGN-W10-Q03",
+  "relatedQuestionIds": [
+    "ASSIGN-W10-Q003"
+  ],
+  "literalOriginalDisposition": "source_record_only_not_in_question_pool"
+}

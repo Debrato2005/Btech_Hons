@@ -1,0 +1,376 @@
+{
+  "schemaVersion": "1.0.0",
+  "batchId": "W01-L02-L05-QUALIFIED-GAPS-v2-repairs",
+  "createdAt": "2026-10-20T02:21:36.695955+00:00",
+  "status": "frozen_awaiting_independent_review",
+  "questions": [
+    {
+      "id": "W01-L02-Q-106",
+      "version": 2,
+      "status": "draft",
+      "authorId": "robotics-legacy-concept-closure-author",
+      "stem": "A robotics team applies PCA and then K-means to an unlabeled feature matrix. Which interpretation correctly qualifies the PCA entry in the slide’s Clustering box?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "cognitiveSkill": "conceptual",
+      "week": 1,
+      "lectureId": "L02",
+      "topic": "Unsupervised learning",
+      "subtopic": "PCA grouping caveat",
+      "tags": [
+        "L02",
+        "source-qualified",
+        "legacy-concept-closure"
+      ],
+      "conceptIds": [
+        "W01-L02-C-pca-placement"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o2",
+          "text": "PCA supplies cluster membership, whereas the later clustering step merely changes the coordinate axes."
+        },
+        {
+          "id": "o4",
+          "text": "Both steps necessarily assign the same groups because neither requires ground-truth class labels."
+        },
+        {
+          "id": "o1",
+          "text": "PCA supplies a reduced-coordinate representation; the separate clustering step supplies group membership."
+        },
+        {
+          "id": "o3",
+          "text": "PCA requires class labels, whereas only the later clustering step can operate on unlabeled observations."
+        }
+      ],
+      "correctOptionIds": [
+        "o1"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0063",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 63,
+          "kind": "statement",
+          "locator": "Lecture 2, physical PDF page 63, actual printed slide 14: Unsupervised-learning definition, Clustering box, listed methods and right-hand grouped-data diagram.",
+          "evidenceText": "Unsupervised Learning\n\n    •  Find hidden structure in\n       unlabelled data X (no ground-\n       truth labels available).\n    •  Model learns from unlabelled\n       data.\n    Clustering\n   Group similar data points.\n     •  K-Means: partition into K clusters\n     •  DBSCAN: density-based clusters\n     •   Hierarchical clustering\n     •   Principal Component Analysis (PCA)\n     •   Robotics: terrain type segmentation,\n        pedestrian group detection\n\n\n                                                                                                            14",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "The source correctly introduces structure in unlabeled data and grouping by clustering, but places PCA inside its Clustering box. The official PCA documentation identifies centered-data linear dimensionality reduction. In the stipulated two-stage pipeline, PCA transforms the feature representation and clustering assigns groups. The slide placement is retained as a caveat rather than taught as an algorithm taxonomy.",
+        "optionExplanations": {
+          "o1": "PCA is a linear dimensionality-reduction method. Group assignment is the stated purpose of the separate clustering stage; membership in an unsupervised-learning category does not make the operations identical.",
+          "o2": "This exchanges the roles: a PCA projection is not itself a set of cluster labels.",
+          "o3": "PCA does not require ground-truth class labels for its standard unsupervised dimensionality-reduction role.",
+          "o4": "The lack of labels is shared context, not proof of identical outputs or grouping."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "A projection changes how observations are represented; clustering decides which observations belong together.",
+        "memoryAid": "Projection gives coordinates; clustering gives groups.",
+        "misconceptions": [
+          "Unsupervised does not mean clustering, and a PCA projection does not automatically supply cluster labels."
+        ],
+        "examTraps": [
+          "Unsupervised does not mean clustering, and a PCA projection does not automatically supply cluster labels."
+        ],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "relatedQuestionIds": [
+        "W01-L02-Q-021",
+        "W01-L02-Q-022"
+      ],
+      "conflictResolution": {
+        "status": "qualified-draft-awaiting-independent-review",
+        "sourceClaim": "PCA is visibly listed in the Clustering box.",
+        "qualification": "PCA is dimensionality reduction, not itself a clustering algorithm. Preserve its slide placement as a source caveat and test clustering labels versus projection.",
+        "primarySourceUrl": "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html",
+        "primaryEvidenceScope": "Official current PCA class documentation was opened and read; it describes centered-data linear dimensionality reduction. No install or PCA execution was needed.",
+        "adjudicationPath": "audits/lecture-ledger-challenge/L02-L05-independent-adjudication.json",
+        "adjudicationSha256": "a8a2e5907644b9f9e42c4d8361417618c1842f44b1e9a108f5bff00dde2bf8e8",
+        "method": "Keep the source claim visible; assess only the explicitly qualified distinction. This draft is not an approval or a claim that the underlying source wording has changed."
+      },
+      "primaryEvidence": {
+        "url": "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html",
+        "scope": "Official current PCA class documentation was opened and read; it describes centered-data linear dimensionality reduction. No install or PCA execution was needed.",
+        "evidenceOwner": "robotics-integration-legacy-concept-adjudication",
+        "currentAuthorFreshExternalRead": false,
+        "additionalUrls": []
+      },
+      "revisionAuthors": [
+        "robotics-legacy-concept-closure-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-legacy-concept-closure-author",
+          "priorQuestionSha256": "7a4fb149aeac34734e35b140f66b43f46427d96bb2d627582e01018732550563",
+          "reason": "Remove answer-bearing purpose clauses from the stem; retain the actual PCA-versus-clustering distinction.",
+          "revisedAt": "2026-10-20T02:21:36.695955+00:00",
+          "reviewId": "REV-W01-L02-Q-106-v1-independent-integration"
+        }
+      ]
+    },
+    {
+      "id": "W01-L02-Q-107",
+      "version": 2,
+      "status": "draft",
+      "authorId": "robotics-legacy-concept-closure-author",
+      "stem": "The benchmark table lists HabitatSim for embodied navigation with “100K photo-real scans.” Which interpretation preserves its stated robotics relevance without promoting the unvalidated size claim into a general fact?",
+      "selectionMode": "single",
+      "type": "conceptual",
+      "difficulty": "medium",
+      "cognitiveSkill": "conceptual",
+      "week": 1,
+      "lectureId": "L02",
+      "topic": "Datasets and benchmarks",
+      "subtopic": "HabitatSim row caveat",
+      "tags": [
+        "L02",
+        "source-qualified",
+        "legacy-concept-closure"
+      ],
+      "conceptIds": [
+        "W01-L02-C-dataset-habitat"
+      ],
+      "assumptions": [],
+      "options": [
+        {
+          "id": "o1",
+          "text": "Habitat-Sim is the fixed 100K-scan dataset itself; any simulator that reads those scans is a different product."
+        },
+        {
+          "id": "o3",
+          "text": "Habitat-Sim is a simulator that can use scene datasets; its name alone does not establish a particular loaded dataset size."
+        },
+        {
+          "id": "o4",
+          "text": "The table’s 100K figure specifies the scene-scan collection bundled with Habitat-Sim, so installing the simulator establishes that dataset size."
+        },
+        {
+          "id": "o2",
+          "text": "Fixing the Habitat-Sim software version is sufficient to reproduce the table’s scan count, without identifying the loaded scene dataset."
+        }
+      ],
+      "correctOptionIds": [
+        "o3"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0090",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 90,
+          "kind": "statement",
+          "locator": "Lecture 2, physical PDF page 90, actual printed slide 41: HabitatSim row of the benchmark table, including task, size and robotics-relevance columns.",
+          "evidenceText": "Key Benchmarks & Datasets in AI Robotics\n\n  Dataset / Benchmark            Task                         Size                       Relevance to Robotics\n\n  ImageNet                       Image Classification         1.2M images, 1000 classes      Pretrain visual backbone for robot perception\n\n  COCO                              Detection / Segmentation    330K images, 80 categories     Object detection in robot environments\n\n  KITTI                        AV Perception / SLAM       Road driving sequences       3D detection, depth estimation, SLAM\n                                                                                                   evaluation\n\n  nuScenes                    AV Multi-sensor            1000 scenes, full suite         Camera+LiDAR+Radar fusion benchmark\n\n  Open X-Embodiment              Robot Manipulation       1M+ robot trajectories        Cross-embodiment robot learning\n\n  RLBench                         Robot Manipulation RL       100 tasks in simulation         Manipulation policy learning benchmark\n\n  HabitatSim                      Embodied Navigation        100K photo-real scans          Indoor navigation, question answering\n\n  BDD100K                             Driving Video              100K videos annotated         Diverse driving conditions, weather, time\n\n  ScanNet                      3D Scene Understanding     1513 RGB-D scans           3D object detection, semantic segmentation\n\n  MPII                       Human Pose Estimation      25K images                 Body pose for human activity recognition\n\n\n\n                                                                                                          41",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Habitat-Sim is simulation software able to use scene datasets. The lecture’s HabitatSim row associates it with embodied navigation, indoor navigation and question answering, but its 100K figure is not validated by the available official project evidence. A particular loaded scene collection and its version must be identified before a dataset-size claim is made.",
+        "optionExplanations": {
+          "o1": "This confuses simulation software with scene data and treats the unsupported count as an intrinsic size of the simulator.",
+          "o2": "A software-version identifier does not identify the loaded scene dataset or its version. Reproducing a scene count requires those data-specific facts; the available evidence does not validate the table’s count.",
+          "o3": "The official project distinguishes Habitat-Sim simulation from supported scene datasets. The table’s navigation and question-answering relevance can be retained while its size entry remains an unvalidated source claim.",
+          "o4": "This assumes that the simulator installation includes a fixed scan collection. Supported scene datasets are distinct from the simulation software; the table supplies no verified bundle or version-specific inventory."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "The simulator is the environment engine; the scene dataset is content loaded into that engine.",
+        "memoryAid": "Engine is not inventory.",
+        "misconceptions": [
+          "Do not turn the slide’s 100K photo-real scans into a verified size for every Habitat-Sim installation."
+        ],
+        "examTraps": [
+          "Do not turn the slide’s 100K photo-real scans into a verified size for every Habitat-Sim installation."
+        ],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "relatedQuestionIds": [
+        "W01-L02-Q-094",
+        "W01-L02-Q-097"
+      ],
+      "conflictResolution": {
+        "status": "qualified-draft-awaiting-independent-review",
+        "sourceClaim": "HabitatSim is listed with embodied navigation and 100K photo-real scans.",
+        "qualification": "Habitat-Sim is a simulator that can use scene datasets; do not treat the slide's 100K photo-real scans as a verified simulator dataset size. Preserve embodied-navigation relevance and distinguish simulator from loaded dataset.",
+        "primarySourceUrl": "https://aihabitat.org/",
+        "primaryEvidenceScope": "Official project homepage was opened and read; Habitat-Sim is physics-enabled 3D simulation with supported scene datasets. The slide count is not validated.",
+        "adjudicationPath": "audits/lecture-ledger-challenge/L02-L05-independent-adjudication.json",
+        "adjudicationSha256": "a8a2e5907644b9f9e42c4d8361417618c1842f44b1e9a108f5bff00dde2bf8e8",
+        "method": "Keep the source claim visible; assess only the explicitly qualified distinction. This draft is not an approval or a claim that the underlying source wording has changed."
+      },
+      "primaryEvidence": {
+        "url": "https://aihabitat.org/",
+        "scope": "Official project homepage was opened and read; Habitat-Sim is physics-enabled 3D simulation with supported scene datasets. The slide count is not validated.",
+        "evidenceOwner": "robotics-integration-legacy-concept-adjudication",
+        "currentAuthorFreshExternalRead": false,
+        "additionalUrls": []
+      },
+      "revisionAuthors": [
+        "robotics-legacy-concept-closure-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-legacy-concept-closure-author",
+          "priorQuestionSha256": "a6559c9292976dcf7ca4a80e3beb786a0935b185326cf5e93b032926dcec3188",
+          "reason": "Replace the two implausible distractors with software-version and bundled-dataset count confusions.",
+          "revisedAt": "2026-10-20T02:21:36.695955+00:00",
+          "reviewId": "REV-W01-L02-Q-107-v1-independent-integration"
+        }
+      ]
+    },
+    {
+      "id": "W01-L05-Q-081",
+      "version": 2,
+      "status": "draft",
+      "authorId": "robotics-legacy-concept-closure-author",
+      "stem": "Read the printed ROS timeline together with these historical distribution entries from official indexed evidence: Ardent, 2017-12-08; Bouncy, 2018-07-02; Crystal, 2018-12-14. Select every supported interpretation.",
+      "selectionMode": "multi",
+      "type": "statement-combination",
+      "difficulty": "medium",
+      "cognitiveSkill": "conceptual",
+      "week": 1,
+      "lectureId": "L05",
+      "topic": "Robot Operating System",
+      "subtopic": "ROS foundations",
+      "tags": [
+        "L05",
+        "source-qualified",
+        "legacy-concept-closure"
+      ],
+      "conceptIds": [
+        "W01-L05-C-timeline"
+      ],
+      "assumptions": [
+        "Use the supplied historical official indexed evidence only for its stated distribution names and dates. This question does not ask which ROS release is currently latest or best for installation."
+      ],
+      "options": [
+        {
+          "id": "o2",
+          "text": "The 2024 “latest LTS” label identifies the latest ROS 2 release at any later reading date, without a new version check."
+        },
+        {
+          "id": "o1",
+          "text": "The 2017/Crystal pairing is not accurate release chronology: the supplied historical evidence dates Crystal to December 2018."
+        },
+        {
+          "id": "o4",
+          "text": "The supplied historical evidence establishes Crystal as the first ROS 2 distribution released in 2017, before Ardent and Bouncy."
+        },
+        {
+          "id": "o3",
+          "text": "As a report of this slide, its 2007 Stanford, 2010 ROS 1.0 and 2013 OSRF rows precede its 2020 Noetic/Foxy and 2022 Humble rows."
+        }
+      ],
+      "correctOptionIds": [
+        "o1",
+        "o3"
+      ],
+      "citations": [
+        {
+          "slideId": "lectures-p0175",
+          "sourceId": "lectures",
+          "sourceSha256": "2dcca11fda764949d36f6f174bd72ccc2a83c2863f522635e7afd8539d88f84c",
+          "physicalPage": 175,
+          "kind": "statement",
+          "locator": "Lecture 5, physical PDF page 175, actual printed slide 5: Complete dated ROS history timeline; preserve each row as printed.",
+          "evidenceText": "History of ROS\n\n    2007  Stanford AI Lab begins development (Player/Stage)\n\n    2010  ROS 1.0 released; Willow Garage drives adoption\n\n    2013  Open Source Robotics Foundation (OSRF) takes over\n\n    2017  ROS 2 Alpha → Crystal Clemmys (first stable)\n\n    2020  ROS Noetic (final ROS 1 LTS); ROS 2 Foxy LTS\n\n    2022  ROS 2 Humble (LTS) — 5-year support cycle\n\n    2024  ROS 2 Jazzy — latest LTS release\n\n\n\n\n                                                                                                           5",
+          "role": "conflict",
+          "region": null
+        }
+      ],
+      "solution": {
+        "justification": "Separate literal source history from the correction. The seven printed rows remain visible in the citation, including the 2024 Jazzy label. The available official indexed release evidence places Ardent in December 2017, Bouncy in July 2018 and Crystal in December 2018. The current rolling releases page was denied, so neither a full direct read nor a current latest-release claim is made. Other source milestones are retained explicitly as what this dated slide states.",
+        "optionExplanations": {
+          "o1": "The indexed official historical distribution table dates Ardent 2017-12-08, Bouncy 2018-07-02 and Crystal 2018-12-14. This corrects the 2017/Crystal pairing without endorsing an unsupported first-stable label.",
+          "o2": "Latest is date-dependent. A 2024 slide label does not determine a current release or deployment choice at an arbitrary later date.",
+          "o3": "This faithfully reports the order and labels printed in the source without certifying all of its other chronology as universal fact.",
+          "o4": "The supplied order is Ardent, then Bouncy, then Crystal; Crystal is dated 2018, not 2017. This evidence does not independently adjudicate the phrase first stable."
+        },
+        "steps": [],
+        "formulas": [],
+        "simpleExplanation": "A timeline is a dated record, not an automatically updating software recommendation.",
+        "memoryAid": "Dates travel with release names; latest needs a date.",
+        "misconceptions": [
+          "Do not teach Crystal as a 2017 first stable release or treat a dated latest label as timeless."
+        ],
+        "examTraps": [
+          "Do not teach Crystal as a 2017 first stable release or treat a dated latest label as timeless."
+        ],
+        "prerequisiteConceptIds": []
+      },
+      "origin": "generated",
+      "reviewIds": [],
+      "relatedQuestionIds": [],
+      "conflictResolution": {
+        "status": "qualified-draft-awaiting-independent-review",
+        "sourceClaim": "The 2017 row combines ROS 2 Alpha with Crystal Clemmys (first stable); the 2024 Jazzy row says latest LTS release.",
+        "qualification": "Do not repeat Crystal as the first stable 2017 ROS2 release or Jazzy as timeless latest. Distinguish the dated slide sequence from corrected release history and software-version selection. Preserve the other source milestones.",
+        "primarySourceUrl": "https://repo.test.ros2.org/en/crystal/Releases.html",
+        "primaryEvidenceScope": "Official ROS2 historical distribution table search result supplied Ardent 2017-12-08, Bouncy 2018-07-02, Crystal 2018-12-14. Direct current rolling releases page was denied; no alternate retry. No current latest-release claim is authorized by this evidence.",
+        "adjudicationPath": "audits/lecture-ledger-challenge/L02-L05-independent-adjudication.json",
+        "adjudicationSha256": "a8a2e5907644b9f9e42c4d8361417618c1842f44b1e9a108f5bff00dde2bf8e8",
+        "method": "Keep the source claim visible; assess only the explicitly qualified distinction. This draft is not an approval or a claim that the underlying source wording has changed."
+      },
+      "primaryEvidence": {
+        "url": "https://repo.test.ros2.org/en/crystal/Releases.html",
+        "scope": "Official ROS2 historical distribution table search result supplied Ardent 2017-12-08, Bouncy 2018-07-02, Crystal 2018-12-14. Direct current rolling releases page was denied; no alternate retry. No current latest-release claim is authorized by this evidence.",
+        "evidenceOwner": "robotics-integration-legacy-concept-adjudication",
+        "currentAuthorFreshExternalRead": false,
+        "additionalUrls": []
+      },
+      "revisionAuthors": [
+        "robotics-legacy-concept-closure-author"
+      ],
+      "revisionHistory": [
+        {
+          "version": 2,
+          "authorId": "robotics-legacy-concept-closure-author",
+          "priorQuestionSha256": "663caadc4d72b28614f22de42c20099c1b9c2a3015d03d513a047f597708ef36",
+          "reason": "Supply the bounded official indexed historical dates before answer selection, with no direct-read or current-release claim.",
+          "revisedAt": "2026-10-20T02:21:36.695955+00:00",
+          "reviewId": "REV-W01-L05-Q-081-v1-independent-integration"
+        }
+      ]
+    }
+  ],
+  "reviews": [],
+  "repairScope": {
+    "W01-L02-Q-106": "Remove answer-bearing purpose clauses from the stem; retain the actual PCA-versus-clustering distinction.",
+    "W01-L02-Q-107": "Replace the two implausible distractors with software-version and bundled-dataset count confusions.",
+    "W01-L05-Q-081": "Supply the bounded official indexed historical dates before answer selection, with no direct-read or current-release claim."
+  },
+  "preservedApprovedQuestions": [
+    {
+      "id": "W01-L05-Q-082",
+      "version": 1,
+      "questionSha256": "176f1e54c6fc802edd46501c2fad13f9d8f6df228c81c01988fd2d982f456ea0",
+      "wholeObjectSha256": "8bd4c25d49861019712c3f71c4b6a3f6864857ad03be4909a84fc73b4fa3dbd8"
+    },
+    {
+      "id": "W01-L05-Q-083",
+      "version": 1,
+      "questionSha256": "a1d2043227efd6d356f4db6e5b413a3ba640764062532c7cbe898d931f2ecf4e",
+      "wholeObjectSha256": "b587cf5eee599688d52a718367118642d5726393b9f6922ac2af5e129eacbc76"
+    },
+    {
+      "id": "W01-L05-Q-084",
+      "version": 1,
+      "questionSha256": "d21990b69962eea6bd0f762f188304a0f59d7112df9dfb3717fd72a59a962781",
+      "wholeObjectSha256": "d527c01a331b48cfa285a9062ab0be3bb50991db744796c582eb4edf1730217d"
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+
+PAGE 1179
+Environment 
+State “𝒔𝒕”
+15
+•
+The network takes the environmental state as input.
+•
+It combines traditional Reinforcement Learning (RL) with Deep 
+Neural Networks (DNNs).
+•
+DQN replaces the tabular lookup with a neural network that acts 
+as a non-linear function approximator, which estimates Q-value 
+for all possible actions. 
+•
+ε-greedy or Boltzmann policy actually selects the Action.
+Deep Q-Networks (DQN)
+Reinforcement 
+Learning (RL)
+Deep Neural 
+Networks (DNNs)
+Q-table → Q-network
++
+Action 
+Selection 
+Using 𝜖-greedy or 
+Boltzmann policy
+Function Approximation
+
+{"id": "W08-L38-Q025", "stem": "Which pipeline matches the complete diagram?", "options": [{"id": "o1", "text": "State → neural Q values → epsilon-greedy or Boltzmann selection → action."}, {"id": "o2", "text": "State → neural Q values → treat the raw values directly as probabilities without a transformation → sampled action."}, {"id": "o3", "text": "State → neural Q values → select the highest value on every training step, even when the stated exploration branch is chosen."}, {"id": "o4", "text": "State → neural Q values → choose the minimum value because it is a loss."}], "assumptions": []}
+
+PAGE 1180
+16
+Architecture:
+•
+Input: Raw game screen, the pixels 
+of the current game state fed 
+directly into the network.
+•
+CNN (Convolutional Layers): A stack 
+of convolutional layers processes the 
+raw image, automatically extracting 
+visual features.
+Deep Q-Networks (DQN): Example 
+• Selected Action: The agent picks the action with the 
+highest predicted Q-value and sends it to the joystick.
+• Output Layer: The extracted features are condensed down 
+to one Q-value per possible discrete action 𝑄𝑠, 𝑎1; 𝜃,
+𝑄𝑠, 𝑎2; 𝜃, … , 𝑄(𝑠, 𝑎𝑛; 𝜃) all computed in a single pass.
+
+{"id": "W08-L38-Q067", "stem": "Trace the pictured DQN architecture, using only the literal labels in this illustration rather than asserting an actual game’s action set. Which chain reaches the selected-action arrow?", "options": [{"id": "o1", "text": "Raw screen → CNN visual features → per-action Q outputs → Action2:RIGHT."}, {"id": "o2", "text": "Raw screen → CNN visual features → per-action Q outputs → Action3:LEFT."}, {"id": "o3", "text": "Raw screen → per-action probabilities supplied as input → CNN features → Action2:RIGHT."}, {"id": "o4", "text": "Raw screen → CNN visual features → one state value with no action-specific outputs → Action2:RIGHT."}], "assumptions": []}
+
+PAGE 1190
+26
+•
+Two simulated environments are used for the training :
+– Concourse (outdoor, e.g. airport/mall/station) 
+• 12 m × 12 m ; 40x40 grid with 8 static + 8 randomly moving dynamic obstacles.
+– Home (indoor)
+• 9 m x 9 m ; 30x30 grid with Static (tables, sofas, beds, almirahs, etc.) Dynamic 
+(humans, toys, robots, etc.).
+Case Study: Safe Navigation with DQN
+Obstacle positions 
+randomized at the 
+start of every 
+training episode
+
+{"id": "W08-L38-Q049", "stem": "According to the legends on the inspected maps, what do black and pink cells indicate?", "options": [{"id": "o1", "text": "Black: static obstacles; pink: dynamic obstacles."}, {"id": "o2", "text": "Black: dynamic obstacles; pink: static obstacles."}, {"id": "o3", "text": "Black: obstacle-free cells; pink: all occupied cells, regardless of motion."}, {"id": "o4", "text": "Black: static obstacles; pink: the robot path through free cells."}], "assumptions": []}
+
+PAGE 1191
+27
+•
+Instead of inflating the map/obstacles (common in 
+prior work), this paper inflates the robot itself to 5×5 
+cells using the reward function simplifies 
+computation.
+•
+Actual robot base radius = 150 mm; inflated zone 
+covers a 5×5 cell safety buffer around it.
+•
+Cell labeling within the inflated robot:
+– “0" = center/collision cell → Collision penalty P₀ = −300.
+– "1" = 8 cells immediately around robot → Safe-distance 
+penalty-1, P₁ = −100.
+– "2" = next ring of 16 cells → Safe-distance penalty-2, P₂ = 
+−50.
+Case Study: Safe Navigation with DQN
+2
+2
+2
+2
+2
+2
+1
+1
+1
+2
+2
+1
+0
+1
+2
+2
+1
+1
+1
+2
+2
+2
+2
+2
+2
+
+{"id": "W08-L38-Q051", "stem": "In the pictured 5×5 zone, how many cells carry labels 0, 1 and 2, respectively?", "options": [{"id": "o1", "text": "1, 9, 15."}, {"id": "o2", "text": "5, 10, 10."}, {"id": "o3", "text": "1, 8, 16."}, {"id": "o4", "text": "1, 4, 20."}], "assumptions": []}
+{"id": "W08-L38-Q065", "stem": "In the concourse case, an obstacle occupies the center collision cell, an inner-ring cell or an outer-ring cell in three separate events. Which listed penalties correspond to these events, respectively?", "options": [{"id": "o1", "text": "−300, −100, −50."}, {"id": "o2", "text": "−300, −50, −100."}, {"id": "o3", "text": "−100, −300, −50."}, {"id": "o4", "text": "−300, −100, −2."}], "assumptions": ["Separate concourse events; only the listed zone component is requested."]}
+
+PAGE 1192
+28
+• Reward function for DQN algorithm:
+Case Study: Safe Navigation with DQN
+Reward
+Notation
+Concourse
+Home
+Goal reward
+Rg
++500
++500
+Move penalty
+P₄
+−1
+−1
+Collision penalty
+P₀
+−300
+−300
+No-move penalty
+P₃
+−2
+−4
+Safe distance-1
+P₁
+−100
+−100
+Safe distance-2
+P₂
+−50
+−2
+
+{"id": "W08-L38-Q057", "stem": "Ignoring future consequences and all other rewards, compare one no-move event with two ordinary moves. Which equality or inequality follows from the table?", "options": [{"id": "o1", "text": "Concourse costs tie at −2; home no-move costs −4 versus −2 for two moves."}, {"id": "o2", "text": "Concourse no-move costs −4 and home no-move costs −2."}, {"id": "o3", "text": "Two ordinary moves cost −4 in both environments."}, {"id": "o4", "text": "Home costs tie at−4; concourse no-move costs−2 versus−4 for two moves."}], "assumptions": ["Only the specified immediate costs are compared; no future effects or other penalty components."]}
+{"id": "W08-L38-Q065", "stem": "In the concourse case, an obstacle occupies the center collision cell, an inner-ring cell or an outer-ring cell in three separate events. Which listed penalties correspond to these events, respectively?", "options": [{"id": "o1", "text": "−300, −100, −50."}, {"id": "o2", "text": "−300, −50, −100."}, {"id": "o3", "text": "−100, −300, −50."}, {"id": "o4", "text": "−300, −100, −2."}], "assumptions": ["Separate concourse events; only the listed zone component is requested."]}
+
+PAGE 1210
+14
+Even though satellites know their positions accurately, several effects introduce errors.
+•
+Main sources:
+1. Reflections (Multipath error)
+2. Atmosphere 
+3. Satellite geometry (Spatial Arrangement)
+1. Multipath Error:
+–
+Signals reflect from:
+•
+Buildings, Walls, Metal structures, etc. 
+–
+The reflected path appears longer, and causes 
+incorrect position estimate.
+GNSS Errors
+
+{"id": "W08-L39-Q067", "stem": "Which association matches the labeled radio paths in the GNSS-error figure?", "options": [{"id": "o1", "text": "Green direct path: LOS; red building and dark-blue ground paths: reflection; blue roof-edge and yellow tree paths: diffraction"}, {"id": "o3", "text": "Green direct path: reflection; red building and dark-blue ground paths: LOS; blue roof-edge and yellow tree paths: diffraction"}, {"id": "o4", "text": "Green direct path: LOS; red building path: reflection; dark-blue ground and both edge/tree paths: diffraction"}, {"id": "o2", "text": "Green direct path: LOS; red building and dark-blue ground paths: diffraction; blue roof-edge and yellow tree paths: reflection"}], "assumptions": ["Identify the source’s labels only; do not infer diffraction equations or a universal ranking of position error from the drawing."]}

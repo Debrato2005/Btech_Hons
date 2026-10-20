@@ -1,0 +1,102 @@
+--- approved-1.0.3/learning-resources.js
++++ candidate-1.0.4/learning-resources.js
+@@ -4,7 +4,7 @@
+  */
+ (function(root,factory){'use strict';const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;if(root)root.RoboticsLearningResources=api;}(typeof globalThis!=='undefined'?globalThis:this,function(){
+ 'use strict';
+-const VERSION='1.0.3';
++const VERSION='1.0.4';
+ const CHECKS=['sourceSupport','assumptions','answerSet','distractors','calculations','figureFidelity','explanation','difficulty','duplication'];
+ const POLICY_CHECKS=['exactProjection','contextPreservation','sourceAndReviewBinding','failClosedMutationTests','runtimeTests'];
+ const clone=x=>JSON.parse(JSON.stringify(x));
+@@ -14,8 +14,10 @@
+  return '{'+Object.keys(x).sort().map(k=>JSON.stringify(k)+':'+stableJSON(x[k])).join(',')+'}';
+ }
+ // SHA-256, over TextEncoder UTF-8 bytes. Cross-tested against Node crypto.
+-function sha256(text){
+- const bytes=new TextEncoder().encode(text),length=bytes.length,total=Math.ceil((length+9)/64)*64,padded=new Uint8Array(total);padded.set(bytes);padded[length]=128;
++function sha256(text){return sha256Bytes(new TextEncoder().encode(text));}
++function sha256Bytes(bytes){
++ if(!(bytes instanceof Uint8Array))throw Error('SHA-256 bytes require Uint8Array');
++ const length=bytes.length,total=Math.ceil((length+9)/64)*64,padded=new Uint8Array(total);padded.set(bytes);padded[length]=128;
+  const dv=new DataView(padded.buffer);dv.setUint32(total-8,Math.floor(length/0x20000000));dv.setUint32(total-4,(length*8)>>>0);
+  const K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+  const H=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19],W=new Uint32Array(64),rr=(v,n)=>(v>>>n)|(v<<(32-n));
+@@ -67,6 +69,61 @@
+  }
+  return {questions,diagnostics};
+ }
++const VISUAL_CHECKS=['inventoryCompleteness','requiredInputFidelity','legibility','noAnswerLeak','sourceLinkage'];
++const visualByteCache=new Map();
++function visualEligibility(bank,embeddedAssets,questionIds){
++ const ids=Array.isArray(questionIds)?[...new Set(questionIds)]:[],out={ready:{},diagnostics:[]},x=bank.questionVisuals;
++ const fail=(id,message)=>out.diagnostics.push({questionId:id,reasons:[message]});
++ if(!x||x.formatVersion!==1||!nonblank(x.manifest?.authorId)){ids.forEach(id=>fail(id,'Missing reviewed question-input inventory.'));return out;}
++ const uniqueList=a=>Array.isArray(a)&&a.every(nonblank)&&new Set(a).size===a.length;
++ const bound=(raw,hash,value)=>{try{return typeof raw==='string'&&/^[a-f0-9]{64}$/.test(hash||'')&&sha256(raw)===hash&&stableJSON(JSON.parse(raw))===stableJSON(value);}catch{return false;}};
++ const exact=(a,b)=>stableJSON(a)===stableJSON(b),sourceKey=r=>[r.sourceId,r.sourceSha256,r.slideId,r.physicalPage].join('|');
++ if(['records','reviews','assets'].some(k=>!Array.isArray(x[k])||x[k].some(v=>!v||typeof v!=='object')||!uniqueList(x[k].map(v=>v.id)))){ids.forEach(id=>fail(id,'Malformed or duplicate visual inventory identifiers.'));return out;}
++ const eligible=new Map(eligibleQuestions({...bank,questions:(bank.questions||[]).filter(q=>ids.includes(q.id))}).questions.map(e=>[e.question.id,e]));
++ const sources=new Map((bank.sources||[]).map(s=>[s.id,s])),slides=new Map((bank.slides||[]).map(s=>[s.id,s])),amap=new Map(x.assets.map(a=>[a.id,a]));
++ const assetCounts=new Map();for(const a of x.assets)assetCounts.set(a.sha256,(assetCounts.get(a.sha256)||0)+1);
++ for(const id of ids){try{
++  const e=eligible.get(id),b=x.bindings?.[id],records=x.records.filter(r=>r.questionId===id),r=records[0];
++  if(!e||!e.reviewIds.some(rid=>e.question.reviewIds?.includes(rid)))throw Error('Current attached independent question/policy approval is missing or revoked.');
++  if(records.length!==1||!b||!bound(b.recordRawJSON,b.recordSha256,r))throw Error('Missing or stale independently reviewed visual-dependency binding.');
++  const q=e.question;
++  if(r.id!==b.recordId||r.version!==b.recordVersion||!Number.isInteger(r.version)||r.version<1||!nonblank(r.authorId)||!nonblank(r.reason)||r.questionVersion!==q.version||r.questionSha256!==e.binding.questionSha256||b.questionVersion!==q.version||b.questionSha256!==e.binding.questionSha256||r.dependencyStatus!==b.dependencyStatus||!exact(r.assetIds,b.assetIds)||!exact(r.requiredInputs,b.requiredInputs))throw Error('Visual inventory does not bind the current question content/version.');
++  if(!uniqueList(r.assetIds)||!uniqueList(r.requiredInputs)||!['required','self_contained'].includes(r.dependencyStatus)||(r.dependencyStatus==='required'?(!r.assetIds.length||!r.requiredInputs.length):(r.assetIds.length||r.requiredInputs.length)))throw Error('Malformed required-input classification.');
++  const refs=r.sourceRefs;
++  if(!Array.isArray(refs)||!refs.length||refs.some(c=>!sourceRefAllowed(c,sources,slides)||x.manifest.sourceVersions?.[c.sourceId]!==c.sourceSha256||!q.citations.some(k=>k.sourceId===c.sourceId&&k.sourceSha256===c.sourceSha256))||new Set(refs.map(sourceKey)).size!==refs.length)throw Error('Question-input source/page/inspection binding is missing or stale.');
++  const visualAssets=[];
++  for(const aid of r.assetIds){
++   const a=amap.get(aid),ab=x.assetBindings?.[aid],canonical=(bank.assets||[]).filter(v=>v.id===aid),embedded=embeddedAssets?.[aid];
++   if(!a||!ab||ab.id!==aid||ab.assetSha256!==a.sha256||!bound(ab.rawJSON,ab.assetMetadataSha256,a)||assetCounts.get(a.sha256)!==1)throw Error('Missing, duplicate or stale visual asset metadata: '+aid);
++   const projected={...a,kind:'diagram'};
++   if(canonical.length!==1||!exact(canonical[0],projected)||!embedded||!exact(Object.fromEntries(Object.entries(embedded).filter(([k])=>k!=='data')),projected))throw Error('Embedded visual metadata differs from the approved crop: '+aid);
++   const rect=a.cropRectangle;
++   if(a.mimeType!=='image/png'||!/^[a-f0-9]{64}$/.test(a.sha256||'')||!sourceRefAllowed(a,sources,slides)||!refs.some(c=>sourceKey(c)===sourceKey(a))||!nonblank(a.alt)||!/^assets\/question-visuals\/[^:]+\.png$/.test(a.path||'')||a.path.split('/').includes('..')||!Number.isInteger(a.width)||a.width<1||!Number.isInteger(a.height)||a.height<1||!Array.isArray(rect)||rect.length!==4||!rect.every(Number.isFinite)||!(0<=rect[0]&&rect[0]<rect[2]&&0<=rect[1]&&rect[1]<rect[3])||!Number.isFinite(a.renderDpi)||a.renderDpi<=0)throw Error('Invalid visual crop/source metadata: '+aid);
++   const encoded=embedded.data;
++   if(typeof encoded!=='string'||!encoded.length||encoded.length%4!==0||!/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(encoded))throw Error('Missing or malformed embedded visual pixels: '+aid);
++   // Cache by immutable payload value AND expected hash, not by mutable asset ID.
++   const previous=visualByteCache.get(aid);
++   if(!previous||previous.encoded!==encoded||previous.sha!==a.sha256||previous.width!==a.width||previous.height!==a.height){
++    const text=atob(encoded),bytes=Uint8Array.from(text,c=>c.charCodeAt(0));
++    if(sha256Bytes(bytes)!==a.sha256)throw Error('Embedded visual pixels changed: '+aid);
++    if(bytes.length<33||[137,80,78,71,13,10,26,10].some((v,i)=>bytes[i]!==v)||String.fromCharCode(...bytes.slice(12,16))!=='IHDR'||new DataView(bytes.buffer).getUint32(16)!==a.width||new DataView(bytes.buffer).getUint32(20)!==a.height)throw Error('Visual PNG dimensions/header differ from the approved metadata: '+aid);
++    visualByteCache.set(aid,{encoded,sha:a.sha256,width:a.width,height:a.height});
++   }
++   visualAssets.push(a);
++  }
++  const current=x.reviews.filter(v=>v.visualId===r.id&&v.visualVersion===r.version&&v.visualSha256===b.recordSha256);
++  if(current.some(v=>['flagged','rejected'].includes(v.decision)))throw Error('Current visual approval is disputed.');
++  const accepted=current.filter(v=>{
++   const rb=x.reviewBindings?.[v.id],linked=b.reviewBindings?.find(k=>k.id===v.id);
++   return v.decision==='verified'&&independentReviewer(v.reviewerId,r)&&independentReviewer(v.reviewerId,x.manifest)&&VISUAL_CHECKS.every(k=>v.checks?.[k]===true)&&v.questionId===id&&v.questionVersion===q.version&&v.questionSha256===e.binding.questionSha256&&v.displayRole==='question_input'&&typeof v.reviewedAt==='string'&&Number.isFinite(Date.parse(v.reviewedAt))&&uniqueList(v.reviewedAssetIds)&&exact([...v.reviewedAssetIds].sort(),[...r.assetIds].sort())&&exact(v.assetHashes,Object.fromEntries(visualAssets.map(a=>[a.id,a.sha256])))&&exact(v.assetMetadataHashes,Object.fromEntries(visualAssets.map(a=>[a.id,x.assetBindings[a.id].assetMetadataSha256])))&&refs.every(c=>v.sourceVersions?.[c.sourceId]===c.sourceSha256)&&Object.entries(v.sourceVersions||{}).every(([sid,h])=>sources.get(sid)?.sha256===h)&&rb?.id===v.id&&linked?.reviewSha256===rb.reviewSha256&&bound(rb.rawJSON,rb.reviewSha256,v);
++  });
++  if(!accepted.length)throw Error('No current independent question-input visual approval; answer approval alone is insufficient.');
++  const stamp={formatVersion:1,questionId:id,questionVersion:q.version,questionSha256:e.binding.questionSha256,recordId:r.id,recordVersion:r.version,recordSha256:b.recordSha256,dependencyStatus:r.dependencyStatus,reviewBindings:accepted.map(v=>({id:v.id,reviewSha256:x.reviewBindings[v.id].reviewSha256})).sort((a,b)=>a.id.localeCompare(b.id)),assetBindings:visualAssets.map(a=>({id:a.id,sha256:a.sha256,metadataSha256:x.assetBindings[a.id].assetMetadataSha256})).sort((a,b)=>a.id.localeCompare(b.id))};
++  out.ready[id]={questionId:id,dependencyStatus:r.dependencyStatus,assets:visualAssets,requiredInputs:clone(r.requiredInputs),stamp};
++ }catch(error){fail(id,error.message);}}
++ return out;
++}
++
+ function context(entry){
+  // Retain every original field, including supplemental notebooks, experiments,
+  // implementation versions and diagram provenance. Shared aliases refer to the
+@@ -141,7 +198,7 @@
+    }catch(error){diagnostics.push({id:mapping?.id||pack.batchPath,reason:error.message});}
+   }
+  }
+- return {priorities:[...priority.values()].sort((a,b)=>a.questionId.localeCompare(b.questionId,undefined,{numeric:true})),reuseLinks,diagnostics,eligibleQuestionCount:eligible.questions.length};
++ return {priorities:[...priority.values()].sort((a,b)=>a.questionId.localeCompare(b.questionId,undefined,{numeric:true})),reuseLinks,diagnostics,eligibleQuestionIds:eligible.questions.map(e=>e.question.id),eligibleQuestionCount:eligible.questions.length};
+ }
+ function base(entry,kind,id){const q=entry.question;return {id,kind,provenanceKind:'exact-question-projection',status:'projected-from-verified',week:q.week,lectureId:q.lectureId,title:q.subtopic||q.topic||q.id,questionIds:[q.id],conceptIds:clone(q.conceptIds||[]),slideIds:[...new Set(q.citations.map(c=>c.slideId))],sourceRefs:clone(q.citations),contexts:[context(entry)],projectionVersion:VERSION};}
+ function project(bank){
+@@ -179,5 +236,5 @@
+  if(!Number.isInteger(page)||page<0||!Number.isInteger(pageSize)||pageSize<1||pageSize>100)throw Error('Invalid page bounds');
+  const needle=String(search).trim().toLocaleLowerCase(),filtered=rows.filter(r=>(!week||String(r.week)===String(week)||(r.weeks||[]).some(w=>String(w)===String(week)))&&(!lecture||r.lectureId===lecture||(r.lectureIds||[]).includes(lecture))&&(!needle||JSON.stringify(r).toLocaleLowerCase().includes(needle)));const pages=Math.max(1,Math.ceil(filtered.length/pageSize)),current=Math.min(page,pages-1);return {rows:filtered.slice(current*pageSize,(current+1)*pageSize),total:filtered.length,page:current,pages};
+ }
+-return Object.freeze({VERSION,CHECKS,POLICY_CHECKS,literalAnswerValid,sourceRefAllowed,stableJSON,sha256,runtimeQuestionDigest,policyAllowed,eligibleQuestions,project,filterPage,TOOL_CHECKS,toolRecordAllowed,assignmentPriority});
++return Object.freeze({VERSION,CHECKS,POLICY_CHECKS,VISUAL_CHECKS,visualEligibility,literalAnswerValid,sourceRefAllowed,stableJSON,sha256,sha256Bytes,runtimeQuestionDigest,policyAllowed,eligibleQuestions,project,filterPage,TOOL_CHECKS,toolRecordAllowed,assignmentPriority});
+ }));

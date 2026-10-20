@@ -1,0 +1,409 @@
+[
+  {
+    "id": "contracts-learning-resource-policy-v1",
+    "reviewerId": "robotics-contracts-independent-reviewer",
+    "reviewedAt": "2026-10-20T00:34:24.946385+00:00",
+    "resourceId": "robotics.exact-question-learning-projection",
+    "resourceVersion": "1.0.0",
+    "resourceSha256": "6cdb73bb280557f7b072332d19a575e04c988312bbbfd284c5d0cb3db1a34787",
+    "decision": "flagged",
+    "checks": {
+      "exactProjection": true,
+      "contextPreservation": false,
+      "sourceAndReviewBinding": false,
+      "failClosedMutationTests": false,
+      "runtimeTests": false
+    },
+    "findings": [
+      {
+        "id": "LR-P01",
+        "severity": "blocking",
+        "area": "stale numerical activation",
+        "targets": [
+          "app/learning-tools.js:registerBankNumericalFamilies",
+          "app/app.js:renderNumerical/renderVariant"
+        ],
+        "finding": "Register an approved course family, remove that record from bank.learningTools.numericalFamilies, then register the new bank. The absent family remains in the module registry and listNumericalFamilies still labels it verified. The current state.variant renderer also trusts cached provenance.status and can display/save that old verified variant without rechecking current eligibility.",
+        "requiredRepair": "Evict every bank-registered family absent or ineligible in the current bank. Fail closed for generation/restoration/display of a cached course variant when its current family, content, question, source, policy or review binding is absent/stale. Keep historical attempts as historical, not current approvals. Add record-removal, bank-switch and cached-variant revocation tests.",
+        "evidence": "audits/learning-resources-v1-contracts-independent-checks.json: failClosedProbes; current renderVariant implementation inspected statically, not in a browser."
+      },
+      {
+        "id": "LR-P02",
+        "severity": "blocking",
+        "area": "context/source provenance loss",
+        "targets": [
+          "app/learning-resources.js:context",
+          "app/learning-resource-ui.js:contextPanel"
+        ],
+        "finding": "The projection drops supplementalProvenance, externalEvidence, primaryImplementationEvidence, experimentProvenance and diagramSourceSlideIds. In the sampled canonical bank this is71 omissions across51 distinct questions. For example W07-L34-P1052-Q08 loses its exact notebook URL, SHA256 and cell8 binding; the remaining slide hyperlink does not replace that evidence.",
+        "requiredRepair": "Copy and render the relevant exact supplemental/implementation/experiment and diagram provenance with its original source qualifications, without inventing new source claims. Preserve full solution/premise context where necessary rather than only a generic source button. Test real notebook-derived and source-conflict fixtures as well as text-only questions.",
+        "evidence": "audits/learning-resources-v1-contracts-projection-checks.json: contextOmissions"
+      },
+      {
+        "id": "LR-P03",
+        "severity": "blocking-defense-in-depth",
+        "area": "literal-answer and identity gate parity",
+        "targets": [
+          "app/learning-resources.js:eligibleQuestions/sameSet",
+          "scripts/learning_resources.py:tool_reasons"
+        ],
+        "finding": "Under otherwise current synthetic test bindings, the JS projection accepts empty keys plus empty independent answers, nonexistent key IDs plus matching review IDs, duplicate independent IDs, and a whitespace-only reviewerId. The Python linked-question check likewise lacks valid-option membership and duplicate validation. The canonical bank validator normally rejects such malformed records, but the separate fail-closed resource gate must not convert them into projected approvals.",
+        "requiredRepair": "Require nonempty unique literal key and independent answer arrays containing only the question’s valid stable option IDs; require a nonblank independent reviewer identity; never substitute conditional intended IDs. Align JS/Python checks and test the rejected cases.",
+        "evidence": "audits/learning-resources-v1-contracts-independent-checks.json and additionalGateProbes in this summary"
+      },
+      {
+        "id": "LR-P04",
+        "severity": "blocking-defense-in-depth",
+        "area": "source-page domain validation",
+        "targets": [
+          "app/learning-resources.js:eligibleQuestions/toolRecordAllowed",
+          "scripts/learning_resources.py:tool_reasons"
+        ],
+        "finding": "The resource gates reject only unreviewed/unresolved dispositions, so an unknown disposition passes. A consistently mutated physicalPage0 also passes JS eligibility. The algorithm selector already uses a positive bounded physical-page check and an explicit disposition allowlist, but the projection/numerical gates do not.",
+        "requiredRepair": "Require one-based integer physicalPage within source.pageCount and an explicit supported disposition, with complete source/hash/sourceId/inspection consistency. Apply the same requirements to linked question citations as well as resource sourceRefs, in both language layers.",
+        "evidence": "audits/learning-resources-v1-contracts-independent-checks.json and additionalGateProbes in this summary"
+      }
+    ],
+    "codeHashes": {
+      "app/learning-resources.js": "fdcfd91813f9fc863d4d448c3928f7e35d86998e84d37cbff22a28448e5d14f7",
+      "app/learning-resource-ui.js": "a451055df7cd02433c0cf48a01d9e2940af1a2862726f1690b9c07a96680d710",
+      "scripts/learning_resources.py": "a50a6ea38fd2cfdc62b4c15f5d298162df10ad4bf9a453666986b6abd404d8a3",
+      "app/learning-tools.js": "dcc58816b4d6689389d8f384a76e3b7755c9bf3c28a66479d970cd1218229427",
+      "app/course-numerical.js": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a",
+      "app/core.js": "df6b00cc3dbe8df737826b501ab3b90dc8a897d896cd757e10ce2353514966f5",
+      "app/app.js": "69e118b091a7e394846c3a0d45b66425ccb6e7ef6216cbdfff244a585d1dc313",
+      "scripts/build.py": "2b43c3b18d0703cf527b44fa78f86a058426e5894c058f0fadd2d06d73dfa89f",
+      "scripts/assemble_bank.py": "68ce4ef092f6ece200b3ad53bb89d33edb2c89539acf9622eef7740f49b8798d",
+      "scripts/validate.py": "85566aabb6a714a9ad787437786f7b26f181a3472002d2cf88b1c17a9668396f",
+      "app/index.html": "9857b52d21b35e3927b16293c8b59a1ce61dd61f90c2d281491065f5557f55e0"
+    },
+    "evidencePaths": [
+      "audits/learning-resources-v1-contracts-independent-checks.json",
+      "audits/learning-resources-v1-contracts-projection-checks.json",
+      "audits/run_learning_resources_contracts_node.js",
+      "audits/check_learning_resource_projection_contracts.js"
+    ],
+    "runtimeExplanation": "39 fixed numerical answers,5 complete traces,13000 new-seed arithmetic cases,13000 distinct-option checks and13000 variant replays passed. Existing targeted39 Node and4 Python tests passed. Inert Node structural DOM tests passed11 assertions, not browser tests. Runtime activation still fails record-removal/revocation tests, so the policy runtime check is false. Actual browser rendering/layout remains independently blocked, not failed or passed."
+  },
+  {
+    "id": "contracts-learning-resource-policy-v2",
+    "reviewerId": "robotics-contracts-independent-reviewer",
+    "reviewedAt": "2026-10-20T01:05:44.642646+00:00",
+    "resourceId": "robotics.exact-question-learning-projection",
+    "resourceVersion": "1.0.1",
+    "resourceSha256": "0da2b6ad1da5828b592f3bad025872c37be2f5411094c6b067cc0ea80877471d",
+    "decision": "flagged",
+    "checks": {
+      "exactProjection": true,
+      "contextPreservation": true,
+      "sourceAndReviewBinding": false,
+      "failClosedMutationTests": false,
+      "runtimeTests": false
+    },
+    "findings": [
+      {
+        "id": "LR-P05",
+        "severity": "blocking-defense-in-depth",
+        "area": "Python implementation-policy binding parity",
+        "targets": [
+          "scripts/learning_resources.py:tool_reasons",
+          "scripts/learning_resources.py:integrity_errors"
+        ],
+        "finding": "For a correctly hashed actual implementation file with a distinct current tool approval, Python tool_reasons and integrity_errors accept when that file is omitted from or conflicts with approved policy.codeHashes. JavaScript rejects the identical tool. The complete omitted-file reproduction has no policy code errors and valid current policy approval, so this is not merely a malformed policy fixture.",
+        "requiredRepair": "Require every implementationFiles path/hash pair to match the active approved policy code inventory in the Python gate, including missing inventories, omissions and mismatches; preserve on-disk hash checks. Add end-to-end Python/JS parity regressions. Advance the policy version and hash after the source change. Tool objects need not change if their bound JS files remain exact.",
+        "evidence": "audits/resource-policy-v2-review/policy-linkage-reproduction.json"
+      }
+    ],
+    "priorFindingDispositions": {
+      "LR-P01": "Fixed: removal, bank switch, current record/review/source/policy changes revoke registry, cached render, interactions, restoration and exports. Historical identity does not inherit reapproval.",
+      "LR-P02": "Fixed: complete detached source fields and solution context retained; 6398 real-bank contexts had zero altered/omitted original fields and supplemental evidence is inert text in structural UI.",
+      "LR-P03": "Fixed for literal keys, cardinality, stable IDs, conditional-intended separation and trimmed independent identities in both languages. Residual policy implementation linkage is separately LR-P05.",
+      "LR-P04": "Fixed: positive bounded integral page/count, identity/hash, inspection and explicit disposition probes pass in both languages."
+    },
+    "codeHashes": {
+      "app/learning-resources.js": "d02f075e36110fe3414622037a9e94f165f97c3c4df08a74b3eea95e8f6fa633",
+      "app/learning-resource-ui.js": "ea16433b221904b0a22b9d7f09639d9758eff67ba48c5c24fa8a9846b2cf0a65",
+      "scripts/learning_resources.py": "9922030c6149ca8a36e6c637406afafe00286a34ff6a1843eb2da72bf3f88efb",
+      "app/learning-tools.js": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6",
+      "app/course-numerical.js": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a",
+      "app/core.js": "df6b00cc3dbe8df737826b501ab3b90dc8a897d896cd757e10ce2353514966f5",
+      "app/app.js": "637c98d9759b3e6dc1c1a0430aa8a3d6c7717ae827feb139ea675de7fd84d7c7",
+      "scripts/build.py": "2b43c3b18d0703cf527b44fa78f86a058426e5894c058f0fadd2d06d73dfa89f",
+      "scripts/assemble_bank.py": "68ce4ef092f6ece200b3ad53bb89d33edb2c89539acf9622eef7740f49b8798d",
+      "scripts/validate.py": "85566aabb6a714a9ad787437786f7b26f181a3472002d2cf88b1c17a9668396f",
+      "app/index.html": "9857b52d21b35e3927b16293c8b59a1ce61dd61f90c2d281491065f5557f55e0"
+    },
+    "evidencePaths": [
+      "audits/resource-policy-v2-review/binding-and-payload-checks.json",
+      "audits/resource-policy-v2-review/runtime-mutation-checks.json",
+      "audits/resource-policy-v2-review/python-mutation-checks.json",
+      "audits/resource-policy-v2-review/policy-linkage-reproduction.json",
+      "audits/resource-policy-v2-review/independent-math-checks.json"
+    ],
+    "priorExposure": "Prior v1 policy/tool/code seen; this is a disclosed nonblind revision review.",
+    "runtimeExplanation": "49 independent Node mutation/structural groups passed; Python 27 of29 probes passed, with the omitted/conflicting policy implementation cases failing. Independent arithmetic rerun passed39 fixed examples,5 complete traces,13000 new-seed cases,13000 distinct rounded alternative checks and13000 replays. Shared targeted53 Node and12 Python tests passed but missed the residual. Actual browser launch remains denied and was not attempted.",
+    "browserStatus": "blocked_not_retried",
+    "reviewBoundary": "A math/configuration approval does not authorize the separate extraction/activation policy, whole-course completeness, or browser layout."
+  },
+  {
+    "id": "contracts-learning-resource-policy-v3",
+    "reviewerId": "robotics-contracts-independent-reviewer",
+    "reviewedAt": "2026-10-20T01:11:21.320422+00:00",
+    "resourceId": "robotics.exact-question-learning-projection",
+    "resourceVersion": "1.0.2",
+    "resourceSha256": "3e3ae6569b65205aab733f8eedbcae193f48587f1a7f01b5bf750839cf336e30",
+    "decision": "verified",
+    "checks": {
+      "exactProjection": true,
+      "contextPreservation": true,
+      "sourceAndReviewBinding": true,
+      "failClosedMutationTests": true,
+      "runtimeTests": true
+    },
+    "findings": [],
+    "priorFindingDispositions": {
+      "LR-P01": "Closed by v2 current registry/render/interaction revocation checks.",
+      "LR-P02": "Closed by v2 exact all-field projection and inert text tests.",
+      "LR-P03": "Closed by v2 nonempty unique literal key/reviewer identity checks.",
+      "LR-P04": "Closed by v2 source-page domain/inspection checks.",
+      "LR-P05": "Closed by v3 independent end-to-end omitted/conflicting implementation rejection and valid controls in both languages, plus missing/malformed embedded metadata and pre-assembly candidate-policy probes."
+    },
+    "codeHashes": {
+      "app/learning-resources.js": "b400ea94d8b5c4a04bb07fd34f41894dbf2aed803a56e3e0939de3bf2c412444",
+      "app/learning-resource-ui.js": "ea16433b221904b0a22b9d7f09639d9758eff67ba48c5c24fa8a9846b2cf0a65",
+      "scripts/learning_resources.py": "a1a70605017040aaf40fc1466d8c2a656967503ad44bc1f5fe8898b19fbe032c",
+      "app/learning-tools.js": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6",
+      "app/course-numerical.js": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a",
+      "app/core.js": "df6b00cc3dbe8df737826b501ab3b90dc8a897d896cd757e10ce2353514966f5",
+      "app/app.js": "637c98d9759b3e6dc1c1a0430aa8a3d6c7717ae827feb139ea675de7fd84d7c7",
+      "scripts/build.py": "2b43c3b18d0703cf527b44fa78f86a058426e5894c058f0fadd2d06d73dfa89f",
+      "scripts/assemble_bank.py": "68ce4ef092f6ece200b3ad53bb89d33edb2c89539acf9622eef7740f49b8798d",
+      "scripts/validate.py": "85566aabb6a714a9ad787437786f7b26f181a3472002d2cf88b1c17a9668396f",
+      "app/index.html": "9857b52d21b35e3927b16293c8b59a1ce61dd61f90c2d281491065f5557f55e0"
+    },
+    "evidencePaths": [
+      "audits/resource-policy-v3-review/independent-checks.json",
+      "audits/resource-policy-v3-review/shared-node.log",
+      "audits/resource-policy-v3-review/shared-python.log",
+      "audits/resource-policy-v2-review/runtime-mutation-checks.json",
+      "audits/resource-policy-v2-review/independent-math-checks.json"
+    ],
+    "priorExposure": "Disclosed nonblind policy repair review; prior v1/v2 code and findings were seen. No new answer keys or computational payloads were introduced.",
+    "runtimeExplanation": "13 independent narrow cross-language/pre-assembly cases passed, supported by the retained v2 full mutation/projection/math evidence. All18 v2 tool objects and their direct implementation bytes remain exact. Shared targeted53 Node and16 Python tests pass.",
+    "scope": "Approves exact-code extraction/activation policy and deterministic software behavior, not whole-course completeness, browser layout or downloaded-HTML visual QA. Those remain separate pending release gates.",
+    "browserStatus": "blocked_not_retried",
+    "restrictions": "No browser retry, install, restricted environment, dependency/model/audio/NLTK retrieval, denied original L49 notebook or ROS documentation route bypass. Default installed Python/Node and local evidence only."
+  },
+  {
+    "id": "recovery-independent-learning-resource-policy-v1.0.3",
+    "reviewerId": "verify_remaining_assignment_answers:independent-ui-policy-reviewer",
+    "reviewedAt": "2026-10-20T03:09:29.272468+00:00",
+    "resourceId": "robotics.exact-question-learning-projection",
+    "resourceVersion": "1.0.3",
+    "resourceSha256": "9ba8873bbd6364cc3ef6d98d180ee45d3e4c38e5c59beca129c0ae8819773ca4",
+    "decision": "verified",
+    "checks": {
+      "exactProjection": true,
+      "contextPreservation": true,
+      "sourceAndReviewBinding": true,
+      "failClosedMutationTests": true,
+      "runtimeTests": true
+    },
+    "findings": [],
+    "codeHashes": {
+      "app/learning-resources.js": "41955481fb470b1b866593b8c0f95c472315635717a47ce441d90ea4395ebe7b",
+      "app/learning-resource-ui.js": "ea16433b221904b0a22b9d7f09639d9758eff67ba48c5c24fa8a9846b2cf0a65",
+      "scripts/learning_resources.py": "a1a70605017040aaf40fc1466d8c2a656967503ad44bc1f5fe8898b19fbe032c",
+      "app/learning-tools.js": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6",
+      "app/course-numerical.js": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a",
+      "app/core.js": "38a52cb876f88fac244bd07ab1707a65211243e5a925a5af3823af7e142f6e70",
+      "app/app.js": "b503905820431dc8aa7aaa1262fbc886ada0a21d52167c8798ac25e4a15e1921",
+      "scripts/build.py": "2b43c3b18d0703cf527b44fa78f86a058426e5894c058f0fadd2d06d73dfa89f",
+      "scripts/assemble_bank.py": "daa65eb45d52a8f74dc1986227add8cc7278653bc0a20f38ea6542798b5bae79",
+      "scripts/validate.py": "49bceb41e9e3e002e97a42dea0ccbe22a830ea9034ee092631f6b6694f2a6402",
+      "app/index.html": "9857b52d21b35e3927b16293c8b59a1ce61dd61f90c2d281491065f5557f55e0"
+    },
+    "priorExposure": "Disclosed nonblind independent application/policy review. Prior accepted implementation, author handoff, existing tests and software fixtures inspected. No generated subject-matter keys were authored or altered. In-memory provisional policy fixtures were explicitly software-only and never persisted as course approval.",
+    "closedFindings": {
+      "UI103-R01": "Runtime now rejects removal of concept-to-duplicate and duplicate-to-concept edges, matching producer integrity.",
+      "UI103-R02": "Producer now rejects malformed source SHA values even when all mutable fixture references are consistently rebound.",
+      "UI103-R03": "Producer now rejects one-option and malformed-option-record targets even with coherent literal-answer/hash reviews."
+    },
+    "evidencePaths": [
+      "audits/final-ui-policy-103-review/binding-checks.json",
+      "audits/final-ui-policy-103-review/real-reuse-probes.json",
+      "audits/final-ui-policy-103-review/producer-probes.json",
+      "audits/final-ui-policy-103-review/producer-probes-pre-repair.json",
+      "audits/final-ui-policy-103-review/real-producer-check.json",
+      "audits/final-ui-policy-103-review/coverage-ui-probes.json",
+      "audits/final-ui-policy-103-review/independent-ui-checks.json",
+      "audits/final-ui-policy-103-review/actual-bank-navigation-check.json",
+      "audits/final-ui-policy-103-review/shared-node.log",
+      "audits/final-ui-policy-103-review/shared-python.log",
+      "audits/final-ui-policy-103-review/app-expanded.patch",
+      "audits/final-ui-policy-103-review/assembler-expanded.patch"
+    ],
+    "evidenceSha256": {
+      "binding-checks.json": "ad09db67ac91d0e8b8361b5eacecf4084598a93890d9d25d699c6ed2cfe59533",
+      "real-reuse-probes.json": "11dcbfd7f5c544096280c7474410ecca98a35615431edd55c2ace2a465753e07",
+      "producer-probes.json": "47dfae1f5fb437e0d08657959302919674a6867c2ede3a8c5053b7276112ad8d",
+      "producer-probes-pre-repair.json": "c274a421cd533d73d24276299538afb420284fdbf36c8636c4803b1ab5f5d80c",
+      "real-producer-check.json": "62eb18915a102c0bb2edcf45d07ce21866b92d3b38e059793e1058d32a072147",
+      "coverage-ui-probes.json": "c3cb2c78318d584bc7377934534c2d8b73fe5115bc9549245e40f2c890e4c5eb",
+      "independent-ui-checks.json": "65a15d00755bccf575ac638cb1977dfb2c9b92b2d8f66b8516cd96a0286b88db",
+      "actual-bank-navigation-check.json": "a351bd846880291be2796d64132cdbe9c39c72c32567243ee7dc18c646270b3e",
+      "shared-node.log": "f72bf9dc2f592df1f2cb498e6412363afe77cd8014994932d00d8e3458d0f228",
+      "shared-python.log": "891b77cf20053496834904a4ea63575123f5165efe6f51d70cc1474631901e8e",
+      "app-expanded.patch": "a556cc7decc8e4e9b5946b7c42cff12a3d33424f05c5917d8a6dc3c6681018f8",
+      "assembler-expanded.patch": "1a56c2b6e3678896171ca356e191479c17a5378e722074061e1d8440b81489c8"
+    },
+    "runtimeExplanation": "Independent checks passed: 11 exact-byte/delta/tool-payload bindings; 33 actual-object runtime/revocation/ranking cases; 11 producer mutation cases; five actual source/coverage UI cases; eight course-tree/heatmap/active-exam/backup groups; all 3313 actual subtopic scopes and exact-deadline behavior. Shared 109 Node and 147 Python tests passed. Real source-file producer check yields two mappings, six reused targets, zero new unique questions, no diagnostics and no question mutation. Full actual-object runtime fixture yields 5069 eligible questions and 125 assignment-priority questions (119 adaptations plus six existing targets).",
+    "scope": "Approves the exact-code extraction/activation policy, bounded source-assignment study priority, separately gated reuse navigation and inert legacy coverage qualification display. Does not approve new course answers, change source/conflict qualifications, elevate original concept status, count duplicates as new questions, predict exam likelihood or establish whole-course release completeness.",
+    "browserStatus": "pending_not_attempted",
+    "browserBoundary": "Only deterministic logic and inert DOM checks were performed. Actual offline final-HTML interaction, visual/PDF rendering, downloads and file:// persistence remain a separate pending exact-artifact browser verification task. No denied route retried.",
+    "securityBoundary": "Active exam renderer hides onscreen solutions/source/correctness. Exported backup JSON intentionally includes keyed frozen exam snapshots, as does the offline bank/storage; this is recoverability, not encrypted or proctored secrecy."
+  },
+  {
+    "id": "recovery-independent-learning-resource-policy-v1.0.4",
+    "reviewerId": "verify_remaining_assignment_answers:independent-ui-policy-reviewer",
+    "reviewedAt": "2026-10-20T03:42:37.088730+00:00",
+    "resourceId": "robotics.exact-question-learning-projection",
+    "resourceVersion": "1.0.4",
+    "resourceSha256": "3405deb0579e240237a25cba823ddb52156b03e48621a55d8992410019c83bb9",
+    "decision": "verified",
+    "checks": {
+      "exactProjection": true,
+      "contextPreservation": true,
+      "sourceAndReviewBinding": true,
+      "failClosedMutationTests": true,
+      "runtimeTests": true
+    },
+    "findings": [],
+    "codeHashes": {
+      "app/learning-resources.js": "19a2419e02ab6cb7735fafd9f7b03b02347d0562598b68bd1b3196a5a90e64c0",
+      "app/learning-resource-ui.js": "ea16433b221904b0a22b9d7f09639d9758eff67ba48c5c24fa8a9846b2cf0a65",
+      "scripts/learning_resources.py": "a1a70605017040aaf40fc1466d8c2a656967503ad44bc1f5fe8898b19fbe032c",
+      "app/learning-tools.js": "46f0d250f0c1d83bc440729d0c04f65e9437553f4ac63959bc08123300d395e6",
+      "app/course-numerical.js": "d670ef166edd416a68f71fdab1d058851bfc15d22f5218c81df3e9884f98840a",
+      "app/core.js": "2af8e04b1a832a5a0dfcdb8b09f8425c8f98d1840005c1fb229008772f5d0fa4",
+      "app/app.js": "0b00e3082c9321a95b4a7d17475d4664f196a1c6211a9a5fe5b3ba862ea77a94",
+      "scripts/build.py": "95d7e257cf9bf46f7f890cef8adcf76e4fb4233a8078f91a4b3eaba081b2cdf9",
+      "scripts/assemble_bank.py": "687a94f22ee6ad2493c13dd07b2445674b9b15a2c81ffe8f3bf773607ac3f875",
+      "scripts/validate.py": "9d670137b4db5701f250eebb0c26c81abd6a63b99799fe446c5d2daed17d5d6d",
+      "app/index.html": "9857b52d21b35e3927b16293c8b59a1ce61dd61f90c2d281491065f5557f55e0",
+      "scripts/question_visuals.py": "373a436e76a33a838d816b16e963e7e226a05fb1da029f7ce46b2d67d5270633",
+      "data/schema.bank.json": "e1c49c556aa42e1343fcb2d54a3c1a3025572b9138fff2e696c5f1254535f286"
+    },
+    "priorExposure": "Disclosed nonblind independent code review. Prior accepted implementation, author neutral diffs, handoffs and author test fixtures were inspected. Reviewer-owned Python/JavaScript fixtures and actual question objects were used independently. Pending-policy approvals existed only in explicit in-memory software tests before this acceptance. This reviewer did not author question answers, visual classification or crop fidelity approvals.",
+    "closedFindings": {
+      "UI104-R01": "Focus recommendation limit:null now stays unbounded until ordinary filters are applied, then eight visible suggestions are selected.",
+      "UI104-R02": "Visual runtime now requires attachment of a current accepted answer review ID to the question, matching producer eligibility.",
+      "UI104-R03": "An already-open full-source preview is revoked on active exam entry; save/zoom independently enforce current saved crop identity and stale practice callbacks cannot bypass it.",
+      "UI104-R04": "Previously prepared answer-key print content is cleared on exam entry; native beforeprint independently rechecks exam state, current input approval and decoding, preventing stale keyed print content."
+    },
+    "evidencePaths": [
+      "audits/final-ui-policy-104-review/actual-bank-navigation-check.js",
+      "audits/final-ui-policy-104-review/actual-bank-navigation-check.json",
+      "audits/final-ui-policy-104-review/actual-bank-navigation-check.log",
+      "audits/final-ui-policy-104-review/actual-visual-producer.json",
+      "audits/final-ui-policy-104-review/actual-visual-producer.log",
+      "audits/final-ui-policy-104-review/actual-visual-runtime.js",
+      "audits/final-ui-policy-104-review/actual-visual-runtime.json",
+      "audits/final-ui-policy-104-review/actual-visual-runtime.log",
+      "audits/final-ui-policy-104-review/assemble_bank.py.patch",
+      "audits/final-ui-policy-104-review/binding-checks.json",
+      "audits/final-ui-policy-104-review/binding-checks.log",
+      "audits/final-ui-policy-104-review/build.py.patch",
+      "audits/final-ui-policy-104-review/check-bindings.py",
+      "audits/final-ui-policy-104-review/content-baseline.json",
+      "audits/final-ui-policy-104-review/execution-incident.json",
+      "audits/final-ui-policy-104-review/finalize-policy-review.py",
+      "audits/final-ui-policy-104-review/followup-probes.js",
+      "audits/final-ui-policy-104-review/followup-probes.json",
+      "audits/final-ui-policy-104-review/followup-probes.log",
+      "audits/final-ui-policy-104-review/incident-browser-report.json",
+      "audits/final-ui-policy-104-review/incident-learning-resource-browser-author-checks.json",
+      "audits/final-ui-policy-104-review/independent-ui-checks.js",
+      "audits/final-ui-policy-104-review/independent-ui-checks.json",
+      "audits/final-ui-policy-104-review/independent-ui-checks.log",
+      "audits/final-ui-policy-104-review/pre-incident-browser-report.json",
+      "audits/final-ui-policy-104-review/prepare-actual-visual-snapshot.py",
+      "audits/final-ui-policy-104-review/real-followup-probes.js",
+      "audits/final-ui-policy-104-review/real-followup-probes.json",
+      "audits/final-ui-policy-104-review/real-followup-probes.log",
+      "audits/final-ui-policy-104-review/real-helper-baseline.json",
+      "audits/final-ui-policy-104-review/shared-node-all.log",
+      "audits/final-ui-policy-104-review/shared-node-explicit-allowlist.log",
+      "audits/final-ui-policy-104-review/shared-node.log",
+      "audits/final-ui-policy-104-review/shared-python.log",
+      "audits/final-ui-policy-104-review/software-visual-fixture.json",
+      "audits/final-ui-policy-104-review/validate.py.patch",
+      "audits/final-ui-policy-104-review/visual-producer-probes.json",
+      "audits/final-ui-policy-104-review/visual-producer-probes.log",
+      "audits/final-ui-policy-104-review/visual-producer-probes.py",
+      "audits/final-ui-policy-104-review/visual-runtime-probes-pre-repair.json",
+      "audits/final-ui-policy-104-review/visual-runtime-probes.js",
+      "audits/final-ui-policy-104-review/visual-runtime-probes.json",
+      "audits/final-ui-policy-104-review/visual-runtime-probes.log",
+      "audits/final-ui-policy-104-review/visual-software-helpers.js",
+      "audits/final-ui-policy-104-review/visual-ui-probes.js",
+      "audits/final-ui-policy-104-review/visual-ui-probes.json",
+      "audits/final-ui-policy-104-review/visual-ui-probes.log"
+    ],
+    "evidenceSha256": {
+      "audits/final-ui-policy-104-review/actual-bank-navigation-check.js": "49d573d05378f15afa3714caf349b4c523bb1f7312d7539e9857c0c424f0ea22",
+      "audits/final-ui-policy-104-review/actual-bank-navigation-check.json": "705c5dfc9e350837f02ab5b328c9a4faea17c9306f808d19b9b4cc8fb37302db",
+      "audits/final-ui-policy-104-review/actual-bank-navigation-check.log": "33389736c58b8eb8be83f1b8010e94f3f78bc5ab064917f3d9840c752cb5401d",
+      "audits/final-ui-policy-104-review/actual-visual-producer.json": "4ee7abc1136fbc4deec700a698ee3157c144e84beed695d3460fabc13c023d38",
+      "audits/final-ui-policy-104-review/actual-visual-producer.log": "4ee7abc1136fbc4deec700a698ee3157c144e84beed695d3460fabc13c023d38",
+      "audits/final-ui-policy-104-review/actual-visual-runtime.js": "a2728a45b8c2a542f3a5579c4a4be3b7b896057e39df41b0faa88d33f0b8a040",
+      "audits/final-ui-policy-104-review/actual-visual-runtime.json": "d0bcfc6422b3e42226e8737ff37c4ca8b23d7f0ad0996d299e810e8d6a643e14",
+      "audits/final-ui-policy-104-review/actual-visual-runtime.log": "d0bcfc6422b3e42226e8737ff37c4ca8b23d7f0ad0996d299e810e8d6a643e14",
+      "audits/final-ui-policy-104-review/assemble_bank.py.patch": "9467a927994d9beb8a5bd6310cc338f8e47bfba6462882d71e153e775c8c178d",
+      "audits/final-ui-policy-104-review/binding-checks.json": "d4122f0d3b9250a4107e5c9493d8e73e77d3cb355dc341c15e7b7525cfc7d25f",
+      "audits/final-ui-policy-104-review/binding-checks.log": "d4122f0d3b9250a4107e5c9493d8e73e77d3cb355dc341c15e7b7525cfc7d25f",
+      "audits/final-ui-policy-104-review/build.py.patch": "202854f72fa77f534b2e54b75c05014882712fd4c205b695b63b822db7105f55",
+      "audits/final-ui-policy-104-review/check-bindings.py": "50830908fe202f6a40729f8bb9e4adc0604f0cc99d7cb23d497b39bd5be2a134",
+      "audits/final-ui-policy-104-review/content-baseline.json": "0c68b1114414eac65503e5d2d491425d49701d8a05085ed71d6e689d050cd914",
+      "audits/final-ui-policy-104-review/execution-incident.json": "5778bba4da2a50424a9df7b2557414413c519e23cf1d60da46d222d6db856473",
+      "audits/final-ui-policy-104-review/finalize-policy-review.py": "14856a62a8a5524aeb8615dc00489108c7f8f9e322228096dea79072eef17fd9",
+      "audits/final-ui-policy-104-review/followup-probes.js": "a53a7830944aa597b327a65d4120426f00120bbfd462010053c570638dec7b21",
+      "audits/final-ui-policy-104-review/followup-probes.json": "bd482551672091ff50126207c261160053b2a15f067575a6e5cf363730f91453",
+      "audits/final-ui-policy-104-review/followup-probes.log": "bd482551672091ff50126207c261160053b2a15f067575a6e5cf363730f91453",
+      "audits/final-ui-policy-104-review/incident-browser-report.json": "5cce5d4d00080a348f94bdd54b3b37eda8abf3303bf457aaa5256d3ff8eea666",
+      "audits/final-ui-policy-104-review/incident-learning-resource-browser-author-checks.json": "3d4cc48c8b9e02273b0c4f92fac2313606c1455f684c8ea8ddbcaf0cb1c50f6b",
+      "audits/final-ui-policy-104-review/independent-ui-checks.js": "2cadfbd4086994bcb305250e6d58d8f80fbcb9c0f32125add9d153a0d1c2108f",
+      "audits/final-ui-policy-104-review/independent-ui-checks.json": "c0229e93e7c7c24b03060723e55b7b08fed8198d602f7653dcf8b414494b5d7c",
+      "audits/final-ui-policy-104-review/independent-ui-checks.log": "c0229e93e7c7c24b03060723e55b7b08fed8198d602f7653dcf8b414494b5d7c",
+      "audits/final-ui-policy-104-review/pre-incident-browser-report.json": "7bf52a4c0f90857e234cfcf67581c95fc6a640e6ca03d731693872b90ad0e1e5",
+      "audits/final-ui-policy-104-review/prepare-actual-visual-snapshot.py": "db34d5af7b8e93f9112306fb518bc59ae825f37fb931e6e4be0438581f448fb7",
+      "audits/final-ui-policy-104-review/real-followup-probes.js": "92de76383844e4347bce41435ad9674cbd148b577a15e398a458565d019f747b",
+      "audits/final-ui-policy-104-review/real-followup-probes.json": "c593b80b02c37e4b58c434df781ea824b75aa28a40dccda1baa83c85397a7389",
+      "audits/final-ui-policy-104-review/real-followup-probes.log": "c593b80b02c37e4b58c434df781ea824b75aa28a40dccda1baa83c85397a7389",
+      "audits/final-ui-policy-104-review/real-helper-baseline.json": "aa726ec892b07fb502983edb4c95847b154ed90aa9192c56ed29842ec53587c3",
+      "audits/final-ui-policy-104-review/shared-node-all.log": "8edc2073402ac9bca027e4d37674085c244c742a4a80762c0cd81264ce1ae478",
+      "audits/final-ui-policy-104-review/shared-node-explicit-allowlist.log": "eb389623347e88b06e090c2cdb23b0f08b174e02bcc9ca77f4ad0d8a2f3deae6",
+      "audits/final-ui-policy-104-review/shared-node.log": "9e768fd0222d43a7ce21fc39d8f45faa0a2c8f1a579c33f93b2e99262ea36e70",
+      "audits/final-ui-policy-104-review/shared-python.log": "e8450bea4dff7f7b6166edfb88cfdf74409c1873a11b48e43ef04b260d800ac2",
+      "audits/final-ui-policy-104-review/software-visual-fixture.json": "ae9bf03735754ea5209ed306216a72b9c178f18dee73de736a66837f5a306111",
+      "audits/final-ui-policy-104-review/validate.py.patch": "48f9754a7773e649840a7ce0e086149c97ebf096b944ac9d6b97f0b2497c2e5c",
+      "audits/final-ui-policy-104-review/visual-producer-probes.json": "8ed9adc58641bfc60337be0adfe478c27b74da5893b0d803c0b2fd47aff4f656",
+      "audits/final-ui-policy-104-review/visual-producer-probes.log": "8ed9adc58641bfc60337be0adfe478c27b74da5893b0d803c0b2fd47aff4f656",
+      "audits/final-ui-policy-104-review/visual-producer-probes.py": "633f4c85315ca7c9120a76b81f3754cb97b2e5ae12070d766430f1ddd2cd36c7",
+      "audits/final-ui-policy-104-review/visual-runtime-probes-pre-repair.json": "dfee5cf3e856be7ee996e4842f2ac6ea116038682a7cdcb727b68a5de71fd071",
+      "audits/final-ui-policy-104-review/visual-runtime-probes.js": "ff86ac9b7f5329230ea8f72e5bb4b4a65a0c662c9df6131f0adb1b56ad1a38fc",
+      "audits/final-ui-policy-104-review/visual-runtime-probes.json": "d7c371c92242f89b88f1c36c893126e441ddd23dbf30d9d007e4e348df67021f",
+      "audits/final-ui-policy-104-review/visual-runtime-probes.log": "d7c371c92242f89b88f1c36c893126e441ddd23dbf30d9d007e4e348df67021f",
+      "audits/final-ui-policy-104-review/visual-software-helpers.js": "3c44d59cedb414d8cb87d52374cf5e7842850e76fe72d4c75bd231bd3f9f83b9",
+      "audits/final-ui-policy-104-review/visual-ui-probes.js": "9436aabda848141da96d718107c8a67f39f28721f8506770ba7da9c871f6fd41",
+      "audits/final-ui-policy-104-review/visual-ui-probes.json": "d844cb6b88a2408c6e26b6c5049eb185d2543582f48870139c8b18039b54c443",
+      "audits/final-ui-policy-104-review/visual-ui-probes.log": "d844cb6b88a2408c6e26b6c5049eb185d2543582f48870139c8b18039b54c443"
+    },
+    "limitations": [
+      "This acceptance is for exact policy-bound code and deterministic behavior, not browser layout/interaction QA.",
+      "Separate independent input classification and crop review is still ongoing. The bounded actual snapshot has1397 ready and3672 blocked of5069 verified questions; missing inputs fail closed. This is not whole-course visual completeness.",
+      "Reviewer accidentally invoked two legacy browser runners via an overly broad Node glob. Both launches failed before any page check or screenshot; no retry occurred. Exact incident and both overwritten reports are preserved in this review directory; ordinary process inspection found no remaining browser processes. Later software suite used an explicit file allowlist.",
+      "Offline HTML and JSON backups contain readable answer data by design. UI exam isolation is not encrypted or proctored secrecy."
+    ]
+  }
+]

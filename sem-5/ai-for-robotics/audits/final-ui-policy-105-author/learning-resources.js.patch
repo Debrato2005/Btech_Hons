@@ -1,0 +1,91 @@
+--- pre-extension/app/learning-resources.js
++++ candidate-1.0.5/app/learning-resources.js
+@@ -4,7 +4,7 @@
+  */
+ (function(root,factory){'use strict';const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;if(root)root.RoboticsLearningResources=api;}(typeof globalThis!=='undefined'?globalThis:this,function(){
+ 'use strict';
+-const VERSION='1.0.4';
++const VERSION='1.0.5';
+ const CHECKS=['sourceSupport','assumptions','answerSet','distractors','calculations','figureFidelity','explanation','difficulty','duplication'];
+ const POLICY_CHECKS=['exactProjection','contextPreservation','sourceAndReviewBinding','failClosedMutationTests','runtimeTests'];
+ const clone=x=>JSON.parse(JSON.stringify(x));
+@@ -69,6 +69,44 @@
+  }
+  return {questions,diagnostics};
+ }
++// Supplemental notebook text is a distinct input class, never a PDF crop.
++function supplementalInput(bank,id){
++ const x=bank.questionVisuals,all=x.supplementalInputs,b=x.supplementalBindings?.[id];
++ if(!Array.isArray(all)||all.some(s=>!s||typeof s!=='object')||new Set(all.map(s=>s.id)).size!==all.length)throw Error('Missing or duplicate supplemental input records.');
++ const s=all.find(v=>v.id===id),bound=(value,raw,hash)=>typeof raw==='string'&&/^[a-f0-9]{64}$/.test(hash||'')&&sha256(raw)===hash&&stableJSON(JSON.parse(raw))===stableJSON(value);
++ if(!s||b?.id!==id||!bound(s,b.rawJSON,b.inputSha256))throw Error('Supplemental input metadata is missing or stale.');
++ if(!nonblank(s.authorId)||!Array.isArray(s.revisionAuthors||[])||(s.revisionAuthors||[]).some(a=>!nonblank(a)))throw Error('Supplemental input authorship is missing or malformed.');
++ const output=s.kind==='verbatim_saved_output';
++ if(!nonblank(s.id)||!['verbatim_source_code','verbatim_saved_output'].includes(s.kind)||s.language!==(output?'text':'python')||!['verbatim','output_stripped'].includes(s.notebookRepresentation)||(output&&s.notebookRepresentation!=='verbatim'))throw Error('Unsupported supplemental kind, language or notebook representation.');
++ for(const [key,hash]of [['sourceArtifact','sourceSha256'],['notebookArtifact','notebookSha256']]){
++  const name=s[key],artifact=x.supplementalArtifacts?.[name];
++  if(typeof name!=='string'||!['sources/supplemental/','audits/review-snapshots/'].some(prefix=>name.startsWith(prefix))||name.includes(':')||name.split('/').includes('..')||!/^[a-f0-9]{64}$/.test(s[hash]||'')||artifact?.sha256!==s[hash]||typeof artifact.rawText!=='string'||sha256(artifact.rawText)!==s[hash])throw Error('Supplemental exact local-file bytes are missing or stale: '+key);
++ }
++ if(['pinned','commit_only'].includes(s.upstreamPinStatus)){
++  if(!/^[a-f0-9]{40}$/.test(s.upstreamCommit||'')||(s.upstreamPinStatus==='pinned'&&!/^[a-f0-9]{40}$/.test(s.upstreamGitBlobSha||''))||(s.upstreamPinStatus==='commit_only'&&s.upstreamGitBlobSha!==null)||typeof s.sourceUrl!=='string'||!s.sourceUrl.startsWith('https://github.com/')||!s.sourceUrl.includes('/blob/'+s.upstreamCommit+'/'))throw Error('Pinned upstream provenance is incomplete.');
++ }else if(s.upstreamPinStatus!=='local_only'||s.upstreamCommit!==null||s.upstreamGitBlobSha!==null)throw Error('Unpinned evidence must state local_only with null upstream identities.');
++ if(!nonblank(s.transformation))throw Error('Supplemental transformation qualification is missing.');
++ const notebook=JSON.parse(x.supplementalArtifacts[s.notebookArtifact].rawText),index=s.cellIndexZeroBased;
++ if(!Number.isInteger(index)||index<0||!Array.isArray(notebook.cells)||index>=notebook.cells.length)throw Error('Notebook cell index is outside the exact artifact.');
++ const cell=notebook.cells[index];
++ if((s.cellId??null)!==(('id'in cell?cell.id:cell.metadata?.id)??null)||(s.cellId!==null&&typeof s.cellId!=='string'))throw Error('Notebook cell ID does not match the exact indexed cell.');
++ let selected;
++ if(output){
++  const oi=s.notebookOutputIndex,field=s.notebookOutputField;
++  if(cell.cell_type!=='code'||!Number.isInteger(oi)||oi<0||!Array.isArray(cell.outputs)||oi>=cell.outputs.length||!['text','data.text/plain'].includes(field))throw Error('Invalid historical saved-output selector.');
++  selected=field==='text'?cell.outputs[oi].text:cell.outputs[oi].data?.['text/plain'];
++ }else{
++  if(cell.cell_type!=='code'||s.notebookOutputIndex!=null||s.notebookOutputField!=null)throw Error('Code input may select only source, never saved output.');selected=cell.source;
++ }
++ const joined=v=>typeof v==='string'?v:Array.isArray(v)&&v.every(t=>typeof t==='string')?v.join(''):null;
++ const lines=(text,start,end)=>{if(typeof text!=='string'||!Number.isInteger(start)||!Number.isInteger(end)||start<1||end<start)throw Error('Invalid exact snippet line range.');const rows=text.match(/[^\r\n]*(?:\r\n|\r|\n)|[^\r\n]+$/g)||[];if(end>rows.length)throw Error('Snippet line range exceeds artifact/cell.');return rows.slice(start-1,end).join('');};
++ const expected=lines(joined(selected),s.cellLineStart,s.cellLineEnd);
++ if(s.text!==expected||!/^[a-f0-9]{64}$/.test(s.textSha256||'')||sha256(expected)!==s.textSha256)throw Error('Supplemental text differs from its exact notebook substring.');
++ if(s.sourceArtifact===s.notebookArtifact){if(s.lineStart!==null||s.lineEnd!==null)throw Error('Notebook source requires cell ranges, not global code line numbers.');}
++ else if(output||lines(x.supplementalArtifacts[s.sourceArtifact].rawText,s.lineStart,s.lineEnd)!==expected)throw Error('Supplemental text differs from its extracted source-file range.');
++ return s;
++}
++
+ const VISUAL_CHECKS=['inventoryCompleteness','requiredInputFidelity','legibility','noAnswerLeak','sourceLinkage'];
+ const visualByteCache=new Map();
+ function visualEligibility(bank,embeddedAssets,questionIds){
+@@ -84,11 +122,15 @@
+  const assetCounts=new Map();for(const a of x.assets)assetCounts.set(a.sha256,(assetCounts.get(a.sha256)||0)+1);
+  for(const id of ids){try{
+   const e=eligible.get(id),b=x.bindings?.[id],records=x.records.filter(r=>r.questionId===id),r=records[0];
+-  if(!e||!e.reviewIds.some(rid=>e.question.reviewIds?.includes(rid)))throw Error('Current attached independent question/policy approval is missing or revoked.');
++  if(!e||!nonblank(e.question.authorId)||!Number.isInteger(e.question.version)||e.question.version<1||!e.reviewIds.some(rid=>e.question.reviewIds?.includes(rid)))throw Error('Current attached independent question/policy approval is missing or revoked.');
+   if(records.length!==1||!b||!bound(b.recordRawJSON,b.recordSha256,r))throw Error('Missing or stale independently reviewed visual-dependency binding.');
+   const q=e.question;
+   if(r.id!==b.recordId||r.version!==b.recordVersion||!Number.isInteger(r.version)||r.version<1||!nonblank(r.authorId)||!nonblank(r.reason)||r.questionVersion!==q.version||r.questionSha256!==e.binding.questionSha256||b.questionVersion!==q.version||b.questionSha256!==e.binding.questionSha256||r.dependencyStatus!==b.dependencyStatus||!exact(r.assetIds,b.assetIds)||!exact(r.requiredInputs,b.requiredInputs))throw Error('Visual inventory does not bind the current question content/version.');
+-  if(!uniqueList(r.assetIds)||!uniqueList(r.requiredInputs)||!['required','self_contained'].includes(r.dependencyStatus)||(r.dependencyStatus==='required'?(!r.assetIds.length||!r.requiredInputs.length):(r.assetIds.length||r.requiredInputs.length)))throw Error('Malformed required-input classification.');
++  const sids=r.supplementalInputIds||[];
++  if(!uniqueList(sids)||!exact(sids,b.supplementalInputIds||[]))throw Error('Supplemental input binding differs from the reviewed record.');
++  if(!uniqueList(r.assetIds)||!uniqueList(r.requiredInputs)||!['required','self_contained'].includes(r.dependencyStatus)||(r.dependencyStatus==='required'?(!(r.assetIds.length||sids.length)||!r.requiredInputs.length):(r.assetIds.length||sids.length||r.requiredInputs.length)))throw Error('Malformed required-input classification.');
++  const supplementalInputs=sids.map(sid=>supplementalInput(bank,sid)),hasOutput=supplementalInputs.some(s=>s.kind==='verbatim_saved_output');
++  if(hasOutput&&r.savedOutputUse!=='explicit_output_reading')throw Error('Historical output is permitted only as explicit output-reading stimulus.');
+   const refs=r.sourceRefs;
+   if(!Array.isArray(refs)||!refs.length||refs.some(c=>!sourceRefAllowed(c,sources,slides)||x.manifest.sourceVersions?.[c.sourceId]!==c.sourceSha256||!q.citations.some(k=>k.sourceId===c.sourceId&&k.sourceSha256===c.sourceSha256))||new Set(refs.map(sourceKey)).size!==refs.length)throw Error('Question-input source/page/inspection binding is missing or stale.');
+   const visualAssets=[];
+@@ -115,11 +157,15 @@
+   if(current.some(v=>['flagged','rejected'].includes(v.decision)))throw Error('Current visual approval is disputed.');
+   const accepted=current.filter(v=>{
+    const rb=x.reviewBindings?.[v.id],linked=b.reviewBindings?.find(k=>k.id===v.id);
++   if(supplementalInputs.some(s=>!independentReviewer(v.reviewerId,s)))return false;
++   if(sids.length&&(!uniqueList(v.reviewedSupplementalInputIds)||!exact([...v.reviewedSupplementalInputIds].sort(),[...sids].sort())||!exact(v.supplementalInputHashes,Object.fromEntries(sids.map(id=>[id,x.supplementalBindings[id].inputSha256])))||!exact(v.supplementalSourceHashes,Object.fromEntries(supplementalInputs.flatMap(s=>[[s.sourceArtifact,s.sourceSha256],[s.notebookArtifact,s.notebookSha256]])))))return false;
++   if(hasOutput&&(v.savedOutputUse!=='explicit_output_reading'||v.checks?.savedOutputIsQuestionStimulus!==true))return false;
+    return v.decision==='verified'&&independentReviewer(v.reviewerId,r)&&independentReviewer(v.reviewerId,x.manifest)&&VISUAL_CHECKS.every(k=>v.checks?.[k]===true)&&v.questionId===id&&v.questionVersion===q.version&&v.questionSha256===e.binding.questionSha256&&v.displayRole==='question_input'&&typeof v.reviewedAt==='string'&&Number.isFinite(Date.parse(v.reviewedAt))&&uniqueList(v.reviewedAssetIds)&&exact([...v.reviewedAssetIds].sort(),[...r.assetIds].sort())&&exact(v.assetHashes,Object.fromEntries(visualAssets.map(a=>[a.id,a.sha256])))&&exact(v.assetMetadataHashes,Object.fromEntries(visualAssets.map(a=>[a.id,x.assetBindings[a.id].assetMetadataSha256])))&&refs.every(c=>v.sourceVersions?.[c.sourceId]===c.sourceSha256)&&Object.entries(v.sourceVersions||{}).every(([sid,h])=>sources.get(sid)?.sha256===h)&&rb?.id===v.id&&linked?.reviewSha256===rb.reviewSha256&&bound(rb.rawJSON,rb.reviewSha256,v);
+   });
+   if(!accepted.length)throw Error('No current independent question-input visual approval; answer approval alone is insufficient.');
+   const stamp={formatVersion:1,questionId:id,questionVersion:q.version,questionSha256:e.binding.questionSha256,recordId:r.id,recordVersion:r.version,recordSha256:b.recordSha256,dependencyStatus:r.dependencyStatus,reviewBindings:accepted.map(v=>({id:v.id,reviewSha256:x.reviewBindings[v.id].reviewSha256})).sort((a,b)=>a.id.localeCompare(b.id)),assetBindings:visualAssets.map(a=>({id:a.id,sha256:a.sha256,metadataSha256:x.assetBindings[a.id].assetMetadataSha256})).sort((a,b)=>a.id.localeCompare(b.id))};
+-  out.ready[id]={questionId:id,dependencyStatus:r.dependencyStatus,assets:visualAssets,requiredInputs:clone(r.requiredInputs),stamp};
++  if(sids.length)stamp.supplementalBindings=supplementalInputs.map(s=>({id:s.id,inputSha256:x.supplementalBindings[s.id].inputSha256,textSha256:s.textSha256,sourceSha256:s.sourceSha256,notebookSha256:s.notebookSha256})).sort((a,b)=>a.id.localeCompare(b.id));
++  out.ready[id]={questionId:id,dependencyStatus:r.dependencyStatus,assets:visualAssets,supplementalInputs,requiredInputs:clone(r.requiredInputs),stamp};
+  }catch(error){fail(id,error.message);}}
+  return out;
+ }

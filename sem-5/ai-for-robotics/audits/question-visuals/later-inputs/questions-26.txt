@@ -1,0 +1,165 @@
+
+PAGE 1847
+5
+•
+3D robotics simulator.
+•
+Simulates sensors and physics.
+•
+Provides realistic robot environments.
+•
+Supports multiple robot platforms.
+•
+Integrates with ROS and ROS2.
+•
+Core Components
+– Physics Engine
+– Rendering Engine
+– Sensor Engine
+– User Interface
+– Transport Layer (handles communication between 
+distributed nodes)
+Introduction to Gazebo Simulator
+
+{"id": "W12-L58-P1847-Q03", "stem": "Which interpretation matches the visible scene in the Gazebo screenshot on physical page 1847?", "options": [{"id": "o1", "text": "The screenshot shows a completed individual robot model with its link-joint structure open for editing."}, {"id": "o2", "text": "The screenshot shows a sensor-output calibration plot comparing simulated range residuals with real measurements."}, {"id": "o3", "text": "A generic simulation scene/interface is displayed; the view does not show a quantitative simulated-versus-real sensor comparison."}], "assumptions": []}
+
+PAGE 1854
+12
+SLAM Process
+1.
+Sensor data acquisition
+2.
+Feature extraction
+3.
+Pose estimation
+4.
+Map update
+5.
+Loop closure (correct accumulated error)
+Output
+– Occupancy grid map
+– Robot trajectory
+SLAM Workflow
+
+{"id": "W12-L58-P1854-Q01", "stem": "Which front-end/back-end division matches the SLAM architecture diagram?", "options": [{"id": "o1", "text": "Front end solves the global trajectory optimization; back end detects and tracks sensor features"}, {"id": "o2", "text": "Front end and back end independently estimate unrelated trajectories with no exchanged constraints"}, {"id": "o3", "text": "Front end extracts/associates observations; back end estimates a consistent trajectory/map from constraints"}], "assumptions": []}
+{"id": "W12-L58-P1854-Q04", "stem": "What does the curved back-end-to-front-end arrow support?", "options": [{"id": "o1", "text": "Back-end estimation results can feed back to inform subsequent front-end processing."}, {"id": "o2", "text": "The curved arrow is the main forward path carrying extracted constraints from front end to back end."}, {"id": "o3", "text": "The curved arrow sends raw sensor measurements from the output map directly into the back end, bypassing front-end association."}], "assumptions": []}
+
+PAGE 1855
+13
+•
+An occupancy grid map is a foundational spatial
+representation
+used
+in
+robotics
+and
+autonomous
+navigation to map environments.
+•
+Map Representation.
+•
+Cell States
+–
+Occupied
+–
+Free
+–
+Unknown
+•
+Advantages
+–
+Easy implementation
+–
+Suitable for navigation
+–
+Efficient path planning
+Occupancy Grid Mapping
+
+{"id": "W12-L58-P1855-Q01", "stem": "Which interpretation matches the displayed occupancy grid?", "options": [{"id": "o1", "text": "White denotes occupied, black free and grey unknown in this figure"}, {"id": "o2", "text": "Grey denotes verified free space outside the sensor field of view"}, {"id": "o3", "text": "White denotes free, black occupied and grey unknown in this figure"}], "assumptions": []}
+{"id": "W12-L58-P1871-Q03", "stem": "How should the colored bands in this navigation screenshot be distinguished from the earlier three-state occupancy legend?", "options": [{"id": "o1", "text": "Every colored band is a new physical wall seen in Gazebo"}, {"id": "o2", "text": "They include navigation cost overlays, so their colors should not be read directly as the earlier white/black/grey legend"}, {"id": "o3", "text": "All colored cells are unknown because they are not white"}], "assumptions": []}
+{"id": "W12-L58-P1855-Q04", "stem": "What does the red wedge in the occupancy-grid illustration represent?", "options": [{"id": "o1", "text": "The sensor’s field of view, not a fourth occupancy state"}, {"id": "o2", "text": "The robot’s full traversable workspace, including all cells behind obstacles"}, {"id": "o3", "text": "A fourth occupancy class meaning every cell in the wedge is occupied"}], "assumptions": []}
+
+PAGE 1858
+16
+Input
+–
+Map
+–
+Sensor data
+–
+Odometry
+Processing
+–
+Localization
+–
+Global planning
+–
+Local planning
+–
+Recovery behaviors
+Output
+–
+Velocity commands
+NAV Architecture
+
+{"id": "W12-L58-P1858-Q01", "stem": "Which path-to-velocity chain matches the legacy move_base figure?", "options": [{"id": "o1", "text": "Global planner → path → base controller directly, with no local velocity-generation stage"}, {"id": "o2", "text": "Global planner → path → local planner → velocity command → base controller"}, {"id": "o3", "text": "Global planner → velocity command → local planner → path → base controller"}], "assumptions": []}
+{"id": "W12-L58-P1858-Q02", "stem": "Select every costmap that receives a direct sensor-source branch in the displayed legacy NAV architecture.", "options": [{"id": "o1", "text": "Global costmap"}, {"id": "o2", "text": "Local costmap"}, {"id": "o3", "text": "Global planner directly, bypassing its costmap"}, {"id": "o4", "text": "Local planner directly, bypassing its costmap"}], "assumptions": []}
+{"id": "W12-L58-P1858-Q03", "stem": "Which odometry/transform pairing follows the legacy navigation diagram’s labels?", "options": [{"id": "o1", "text": "odom carries odometry to the local planner; tf carries coordinate transforms into the navigation stack"}, {"id": "o2", "text": "odom is the outgoing wheel velocity command; tf is the internal global path"}, {"id": "o3", "text": "odom carries the requested goal; tf carries the saved occupancy image"}], "assumptions": ["These are legacy ROS1 labels as printed, not asserted ROS2 type spellings."]}
+{"id": "W12-L58-P1858-Q04", "stem": "Which goal-input/map-server distinction is directly supported by the legacy NAV figure?", "options": [{"id": "o1", "text": "The goal is a stamped pose input to planning; map_server supplies map information to the global costmap"}, {"id": "o2", "text": "map_server computes the local planner’s odometry from wheel motion"}, {"id": "o3", "text": "The goal is a Twist velocity command directly consumed by the base controller"}], "assumptions": []}
+{"id": "W12-L58-P1858-Q05", "stem": "What does the blue shading identify in the legacy architecture’s legend?", "options": [{"id": "o1", "text": "Provided navigation nodes such as the planner components"}, {"id": "o2", "text": "Optional provided nodes, such as a map source supplied by the framework"}, {"id": "o3", "text": "Platform-specific components, including sensor sources and the base controller"}], "assumptions": []}
+
+PAGE 1859
+17
+Core NAV2 
+Components
+•
+Planner Server
+•
+Controller Server
+•
+Behaviour Tree (BT) 
+Navigator
+•
+Recovery Server
+•
+Map Server
+•
+Adaptive Monte 
+Carlo Localization 
+(AMCL)
+Introduction to ROS2 Navigation Stack (NAV2)
+The Behavior
+Server is the 
+component that 
+handles behaviors
+such as recovery 
+actions and docking.
+
+{"id": "W12-L58-P1859-Q01", "stem": "Which costmap-to-server association is drawn in the Nav2 architecture?", "options": [{"id": "o1", "text": "Controller Server with local costmap; Planner Server with global costmap"}, {"id": "o2", "text": "Controller Server with global costmap; Planner Server with local costmap"}, {"id": "o3", "text": "Both costmaps only inside the BT Navigator, with neither server using one"}], "assumptions": []}
+{"id": "W12-L58-P1859-Q02", "stem": "Which controller-to-base command path is drawn below the Nav2 servers?", "options": [{"id": "o1", "text": "Controller → Collision Monitor → Velocity Smoother → Robot Base"}, {"id": "o2", "text": "Controller → Robot Base → Collision Monitor → Velocity Smoother"}, {"id": "o3", "text": "Controller → Velocity Smoother → Collision Monitor → Robot Base"}], "assumptions": []}
+{"id": "W12-L58-P1859-Q03", "stem": "Which distinction separates the BT Navigator and Lifecycle Manager in the Nav2 architecture?", "options": [{"id": "o1", "text": "The BT Navigator manages activation states only, while the Lifecycle Manager selects recovery actions"}, {"id": "o2", "text": "The BT Navigator coordinates task execution; lifecycle management concerns managed component state transitions"}, {"id": "o3", "text": "The Lifecycle Manager computes paths, while the BT Navigator directly calculates wheel velocities"}], "assumptions": ["Lifecycle state management is the supplied interpretation of the diagram label; no exact transition sequence is printed."]}
+{"id": "W12-L58-P1859-Q04", "stem": "Which interpretation handles the Recovery/Behavior/Route server labels without conflating Nav2 distributions?", "options": [{"id": "o1", "text": "The Behavior Server can only perform recovery and cannot host other behavior plugins"}, {"id": "o2", "text": "The Route Server block proves that stock Humble contains every component in this figure"}, {"id": "o3", "text": "Read the diagram’s server roles, but check the target distribution before assuming every shown server exists in the Humble demo"}], "assumptions": []}
+{"id": "W12-L58-P1859-Q05", "stem": "Why are the Smoother Server and Velocity Smoother not simply the same box repeated?", "options": [{"id": "o1", "text": "One is a navigation server associated with planned-path refinement; the other appears downstream in the velocity-command chain"}, {"id": "o2", "text": "They are aliases for the same server, so enabling both necessarily executes the same operation twice"}, {"id": "o3", "text": "The Smoother Server filters velocity commands while the downstream Velocity Smoother refines path geometry"}], "assumptions": []}
+
+PAGE 1863
+21
+Navigation Costmaps
+•
+Global Costmap
+–
+Static map representation
+•
+Local Costmap
+–
+Dynamic obstacle updates
+•
+Layers
+–
+Static layer
+–
+Obstacle layer
+–
+Inflation layer
+Costmaps in NAV2
+
+{"id": "W12-L58-P1871-Q03", "stem": "How should the colored bands in this navigation screenshot be distinguished from the earlier three-state occupancy legend?", "options": [{"id": "o1", "text": "Every colored band is a new physical wall seen in Gazebo"}, {"id": "o2", "text": "They include navigation cost overlays, so their colors should not be read directly as the earlier white/black/grey legend"}, {"id": "o3", "text": "All colored cells are unknown because they are not white"}], "assumptions": []}

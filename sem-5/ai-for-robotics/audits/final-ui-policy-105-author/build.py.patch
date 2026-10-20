@@ -1,0 +1,22 @@
+--- pre-extension/scripts/build.py
++++ candidate-1.0.5/scripts/build.py
+@@ -144,6 +144,10 @@
+         size = temporary.stat().st_size
+         if args.max_size_mib and size > args.max_size_mib * 1024 * 1024:
+             raise ValueError(f'Build is {size/1024/1024:.2f} MiB, above --max-size-mib={args.max_size_mib}. No source evidence was silently omitted. Choose a durable large-file delivery route.')
++        # Recheck current local supplemental bytes after serialization, before publication.
++        for name, artifact in bank.get('questionVisuals', {}).get('supplementalArtifacts', {}).items():
++            if hashlib.sha256(confined_path(name).read_bytes()).hexdigest() != artifact['sha256']:
++                raise ValueError('Build refused: supplemental source changed during build: ' + name)
+         os.replace(temporary, output)
+     finally:
+         if temporary.exists():
+@@ -159,7 +163,7 @@
+         'buildSeconds': round(time.perf_counter() - started, 3), 'embeddedAssets': assets_stats,
+         'omittedDuplicatePagePreviews': len(bank['assets']) - len(chosen), 'offlineEvidence': 'Complete embedded PDF or exact source-page asset for every verified citation',
+         'runtimeNetworkDependencies': [], 'validation': report,
+-        'questionVisuals': {'reviewedDispositions': len(bank.get('questionVisuals', {}).get('bindings', {})), 'requiredAssetIds': sorted(required_visuals), 'requiredAssetBytes': sum(confined_path(a['path']).stat().st_size for a in chosen if a['id'] in required_visuals), 'packaging': 'Exact lossless PNG bytes, one shared asset ID per pixel hash; complete original PDFs are retained separately.'},
++        'questionVisuals': {'reviewedDispositions': len(bank.get('questionVisuals', {}).get('bindings', {})), 'requiredAssetIds': sorted(required_visuals), 'requiredAssetBytes': sum(confined_path(a['path']).stat().st_size for a in chosen if a['id'] in required_visuals), 'supplementalInputIds': sorted(bank.get('questionVisuals', {}).get('supplementalBindings', {})), 'supplementalArtifacts': {name: {'sha256': artifact['sha256'], 'utf8Bytes': len(artifact['rawText'].encode('utf-8'))} for name, artifact in bank.get('questionVisuals', {}).get('supplementalArtifacts', {}).items()}, 'packaging': 'Exact lossless PNG bytes, one shared asset ID per pixel hash; separate verbatim notebook/code text and local-file SHA-256 bindings; complete original PDFs retained.'},
+         'performanceNote': 'Build time is not browser load time. Browser performance and offline PDF display require separate runtime QA.'
+     }
+     output.with_suffix('.build-report.json').write_text(json.dumps(result, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
